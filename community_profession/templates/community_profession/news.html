@@ -1,0 +1,91 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>News</title>
+{% endblock title %}
+{% block own_css %}
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-news.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+{% endblock own_css %}
+
+{% block community_content %}
+
+<!-- Start news -->
+{% for i in News %}
+<div class="row border-bottom pt-3 pb-3">
+   <div class="col-12 col-sm-12 col-md-12 news">
+      <!-- Start news posted by heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 posted-by-heading">
+            Posted by/ Matchbox
+         </div>
+      </div>
+      <!-- End news posted by heading -->
+      <!-- Start no of days -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 no-of-days">
+            {{i.Date}} / {{i.Time}} Ago
+         </div>
+      </div>
+      <!-- End no of days -->
+      <!-- Start news content -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 news-content">
+            {{i.Description}}
+         </div>
+      </div>
+      <!-- End news content -->
+      <!-- Start news img-video -->
+      <div class="row news-img-video">
+         <div class="col-12 col-sm-12 col-md-12">
+            <div class="row background">
+               <div class="col-0 col-sm-3 col-md-3"></div>
+               <div class="col-12 col-sm-6 col-md-6">
+                  {% if i.Video %}
+                  <video width="100%" controls controlslist="nodownload" oncontextmenu="return false">
+                     <source src="{{i.Video.url}}" type="video/mp4">
+                  </video>
+                  {% elif i.Image %}
+                  <img class="img-fluid" src="{{i.Image.url}}" alt="Chania" width="100%">
+                  {% else %}
+                  <div></div>
+                  {% endif %}
+               </div>
+               <div class="col-0 col-sm-3 col-md-3"></div>
+            </div>
+         </div>
+      </div>
+      <!-- End news img-video -->
+      <!-- Start like, comment, add-comment, share -->
+      <div class="row like-comment-share">
+         <!-- Start like -->
+         <div class="col-1 col-sm-1 col-md-1 like">
+            <i class="fa-solid fa-thumbs-up"></i> {{i.Like}}
+         </div>
+         <!-- End like -->
+         <!-- Start  comment -->
+         <div class="col-3 col-sm-2 col-md-1 comment">
+            <i class="fa-solid fa-message"></i> 3.9k
+         </div>
+         <!-- End  comment -->
+         <!-- Start add-comment btn -->
+         <div class="col-5 col-sm-4 col-md-3">
+            <a href="{% url 'news_comment' i.id %}">
+            <button type="submit" class="btn btn-block add-comment-btn">Add Comments</button>
+            </a>
+         </div>
+         <!-- End add-comment btn -->
+         <!-- Start Share -->
+         <div class="col-2 col-sm-2 col-md-2 share">
+            <i class="fa-solid fa-share-nodes"></i>
+         </div>
+         <!-- End Share -->
+      </div>
+      <!-- End like, comment, add-comment, share -->
+   </div>
+</div>
+{% endfor %}
+<!-- End news -->
+
+{% endblock community_content %}

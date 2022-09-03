@@ -1,0 +1,95 @@
+.create-post-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 2rem;
+    border-bottom: 0.063rem solid rgba(255, 255, 255, 0.12);
+}
+
+.similar-community .custom-select
+{
+    background-color: var(--color-12);
+}
+
+.post-ediot-box
+{
+    background-color: var(--color-11);
+}
+
+.post-ediot-box .save-draft-btn .btn
+{
+    border: 0.063rem solid var(--color-12);
+    color: var(--color-2);
+}
+
+.post-ediot-box .post-btn .btn
+{
+    background-color: var(--color-12);
+}
+
+.send-reply-notification
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-13);
+}
+
+.create-post-form .form-group .form-control
+{
+    background-color:var(--color-15);
+}
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px)
+{
+
+}
+
+
+@media all and (max-width: 576px)
+{
+
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+}
+
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+}
+/* End Mobile Views */

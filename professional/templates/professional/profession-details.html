@@ -1,0 +1,655 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Profession Personal Details</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+{% endblock own_css %}
+{% block content %}
+<!-- Start girls parlor heading -->
+<div class="row">
+   <div class="col-12 col-sm-12 col-md-12 girls-parlor-heading">
+      {{profession.profession}}
+   </div>
+</div>
+<!-- End girls parlor heading -->
+<!-- Start profile-img and info -->
+<div class="row">
+   <div class="col-12 col-sm-12 col-md-12 pl-4 pr-4">
+      <div class="row ">
+         <!-- Start profile-img -->
+         <div class="col-2 col-sm-3 col-md-2 profile-img-edit-btn">
+            <!-- Start Profile img -->
+            <div class="row">
+               <div class="col-12 col-sm-12 col-md-12">
+                  <img src="{{profession.profession_image.url}}"  class="img-fluid rounded" alt="Responsive image" width="100%">
+               </div>
+            </div>
+            <!-- End Profile img -->
+            <!-- Start Edit btn -->
+            <div class="row">
+               <div class="col-12 col-sm-12 col-md-12 text-center pt-3 edit-btn">
+                  <button  type="button" class="btn" data-toggle="modal" data-target="#editimage">
+                  <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+                  </button>
+               </div>
+            </div>
+            <!-- End Edit btn -->
+         </div>
+         <!-- Start profile-img -->
+         <!-- Start info -->
+         <div class="col-8 col-sm-9 col-md-10 personal-info">
+            <!-- Start name info -->
+            <div class="row">
+               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+                  Name
+               </div>
+               <div class="col-10 col-sm-10 col-md-10 content">
+                  : {{profession.shop_name}}
+               </div>
+            </div>
+            <!-- End name info -->
+            <!-- Start profession -->
+            <div class="row">
+               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+                  Profession
+               </div>
+               <div class="col-10 col-sm-10 col-md-10 content">
+                  : {{profession.profession}}
+               </div>
+            </div>
+            <!-- End profession -->
+            <!-- Start Address -->
+            <div class="row">
+               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+                  Address
+               </div>
+               <div class="col-10 col-sm-10 col-md-10 content">
+                  : {{profession.shop_address}}, {{profession.shop_city}}, {{profession.shop_state}}
+               </div>
+            </div>
+            <!-- End Address -->
+            <!-- Start Experience -->
+            <div class="row">
+               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+                  Experience
+               </div>
+               <div class="col-10 col-sm-10 col-md-10 content">
+                  : {{profession.year_of_experience}} Year
+               </div>
+            </div>
+            <!-- End Experience -->
+            <!-- Start Rating -->
+            <div class="row">
+               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+                  Rating
+               </div>
+               <div class="col-10 col-sm-10 col-md-10 content">
+                  :
+                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+               </div>
+            </div>
+            <!-- End Rating -->
+            <!-- Start About users heading -->
+            <div class="row">
+               <div class="col-md-12 about-user-heading">
+                  About Users
+               </div>
+            </div>
+            <!-- End About users heading -->
+            <!-- Start about users content -->
+            <div class="row">
+               <div class="col-md-12 about-user-content">
+                  {{profession.shop_description}}
+               </div>
+            </div>
+            <!-- End about users content -->
+            <!-- Start Edit btn -->
+            <div class="row edit-btn">
+               <div class="col-md-12 pt-2">
+                  <button  type="button" class="btn" data-toggle="modal" data-target="#editDetailModal">
+                  <i class="fa-solid fa-pen-to-square"></i> Edit Details
+                  </button>
+               </div>
+            </div>
+            <!-- End Edit btn -->
+         </div>
+         <!-- End info -->
+      </div>
+   </div>
+</div>
+<!-- End profile-img and info -->
+<!-- Start time & open status, our services, add new service btn -->
+<div class="row pt-3 pb-3 border-top border-bottom">
+   <!-- Start time and open status -->
+   <div class="col-12 col-sm-3 col-md-3 border-right  time-open-status">
+      <!-- Start time & open status heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 heading">
+            Times & Open Status
+         </div>
+      </div>
+      <!-- End time & open status heading -->
+      <!-- Start time heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 time-heading">
+            Time : {{profession.shop_start_time}} to {{profession.shop_close_time}}
+         </div>
+      </div>
+      <!-- End time heading -->
+      <!-- Start open status Sunday -->
+      <div class="row">
+         {% if profession.shop_status_sunday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content"> : Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content"> : Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Sunday -->
+      <!-- Start open status Monday -->
+      <div class="row">
+         {% if profession.shop_status_monday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Monday -->
+      <!-- Start open status Tuesday -->
+      <div class="row">
+         {% if profession.shop_status_Tuesday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Tuesday -->
+      <!-- Start open status Wednesday -->
+      <div class="row">
+         {% if profession.shop_status_Wednesday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Wednesday -->
+      <!-- Start open status Thursday -->
+      <div class="row">
+         {% if profession.shop_status_Thrusday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Thursday -->
+      <!-- Start open status Friday -->
+      <div class="row">
+         {% if profession.shop_status_Friday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Friday -->
+      <!-- Start open status Saturday -->
+      <div class="row">
+         {% if profession.shop_status_saturday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Saturday -->
+   </div>
+   <!-- End time and open status -->
+   <!-- Start our services -->
+   <div class="col-12 col-sm-9 col-md-9 pl-5 our-services">
+      <!-- Start our services heading -->
+      <div class="row">
+         <div class="col-5 col-sm-9 col-md-9 our-services-heading">
+            Our Services
+         </div>
+
+         <div class="col-7 col-sm-3 col-md-3 text-center">
+            <button type="button" class="btn btn-normal" data-toggle="modal" data-target="#newServideModal">
+               Add New Service
+            </button>
+         </div>
+      </div>
+      <!-- End our services heading -->
+      <!-- Start Services -->
+      <div class="row">
+         <div class="col-10 col-sm-10 col-md-10">
+            {% for s in services%}
+            <div class="row mt-2 pt-2 rounded services">
+               <!-- Start Service heading -->
+               <div class="col-5 col-sm-8 col-md-8">{{s.service_name}}</div>
+               <!-- End Service heading -->
+               <!-- Start price, edit, delete -->
+               <div class="col-3 col-sm-2 col-md-2 text-center">
+                  <span>Rs : {{s.service_price}}</span>
+               </div>
+               <div class="col-2 col-sm-1 col-md-1 text-center">
+                  <span>
+                     <form>
+                        <button type="button" class="btn">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                     </form>
+                  </span>
+               </div>
+               <div class="col-2  col-sm-1 col-md-1 text-center">
+                  <span>
+                     <form action="{% url 'delete_service' s.id %}">
+                        <button type="submit" value="{{profession.id}}" name="profession_id" class="btn ">
+                        <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                     </form>
+                  </span>
+               </div>
+               <!-- End price, edit, delete -->
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+      <!-- End Services -->
+   </div>
+   <!-- End our services -->
+
+</div>
+<!-- End time & open status, our services, add new service bt -->
+<!-- Start Photos & videos heading, See All links headings -->
+<div class="row photos-videos-see-all">
+   <!-- Start Photos and Videos Heading -->
+   <div class="col-6 order-1 col-sm-6 order-sm-1 col-md-7">
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 photos-videos-heading">
+            Photos & Videos
+         </div>
+      </div>
+   </div>
+   <!-- End Photos and Videos Heading -->
+   <!-- Start see all links -->
+   <div class="col-6 order-8 col-sm-2 order-sm-7 col-md-2 pl-2 pr-2">
+      <a class="btn btn-normal btn-block" data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
+   </div>
+   <div class="col-6 order-9  col-sm-2 order-sm-9 col-md-2 pl-2 pr-2">
+      <a class="btn btn-normal btn-block" data-toggle="modal" data-target="#addimages">Add Photos</a>
+   </div>
+   <div class="col-6 order-7 col-sm-2 order-sm-11 col-md-1 text-center">
+      <a href="{% url 'see-all-photos-videos' profession.id %}" class="see-all">See All</a>
+   </div>
+   <!-- Start see all links -->
+</div>
+<!-- End Photos & videos heading, See All links headings -->
+<!-- Start Photos & videos -->
+<div class="row">
+   <div class="col-12 col-sm-12 col-md-12 p-4">
+      <div class="row profession-details">
+         {% for i in profession_image  %}
+         <div class="col-6 col-sm-2 col-md-2 pt-3">
+            <div class="row">
+               <div class="col-md-12">
+                  <img src="{{i.image.url}}" class="img-fluid rounded" width="100%" height="30%">
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+</div>
+<!-- End Photos & videos -->
+
+<!-- Start Review -->
+<div class="row">
+   <div class="col-12 col-sm-12 col-md-12 reviews">
+      <!-- Start Reviews Heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 reviews-heading">
+            {{profession_review_count}} Reviews
+         </div>
+      </div>
+      <!-- End Reviews Heading -->
+      {% for k in profession_review %}
+         <!-- Start user profile and user information -->
+         <div class="row mt-5">
+            <!-- Start user profile -->
+            <div class="col-2  col-sm-1  col-md-1 ">
+               <img src="{{k.User_Profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+            </div>
+            <!-- End user profile -->
+            <!-- Start User information -->
+            <div class="col-10 col-sm-11 col-md-11">
+               <!-- Start User Name -->
+               <div class="row">
+                  <div class="col-md-12 user-name-heading">
+                     {{k.User_Profile.usertype.user_id.first_name}} {{k.User_Profile.usertype.user_id.last_name}}
+                  </div>
+               </div>
+               <!-- End User Name -->
+               <!-- Start date -->
+               <div class="row">
+                  <div class="col-md-12 reviews-date">
+                     {{k.Review_Date}} {{k.Review_Time}} ago.
+                  </div>
+               </div>
+               <!-- End date -->
+            </div>
+            <!-- End User information -->
+         </div>
+         <!-- End user profile and user information -->
+         <!-- Start comment -->
+         <div class="row mt-1">
+            <div class="col-12 col-sm-12 col-md-12 review-comment">
+               {{k.Review}}
+            </div>
+         </div>
+         <!-- End comment -->
+         <!-- Start like and replay -->
+         <div class="row mt-2">
+            <!-- Start flag image -->
+            <div class="col-2 col-sm-1 col-md-1 likes-heading">
+               <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image">
+            </div>
+            <!-- End flag image -->
+
+            <!-- Start number of likes -->
+            <div class="col-1 col-sm-1 col-md-1 likes-heading">
+               3.9k
+            </div>
+            <!-- End number of likes -->
+
+            <!-- Start likes heading -->
+            <div class="col-2 col-sm-2 col-md-2 likes-heading">
+               <a href="{% url 'review_Reply' k.id %}">
+                  Reply
+               </a>
+            </div>
+            <!-- End likes heading -->
+         </div>
+         <!-- End like and replay -->
+      {% endfor %}
+   </div>
+</div>
+<!-- End Review -->
+<!-- ===========Edit Image Modal Starts=============== -->
+<div class="modal fade " id="editimage" tabindex="-1" aria-labelledby="editimageLable" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+         <div class="modal-header">
+            <h5 class="modal-title" id="editimageLable">Update Image</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <form action="{% url 'edit_profession_image' profession.id %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="container ">
+                  <div class="row">
+                     <div class="col-6">
+                        <img src="{{profession.profession_image.url}}" class="img-fluid" alt="Responsive image">
+                     </div>
+                     <div class="col-6 mt-5">
+                        <label for="profile_image">Select Image</label>
+                        <input type="file" name="profession_image">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- ===========Edit Image Modal Ends=============== -->
+<!-- ==============Edit Details modal Starts========== -->
+<div class="modal fade " id="editDetailModal" tabindex="-1" aria-labelledby="editDetailModal" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+         <div class="modal-header">
+            <h5 class="modal-title" id="editDetailModal">Update Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <form method="POST" action="{% url 'update_profession_details' profession.id  %}">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="container ">
+                  <div class="">
+                     <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" name="name" value="{{profession.shop_name}}" class="form-control" id="Name">
+                     </div>
+                     <div class="form-group">
+                        <label for="Profession">Profession</label>
+                        <input disabled value="{{profession.profession}}" type="text" class="form-control" id="Profession">
+                     </div>
+                     <div class="form-group">
+                        <label for="Address">Address</label>
+                        <input type="text" name="address" value="{{profession.shop_address}}"class="form-control" id="Address">
+                     </div>
+                     <div class="form-group">
+                        <label for="City">City</label>
+                        <input disabled type="text" value="{{profession.shop_city}}" class="form-control" id="City">
+                     </div>
+                     <div class="form-group">
+                        <label for="State">State</label>
+                        <input disabled type="text" value="{{profession.shop_state}}" class="form-control" id="State">
+                     </div>
+                     <div class="form-group">
+                        <label for="Experience">Experience</label>
+                        <input type="number" name="experiance" class="form-control" value="{{profession.year_of_experience}}" id="Experience">
+                     </div>
+                     <div class="form-group">
+                        <label for="about">About</label>
+                        <textarea class="form-control" name="about" id="about">{{profession.shop_description}}</textarea>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- ==============Edit Details modal Ends========== -->
+<!-- ==============Add New Service modal Starts========== -->
+<div class="modal fade " id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+         <div class="modal-header">
+            <h5 class="modal-title" id="newServideModal">Add New Service</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <form method="post" action="{% url 'add_services' %}">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="container ">
+                  <div class="">
+                     <div class="form-group">
+                        <label for="service">Service Name</label>
+                        <input type="text" class="form-control" name="service_name" id="service">
+                     </div>
+                     <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" name="price" id="exampleInputPassword1">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- ==============Add New modal Ends========== -->
+<!-- ===============Add gallary Modal Pop Up========== -->
+<div class="modal fade " id="addimages" tabindex="-1" aria-labelledby="addimages" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addimages">Add Gallary Images</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <form method="post" action="{% url 'add_profesion_gallery' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="container ">
+                  <div class="">
+                     <div class="form-group">
+                        <label for="Photo">Photo</label>
+                        <input required type="file" class="" name="image" id="Photo">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- ===============Add Galary Pop Up========== -->
+<!-- ===============Add gallary Modal Pop Up========== -->
+<div class="modal fade " id="addvideo" tabindex="-1" aria-labelledby="addvideo" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+         <div class="modal-header">
+            <h5 class="modal-title" id="addvideo">Add Profession Video</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <form method="post" action="{% url 'add_profesion_video' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="container ">
+                  <div class="">
+                     <div class="form-group">
+                        <label for="f">Video</label>
+                        <input required type="file" name="video">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- ===============Add Galary Pop Up========== -->
+<script>
+   $(function(){
+       $('form').submit(function(){
+           var isOk = true;
+           $('input[type=file][data-max-size]').each(function(){
+               if(typeof this.files[0] !== 'undefined'){
+                   var maxSize = parseInt($(this).attr('max-size'),10),
+                   size = this.files[0].size;
+                   isOk = maxSize > size;
+                   return isOk;
+               }
+           });
+           return isOk;
+       });
+   });
+</script>
+{% endblock content %}

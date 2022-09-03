@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      {% block title %}
+      <title>Index page</title>
+      {% endblock title %}
+      <!-- Start CSS -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/bootstrap.min.css' %}">
+      <!-- Common style guid css -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/style-guid.css' %}">
+      <!-- Main.css -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/home-screen.css' %}">
+      <link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+      {% block own_css %}
+      <!--   own css   -->
+      {% endblock own_css %}
+      <!-- End CSS -->
+      <!-- Start Scripts -->
+      <script src="{% static 'community_profession/js/jquery.slim.min.js' %}"></script>
+      <script src="{% static 'community_profession/js/popper.min.js' %}"></script>
+      <script src="{% static 'community_profession/js/bootstrap.bundle.min.js' %}"></script>
+      <!-- Font awsome kit -->
+      <script src="https://kit.fontawesome.com/8ba851d087.js" crossorigin="anonymous"></script>
+      <!-- End Scripts -->
+      <style>
+         #more {display: none;}
+      </style>
+   </head>
+   <body class="bg-dark">
+
+      <!-- Start Navigation -->
+      <div class="row">
+         <div class="col-12 col-md-12 custom-nav">
+            <nav class="navbar navbar-light  justify-content-between">
+               <!-- Start animated-nav and company logo -->
+               <span class="navbar-brand">
+                  <!-- Start animated side navigation -->
+                  <span>
+                     <div id="mySidenav" class="sidenav">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                        <a class="nav-link active text-dark" href="#" data-target="#modal3" data-toggle="modal">Create Community</a>
+                        <a class="nav-link" href="#" data-target="#modal5" data-toggle="modal">My Communities</a>
+                        <!-- <a href="#"><i class="fa-solid fa-share-nodes"></i> Share</a> -->
+                        <a class="dropdown-item" href="{% url 'Community_Question' %}"><i class="fa-solid fa-arrow-up-right-from-square"></i>Question</a>
+                        <a class="dropdown-item" href="{% url 'community-screen' %}"><i class="fa-solid fa-arrow-up-right-from-square"></i>Post</a>
+                        <a class="dropdown-item" href="{% url 'news' %}"><i class="fa-solid fa-arrow-up-right-from-square"></i>News</a>
+                        <a href="#"><i class="fa-solid fa-bell"></i> Notifications</a>
+                        <!-- <a href="#"><i class="fa-solid fa-ban"></i> Block Account</a>
+                        <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                        <a href="#"><i class="fa-solid fa-user"></i> Sign up for Profession</a> -->
+                        <a href="{% url 'user_logout' %}" class="sidenav-last-a"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a>
+                     </div>
+                     <span style="cursor:pointer" onclick="openNav()">&#9776;</span>
+                  </span>
+                  <!-- End animated side navigation -->
+                  <!-- Start Navigation icon -->
+                  <span class="nav-icon">
+                     <img src="{% static 'community_profession/img/home-screen-nav-icon.png' %}" class="img-fluid" alt="Responsive image">
+                  </span>
+                  <!-- End Navigation icon -->
+               </span>
+               <!-- End animated-nav and company logo -->
+               <!-- Start right side navigation -->
+               <ul class="nav justify-content-end">
+                  <li class="nav-item">
+                     <a class="nav-link active" href="{% url 'home-screen' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link notification" href="#">
+                     <i class="fa-solid fa-bell"></i>
+                     <span class="badge"></span>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     {% if user.is_authenticated %}
+                     <a class="nav-link" href="{% url 'user_logout' %}">Sign out</a>
+                     {% else %}
+                     <a class="nav-link" href="{% url 'sign-in' %}">Sign in</a>
+                     {% endif %}
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="{% url 'profession-profile-screen' %}">
+                     <img src="{{userprofile.profile_image.url}}" class="rounded-circle" alt="Cinque Terre" width="30" height="30">
+                     </a>
+                  </li>
+               </ul>
+               <!-- End right side navigation -->
+            </nav>
+         </div>
+      </div>
+      <!-- End Navigation -->
+
+      <!-- Start Mainn body content -->
+      <div class="row bg-dark" id="scrollable-container">
+         <!-- Start Main Content -->
+         <div class="col-12 col-sm-12 col-md-9 text-light pb-5 pr-4 border-right" id="scrollable-content">
+            <!-- Start Community - Profession Navigation -->
+            {% block community_profession_nav %}
+            <div class="row">
+               <div class="col-md-12 community-profession">
+                  <nav class="navbar justify-content-between">
+                     <!-- Start Community and Profession -->
+                     <ul class="nav justify-content-end">
+                        <li class="nav-item">
+                           <a class="nav-link active" href="{% url 'community-screen' %}">Community</a>
+                        </li>
+                        <li class="nav-item profession-default">
+                           <a class="nav-link active" href="{% url 'home-screen' %}">Profession</a>
+                        </li>
+                        <!--{% if usertype %}-->
+                        <!--<li class="nav-item profession-default">-->
+                        <!--<a class="nav-link active" href="#">My Dashboard</a>-->
+                        <!--</li>-->
+                        <!--{% endif %}-->
+                     </ul>
+                     <!-- End Community and Profession -->
+                     <!-- Start right side see all nav -->
+                     <ul class="nav justify-content-end see-all">
+                        <li class="nav-item">
+                           <a class="nav-link active" href="{% url 'profession-see-all' %}">
+                           See All
+                           </a>
+                        </li>
+                     </ul>
+                     <!-- End right side see all nav -->
+                  </nav>
+                  <!-- Start Search bar and invite button -->
+                  <form action="{% url 'serach_profession' %}" method="POST">
+                     {% csrf_token %}
+                        <div class="row pl-3 pt-2 pb-3">
+                           <!-- Start Search bar -->
+                           <div class="col-8 col-sm-10">
+                              <div class="row">
+                                 <div class="col-md-12 pt-2 search-bar">
+                                    <div class="table-cell fill-width">
+                                       <input class="form-control" name="profesion_search" placeholder="Search on matchbox" autocomplete="off" autofocus="autofocus" type="text">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- End Search bar  -->
+                           <!-- Start invite button -->
+                           <div class="col-4 col-sm-2">
+                              <div class="row">
+                                 <div class="col-md-12 pt-2">
+                                    <button type="submit" class="btn btn-normal-b btn-block">Search</button>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- End invite button -->
+                        </div>
+                  </form>
+                  <!-- End Search bar and invite button -->
+               </div>
+            </div>
+            {% endblock community_profession_nav %}
+            <!-- End Community - Profession Navigation -->
+            {% block content %}
+            {% endblock content %}
+         </div>
+         <!-- End Main Content -->
+         <!-- Start Community window -->
+         <div class="col-12 col-sm-12 col-md-3 pb-3 text-light community-window" id="scrollable-sidebar">
+            <form action="{% url 'serach_Community' %}" method="POST">
+               {% csrf_token %}
+               <div class="row pl-3 pt-2 pb-3">
+                  <!-- Start Search bar -->
+                  <div class="col-8 col-sm-9">
+                     <div class="row">
+                        <div class="col-md-12 pt-2 search-bar">
+                           <div class="table-cell fill-width">
+                              <input class="form-control" name="search_community" placeholder="Search on matchbox" autocomplete="off" autofocus="autofocus" type="text">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Search bar  -->
+                  <!-- Start invite button -->
+                  <div class="col-4 col-sm-3">
+                     <div class="row">
+                        <div class="col-md-12 pt-2">
+                           <button type="submit" class="btn btn-normal-b btn-block">
+                              <i class="fa-solid fa-magnifying-glass"></i>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End invite button -->
+               </div>
+            </form>
+            <!-- =============================== Search Community ====================================== -->
+            {% for i in community_obj %}
+               {% if i.Community_Type%}
+                  <div class="row pt-3">
+                     <div class="col-sm-3 pt-2">
+                        <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania">
+                     </div>
+                     <div class="col-sm-6 pt-2">
+                        <!-- Start modeal community heading  -->
+                        <div class="row">
+                           <div class="col-md-12 community-heading">
+                              <a href="{% url 'community-profile-screen' i.id %}">
+                              U/{{i.Community_Name}}
+                              </a>
+                           </div>
+                        </div>
+                        <!-- End modeal community heading  -->
+                        <!-- Start modeal community members  -->
+                        <div class="row">
+                           <div class="col-md-12 community-sub-heading">
+                              Members : 375
+                           </div>
+                        </div>
+                        <!-- End modeal community members  -->
+                     </div>
+                     <!-- <p>{{userprofile.id}},{{i.User_Profile.id}}</p> -->
+                     {% if userprofile.id is i.User_Profile.id %}
+                     {% else %}
+                     <div class="col-sm-3 pt-2">
+                        <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Join</button></a>
+                     </div>
+                     {% endif %}
+                  </div>
+               {% else %}
+                  <div class="row pt-3">
+                     <div class="col-sm-3 pt-2">
+                        <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania">
+                     </div>
+                     <div class="col-sm-6 pt-2">
+                        <!-- Start modeal community heading  -->
+                        <div class="row">
+                           <div class="col-md-12 community-heading">
+                              <a href="{% url 'community-profile-screen' i.id %}">
+                              M/{{i.Community_Name}}
+                              </a>
+                           </div>
+                        </div>
+                        <!-- End modeal community heading  -->
+                        <!-- Start modeal community members  -->
+                        <div class="row">
+                           <div class="col-md-12 community-sub-heading">
+                              Members : 375
+                           </div>
+                        </div>
+                        <!-- End modeal community members  -->
+                     </div>
+                     <div class="col-sm-3 pt-2">
+                        <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Join</button></a>
+                     </div>
+                  </div>
+               {% endif %}
+            {% endfor %}
+            <!-- =============================== End Search Community ====================================== -->
+            <!-- Start Commnity Heading -->
+            <div class="row pl-2 pr-2">
+               <div class="col-md-12 heading pt-3 pb-3 border-bottom">
+                  Community
+               </div>
+            </div>
+            <!-- End Commnity Heading -->
+            <!-- <p>{{request.user.id}}</p> -->
+            <!-- =============================== Joined Community ====================================== -->
+            {% for i in joincommunityobj %}
+               {% if i.Commnunity_id.Community_Type%}
+                  <div class="row pt-3">
+                     <div class="col-3 col-sm-3 pt-2 created-community">
+                        <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
+                     </div>
+                     <div class="col-6 col-sm-6 pt-2">
+                        <!-- Start modeal community heading  -->
+                        <div class="row">
+                           <div class="col-md-12 community-heading">
+                              <a href="{% url 'community-profile-screen' i.Commnunity_id.id %}">
+                                 U/{{i.Commnunity_id.Community_Name}}
+                              </a>
+                           </div>
+                        </div>
+                        <!-- End modeal community heading  -->
+                        <!-- Start modeal community members  -->
+                        <div class="row">
+                           <div class="col-md-12 community-sub-heading">
+                              Members : 375
+                           </div>
+                        </div>
+                        <!-- End modeal community members  -->
+                     </div>
+                     <div class="col-3 col-sm-3 pt-2">
+                        <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Joined</button></a>
+                     </div>
+                  </div>
+               {% else %}
+                  <div class="row pt-3">
+                     <div class="col-3 col-sm-3 pt-2">
+                        <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
+                     </div>
+                     <div class="col-6 col-sm-6 pt-2">
+                        <!-- Start modeal community heading  -->
+                        <div class="row">
+                           <div class="col-md-12 community-heading">
+                              <a href="{% url 'community-profile-screen' i.Commnunity_id.id %}">
+                                 M/{{i.Commnunity_id.Community_Name}}
+                              </a>
+                           </div>
+                        </div>
+                        <!-- End modeal community heading  -->
+                        <!-- Start modeal community members  -->
+                        <div class="row">
+                           <div class="col-md-12 community-sub-heading">
+                              Members : 375
+                           </div>
+                        </div>
+                        <!-- End modeal community members  -->
+                     </div>
+                     {% if i.User_Profile %}
+                     {% else %}
+                     <div class="col-3 col-sm-3 pt-2">
+                           <a href="{% url 'Unjoin' i.id %}">
+                              <button type="submit" class="btn btn-sm  btn-normal-b">
+                                 Joined
+                              </button>
+                           </a>
+                     </div>
+                     {% endif %}
+                  </div>
+               {% endif %}
+            {% endfor %}
+            <!-- =============================== End Joined Community ====================================== -->
+            <!-- =============================== Non-Joined Community ====================================== -->
+            {% for i in My_community %}
+               {% if i.Community_Type%}
+                  <div class="row pt-3 created-community">
+                     <div class="col-3 col-sm-3 pt-2">
+                        <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania">
+                     </div>
+                     <div class="col-6 col-sm-6 pt-2">
+                        <!-- Start modeal community heading  -->
+                        <div class="row">
+                           <div class="col-md-12 community-heading">
+                              <a href="{% url 'community-profile-screen' i.id %}">
+                              U/{{i.Community_Name}}
+                              </a>
+                           </div>
+                        </div>
+                        <!-- End modeal community heading  -->
+                        <!-- Start modeal community members  -->
+                        <div class="row">
+                           <div class="col-md-12 community-sub-heading">
+                              Members : 375
+                           </div>
+                        </div>
+                        <!-- End modeal community members  -->
+                     </div>
+                     <!-- <p>{{userprofile.id}},{{i.User_Profile.id}}</p> -->
+                     {% if userprofile.id is i.User_Profile.id %}
+                     {% else %}
+                     <div class="col-3 col-sm-3 pt-2">
+                        <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Join</button></a>
+                     </div>
+                     {% endif %}
+                  </div>
+               {% else %}
+                  <div class="row pt-3">
+                     <div class="col-3 col-sm-3 pt-2">
+                        <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania">
+                     </div>
+                     <div class="col-6 col-sm-6 pt-2">
+                        <!-- Start modeal community heading  -->
+                        <div class="row">
+                           <div class="col-md-12 community-heading">
+                              <a href="{% url 'community-profile-screen' i.id %}">
+                              M/{{i.Community_Name}}
+                              </a>
+                           </div>
+                        </div>
+                        <!-- End modeal community heading  -->
+                        <!-- Start modeal community members  -->
+                        <div class="row">
+                           <div class="col-md-12 community-sub-heading">
+                              Members : 375
+                           </div>
+                        </div>
+                        <!-- End modeal community members  -->
+                     </div>
+                     <div class="col-3 col-sm-3 pt-2">
+                        <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Join</button></a>
+                     </div>
+                  </div>
+               {% endif %}
+            {% endfor %}
+            <!-- =============================== End Non-Joined Community ====================================== -->
+         </div>
+         <!-- End Community window -->
+      </div>
+      <!-- End Mainn body content -->
+
+      <!-- Start Footer - mobile -->
+      <div class="row bg-dark text-light border-top pt-3 footer-mobile">
+         <div class="col-md-2">
+            <div class="row">
+               <div class="col-md-12">Community</div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">Profession</div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">Ask</div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">Answer</div>
+            </div>
+         </div>
+         <div class="col-md-8">
+            <div class="row">
+               <div class="col-md-12">My Community</div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">Popular services</div>
+            </div>
+            <div class="row">
+               <div class="col-md-12">Community post</div>
+            </div>
+         </div>
+         <div class="col-md-2 text-center">
+            <!-- Start Follow icons -->
+            <div class="row">
+               <div class="col-md-12">
+                  <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
+                  <i class="fa-brands fa-facebook-f"></i>
+                  </a>
+                  <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
+                  <i class="fa-brands fa-instagram-square"></i>
+                  </a>
+                  <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                  </a>
+               </div>
+            </div>
+            <!-- End Follow icons -->
+            <!-- Start Comapny logo -->
+            <div class="row">
+               <div class="col-md-12 pt-3">
+                  <img src="{% static 'community_profession/img/footer-company-logo.png' %}" class="img-fluid" alt="Responsive image">
+               </div>
+            </div>
+            <!-- End Comapny logo -->
+         </div>
+      </div>
+      <!-- End Footer - mobile -->
+
+
+
+      <!-- Start Create Community Modeal pop up -->
+      <div class="modal create-community-modeal" id="modal3">
+         <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Create Community</h5>
+                  <a href="#" data-dismiss="modal" class="close">&times;</a>
+               </div>
+               <form action="{% url 'Create_Community' %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                     <div class="form-group">
+                        <label for="" class="modal-sub-heading">Community Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Community Name" name="Communiy_Name" id="text" required="true">
+                        <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="" class="modal-sub-heading">Community Cover Image</label>
+                              <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Image">
+                              <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
+                           </div>
+                        </div>
+                        <div class="col-md-6">
+                           <div class="form-group">
+                              <label for="" class="modal-sub-heading">Community Profile Image</label>
+                              <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Profile" required="true">
+                              <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
+                           </div>
+                        </div>
+                     </div>
+                     <span class="modal-sub-heading">Community type</span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="public" class="form-check-input" value="">
+                           <span class="community-type-heading">Public</span> <span clas="community-type-sub-heading"> Anyone can view post, Comment to this Community.</span>
+                        </label>
+                     </div>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="restricted" class="form-check-input" value="">
+                           <span class="community-type-heading">Restricted</span> <span clas="community-type-sub-heading"> Anyone can view this Community, But only approved users can post.</span>
+                        </label>
+                     </div>
+                     <div class="form-check border rounded mt-3 mb-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="private" class="form-check-input" value="">
+                           <span class="community-type-heading">Private</span> <span clas="community-type-sub-heading"> Only approved users can view and submit to this community.</span>
+                        </label>
+                     </div>
+                     <span class="modal-sub-heading">Adult Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="adult" class="form-check-input" value="">
+                           18+ year old community
+                        </label>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                     <a href="#">
+                        <button type="submit" class="btn btn-normal-b">Create Community</button>
+                     </a>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- End Create Community Modeal pop up -->
+      <!-- Start Community modeal pop up -->
+      <div class="modal fade community-modeal" id="modal5">
+         <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">My Community</h5>
+                  <a href="#" data-dismiss="modal" class="close">&times;</a>
+               </div>
+               <div class="modal-body">
+                  <!-- Start My Community -->
+                     {% for i in joincommunityobj %}
+                        {% if i.Commnunity_id.Community_Type%}
+                           <div class="row pt-3">
+                              <div class="col-3 col-sm-3 pt-2">
+                                 <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
+                              </div>
+                              <div class="col-6 col-sm-6 pt-2">
+                                 <!-- Start modeal community heading  -->
+                                 <div class="row">
+                                    <div class="col-md-12 community-heading">
+                                       <a href="{% url 'community-profile-screen' i.Commnunity_id.id %}">
+                                       U/{{i.Commnunity_id.Community_Name}}
+                                       </a>
+                                    </div>
+                                 </div>
+                                 <!-- End modeal community heading  -->
+                                 <!-- Start modeal community members  -->
+                                 <div class="row">
+                                    <div class="col-md-12 community-sub-heading">
+                                       Members : 375
+                                    </div>
+                                 </div>
+                                 <!-- End modeal community members  -->
+                              </div>
+                              <div class="col-3 col-sm-3 pt-2">
+                                 <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Un Join</button></a>
+                              </div>
+                           </div>
+                        {% else %}
+                           <div class="row pt-3">
+                              <div class="col-2 col-sm-3 pt-2">
+                                 <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
+                              </div>
+                              <div class="col-6 col-sm-6 pt-2">
+                                 <!-- Start modeal community heading  -->
+                                 <div class="row">
+                                    <div class="col-md-12 community-heading">
+                                       <a href="{% url 'community-profile-screen' i.Commnunity_id.id %}">
+                                       M/{{i.Commnunity_id.Community_Name}}
+                                       </a>
+                                    </div>
+                                 </div>
+                                 <!-- End modeal community heading  -->
+                                 <!-- Start modeal community members  -->
+                                 <div class="row">
+                                    <div class="col-md-12 community-sub-heading">
+                                       Members : 375
+                                    </div>
+                                 </div>
+                                 <!-- End modeal community members  -->
+                              </div>
+                              {% if i.User_Profile %}
+                              {% else %}
+                              <div class="col-4 col-sm-3 pt-2">
+                                 <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Un Join</button></a>
+                              </div>
+                              {% endif %}
+                           </div>
+                        {% endif %}
+                     {% endfor %}
+                  <!-- End My Community -->
+                  <!-- ============================================================== -->
+                  <div class="row">
+                     <div class="col-md-12 modal-header ">
+                        Created coummunity
+                     </div>
+                  </div>
+                  {% for i in My_community %}
+                     {% if i.Community_Type%}
+                        {% if userprofile.id is i.User_Profile.id %}
+                        <div class="row pt-3">
+                           <div class="col-3 col-sm-3 pt-2 created-community">
+                              <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania" >
+                           </div>
+                           <div class="col-5 col-sm-5 pt-2">
+                              <!-- Start modeal community heading  -->
+                              <div class="row">
+                                 <div class="col-md-12 community-heading">
+                                    <a href="{% url 'community-profile-screen' i.id %}">
+                                    U/{{i.Community_Name}}
+                                    </a>
+                                 </div>
+                              </div>
+                              <!-- End modeal community heading  -->
+                              <!-- Start modeal community members  -->
+                              <div class="row">
+                                 <div class="col-md-12 community-sub-heading">
+                                    Members : 375
+                                 </div>
+                              </div>
+                              <!-- End modeal community members  -->
+                           </div>
+                           <div class="col-2 col-sm-2 pt-2">
+                              <a href="{% url 'Edit_Community' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Edit</button></a>
+                           </div>
+                           <div class="col-2 col-sm-2 pt-2 pl-1">
+                              <a href="{% url 'Delete_Community' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Delete</button></a>
+                           </div>
+                        </div>
+                        {% else %}
+                        {% endif %}
+                     {% else %}
+                     {% endif %}
+                  {% endfor %}
+               </div>
+               <div class="modal-footer">
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- End Community modeal pop up -->
+      <!-- Start Animated Sidenav -->
+      <script src="{% static 'community_profession/js/mb-main.js' %}"></script>
+      <!-- End Animated Sidenav -->
+      <script>
+         function myFunction() {
+           var dots = document.getElementById("dots");
+           var moreText = document.getElementById("more");
+           var btnText = document.getElementById("myBtn");
+
+           if (dots.style.display === "none") {
+             dots.style.display = "inline";
+             btnText.innerHTML = "<i class='fa'>&#xf107;</i>" + " Read more";
+             moreText.style.display = "none";
+           } else {
+             dots.style.display = "none";
+             btnText.innerHTML = "<i class='fa'>&#xf106;</i>" + " Read less";
+             moreText.style.display = "inline";
+           }
+         }
+      </script>
+   </body>
+</html>

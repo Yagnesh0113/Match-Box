@@ -1,0 +1,224 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Community Profile Screen</title>
+{% endblock title %}
+{% block own_css %}
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- own css Community profile screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-profile-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+{% endblock own_css %}
+{% block community_content %}
+<!-- Start community image -->
+<div class="row p-3">
+   <div class="col-12 col-sm-12 col-md-12">
+      {% if i.Community_Cover_Image %}
+      <img class="img-fluid" src="{{i.Community_Cover_Image.url}}" width="100%" alt="Chania">
+      {% else %}
+      <img class="img-fluid" src="{% static 'community_profession/img/community-slider-img.png' %}" alt="Chania">
+      {% endif %}
+   </div>
+</div>
+<!-- End community image -->
+<!-- Start interior designer heading, share community, join btn, options -->
+<div class="row">
+   <!-- Start Heading and Members -->
+   <div class="col-sm-6 col-md-6">
+      <!-- Start heading -->
+      <div class="row">
+         <div class="pl-5 col-md-12 interior-designer-heading">
+            {{i.Community_Name}}
+         </div>
+      </div>
+      <!-- Start heading -->
+      <!-- Start no of members and online -->
+      <div class="row">
+         <div class="pl-5 col-md-12 interior-designer-no-member">
+            Members : 3759
+         </div>
+      </div>
+      <!-- Start no of members and online -->
+   </div>
+   <!-- End Heading and Members -->
+   <!-- Start share community and join btn -->
+   <div class="col-sm-6 col-md-6 text-right pt-4">
+      <!-- Start join - btn -->
+      <!-- <p>{{ userprofile.id}},{{i.User_profile}}</p> -->
+      <p>{{i.id}}</p>
+      {% if z %}
+      <span class="join-btn pl-5 pr-5">
+      <a href="{% url 'Unjoin' z.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Un Join</button></a>
+      </span>
+      {% else %}
+      <span class="join-btn pl-5 pr-5">
+      <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Join</button></a>
+      </span>
+      {% endif %}
+      <!-- End join - btn -->
+      <!-- Start options -->
+      <span class="iterator-design-options">
+         <div class="dropdown dropleft float-right pr-4">
+            <button type="button" class="dropdown-btn" data-toggle="dropdown">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <div class="dropdown-menu">
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a>
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a>
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-ban"></i> Block Account</a>
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Edit post </a>
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete post</a>
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Save</a>
+            </div>
+         </div>
+      </span>
+      <!-- End options -->
+   </div>
+   <!-- End share community and join btn -->
+</div>
+<!-- End interior designer heading, share community, join btn, options -->
+{% if z %}
+<!-- Start Create Post -->
+<div class="row pl-5 pt-3 pr-4">
+   <div class="col-md-12 create-post">
+      <a href="{% url 'community-create-post-page' i.id %}" class="text-decoration-none text-dark" >
+         <div class="row pt-2 pb-2">
+            <div class="col-md-6">
+               Create Post
+            </div>
+            <!-- <div class="col-md-6 text-right">
+               <i class="fa-solid fa-image"></i> &nbsp; &nbsp; <i class="fa-solid fa-link"></i>
+               </div> -->
+         </div>
+      </a>
+   </div>
+</div>
+{% else %}
+<div></div>
+{% endif %}
+<!-- End Create Post -->
+<!-- Start filter navigation - all post and all time -->
+<!-- Use same community navigation -->
+<div class="row pt-3">
+   <div class="col-md-12 community-nav ">
+      <ul class="nav nav-pills border-bottom pl-3">
+         <!-- Start Post -->
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">All Post</a>
+            <div class="dropdown-menu">
+               <a class="dropdown-item" href="#">All</a>
+               <a class="dropdown-item" href="#">Trending</a>
+               <a class="dropdown-item" href="#">New</a>
+               <a class="dropdown-item" href="#">Hot</a>
+               <a class="dropdown-item" href="#">Top</a>
+            </div>
+         </li>
+         <!-- End Post -->
+         <!-- Start Global -->
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">All Time</a>
+            <div class="dropdown-menu">
+               <a class="dropdown-item" href="#">All Time</a>
+               <a class="dropdown-item" href="#">1 Year Ago</a>
+               <a class="dropdown-item" href="#">1 Month Ago</a>
+               <a class="dropdown-item" href="#">1 Weak Ago</a>
+               <a class="dropdown-item" href="#">24 Hour Ago</a>
+               <a class="dropdown-item" href="#">1 Hour Ago</a>
+            </div>
+         </li>
+         <!-- End Global -->
+      </ul>
+   </div>
+</div>
+<!-- End filter navigation - all post and all time -->
+<!-- Start Post -->
+{% for Post in Community_Post_obj %}
+<div class="row">
+   <div class="col-md-12 pt-3 pl-3 border-bottom pb-4 post">
+      <!-- Start Posted by heading and options -->
+      <div class="row">
+         <!-- Start heading -->
+         <div class="col-md-1">
+            <img class="img-fluid rounded-circle" src="{{Post.user_post.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
+         </div>
+         <div class="col-md-6 posted-by-heading">
+            <h4>{{Post.user_post.User_Profile.usertype.user_id.first_name}} {{Post.user_post.User_Profile.usertype.user_id.last_name}}</h4>
+            <h6>{{Post.user_post.Post_Date}} {{Post.user_post.Post_Time}} ago </h6>
+         </div>
+         <!-- End heading -->
+         <!-- Start options -->
+         <div class="col-md-6 iterator-design-options">
+            <div class="dropdown dropleft float-right">
+               <button type="button" class="dropdown-btn" data-toggle="dropdown">
+               <i class="fa-solid fa-ellipsis-vertical"></i>
+               </button>
+               <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a>
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a>
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-ban"></i> Block Account</a>
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Edit post </a>
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete post</a>
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Save</a>
+               </div>
+            </div>
+         </div>
+         <!-- End options -->
+      </div>
+      <!-- End Posted by heading and options -->
+      <!-- Start post description -->
+      <div class="row">
+         <div class="col-md-12 post-description">
+            <h5>{{Post.user_post.Description}}</h5>
+         </div>
+      </div>
+      <!-- End post description -->
+      <!-- Start post img, videos -->
+      {% if Post.user_post.Image %}
+      <div class="row pl-3 pt-3">
+         <div class="col-md-12 rounded ">
+            <img src="{{Post.user_post.Image.url}}" alt="">
+         </div>
+      </div>
+      {% else %}
+      <div></div>
+      {% endif %}
+      <!-- End post img, videos -->
+      <!-- Start like, comment, share -->
+      <div class="row">
+         <!-- Start Like -->
+         <div class="col-12 col-md-1 pt-3">
+            <i class="fa-solid fa-thumbs-up"></i> 1.2k
+         </div>
+         <!-- End Like -->
+         <!-- Start Comment -->
+         <div class="col-12 col-md-1 pt-3">
+            <i class="fa-solid fa-message"></i> 3.9k
+         </div>
+         <!-- End Comment -->
+         <!-- Start add cooment buuton -->
+         <div class="col-12 col-md-2 pt-3 add-comment-btn">
+            <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none">
+            <button type="button" class="btn btn-block">Add Comment</button>
+            </a>
+         </div>
+         <!-- End add cooment buuton -->
+         <!-- Start Share -->
+         <div class="col-12 col-md-1 pt-3">
+            <i class="fa-solid fa-share-nodes"></i>
+         </div>
+         <!-- End Share -->
+         <div class="col-12 col-md-7"></div>
+      </div>
+      <!-- End like, comment, share -->
+   </div>
+</div>
+{% endfor %}
+<!-- End Post -->
+{% endblock community_content %}

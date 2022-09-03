@@ -1,0 +1,100 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Search Nearest Profession Lists</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<!-- search-nearest-profession-list.css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/search-nearest-profession-list.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+{% endblock own_css %}
+{% block content %}
+<!-- Start Hair artist & Saloon window  -->
+<div class="row">
+   <div class="col-md-12 saloon-window-pl-pr">
+      <div class="row saloon-window rounded">
+         <div class="col-md-12">
+            <!-- Start heading -->
+            <div class="row">
+               <div class="col-md-12 saloon-window-heading">
+                  {{profession.Profession_Name}}
+               </div>
+            </div>
+            <!-- End heading -->
+            <!-- Start image, form -->
+            <div class="row image-and-form">
+               <!-- Start left side image -->
+               <div class="col-12 col-sm-5 left-side-img">
+                  <img src="{{profession.Profession_Inside_Image.url}}" class="img-fluid" alt="Responsive image">
+               </div>
+               <!-- End left side image -->
+               <div class="col-sm-1"></div>
+               <!-- Start Form -->
+               <div class="col-12 col-sm-4 pt-3 pl-4 pr-3">
+                  <div class="card h-100  justify-content-center">
+                     <form data-city-url="{% url 'load_city' %}" id="indexForm" method="POST" action="{% url 'nearest-professions-list' profession.id  %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                           <div class="input-group mb-3">
+                              <select name="state" id="state"  class="form-control " id="exampleFormControlSelect1" required>
+                                 <option class="">-- Select State -- </option>
+                                 {% for i in state %}
+                                    <option value="{{i.id}}" class="border">{{i.name}}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+                           <!-- <input class="form-control form-control" type="text" placeholder="Search your state" name="State" required> -->
+                        </div>
+                        <div class="form-group">
+                           <div class="input-group mb-3">
+                              <!-- <div class="input-group-prepend">
+                                 <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
+                              </div> -->
+                              <select name="city" class="form-control" id="city" required>
+                                 
+                              </select>
+                           </div>
+                           <!-- <input class="form-control form-control" type="text" placeholder="Search your city" name="city" required> -->
+                        </div>
+                        <div class="form-group">
+                           <a href="#" class="text-decoration-none">
+                              <button type="submit" class="btn btn-block btn-normal-b">Search your nearest location</button>
+                           </a>
+                           <!-- <input class="form-control form-control" type="text" placeholder="Search your nearest location" required> -->
+                        </div>
+                        <div class="form-group">
+                              <button type="submit" class="btn btn-block btn-normal-b">Continue</button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+               <!-- End Form -->
+               <div class="col-sm-2"></div>
+            </div>
+            <!-- End image, form -->
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Hair artist & Saloon window  -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+   $("#state").change(function () {
+      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view
+      var stateId = $(this).val();  // get the selected programming ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+        data: {
+          'state': stateId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_courses` view function
+          $("#city").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+</script>
+
+{% endblock content %}

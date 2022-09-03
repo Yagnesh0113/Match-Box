@@ -1,0 +1,204 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Write Comment</title>
+{% endblock title %}
+{% block own_css %}
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- own css Community write comment screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-write-comment-screen.css' %}">
+{% endblock own_css %}
+
+{% block community_content %}
+
+<!-- Start community-profile-img, heading, post -->
+<div class="row pl-3">
+    <!-- Start community-profile-img -->
+    <!-- <div class="col-md-1 pt-2 ">
+        <img class="img-fluid" src="" alt="Chania">
+    </div> -->
+    <!-- End community-profile-img -->
+
+    <!-- Start community-heading, no-members -->
+    <div class="col-md-3 pt-2 community-heading-members">
+        <!-- Start community-heading -->
+        <div class="row">
+            <div class="col-md-12 community-heading">
+                Admin
+            </div>
+        </div>
+        <!-- End community-heading -->
+
+        <!-- Start community-no-members -->
+        <div class="row">
+            <div class="col-md-12">
+                {{News.Date}} / {{News.Time}}
+            </div>
+        </div>
+        <!-- End community-no-members -->
+    </div>
+    <!-- End community-heading, no-members -->
+
+    <!-- Stat community posted-by-u-name -->
+    <div class="col-md-8 pt-2">
+        <div class="row posted-by-u-name">
+        </div>
+    </div>
+    <!-- End community posted-by-u-name -->
+
+</div>
+<!-- End community-profile-img, heading, post -->
+
+<!-- Start Community sub heading -->
+<div class="row pl-3">
+    <!-- Start community-sub-heading -->
+    <div class="col-md-12 community-sub-heading pt-2">
+        {{News.Description}}
+    </div>
+    <!-- End community-sub-heading -->
+</div>
+<!-- End Community sub heading -->
+
+<!-- Start post-img-video -->
+<div class="row pl-3 pt-3">
+    <div class="col-md-12">
+        {% if News.Video %}
+            <video width="100%" controls controlslist="nodownload" oncontextmenu="return false">
+                <source src="{{News.Video.url}}" type="video/mp4"> 
+            </video>
+        {% elif News.Image %}
+            <img width="100%" src="{{News.Image.url}}" alt="">
+        {% else %}
+            <div></div>
+        {% endif %}
+    </div>
+</div>
+<!-- End post-img-video -->
+
+<!-- Start no-of-like, no-of-comments, share -->
+<div class="row pl-3 pt-3 like-comment-share">
+    <!-- Start no-of-like -->
+    <div class="col-md-1">
+        <i class="fa-solid fa-thumbs-up"></i> {{News.Like}}
+    </div>
+    <!-- End no-of-like -->
+
+    <!-- Start  no-of-comments -->
+    <div class="col-md-1">
+        <i class="fa-solid fa-message"></i> {{Comment_Count}}
+    </div>
+    <!-- End  no-of-comments -->
+
+    <!-- Start share -->
+    <div class="col-md-1">
+        <i class="fa-solid fa-share-nodes"></i>
+    </div>
+    <!-- End share -->
+
+    <div class="col-md-9"></div>
+</div>
+<!-- End no-of-like, no-of-comments, share -->
+
+<!-- Start community-user-name -->
+<div class="row pl-3 pt-2 community-user-name">
+    <div class="col-md-1 pt-2 ">
+        <img class="img-fluid" src="{{User.profile_image.url}}" alt="Chania">
+    </div>
+    <div class="col-md-12">
+        <span class="commnet-as"></span>
+        <span>{{User.usertype.user_id.first_name}} {{User.usertype.user_id.last_name}}</span>
+    </div>
+</div>
+<!-- End community-user-name -->
+
+<!-- Start comment-text-box -->
+<form action="{% url 'news_comment' News.id  %}" method="POST">
+    {% csrf_token %}
+    <div class="row pl-3">
+        <div class="col-md-12 pt-3 comment-text-box">
+            <div class="form-group">
+                <textarea class="form-control" name="comment" rows="5" id="comment" placeholder="What do you think?"></textarea>
+            </div>
+        </div>
+    </div>
+    <!-- End comment-text-box -->
+    
+    <!-- Start cancel-post-btn -->
+    <div class="row pl-3 pt-3  cancel-post-btn">
+        <div class="col-md-12 pb-3 text-right border-bottom">
+            <!-- Start cancel-btn -->
+            <span class="cancel-btn">
+                <button type="submit" class="btn pl-5 pr-5">Cancel</button>
+            </span>
+            <!-- End cancel-btn -->
+    
+            <!-- Start post-btn -->
+            <span class="post-btn">
+                <button type="submit" class="btn pl-5 pr-5">Post</button>
+            </span>
+            <!-- End post-btn -->
+        </div>
+    </div>
+</form>
+<!-- End cancel-post-btn -->
+
+<!-- Start Comments heading -->
+<div class="row pl-3 pt-3 pb-3">
+    <div class="col-md-12 comments-heading">
+        
+    </div>
+</div>
+<!-- End Comments heading -->
+
+<!-- Start Comments -->
+{% for i in All_Comment %}
+<div class="row pl-3">
+    <div class="col-md-12 all-comments">
+        <!-- Start user-profile, user-community-name, time -->
+        <div class="row">
+            <!-- Start user-profile -->
+            <div class="col-md-1">
+                <img class="img-fluid" src="{{i.User_Profile.profile_image.url}}" alt="Chania">
+            </div>
+            <!-- End user-profile -->
+
+            <!-- Start user-community-name, time -->
+            <div class="col-md-11 user-community-name">
+                {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}} <br> <span class="time">{{i.Date}} / {{i.Time}}</span>
+            </div>
+            <!-- End user-community-name, time -->
+        </div>
+        <!-- End user-profile, user-community-name, time -->
+
+        <!-- Start comment -->
+        <div class="row pt-2">
+            <div class="col-md-12 comment">
+                {{i.Comment}}
+            </div>
+        </div>
+        <!-- End comment -->
+
+        <!-- Start like-reply-share -->
+        <div class="row pt-3">
+            <div class="col-md-12 like-reply-share">
+                <span class="">
+                    <i class="fa-solid fa-thumbs-up"></i> 1.2K
+                </span>
+
+                <span class="pl-5">
+                    <a href="{% url 'Post_comment_reply' i.id %}" class="text-decoration-none">2 Reply</a>
+                </span>
+
+                <span class="pl-5">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </span>
+            </div>
+        </div>
+        <!-- Start like-reply-share -->
+    </div>
+</div><hr color="ffffff">
+{% endfor %}
+<!-- End Comments -->
+
+{% endblock community_content %}

@@ -1,0 +1,38 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Index page</title>
+{% endblock title %}
+
+{% block own_css %}
+<!--   own css   -->
+<!-- video-screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/video-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<style>
+    .video-screen
+    {
+        background-color:var(--color-12);
+    }
+</style>
+{% endblock own_css %}
+
+
+{% block content %}
+<!-- Start video screen -->
+<div class="row video-screen">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 relative">
+        <video width="100%" controls >
+            <source src="{{Profession_video_obj.video.url}}" type="video/mp4" >
+        </video>
+        <div class="absolute">
+            <h1>{{Profession_video_obj.profession.profession.Profession_Name}}</h1>
+            <!-- <p>Uploaded on 25th march 4 pm</p> -->
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- End video screen -->
+{% endblock content %}
+

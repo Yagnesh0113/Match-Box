@@ -1,0 +1,45 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>All Photos & Videos</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/see-all-photos-and-videos.css' %}">
+{% endblock own_css %}
+{% block content %}
+<!-- Start all photos and videos -->
+<div class="row see-all-photos-videos">
+   <div class="col-md-12 p-4">
+      <div class="row">
+         {% for i in profession_image %}
+         <div class="col-md-3 mt-4">
+            <div class="row">
+               <div class="col-md-12">
+                  <a href="{% url 'photo-screen' i.id %}" class="text-light">
+                      <img src="{{i.image.url}}" class="img-fluid rounded" width="100%">
+                  </a>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+      <div class="row">
+         {% for j in profession_video %}
+         <div class="col-md-3 mt-4">
+            <div class="row">
+               <div class="col-md-12">
+                  <a href="{% url 'photo-screen' j.id %}" class="text-light">
+                     <video width="100%" controls >
+                        <source src="{{j.video.url}}" type="video/mp4" >
+                    </video>
+                  </a>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+</div>
+<!-- End all photos and videos -->
+{% endblock content %}

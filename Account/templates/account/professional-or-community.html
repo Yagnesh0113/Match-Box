@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sign Up</title>
+      <link rel="stylesheet" href="{% static 'community_profession/css/bootstrap.min.css' %}">
+      <script src="{% static 'community_profession/js/jquery.slim.min.js' %}"></script>
+      <script src="{% static 'community_profession/js/popper.min.js' %}"></script>
+      <script src="{% static 'community_profession/js/bootstrap.bundle.min.js' %}"></script>
+      <!-- Common style guid css -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/style-guid.css' %}">
+      <!-- Sign Up css -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/sign-up.css' %}">
+      <!-- Font awsome kit -->
+      <script src="https://kit.fontawesome.com/8ba851d087.js" crossorigin="anonymous"></script>
+      <style>
+         html, body, .viewport {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         }
+         .flex-container {
+         display: -webkit-box;
+         display: -webkit-flex;
+         display: -moz-box;
+         display: -ms-flexbox;
+         display: flex;
+         -webkit-box-align: center;
+         -webkit-align-items: center;
+         -moz-box-align: center;
+         -ms-flex-align: center;
+         align-items: center;
+         -webkit-box-pack: center;
+         -webkit-justify-content: center;
+         -moz-box-pack: center;
+         -ms-flex-pack: center;
+         justify-content: center;
+         position: fixed;
+         top: 0;
+         right: 0;
+         bottom: 0;
+         left: 0;
+         }
+         #flex-item {
+         text-align: center;
+         /* margin: auto; */
+         margin: 0;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         -ms-transform: translate(-50%, -50%);
+         transform: translate(-50%, -50%);
+         }
+      </style>
+   </head>
+   <body class='bg-dark'>
+      <div class="container-fluid ">
+         <!-- Start Sign up slide -->
+         <div class="row">
+            <div class="col-sm-1 col-md-1"></div>
+            <!-- Start Sign up main -->
+            <div class="col-sm-10 col-md-10 sign-up-bg">
+               <!-- Start Sign Up form body -->
+               <div class="row">
+                  <div class="col-sm-1 col-md-2"></div>
+                  <div class="col-sm-10` col-md-8">
+                     <!-- Start icon -->
+                     <div class="row desktop-icon">
+                        <div class="col-md-12">
+                           <img src="{% static 'community_profession/img/sign-up-logo.png' %}" alt="match-box">
+                        </div>
+                     </div>
+                     <div class="row mobile-icon">
+                        <div class="col-md-12">
+                           <img src="{% static 'community_profession/img/sign-up-logo-mobile-view.png' %}" alt="match-box">
+                        </div>
+                     </div>
+                     
+                    
+                     <div class="row mt-5">
+                        <div class="col-sm-6">
+                          <div class="card">
+                           <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Special Community User</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              
+                              <form action="{% url 'new_community_user'%}"  method="POST">
+                                 {% csrf_token %}
+                                 <button type="submit" class="btn btn-primary">Community User</button>   
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                           <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Special Professional User</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <form action="{% url 'new_professonal_user' %}"  method="POST">
+                                 {% csrf_token %}
+                                 <button type="submit" class="btn btn-primary">Professional User</button>   
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                     <!-- End sign in button -->
+                  </div>
+                  <div class="col-sm-1 col-md-2"></div>
+               </div>
+               <!-- End Sign Up form body -->
+            </div>
+            <!-- End Sign up main -->
+            <div class="col-sm-1 col-md-1"></div>
+         </div>
+         <!-- End Sign up slide -->
+      </div>
+      
+   </body>
+</html>

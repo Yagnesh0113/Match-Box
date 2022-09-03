@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sign In</title>
+      <link rel="stylesheet" href="{% static 'community_profession/css/bootstrap.min.css' %}">
+      <script src="{% static 'community_profession/js/jquery.slim.min.js' %}"></script>
+      <script src="{% static 'community_profession/js/popper.min.js' %}"></script>
+      <script src="{% static 'community_profession/js/bootstrap.bundle.min.js' %}"></script>
+      <!-- Common style guid css -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/style-guid.css' %}">
+      <!-- Sign Up css -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/sign-in.css' %}">
+      <!-- Font awsome kit -->
+      <script src="https://kit.fontawesome.com/8ba851d087.js" crossorigin="anonymous"></script>
+      <!-- splash screen css -->
+      <style>
+         html, body, .viewport {
+         width: 100%;
+         height: 100%;
+         margin: 0;
+         }
+         .flex-container {
+         display: -webkit-box;
+         display: -webkit-flex;
+         display: -moz-box;
+         display: -ms-flexbox;
+         display: flex;
+         -webkit-box-align: center;
+         -webkit-align-items: center;
+         -moz-box-align: center;
+         -ms-flex-align: center;
+         align-items: center;
+         -webkit-box-pack: center;
+         -webkit-justify-content: center;
+         -moz-box-pack: center;
+         -ms-flex-pack: center;
+         justify-content: center;
+         position: fixed;
+         top: 0;
+         right: 0;
+         bottom: 0;
+         left: 0;
+         }
+         #flex-item {
+         text-align: center;
+         /* margin: auto; */
+         margin: 0;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         -ms-transform: translate(-50%, -50%);
+         transform: translate(-50%, -50%);
+         }
+      </style>
+      <!-- splash screen css -->
+   </head>
+   <body class="bg-dark">
+      <div class="container-fluid bg-dark sign-in-main-body">
+         <!-- Start main body -->
+         <div class="row">
+            <!-- Start Sign in left side image -->
+            <div class="col-12 col-sm-5 col-md-5 text-light sign-in-left-body">
+               <img class="img-fluid" src="{% static 'community_profession/img/sign-in.png' %}" alt="match-box">
+            </div>
+            <!-- End Sign in left side image -->
+            <!-- Start Sign in right side form -->
+            <div class="col-12 col-sm-7 col-md-7 sign-in-right-body-form">
+               <!-- Start Sign In Form icon -->
+               <div class="row desktop-icon">
+                  <div class="col-md-12">
+                     <img src="/static/community_profession/img/sign-up-logo.png" alt="match-box">
+                  </div>
+               </div>
+               <div class="row mobile-icon">
+                  <div class="col-md-12">
+                     <img src="/static/community_profession/img/sign-up-logo-mobile-view.png" alt="match-box">
+                  </div>
+               </div>
+               <!-- End Sign In Form icon -->
+               <!-- Start Sign in heading -->
+               <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 sign-in-heading">
+                     Sign In
+                  </div>
+               </div>
+               <!-- End Sign in heading -->
+               <!-- Start sign in email or phone number heading  -->
+               <form action="{% url 'sign-in' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12 col-sm-12 col-md-12 sign-in-email-phone-no-heading">
+                        Enter your email or phone number
+                     </div>
+                  </div>
+                  <!-- End sign in email or phone number heading  -->
+                  <!-- Start email / phone number input box -->
+                  <div class="row">
+                     <div class="col-12 col-sm-12 col-md-12 sign-in-form">
+                        <div class="input-group mb-3">
+                           <div class="input-group-prepend">
+                              <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-envelope"></i></span>
+                           </div>
+                           <input type="text" name="username" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your email or phone number" required>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End email / phone number input box -->
+                  <!-- Start Password heading  -->
+                  <div class="row">
+                     <div class="col-12 col-sm-12 col-md-12 sign-in-password-heading">
+                        Enter your password
+                     </div>
+                  </div>
+                  <!-- End Password heading  -->
+                  <!-- Start password input box -->
+                  <div class="row">
+                     <div class="col-12 col-sm-12 col-md-12 sign-in-form">
+                        <div class="input-group mb-3">
+                           <div class="input-group-prepend">
+                              <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-lock"></i></span>
+                           </div>
+                           <input type="password" name="password" class="form-control border-left-0 border-right-0" id="input1" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your password" required>
+                           <div class="input-group-prepend">
+                              <button type="button" class="btn border-left-0 password-border-remove"  id="button1" onclick="display()">
+                                 <i class="fa-solid fa-eye-slash"></i>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+
+                     <!--<div class="col-md-12">
+                        <input type="password" id="input1">
+                        <button id="button1" onclick="display()">show</button>
+                     </div>-->
+                  </div>
+                  <!-- End password input box -->
+                  <!-- Start Forgot Password ? heading  -->
+                  <div class="row">
+                     <div class="col-12 col-sm-12 col-md-12 text-right forgot-password">
+                        <a href="{% url 'forgot-password' %}">
+                        <span class="text-color-white-m-view"> Forgot Password ? </span>
+                        </a>
+                     </div>
+                  </div>
+                  <!-- End Forgot Password ? heading  -->
+                  <!-- Start Sign In button -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <button class="btn btn-lg btn-block btn-normal" type='submit'>Sign In</button>
+                     </div>
+                  </div>
+                  <!-- End Sign In button -->
+               </form>
+               <!-- Start Log In with Google button -->
+               <div class="row">
+                  <div class="col-md-12">
+                     <button class="btn btn-block btn-normal-outlined"><i class="fa-brands fa-google"></i> &nbsp; <span class="text-color-white-m-view">Log in with Google</span></button>
+                  </div>
+               </div>
+               <!-- End Log In with Google button -->
+               <!-- Start New to match box -->
+               <div class="row">
+                  <div class="col-md-12 new-to-mb-sign-up">
+                     <span class="text-color-white-m-view">New to matchbox ?</span> <a href="{% url 'sign-up' %}" class="text-decoration-none">sign up</a>
+                  </div>
+               </div>
+               <!-- End New to match box -->
+            </div>
+            <!-- End Sign in right side form -->
+         </div>
+         <!-- End main body -->
+      </div>
+      <!--Your Splash Screen-->
+      <div id="splash"  class="flex-container" style ="background: #161818 ; display: none"  >
+         <!--Center align Splash contents in all screen sizes-->
+         <div id="flex-item" >
+            <img class="img-fluid" src="{% static 'community_profession/img/splash-screen-logo.png' %}" alt="Chania">
+         </div>
+      </div>
+      <!--  Start splash screen Scripts-->
+      <!-- Start splash screen -->
+      <script src="{% static 'community_profession/js/splash-screen.js' %}"></script>
+      <!-- End splash screen -->
+
+      <!-- Start show and hide hidde password  -->
+      <script>
+        function display()
+        {
+            var input_a = document.getElementById("input1").type
+            var button_a = document.getElementById("button1").innerHTML
+
+            if (input_a == 'password' && button_a == 'show')
+            {
+                document.getElementById("input1").type='text'
+                document.getElementById("button1").innerHTML='hidde'
+            }
+            else
+            {
+                document.getElementById("input1").type='password'
+                document.getElementById("button1").innerHTML='show'
+            }
+        }
+
+    </script>
+      <!-- End show and hide hidde password  -->
+   </body>
+</html>

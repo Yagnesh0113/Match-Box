@@ -1,0 +1,173 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Nearest Profession list</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/nearrest-professions-list.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+{% endblock own_css %}
+{% block content %}
+<!-- Start finnd our artist and saloon window -->
+<div class="row">
+   <div class="col-12 col-sm-2 col-md-2"></div>
+   <div class="col-12 col-sm-8 col-md-8 rounded find-artist-window pb-3">
+      <!-- Start find-artist-window heading -->
+      <div class="row">
+         <div class="col-md-12 find-artist-window-heading">
+            Find your artist & Saloons
+         </div>
+      </div>
+      <!-- End find-artist-window heading -->
+      <!-- Start find-artist-window search bar -->
+      <div class="row ">
+         <div class="col-md-12">
+            <form>
+               <div class="input-group ">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text">
+                     <i class="fa-solid fa-magnifying-glass"></i>
+                     </span>
+                  </div>
+                  <input type="text" class="form-control">
+               </div>
+            </form>
+         </div>
+      </div>
+      <!-- Start find-artist-window search bar -->
+      {% for i in Profession_obj %}
+      <!-- Start profession list -->
+      <div class="row pl-4 pr-4">
+         <div class="col-md-12 mt-3">
+            <div class="row border rounded border-primary pt-2 pb-2">
+                  <!-- Start Profile img -->
+                  <div class="col-2 col-sm-2 col-md-1">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <img src="{{i.UserProfile.profile_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Profile img -->
+                  <!-- Start Professionist name & profession -->
+                  <div class="col-7 col-sm-7 col-md-8">
+                     <a href="{% url 'profession-personal-details' i.id %}">
+                        <!-- Start Profession heading -->
+                        <div class="row">
+                           <div class="col-sm-12 profession-name">
+                              {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}}
+                           </div>
+                        </div>
+                        <!-- End Profession heading -->
+                        <!-- Start Profession sub heading -->
+                        <div class="row">
+                           <div class="col-sm-12 profession-subheading">
+                              {{i.profession.Profession_Name}}
+                           </div>
+                        </div>
+                        <!-- End Profession sub heading -->
+                     </a>
+                  </div>
+                  <!-- End Professionist name & profession -->
+               <!-- Start rating and online status -->
+               <div class="col-3 col-sm-3 col-md-3 text-right">
+                  <!-- Start Rating -->
+                  <div class="row">
+                     <div class="col-md-12 rating-online-status text-light">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                     </div>
+                  </div>
+                  <!-- End Rating -->
+               </div>
+               <!-- End rating and online status -->
+            </div>
+         </div>
+      </div>
+      <!-- End profession list -->
+      {% endfor %}
+      <!-- Start profession list -->
+      <!-- <div class="row pl-4 pr-4">
+         <div class="col-md-12 mt-3">
+            <div class="row border rounded border-light pt-2 pb-2">
+               <div class="col-2 col-sm-2 col-md-1">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <img src="{% static 'community_profession/img/profile-img.png' %}" class="rounded-circle" alt="Cinque Terre" width="40" height="40">
+                     </div>
+                  </div>
+               </div>
+               <div class="col-7 col-sm-7 col-md-8">
+                  <div class="row">
+                     <div class="col-md-12 profession-name">
+                        Name
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12 profession-subheading">
+                        Profession
+                     </div>
+                  </div>
+               </div>
+               <div class="col-3 col-sm-3 col-md-3 text-right">
+                  <div class="row">
+                     <div class="col-md-12 rating-online-status text-light">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         </div> -->
+      <!-- End profession list -->
+      <!-- Start profession list -->
+      <!-- <div class="row pl-4 pr-4">
+         <div class="col-md-12 mt-3">
+            <div class="row border rounded border-light pt-2 pb-2">
+               <div class="col-2 col-sm-2 col-md-1">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <img src="{% static 'community_profession/img/profile-img.png' %}" class="rounded-circle" alt="Cinque Terre" width="40" height="40">
+                     </div>
+                  </div>
+               </div>
+               <div class="col-7 col-sm-7 col-md-8">
+                  <div class="row">
+                     <div class="col-md-12 profession-name">
+                        Name
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12 profession-subheading">
+                        Profession
+                     </div>
+                  </div>
+               </div>
+               <div class="col-3 col-sm-3 col-md-3 text-right">
+                  <div class="row">
+                     <div class="col-md-12 rating-online-status text-light">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         </div> -->
+      <!-- End profession list -->
+   </div>
+   <div class="col-12 col-sm-2 col-md-2"></div>
+</div>
+<!-- End finnd our artist and saloon window -->
+{% endblock content %}

@@ -1,0 +1,489 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Profession Personal Details</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+  </style>
+{% endblock own_css %}
+{% block content %}
+<!-- Start girls parlor heading -->
+<div class="row">
+   <div class="col-md-12 girls-parlor-heading">
+      {{Profession_obj.profession.Profession_Name}}
+   </div>
+</div>
+<!-- End girls parlor heading -->
+
+<!-- Start profile-img and info -->
+<div class="row">
+   <!-- Start profile-img -->
+   <div class="col-md-4">
+      <img src="{{Profession_obj.profession_image.url}}" class="img-fluid rounded" alt="Responsive image">
+   </div>
+   <!-- Start profile-img -->
+   <!-- Start info -->
+   <div class="col-md-8">
+      <!-- Start Personal info -->
+      <div class="row">
+         <div class="col-md-12 personal-info">
+            <table class="table table-borderless">
+               <tbody>
+                  <tr>
+                     <td>Name</td>
+                     <td>:</td>
+                     <td>{{Profession_obj.shop_name}}</td>
+                  </tr>
+                  <tr>
+                     <td>Profession</td>
+                     <td>:</td>
+                     <td>{{Profession_obj.profession.Profession_Name}}</td>
+                  </tr>
+                  <tr>
+                     <td>Address</td>
+                     <td>:</td>
+                     <td>{{Profession_obj.shop_address}} {{Profession_obj.shop_city}}, {{Profession_obj.shop_state}}</td>
+                  </tr>
+                  <tr>
+                     <td>Exprience</td>
+                     <td>:</td>
+                     <td>{{Profession_obj.year_of_experience}} Year</td>
+                  </tr>
+                  <tr>
+                     <td>Ratings</td>
+                     <td>:</td>
+                     <td class="font-weight-lighter">
+                        <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                        <!-- <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i> -->
+                        {{Profession_obj.Profession_Rating}}
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <!-- End Personal info -->
+      <!-- Start Time -->
+      <div class="row">
+         <div class="col-md-12 pl-4 time-days">
+            Time : {{Profession_obj.shop_start_time}} to {{Profession_obj.shop_close_time}}
+         </div>
+      </div>
+      <!-- End Time -->
+      <!-- Start days -->
+      <!-- Start open status Sunday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_sunday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content"> : Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content"> : Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Sunday -->
+      <!-- Start open status Monday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_monday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Monday -->
+      <!-- Start open status Tuesday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_Tuesday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Tuesday -->
+      <!-- Start open status Wednesday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_Wednesday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Wednesday -->
+      <!-- Start open status Thursday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_Thrusday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Thursday -->
+      <!-- Start open status Friday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_Friday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Friday -->
+      <!-- Start open status Saturday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_saturday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Saturday -->
+      <!-- End days -->
+      <!-- Start our services heading -->
+      <div class="row our-services pt-3">
+         <div class="col-md-12 our-services-heading">
+            Our Services
+         </div>
+      </div>
+      <!-- End our services heading -->
+      <!-- Start Services table -->
+      <div class="row">
+         <div class="col-md-8 our-services-table">
+            <table class="table">
+               <tbody>
+                  {% for i in Profession_service_obj %}
+                  <tr>
+                     <td scope="col">{{i.service_name}}</td>
+                     <td scope="col" class="text-right">Rs : {{i.service_price}}</td>
+                  </tr>
+                  {% endfor %}
+                  <!-- <tr>
+                     <td scope="col">Hair straightening </td>
+                     <td scope="col" class="text-right">Rs : 500</td>
+                     </tr>
+                     <tr>
+                     <td scope="col">Hair Cutting </td>
+                     <td scope="col" class="text-right">Rs : 300</td>
+                     </tr>
+                     <tr>
+                     <td scope="col">Hair straightening </td>
+                     <td scope="col" class="text-right">Rs : 500</td>
+                     </tr>
+                     <tr class="border-bottom">
+                     <td scope="col">Hair Cutting </td>
+                     <td scope="col" class="text-right">Rs : 300</td>
+                     </tr> -->
+               </tbody>
+            </table>
+         </div>
+         <div class="col-md-4"></div>
+      </div>
+      <!-- End Services table -->
+   </div>
+   <!-- Start info -->
+</div>
+<!-- End profile-img and info -->
+
+<!-- Start Photos & videos heading, See All links headings -->
+<div class="row photos-videos-see-all">
+   <!-- Start Photos and Videos Heading -->
+   <div class="col-10 col-md-6">
+      <div class="row">
+         <div class="col-md-12 photos-videos-heading">
+            Photos & Videos
+         </div>
+      </div>
+   </div>
+   <!-- End Photos and Videos Heading -->
+   <!-- Start see all links -->
+   <div class="col-2 col-md-6 text-right">
+      <div class="row">
+         <div class="col-md-12 text-right ">
+            <a href="{% url 'see-all-photos-videos' Profession_obj.id %}" class="see-all">
+            See All
+            </a>
+         </div>
+      </div>
+   </div>
+   <!-- Start see all links -->
+</div>
+<!-- End Photos & videos heading, See All links headings -->
+
+<!-- Start Photos & videos -->
+<div class="row">
+   <div class="col-12 col-sm-12 col-md-12 p-4">
+      <div class="row profession-details">
+         {% for j in Profession_Image_obj %}
+         <div class="col-6 col-sm-2 col-md-2 pt-3">
+            <div class="row">
+               <div class="col-md-12">
+                  <a href="{% url 'photo-screen' j.id %}" class="text-light">
+                  <img src="{{j.image.url}}" class="img-fluid rounded" width="100%" height="30%">
+                  </a>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+         <!-- <div class="col-md-3 pl-4 pr-4 mt-2">
+            <div class="row">
+               <div class="col-md-12 p-5 bg-info rounded"></div>
+            </div>
+            </div> -->
+         <!-- <div class="col-md-3 pl-4 pr-4 mt-2">
+            <div class="row">
+               <div class="col-md-12 p-5 bg-info rounded"></div>
+            </div>
+            </div> -->
+         <!-- <div class="col-md-3 pl-4 pr-4 mt-2">
+            <div class="row">
+               <div class="col-md-12 p-5 bg-info rounded"></div>
+            </div>
+            </div> -->
+      </div>
+   </div>
+</div>
+<!-- End Photos & videos -->
+
+<!-- Satrt Comment input, Chat button -->
+<style>
+   .checked {
+   color: orange;
+   }
+</style>
+<form action="{% url 'profession-personal-details' Profession_obj.id %}" method="POST">
+   {% csrf_token %}
+   <div class="row">
+      <div class="col-8 col-sm-8 col-md-8">
+         <div class="form-group comment-input">
+            <textarea maxlength="300" class="form-control" type="text" placeholder="Write a Comment" name="Comment" required></textarea>
+         </div>
+         <!-- <div>
+            <span class="fa fa-star fa-2x checked"></span>
+            <span class="fa fa-star fa-2x checked"></span>
+            <span class="fa fa-star fa-2x checked"></span>
+            <span class="fa fa-star fa-2x checked"></span>
+            <span class="fa fa-star fa-2x"></span>
+            </div> -->
+
+
+         <div class="row">
+            <div class="col-md-12 pb-3">
+               <span class="rate">
+                  <input type="radio" id="star5" name="rate" value="5" required  />
+                  <label for="star5" title="text">5 stars</label>
+                  <input type="radio" id="star4" name="rate" value="4" />
+                  <label for="star4" title="text">4 stars</label>
+                  <input type="radio" id="star3" name="rate" value="3" />
+                  <label for="star3" title="text">3 stars</label>
+                  <input type="radio" id="star2" name="rate" value="2" />
+                  <label for="star2" title="text">2 stars</label>
+                  <input type="radio" id="star1" name="rate" value="1" />
+                  <label for="star1" title="text">1 star</label>
+               </span>
+            </div>
+         </div>
+         <!-- <div class="">
+            <input type="radio" name="rate" id="star_1" value="1"/><label for="star 1" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="star_2" value="2"/><label for="star 2" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="star_3" value="3" checked/><label for="star 3" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="star_4" value="4"/><label for="star 4" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="star_5" value="5"/><label for="star 5" class="fas fa-star"></label>
+         </div> -->
+      </div>
+      <div class="col-4 col-sm-2 col-md-2 ">
+         <button type="submit" class="btn btn-block btn-normal-b">Send</button>
+      </div>
+      <div class="col-12 col-sm-2 col-md-2 pt-2">
+         <a href="https://api.whatsapp.com/send/?phone={{Profession_obj.UserProfile.country_code}}{{Profession_obj.UserProfile.whatsapp_number}}&text&type=phone_number" class="text-light" target="_blank">Go to chat</a>
+      </div>
+   </div>
+</form>
+<!-- End Comment input, Chat button -->
+<!-- Start Review -->
+<div class="row">
+   <div class="col-md-12 reviews">
+      <!-- Start Reviews Heading -->
+      <div class="row">
+         <div class="col-md-12 reviews-heading">
+            {{ProfessionReview_obj_count}} Reviews
+         </div>
+      </div>
+      <!-- End Reviews Heading -->
+      {% for k in ProfessionReview_obj %}
+      <!-- Start user profile and user information -->
+      <div class="row mt-5">
+         <!-- Start user profile -->
+         <div class="col-md-1">
+            <img src="{{k.User_Profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+         </div>
+         <!-- End user profile -->
+         <!-- Start User information -->
+         <div class="col-md-11">
+            <!-- Start User Name -->
+            <div class="row">
+               <div class="col-md-12 user-name-heading">
+                  {{k.User_Profile.usertype.user_id.first_name}} {{k.User_Profile.usertype.user_id.last_name}}
+               </div>
+            </div>
+            <!-- End User Name -->
+            <!-- Start date -->
+            <div class="row">
+               <div class="col-md-12 reviews-date">
+                  {{k.Review_Date}} {{k.Review_Time}} ago.
+               </div>
+            </div>
+            <!-- End date -->
+         </div>
+         <!-- End User information -->
+      </div>
+      <!-- End user profile and user information -->
+      <!-- Start comment -->
+      <div class="row mt-1">
+         <div class="col-md-12 review-comment">
+            {{k.Review}}
+         </div>
+      </div>
+      <div class="row mt-1">
+         <span class="fa fa-star {% if k.Rate >= 1 %}checked {% endif %}"></span>
+         <span class="fa fa-star {% if k.Rate >= 2 %}checked {% endif %}"></span>
+         <span class="fa fa-star {% if k.Rate >= 3 %}checked {% endif %}"></span>
+         <span class="fa fa-star {% if k.Rate >= 4 %}checked {% endif %}"></span>
+         <span class="fa fa-star {% if k.Rate >= 5 %}checked {% endif %}"></span>
+      </div>
+      <!-- End comment -->
+      <!-- Start like and replay -->
+      <div class="row mt-2">
+         <!-- Start flag image -->
+         <div class="col-md-1 likes-heading">
+            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image"> 3.9k
+         </div>
+         <!-- End flag image -->
+         <!-- Start likes heading -->
+         <div class="col-md-2 likes-heading">
+            <a href="{% url 'review_Reply' k.id %}">
+            Reply
+            </a>
+         </div>
+         <!-- End likes heading -->
+      </div>
+      <!-- End like and replay -->
+      {% endfor %}
+   </div>
+</div>
+<!-- End Review -->
+{% endblock content %}

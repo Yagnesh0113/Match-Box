@@ -1,0 +1,184 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Write Comment</title>
+{% endblock title %}
+{% block own_css %}
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- own css Community write comment screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-write-comment-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+{% endblock own_css %}
+{% block community_content %}
+<!-- Start community-profile-img, heading, post -->
+<div class="row pl-3">
+   <!-- Start community-profile-img -->
+   <div class="col-2  col-sm-2  col-md-2 pt-2 ">
+      <img class="img-fluid" src="{{i.Community_obj.Community_Profile_Image.url}}" alt="Chania">
+   </div>
+   <!-- End community-profile-img -->
+   <!-- Start community-heading, no-members -->
+   <div class="col-10 col-sm-10 col-md-10 pt-2 community-heading-members">
+      <!-- Start community-heading -->
+      <div class="row">
+         <div class="col-md-12 community-heading">
+            {{i.Community_obj.Community_Name}}
+         </div>
+      </div>
+      <!-- End community-heading -->
+      <!-- Start community-no-members -->
+      <div class="row">
+         <div class="col-md-12 community-no-members">
+            Members : 0
+         </div>
+      </div>
+      <!-- End community-no-members -->
+   </div>
+   <!-- End community-heading, no-members -->
+   <!-- Stat community posted-by-u-name -->
+   <div class="col-12 col-sm-12 col-md-12 pt-2">
+      <div class="row posted-by-u-name">
+         <div class="col-md-12">
+            Posted by {{i.user_post.User_Profile.usertype.user_id.first_name}} {{i.user_post.User_Profile.usertype.user_id.last_name}}/{{i.user_post.Post_Date}} {{i.user_post.Post_Time}} ago
+         </div>
+      </div>
+   </div>
+   <!-- End community posted-by-u-name -->
+</div>
+<!-- End community-profile-img, heading, post -->
+<!-- Start Community sub heading -->
+<div class="row pl-3">
+   <!-- Start community-sub-heading -->
+   <div class="col-12 col-sm-12 col-md-12 community-sub-heading pt-2">
+      {{i.user_post.Description}}
+   </div>
+   <!-- End community-sub-heading -->
+</div>
+<!-- End Community sub heading -->
+<!-- Start post-img-video -->
+{% if i.user_post.Image %}
+<div class="row pl-3 pt-3">
+   <div class="col-12 col-sm-12 col-md-12 rounded">
+      <img src="{{i.user_post.Image.url}}" alt="" class="img-fluid rounded">
+   </div>
+</div>
+{% else %}
+<div></div>
+{% endif %}
+<!-- End post-img-video -->
+<!-- Start no-of-like, no-of-comments, share -->
+<div class="row pl-3 pt-3 like-comment-share">
+   <!-- Start no-of-like -->
+   <div class="col-3 col-sm-2 col-md-2">
+      <i class="fa-solid fa-thumbs-up"></i> 1.2K
+   </div>
+   <!-- End no-of-like -->
+   <!-- Start  no-of-comments -->
+   <div class="col-2 col-sm-2 col-md-2">
+      <i class="fa-solid fa-message"></i> {{count}}
+   </div>
+   <!-- End  no-of-comments -->
+   <!-- Start share -->
+   <div class="col-1 col-sm-1 col-md-1">
+      <i class="fa-solid fa-share-nodes"></i>
+   </div>
+   <!-- End share -->
+   <div class="col-6 col-sm-7 col-md-7"></div>
+</div>
+<!-- End no-of-like, no-of-comments, share -->
+<!-- Start community-user-name -->
+<div class="row pl-3 pt-2 community-user-name">
+   {% if userprofile.profile_image %}
+   <div class="col-2 col-sm-1 col-md-1 pt-2 ">
+      <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
+   </div>
+   {% else %}
+   <div></div>
+   {% endif %}
+   <div class="col-5 col-sm-5 col-md-5">
+      <!-- <span class="commnet-as"></span> -->
+      <span>{{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}</span>
+   </div>
+</div>
+<!-- End community-user-name -->
+<form action="{% url 'community-write-comment-screen' i.id %}" method="POST">
+   {% csrf_token %}
+   <!-- Start comment-text-box -->
+   <div class="row pl-3">
+      <div class="col-md-12 pt-3 comment-text-box">
+         <div class="form-group">
+            <textarea name="Comment" class="form-control" rows="5" id="comment" placeholder="What do you think?" required></textarea>
+         </div>
+      </div>
+   </div>
+   <!-- End comment-text-box -->
+   <!-- Start cancel-post-btn -->
+   <div class="row pl-3 pt-3  cancel-post-btn">
+      <div class="col-md-12 pb-3 text-right border-bottom">
+         <!-- Start cancel-btn -->
+         <!--            <span class="cancel-btn">-->
+         <!--                <button type="button" class="btn pl-5 pr-5">Cancel</button>-->
+         <!--            </span>-->
+         <!-- End cancel-btn -->
+         <!-- Start post-btn -->
+         <span class="post-btn">
+         <button type="submit" class="btn pl-5 pr-5">Post</button>
+         </span>
+         <!-- End post-btn -->
+      </div>
+   </div>
+   <!-- End cancel-post-btn -->
+</form>
+<!-- Start Comments heading -->
+<div class="row pl-3 pt-3 pb-3">
+   <div class="col-md-12 comments-heading">
+   </div>
+</div>
+<!-- End Comments heading -->
+{% for All_comment in All_comment %}
+<!-- Start Comments -->
+<div class="row pl-3">
+   <div class="col-md-12 all-comments border-bottom pb-3 pt-3">
+      <!-- Start user-profile, user-community-name, time -->
+      <div class="row">
+         <!-- Start user-profile -->
+         <div class="col-2 col-sm-1  col-md-1">
+            <img class="img-fluid rounded-circle" src="{{All_comment.Community_Comment.User_Profile.profile_image.url}}" alt="Chania">
+         </div>
+         <!-- End user-profile -->
+         <!-- Start user-community-name, time -->
+         <div class="col-10 col-sm-11 col-md-11 user-community-name">
+            {{All_comment.Community_Comment.User_Profile.usertype.user_id.first_name}} {{All_comment.Community_Comment.User_Profile.usertype.user_id.last_name}}/ <span class="time">{{All_comment.Community_Comment.Comment_Date}}  {{All_comment.Community_Comment.Commenet_Time}}</span>
+         </div>
+         <!-- End user-community-name, time -->
+      </div>
+      <!-- End user-profile, user-community-name, time -->
+      <!-- Start comment -->
+      <div class="row pt-2">
+         <div class="col-md-12 comment">
+            {{All_comment.Community_Comment.Comment}}
+         </div>
+      </div>
+      <!-- End comment -->
+      <!-- Start like-reply-share -->
+      <div class="row pt-3">
+         <div class="col-md-12 like-reply-share">
+            <span class="">
+            <i class="fa-solid fa-thumbs-up"></i> 1.2K
+            </span>
+            <span class="pl-5">
+            <a href="{% url 'community-comment-reply-screen' All_comment.id %}" class="text-decoration-none">2 Reply</a>
+            </span>
+            <span class="pl-5">
+            <i class="fa-solid fa-share-nodes"></i>
+            </span>
+         </div>
+      </div>
+      <!-- Start like-reply-share -->
+   </div>
+</div>
+
+<!-- End Comments -->
+{% endfor %}
+{% endblock community_content %}
