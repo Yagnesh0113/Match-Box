@@ -131,17 +131,24 @@
                         <div class="input-group-prepend">
                            <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-lock"></i></span>
                         </div>
-                        <input type="password" name="password" class="form-control border-left-0 border-right-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your password" required>
-                        <div class="input-group-prepend">
+<!--                        <input type="text" name="username" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your email or phone number" required>-->
+                        <input type="password" name="password" class="form-control border-left-0" id="myInput" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your password" required>
+                        <!--<div class="input-group-prepend">
                            <span class="border-left-0 password-border-remove" id="inputGroup-sizing-default"><i class="fa-solid fa-eye-slash"></i></span>
-                        </div>
+                        </div>-->
+
                      </div>
                   </div>
                </div>
                <!-- End password input box -->
                <!-- Start Forgot Password ? heading  -->
                <div class="row">
-                  <div class="col-12 col-sm-12 col-md-12 text-right forgot-password">
+                  <div class="col-6 col-sm-12 col-md-6 text-left forgot-password">
+
+                        <span class="text-color-white-m-view"> <input type="checkbox" onclick="myFunction()">Show Password </span>
+
+                  </div>
+                  <div class="col-6 col-sm-12 col-md-6 text-right forgot-password">
                      <a href="{% url 'forgot-password' %}">
                         <span class="text-color-white-m-view"> Forgot Password ? </span>
                      </a>
@@ -188,5 +195,18 @@
       <!-- Start splash screen -->
       <script src="{% static 'community_profession/js/splash-screen.js' %}"></script>
       <!-- End splash screen -->
+
+      <!-- Start Show and hidde Password -->
+      <script>
+      function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+      </script>
+      <!-- End Show and hidde Password -->
    </body>
 </html>

@@ -87,12 +87,12 @@
                      </div>
                      <!-- Start Sign Up heading -->
                      <!-- Ankush Message Code start -->
-               {% if messages %}
-               {% for message in messages %}
-                  <p>{{ message }}</p>
-               {% endfor %}
-            {% endif %}
-             <!-- Ankush Message Code ends -->
+                     {% if messages %}
+                     {% for message in messages %}
+                     <p>{{ message }}</p>
+                     {% endfor %}
+                     {% endif %}
+                     <!-- Ankush Message Code ends -->
                      <!-- Start Contact Form -->
                      <form action="{% url 'sign-up' %}"  data-city-url="{% url 'load_city' %}" id="indexForm" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -253,11 +253,10 @@
                                  <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1">
                                     <option class="">-- Select State -- </option>
                                     {% for i in state %}
-                                       <option value="{{i.id}}" class="border">{{i.name}}</option>
+                                    <option value="{{i.id}}" class="border">{{i.name}}</option>
                                     {% endfor %}
                                  </select>
                               </div>
-                           
                               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                  <!-- Start Enter state heading -->
                                  <div class="row signup-form-heading">
@@ -275,16 +274,13 @@
                                           </div>
                                           <select name="city" class="form-control border-left-0" id="city">
                                              <option value="">---Firsr Select State---</option>
-                                             
                                           </select>
                                        </div>
                                     </div>
                                  </div>
                                  <!-- End state input box -->
                               </div>
-                          
-                        </div>
-
+                           </div>
                         </div>
                         <!-- Start terms- and condition and sign up -->
                         <div class="row">
@@ -319,7 +315,6 @@
                         </div>
                         <!-- End terms and condition and sign up -->
                         <!-- Start sign up for profession & Login with google    -->
-                        
                         <!-- End sign up for profession & Login with google  -->
                      </form>
                      <!-- End Contact  Form  -->
@@ -356,25 +351,23 @@
       <!-- Start splash screen -->
       <script src="{% static 'community_profession/js/splash-screen.js' %}"></script>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script>
-    $("#state").change(function () {
-      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view
-      var stateId = $(this).val();  // get the selected programming ID from the HTML input
+      <script>
+         $("#state").change(function () {
+           var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view
+           var stateId = $(this).val();  // get the selected programming ID from the HTML input
 
-      $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
-        data: {
-          'state': stateId       // add the programming id to the GET parameters
-        },
-        success: function (data) {   // `data` is the return of the `load_courses` view function
-          $("#city").html(data);  // replace the contents of the course input with the data that came from the server
-        }
-      });
+           $.ajax({                       // initialize an AJAX request
+             url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+             data: {
+               'state': stateId       // add the programming id to the GET parameters
+             },
+             success: function (data) {   // `data` is the return of the `load_courses` view function
+               $("#city").html(data);  // replace the contents of the course input with the data that came from the server
+             }
+           });
 
-    });
-  </script>
-
+         });
+      </script>
       <!-- End splash screen -->
    </body>
-
 </html>
