@@ -301,3 +301,9 @@ def update_whatsapp_number(request):
         userprofile.whatsapp_number=whatsapp_number
         userprofile.save()
         return redirect('/profession-profile-screen')
+
+def delete_Image(request,id):
+    profession_id=request.GET['profession']
+    Image=Professionimage.objects.get(id=id)
+    Image.delete()
+    return redirect(f'/profession_details/{profession_id}')

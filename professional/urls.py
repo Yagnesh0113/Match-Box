@@ -15,7 +15,9 @@ urlpatterns = [
     path('see-all-photos-videos/<int:id>', views.loadSeeAllPhotosAndVideos, name='see-all-photos-videos'), # profession all photos and videos
     path('update_whatsapp_number',views.update_whatsapp_number,name='update_whatsapp_number'), # whatsapp url
     path('update_profile_image',views.update_profile_image,name='update_profile_image'), # whatsapp url
+    
     path('Days_details/<int:id>',views.Days_details,name='Days_details'), # whatsapp url
+    path('delete_Image/<int:id>',views.delete_Image,name='delete_Image'), # whatsapp url
 
 
 ]
