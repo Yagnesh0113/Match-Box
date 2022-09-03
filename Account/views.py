@@ -3,6 +3,9 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse
+from django.contrib import messages
+import re
+
 
 
 # --- load SignUp page - Default url ---
@@ -19,31 +22,42 @@ def loadSignUpPage(request):
         state=State.objects.get(id=request.POST['state'])
         city = request.POST.get('city')
 
+        password_pattern = re.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$")
+        mobile_pattern= re.compile("[6-9][0-9]{9}")
+
+
         if User.objects.filter(username=email):
-            print('Email Already exists.')
-            return redirect('/sign-up-community')
+            messages.error(request, f"{email} is already taken.")
+            return redirect('/sign-up')
         elif User.objects.filter(email=email):
-            print('Email Already exists.')
-            return redirect('/sign-up-community')
+            messages.error(request, f"{email} is already taken.")
+            return redirect('/sign-up')
         elif UserProfile.objects.filter(phone_number=phone_number):
-            print('Phone Number Already Taken')
-            return redirect('/sign-up-community')
+            messages.error(request, f"{phone_number} is already taken.")
+            return redirect('/sign-up')
         else:
             if term != None:
-                userobj=User.objects.create_user(first_name=first_name, last_name=last_name,username=email, email=email, password=password)
-                usertypeobj=UserType.objects.create(user_id=userobj)
-                UserProfile.objects.create(usertype=usertypeobj,phone_number=phone_number,profile_image=profile_image,terms_conditions=True,state=state,city=city)
-                user_obj=authenticate(username=email,password=password)
-                if user_obj is not None:
-                    login(request, user_obj)
-                    print('Login Successfully')
-                    return redirect('/home-screen')
+                if mobile_pattern.match(phone_number):
+                    if len(password)>8 and re.search(password_pattern,password):
+                        userobj=User.objects.create_user(first_name=first_name, last_name=last_name,username=email, email=email, password=password)
+                        usertypeobj=UserType.objects.create(user_id=userobj)
+                        UserProfile.objects.create(usertype=usertypeobj,phone_number=phone_number,profile_image=profile_image,terms_conditions=True,state=state,city=city)
+                        user_obj=authenticate(username=email,password=password)
+                        if user_obj is not None:
+                            login(request, user_obj)
+                            return redirect('/home-screen')
+                        else:
+                            return redirect('/')
+                    else:
+                        messages.error(request, f"Password length must be more than 8 character long and must contatin atleat one number,one uppercare,one lowercase and one special symbol ")
+                        return redirect('/sign-up')
                 else:
-                    return redirect('/')
+                    messages.error(request, f"Mobile is incorrect please enter you valid mobile number")
+                    return redirect('/sign-up')
             else:
                 print("Please Select terms and condition")
                 return redirect('/sign-up')
-
+            
     else:
         state=State.objects.all()
         context={'state':state}
@@ -172,7 +186,7 @@ def loadSignInPage(request):
                 print('Login Successfully')
                 return redirect('/home-screen')
             else:
-                print("Wrong Credentials")
+                messages.error(request, f"Wrong Credetials")
                 return redirect('/')
         elif UserProfile.objects.filter(phone_number=username):
             user=UserProfile.objects.get(phone_number=username)
@@ -183,10 +197,10 @@ def loadSignInPage(request):
                 print('Login Successfully')
                 return redirect('/home-screen')
             else:
-                print("Wrong Credentials")
+                messages.error(request, f"Wrong Credetials")
                 return redirect('/')
         else:
-            print("Wrong Credntials")
+            messages.error(request, f"Wrong Credetials")
             return redirect('/')
 
     else:

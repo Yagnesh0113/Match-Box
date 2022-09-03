@@ -86,6 +86,13 @@
                         </div>
                      </div>
                      <!-- Start Sign Up heading -->
+                     <!-- Ankush Message Code start -->
+               {% if messages %}
+               {% for message in messages %}
+                  <p>{{ message }}</p>
+               {% endfor %}
+            {% endif %}
+             <!-- Ankush Message Code ends -->
                      <!-- Start Contact Form -->
                      <form action="{% url 'sign-up' %}"  data-city-url="{% url 'load_city' %}" id="indexForm" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -107,7 +114,7 @@
                                        <div class="input-group-prepend">
                                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user"></i></span>
                                        </div>
-                                       <input type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="first_name" placeholder="Enter your first name" required>
+                                       <input required type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="first_name" placeholder="Enter your first name">
                                     </div>
                                  </div>
                               </div>
@@ -130,7 +137,7 @@
                                        <div class="input-group-prepend">
                                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user"></i></span>
                                        </div>
-                                       <input type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="last_name" placeholder="Enter your last name" required>
+                                       <input required type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="last_name" placeholder="Enter your last name">
                                     </div>
                                  </div>
                               </div>
@@ -157,7 +164,7 @@
                                        <div class="input-group-prepend">
                                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-envelope"></i></span>
                                        </div>
-                                       <input type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="email" placeholder="Enter your email" required>
+                                       <input required type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="email" placeholder="Enter your email">
                                     </div>
                                  </div>
                               </div>
@@ -180,7 +187,7 @@
                                        <div class="input-group-prepend">
                                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-mobile-retro"></i></span>
                                        </div>
-                                       <input type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="phone_number" placeholder="Enter your phone number" maxlength="10" required>
+                                       <input required type="number" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="phone_number" placeholder="Enter your phone number">
                                     </div>
                                  </div>
                               </div>
@@ -207,7 +214,7 @@
                                        <div class="input-group-prepend">
                                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-lock"></i></span>
                                        </div>
-                                       <input type="password" class="form-control border-left-0 border-right-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="password" placeholder="Enter your password" required>
+                                       <input required type="password" class="form-control border-left-0 border-right-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="password" placeholder="Enter your password">
                                        <div class="input-group-prepend">
                                           <span class="border-left-0 password-border-remove" id="inputGroup-sizing-default"><i class="fa-solid fa-eye-slash"></i></span>
                                        </div>
@@ -226,7 +233,7 @@
                                  <div class="input-group-prepend pt-2">
                                     &nbsp; <span class="add-your-profile-text">Add Your Profile</span>
                                  </div>
-                                 <input type="file" class="form-control border-0 " aria-label="Default" aria-describedby="inputGroup-sizing-default" name="profile_image" placeholder="Add Your Profile" required>
+                                 <input required type="file" class="form-control border-0 " aria-label="Default" aria-describedby="inputGroup-sizing-default" name="profile_image" placeholder="Add Your Profile">
                               </div>
                            </div>
                            <!-- End add your profile -->
@@ -243,14 +250,14 @@
                                  <div class="input-group-prepend">
                                     <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
                                  </div>
-                                 <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1" required>
+                                 <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1">
                                     <option class="">-- Select State -- </option>
                                     {% for i in state %}
                                        <option value="{{i.id}}" class="border">{{i.name}}</option>
                                     {% endfor %}
                                  </select>
                               </div>
-
+                           
                               <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                  <!-- Start Enter state heading -->
                                  <div class="row signup-form-heading">
@@ -266,15 +273,16 @@
                                           <div class="input-group-prepend">
                                              <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
                                           </div>
-                                          <select name="city" class="form-control border-left-0" id="city" required>
-
+                                          <select name="city" class="form-control border-left-0" id="city">
+                                             <option value="">---Firsr Select State---</option>
+                                             
                                           </select>
                                        </div>
                                     </div>
                                  </div>
                                  <!-- End state input box -->
                               </div>
-
+                          
                         </div>
 
                         </div>
@@ -294,7 +302,7 @@
                                  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
                                     <div class="form-group form-check">
                                        <label class="form-check-label">
-                                       <input class="form-check-input" type="checkbox" name="term" required> <span class="terms-condition-text">I have read and agree to</span> <a href="">terms and conditions</a>
+                                       <input required class="form-check-input" type="checkbox" name="term"> <span class="terms-condition-text">I have read and agree to</span> <a href="">terms and conditions</a>
                                        </label>
                                     </div>
                                  </div>
@@ -304,7 +312,7 @@
                            <!-- End terms and condition -->
                            <!-- Start sign up button -->
                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                              <!-- <input class="btn btn-block btn-normal" type="submit" value="Sign up"> -->
+                              <!-- <input required class="btn btn-block btn-normal" type="submit" value="Sign up"> -->
                               <button class="btn btn-block btn-normal" type="submit">Sign up</button>
                            </div>
                            <!-- End sign up button -->

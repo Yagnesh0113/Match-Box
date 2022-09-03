@@ -69,14 +69,22 @@
             <!-- End Sign in left side image -->
             <!-- Start Sign in right side form -->
             <div class="col-12 col-sm-7 col-md-7 sign-in-right-body-form">
+              
+               <!-- Ankush Message Code start -->
+               {% if messages %}
+                  {% for message in messages %}
+                     <p>{{ message }}</p>
+                  {% endfor %}
+               {% endif %}
+                <!-- Ankush Message Code ends -->
                <!-- Start Sign In Form icon -->
-               <div class="row desktop-icon">
-                  <div class="col-md-12">
-                     <img src="/static/community_profession/img/sign-up-logo.png" alt="match-box">
+                  <div class="row desktop-icon">
+                     <div class="col-md-12">
+                        <img src="/static/community_profession/img/sign-up-logo.png" alt="match-box">
+                     </div>
                   </div>
-               </div>
-               <div class="row mobile-icon">
-                  <div class="col-md-12">
+                  <div class="row mobile-icon">
+                     <div class="col-md-12">
                      <img src="/static/community_profession/img/sign-up-logo-mobile-view.png" alt="match-box">
                   </div>
                </div>
@@ -91,70 +99,65 @@
                <!-- Start sign in email or phone number heading  -->
                <form action="{% url 'sign-in' %}" method="POST">
                   {% csrf_token %}
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12 sign-in-email-phone-no-heading">
-                        Enter your email or phone number
+               <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 sign-in-email-phone-no-heading">
+                     Enter your email or phone number
+                  </div>
+               </div>
+               <!-- End sign in email or phone number heading  -->
+               <!-- Start email / phone number input box -->
+               <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 sign-in-form">
+                     <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-envelope"></i></span>
+                        </div>
+                        <input type="text" name="username" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your email or phone number" required>
                      </div>
                   </div>
-                  <!-- End sign in email or phone number heading  -->
-                  <!-- Start email / phone number input box -->
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12 sign-in-form">
-                        <div class="input-group mb-3">
-                           <div class="input-group-prepend">
-                              <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-envelope"></i></span>
-                           </div>
-                           <input type="text" name="username" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your email or phone number" required>
+               </div>
+               <!-- End email / phone number input box -->
+               <!-- Start Password heading  -->
+               <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 sign-in-password-heading">
+                     Enter your password
+                  </div>
+               </div>
+               <!-- End Password heading  -->
+               <!-- Start password input box -->
+               <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 sign-in-form">
+                     <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-lock"></i></span>
+                        </div>
+                        <input type="password" name="password" class="form-control border-left-0 border-right-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your password" required>
+                        <div class="input-group-prepend">
+                           <span class="border-left-0 password-border-remove" id="inputGroup-sizing-default"><i class="fa-solid fa-eye-slash"></i></span>
                         </div>
                      </div>
                   </div>
-                  <!-- End email / phone number input box -->
-                  <!-- Start Password heading  -->
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12 sign-in-password-heading">
-                        Enter your password
-                     </div>
-                  </div>
-                  <!-- End Password heading  -->
-                  <!-- Start password input box -->
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12 sign-in-form">
-                        <div class="input-group mb-3">
-                           <div class="input-group-prepend">
-                              <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-lock"></i></span>
-                           </div>
-                           <input type="password" name="password" class="form-control border-left-0 border-right-0" id="input1" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your password" required>
-                           <div class="input-group-prepend">
-                              <button type="button" class="btn border-left-0 password-border-remove"  id="button1" onclick="display()">
-                                 <i class="fa-solid fa-eye-slash"></i>
-                              </button>
-                           </div>
-                        </div>
-                     </div>
-
-                     <!--<div class="col-md-12">
-                        <input type="password" id="input1">
-                        <button id="button1" onclick="display()">show</button>
-                     </div>-->
-                  </div>
-                  <!-- End password input box -->
-                  <!-- Start Forgot Password ? heading  -->
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12 text-right forgot-password">
-                        <a href="{% url 'forgot-password' %}">
+               </div>
+               <!-- End password input box -->
+               <!-- Start Forgot Password ? heading  -->
+               <div class="row">
+                  <div class="col-12 col-sm-12 col-md-12 text-right forgot-password">
+                     <a href="{% url 'forgot-password' %}">
                         <span class="text-color-white-m-view"> Forgot Password ? </span>
-                        </a>
-                     </div>
+                     </a>
                   </div>
-                  <!-- End Forgot Password ? heading  -->
-                  <!-- Start Sign In button -->
-                  <div class="row">
-                     <div class="col-md-12">
-                        <button class="btn btn-lg btn-block btn-normal" type='submit'>Sign In</button>
-                     </div>
+               </div>
+               <!-- End Forgot Password ? heading  -->
+               <!-- Start Sign In button -->
+               <div class="row">
+                  <div class="col-md-12">
+                     
+                     <button class="btn btn-lg btn-block btn-normal" type='submit'>Sign In</button>
+                     
                   </div>
-                  <!-- End Sign In button -->
-               </form>
+               </div>
+               <!-- End Sign In button -->
+            </form>
                <!-- Start Log In with Google button -->
                <div class="row">
                   <div class="col-md-12">
@@ -175,37 +178,15 @@
          <!-- End main body -->
       </div>
       <!--Your Splash Screen-->
-      <div id="splash"  class="flex-container" style ="background: #161818 ; display: none"  >
-         <!--Center align Splash contents in all screen sizes-->
-         <div id="flex-item" >
-            <img class="img-fluid" src="{% static 'community_profession/img/splash-screen-logo.png' %}" alt="Chania">
+         <div id="splash"  class="flex-container" style ="background: #161818 ; display: none"  >
+            <!--Center align Splash contents in all screen sizes-->
+            <div id="flex-item" >
+               <img class="img-fluid" src="{% static 'community_profession/img/splash-screen-logo.png' %}" alt="Chania">
+            </div>
          </div>
-      </div>
       <!--  Start splash screen Scripts-->
       <!-- Start splash screen -->
       <script src="{% static 'community_profession/js/splash-screen.js' %}"></script>
       <!-- End splash screen -->
-
-      <!-- Start show and hide hidde password  -->
-      <script>
-        function display()
-        {
-            var input_a = document.getElementById("input1").type
-            var button_a = document.getElementById("button1").innerHTML
-
-            if (input_a == 'password' && button_a == 'show')
-            {
-                document.getElementById("input1").type='text'
-                document.getElementById("button1").innerHTML='hidde'
-            }
-            else
-            {
-                document.getElementById("input1").type='password'
-                document.getElementById("button1").innerHTML='show'
-            }
-        }
-
-    </script>
-      <!-- End show and hide hidde password  -->
    </body>
 </html>
