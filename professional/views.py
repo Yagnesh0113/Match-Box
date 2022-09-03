@@ -188,6 +188,61 @@ def update_profession_details(request,id):
             context={'My_community':My_Community,'userprofile':userprofile}
         return redirect('/profession-profile-screen',context)
 
+def Days_details(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    profession=Profession.objects.get(id=id)
+    print(profession)
+    if request.method=="POST":
+        
+        
+
+        if request.POST.get('start_time')  != '':
+            profession.shop_start_time = request.POST.get('start_time')
+        else:
+            pass
+        if request.POST.get('end_time')  != '':
+            profession.shop_close_time = request.POST.get('end_time')
+        else:
+            pass
+        
+       
+        if request.POST.get('sunday')!=None:
+            profession.shop_status_sunday = True
+        else:
+            profession.shop_status_sunday = False
+        if request.POST.get('monday')!=None:
+            profession.shop_status_monday = True
+        else:
+            profession.shop_status_monday = False
+        if request.POST.get('tuesday')!=None:
+            profession.shop_status_Tuesday = True
+        else:
+            profession.shop_status_Tuesday = False
+        if request.POST.get('wednesday')!=None:
+            profession.shop_status_Wednesday = True
+        else:
+            profession.shop_status_Wednesday = False
+        if request.POST.get('thrusday')!=None:
+            profession.shop_status_Thrusday = True
+        else:
+            profession.shop_status_Thrusday = False
+        if request.POST.get('friday')!=None:
+            profession.shop_status_Friday = True
+        else:
+            profession.shop_status_Friday = False
+        if request.POST.get('saturday')!=None:
+            profession.shop_status_saturday = True
+        else:
+            profession.shop_status_saturday = False
+        profession.save()
+        return redirect(f"/profession_details/{id}")
+    else:
+        if obj is not None:
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession}
+        else:
+            context={'My_community':My_Community,'userprofile':userprofile,'profession':profession}
+        return render(request, 'professional/profession-details.html', context)
+
 def edit_profession_image(request,id):
     if request.method=='POST':
         profession_image=request.FILES['profession_image']
