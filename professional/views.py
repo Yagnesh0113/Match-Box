@@ -31,21 +31,29 @@ def is_user_is_professional_user(request):
 def loadProfessionProfileScreen(request):
     try:
         userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-        
-        # user=request.user
-        # usertype=UserType.objects.get(user_id=user)
-        # userprofile=UserProfile.objects.get(usertype=usertype)
         profession=Profession.objects.filter(UserProfile=userprofile)
         print(profession)
-        # My_Community=Community.objects.all()
         if obj is not None:
             context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession}
         else:
             context={'My_community':My_Community,'userprofile':userprofile,'profession':profession}
-        # context={'u':userprofile,'usertype':is_user_is_professional_user(request),'profession':profession,}
         return render(request, 'professional/profile-screen-for-profession.html',context)
     except:
         return HttpResponse("<h1>404 Data Not Found<h1>")
+
+@login_required(login_url='/')
+def update_profile_image(request):
+    # try:
+        userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+        if request.method == "POST":
+            profile_image=request.FILES['profile_image']
+            userprofile.profile_image=profile_image
+            userprofile.save()
+            return redirect('/profession-profile-screen')
+        else:
+            return redirect('/profession-profile-screen')
+    # except:
+    #     return HttpResponse("<h1>404 Data Not Found<h1>")
 
 def add_profession(request):
     user=request.user
@@ -93,12 +101,6 @@ def add_profession(request):
         city=request.POST['city']
         about=request.POST['about']
 
-        # print("experience : ",experience)
-        # print("Profession_obj : ",Profession_obj.id)
-        # print("start_time : ",start_time)
-        # print("close_time : ",close_time)
-        # print("shop_name : ",shop_name)
-        # print("address : ",address)
 
         
 
