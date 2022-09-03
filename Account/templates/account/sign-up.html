@@ -86,13 +86,6 @@
                         </div>
                      </div>
                      <!-- Start Sign Up heading -->
-                     <!-- Ankush Message Code start -->
-                     {% if messages %}
-                     {% for message in messages %}
-                     <p>{{ message }}</p>
-                     {% endfor %}
-                     {% endif %}
-                     <!-- Ankush Message Code ends -->
                      <!-- Start Contact Form -->
                      <form action="{% url 'sign-up' %}"  data-city-url="{% url 'load_city' %}" id="indexForm" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -187,7 +180,7 @@
                                        <div class="input-group-prepend">
                                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-mobile-retro"></i></span>
                                        </div>
-                                       <input required type="number" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="phone_number" placeholder="Enter your phone number">
+                                       <input required type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="phone_number" maxlength="10" placeholder="Enter your phone number">
                                     </div>
                                  </div>
                               </div>
@@ -196,6 +189,7 @@
                            <!-- End phone number -->
                         </div>
                         <!-- End email and phone number -->
+
                         <!-- Start password and add your profile -->
                         <div class="row">
                            <!-- Start password -->
@@ -210,22 +204,32 @@
                               <!-- Start password input box -->
                               <div class="row">
                                  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
-                                    <div class="input-group mb-3">
+                                    <div class="input-group ">
                                        <div class="input-group-prepend">
                                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-lock"></i></span>
                                        </div>
-                                       <input required type="password" class="form-control border-left-0 border-right-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="password" placeholder="Enter your password">
-                                       <div class="input-group-prepend">
+                                       <input required type="password" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="password" placeholder="Enter your password" id="myInput">
+                                       <!--<div class="input-group-prepend">
                                           <span class="border-left-0 password-border-remove" id="inputGroup-sizing-default"><i class="fa-solid fa-eye-slash"></i></span>
-                                       </div>
+                                       </div>-->
                                     </div>
                                  </div>
                               </div>
                               <!-- End password input box -->
+
+                              <!-- Start show-hidde password message -->
+                              <div class="row">
+                                 <div class="col-md-12 text-right pt-2 pb-2 show-password">
+                                    <input type="checkbox" onclick="myFunction()"> Show Password
+                                 </div>
+                              </div>
+                              <!-- End show-hidde password message -->
                            </div>
                            <!-- End password -->
+
+
                            <!-- Start add your profile -->
-                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 sign-up-form add-your-profile">
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 pt-3 sign-up-form add-your-profile">
                               <div class="input-group mb-3">
                                  <div class="input-group-prepend">
                                     <span class="input-group-text rounded-circle border-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user"></i></span>
@@ -239,8 +243,11 @@
                            <!-- End add your profile -->
                         </div>
                         <!-- End password and add your profile -->
+
+                        <!-- Start State and City -->
                         <div class="row">
-                           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                           <!-- Start Select Your State -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 sign-up-form">
                               <div class="row signup-form-heading">
                                  <div class="col-md-12">
                                     Enter your State
@@ -257,7 +264,11 @@
                                     {% endfor %}
                                  </select>
                               </div>
-                              <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                           </div>
+                           <!-- End Select Your State -->
+
+                           <!-- Start Select your city -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                                  <!-- Start Enter state heading -->
                                  <div class="row signup-form-heading">
                                     <div class="col-md-12">
@@ -273,15 +284,29 @@
                                              <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
                                           </div>
                                           <select name="city" class="form-control border-left-0" id="city">
-                                             <option value="">---Firsr Select State---</option>
+                                             <option value="">-- Select state --</option>
                                           </select>
                                        </div>
                                     </div>
                                  </div>
                                  <!-- End state input box -->
                               </div>
+                           <!-- End Select your city -->
+                        </div>
+                        <!-- End State and City -->
+
+                        <!-- Start Message -->
+                        <div class="row">
+                           <div class="col-md-12 text-center text-danger">
+                              {% if messages %}
+                              {% for message in messages %}
+                              <p>{{ message }}.....</p>
+                              {% endfor %}
+                              {% endif %}
                            </div>
                         </div>
+                        <!-- End Message -->
+
                         <!-- Start terms- and condition and sign up -->
                         <div class="row">
                            <!-- Start terms and condition -->
@@ -330,6 +355,8 @@
                         </div>
                      </div>
                      <!-- End sign in button -->
+
+
                   </div>
                   <div class="col-sm-1 col-md-2"></div>
                </div>
@@ -341,17 +368,20 @@
          <!-- End Sign up slide -->
       </div>
       <!--Your Splash Screen-->
-      <div id="splash"  class="flex-container" style ="background: #161818 ; display: none"  >
-         <!--Center align Splash contents in all screen sizes-->
+      <!--<div id="splash"  class="flex-container" style ="background: #161818 ; display: none"  >
+         &lt;!&ndash;Center align Splash contents in all screen sizes&ndash;&gt;
          <div id="flex-item" >
             <img class="img-fluid" src="{% static 'community_profession/img/splash-screen-logo.png' %}" alt="Chania">
          </div>
-      </div>
+      </div>-->
       <!--  Start splash screen Scripts-->
       <!-- Start splash screen -->
       <script src="{% static 'community_profession/js/splash-screen.js' %}"></script>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script>
+      <!-- End splash screen -->
+
+      <!-- Start State - city ajax code -->
+       <script>
          $("#state").change(function () {
            var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view
            var stateId = $(this).val();  // get the selected programming ID from the HTML input
@@ -368,6 +398,19 @@
 
          });
       </script>
-      <!-- End splash screen -->
+      <!-- Start State - city ajax code -->
+
+      <!-- Start Password show-hidde Js -->
+      <script>
+      function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+      }
+      </script>
+      <!-- End Password show-hidde Js -->
    </body>
 </html>
