@@ -14,11 +14,11 @@
    background-color:#E7E9EB;
    }
    #myDIV {
-   <!--  height:300px;-->
-   <!--  background-color:#FFFFFF;-->
+      height:300px;
+      background-color:#FFFFFF;
    }
    .ex1 {
-   <!--        background-color: lightblue;-->
+          background-color: lightblue;
    width: 150px;
    height: 250px;
    overflow:auto;
@@ -108,10 +108,11 @@
                <div class="col-10 col-sm-10 col-md-10 content">
                   :
                   <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                  <!-- <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
                   <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
                   <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania"> -->
+                  {{profession.Profession_Rating}}
                </div>
             </div>
             <!-- End Rating -->
@@ -150,8 +151,13 @@
    <div class="col-12 col-sm-3 col-md-3 border-right  time-open-status">
       <!-- Start time & open status heading -->
       <div class="row">
-         <div class="col-12 col-sm-12 col-md-12 heading">
+         <div class="col-10 col-sm-10 col-md-10 heading">
             Times & Open Status
+         </div>
+         <div class="col-2 pt-1">
+            <a href="" data-toggle="modal" data-target="#editdatetime">
+               <i class="fa-solid fa-pen-to-square"></i>
+            </a>
          </div>
       </div>
       <!-- End time & open status heading -->
@@ -325,8 +331,8 @@
                </div>
                <div class="col-2 col-sm-1 col-md-1 text-center">
                   <span>
-                     <form>
-                        <button type="button" class="btn">
+                     <form action="">
+                        <button id="" type="button" class="btn" class="btn btn-normal" data-toggle="modal" data-target="#newServideModal">
                         <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                      </form>
@@ -380,18 +386,68 @@
    <div class="col-12 col-sm-12 col-md-12 p-4">
       <div class="row profession-details">
          {% for i in profession_image  %}
-         <div class="col-6 col-sm-2 col-md-2 pt-3">
+         <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
             <div class="row">
-               <div class="col-md-12">
-                  <img src="{{i.image.url}}" class="img-fluid rounded" width="100%" height="30%">
+               <div class="col-md-12 border-1 rounded">
+                  <!-- <a href="" class="text-light"> -->
+                     <img src="{{i.image.url}}" class="img-fluid rounded" width="100%" height="30%">
+                  <!-- </a> -->
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-6 col-sm-6 col-md-6">
+                  <a href="{% url 'photo-screen' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
+                     <i class="fa-solid fa-eye"></i>
+                  </a>
+               </div>
+               <div class="col-6 col-sm-6 col-md-6 text-right">
+                  <form action="{% url 'delete_Image' i.id %}">
+                     <button type="submit" value="{{i.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                     </button>
+                  </form>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+         {% for j in profession_video  %}
+         <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
+            <div class="row">
+               <div class="col-md-12 border-1 rounded">
+                  <!-- <a href="" class="text-light"> -->
+                     <video src="{{j.video.url}}" class="img-fluid rounded" width="100%" height="30%"></video>
+                  <!-- </a> -->
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-6 col-sm-6 col-md-6">
+                  <a href="{% url 'video-screen' j.id %}" class="btn btn-normal btn-sm text-dark m-2">
+                     <i class="fa-solid fa-eye"></i>
+                  </a>
+               </div>
+               <div class="col-6 col-sm-6 col-md-6 text-right">
+                  <form action="{% url 'delete_Video' j.id %}">
+                     <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                     </button>
+                  </form>
                </div>
             </div>
          </div>
          {% endfor %}
       </div>
    </div>
+   <!-- <div class="col-4 col-sm-4 col-md-4 p-4">
+      <div class="row profession-details">
+         
+      </div>
+   </div> -->
 </div>
 <!-- End Photos & videos -->
+
+
+<hr color="C0C0C0" >
+
 <!-- Start Review -->
 <div class="row">
    <div class="col-12 col-sm-12 col-md-12 reviews">
@@ -442,6 +498,40 @@
          <!-- Start flag image -->
          <div class="col-2 col-sm-1 col-md-1 likes-heading">
             <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image">
+
+         <!-- End comment -->
+         <!-- Start like and replay -->
+         <div class="row mt-2">
+            <!-- Start flag image -->
+            <div class="col-2 col-sm-1 col-md-1 likes-heading">
+               <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image"> {{k.Rate}}
+            </div>
+            <!-- End flag image -->
+<!-- {% if userprofile not in i.Post.Like.all %} -->
+<!-- {% else %} -->
+                  <!-- <button type="submit" class="fa-solid fa-thumbs-down"></button> -->
+                  <!-- {% endif %} -->
+               <!-- </a>{{ i.Post.Like.all.count }} Likes -->
+            <!-- Start number of likes -->
+            <div class="col-1 col-sm-1 col-md-1 likes-heading">
+               <a href="#">
+                  
+                  <button type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
+                  
+               &nbsp;
+               <a href="#">
+                  <i class="fa-solid fa-message pl-3"></i>
+               </a>
+            </div>
+            <!-- End number of likes -->
+
+            <!-- Start likes heading -->
+            <div class="col-2 col-sm-2 col-md-2 likes-heading">
+               <a href="{% url 'review_Reply' k.id %}">
+                  Reply
+               </a>
+            </div>
+            <!-- End likes heading -->
          </div>
          <!-- End flag image -->
          <!-- Start number of likes -->
@@ -482,7 +572,7 @@
                      </div>
                      <div class="col-6 mt-5">
                         <label for="profile_image">Select Image</label>
-                        <input type="file" name="profession_image">
+                        <input type="file" name="profession_image" accept=".jpg,.png">
                      </div>
                   </div>
                </div>
@@ -496,6 +586,66 @@
    </div>
 </div>
 <!-- ===========Edit Image Modal Ends=============== -->
+<!-- ==============Edit Date Time modal Starts========== -->
+<div class="modal fade " id="editdatetime" tabindex="-1" aria-labelledby="editdatetime" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+         <div class="modal-header">
+            <h5 class="modal-title" id="editdatetime">Update Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <form method="POST" action="{% url 'Days_details' profession.id  %}">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="container ">
+                  <div class="row">
+                     <div class="form-group col-6 ">
+                        <label for="start_time"> Start Time : {{profession.shop_start_time}}</label>
+                        <input type="time" name="start_time" value="{{profession.shop_start_time}}" class="form-control" id="start_time">
+                     </div>
+                     <div class="form-group col-6 ">
+                        <label for="end_time"> End Time : {{profession.shop_close_time}}</label>
+                        <input type="time" name="end_time" value="{{profession.shop_close_time}}" class="form-control" id="end_time">
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form signup-form-check-btn">
+
+                        <input name="sunday" type="checkbox" class="btn-check" id="btn-check7" {% if profession.shop_status_sunday %} checked {% endif %} autocomplete="off" />
+                        <label class="btn btn-primary" for="btn-check7">S</label>
+
+                        <input name="monday" type="checkbox" class="btn-check" id="btn-check" {% if profession.shop_status_monday %} checked {% endif %} autocomplete="off" />
+                        <label class="btn btn-primary" for="btn-check">M</label>
+
+                        <input name='tuesday' type="checkbox" class="btn-check" id="btn-check2" {% if profession.shop_status_Tuesday %} checked {% endif %} autocomplete="off" />
+                        <label class="btn btn-primary" for="btn-check2">T</label>
+
+                        <input name="wednesday" type="checkbox" class="btn-check" id="btn-check3" {% if profession.shop_status_Wednesday %} checked {% endif %} autocomplete="off" />
+                        <label class="btn btn-primary" for="btn-check3">W</label>
+
+                        <input name="thrusday" type="checkbox" class="btn-check" id="btn-check4" {% if profession.shop_status_Thrusday %} checked {% endif %} autocomplete="off" />
+                        <label class="btn btn-primary" for="btn-check4">T</label>
+
+                        <input name="friday" type="checkbox" class="btn-check" id="btn-check5" {% if profession.shop_status_Friday %} checked {% endif %} autocomplete="off" />
+                        <label class="btn btn-primary" for="btn-check5">F</label>
+
+                        <input name="saturday" type="checkbox" class="btn-check" id="btn-check6" {% if profession.shop_status_saturday %} checked {% endif %} autocomplete="off" />
+                        <label class="btn btn-primary" for="btn-check6">S</label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- ==============Edit Date Time modal Ends========== -->
 <!-- ==============Edit Details modal Starts========== -->
 <div class="modal fade " id="editDetailModal" tabindex="-1" aria-labelledby="editDetailModal" aria-hidden="true">
    <div class="modal-dialog">
@@ -586,6 +736,41 @@
    </div>
 </div>
 <!-- ==============Add New modal Ends========== -->
+<!-- ==============Edit New Service modal Starts========== -->
+<div class="modal fade " id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content bg-dark">
+         <div class="modal-header">
+            <h5 class="modal-title" id="newServideModal">Add New Service</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <form method="post" action="{% url 'add_services' %}">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="container ">
+                  <div class="">
+                     <div class="form-group">
+                        <label for="service">Service Name</label>
+                        <input type="text" class="form-control" name="service_name" id="service">
+                     </div>
+                     <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="number" class="form-control" name="price" id="exampleInputPassword1">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
+               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- ==============Edit New modal Ends========== -->
 <!-- ===============Add gallary Modal Pop Up========== -->
 <div class="modal fade " id="addimages" tabindex="-1" aria-labelledby="addimages" aria-hidden="true">
    <div class="modal-dialog">
@@ -603,7 +788,7 @@
                   <div class="">
                      <div class="form-group">
                         <label for="Photo">Photo</label>
-                        <input required type="file" class="" name="image" id="Photo">
+                        <input required type="file" class="" name="image" id="Photo" accept=".jpg,.png">
                      </div>
                   </div>
                </div>
@@ -634,7 +819,7 @@
                   <div class="">
                      <div class="form-group">
                         <label for="f">Video</label>
-                        <input required type="file" name="video">
+                        <input required type="file" name="video" accept=".mp4">
                      </div>
                   </div>
                </div>

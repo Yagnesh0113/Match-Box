@@ -458,7 +458,7 @@
             {{k.Review}}
          </div>
       </div>
-      <div class="row mt-1">
+      <div class="row mt-1 pl-3">
          <span class="fa fa-star {% if k.Rate >= 1 %}checked {% endif %}"></span>
          <span class="fa fa-star {% if k.Rate >= 2 %}checked {% endif %}"></span>
          <span class="fa fa-star {% if k.Rate >= 3 %}checked {% endif %}"></span>
@@ -470,9 +470,17 @@
       <div class="row mt-2">
          <!-- Start flag image -->
          <div class="col-md-1 likes-heading">
-            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image"> 3.9k
+            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image"> {{k.Rate}}
          </div>
          <!-- End flag image -->
+         <div class="col-1 col-sm-1 col-md-1 likes-heading">
+            <a href="#">
+               <button type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
+            &nbsp;
+            <a href="#">
+               <i class="fa-solid fa-message pl-3"></i>
+            </a>
+         </div>
          <!-- Start likes heading -->
          <div class="col-md-2 likes-heading">
             <a href="{% url 'review_Reply' k.id %}">

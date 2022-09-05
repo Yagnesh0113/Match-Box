@@ -11,11 +11,13 @@ def userprofileobj(request):
     Userprofile=UserProfile.objects.get(usertype=Usertype)
     joincommunityobj=Join_Community.objects.filter(User_profile=Userprofile)
     My_Community=Community.objects.all()
-    if len(joincommunityobj)>0:
+    obj = My_Community
+    if len(joincommunityobj) > 0:
         for i in joincommunityobj:
-            obj=My_Community.exclude(id=i.Commnunity_id.id)
+            print(i)
+            obj = obj.exclude(id=i.Commnunity_id.id)
     else:
-        obj=None
+        obj = None
     return Userprofile,joincommunityobj,obj,My_Community
 
 # Create your views here.
@@ -56,9 +58,10 @@ def update_profile_image(request):
     #     return HttpResponse("<h1>404 Data Not Found<h1>")
 
 def add_profession(request):
-    user=request.user
-    usertype=UserType.objects.get(user_id=user)
-    userprofile=UserProfile.objects.get(usertype=usertype)
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    # user=request.user
+    # usertype=UserType.objects.get(user_id=user)
+    # userprofile=UserProfile.objects.get(usertype=usertype)
     if request.method == 'POST':
         experience = request.POST.get('experience')
         profession=request.POST['profession']
@@ -128,23 +131,28 @@ def add_profession(request):
     
     else:
         Profession_obj=Admin_Profession.objects.all()
-        My_Community=Community.objects.all()
+        # My_Community=Community.objects.all()
         state=State.objects.all()
-        context={'state':state,"My_community":My_Community,"profession":Profession_obj}
+        if obj is not None:
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':Profession_obj,'state':state}
+        else:
+            context={'My_community':My_Community,'userprofile':userprofile,'profession':Profession_obj,'state':state}
+            # context={'state':state}
         return render(request, 'professional/add-profession.html',context)
     
 def profession_details(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Profession.objects.get(id=id)
     services=ProfessionServices.objects.filter(Profession=profession)
-    profession_image=Professionimage.objects.filter(profession=profession)[:4]
+    profession_image=Professionimage.objects.filter(profession=profession)[:3]
+    profession_video=Professionvideo.objects.filter(profession=profession)[:2]
     profession_review=ProfessionReview.objects.filter(Profession=profession)
     profession_review_count=ProfessionReview.objects.filter(Profession=profession).count()
 
     if obj is not None:
-        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession,'services':services,'profession_image':profession_image,"profession_review":profession_review,"profession_review_count":profession_review_count}
+        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession,'services':services,'profession_image':profession_image,"profession_video":profession_video,"profession_review":profession_review,"profession_review_count":profession_review_count}
     else:
-        context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,'services':services,'profession_image':profession_image,"profession_review":profession_review,"profession_review_count":profession_review_count}
+        context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,'services':services,'profession_image':profession_image,"profession_video":profession_video,"profession_review":profession_review,"profession_review_count":profession_review_count}
     # context={'profession' : profession,'services':services,'profession_image':profession_image,"My_community":My_Community}
     return render(request, 'professional/profession-details.html', context)
 
@@ -187,6 +195,61 @@ def update_profession_details(request,id):
         else:
             context={'My_community':My_Community,'userprofile':userprofile}
         return redirect('/profession-profile-screen',context)
+
+def Days_details(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    profession=Profession.objects.get(id=id)
+    print(profession)
+    if request.method=="POST":
+        
+        
+
+        if request.POST.get('start_time')  != '':
+            profession.shop_start_time = request.POST.get('start_time')
+        else:
+            pass
+        if request.POST.get('end_time')  != '':
+            profession.shop_close_time = request.POST.get('end_time')
+        else:
+            pass
+        
+       
+        if request.POST.get('sunday')!=None:
+            profession.shop_status_sunday = True
+        else:
+            profession.shop_status_sunday = False
+        if request.POST.get('monday')!=None:
+            profession.shop_status_monday = True
+        else:
+            profession.shop_status_monday = False
+        if request.POST.get('tuesday')!=None:
+            profession.shop_status_Tuesday = True
+        else:
+            profession.shop_status_Tuesday = False
+        if request.POST.get('wednesday')!=None:
+            profession.shop_status_Wednesday = True
+        else:
+            profession.shop_status_Wednesday = False
+        if request.POST.get('thrusday')!=None:
+            profession.shop_status_Thrusday = True
+        else:
+            profession.shop_status_Thrusday = False
+        if request.POST.get('friday')!=None:
+            profession.shop_status_Friday = True
+        else:
+            profession.shop_status_Friday = False
+        if request.POST.get('saturday')!=None:
+            profession.shop_status_saturday = True
+        else:
+            profession.shop_status_saturday = False
+        profession.save()
+        return redirect(f"/profession_details/{id}")
+    else:
+        if obj is not None:
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession}
+        else:
+            context={'My_community':My_Community,'userprofile':userprofile,'profession':profession}
+        return render(request, 'professional/profession-details.html', context)
 
 def edit_profession_image(request,id):
     if request.method=='POST':
@@ -246,3 +309,29 @@ def update_whatsapp_number(request):
         userprofile.whatsapp_number=whatsapp_number
         userprofile.save()
         return redirect('/profession-profile-screen')
+
+def delete_Image(request,id):
+    profession_id=request.GET['profession']
+    Image=Professionimage.objects.get(id=id)
+    Image.delete()
+    return redirect(f'/profession_details/{profession_id}')
+
+def delete_Video(request,id):
+    profession_id=request.GET['profession']
+    Video=Professionvideo.objects.get(id=id)
+    Video.delete()
+    return redirect(f'/profession_details/{profession_id}')
+
+def delete_Profession(request,id):
+    profession=Profession.objects.get(id=id)
+    profession.delete()
+    return redirect("profession-profile-screen")
+
+def like_Review(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    profession=Profession.objects.get(id=id)
+    if userprofile in profession.Like.all():
+        profession.Like.remove(userprofile)
+    else:
+        profession.Like.add(userprofile)
+    like, created=Review_Like.objects.get_or_create(user_profile=userprofile,profession=profession)
