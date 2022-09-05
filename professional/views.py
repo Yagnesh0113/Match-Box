@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from Account.models import *
 from community_profession.models import *
+from.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.http import HttpResponse
@@ -329,9 +330,17 @@ def delete_Profession(request,id):
 
 def like_Review(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    profession=Profession.objects.get(id=id)
-    if userprofile in profession.Like.all():
-        profession.Like.remove(userprofile)
+    profession_id=request.GET['profession']
+    Profession_Review=ProfessionReview.objects.get(id=id)
+    if userprofile in Profession_Review.like.all():
+        Profession_Review.like.remove(userprofile)
     else:
-        profession.Like.add(userprofile)
-    like, created=Review_Like.objects.get_or_create(user_profile=userprofile,profession=profession)
+        Profession_Review.like.add(userprofile)
+    like, created=Review_Like.objects.get_or_create(user_profile=userprofile,Profession_Review=Profession_Review)
+    if not created:
+        if like.value=="Like":
+            like.value="Unlike"
+        else:
+            like.value="Like"
+    like.save()
+    return redirect(f"/profession-personal-details/{profession_id}")

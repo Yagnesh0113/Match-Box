@@ -459,6 +459,31 @@
       </div>
       <!-- End Reviews Heading -->
       {% for k in profession_review %}
+         <!-- Start user profile and user information -->
+         <div class="row mt-5">
+            <!-- Start user profile -->
+            <div class="col-2  col-sm-1  col-md-1 ">
+               <img src="{{k.user_profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+            </div>
+            <!-- End user profile -->
+            <!-- Start User information -->
+            <div class="col-10 col-sm-11 col-md-11">
+               <!-- Start User Name -->
+               <div class="row">
+                  <div class="col-md-12 user-name-heading">
+                     {{k.user_profile.usertype.user_id.first_name}} {{k.user_profile.usertype.user_id.last_name}}
+                  </div>
+               </div>
+               <!-- End User Name -->
+               <!-- Start date -->
+               <div class="row">
+                  <div class="col-md-12 reviews-date">
+                     {{k.Review_Date}} {{k.Review_Time}} ago.
+                  </div>
+               </div>
+               <!-- End date -->
+            </div>
+            <!-- End User information -->
       <!-- Start user profile and user information -->
       <div class="row mt-5">
          <!-- Start user profile -->
@@ -514,13 +539,21 @@
                <!-- </a>{{ i.Post.Like.all.count }} Likes -->
             <!-- Start number of likes -->
             <div class="col-1 col-sm-1 col-md-1 likes-heading">
-               <a href="#">
-                  <button type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
-                  <button type="submit"><i class="fa-solid fa-thumbs-down"></i></button>
-               </a>
+                  <form action="{% url 'like_Review' k.id %}">
+                     {% if userprofile not in k.like.all %}
+                        <button type="submit" name="profession" value="{{k.Profession.id}}" class="fa-solid fa-thumbs-up"></button>
+                        {% else %}
+                        <button type="submit" name="profession" value="{{k.Profession.id}}" class="fa-solid fa-thumbs-down"></button>
+                        {% endif %}{{ k.like.all.count }} Likes
+                  </form>
                &nbsp;
-               <a href="#">
+               <a href="{% url 'review_Reply' k.id %}">
                   <i class="fa-solid fa-message pl-3"></i>
+                  {% if k.Reply is None %}
+                  0
+                  {% else %}
+                  {{k.Reply}}
+                  {% endif %}
                </a>
             </div>
             <!-- End number of likes -->

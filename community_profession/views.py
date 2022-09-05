@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import *
 from Account.models import *
+from professional.models import *
 from professional.views import is_user_is_professional_user
 from datetime import date, datetime
 
@@ -133,13 +134,13 @@ def loadProfessionPersonalDetails(request, id):
     print(Profession_obj.id)
     Profession_service_obj = ProfessionServices.objects.filter(Profession=Profession_obj)
     Profession_Image_obj = Professionimage.objects.filter(profession=Profession_obj)[:4]
-    Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)
+    Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)[:2]
     if Recent_serach.objects.filter(Profession_obj=Profession_obj, User_obj=userprofile):
         print("The data is already exits")
         if request.method == "POST":
             review = request.POST.get("Comment")
             rate = request.POST.get("rate")
-            ProfessionReview.objects.create(Profession=Profession_obj, User_Profile=userprofile, Review=review,
+            ProfessionReview.objects.create(Profession=Profession_obj, user_profile=userprofile, Review=review,
                                             Rate=rate)
             Rating = ProfessionReview.objects.aggregate(Avg('Rate'))
             print(Profession_obj.Profession_Rating)
@@ -204,6 +205,9 @@ def review_Reply(request,id):
         Reply=request.POST.get("reply")
         # print(Reply)
         ProfessionReview_Reply.objects.create(Review=Profession_review,User_Profile=userprofile,Review_Reply=Reply)
+        obj=ProfessionReview_Reply.objects.filter(Review=Profession_review)
+        Profession_review.Reply=len(obj)
+        Profession_review.save()
         return redirect(f"/review_Reply/{id}")
     else:
         Review_obj=ProfessionReview_Reply.objects.filter(Review=Profession_review)
