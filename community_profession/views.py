@@ -124,8 +124,6 @@ def loadNearestProfessionsList(request,id):
 #             return render(request, 'community_profession/profession-personal-details.html',context)
 
 from django.db.models import Avg
-
-
 # --- load -- profession personal details page ---
 @login_required(login_url='/')
 def loadProfessionPersonalDetails(request, id):
@@ -513,12 +511,8 @@ def Add_question(request):
 def Add_Answer(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Question=User_Question.objects.get(id=id)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
     if request.method=="POST":
         Answer_obj=request.POST.get("answer")
-        # print(Answer_obj)
         User_Answer.objects.create(Question=Question,User_Profile=userprofile,Answer=Answer_obj)
         obj=User_Answer.objects.filter(Question=Question)
         Question.answer=len(obj)
@@ -529,8 +523,6 @@ def Add_Answer(request,id):
         Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
         Answer_id=User_Answer.objects.filter(Question=Question)[::-1]
         Answer_count=User_Answer.objects.filter(Question=Question).count()
-
-        My_Community=Community.objects.all()
         Date=date.today()
         User_id=UserProfile.objects.all().exclude(id=userprofile.id)
         Our_News_count=News.objects.filter(Date=Date).count()
@@ -545,19 +537,14 @@ def Add_Answer(request,id):
 def Add_Answer_Reply(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Answer=User_Answer.objects.get(id=id)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
     if request.method=="POST":
         Reply_obj=request.POST.get("reply")
-        # print(Reply_obj)
         Answer_Reply.objects.create(Answer=Answer,User_Profile=userprofile,Reply=Reply_obj)
         return redirect(f"/Add_Answer_Reply/{id}")
     else:
         Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
         Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
         Answer_obj=Answer_Reply.objects.filter(Answer=Answer)
-        My_Community=Community.objects.all()
         Date=date.today()
         User_id=UserProfile.objects.all().exclude(id=userprofile.id)
         Our_News_count=News.objects.filter(Date=Date).count()
@@ -565,7 +552,6 @@ def Add_Answer_Reply(request,id):
             context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Answer_obj":Answer,'Reply':Answer_obj,}
         else:
             context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"Answer_obj":Answer,'Reply':Answer_obj,}
-        #   context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"Answer_obj":Answer,'Reply':Answer_obj,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/answer-reply.html',context)
 
 @login_required(login_url='/')
@@ -585,9 +571,6 @@ def Join_Coummunity(request,id):
 @login_required(login_url='/')
 def loadCommunityAnswerScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1] #Show The Dedicated Question
     # My_Community=Community.objects.all()
     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
@@ -599,17 +582,12 @@ def loadCommunityAnswerScreen(request):
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
     else:
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"Question":User_Question_obj}
-        # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"Question":User_Question_obj,"userid":User_id,"My_community":My_Community,"Our_News_count":Our_News_count}
     return render(request, 'community_profession/community-answer.html',context)
 
 # --- load --  users questions answer - screen ---
 @login_required(login_url='/')
 def loadCommunityUsersQuestionsAnswerScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
-    # My_Community=Community.objects.all()
     Date=date.today()
     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
@@ -619,17 +597,12 @@ def loadCommunityUsersQuestionsAnswerScreen(request):
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,}
     else:
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,}
-    # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"My_community":My_Community,"Our_News_count":Our_News_count}
     return render(request, 'community_profession/users-questions-answer.html',context)
 
 # --- load -- normal user community screen ---
 @login_required(login_url='/')
 def loadNormalUserCommunityScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
-    # My_Community=Community.objects.all()
     Date=date.today()
     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
@@ -639,7 +612,6 @@ def loadNormalUserCommunityScreen(request):
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,}
     else:
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,}
-        # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"My_community":My_Community,"Our_News_count":Our_News_count}
     return render(request, 'community_profession/normal-user-community-screen.html',context)
 
 # --- load -- community profile screen ---
@@ -670,12 +642,8 @@ def loadCommunityProfileScreen(request, id):
 @login_required(login_url='/')
 def loadCommunityCreatePostPage(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # My_Community=Community.objects.all()
     Community_obj=Community.objects.get(id=id)
     if request.method=="POST":
-        # user=request.user
-        # User_type=UserType.objects.get(user_id=user)
-        # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
         try:
             Community_image=request.FILES["images"]
         except:
@@ -698,23 +666,18 @@ def loadCommunityCreatePostPage(request, id):
             context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Community_obj}
         else:
             context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj}
-        # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"i":Community_obj,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/community-create-post-page.html',context)
 
 # --- load -- write-comment-screen ---
 @login_required(login_url='/')
 def loadCommunityWriteCommentScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
     Community_obj=Community_Post.objects.get(id=id)
     if request.method=="POST":
         Post_Comment=request.POST.get("Comment")
         Post_Date=date.today()
         now = datetime.now()
         Post_time = now.strftime("%H:%M:%S")
-        # print(Post_Comment)
         Post_obj=Post_Commment.objects.create(User_Post=Community_obj.user_post,
         User_Profile=userprofile,Comment=Post_Comment,Comment_Date=Post_Date,
         Commenet_Time=Post_time)
@@ -723,7 +686,6 @@ def loadCommunityWriteCommentScreen(request,id):
     else:
         Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
         Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
-        # My_Community=Community.objects.all()
         Date=date.today()
         User_id=UserProfile.objects.all().exclude(id=userprofile.id)
         Our_News_count=News.objects.filter(Date=Date).count()
@@ -733,17 +695,12 @@ def loadCommunityWriteCommentScreen(request,id):
             context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
         else:
             context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
-        # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"i":Community_obj,"j":userprofile,"All_comment":All_comment,"count":All_comment_count,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/write-comment-screen.html',context)
 
 # --- load -- comment reply screen ---
 @login_required(login_url='/')
 def loadCommunityCommentReplyScreen(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # print(id)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
     Community_Post_Comment_obj=Community_Post_Comment.objects.get(id=id)
     if request.method=="POST":
         Post_Reply=request.POST.get("reply")
@@ -755,7 +712,6 @@ def loadCommunityCommentReplyScreen(request, id):
     else:
         Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
         Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
-        # My_Community=Community.objects.all()
         User_id=UserProfile.objects.all().exclude(id=userprofile.id)
         Date=date.today()
         Our_News_count=News.objects.filter(Date=Date).count()
@@ -770,10 +726,6 @@ def loadCommunityCommentReplyScreen(request, id):
 @login_required(login_url='/')
 def news(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
-    # My_Community=Community.objects.all()
     Our_News=News.objects.all()[::-1]
     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
@@ -784,16 +736,12 @@ def news(request):
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"News":Our_News}
     else:
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"News":Our_News}
-    # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"News":Our_News,'My_community':My_Community,"Our_News_count":Our_News_count}
     return render(request, 'community_profession/news.html',context)
 
 @login_required(login_url='/')
 def news_comment(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Our_News=News.objects.get(id=id)
-    # user=request.user
-    # User_type=UserType.objects.get(user_id=user)
-    # User_Profile_obj=UserProfile.objects.get(usertype=User_type)
     if request.method=="POST":
         Comment=request.POST.get("comment")
         # print(Comment)
@@ -940,4 +888,3 @@ def Community_My_Question(request):
     else:
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_question,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
     return render(request, 'community_profession/community-my-question.html',context)
-
