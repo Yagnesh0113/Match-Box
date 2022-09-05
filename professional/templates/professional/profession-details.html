@@ -426,12 +426,12 @@
                   </a>
                </div>
                <div class="col-6 col-sm-6 col-md-6 text-right">
-                  <form action="{% url 'delete_Video' j.id %}">
+                     <form action="{% url 'delete_Video' j.id %}">
                      <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
                         <i class="fa-solid fa-trash-can"></i>
                      </button>
                   </form>
-               </div>
+                  </div>
             </div>
          </div>
          {% endfor %}
@@ -494,11 +494,11 @@
       </div>
       <!-- End comment -->
       <!-- Start like and replay -->
-      <div class="row mt-2">
+<!--      <div class="row mt-2">-->
          <!-- Start flag image -->
-         <div class="col-2 col-sm-1 col-md-1 likes-heading">
-            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image">
-
+<!--         <div class="col-2 col-sm-1 col-md-1 likes-heading">-->
+<!--            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image">-->
+<!--         </div>-->
          <!-- End comment -->
          <!-- Start like and replay -->
          <div class="row mt-2">
@@ -515,9 +515,9 @@
             <!-- Start number of likes -->
             <div class="col-1 col-sm-1 col-md-1 likes-heading">
                <a href="#">
-                  
                   <button type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
-                  
+                  <button type="submit"><i class="fa-solid fa-thumbs-down"></i></button>
+               </a>
                &nbsp;
                <a href="#">
                   <i class="fa-solid fa-message pl-3"></i>
@@ -535,22 +535,23 @@
          </div>
          <!-- End flag image -->
          <!-- Start number of likes -->
-         <div class="col-1 col-sm-1 col-md-1 likes-heading">
-            3.9k
-         </div>
+<!--         <div class="col-1 col-sm-1 col-md-1 likes-heading">-->
+<!--            3.9k-->
+<!--         </div>-->
          <!-- End number of likes -->
          <!-- Start likes heading -->
-         <div class="col-2 col-sm-2 col-md-2 likes-heading">
-            <a href="{% url 'review_Reply' k.id %}">
-            Reply
-            </a>
-         </div>
+<!--         <div class="col-2 col-sm-2 col-md-2 likes-heading">-->
+<!--            <a href="{% url 'review_Reply' k.id %}">-->
+<!--            Reply-->
+<!--            </a>-->
+<!--         </div>-->
          <!-- End likes heading -->
       </div>
       <!-- End like and replay -->
       {% endfor %}
-   </div>
 </div>
+
+
 <!-- End Review -->
 <!-- ===========Edit Image Modal Starts=============== -->
 <div class="modal fade " id="editimage" tabindex="-1" aria-labelledby="editimageLable" aria-hidden="true">

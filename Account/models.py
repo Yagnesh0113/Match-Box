@@ -87,7 +87,7 @@ class ProfessionReview(models.Model):
     )
     Review_Date=models.DateField(default=date.today())
     Review_Time=models.TimeField(default=datetime.now())
-    Like=models.ManyToManyField(to=UserProfile,null=True, blank=True, related_name='liked')
+    # Like=models.ManyToManyField(to=UserProfile,null=True, blank=True, related_name='liked')
 
     def __str__(self):
       return self.Review
