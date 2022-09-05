@@ -422,12 +422,12 @@
                   </a>
                </div>
                <div class="col-6 col-sm-6 col-md-6 text-right">
-                  <form action="{% url 'delete_Video' j.id %}">
+                     <form action="{% url 'delete_Video' j.id %}">
                      <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
                         <i class="fa-solid fa-trash-can"></i>
                      </button>
                   </form>
-               </div>
+                  </div>
             </div>
          </div>
          {% endfor %}
@@ -488,7 +488,10 @@
                {{k.Review}}
             </div>
          </div>
-         <!-- End comment -->
+         <!-- End User information -->
+      </div>
+      <!-- End user profile and user information -->
+     
          <!-- Start like and replay -->
          <div class="row mt-2">
             <!-- Start flag image -->
@@ -524,10 +527,10 @@
             </div>
                <!-- End likes heading -->
          </div>
-         <!-- End like and replay -->
       {% endfor %}
-   </div>
 </div>
+
+
 <!-- End Review -->
 <!-- ===========Edit Image Modal Starts=============== -->
 <div class="modal fade " id="editimage" tabindex="-1" aria-labelledby="editimageLable" aria-hidden="true">

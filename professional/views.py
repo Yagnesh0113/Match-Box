@@ -145,7 +145,7 @@ def profession_details(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Profession.objects.get(id=id)
     services=ProfessionServices.objects.filter(Profession=profession)
-    profession_image=Professionimage.objects.filter(profession=profession)[:3]
+    profession_image=Professionimage.objects.filter(profession=profession)[:4]
     profession_video=Professionvideo.objects.filter(profession=profession)[:2]
     profession_review=ProfessionReview.objects.filter(Profession=profession)
     profession_review_count=ProfessionReview.objects.filter(Profession=profession).count()
