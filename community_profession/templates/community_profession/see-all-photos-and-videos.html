@@ -28,6 +28,20 @@
                   </a>
                </div>
             </div>
+            <div class="row">
+               <div class="col-6 col-sm-6 col-md-6">
+                  <a href="{% url 'photo-screen' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
+                     <i class="fa-solid fa-eye"></i>
+                  </a>
+               </div>
+               <div class="col-6 col-sm-6 col-md-6 text-right">
+                  <form action="{% url 'delete_Image' i.id %}">
+                     <button type="submit" value="{{i.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                     </button>
+                  </form>
+               </div>
+            </div>
          </div>
          {% endfor %}
       </div>
@@ -40,6 +54,20 @@
                   <a href="{% url 'video-screen' j.id %}" class="text-light">
                      <video src="{{j.video.url}}"  width="100%" class="rounded"></video>
                   </a>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-6 col-sm-6 col-md-6">
+                  <a href="{% url 'video-screen' j.id %}" class="btn btn-normal btn-sm text-dark m-2">
+                     <i class="fa-solid fa-eye"></i>
+                  </a>
+               </div>
+               <div class="col-6 col-sm-6 col-md-6 text-right">
+                  <form action="{% url 'delete_Video' j.id %}">
+                     <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                     </button>
+                  </form>
                </div>
             </div>
          </div>

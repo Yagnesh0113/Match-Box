@@ -395,11 +395,41 @@
             </div>
          </div>
          {% endfor %}
+         {% for j in profession_video  %}
+         <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
+            <div class="row">
+               <div class="col-md-12 border-1 rounded">
+                  <!-- <a href="" class="text-light"> -->
+                     <video src="{{j.video.url}}" class="img-fluid rounded" width="100%" height="30%"></video>
+                  <!-- </a> -->
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-6 col-sm-6 col-md-6">
+                  <a href="{% url 'video-screen' j.id %}" class="btn btn-normal btn-sm text-dark m-2">
+                     <i class="fa-solid fa-eye"></i>
+                  </a>
+               </div>
+               <div class="col-6 col-sm-6 col-md-6 text-right">
+                  <form action="{% url 'delete_Video' j.id %}">
+                     <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
+                        <i class="fa-solid fa-trash-can"></i>
+                     </button>
+                  </form>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
       </div>
    </div>
+   <!-- <div class="col-4 col-sm-4 col-md-4 p-4">
+      <div class="row profession-details">
+         
+      </div>
+   </div> -->
 </div>
 <!-- End Photos & videos -->
-
+<hr color="C0C0C0" >
 <!-- Start Review -->
 <div class="row">
    <div class="col-12 col-sm-12 col-md-12 reviews">
@@ -449,13 +479,24 @@
          <div class="row mt-2">
             <!-- Start flag image -->
             <div class="col-2 col-sm-1 col-md-1 likes-heading">
-               <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image">
+               <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image"> {{k.Rate}}
             </div>
             <!-- End flag image -->
-
+<!-- {% if userprofile not in i.Post.Like.all %} -->
+<!-- {% else %} -->
+                  <!-- <button type="submit" class="fa-solid fa-thumbs-down"></button> -->
+                  <!-- {% endif %} -->
+               <!-- </a>{{ i.Post.Like.all.count }} Likes -->
             <!-- Start number of likes -->
             <div class="col-1 col-sm-1 col-md-1 likes-heading">
-               3.9k
+               <a href="#">
+                  
+                  <button type="submit"><i class="fa-solid fa-thumbs-up"></i></button>
+                  
+               &nbsp;
+               <a href="#">
+                  <i class="fa-solid fa-message pl-3"></i>
+               </a>
             </div>
             <!-- End number of likes -->
 
@@ -492,7 +533,7 @@
                      </div>
                      <div class="col-6 mt-5">
                         <label for="profile_image">Select Image</label>
-                        <input type="file" name="profession_image">
+                        <input type="file" name="profession_image" accept=".jpg,.png">
                      </div>
                   </div>
                </div>
@@ -708,7 +749,7 @@
                   <div class="">
                      <div class="form-group">
                         <label for="Photo">Photo</label>
-                        <input required type="file" class="" name="image" id="Photo">
+                        <input required type="file" class="" name="image" id="Photo" accept=".jpg,.png">
                      </div>
                   </div>
                </div>
@@ -739,7 +780,7 @@
                   <div class="">
                      <div class="form-group">
                         <label for="f">Video</label>
-                        <input required type="file" name="video">
+                        <input required type="file" name="video" accept=".mp4">
                      </div>
                   </div>
                </div>
