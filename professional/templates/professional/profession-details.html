@@ -8,6 +8,23 @@
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<!-- Start Services CSS -->
+<style>
+   body {
+   background-color:#E7E9EB;
+   }
+   #myDIV {
+   <!--  height:300px;-->
+   <!--  background-color:#FFFFFF;-->
+   }
+   .ex1 {
+   <!--        background-color: lightblue;-->
+   width: 150px;
+   height: 250px;
+   overflow:auto;
+   }
+</style>
+<!-- End Services CSS -->
 {% endblock own_css %}
 {% block content %}
 <!-- Start girls parlor heading -->
@@ -287,30 +304,14 @@
          <div class="col-5 col-sm-9 col-md-9 our-services-heading">
             Our Services
          </div>
-
          <div class="col-7 col-sm-3 col-md-3 text-center">
             <button type="button" class="btn btn-normal" data-toggle="modal" data-target="#newServideModal">
-               Add New Service
+            Add New Service
             </button>
          </div>
       </div>
       <!-- End our services heading -->
       <!-- Start Services -->
-      <style>
-      body {
-        background-color:#E7E9EB;
-      }
-      #myDIV {
-      <!--  height:300px;-->
-      <!--  background-color:#FFFFFF;-->
-      }
-      .ex1 {
-        background-color: lightblue;
-        width: 150px;
-        height: 250px;
-        overflow:auto;
-      }
-      </style>
       <div class="row" id="myDIV">
          <div class="col-12 col-sm-12 col-md-12 ex1">
             {% for s in services%}
@@ -348,7 +349,6 @@
       <!-- End Services -->
    </div>
    <!-- End our services -->
-
 </div>
 <!-- End time & open status, our services, add new service bt -->
 <!-- Start Photos & videos heading, See All links headings -->
@@ -392,7 +392,6 @@
    </div>
 </div>
 <!-- End Photos & videos -->
-
 <!-- Start Review -->
 <div class="row">
    <div class="col-12 col-sm-12 col-md-12 reviews">
@@ -404,63 +403,61 @@
       </div>
       <!-- End Reviews Heading -->
       {% for k in profession_review %}
-         <!-- Start user profile and user information -->
-         <div class="row mt-5">
-            <!-- Start user profile -->
-            <div class="col-2  col-sm-1  col-md-1 ">
-               <img src="{{k.User_Profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
-            </div>
-            <!-- End user profile -->
-            <!-- Start User information -->
-            <div class="col-10 col-sm-11 col-md-11">
-               <!-- Start User Name -->
-               <div class="row">
-                  <div class="col-md-12 user-name-heading">
-                     {{k.User_Profile.usertype.user_id.first_name}} {{k.User_Profile.usertype.user_id.last_name}}
-                  </div>
+      <!-- Start user profile and user information -->
+      <div class="row mt-5">
+         <!-- Start user profile -->
+         <div class="col-2  col-sm-1  col-md-1 ">
+            <img src="{{k.User_Profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+         </div>
+         <!-- End user profile -->
+         <!-- Start User information -->
+         <div class="col-10 col-sm-11 col-md-11">
+            <!-- Start User Name -->
+            <div class="row">
+               <div class="col-md-12 user-name-heading">
+                  {{k.User_Profile.usertype.user_id.first_name}} {{k.User_Profile.usertype.user_id.last_name}}
                </div>
-               <!-- End User Name -->
-               <!-- Start date -->
-               <div class="row">
-                  <div class="col-md-12 reviews-date">
-                     {{k.Review_Date}} {{k.Review_Time}} ago.
-                  </div>
+            </div>
+            <!-- End User Name -->
+            <!-- Start date -->
+            <div class="row">
+               <div class="col-md-12 reviews-date">
+                  {{k.Review_Date}} {{k.Review_Time}} ago.
                </div>
-               <!-- End date -->
             </div>
-            <!-- End User information -->
+            <!-- End date -->
          </div>
-         <!-- End user profile and user information -->
-         <!-- Start comment -->
-         <div class="row mt-1">
-            <div class="col-12 col-sm-12 col-md-12 review-comment">
-               {{k.Review}}
-            </div>
+         <!-- End User information -->
+      </div>
+      <!-- End user profile and user information -->
+      <!-- Start comment -->
+      <div class="row mt-1">
+         <div class="col-12 col-sm-12 col-md-12 review-comment">
+            {{k.Review}}
          </div>
-         <!-- End comment -->
-         <!-- Start like and replay -->
-         <div class="row mt-2">
-            <!-- Start flag image -->
-            <div class="col-2 col-sm-1 col-md-1 likes-heading">
-               <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image">
-            </div>
-            <!-- End flag image -->
-
-            <!-- Start number of likes -->
-            <div class="col-1 col-sm-1 col-md-1 likes-heading">
-               3.9k
-            </div>
-            <!-- End number of likes -->
-
-            <!-- Start likes heading -->
-            <div class="col-2 col-sm-2 col-md-2 likes-heading">
-               <a href="{% url 'review_Reply' k.id %}">
-                  Reply
-               </a>
-            </div>
-            <!-- End likes heading -->
+      </div>
+      <!-- End comment -->
+      <!-- Start like and replay -->
+      <div class="row mt-2">
+         <!-- Start flag image -->
+         <div class="col-2 col-sm-1 col-md-1 likes-heading">
+            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image">
          </div>
-         <!-- End like and replay -->
+         <!-- End flag image -->
+         <!-- Start number of likes -->
+         <div class="col-1 col-sm-1 col-md-1 likes-heading">
+            3.9k
+         </div>
+         <!-- End number of likes -->
+         <!-- Start likes heading -->
+         <div class="col-2 col-sm-2 col-md-2 likes-heading">
+            <a href="{% url 'review_Reply' k.id %}">
+            Reply
+            </a>
+         </div>
+         <!-- End likes heading -->
+      </div>
+      <!-- End like and replay -->
       {% endfor %}
    </div>
 </div>
