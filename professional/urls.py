@@ -12,7 +12,7 @@ urlpatterns = [
     path('delete_service/<int:id>',views.delete_service,name='delete_service'),
     path('add_profesion_gallery',views.add_profesion_gallery,name='add_profesion_gallery'),
     path('add_profesion_video',views.add_profesion_video,name='add_profesion_video'),
-    path('see-all-photos-videos/<int:id>', views.loadSeeAllPhotosAndVideos, name='see-all-photos-videos'), # profession all photos and videos
+    path('See-all-photos-videos/<int:id>', views.loadSeeAllPhotosAndVideos, name='See-all-photos-videos'), # profession all photos and videos
     path('update_whatsapp_number',views.update_whatsapp_number,name='update_whatsapp_number'), # whatsapp url
     path('update_profile_image',views.update_profile_image,name='update_profile_image'), # whatsapp url
     
