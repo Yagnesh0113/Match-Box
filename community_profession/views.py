@@ -131,8 +131,8 @@ def loadProfessionPersonalDetails(request, id):
     Profession_obj = Profession.objects.get(id=id)
     print(Profession_obj.id)
     Profession_service_obj = ProfessionServices.objects.filter(Profession=Profession_obj)
-    Profession_Image_obj = Professionimage.objects.filter(profession=Profession_obj)[:4]
-    Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)[:2]
+    Profession_Image_obj = Professionimage.objects.filter(profession=Profession_obj)[:3]
+    Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)[:3]
     if Recent_serach.objects.filter(Profession_obj=Profession_obj, User_obj=userprofile):
         print("The data is already exits")
         if request.method == "POST":
@@ -772,7 +772,7 @@ def ans_later(request,id):
     user=request.user
     User_type=UserType.objects.get(user_id=user)
     User_Profile_obj=UserProfile.objects.get(usertype=User_type)
-    if Answer_later.objects.filter(Question=Question):
+    if Answer_later.objects.filter(Question=Question,User_Profile=User_Profile_obj):
         print("the Question Already Added")
         return redirect("community-screen")
     else:

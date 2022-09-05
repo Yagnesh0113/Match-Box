@@ -372,7 +372,7 @@
       <a class="btn btn-normal btn-block" data-toggle="modal" data-target="#addimages">Add Photos</a>
    </div>
    <div class="col-6 order-7 col-sm-2 order-sm-11 col-md-1 text-center">
-      <a href="{% url 'see-all-photos-videos' profession.id %}" class="see-all">See All</a>
+      <a href="{% url 'See-all-photos-videos' profession.id %}" class="see-all">See All</a>
    </div>
    <!-- Start see all links -->
 </div>
@@ -488,10 +488,9 @@
                {{k.Review}}
             </div>
          </div>
+         <!-- End comment -->
          <!-- End User information -->
-      </div>
-      <!-- End user profile and user information -->
-     
+         <!-- End user profile and user information -->
          <!-- Start like and replay -->
          <div class="row mt-2">
             <!-- Start flag image -->
@@ -528,6 +527,7 @@
                <!-- End likes heading -->
          </div>
       {% endfor %}
+   </div>
 </div>
 
 
