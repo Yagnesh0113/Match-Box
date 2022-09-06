@@ -5,6 +5,7 @@ from.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.http import HttpResponse
+import re
 
 def userprofileobj(request):
     user=request.user
@@ -35,14 +36,43 @@ def loadProfessionProfileScreen(request):
     try:
         userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
         profession=Profession.objects.filter(UserProfile=userprofile)
+        state=State.objects.all()
         print(profession)
         if obj is not None:
-            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession}
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession,"state":state}
         else:
-            context={'My_community':My_Community,'userprofile':userprofile,'profession':profession}
+            context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,"state":state}
         return render(request, 'professional/profile-screen-for-profession.html',context)
     except:
         return HttpResponse("<h1>404 Data Not Found<h1>")
+
+@login_required(login_url='/')
+def update_details(request):
+    # try:
+        userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+        obj=request.user
+        if request.method == "POST":
+            obj.first_name=request.POST.get("first_name")
+            obj.last_name=request.POST.get("last_name")
+            
+            mobile_pattern= re.compile("[6-9][0-9]{9}")
+            if mobile_pattern.match(request.POST.get("phone_number")):
+                userprofile.phone_number=request.POST.get("phone_number")
+                print('yes')
+            else:
+                print("no")
+            
+            userprofile.state= State.objects.get(id=request.POST.get('state')).name
+            print(State.objects.get(id=request.POST.get('state')))
+            userprofile.city=request.POST.get("city")
+            print()
+            obj.save()
+            userprofile.save()
+            return redirect('/profession-profile-screen')
+        else:
+            return redirect('/profession-profile-screen')
+    # except:
+    #     return HttpResponse("<h1>404 Data Not Found<h1>")
 
 @login_required(login_url='/')
 def update_profile_image(request):
@@ -105,9 +135,6 @@ def add_profession(request):
         city=request.POST['city']
         about=request.POST['about']
 
-
-        
-
         Profession.objects.create(          UserProfile=userprofile,
                                             year_of_experience=experience, 
                                             profession=Profession_obj,
@@ -157,6 +184,7 @@ def profession_details(request,id):
     # context={'profession' : profession,'services':services,'profession_image':profession_image,"My_community":My_Community}
     return render(request, 'professional/profession-details.html', context)
 
+
 def add_services(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method == 'POST':
@@ -204,7 +232,6 @@ def Days_details(request, id):
     if request.method=="POST":
         
         
-
         if request.POST.get('start_time')  != '':
             profession.shop_start_time = request.POST.get('start_time')
         else:
@@ -305,9 +332,15 @@ def loadSeeAllPhotosAndVideos(request,id):
 def update_whatsapp_number(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method == 'POST':
-        whatsapp_number= request.POST.get('whatsapp_number')
         userprofile.country_code="91"
-        userprofile.whatsapp_number=whatsapp_number
+        mobile_pattern= re.compile("[6-9][0-9]{9}")
+        if mobile_pattern.match(request.POST.get('whatsapp_number')):
+            userprofile.whatsapp_number=request.POST.get('whatsapp_number')
+            print('yes')
+        else:
+            print("no")
+        # whatsapp_number= request.POST.get('whatsapp_number')
+        # userprofile.whatsapp_number=whatsapp_number
         userprofile.save()
         return redirect('/profession-profile-screen')
 
