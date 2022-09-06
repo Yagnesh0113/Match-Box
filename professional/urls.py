@@ -21,5 +21,7 @@ urlpatterns = [
     path('delete_Video/<int:id>',views.delete_Video,name='delete_Video'), # Delete Video
     path('delete_Profession/<int:id>',views.delete_Profession,name='delete_Profession'), # Delete Profession
     path('like_Review/<int:id>',views.like_Review,name='like_Review'), # like comment
+    path('edit_service/<int:id>',views.edit_service,name='edit_service'), # edit_Servvice
+
 
 ]

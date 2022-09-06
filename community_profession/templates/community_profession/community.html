@@ -190,8 +190,8 @@
                         <div class="dropdown-menu">
                            <a class="dropdown-item" href="#">Copy Link</a>
                            <a class="dropdown-item" href="#">Block Account</a>
-                           <a class="dropdown-item" href="#">Delete question</a>
-                           <a class="dropdown-item" href="#">Edit question</a>
+                           <!-- <a class="dropdown-item" href="#">Delete question</a> -->
+                           <!-- <a class="dropdown-item" href="#">Edit question</a> -->
                            <a class="dropdown-item" href="#">Bookmark</a>
                            <a class="dropdown-item" href="#">Save</a>
                            <a class="dropdown-item" href="#">Share</a>
@@ -256,7 +256,12 @@
                </a>{{ i.Post.Like.all.count }} Likes
                &nbsp;
                <a href="{% url 'add_comment' i.Post.id %}">
-                  <i class="fa-solid fa-message"></i> {{i.Post.Post_comment}}
+                  <i class="fa-solid fa-message"></i> 
+                  {% if i.Post.Post_comment is None %}
+                  0
+                  {% else %}
+                  {{i.Post.Post_comment}}
+                  {% endif %}
                </a>
             </div>
             <div class="col-6 col-sm-4 col-md-3 btn-comment-answer">
@@ -323,8 +328,8 @@
                            <a class="dropdown-item" href="#">Copy Link</a>
                            <a class="dropdown-item" href="#">Block Account</a>
                            <a class="dropdown-item" href="{% url 'ans_later' i.Question.id %}">Answer Later</a>
-                           <a class="dropdown-item" href="#">Delete question</a>
-                           <a class="dropdown-item" href="#">Edit question</a>
+                           <!-- <a class="dropdown-item" href="#">Delete question</a>
+                           <a class="dropdown-item" href="#">Edit question</a> -->
                            <a class="dropdown-item" href="#">Bookmark</a>
                            <a class="dropdown-item" href="#">Save</a>
                            <a class="dropdown-item" href="#">Share</a>
@@ -340,7 +345,7 @@
          <!-- Start community description -->
          <div class="row pt-3">
             <div class="col-12 col-sm-12 col-md-12 community-description text-justify">
-               {{i.Question.Question}}?
+               {{i.Question.Question}} ?
             </div>
          </div>
          <!-- End community description -->
@@ -348,9 +353,20 @@
          <div class="row pt-2 pd-2">
             <!-- Start like button -->
             <div class="col-4 col-sm-3 col-md-2">
-               <a href=""><i class="fa-solid fa-thumbs-up"></i> {{i.Question.Like}}</a>
+               <a href="{% url 'like_Question' i.Question.id %}">
+                  {% if userprofile not in i.Question.Question_Like.all %}
+                  <button type="submit" class="fa-solid fa-thumbs-up"></button>
+                  {% else %}
+                  <button type="submit" class="fa-solid fa-thumbs-down"></button>
+                  {% endif %}
+               </a>{{ i.Question.Question_Like.all.count }} Likes
                &nbsp;
-               <i class="fa-solid fa-message"></i> {{i.Question.answer}}
+               <i class="fa-solid fa-message"></i> 
+               {% if i.Question.answer is None %}
+               0
+               {% else %}
+               {{i.Question.answer}}
+               {% endif %}
             </div>
             <!-- End like button -->
             <!-- Start comment -->

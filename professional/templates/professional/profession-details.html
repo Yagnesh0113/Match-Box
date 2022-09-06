@@ -327,17 +327,20 @@
                   </div>
                   <div class="col-2 col-sm-1 col-md-1 text-center">
                      <span>
-                        <form action="">
-                           <button id="" type="button" class="btn" class="btn btn-normal" data-toggle="modal" data-target="#newServideModal">
-                           <i class="fa-solid fa-pen-to-square"></i>
-                           </button>
-                        </form>
+                        <!-- <form action="" method="POST">
+                           {% csrf_token %} -->
+                           <a href="{% url 'edit_service' s.id %}">
+                              <button type="submit" value="{{s.Profession.id}}" name="profession_id" class="btn">
+                                 <i class="fa-solid fa-pen-to-square"></i>
+                              </button>
+                           </a> 
+                        <!-- </form> -->
                      </span>
                   </div>
                   <div class="col-2  col-sm-1 col-md-1 text-center">
                      <span>
                         <form action="{% url 'delete_service' s.id %}">
-                           <button type="submit" value="{{profession.id}}" name="profession_id" class="btn ">
+                           <button type="submit" value="{{profession.id}}" name="profession_id" class="btn">
                            <i class="fa-solid fa-trash-can"></i>
                            </button>
                         </form>
@@ -717,7 +720,7 @@
 </div>
 <!-- ==============Add New modal Ends========== -->
 <!-- ==============Edit New Service modal Starts========== -->
-<div class="modal fade " id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
+<!-- <div class="modal fade " id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content bg-dark">
          <div class="modal-header">
@@ -749,7 +752,7 @@
          </form>
       </div>
    </div>
-</div>
+</div> -->
 <!-- ==============Edit New modal Ends========== -->
 <!-- ===============Add gallary Modal Pop Up========== -->
 <div class="modal fade " id="addimages" tabindex="-1" aria-labelledby="addimages" aria-hidden="true">

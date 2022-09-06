@@ -344,3 +344,19 @@ def like_Review(request, id):
             like.value="Like"
     like.save()
     return redirect(f"/profession-personal-details/{profession_id}")
+
+def edit_service(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    Service=ProfessionServices.objects.get(id=id)
+    if request.method=="POST":
+        profession=request.POST.get("Profesion_id")
+        Service.service_name=request.POST.get("Service_name")
+        Service.service_price=request.POST.get("Service_price")
+        Service.save()
+        return redirect(f"/profession_details/{profession}")
+    else:
+        if obj is not None:
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Service":Service}
+        else:
+            context={'My_community':My_Community,'userprofile':userprofile,"Service":Service}
+        return render(request, "professional/edit-service.html", context)

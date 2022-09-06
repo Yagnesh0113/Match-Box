@@ -60,8 +60,22 @@ class User_Question(models.Model):
     Date=models.DateField(default=date.today())
     Time=models.TimeField(default=datetime.now())
     answer=models.IntegerField(null=True, blank=True)
+    Question_Like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='Question_Like' )
+    
     def __str__(self):
         return self.Question
+    
+    @property
+    def num_likes(self):
+        return self.Question_Like.all().count()
+
+class Question_Like(models.Model):
+    user_profile = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
+    Question = models.ForeignKey(to=User_Question, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOISE, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.Question)
 
 class User_Answer(models.Model):
     Question=models.ForeignKey(to=User_Question, on_delete=models.CASCADE)

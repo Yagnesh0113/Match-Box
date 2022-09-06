@@ -233,6 +233,23 @@ def like_post(request, id):
     like.save()
     return redirect("community-screen")
 
+@login_required(login_url='/')
+def like_Question(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    Question=User_Question.objects.get(id=id)
+    if userprofile in Question.Question_Like.all():
+        Question.Question_Like.remove(userprofile)
+    else:
+        Question.Question_Like.add(userprofile)
+    like, created=Question_Like.objects.get_or_create(user_profile=userprofile,Question=Question)
+    if not created:
+        if like.value=="Like":
+            like.value="Unlike"
+        else:
+            like.value="Like"
+    like.save()
+    return redirect("community-screen")
+
 # --- load -- see all photos and videos of professions ---
 @login_required(login_url='/')
 def loadSeeAllPhotosAndVideos(request,id):
@@ -875,6 +892,32 @@ def Community_My_Image(request):
     return render(request, 'community_profession/community-my-image.html',context)
 
 @login_required(login_url='/')
+def Community_Edit_My_Image(request,id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    User_post_obj=UserPost.objects.get(id=id)
+    if request.method=="POST":
+        User_post_obj.Description=request.POST.get("Description")
+        User_post_obj.save()
+        return redirect("Community_My_Image")
+    else:
+        User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+        Date=date.today()
+        Our_News_count=News.objects.filter(Date=Date).count()
+        Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
+        Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+        if obj is not None:
+            context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_post_obj,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,}
+        else:
+            context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_post_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
+        return render(request, 'community_profession/community-edit-my-image.html',context)
+
+@login_required(login_url='/')
+def Community_Delete_My_Image(request, id):
+    User_post_obj=UserPost.objects.get(id=id)
+    User_post_obj.delete()
+    return redirect("Community_My_Image")
+
+@login_required(login_url='/')
 def Community_My_Question(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_question=User_Question.objects.filter(User_Profile=userprofile)
@@ -888,3 +931,29 @@ def Community_My_Question(request):
     else:
         context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_question,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
     return render(request, 'community_profession/community-my-question.html',context)
+
+@login_required(login_url='/')
+def Community_Edit_My_Question(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    User_question=User_Question.objects.get(id=id)
+    if request.method=="POST":
+        User_question.Question=request.POST.get("Question")
+        User_question.save()
+        return redirect("Community_My_Question")
+    else:
+        User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+        Date=date.today()
+        Our_News_count=News.objects.filter(Date=Date).count()
+        Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
+        Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+        if obj is not None:
+            context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_question,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,}
+        else:
+            context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_question,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
+        return render(request, 'community_profession/community-edit-my-question.html',context)
+
+@login_required(login_url='/')
+def Community_Delete_My_Question(request, id):
+    User_question=User_Question.objects.get(id=id)
+    User_question.delete()
+    return redirect("Community_My_Question")
