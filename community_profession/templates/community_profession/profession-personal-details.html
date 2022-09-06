@@ -51,6 +51,29 @@
 
 /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
   </style>
+<!-- Start Services CSS -->
+<style>
+   body {
+   background-color:#E7E9EB;
+   }
+   #myDIV {
+   height:15.625rem;
+   }
+   .ex1 {
+   width: 9.375rem;
+   height: 15rem;
+   overflow:auto;
+   }
+</style>
+<!-- End Services CSS -->
+
+<!-- Start our rating color -->
+<style>
+   .checked {
+   color: orange;
+   }
+</style>
+<!-- End our rating color -->
 {% endblock own_css %}
 {% block content %}
 <!-- Start girls parlor heading -->
@@ -62,64 +85,97 @@
 <!-- End girls parlor heading -->
 
 <!-- Start profile-img and info -->
-<div class="row">
+<div class="row pb-3">
    <!-- Start profile-img -->
-   <div class="col-md-4">
+   <div class="col-2 col-sm-3 col-md-2">
       <img src="{{Profession_obj.profession_image.url}}" class="img-fluid rounded" alt="Responsive image">
    </div>
    <!-- Start profile-img -->
    <!-- Start info -->
-   <div class="col-md-8">
-      <!-- Start Personal info -->
+   <div class="col-8 col-sm-9 col-md-10 personal-info">
+      <!-- Start name info -->
       <div class="row">
-         <div class="col-md-12 personal-info">
-            <table class="table table-borderless">
-               <tbody>
-                  <tr>
-                     <td>Name</td>
-                     <td>:</td>
-                     <td>{{Profession_obj.shop_name}}</td>
-                  </tr>
-                  <tr>
-                     <td>Profession</td>
-                     <td>:</td>
-                     <td>{{Profession_obj.profession.Profession_Name}}</td>
-                  </tr>
-                  <tr>
-                     <td>Address</td>
-                     <td>:</td>
-                     <td>{{Profession_obj.shop_address}} {{Profession_obj.shop_city}}, {{Profession_obj.shop_state}}</td>
-                  </tr>
-                  <tr>
-                     <td>Exprience</td>
-                     <td>:</td>
-                     <td>{{Profession_obj.year_of_experience}} Year</td>
-                  </tr>
-                  <tr>
-                     <td>Ratings</td>
-                     <td>:</td>
-                     <td class="font-weight-lighter">
-                        <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                        <!-- <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i> -->
-                        {{Profession_obj.Profession_Rating}}
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
+         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+            Name
+         </div>
+         <div class="col-10 col-sm-10 col-md-10 content">
+            : {{Profession_obj.shop_name}}
          </div>
       </div>
-      <!-- End Personal info -->
-      <!-- Start Time -->
+      <!-- End name info -->
+
+      <!-- Start profession -->
       <div class="row">
-         <div class="col-md-12 pl-4 time-days">
+         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+            Profession
+         </div>
+         <div class="col-10 col-sm-10 col-md-10 content">
+            : {{Profession_obj.profession.Profession_Name}}
+         </div>
+      </div>
+      <!-- End profession -->
+
+      <!-- Start Address -->
+      <div class="row">
+         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+            Address
+         </div>
+         <div class="col-10 col-sm-10 col-md-10 content">
+            : {{Profession_obj.shop_address}} {{Profession_obj.shop_city}}, {{Profession_obj.shop_state}}
+         </div>
+      </div>
+      <!-- End Address -->
+
+      <!-- Start Experience -->
+      <div class="row">
+         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+            Experience
+         </div>
+         <div class="col-10 col-sm-10 col-md-10 content">
+            : {{Profession_obj.year_of_experience}} Year
+         </div>
+      </div>
+      <!-- End Experience -->
+
+      <!-- Start Rating -->
+      <div class="row">
+         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+            Rating
+         </div>
+         <div class="col-10 col-sm-10 col-md-10 content">
+            :
+            <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+            <!-- <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+               <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+               <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+               <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania"> -->
+            {{Profession_obj.Profession_Rating}}
+         </div>
+      </div>
+      <!-- End Rating -->
+   </div>
+   <!-- Start info -->
+</div>
+<!-- End profile-img and info -->
+
+<!-- Start time & open status, our services, add new service btn -->
+<div class="row pt-3 pb-3 border-top border-bottom">
+   <!-- Start time and open status -->
+   <div class="col-12 col-sm-3 col-md-4 border-right  time-open-status">
+      <!-- Start time & open status heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 heading">
+            Times & Open Status
+         </div>
+      </div>
+      <!-- End time & open status heading -->
+      <!-- Start time heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 time-heading">
             Time : {{Profession_obj.shop_start_time}} to {{Profession_obj.shop_close_time}}
          </div>
       </div>
-      <!-- End Time -->
-      <!-- Start days -->
+      <!-- End time heading -->
       <!-- Start open status Sunday -->
       <div class="row">
          {% if Profession_obj.shop_status_sunday%}
@@ -253,51 +309,40 @@
          {% endif %}
       </div>
       <!-- End open status Saturday -->
-      <!-- End days -->
+   </div>
+   <!-- End time and open status -->
+   <!-- Start our services -->
+   <div class="col-12 col-sm-9 col-md-8 pl-5 our-services">
       <!-- Start our services heading -->
-      <div class="row our-services pt-3">
-         <div class="col-md-12 our-services-heading">
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 our-services-heading">
             Our Services
          </div>
+
       </div>
       <!-- End our services heading -->
-      <!-- Start Services table -->
-      <div class="row">
-         <div class="col-md-8 our-services-table">
-            <table class="table">
-               <tbody>
-                  {% for i in Profession_service_obj %}
-                  <tr>
-                     <td scope="col">{{i.service_name}}</td>
-                     <td scope="col" class="text-right">Rs : {{i.service_price}}</td>
-                  </tr>
-                  {% endfor %}
-                  <!-- <tr>
-                     <td scope="col">Hair straightening </td>
-                     <td scope="col" class="text-right">Rs : 500</td>
-                     </tr>
-                     <tr>
-                     <td scope="col">Hair Cutting </td>
-                     <td scope="col" class="text-right">Rs : 300</td>
-                     </tr>
-                     <tr>
-                     <td scope="col">Hair straightening </td>
-                     <td scope="col" class="text-right">Rs : 500</td>
-                     </tr>
-                     <tr class="border-bottom">
-                     <td scope="col">Hair Cutting </td>
-                     <td scope="col" class="text-right">Rs : 300</td>
-                     </tr> -->
-               </tbody>
-            </table>
+      <!-- Start Services -->
+      <div class="row" id="myDIV">
+         <div class="col-12 col-sm-12 col-md-12 ex1">
+            {% for s in Profession_service_obj%}
+            <div class="row mt-2 pt-2 rounded services">
+               <!-- Start Service heading -->
+               <div class="col-7 col-sm-9 col-md-9">{{s.service_name}}</div>
+               <!-- End Service heading -->
+               <!-- Start price, edit, delete -->
+               <div class="col-5 col-sm-3 col-md-3 text-center">
+                  <span>Rs : {{s.service_price}}</span>
+               </div>
+               <!-- End price, edit, delete -->
+            </div>
+            {% endfor %}
          </div>
-         <div class="col-md-4"></div>
       </div>
-      <!-- End Services table -->
+      <!-- End Services -->
    </div>
-   <!-- Start info -->
+   <!-- End our services -->
 </div>
-<!-- End profile-img and info -->
+<!-- End time & open status, our services, add new service bt -->
 
 <!-- Start Photos & videos heading, See All links headings -->
 <div class="row photos-videos-see-all">
@@ -371,11 +416,6 @@
 <!-- End Photos & videos -->
 
 <!-- Satrt Comment input, Chat button -->
-<style>
-   .checked {
-   color: orange;
-   }
-</style>
 <form action="{% url 'profession-personal-details' Profession_obj.id %}" method="POST">
    {% csrf_token %}
    <div class="row">

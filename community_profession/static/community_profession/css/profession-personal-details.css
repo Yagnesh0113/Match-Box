@@ -108,8 +108,8 @@
     font-family: var(--font-1);
     font-style: normal;
     font-weight: 400;
-    font-size: 1.25rem;
-    line-height: 1.875rem;
+    font-size: 1rem;
+    line-height: 1.25rem;
     color: var(--color-12);
 }
 
@@ -166,10 +166,15 @@
     color: #B4F1F1;
 }
 
+.thumbs-up-down
+{
+    color: #B4F1F1;
+}
+
 /* Start manage images */
 .profession-details .img-fluid
 {
-    height:12.5rem;
+    height:8.125rem;
 }
 /* End manage images */
 
@@ -252,6 +257,11 @@
  color:var(--color-2);
 }
 
+.review-profile .img-fluid
+{
+    width:40px;
+    height:40px;
+}
 
 /* Start Mobile view */
 
