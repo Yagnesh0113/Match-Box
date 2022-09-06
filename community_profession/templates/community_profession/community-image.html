@@ -52,14 +52,14 @@
 <!--               <a class="dropdown-item" href="#">Hot</a>-->
 <!--               <a class="dropdown-item" href="#">Top</a>-->
 
-                  <!-- <a class="dropdown-item" href="{% url 'Community_image' %}">Image</a> -->
+                  
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">My Post</a>
                   <div class="dropdown-menu">
                      <a class="dropdown-item" href="{% url 'Community_My_Image' %}">My Images</a>
+                     <a class="dropdown-item" href="{% url 'Community_My_Video' %}">My Video</a>
                      <a class="dropdown-item" href="{% url 'Community_My_Question' %}">My Questions</a>
                   </div>
-                  <!-- <a class="dropdown-item" href="{% url 'Community_image' %}">Image</a> -->
-                  <a class="dropdown-item" href="#">Video</a>
+                  <a class="dropdown-item" href="{% url 'Community_video' %}">Video</a>
                   <a class="dropdown-item" href="{% url 'Community_Question' %}">Questions</a>
 
                   <a class="dropdown-item" href="{% url 'community-screen' %}">Global</a>
@@ -225,9 +225,13 @@
                   <p>No</p>
                   {% endif %}
                   {{i.Post.Image}} -->
+                  {% if i.post_type1 %}
+                  <div></div>
+                  {%else%}
                   <div class="col-md-6">
                      <img src="{{i.Image.url}}" alt="" class="img-fluid" width="100%">
                   </div>
+                  {% endif %}
                   <div class="col-md-3"></div>
                </div>
             </div>
