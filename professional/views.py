@@ -348,12 +348,12 @@ def like_Review(request, id):
 def edit_service(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Service=ProfessionServices.objects.get(id=id)
+    print(Service)
     if request.method=="POST":
-        profession=request.POST.get("Profesion_id")
-        Service.service_name=request.POST.get("Service_name")
-        Service.service_price=request.POST.get("Service_price")
+        Service.service_name=request.POST.get("service_name")
+        Service.service_price=request.POST.get("price")
         Service.save()
-        return redirect(f"/profession_details/{profession}")
+        return redirect(f"/profession_details/{Service.Profession.id}")
     else:
         if obj is not None:
             context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Service":Service}

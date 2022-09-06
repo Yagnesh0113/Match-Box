@@ -83,7 +83,7 @@
                         <div class="dropdown-menu">
                            <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
                            <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notify Me About Edits</a>
-                           <a class="dropdown-item" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square"></i> Edit Question</a>
+                           <a class="dropdown-item" onclick="data('{{Question.Question}}')" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a>
                            <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a>
                            <a class="dropdown-item" href="#" data-target="#my-answer" data-toggle="modal"><i class="fa-solid fa-pen"></i> My Answer</a>
                            <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
@@ -313,7 +313,7 @@
                      </button>
                      <div class="dropdown-menu">
                         <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
-                        <a class="dropdown-item" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square"></i> Edit Question</a>
+                        <a class="dropdown-item" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a>
                         <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
                         <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i>    Copy Links</a>
                      </div>
@@ -342,7 +342,7 @@
                      <button type="button" class="btn" data-toggle="dropdown">
                      <i class="fa-solid fa-ellipsis-vertical"></i>
                      </button>
-                     <div class="dropdown-menu">
+                     <div class="dropddataown-menu">
                         <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
                         <a class="dropdown-item" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square"></i> Edit Question</a>
                         <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
@@ -378,9 +378,7 @@
          <div class="modal-body">
             <!-- Start edit question text box -->
             <div class="form-group">
-               <textarea class="form-control" rows="2" id="comment">
-               Why is the indian movie 'KGF' being popular in Man City, 'UK'?
-               </textarea>
+               <textarea class="form-control" rows="2"  id="demo"> </textarea>
             </div>
             <!-- End edit question text box -->
          </div>
@@ -497,6 +495,14 @@
        }
      }
    }
+</script> 
+
+
+
+<script>
+   function data(val){
+     document.getElementById("demo").value = val;
+      }
 </script>
 <!-- End search menu -->
 {% endblock community_content %}
