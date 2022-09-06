@@ -301,8 +301,9 @@
                   <span aria-hidden="true">&times;</span>
                   </button>
                </div>
-               <div class="modal-body">
-                  <form>
+               <form data-city-url="{% url 'load_city' %}" id="indexForm" action="{% url 'update_details' %}" method="POST">
+                  <div class="modal-body">
+                     {% csrf_token %}
                      <div class="form-group">
                         <label for="first-name" class="col-form-label">First Name</label>:</label>
                         <input type="text" class="form-control" id="first-name" value="{{userprofile.usertype.user_id.first_name}}" placeholder="First Name"name="first_name">
@@ -313,32 +314,28 @@
                      </div>
                      <div class="form-group">
                         <label for="phone-number" class="col-form-label">Phone Number</label>:</label>
-                        <input type="text" class="form-control" value="{{userprofile.phone_number}}" id="phone-number" name="phone_number">
+                        <input type="text" class="form-control" value="{{userprofile.phone_number}}" id="phone-number" name="phone_number" maxlength="10">
                      </div>
                      <div class="form-group">
                         <label for="message-text" class="col-form-label">State:</label>
-                        <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1">
+                        <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1" required>
                            <option class="">-- Select State -- </option>
                            {% for i in state %}
-                              <option value="{{i.id}}" class="border">{{i.name}}</option>
+                           <option value="{{i.id}}" class="border">{{i.name}}</option>
                            {% endfor %}
                         </select>   
                      </div>
                      <div class="form-group">
-                        <label for="message-text" class="col-form-label">State:</label>
-                        <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1">
-                           <option class="">-- Select City -- </option>
-                           {% for i in state %}
-                              <option value="{{i.id}}" class="border">{{i.name}}</option>
-                           {% endfor %}
-                        </select>   
+                        <label for="message-text" class="col-form-label">City:</label>
+                        <select name="city" class="form-control border-left-0" id="city" required>
+                        </select> 
                      </div>
-                  </form>
-               </div>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Send message</button>
-               </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="submit" class="btn btn-primary">Send message</button>
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+               </form>
             </div>
          </div>
       </div>
@@ -362,7 +359,7 @@
                      </div>
                      <div class="form-group">
                         <label for="Number" class="col-form-label">Number:</label>
-                        <input type="text" class="form-control" required id="Number" name="whatsapp_number">
+                        <input type="text" class="form-control" required id="Number" name="whatsapp_number" maxlength="10">
                      </div>
 
                </div>
@@ -378,4 +375,22 @@
    </div>
 </div>
 <!-- End Profession Profiles screen -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+   $("#state").change(function () {
+     var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view
+     var stateId = $(this).val();  // get the selected programming ID from the HTML input
+
+     $.ajax({                       // initialize an AJAX request
+       url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+       data: {
+         'state': stateId       // add the programming id to the GET parameters
+       },
+       success: function (data) {   // `data` is the return of the `load_courses` view function
+         $("#city").html(data);  // replace the contents of the course input with the data that came from the server
+       }
+     });
+
+   });
+</script>
 {% endblock content %}
