@@ -61,12 +61,18 @@
       <div class="row like-comment-share">
          <!-- Start like -->
          <div class="col-1 col-sm-1 col-md-1 like">
-            <i class="fa-solid fa-thumbs-up"></i> {{i.Like}}
+            <a href="{% url 'like_news' i.id %}">
+               {% if userprofile not in i.News_like.all %}
+               <button type="submit" class="fa-solid fa-thumbs-up"></button>
+               {% else %}
+               <button type="submit" class="fa-solid fa-thumbs-down"></button>
+               {% endif %}
+            </a>{{ i.News_like.all.count }} Likes
          </div>
          <!-- End like -->
          <!-- Start  comment -->
          <div class="col-3 col-sm-2 col-md-1 comment">
-            <i class="fa-solid fa-message"></i> 3.9k
+            <i class="fa-solid fa-message"></i> {{i.comment}}
          </div>
          <!-- End  comment -->
          <!-- Start add-comment btn -->

@@ -154,9 +154,23 @@ class News(models.Model):
     Description=models.TextField()
     Date=models.DateField(default=date.today())
     Time=models.TimeField(default=datetime.now())
+    comment=models.IntegerField(null=True, blank=True)
+    News_like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='News_like' )
 
     def __str__(self):
         return self.Description
+    
+    @property
+    def num_likes(self):
+        return self.News_like.all().count()
+
+class News_Main_Like(models.Model):
+    user_profile = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
+    news = models.ForeignKey(to=News, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOISE, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.Answer)
 
 class News_Comment(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
@@ -164,9 +178,23 @@ class News_Comment(models.Model):
     Comment=models.TextField()
     Date=models.DateField(null=True, blank=True)
     Time=models.TimeField(null=True, blank=True)
+    reply=models.IntegerField(default=0, null=True, blank=True)
+    News_comment_like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='News_comment_like' )
 
     def __str__(self):
         return self.User_Profile.usertype.user_id.first_name
+
+    @property
+    def num_likes(self):
+        return self.News_comment_like.all().count()
+
+class News_Comment_Like(models.Model):
+    user_profile = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
+    news_comment = models.ForeignKey(to=News_Comment, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOISE, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.news_comment)
 
 class News_Comment_reply(models.Model):
     Comment=models.ForeignKey(to=News_Comment, on_delete=models.CASCADE)
@@ -176,7 +204,7 @@ class News_Comment_reply(models.Model):
     Reply_Time=models.TimeField(default=datetime.now())
 
     def __str__(self):
-        return self.Comment.Comment
+        return self.Reply
 
 class POST_and_Question(models.Model):
     Post=models.ForeignKey(to=UserPost, on_delete=models.CASCADE,null=True,blank=True)

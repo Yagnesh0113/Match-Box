@@ -340,7 +340,7 @@ def loadCommunityScreen(request):
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
     Our_News_count=News.objects.filter(Date=Date).count()
-    Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
+    Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)[::-1]
     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
     # print(User_POST_Question_obj.Question)
     if obj is not None:
@@ -804,6 +804,23 @@ def news(request):
     return render(request, 'community_profession/news.html',context)
 
 @login_required(login_url='/')
+def like_news(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    our_news=News.objects.get(id=id)
+    if userprofile in our_news.News_like.all():
+        our_news.News_like.remove(userprofile)
+    else:
+        our_news.News_like.add(userprofile)
+    like, created=News_Main_Like.objects.get_or_create(user_profile=userprofile,news=our_news)
+    if not created:
+        if like.value=="Like":
+            like.value="Unlike"
+        else:
+            like.value="Like"
+    like.save()
+    return redirect("news")
+
+@login_required(login_url='/')
 def news_comment(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Our_News=News.objects.get(id=id)
@@ -815,6 +832,9 @@ def news_comment(request,id):
         News_time = now.strftime("%H:%M:%S")
         News_Comment.objects.create(User_Profile=userprofile,
         News_id=Our_News,Comment=Comment,Date=News_Date,Time=News_time)
+        obj=News_Comment.objects.filter(News_id=Our_News)
+        Our_News.comment=len(obj)
+        Our_News.save()
         return redirect(f"/news_comment/{id}")
     else:
         Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
@@ -831,6 +851,53 @@ def news_comment(request,id):
             context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"News":Our_News,"All_Comment":Comment_obj,"Comment_Count":Comment_Count}
         # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,"News":Our_News,"User":User_Profile_obj,"All_Comment":Comment_obj,"Comment_Count":Comment_Count}
         return render(request,'community_profession/news-comment.html',context)
+
+@login_required(login_url='/')
+def like_Comment_news(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    our_comment_news=News_Comment.objects.get(id=id)
+    if userprofile in our_comment_news.News_comment_like.all():
+        our_comment_news.News_comment_like.remove(userprofile)
+    else:
+        our_comment_news.News_comment_like.add(userprofile)
+    like, created=News_Comment_Like.objects.get_or_create(user_profile=userprofile,news_comment=our_comment_news)
+    if not created:
+        if like.value=="Like":
+            like.value="Unlike"
+        else:
+            like.value="Like"
+    like.save()
+    return redirect("news")
+
+@login_required(login_url='/')
+def news_comment_reply(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    Post_obj=News_Comment.objects.get(id=id)
+    if request.method=="POST":
+        News_Reply=request.POST.get("reply")
+        print(News_Reply)
+        News_Reply_Date=date.today()
+        now = datetime.now()
+        News_Reply_Time = now.strftime("%H:%M:%S")
+        News_Comment_reply.objects.create(Comment=Post_obj,User_Profile=userprofile,Reply=News_Reply,Reply_Date=News_Reply_Date,Reply_Time=News_Reply_Time)
+        obj=News_Comment_reply.objects.filter(Comment=Post_obj)
+        Post_obj.reply=len(obj)
+        Post_obj.save()
+        return redirect(f"/news_comment/{Post_obj.News_id.id}")
+    else:
+        Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
+        Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+        Reply=News_Comment_reply.objects.filter(Comment=Post_obj)
+        # My_Community=Community.objects.all()
+        Date=date.today()
+        User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+        Our_News_count=News.objects.filter(Date=Date).count()
+        if obj is not None:
+            context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,'Reply':Reply,"Post_obj":Post_obj}
+        else:
+            context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,'Reply':Reply,"Post_obj":Post_obj}
+        # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"Post_obj":Post_obj,'Reply':Reply,'My_community':My_Community,"Our_News_count":Our_News_count}
+        return render(request, 'community_profession/news-comment-reply.html',context)
 
 @login_required(login_url='/')
 def ans_later(request,id):

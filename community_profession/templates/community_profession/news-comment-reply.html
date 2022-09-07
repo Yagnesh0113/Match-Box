@@ -24,7 +24,7 @@
            <!-- Start user-community-name, time -->
            <div class="col-10 col-sm-11 col-md-11 user-community-name">
                {{Post_obj.User_Profile.usertype.user_id.first_name}} {{Post_obj.User_Profile.usertype.user_id.last_name}} <br> 
-               <span class="time">{{Post_obj.Comment_Date}} / {{Post_obj.Commenet_Time}}</span>
+               <span class="time">{{Post_obj.Date}} / {{Post_obj.Time}}</span>
            </div>
            <!-- End user-community-name, time -->
        </div>
@@ -44,23 +44,19 @@
                <!-- <span class="">
                    <i class="fa-solid fa-thumbs-up"></i> 1.2K
                </span> -->
-               <a href="{% url 'like_post_comment' Post_obj.id %}">
-                   {% if userprofile not in Post_obj.Comment_like.all %}
-                   <span class="">
-                       <button type="submit" class="fa-solid fa-thumbs-up"></button>
-                   </span>
-                   {% else %}
-                   <span class="">
-                       <button type="submit" class="fa-solid fa-thumbs-down"></button>
-                   </span>
-                   {% endif %}
-               </a>{{ Post_obj.Comment_like.all.count }} Likes
+               <a href="{% url 'like_Comment_news' Post_obj.id %}">
+                {% if userprofile not in Post_obj.News_comment_like.all %}
+                <button type="submit" class="fa-solid fa-thumbs-up"></button>
+                {% else %}
+                <button type="submit" class="fa-solid fa-thumbs-down"></button>
+                {% endif %}
+             </a>{{ Post_obj.News_comment_like.all.count }}
                <span class="pl-5">
                     <i class="fa-solid fa-message"></i> 
-                       {% if Post_obj.Post_comment_reply is None %}
+                       {% if Post_obj.reply is None %}
                        0
                        {% else %}
-                       {{Post_obj.Post_comment_reply}}
+                       {{Post_obj.reply}}
                        {% endif %}
                </span>
 
@@ -88,7 +84,7 @@
    <!-- </div> -->
 </div>
 <!-- End community-user-name -->
-<form action="{% url 'Post_comment_reply' Post_obj.id %}" method="POST">
+<form action="{% url 'news_comment_reply' Post_obj.id %}" method="POST">
    {% csrf_token %}
    <div class="row pl-3 reply-form">
 

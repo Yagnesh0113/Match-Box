@@ -58,6 +58,10 @@ urlpatterns = [
     path("Community_Delete_My_Video/<int:id>",views.Community_Delete_My_Video,name="Community_Delete_My_Video"),
     path("like_post_comment/<int:id>",views.like_post_comment,name="like_post_comment"),
     path("like_Answer/<int:id>",views.like_Answer,name="like_Answer"),
+    path("like_news/<int:id>",views.like_news,name="like_news"),
+    path("like_Comment_news/<int:id>",views.like_Comment_news,name="like_Comment_news"),
+    path("news_comment_reply/<int:id>",views.news_comment_reply,name="news_comment_reply"),
+
 
 
 ]
