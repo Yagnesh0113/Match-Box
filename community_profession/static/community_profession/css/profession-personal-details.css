@@ -263,6 +263,12 @@
     height:40px;
 }
 
+.profession-video .video-fluid
+{
+    height:8.125rem;
+}
+
+
 /* Start Mobile view */
 
 @media all and (min-width: 577px)

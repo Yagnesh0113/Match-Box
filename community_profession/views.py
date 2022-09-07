@@ -132,7 +132,7 @@ def loadProfessionPersonalDetails(request, id):
     print(Profession_obj.id)
     Profession_service_obj = ProfessionServices.objects.filter(Profession=Profession_obj)
     Profession_Image_obj = Professionimage.objects.filter(profession=Profession_obj)[:3]
-    Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)[:3]
+    Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)[:2]
     if Recent_serach.objects.filter(Profession_obj=Profession_obj, User_obj=userprofile):
         print("The data is already exits")
         if request.method == "POST":
