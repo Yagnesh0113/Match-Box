@@ -364,23 +364,22 @@
    <div class="col-12 col-sm-12 col-md-12 p-4">
       <div class="row profession-details">
          {% for j in Profession_Image_obj %}
-         <div class="col-6 col-sm-2 col-md-2 pt-3">
+         <div class="col-12 col-sm-2 col-md-2 pt-3">
             <div class="row">
                <div class="col-md-12">
                   <a href="{% url 'photo-screen' j.id %}" class="text-light">
-                  <img src="{{j.image.url}}" class="img-fluid rounded" width="100%" height="30%">
+                  <img src="{{j.image.url}}" class="img-fluid " width="100%" height="30%">
                   </a>
                </div>
             </div>
          </div>
          {% endfor %}
          {% for i in Profession_Video_obj %}
-         <div class="col-6 col-sm-2 col-md-2 pt-3">
+         <div class="col-12 col-sm-3 col-md-3 pt-3">
             <div class="row">
-               <div class="col-md-12">
-                  <a href="{% url 'video-screen' i.id %}" class="text-light">
-                  <video src="{{i.video.url}}" class="img-fluid rounded" width="100%" height="30%" controls></video>
-
+               <div class="col-md-12 profession-video rounded">
+                  <a href="{% url 'video-screen' i.id %}" class="text-light text-decoration-none">
+                     <video src="{{i.video.url}}" class="video-fluid " width="100%" controls></video>
                   </a>
                </div>
             </div>
