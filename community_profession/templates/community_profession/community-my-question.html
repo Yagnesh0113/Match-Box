@@ -215,7 +215,13 @@
       <div class="row pt-2 pd-2">
          <!-- Start like button -->
          <div class="col-4 col-sm-3 col-md-2">
-            <a href=""><i class="fa-solid fa-thumbs-up"></i> {{i.Like}}</a>
+            <a href="{% url 'like_Question' i.id %}">
+               {% if userprofile not in i.Question_Like.all %}
+               <button type="submit" class="fa-solid fa-thumbs-up"></button>
+               {% else %}
+               <button type="submit" class="fa-solid fa-thumbs-down"></button>
+               {% endif %}
+            </a>{{ i.Question_Like.all.count }} Likes
             &nbsp;
             <i class="fa-solid fa-message"></i> {{i.answer}}
          </div>

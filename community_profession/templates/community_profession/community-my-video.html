@@ -189,13 +189,13 @@
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                         </button>
                         <div class="dropdown-menu">
-                           <a class="dropdown-item" href="#">Copy Link</a>
-                           <a class="dropdown-item" href="#">Block Account</a>
-                           <a class="dropdown-item" href="#">Delete question</a>
-                           <a class="dropdown-item" href="#">Edit question</a>
-                           <a class="dropdown-item" href="#">Bookmark</a>
-                           <a class="dropdown-item" href="#">Save</a>
-                           <a class="dropdown-item" href="#">Share</a>
+                           <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
+                           <!-- <a class="dropdown-item" href="#">Block Account</a> -->
+                           <a class="dropdown-item" href="{% url 'Community_Delete_My_Video' i.id %}">Delete video</a>
+                           <a class="dropdown-item" href="{% url 'Community_Edit_My_Video' i.id %}">Edit video</a>
+                           <!-- <a class="dropdown-item" href="#">Bookmark</a> -->
+                           <!-- <a class="dropdown-item" href="#">Save</a> -->
+                           <!-- <a class="dropdown-item" href="#">Share</a> -->
                         </div>
                      </div>
                   </div>

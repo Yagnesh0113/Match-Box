@@ -112,13 +112,20 @@
     <div class="col-6 col-sm-9 col-md-9"></div>
 </div>
 <!-- End no-of-like, no-of-comments, share -->
-
+<hr color="">
 <!-- Start community-user-name -->
 <div class="row pl-3 pt-2 community-user-name">
-    <div class="col-md-12">
-        <span class="commnet-as">Comment as</span>
-        <span>community name or User name</span>
-    </div>
+    <!-- <div class="col-md-12"> -->
+        <!-- <span class="commnet-as"></span> -->
+        <!-- <span>community name or User name</span> -->
+        <div class="col-3 col-sm-2 col-md-1 pl-5 pr-3">
+            <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
+         </div>
+         <div class="col-9 col-sm-5 col-md-5 pt-3">
+            <!-- <span class="commnet-as">Comment as</span> -->
+            <span>{{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}</span>
+         </div>
+    <!-- </div> -->
 </div>
 <!-- End community-user-name -->
 
@@ -192,12 +199,28 @@
         <!-- Start like-reply-share -->
         <div class="row pt-3">
             <div class="col-md-12 like-reply-share">
-                <span class="">
+                <!-- <span class="">
                     <i class="fa-solid fa-thumbs-up"></i> 1.2K
-                </span>
-
+                </span> -->
+                <a href="{% url 'like_post_comment' i.id %}">
+                    {% if userprofile not in i.Comment_like.all %}
+                    <span class="">
+                        <button type="submit" class="fa-solid fa-thumbs-up"></button>
+                    </span>
+                    {% else %}
+                    <span class="">
+                        <button type="submit" class="fa-solid fa-thumbs-down"></button>
+                    </span>
+                    {% endif %}
+                </a>{{ i.Comment_like.all.count }} Likes
                 <span class="pl-5">
-                    <a href="{% url 'Post_comment_reply' i.id %}" class="text-decoration-none">2 Reply</a>
+                    <a href="{% url 'Post_comment_reply' i.id %}" class="text-decoration-none"><i class="fa-solid fa-message"></i> 
+                        {% if i.Post_comment_reply is None %}
+                        0
+                        {% else %}
+                        {{i.Post_comment_reply}}
+                        {% endif %}
+                    </a>
                 </span>
 
                 <span class="pl-5">
@@ -210,5 +233,44 @@
 </div><br><br>
 {% endfor %}
 <!-- End Comments -->
-
+<!-- <div class="modal fade " id="reply" tabindex="-1" aria-labelledby="editservise" aria-hidden="true">
+    <div class="modal-dialog">
+       <div class="modal-content bg-dark">
+          <div class="modal-header">
+             <h5 class="modal-title" id="reply">Reply</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <form method="post" id="reply" action="">
+             {% csrf_token %}
+             <div class="modal-body">
+                <div class="container ">
+                   <div class="">
+                      <div class="form-group">
+                         <label for="service">Comment </label>
+                         <input disabled class="form-control" id="demo1">
+                      </div>
+                      <div class="form-group">
+                         <label for="price">Reply</label>
+                         <input type="text" class="form-control" name="Reply" id="demo2">
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="modal-footer">
+                <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+             </div>
+          </form>
+       </div>
+    </div>
+ </div> -->
+<!-- <script>
+    function data(id,val1){
+        console.log()
+       document.getElementById('reply').action ='/Post_comment_reply/'+id;
+       document.getElementById("demo1").value = val1; 
+    }
+</script> -->
 {% endblock community_content %}

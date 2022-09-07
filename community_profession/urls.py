@@ -54,6 +54,10 @@ urlpatterns = [
     path("Community_Edit_My_Question/<int:id>",views.Community_Edit_My_Question,name="Community_Edit_My_Question"),
     path("Community_Delete_My_Question/<int:id>",views.Community_Delete_My_Question,name="Community_Delete_My_Question"),
     path("like_Question/<int:id>",views.like_Question,name="like_Question"),
+    path("Community_Edit_My_Video/<int:id>",views.Community_Edit_My_Video,name="Community_Edit_My_Video"),
+    path("Community_Delete_My_Video/<int:id>",views.Community_Delete_My_Video,name="Community_Delete_My_Video"),
+    path("like_post_comment/<int:id>",views.like_post_comment,name="like_post_comment"),
+    path("like_Answer/<int:id>",views.like_Answer,name="like_Answer"),
 
 
 ]

@@ -28,7 +28,6 @@ LIKE_CHOISE = (
     ('Unlike', 'Unlike'),
 )
 
-
 class Like(models.Model):
     user_profile = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
     Post = models.ForeignKey(to=UserPost, on_delete=models.CASCADE)
@@ -37,14 +36,26 @@ class Like(models.Model):
     def __str__(self):
         return str(self.Post)
 
-
 class Post_Commment(models.Model):
     User_Post=models.ForeignKey(to=UserPost, on_delete=models.CASCADE)
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
     Comment=models.TextField(null=True, blank=True)
     Comment_Date=models.DateField(null=True, blank=True)
     Commenet_Time=models.TimeField(null=True, blank=True)
-    Comment_like=models.ImageField(null=True, blank=True)
+    Post_comment_reply=models.IntegerField(null=True, blank=True)
+    Comment_like=models.ManyToManyField(to=UserProfile,null=True, blank=True,related_name='Comment_like')
+
+    @property
+    def num_likes(self):
+        return self.Comment_like.all().count()
+
+class Post_Comment_Like(models.Model):
+    user_profile = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
+    Post_comment = models.ForeignKey(to=Post_Commment, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOISE, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.Post_comment)
 
 class Comment_reply(models.Model):
     Comment=models.ForeignKey(to=Post_Commment, on_delete=models.CASCADE)
@@ -57,8 +68,8 @@ class User_Question(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
     Question=models.TextField()
     User_id=models.TextField(null=True,blank=True)
-    Date=models.DateField(default=date.today())
-    Time=models.TimeField(default=datetime.now())
+    Date=models.DateField(null=True,blank=True)
+    Time=models.TimeField(null=True,blank=True)
     answer=models.IntegerField(null=True, blank=True)
     Question_Like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='Question_Like' )
     
@@ -81,6 +92,22 @@ class User_Answer(models.Model):
     Question=models.ForeignKey(to=User_Question, on_delete=models.CASCADE)
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
     Answer=models.TextField()
+    reply=models.IntegerField(null=True, blank=True)
+    Date=models.DateField(null=True,blank=True)
+    Time=models.TimeField(null=True,blank=True)
+    Answer_Like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='Answer_Like' )
+
+    @property
+    def num_likes(self):
+        return self.Answer_Like.all().count()
+
+class Answer_Like(models.Model):
+    user_profile = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
+    Answer = models.ForeignKey(to=User_Answer, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOISE, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.Answer)
 
 class Answer_Reply(models.Model):
     Answer=models.ForeignKey(to=User_Answer, on_delete=models.CASCADE)
@@ -135,8 +162,8 @@ class News_Comment(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
     News_id=models.ForeignKey(to=News, on_delete=models.CASCADE)
     Comment=models.TextField()
-    Date=models.DateField(default=date.today())
-    Time=models.TimeField(default=datetime.now())
+    Date=models.DateField(null=True, blank=True)
+    Time=models.TimeField(null=True, blank=True)
 
     def __str__(self):
         return self.User_Profile.usertype.user_id.first_name
@@ -158,5 +185,5 @@ class POST_and_Question(models.Model):
 class Answer_later(models.Model):
     Question=models.ForeignKey(to=User_Question, on_delete=models.CASCADE)
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
-    Date=models.DateField(default=date.today())
-    Time=models.TimeField(default=datetime.now())
+    Date=models.DateField(null=True, blank=True)
+    Time=models.TimeField(null=True, blank=True)
