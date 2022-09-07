@@ -60,6 +60,8 @@ class Profession(models.Model):
     shop_status_Friday=models.BooleanField(null=True, blank=True)
     shop_status_saturday=models.BooleanField(null=True, blank=True)
     shop_description= models.TextField(null=True, blank=True)
+    shop_Longititude= models.TextField(null=True, blank=True)
+    shop_Latitude= models.TextField(null=True, blank=True)
     Profession_Rating = models.FloatField(default=0)
 
     def __str__(self):
