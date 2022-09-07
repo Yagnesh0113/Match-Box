@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+
+<!-- Start rating CSS -->
 <style>
    *{
    margin: 0;
@@ -50,6 +52,9 @@
    }
    /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
 </style>
+<!-- End rating CSS -->
+
+
 <!-- Start Services CSS -->
 <style>
    body {
@@ -66,11 +71,7 @@
 </style>
 <!-- End Services CSS -->
 <!-- Start our rating color -->
-<style>
-   .checked {
-   color: orange;
-   }
-</style>
+
 <!-- End our rating color -->
 {% endblock own_css %}
 {% block content %}
@@ -421,16 +422,20 @@
          <div class="row">
             <div class="col-md-12 pb-3">
                <span class="rate">
-               <input type="radio" id="star5" name="rate" value="5" required  />
-               <label for="star5" title="text">5 stars</label>
-               <input type="radio" id="star4" name="rate" value="4" />
-               <label for="star4" title="text">4 stars</label>
-               <input type="radio" id="star3" name="rate" value="3" />
-               <label for="star3" title="text">3 stars</label>
-               <input type="radio" id="star2" name="rate" value="2" />
-               <label for="star2" title="text">2 stars</label>
-               <input type="radio" id="star1" name="rate" value="1" />
-               <label for="star1" title="text">1 star</label>
+                  <input type="radio" id="star5" name="rate" value="5" />
+                  <label for="star5" title="text">5 stars</label>
+
+                  <input type="radio" id="star4" name="rate" value="4" />
+                  <label for="star4" title="text">4 stars</label>
+
+                  <input type="radio" id="star3" name="rate" value="3" />
+                  <label for="star3" title="text">3 stars</label>
+
+                  <input type="radio" id="star2" name="rate" value="2" />
+                  <label for="star2" title="text">2 stars</label>
+
+                  <input type="radio" id="star1" name="rate" value="1"/>
+                  <label for="star1" title="text">1 star</label>
                </span>
             </div>
          </div>
@@ -441,6 +446,7 @@
             <input type="radio" name="rate" id="star_4" value="4"/><label for="star 4" class="fas fa-star"></label>
             <input type="radio" name="rate" id="star_5" value="5"/><label for="star 5" class="fas fa-star"></label>
             </div> -->
+
       </div>
       <div class="col-4 col-sm-2 col-md-2 ">
          <button type="submit" class="btn btn-block btn-normal-b">Send</button>
