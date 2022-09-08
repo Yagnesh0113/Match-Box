@@ -543,7 +543,7 @@
                      {% for i in joincommunityobj %}
                         {% if i.Commnunity_id.Community_Type%}
                            <div class="row pt-3">
-                              <div class="col-3 col-sm-3 pt-2">
+                              <div class="col-3 col-sm-3 pt-2 created-community">
                                  <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
                               </div>
                               <div class="col-5 col-sm-5 pt-2">
@@ -579,7 +579,7 @@
                            </div>
                         {% else %}
                            <div class="row pt-3">
-                              <div class="col-2 col-sm-3 pt-2">
+                              <div class="col-2 col-sm-3 pt-2 created-community">
                                  <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
                               </div>
                               <div class="col-6 col-sm-6 pt-2">
