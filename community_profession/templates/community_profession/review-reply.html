@@ -18,20 +18,20 @@ Comment : {{Profession_review.Review}}
    {% csrf_token %}
    <div class="row pl-3 reply-form">
       <!-- Start reply-input-box -->
-      <div class="col-md-8 pt-3">
+      <div class="col-md-10 pt-3">
          <div class="form-group">
-            <input name="reply" type="text" class="form-control form-control-sm" id="usr" placeholder="Your Reply">
+            <input required name="reply" type="text" class="form-control form-control-sm" id="usr" placeholder="Your Reply">
          </div>
       </div>
       <!-- End reply-input-box -->
       <!-- Start post btn -->
-      <div class="col-md-3 pt-3">
+      <div class="col-md-2 pt-3">
          <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
       </div>
          
       <!-- End post btn -->
       <!-- Start options -->
-      <div class="col-md-1 pt-3 options">
+      <!-- <div class="col-md-1 pt-3 options">
          <div class="dropdown dropleft float-right">
                <button type="button" class="btn btn-sm btn-block text-light" data-toggle="dropdown">
                   <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -42,7 +42,7 @@ Comment : {{Profession_review.Review}}
                <a class="dropdown-item" href="#">Hide Reply</a>
                </div>
          </div>
-      </div>
+      </div> -->
       <!-- End options -->
    </div>
 </form>
@@ -60,7 +60,7 @@ Comment : {{Profession_review.Review}}
         </div>
         <!-- End user profile-img  -->
         <!-- Start user name -->
-        <div class="col-md-11">
+        <div class="col-md-10">
            <!-- Start User name heading -->
            <div class="row">
               <div class="col-md-12 user-name-heading">
@@ -78,6 +78,20 @@ Comment : {{Profession_review.Review}}
            <!-- End username-sub-heading -->
         </div>
         <!-- End user name -->
+        {% if userprofile.id is i.User_Profile.id %}
+         <div class="col-md-1 pt-3 options">
+            <div class="dropdown dropleft float-right">
+               <button type="button" class="btn btn-sm btn-block text-light" data-toggle="dropdown">
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
+               </button>
+               <div class="dropdown-menu">
+                  <!-- <a class="dropdown-item" href="#">Block Account</a> -->
+                  <a class="dropdown-item" href="{% url 'review_reply_delete' i.id %}">Delete</a>
+                  <a class="dropdown-item" href="#" data-target="#modal3" data-toggle="modal" onclick="data('{{i.id}}','{{i.Review_Reply}}')">Edit Reply</a>
+               </div>
+            </div>
+         </div>
+         {% endif %}
      </div>
      <!-- End user profile-img & user name  -->
 
@@ -92,5 +106,36 @@ Comment : {{Profession_review.Review}}
 </div><br><hr color="ffffff"><br>
 <!-- End Comment -->
 {% endfor %}
+<div class="modal create-community-modeal" id="modal3">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Review Reply</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="EditReviewReply" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review Reply</label>
+                  <input type="text" class="form-control" name="Review_reply" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Review Reply</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<script>
+   function data(id,val1){
+      document.getElementById('EditReviewReply').action ='/edit_review_reply/'+id;
+      document.getElementById("demo1").value = val1;
+   }
+</script>
 {% endblock content %}
 

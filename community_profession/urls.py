@@ -61,6 +61,12 @@ urlpatterns = [
     path("like_news/<int:id>",views.like_news,name="like_news"),
     path("like_Comment_news/<int:id>",views.like_Comment_news,name="like_Comment_news"),
     path("news_comment_reply/<int:id>",views.news_comment_reply,name="news_comment_reply"),
+    path("Review_Delete/<int:id>",views.Review_Delete,name="Review_Delete"),
+    path("edit_review/<int:id>",views.edit_review,name="edit_review"),
+    path("review_reply_delete/<int:id>",views.review_reply_delete,name="review_reply_delete"),
+    path("edit_review_reply/<int:id>",views.edit_review_reply,name="edit_review_reply"),
+
+    path('loaddata/', views.load_more, name='loaddata'),
 
 
 

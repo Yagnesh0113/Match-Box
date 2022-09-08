@@ -531,7 +531,7 @@
             </span>
             <span >
                <a href="{% url 'review_Reply' k.id %}" class="text-decoration-none likes-heading">
-                  <i class="fa-solid fa-message pl-3"></i> &nbsp;
+                  <i class="fa-solid fa-reply pl-3"></i> &nbsp;
                      {% if k.Reply is None %}
                      0
                      {% else %}
@@ -539,17 +539,20 @@
                      {% endif %}
                   </a>
             </span>
+            
+            {% if userprofile.id is k.user_profile.id %}
             <span >
-               <a href="#" class="text-decoration-none likes-heading">
+               <a href="#" class="text-decoration-none likes-heading" data-target="#modal3" data-toggle="modal" onclick="data('{{k.id}}','{{k.Review}}')" >
                   <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
-                  </a>
+               </a>
             </span>
+            
             <span >
-               <a href="#" class="text-decoration-none likes-heading">
+               <a href="{% url 'Review_Delete' k.id %}" class="text-decoration-none likes-heading">
                   <i class="fa-solid fa-trash pl-3"></i> &nbsp;
-                    
-                  </a>
+               </a>
             </span>
+            {% endif %}
          </div>
       </div>
       <!-- End rating, like and comment -->
@@ -557,4 +560,36 @@
    </div>
 </div>
 <!-- End Review -->
+<div class="modal create-community-modeal" id="modal3">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Review</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="EditReview" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review</label>
+                  <input type="text" class="form-control" name="Review" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Review</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<script>
+   function data(id,val1){
+      document.getElementById('EditReview').action ='/edit_review/'+id;
+      document.getElementById("demo1").value = val1;
+   }
+</script>
+
 {% endblock content %}

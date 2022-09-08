@@ -216,7 +216,7 @@
                         <!-- Start modeal community members  -->
                         <div class="row">
                            <div class="col-md-12 community-sub-heading">
-                              Members : 375
+                              Members : {{i.community_member}}
                            </div>
                         </div>
                         <!-- End modeal community members  -->
@@ -247,7 +247,7 @@
                         <!-- Start modeal community members  -->
                         <div class="row">
                            <div class="col-md-12 community-sub-heading">
-                              Members : 375
+                              Members : {{i.community_member}}
                            </div>
                         </div>
                         <!-- End modeal community members  -->
@@ -287,14 +287,17 @@
                         <!-- Start modeal community members  -->
                         <div class="row">
                            <div class="col-md-12 community-sub-heading">
-                              Members : 375
+                              Members : {{i.Commnunity_id.community_member}}
                            </div>
                         </div>
                         <!-- End modeal community members  -->
                      </div>
+                     {% if userprofile.id is i.Commnunity_id.User_Profile.id %}
+                     {% else %}
                      <div class="col-3 col-sm-3 pt-2">
                         <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Joined</button></a>
                      </div>
+                     {% endif %}
                   </div>
                {% else %}
                   <div class="row pt-3">
@@ -314,7 +317,7 @@
                         <!-- Start modeal community members  -->
                         <div class="row">
                            <div class="col-md-12 community-sub-heading">
-                              Members : 375
+                              Members : {{i.Commnunity_idcommunity_member}}
                            </div>
                         </div>
                         <!-- End modeal community members  -->
@@ -353,7 +356,7 @@
                         <!-- Start modeal community members  -->
                         <div class="row">
                            <div class="col-md-12 community-sub-heading">
-                              Members : 375
+                              Members : {{i.community_member}}
                            </div>
                         </div>
                         <!-- End modeal community members  -->
@@ -384,7 +387,7 @@
                         <!-- Start modeal community members  -->
                         <div class="row">
                            <div class="col-md-12 community-sub-heading">
-                              Members : 375
+                              Members : {{i.community_member}}
                            </div>
                         </div>
                         <!-- End modeal community members  -->
@@ -556,7 +559,7 @@
                                  <!-- Start modeal community members  -->
                                  <div class="row">
                                     <div class="col-md-12 community-sub-heading">
-                                       Members : 375
+                                       Members : {{i.community_member}}
                                     </div>
                                  </div>
                                  <!-- End modeal community members  -->
@@ -583,7 +586,7 @@
                                  <!-- Start modeal community members  -->
                                  <div class="row">
                                     <div class="col-md-12 community-sub-heading">
-                                       Members : 375
+                                       Members : {{i.community_member}}
                                     </div>
                                  </div>
                                  <!-- End modeal community members  -->
@@ -624,7 +627,7 @@
                               <!-- Start modeal community members  -->
                               <div class="row">
                                  <div class="col-md-12 community-sub-heading">
-                                    Members : 375
+                                    Members : {{i.community_member}}
                                  </div>
                               </div>
                               <!-- End modeal community members  -->

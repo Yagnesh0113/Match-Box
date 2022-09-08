@@ -124,6 +124,7 @@ class Community(models.Model):
     Restricted=models.BooleanField(default=False)
     Adult_Content=models.BooleanField(default=False)
     Community_Type=models.BooleanField(default=True)
+    community_member=models.IntegerField(blank=True,null=True,default=0)
     def __str__(self):
         return self.Community_Name
 
@@ -147,7 +148,7 @@ class Join_Community(models.Model):
     User_profile=models.ForeignKey(to=UserProfile,on_delete=models.CASCADE)
     # Commnunity_id=models.JSONField(null=True,blank=True)
     Commnunity_id=models.ForeignKey(to=Community,on_delete=models.CASCADE, null=True, blank=True)
-
+    
 class News(models.Model):
     Image=models.FileField(upload_to='Image',null=True,blank=True,validators=[file_size])
     Video=models.FileField(upload_to='Video',null=True,blank=True,validators=[file_size])

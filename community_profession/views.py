@@ -5,6 +5,7 @@ from Account.models import *
 from professional.models import *
 from professional.views import is_user_is_professional_user
 from datetime import date, datetime
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -146,7 +147,7 @@ def loadProfessionPersonalDetails(request, id):
             Profession_obj.save()
             return redirect(f"/profession-personal-details/{id}")
         else:
-            ProfessionReview_obj = ProfessionReview.objects.filter(Profession=Profession_obj)[::-1]
+            ProfessionReview_obj = ProfessionReview.objects.filter(Profession=Profession_obj)[::-1][0:3]
             ProfessionReview_obj_count = ProfessionReview.objects.filter(Profession=Profession_obj).count()
 
             if obj is not None:
@@ -176,7 +177,8 @@ def loadProfessionPersonalDetails(request, id):
             Profession_obj.save()
             return redirect(f"/profession-personal-details/{id}")
         else:
-            ProfessionReview_obj = ProfessionReview.objects.filter(Profession=Profession_obj)[::-1]
+            ProfessionReview_obj = ProfessionReview.objects.filter(Profession=Profession_obj)[::-1][0:3]
+            
             ProfessionReview_obj_count = ProfessionReview.objects.filter(Profession=Profession_obj).count()
 
             if obj is not None:
@@ -485,22 +487,19 @@ def Create_Community(request):
             Adult_content = True
         else:
             Adult_content = False
-        # print(Community_name)
-        # print(Community_image)
-        # print(Community_Private)
-        # print(Community_Restricted)
-        # print(Community_Public)
-        # print(Adult_content)
+        
         if Community.objects.filter(Community_Name=Community_name):
             print("The Community Name Is Already exits")
             return redirect("community-screen")
         else:
-            Community.objects.create(
+            comunity_obj=Community.objects.create(
             User_Profile=User_Profile_obj,Community_Name=Community_name,
             Community_Cover_Image=Community_image, Public=Community_Public,
             Private=Community_Private,Restricted=Community_Restricted,
             Adult_Content=Adult_content,Community_Profile_Image=Community_profile
             )
+            comunity_obj.save()
+            Join_Community.objects.create(User_profile=User_Profile_obj,Commnunity_id=comunity_obj)
             return redirect("community-screen")
     else:
         return redirect("community-screen")
@@ -627,9 +626,12 @@ def Join_Coummunity(request,id):
     Our_Community=Community.objects.get(id=id)
     Communi_id=[]
     Communi_id.append(Our_Community.id)
+    member_Count=Join_Community.objects.filter(Commnunity_id=Our_Community).count()
     Join=Join_Community(User_profile=User_Profile_obj,Commnunity_id=Our_Community)
+    Our_Community.community_member=member_Count+1
+    Our_Community.save()
     Join.save()
-    print(Join)
+    member_Count=Join_Community.objects.filter(Commnunity_id=Our_Community).count()
     return redirect(f"/community-profile-screen/{id}")
 
 # --- load -- community-answer - screen ---
@@ -691,7 +693,7 @@ def loadCommunityProfileScreen(request, id):
     community_obj=Community.objects.get(id=id)
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
 
-    if Join_Community.objects.filter(User_profile=userprofile) and Join_Community.objects.filter(Commnunity_id=community_obj):
+    if Join_Community.objects.filter(User_profile=userprofile,Commnunity_id=community_obj):
         z=Join_Community.objects.get(User_profile=userprofile,Commnunity_id=community_obj)
     else:
         z=None
@@ -927,8 +929,13 @@ def delete_ans_later(request,id):
 def Unjoin(request,id):
     print(id)
     unjoin=Join_Community.objects.get(id=id)
+    comunity_obj=Community.objects.get(id=unjoin.Commnunity_id.id)
+
+    print(comunity_obj)
+    comunity_obj.community_member=comunity_obj.community_member-1
     print(unjoin)
     unjoin.delete()
+    comunity_obj.save()
     return redirect("community-screen")
 
 @login_required(login_url='/')
@@ -1135,3 +1142,55 @@ def Community_Delete_My_Video(request, id):
     User_post_obj=UserPost.objects.get(id=id)
     User_post_obj.delete()
     return redirect("Community_My_Video")
+
+@login_required(login_url='/')
+def Review_Delete(request,id):
+    obj=ProfessionReview.objects.get(id=id)
+    obj.delete()
+    return redirect(f"/profession-personal-details/{obj.Profession.id}")
+
+@login_required(login_url='/')
+def edit_review(request,id):
+    obj=ProfessionReview.objects.get(id=id)
+    if request.method=="POST":
+        review=request.POST.get("Review")
+        print(review)
+        obj.Review=review
+        obj.save()
+        return redirect(f"/profession-personal-details/{obj.Profession.id}")
+    else:
+        return redirect(f"/profession-personal-details/{obj.Profession.id}")
+
+@login_required(login_url='/')
+def review_reply_delete(request, id):
+    obj=ProfessionReview_Reply.objects.get(id=id)
+    obj.delete()
+    return redirect(f"/review_Reply/{obj.Review.id}")
+
+@login_required(login_url='/')
+def edit_review_reply(request,id):
+    obj=ProfessionReview_Reply.objects.get(id=id)
+    if request.method=="POST":
+        review=request.POST.get("Review_reply")
+        print(review)
+        obj.Review_Reply=review
+        obj.save()
+        return redirect(f"/review_Reply/{obj.Review.id}")
+    else:
+        return redirect(f"/review_Reply/{obj.Review.id}")
+
+
+def load_more(request):
+    print(request.body)
+    offset = request.GET.get('offset')
+    print(offset)
+    offset_int = int(offset)
+    
+    limit = 2
+    # post_obj = Post.objects.all()[offset_int:offset_int+limit]
+    post_obj = list(ProfessionReview.objects.values()[offset_int:offset_int+limit])
+    data = {
+        'posts': post_obj
+    }
+    print(data)
+    return JsonResponse(data=data)
