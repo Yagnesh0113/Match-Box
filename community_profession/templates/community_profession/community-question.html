@@ -142,12 +142,12 @@
       <!-- start community profile picture, name, and join button  -->
       <div class="row">
          <!-- Start Profile picture -->
-         <div class="col-2 col-sm-1 col-md-1">
+         <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture">
             <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania">
          </div>
          <!-- End Profile picture -->
          <!-- Start Community name and time -->
-         <div class="col-5 col-sm-4 col-md-4">
+         <div class="col-5 col-sm-4 col-md-6">
             <!-- Start community name -->
             <div class="row">
                <div class="col-md-12 community-name">
@@ -165,7 +165,7 @@
          </div>
          <!-- End Community name and time -->
          <!-- Start posted by name -->
-         <div class="col-3 col-sm-3 col-md-3">
+         <div class="col-0 col-sm-0 col-md-0">
             <div class="row">
                <div class="col-md-12 community-posted-by-heading">
                   <!-- Posted by/ Name -->
@@ -174,7 +174,7 @@
          </div>
          <!-- End posted by name -->
          <!-- Start join buttons, options -->
-         <div class="col-2 col-sm-4 col-md-4 text-right">
+         <div class="col-2 col-sm-4 col-md-5 text-right">
             <div class="row">
                <!-- Satrt join button -->
                <div class="col-md-11 text-right">
@@ -218,18 +218,28 @@
          <div class="col-4 col-sm-3 col-md-2">
             <a href="{% url 'like_Question' i.id %}">
                {% if userprofile not in i.Question_Like.all %}
-               <button type="submit" class="fa-solid fa-thumbs-up"></button>
+               <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-up"></i>
+               </button>
                {% else %}
-               <button type="submit" class="fa-solid fa-thumbs-down"></button>
+               <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-down"></i>
+               </button>
                {% endif %}
-            </a>{{ i.Question_Like.all.count }} Likes
-            &nbsp;
-            <i class="fa-solid fa-message"></i>
-            {% if i.answer is None %}
-               0
-            {% else %}
-               {{i.answer}}
-            {% endif %}
+            </a>
+            <span class="community-like-dislike-btn">
+               {{ i.Question_Like.all.count }}
+            </span>
+
+            <span class="community-like-dislike-btn">
+               <i class="fa-solid fa-message"></i>
+               {% if i.answer is None %}
+                  0
+               {% else %}
+                  {{i.answer}}
+               {% endif %}
+            </span>
+
          </div>
          <!-- End like button -->
          <!-- Start comment -->
