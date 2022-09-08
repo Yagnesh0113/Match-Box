@@ -407,6 +407,16 @@
 }
 /* End your added questions modal - css */
 
+.community-post-profile-picture .img-fluid
+{
+    height:2.5rem;
+    width:2.5rem;
+}
+
+.community-like-dislike-btn
+{
+    color: var(--color-12);
+}
 
 /* Start Mobile view */
 @media all and (min-width: 577px)
