@@ -6,13 +6,82 @@
 
 {% block own_css %}
 <!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <!-- video-screen css -->
 <link rel="stylesheet" href="{% static 'community_profession/css/video-screen.css' %}">
 {% endblock own_css %}
 
 
 {% block content %}
-Comment : {{Profession_review.Review}}
+
+<div class="row pl-3">
+   <div class="col-md-12 all-comments">
+       <!-- Start user-profile, user-community-name, time -->
+       <div class="row">
+           <!-- Start user-profile -->
+           <div class="col-2 col-sm-1 col-md-1">
+               <img class="img-fluid rounded-circle" src="{{Profession_review.user_profile.profile_image.url}}" alt="Chania">
+           </div>
+           <!-- End user-profile -->
+
+           <!-- Start user-community-name, time -->
+           <div class="col-10 col-sm-11 col-md-11 user-community-name">
+               {{Profession_review.user_profile.usertype.user_id.first_name}} {{Profession_review.user_profile.usertype.user_id.last_name}} <br> 
+               <span class="time">{{Profession_review.Review_Date}} / {{Profession_review.Review_Time}}</span>
+           </div>
+           <!-- End user-community-name, time -->
+       </div>
+       <!-- End user-profile, user-community-name, time -->
+
+       <!-- Start comment -->
+       <div class="row pt-2">
+           <div class="col-12 col-sm-12 col-md-12 comment">
+               {{Profession_review.Review}}
+           </div>
+       </div>
+       <!-- End comment -->
+
+       <!-- Start like-reply-share -->
+       <div class="row">
+         <div class="col-md-12">
+            <span class="likes-heading">
+            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image"> &nbsp; {{Profession_review.Rate}}
+            </span>
+            <span>
+               <form action="{% url 'like_Review' Profession_review.id %}" class="d-inline-block">
+                  {% if userprofile not in Profession_review.like.all %}
+                  <button type="submit" name="profession" value="{{Profession_review.Profession.id}}" class="btn likes-heading">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
+                  {% else %}
+                  <button type="submit" name="profession" value="{{Profession_review.Profession.id}}" class="btn likes-heading">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
+                  {% endif %}
+                  <span class="likes-heading">{{ Profession_review.like.all.count }}</span>
+               </form>
+            </span>
+            <span >
+               <a href="{% url 'review_Reply' Profession_review.id %}" class="text-decoration-none likes-heading">
+                  <i class="fa-solid fa-reply pl-3"></i> &nbsp;
+                     {% if Profession_review.Reply is None %}
+                     0
+                     {% else %}
+                     {{Profession_review.Reply}}
+                     {% endif %}
+               </a>
+            </span>
+         </div>
+      </div>
+       <!-- Start like-reply-share -->
+   </div>
+</div>
+<hr color="ffffff">
+
+
+<!-- Comment : {{Profession_review.Review}} -->
  <!-- Start Reply text-box, post-btn, options -->
  <form action="{% url 'review_Reply' Profession_review.id %}" method="POST">
    {% csrf_token %}
