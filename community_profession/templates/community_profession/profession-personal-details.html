@@ -496,11 +496,11 @@
       </div>
       <!-- End user profile and user information -->
       <!-- Start comment -->
-<!--      <div class="row mt-1">-->
-<!--         <div class="col-md-12 review-comment">-->
-<!--            {{k.Review}}-->
-<!--         </div>-->
-<!--      </div>-->
+     <div class="row mt-1">
+        <div class="col-md-12 review-comment">
+           {{k.Review}}
+        </div>
+     </div>
 <!--      <div class="row mt-1 pl-3">-->
 <!--         <span class="fa fa-star {% if k.Rate >= 1 %}checked {% endif %}"></span>-->
 <!--         <span class="fa fa-star {% if k.Rate >= 2 %}checked {% endif %}"></span>-->
@@ -537,6 +537,17 @@
                      {% else %}
                      {{k.Reply}}
                      {% endif %}
+                  </a>
+            </span>
+            <span >
+               <a href="#" class="text-decoration-none likes-heading">
+                  <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
+                  </a>
+            </span>
+            <span >
+               <a href="#" class="text-decoration-none likes-heading">
+                  <i class="fa-solid fa-trash pl-3"></i> &nbsp;
+                    
                   </a>
             </span>
          </div>
