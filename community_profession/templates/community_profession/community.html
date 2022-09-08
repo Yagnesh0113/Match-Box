@@ -8,6 +8,54 @@
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- Ask Post CSS-->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!-- Start Share icon -->
+<style>
+.fa {
+   padding: 16px;
+   font-size: 30px;
+   width: 63px;
+   text-align: center;
+   text-decoration: none;
+   margin: 6px 2px;
+   border-radius: 50%;
+}
+
+.fa:hover {
+   background: #3B5998;
+  color: white;
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-brands
+{
+   padding: 16px;
+   font-size: 30px;
+   width: 63px;
+   text-align: center;
+   text-decoration: none;
+   margin: 6px 2px;
+   border-radius: 50%;
+}
+
+.fa-brands:hover {
+   background: #51CE5E;
+   color: white;
+   opacity: 0.7;
+}
+
+.fa-whatsapp
+{
+   background: #51CE5E;
+   color: white;
+}
+
+</style>
+<!-- End Share icon -->
 {% endblock own_css %}
 {% block community_profession_nav %}
 <!-- Start Community - Profession Navigation -->
@@ -115,28 +163,25 @@
          <!-- Start my-communities -->
          <li class="nav-item">
             <a class="nav-link notification" href="#" data-target="#your-added-questions" data-toggle="modal">
-               <i class="fa-solid fa-pen-to-square"></i>
-               &nbsp;
-
-               Your question
-               <span class="badge">{{Answer_count}}</span>
+            <i class="fa-solid fa-pen-to-square"></i>
+            &nbsp;
+            Your question
+            <span class="badge">{{Answer_count}}</span>
             </a>
          </li>
          <li class="nav-item">
             <a class="nav-link notification" href="{% url 'news' %}">
-               <i class="fa-solid fa-newspaper"></i>
-               <span class="badge">{{Our_News_count}}</span>
-               &nbsp;
-               News
+            <i class="fa-solid fa-newspaper"></i>
+            <span class="badge">{{Our_News_count}}</span>
+            &nbsp;
+            News
             </a>
          </li>
-          End my-communities
       </ul>
    </div>
 </div>
 <!-- End community navigation -->
 {% endblock community_nav %}
-
 {% block community_content %}
 <!-- Start Community -->
 {% for i in User_POST %}
@@ -251,24 +296,24 @@
          <!-- Start like button -->
          <div class="col-5 col-sm-3 col-md-2">
             <a href="{% url 'like_post' i.Post.id %}">
-               {% if userprofile not in i.Post.Like.all %}
-               <button type="submit" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-thumbs-up"></i>
-               </button>
-               {% else %}
-               <button type="submit" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-thumbs-down"></i>
-               </button>
-               {% endif %}
+            {% if userprofile not in i.Post.Like.all %}
+            <button type="submit" class="btn community-like-dislike-btn">
+            <i class="fa-solid fa-thumbs-up"></i>
+            </button>
+            {% else %}
+            <button type="submit" class="btn community-like-dislike-btn">
+            <i class="fa-solid fa-thumbs-down"></i>
+            </button>
+            {% endif %}
             </a>
             <span class="community-like-dislike-btn">{{ i.Post.Like.all.count }}</span>
             <a href="{% url 'add_comment' i.Post.id %}" class="text-decoration-none community-like-dislike-btn">
-               <i class="fa-solid fa-message"></i>
-               {% if i.Post.Post_comment is None %}
-               0
-               {% else %}
-               {{i.Post.Post_comment}}
-               {% endif %}
+            <i class="fa-solid fa-message"></i>
+            {% if i.Post.Post_comment is None %}
+            0
+            {% else %}
+            {{i.Post.Post_comment}}
+            {% endif %}
             </a>
          </div>
          <div class="col-6 col-sm-4 col-md-3 btn-comment-answer">
@@ -363,24 +408,24 @@
             <a href="{% url 'like_Question' i.Question.id %}">
             {% if userprofile not in i.Question.Question_Like.all %}
             <button type="submit" class="btn community-like-dislike-btn">
-               <i class="fa-solid fa-thumbs-up"></i>
+            <i class="fa-solid fa-thumbs-up"></i>
             </button>
             {% else %}
             <button type="submit" class="btn community-like-dislike-btn">
-               <i class="fa-solid fa-thumbs-down"></i>
+            <i class="fa-solid fa-thumbs-down"></i>
             </button>
             {% endif %}
             </a>
             <span class="community-like-dislike-btn">
-               {{ i.Question.Question_Like.all.count }}
+            {{ i.Question.Question_Like.all.count }}
             </span>
             <span class="community-like-dislike-btn">
-               <i class="fa-solid fa-message"></i>
-               {% if i.Question.answer is None %}
-               0
-               {% else %}
-               {{i.Question.answer}}
-               {% endif %}
+            <i class="fa-solid fa-message"></i>
+            {% if i.Question.answer is None %}
+            0
+            {% else %}
+            {{i.Question.answer}}
+            {% endif %}
             </span>
          </div>
          <!-- End like button -->
@@ -398,7 +443,9 @@
          <!-- End Add comment button -->
          <!-- Start Share button -->
          <div class="col-2 col-sm-1 col-md-1 text-right">
-            <i class="fa-solid fa-share-nodes"></i>
+            <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+               <i class="fa-solid fa-share-nodes"></i>
+            </button>
          </div>
          <!-- End Share button -->
          <div class="col-0 col-sm-6 col-md-6"></div>
@@ -569,25 +616,25 @@
                   <span class="community-type-heading">Public</span> <span clas="community-type-sub-heading"> Anyone can view post, Comment to this Community.</span>
                   </label>
                </div>
-<!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
-<!--                  <label class="form-check-label">-->
-<!--                  <input type="checkbox" name="restricted" class="form-check-input" value="">-->
-<!--                  <span class="community-type-heading">Restricted</span> <span clas="community-type-sub-heading"> Anyone can view this Community, But only approved users can post.</span>-->
-<!--                  </label>-->
-<!--               </div>-->
-<!--               <div class="form-check border rounded mt-3 mb-3 pt-2 pb-2">-->
-<!--                  <label class="form-check-label">-->
-<!--                  <input type="checkbox" name="private" class="form-check-input" value="">-->
-<!--                  <span class="community-type-heading">Private</span> <span clas="community-type-sub-heading"> Only approved users can view and submit to this community.</span>-->
-<!--                  </label>-->
-<!--               </div>-->
-<!--               <span class="modal-sub-heading">Adult Content </span>-->
-<!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
-<!--                  <label class="form-check-label">-->
-<!--                  <input type="checkbox" name="adult" class="form-check-input" value="">-->
-<!--                  18+ year old community-->
-<!--                  </label>-->
-<!--               </div>-->
+               <!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
+               <!--                  <label class="form-check-label">-->
+               <!--                  <input type="checkbox" name="restricted" class="form-check-input" value="">-->
+               <!--                  <span class="community-type-heading">Restricted</span> <span clas="community-type-sub-heading"> Anyone can view this Community, But only approved users can post.</span>-->
+               <!--                  </label>-->
+               <!--               </div>-->
+               <!--               <div class="form-check border rounded mt-3 mb-3 pt-2 pb-2">-->
+               <!--                  <label class="form-check-label">-->
+               <!--                  <input type="checkbox" name="private" class="form-check-input" value="">-->
+               <!--                  <span class="community-type-heading">Private</span> <span clas="community-type-sub-heading"> Only approved users can view and submit to this community.</span>-->
+               <!--                  </label>-->
+               <!--               </div>-->
+               <!--               <span class="modal-sub-heading">Adult Content </span>-->
+               <!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
+               <!--                  <label class="form-check-label">-->
+               <!--                  <input type="checkbox" name="adult" class="form-check-input" value="">-->
+               <!--                  18+ year old community-->
+               <!--                  </label>-->
+               <!--               </div>-->
             </div>
             <div class="modal-footer">
                <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
@@ -887,6 +934,54 @@
    </div>
 </div>
 <!-- End Your-added-question-modal-pop-up -->
+
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <div class="row your-added-questions-heading">
+                 <div class="col-md-12">Share</div>
+              </div>
+              <a href="#" data-dismiss="modal" class="close">&times;</a>
+          </div>
+          <div class="modal-body">
+             <!-- Start Share Icon -->
+             <div class="row">
+                <div class="col-md-12 text-center">
+                     <a href="#" class=" text-decoration-none">
+                        <i class="fa fa-facebook"></i>
+                     </a>
+                     &nbsp;
+                     <a href="#" class=" text-decoration-none">
+                        <i class="fa-brands fa-whatsapp"></i>
+                     </a>
+                </div>
+             </div>
+             <!-- End Share Icon -->
+             <!-- Start copy link text box -->
+             <div class="row d-flex justify-content-center pt-3">
+                <div class="col-md-8">
+                   <form>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="CopyURL">
+                      <div class="input-group-append">
+                        <span class="input-group-text">COPY</span>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+             </div>
+             <!-- End copy link text box -->
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- End Share Modal -->
+
 <!-- Start Ask and post js -->
 <script>
    document.getElementsByClassName("tablink")[0].click();
