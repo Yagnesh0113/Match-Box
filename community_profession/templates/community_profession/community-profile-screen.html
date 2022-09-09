@@ -36,7 +36,7 @@
       <!-- Start no of members and online -->
       <div class="row">
          <div class="pl-5 col-md-12 interior-designer-no-member">
-            Members : 3759
+            Members : {{i.community_member}}
          </div>
       </div>
       <!-- Start no of members and online -->
@@ -46,9 +46,16 @@
    <div class="col-sm-6 col-md-6 text-right pt-4">
       <!-- Start join - btn -->
       {% if z %}
-      <span class="join-btn pl-5 pr-5">
-      <a href="{% url 'Unjoin' z.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Un Join</button></a>
-      </span>
+         {% if userprofile.id is z.Commnunity_id.User_Profile.id %}
+         <span class="join-btn pl-5 pr-5">
+            <a href="{% url 'Edit_Community' z.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Edit</button></a>
+            <a href="{% url 'Delete_Community' z.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Delete</button></a>
+         </span>
+         {% else %}
+         <span class="join-btn pl-5 pr-5">
+            <a href="{% url 'Unjoin' z.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Un Join</button></a>
+         </span>
+         {% endif %}
       {% else %}
       <span class="join-btn pl-5 pr-5">
       <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Join</button></a>
@@ -145,7 +152,9 @@
          </div>
          <div class="col-md-6 posted-by-heading">
             <h4>{{Post.user_post.User_Profile.usertype.user_id.first_name}} {{Post.user_post.User_Profile.usertype.user_id.last_name}}</h4>
-            <h6>{{Post.user_post.Post_Date}} {{Post.user_post.Post_Time}} ago </h6>
+            <h6>{{Post.user_post.Post_Date}} {{Post.user_post.Post_Time}} 
+               <!-- ago  -->
+            </h6>
          </div>
          <!-- End heading -->
          <!-- Start options -->

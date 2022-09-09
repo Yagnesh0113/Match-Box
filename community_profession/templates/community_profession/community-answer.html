@@ -22,7 +22,7 @@
 <div class="row">
    <!-- Start Question Alert -->
    <div class="col-md-12 question-alert">
-      {% for Question in Question %}
+      {% for Question in Question_obj %}
       <div class="row">
          <!-- Start Profile picture -->
          <div class="col-2 col-sm-1 col-md-1">
@@ -37,6 +37,11 @@
                   {{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}
                </div>
             </div>
+            <div class="row">
+               <div class="col-md-12 community-name">
+                  {{Question.Date}} {{Question.Time}}
+               </div>
+            </div>
          </div>
          <!-- End Community name and time -->
       </div>
@@ -47,7 +52,7 @@
                <!-- Start question-alert heading -->
                <div class="row">
                   <div class="col-md-12 heading">
-                     {{Question.Question}}
+                     {{Question.Question}} ?
                   </div>
                </div>
                <!-- End question-alert heading -->
@@ -75,21 +80,31 @@
 <!--                     </a>-->
                      </span>
                      <!-- End Answer modal -->
-                     <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span>
+                     <!-- <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span> -->
                      <span class="pl-5">
                         <button type="button" class="btn text-light" data-toggle="dropdown">
                         <i class="fa-solid fa-ellipsis-vertical"></i>
                         </button>
                         <div class="dropdown-menu">
-                           <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
-                           <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notify Me About Edits</a>
+                           <!-- For Answer Later -->
+                           {% if Question.Answer_later %}
+                              <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
+                           {% else %}
+                              <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
+                           {% endif %}
+                           <!-- End Answer Later -->
+                           <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notify Me About Edits</a> -->
                            <!-- <a class="dropdown-item" onclick="data('{{Question.Question}}')" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a> -->
-                           <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a>
-                           <a class="dropdown-item" href="#" data-target="#my-answer" data-toggle="modal"><i class="fa-solid fa-pen"></i> My Answer</a>
+                           <!-- <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a> -->
+                           <!-- <a class="dropdown-item" href="#" data-target="#my-answer" data-toggle="modal"><i class="fa-solid fa-pen"></i> My Answer</a> -->
                            <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
-                           <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
+                           <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
                         </div>
                      </span>
+                     {% if Question.Question_Edit %}
+                     <span class="pl-5"><i class="fa-solid fa-bell"></i> Edited The Question </span>
+                     {% else %}
+                     {% endif %}
                   </div>
                </div>
                <!-- End answer, share, options -->

@@ -142,9 +142,10 @@
          <!-- End ask -->
          <!-- Start answer -->
          <li class="nav-item border-bottom">
-            <a class="nav-link" href="#" data-target="#askedanswer" data-toggle="modal">
+            <a class="nav-link notification" href="#" data-target="#askedanswer" data-toggle="modal">
             <i class="fa-solid fa-pen"></i>
             Answer
+            <span class="badge">{{Question_count}}</span>
             </a>
          </li>
          <!-- End answer -->
@@ -208,7 +209,8 @@
             <!-- Start community time -->
             <div class="row">
                <div class="col-md-12 community-time">
-                  {{i.Post.Post_Date}} / {{i.Post.Post_Time}} Ago
+                  {{i.Post.Post_Date}} / {{i.Post.Post_Time}}
+                  <!-- Ago -->
                </div>
             </div>
             <!-- End community time -->
@@ -350,7 +352,8 @@
             <!-- Start community time -->
             <div class="row">
                <div class="col-md-12 community-time">
-                  {{i.Question.Date}} / {{i.Question.Time}} Ago
+                  {{i.Question.Date}} / {{i.Question.Time}} 
+                  <!-- Ago -->
                </div>
             </div>
             <!-- End community time -->
@@ -446,9 +449,9 @@
          <!-- End Add comment button -->
          <!-- Start Share button -->
          <div class="col-2 col-sm-1 col-md-1 text-right">
-            <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+            <!-- <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal"> -->
                <i class="fa-solid fa-share-nodes"></i>
-            </button>
+            <!-- </button> -->
          </div>
          <!-- End Share button -->
          <div class="col-0 col-sm-6 col-md-6"></div>
@@ -475,7 +478,7 @@
                <div class="col-3 col-sm-3 pt-2 created-community">
                   <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
                </div>
-               <div class="col-6 col-sm-6 pt-2">
+               <div class="col-5 col-sm-5 pt-2">
                   <!-- Start modeal community heading  -->
                   <div class="row">
                      <div class="col-md-12 community-heading">
@@ -493,9 +496,18 @@
                   </div>
                   <!-- End modeal community members  -->
                </div>
-               <div class="col-3 col-sm-3 pt-2">
-                  <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Un Join</button></a>
-               </div>
+               {% if userprofile.id is i.Commnunity_id.User_Profile.id %}
+                  <div class="col-2 col-sm-2 pt-2">
+                     <a href="{% url 'Edit_Community' i.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Edit</button></a>
+                  </div>
+                  <div class="col-2 col-sm-2 pt-2 pl-1">
+                     <a href="{% url 'Delete_Community' i.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Delete</button></a>
+                  </div>
+               {% else %}
+                  <div class="col-3 col-sm-3 pt-2">
+                     <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Joined</button></a>
+                  </div>
+               {% endif %}
             </div>
             {% else %}
             <div class="row pt-3">
@@ -523,7 +535,7 @@
                {% if i.User_Profile %}
                {% else %}
                <div class="col-4 col-sm-3 pt-2">
-                  <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Un Join</button></a>
+                  <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Joined</button></a>
                </div>
                {% endif %}
             </div>
@@ -531,48 +543,48 @@
             {% endfor %}
             <!-- End My Community -->
             <!-- ============================================================== -->
-            <div class="row">
+            <!-- <div class="row">
                <div class="col-md-12 modal-header ">
                   Created coummunity
                </div>
-            </div>
-            {% for i in My_community %}
+            </div> -->
+            <!-- {% for i in My_community %}
             {% if i.Community_Type%}
-            {% if userprofile.id is i.User_Profile.id %}
-            <div class="row pt-3">
+            {% if userprofile.id is i.User_Profile.id %} -->
+            <!-- <div class="row pt-3">
                <div class="col-3 col-sm-3 pt-2 created-community">
                   <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania" >
                </div>
-               <div class="col-5 col-sm-5 pt-2">
+               <div class="col-5 col-sm-5 pt-2"> -->
                   <!-- Start modeal community heading  -->
-                  <div class="row">
+                  <!-- <div class="row">
                      <div class="col-md-12 community-heading">
                         <a href="{% url 'community-profile-screen' i.id %}">
                         U/{{i.Community_Name}}
                         </a>
                      </div>
-                  </div>
+                  </div> -->
                   <!-- End modeal community heading  -->
                   <!-- Start modeal community members  -->
-                  <div class="row">
+                  <!-- <div class="row">
                      <div class="col-md-12 community-sub-heading">
                         Members : {{i.Commnunity_id.community_member}}
                      </div>
-                  </div>
+                  </div> -->
                   <!-- End modeal community members  -->
-               </div>
+               <!-- </div>
                <div class="col-2 col-sm-2 pt-2">
                   <a href="{% url 'Edit_Community' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Edit</button></a>
                </div>
                <div class="col-2 col-sm-2 pt-2 pl-1">
                   <a href="{% url 'Delete_Community' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Delete</button></a>
                </div>
-            </div>
-            {% else %}
+            </div> -->
+            <!-- {% else %} -->
+            <!-- {% endif %} -->
+            <!-- {% else %}
             {% endif %}
-            {% else %}
-            {% endif %}
-            {% endfor %}
+            {% endfor %} -->
          </div>
          <div class="modal-footer">
          </div>
@@ -677,6 +689,11 @@
                            {{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}
                         </div>
                      </div>
+                     <div class="row">
+                        <div class="col-md-12 community-name">
+                           {{Question.Date}} {{Question.Time}}
+                        </div>
+                     </div>
                   </div>
                   <!-- End Community name and time -->
                </div>
@@ -687,7 +704,7 @@
                         <!-- Start question-alert heading -->
                         <div class="row">
                            <div class="col-md-12 heading">
-                              {{Question.Question}}
+                              {{Question.Question}} ?
                            </div>
                         </div>
                        
@@ -702,24 +719,34 @@
                               </span>
                               <!-- End Answer modal -->
                               <!-- <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span> -->
+                              
                               <span class="pl-5">
                                  <button type="button" class="btn text-light" data-toggle="dropdown">
                                  <i class="fa-solid fa-ellipsis-vertical"></i>
                                  </button>
                                  <div class="dropdown-menu">
+                                    <!-- For Answer Later -->
                                     {% if Question.Answer_later %}
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
                                     {% else %}
                                     <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
                                     {% endif %}
-                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notify Me About Edits</a>
+                                    <!-- End Answer Later -->
+                                    <!-- Edit Question Notify -->
+                                    <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Edit The Question</a> -->
+                                    
+                                    <!-- End Edit question Notify -->
                                     <!-- <a class="dropdown-item" onclick="data('{{Question.Question}}')" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a> -->
-                                    <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a>
-                                    <a class="dropdown-item" href="#" data-target="#my-answer" data-toggle="modal"><i class="fa-solid fa-pen"></i> My Answer</a>
+                                    <!-- <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a> -->
+                                    <!-- <a class="dropdown-item" href="#" data-target="#my-answer" data-toggle="modal"><i class="fa-solid fa-pen"></i> My Answer</a> -->
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
-                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
+                                    <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
                                  </div>
                               </span>
+                              {% if Question.Question_Edit %}
+                              <span class="pl-5"><i class="fa-solid fa-bell"></i> Edited The Question </span>
+                              {% else %}
+                              {% endif %}
                            </div>
                         </div>
                         <!-- End answer, share, options -->
@@ -727,8 +754,14 @@
                   </div>
                </div>
                {% endfor %}
-               </div>
             </div>
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            <a href="{% url 'community-answer' %}">
+               <button type="submit" class="btn btn-normal-b">See More Question</button>
+            </a>
+        </div>
       </div>
    </div>
 </div>
@@ -899,7 +932,9 @@
             <div class="row pt-3">
                <div class="col-md-12 question-sub-content">
                   <!-- <span>No Answer yet</span> -->
-                  <span class="pl-1">{{i.Date}} / {{i.Time}} ago</span>
+                  <span class="pl-1">{{i.Date}} / {{i.Time}} 
+                     <!-- ago -->
+                  </span>
                </div>
             </div>
             <!-- End question sub-content -->
@@ -1022,64 +1057,9 @@
    </div>
 </div>
 <!-- End Your-added-question-modal-pop-up -->
+<!-- Share Modal -->
 
-<!-- Start Share Modal -->
-<div class="modal create-community-modeal" id="share-modal">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <div class="row your-added-questions-heading">
-                 <div class="col-md-12">Share</div>
-              </div>
-              <a href="#" data-dismiss="modal" class="close">&times;</a>
-          </div>
-          <div class="modal-body">
-             <!-- Start Share Icon -->
-             <div class="row">
-                <div class="col-md-12 text-center">
-                  <a>{% post_to_facebook object_or_url %}</a>
-                     <!-- <a href="" class=" text-decoration-none">
-                        <i class="fa fa-facebook">{% post_to_facebook object_or_url %} </i>
-                     </a> -->
-                     &nbsp;
-                     <a>{% post_to_whatsapp object_or_url %}</a>
-                     <!-- <a href="#" class=" text-decoration-none">
-                        <i class="fa-brands fa-whatsapp"></i>
-                     </a> -->
-                     &nbsp;
-                     <!-- Reddit Icon -->
-                     <a>{% post_to_reddit object_or_url %}</a>
-                     <!-- end reddit icon -->
-                     &nbsp;
-
-
-                </div>
-             </div>
-             <!-- End Share Icon -->
-             <!-- Start copy link text box -->
-             <div class="row d-flex justify-content-center pt-3">
-                <div class="col-md-8">
-                   <form>
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="CopyURL">
-                      <div class="input-group-append">
-                        <!-- <span class="input-group-text">COPY</span> -->
-                        <span>{% copy_to_clipboard object_or_url%}</span>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-             </div>
-             <!-- End copy link text box -->
-          </div>
-          <div class="modal-footer">
-              <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
-          </div>
-      </div>
-  </div>
-</div>
 <!-- End Share Modal -->
-
 <!-- copy to clupboard -->
 {% add_copy_script %}
 
