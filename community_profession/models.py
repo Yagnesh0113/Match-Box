@@ -72,7 +72,8 @@ class User_Question(models.Model):
     Time=models.TimeField(null=True,blank=True)
     answer=models.IntegerField(null=True, blank=True)
     Question_Like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='Question_Like' )
-    
+    Answer_later=models.BooleanField(default=False)
+
     def __str__(self):
         return self.Question
     

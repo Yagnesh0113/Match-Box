@@ -263,31 +263,33 @@
       <!-- End community description -->
       <!-- Start Community post -->
       {% if i.Post.Image %}
-      <div class="row community-post-image">
-         <div class="col-md-12">
-            <div class="row community-post-image-background">
-               <div class="col-md-3"></div>
-               <!-- {% if '.jpg' in i.Post.Image %}
-                  <p>Yes</p>
-                  {% else %}
-                  <p>No</p>
+      <a href="{% url 'add_comment' i.Post.id %}">
+         <div class="row community-post-image">
+            <div class="col-md-12">
+               <div class="row community-post-image-background">
+                  <div class="col-md-3"></div>
+                  <!-- {% if '.jpg' in i.Post.Image %}
+                     <p>Yes</p>
+                     {% else %}
+                     <p>No</p>
+                     {% endif %}
+                     {{i.Post.Image}} -->
+                  {% if i.Post.post_type1 %}
+                  <div class="col-md-6">
+                     <video width="100%" height="" controls>
+                        <source src="{{i.Post.Image.url}}" type="video/mp4">
+                     </video>
+                  </div>
+                  {%else%}
+                  <div class="col-md-6">
+                     <img src="{{i.Post.Image.url}}" alt="" class="img-fluid" width="100%">
+                  </div>
                   {% endif %}
-                  {{i.Post.Image}} -->
-               {% if i.Post.post_type1 %}
-               <div class="col-md-6">
-                  <video width="100%" height="" controls>
-                     <source src="{{i.Post.Image.url}}" type="video/mp4">
-                  </video>
+                  <div class="col-md-3"></div>
                </div>
-               {%else%}
-               <div class="col-md-6">
-                  <img src="{{i.Post.Image.url}}" alt="" class="img-fluid" width="100%">
-               </div>
-               {% endif %}
-               <div class="col-md-3"></div>
             </div>
          </div>
-      </div>
+      </a>
       {% else %}
       <div></div>
       {% endif %}
@@ -700,13 +702,17 @@
                           
                               </span>
                               <!-- End Answer modal -->
-                              <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span>
+                              <!-- <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span> -->
                               <span class="pl-5">
                                  <button type="button" class="btn text-light" data-toggle="dropdown">
                                  <i class="fa-solid fa-ellipsis-vertical"></i>
                                  </button>
                                  <div class="dropdown-menu">
+                                    {% if Question.Answer_later %}
+                                    <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
+                                    {% else %}
                                     <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
+                                    {% endif %}
                                     <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notify Me About Edits</a>
                                     <!-- <a class="dropdown-item" onclick="data('{{Question.Question}}')" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a> -->
                                     <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a>

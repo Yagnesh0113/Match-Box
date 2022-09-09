@@ -8,6 +8,8 @@
 <!-- Own css - profile-screen-for-profession -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profile-screen-for-profession.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!-- Start ppop-up screen CSS -->
+<link rel="stylesheet" href="{% static 'community_profession/css/pop-up-screen.css' %}">
 {% endblock own_css %}
 {% block content %}
 <!-- Start Profession Profiles screen -->
@@ -168,7 +170,8 @@
          <!-- End Personal information -->
       </div>
       <!-- End Personal information -->
-      <!-- ==================== My Dashboard=========================== -->
+
+
       <!-- Start my profession heading and add new btn -->
       <div class="row">
          <!-- Start My Profession Heading -->
@@ -177,7 +180,7 @@
          </div>
          <!-- End My Profession Heading -->
          <div class="col-6 col-sm-6 col-md-6 profile-heading text-right pt-4">
-            <a href="{% url 'add_profession' %}" class="btn btn-normal text-dark mr-5 ">Add New</a>
+            <a href="{% url 'add_profession' %}" class="btn btn-normal text-dark">Add New</a>
          </div>
       </div>
       <!-- End my profession heading and add new btn -->
@@ -185,7 +188,7 @@
       <!-- Start my Profession card -->
       <div class="row">
          {% for i in profession %}
-         <div class="col-6 col-sm-3 col-md-3">
+         <div class="col-12 col-sm-6 col-md-4">
             <div class="row p-3 profession-cart">
                <div class="col-12 col-sm-12 col-md-12 border-1 rounded">
                   <!-- Start image -->
@@ -256,13 +259,12 @@
          </div>
          {% endfor %}
       </div>
+      <!-- End my Profession card -->
 
-
-
-      <!-- =======================================Modal popuos================================= -->
-      <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- Start pdate profile image modal -->
+      <div class="modal fade profession-profile-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog">
-            <div class="modal-content bg-dark">
+            <div class="modal-content">
                <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Update Image</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -274,27 +276,33 @@
                   <div class="modal-body">
                      <div class="container ">
                         <div class="row">
-                           <div class="col-6">
-                              <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image">
+                           <div class="col-4">
+                              <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
                            </div>
-                           <div class="col-6 mt-5">
-                              <label for="profile_image">Select Image</label>
-                              <input type="file" name="profile_image">
+                           <div class="col-8">
+                              <span class="modal-sub-heading">
+                                 Select Image
+                              </span>
+
+                              <input type="file" name="profile_image" class="text-dark" required>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div class="modal-footer">
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                     <button type="submit" class="btn btn-primary">Save changes</button>
+                     <button type="submit" class="btn btn-normal-b">Save changes</button>
+                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
                   </div>
                </form>
             </div>
          </div>
       </div>
-      <div class="modal fade" id="exampleModalLabel1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+      <!-- End pdate profile image modal -->
+
+      <!-- Start personal details edit button -->
+      <div class="modal fade profession-profile-modal" id="exampleModalLabel1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
          <div class="modal-dialog">
-            <div class="modal-content bg-dark">
+            <div class="modal-content">
                <div class="modal-header">
                   <h5 class="modal-title" id="exampleModalLabel">Update Personal Detail</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -305,19 +313,19 @@
                   <div class="modal-body">
                      {% csrf_token %}
                      <div class="form-group">
-                        <label for="first-name" class="col-form-label">First Name</label>:</label>
+                        <label for="first-name" class="col-form-label modal-sub-heading">First Name:</label>
                         <input type="text" class="form-control" id="first-name" value="{{userprofile.usertype.user_id.first_name}}" placeholder="First Name"name="first_name">
                      </div>
                      <div class="form-group">
-                        <label for="last-name" class="col-form-label">Last Name</label>:</label>
+                        <label for="last-name" class="col-form-label modal-sub-heading">Last Name:</label>
                         <input type="text" class="form-control" value="{{userprofile.usertype.user_id.last_name}}" id="last-name" name="last_name">
                      </div>
                      <div class="form-group">
-                        <label for="phone-number" class="col-form-label">Phone Number</label>:</label>
+                        <label for="phone-number" class="col-form-label modal-sub-heading">Phone Number:</label>
                         <input type="text" class="form-control" value="{{userprofile.phone_number}}" id="phone-number" name="phone_number" maxlength="10">
                      </div>
                      <div class="form-group">
-                        <label for="message-text" class="col-form-label">State:</label>
+                        <label for="message-text" class="col-form-label modal-sub-heading">State:</label>
                         <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1" required>
                            <option class="">-- Select State -- </option>
                            {% for i in state %}
@@ -326,24 +334,25 @@
                         </select>   
                      </div>
                      <div class="form-group">
-                        <label for="message-text" class="col-form-label">City:</label>
+                        <label for="message-text" class="col-form-label modal-sub-heading">City:</label>
                         <select name="city" class="form-control border-left-0" id="city" required>
                         </select> 
                      </div>
                   </div>
                   <div class="modal-footer">
-                     <button type="submit" class="btn btn-primary">Send message</button>
-                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-normal-b">Save Changes</button>
+                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
                   </div>
                </form>
             </div>
          </div>
       </div>
+      <!-- End personal details edit button -->
 
-      <!-- ===================whatsapp_number popup starts====================== -->
-      <div class="modal fade" id="whatsapp" tabindex="-1" aria-labelledby="whatsapp" aria-hidden="true">
+      <!-- Start Whatsapp number pop up -->
+      <div class="modal fade profession-profile-modal" id="whatsapp" tabindex="-1" aria-labelledby="whatsapp" aria-hidden="true">
          <div class="modal-dialog">
-            <div class="modal-content bg-dark">
+            <div class="modal-content">
                <div class="modal-header">
                   <h5 class="modal-title" id="whatsapp">Whats App Number:</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -354,24 +363,24 @@
                   {% csrf_token %}
                <div class="modal-body">
                      <div class="form-group">
-                        <label for="Country-Code" class="col-form-label">Country Code:</label>
+                        <label for="Country-Code" class="col-form-label modal-sub-heading">Country Code:</label>
                         <input type="text" value="+91" class="form-control" id="Country-Code" name="country_code" disabled>
                      </div>
                      <div class="form-group">
-                        <label for="Number" class="col-form-label">Number:</label>
+                        <label for="Number" class="col-form-label modal-sub-heading">Number:</label>
                         <input type="text" class="form-control" required id="Number" name="whatsapp_number" maxlength="10">
                      </div>
 
                </div>
                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-normal-b">Save Changes</button>
+                  <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
                </div>
             </form>
             </div>
          </div>
       </div>
-      <!-- ======================= whatsapp_number popup ends -->
+      <!-- End Whatsapp number pop up -->
    </div>
 </div>
 <!-- End Profession Profiles screen -->
