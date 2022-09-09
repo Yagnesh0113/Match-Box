@@ -57,6 +57,20 @@ urlpatterns = [
     path("Community_Edit_My_Question/<int:id>",views.Community_Edit_My_Question,name="Community_Edit_My_Question"),
     path("Community_Delete_My_Question/<int:id>",views.Community_Delete_My_Question,name="Community_Delete_My_Question"),
     path("like_Question/<int:id>",views.like_Question,name="like_Question"),
+    path("Community_Edit_My_Video/<int:id>",views.Community_Edit_My_Video,name="Community_Edit_My_Video"),
+    path("Community_Delete_My_Video/<int:id>",views.Community_Delete_My_Video,name="Community_Delete_My_Video"),
+    path("like_post_comment/<int:id>",views.like_post_comment,name="like_post_comment"),
+    path("like_Answer/<int:id>",views.like_Answer,name="like_Answer"),
+    path("like_news/<int:id>",views.like_news,name="like_news"),
+    path("like_Comment_news/<int:id>",views.like_Comment_news,name="like_Comment_news"),
+    path("news_comment_reply/<int:id>",views.news_comment_reply,name="news_comment_reply"),
+    path("Review_Delete/<int:id>",views.Review_Delete,name="Review_Delete"),
+    path("edit_review/<int:id>",views.edit_review,name="edit_review"),
+    path("review_reply_delete/<int:id>",views.review_reply_delete,name="review_reply_delete"),
+    path("edit_review_reply/<int:id>",views.edit_review_reply,name="edit_review_reply"),
+
+    path('loaddata/', views.load_more, name='loaddata'),
+
 
 
 ]

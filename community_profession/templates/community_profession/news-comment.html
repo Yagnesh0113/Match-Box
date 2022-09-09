@@ -4,6 +4,7 @@
 <title>Write Comment</title>
 {% endblock title %}
 {% block own_css %}
+
 <!--   use Community css as a base css   -->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- own css Community write comment screen css -->
@@ -61,32 +62,44 @@
 <!-- End Community sub heading -->
 
 <!-- Start post-img-video -->
-<div class="row pl-3 pt-3">
-    <div class="col-md-12">
-        {% if News.Video %}
-            <video width="100%" controls controlslist="nodownload" oncontextmenu="return false">
-                <source src="{{News.Video.url}}" type="video/mp4"> 
-            </video>
-        {% elif News.Image %}
-            <img width="100%" src="{{News.Image.url}}" alt="">
-        {% else %}
-            <div></div>
-        {% endif %}
+<div class="row news-img-video">
+    <div class="col-12 col-sm-12 col-md-12">
+       <div class="row background">
+          <div class="col-0 col-sm-3 col-md-3"></div>
+          <div class="col-12 col-sm-6 col-md-6">
+             {% if News.Video %}
+             <video width="100%" controls controlslist="nodownload" oncontextmenu="return false">
+                <source src="{{News.Video.url}}" type="video/mp4">
+             </video>
+             {% elif News.Image %}
+             <img class="img-fluid" src="{{News.Image.url}}" alt="Chania" width="100%">
+             {% else %}
+             <div></div>
+             {% endif %}
+          </div>
+          <div class="col-0 col-sm-3 col-md-3"></div>
+       </div>
     </div>
-</div>
+ </div>
 <!-- End post-img-video -->
 
 <!-- Start no-of-like, no-of-comments, share -->
 <div class="row pl-3 pt-3 like-comment-share">
     <!-- Start no-of-like -->
     <div class="col-md-1">
-        <i class="fa-solid fa-thumbs-up"></i> {{News.Like}}
+        <a href="{% url 'like_news' News.id %}">
+            {% if userprofile not in News.News_like.all %}
+            <button type="submit" class="fa-solid fa-thumbs-up"></button>
+            {% else %}
+            <button type="submit" class="fa-solid fa-thumbs-down"></button>
+            {% endif %}
+         </a>{{ News.News_like.all.count }}
     </div>
     <!-- End no-of-like -->
 
     <!-- Start  no-of-comments -->
     <div class="col-md-1">
-        <i class="fa-solid fa-message"></i> {{Comment_Count}}
+        <i class="fa-solid fa-message"></i> {{News.comment}}
     </div>
     <!-- End  no-of-comments -->
 
@@ -99,16 +112,20 @@
     <div class="col-md-9"></div>
 </div>
 <!-- End no-of-like, no-of-comments, share -->
-
+<hr color="ffffff" >
 <!-- Start community-user-name -->
 <div class="row pl-3 pt-2 community-user-name">
-    <div class="col-md-1 pt-2 ">
-        <img class="img-fluid" src="{{User.profile_image.url}}" alt="Chania">
-    </div>
-    <div class="col-md-12">
-        <span class="commnet-as"></span>
-        <span>{{User.usertype.user_id.first_name}} {{User.usertype.user_id.last_name}}</span>
-    </div>
+    <!-- <div class="col-md-12"> -->
+        <!-- <span class="commnet-as"></span> -->
+        <!-- <span>community name or User name</span> -->
+        <div class="col-3 col-sm-2 col-md-1 pl-5 pr-3">
+            <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
+         </div>
+         <div class="col-9 col-sm-5 col-md-5 pt-3">
+            <!-- <span class="commnet-as">Comment as</span> -->
+            <span>{{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}</span>
+         </div>
+    <!-- </div> -->
 </div>
 <!-- End community-user-name -->
 
@@ -183,11 +200,17 @@
         <div class="row pt-3">
             <div class="col-md-12 like-reply-share">
                 <span class="">
-                    <i class="fa-solid fa-thumbs-up"></i> 1.2K
+                    <a href="{% url 'like_Comment_news' i.id %}">
+                        {% if userprofile not in i.News_comment_like.all %}
+                        <button type="submit" class="fa-solid fa-thumbs-up"></button>
+                        {% else %}
+                        <button type="submit" class="fa-solid fa-thumbs-down"></button>
+                        {% endif %}
+                     </a>{{ i.News_comment_like.all.count }}
                 </span>
 
                 <span class="pl-5">
-                    <a href="{% url 'Post_comment_reply' i.id %}" class="text-decoration-none">2 Reply</a>
+                    <a href="{% url 'news_comment_reply' i.id %}" class="text-decoration-none"><i class="fa-solid fa-message"></i> {{i.reply}}</a>
                 </span>
 
                 <span class="pl-5">

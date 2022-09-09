@@ -54,15 +54,16 @@
                   <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">My Post</a>
                   <div class="dropdown-menu">
                      <a class="dropdown-item" href="{% url 'Community_My_Image' %}">My Images</a>
+                     <a class="dropdown-item" href="{% url 'Community_My_Video' %}">My Video</a>
                      <!-- <a class="dropdown-item" href="#">My Questions</a> -->
                   </div>
                   <a class="dropdown-item" href="{% url 'Community_image' %}">Image</a>
-                  <a class="dropdown-item" href="#">Video</a>
+                  <a class="dropdown-item" href="{% url 'Community_video' %}">Video</a>
                   <a class="dropdown-item" href="{% url 'Community_Question' %}">Questions</a>
 
                   <a class="dropdown-item" href="{% url 'community-screen' %}">Global</a>
                   <a class="dropdown-item" href="#">My Location</a>
-                  <a class="dropdown-item" href="#">Other</a>
+                  <!-- <a class="dropdown-item" href="#">Other</a> -->
             </div>
          </li>
          <!-- End Post -->
@@ -215,7 +216,13 @@
       <div class="row pt-2 pd-2">
          <!-- Start like button -->
          <div class="col-4 col-sm-3 col-md-2">
-            <a href=""><i class="fa-solid fa-thumbs-up"></i> {{i.Like}}</a>
+            <a href="{% url 'like_Question' i.id %}">
+               {% if userprofile not in i.Question_Like.all %}
+               <button type="submit" class="fa-solid fa-thumbs-up"></button>
+               {% else %}
+               <button type="submit" class="fa-solid fa-thumbs-down"></button>
+               {% endif %}
+            </a>{{ i.Question_Like.all.count }} Likes
             &nbsp;
             <i class="fa-solid fa-message"></i> {{i.answer}}
          </div>

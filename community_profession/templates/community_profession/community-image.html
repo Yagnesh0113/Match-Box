@@ -64,7 +64,7 @@
 
                   <a class="dropdown-item" href="{% url 'community-screen' %}">Global</a>
                   <a class="dropdown-item" href="#">My Location</a>
-                  <a class="dropdown-item" href="#">Other</a>
+                  <!-- <a class="dropdown-item" href="#">Other</a> -->
             </div>
          </li>
          <!-- End Post -->
@@ -225,13 +225,9 @@
                   <p>No</p>
                   {% endif %}
                   {{i.Post.Image}} -->
-                  {% if i.post_type1 %}
-                  <div></div>
-                  {%else%}
                   <div class="col-md-6">
                      <img src="{{i.Image.url}}" alt="" class="img-fluid" width="100%">
                   </div>
-                  {% endif %}
                   <div class="col-md-3"></div>
                </div>
             </div>
@@ -244,7 +240,13 @@
          <div class="row pt-2 pd-2">
             <!-- Start like button -->
             <div class="col-4 col-sm-3 col-md-2">
-               <a href=""><i class="fa-solid fa-thumbs-up"></i> {{i.Like}}</a>
+               <a href="{% url 'like_post' i.id %}">
+                  {% if userprofile not in i.Like.all %}
+                  <button type="submit" class="fa-solid fa-thumbs-up"></button>
+                  {% else %}
+                  <button type="submit" class="fa-solid fa-thumbs-down"></button>
+                  {% endif %}
+               </a>{{ i.Like.all.count }} Likes
                &nbsp;
                <i class="fa-solid fa-message"></i> {{i.Post_comment}}
                <!-- <i class="fa-solid fa-message"></i> {{i.Post.Post_Commment}} -->

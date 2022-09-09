@@ -8,49 +8,50 @@
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!-- Start rating CSS -->
 <style>
-    *{
-    margin: 0;
-    padding: 0;
-}
-.rate {
-    float: left;
-    height: 46px;
-    padding: 0 10px;
-}
-.rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-}
-.rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:30px;
-    color:#ccc;
-}
-.rate:not(:checked) > label:before {
-    content: '★ ';
-}
-.rate > input:checked ~ label {
-    color: #ffc700;
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
-}
-
-/* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
-  </style>
+   *{
+   margin: 0;
+   padding: 0;
+   }
+   .rate {
+   float: left;
+   height: 46px;
+   padding: 0 10px;
+   }
+   .rate:not(:checked) > input {
+   position:absolute;
+   top:-9999px;
+   }
+   .rate:not(:checked) > label {
+   float:right;
+   width:1em;
+   overflow:hidden;
+   white-space:nowrap;
+   cursor:pointer;
+   font-size:30px;
+   color:#ccc;
+   }
+   .rate:not(:checked) > label:before {
+   content: '★ ';
+   }
+   .rate > input:checked ~ label {
+   color: #ffc700;
+   }
+   .rate:not(:checked) > label:hover,
+   .rate:not(:checked) > label:hover ~ label {
+   color: #deb217;
+   }
+   .rate > input:checked + label:hover,
+   .rate > input:checked + label:hover ~ label,
+   .rate > input:checked ~ label:hover,
+   .rate > input:checked ~ label:hover ~ label,
+   .rate > label:hover ~ input:checked ~ label {
+   color: #c59b08;
+   }
+   /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
+</style>
+<!-- End rating CSS -->
 <!-- Start Services CSS -->
 <style>
    body {
@@ -66,13 +67,7 @@
    }
 </style>
 <!-- End Services CSS -->
-
 <!-- Start our rating color -->
-<style>
-   .checked {
-   color: orange;
-   }
-</style>
 <!-- End our rating color -->
 {% endblock own_css %}
 {% block content %}
@@ -83,7 +78,6 @@
    </div>
 </div>
 <!-- End girls parlor heading -->
-
 <!-- Start profile-img and info -->
 <div class="row pb-3">
    <!-- Start profile-img -->
@@ -103,7 +97,6 @@
          </div>
       </div>
       <!-- End name info -->
-
       <!-- Start profession -->
       <div class="row">
          <div class="col-2  col-sm-2  col-md-2 sub-heading">
@@ -114,7 +107,6 @@
          </div>
       </div>
       <!-- End profession -->
-
       <!-- Start Address -->
       <div class="row">
          <div class="col-2  col-sm-2  col-md-2 sub-heading">
@@ -125,7 +117,6 @@
          </div>
       </div>
       <!-- End Address -->
-
       <!-- Start Experience -->
       <div class="row">
          <div class="col-2  col-sm-2  col-md-2 sub-heading">
@@ -136,7 +127,6 @@
          </div>
       </div>
       <!-- End Experience -->
-
       <!-- Start Rating -->
       <div class="row">
          <div class="col-2  col-sm-2  col-md-2 sub-heading">
@@ -149,7 +139,7 @@
                <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
                <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
                <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania"> -->
-            {{Profession_obj.Profession_Rating}}
+               {{Profession_obj.Profession_Rating}}
          </div>
       </div>
       <!-- End Rating -->
@@ -157,7 +147,6 @@
    <!-- Start info -->
 </div>
 <!-- End profile-img and info -->
-
 <!-- Start time & open status, our services, add new service btn -->
 <div class="row pt-3 pb-3 border-top border-bottom">
    <!-- Start time and open status -->
@@ -318,7 +307,6 @@
          <div class="col-12 col-sm-12 col-md-12 our-services-heading">
             Our Services
          </div>
-
       </div>
       <!-- End our services heading -->
       <!-- Start Services -->
@@ -343,7 +331,6 @@
    <!-- End our services -->
 </div>
 <!-- End time & open status, our services, add new service bt -->
-
 <!-- Start Photos & videos heading, See All links headings -->
 <div class="row photos-videos-see-all">
    <!-- Start Photos and Videos Heading -->
@@ -368,28 +355,27 @@
    <!-- Start see all links -->
 </div>
 <!-- End Photos & videos heading, See All links headings -->
-
 <!-- Start Photos & videos -->
 <div class="row">
    <div class="col-12 col-sm-12 col-md-12 p-4">
       <div class="row profession-details">
          {% for j in Profession_Image_obj %}
-         <div class="col-6 col-sm-2 col-md-2 pt-3">
+         <div class="col-12 col-sm-2 col-md-2 pt-3">
             <div class="row">
                <div class="col-md-12">
                   <a href="{% url 'photo-screen' j.id %}" class="text-light">
-                  <img src="{{j.image.url}}" class="img-fluid rounded" width="100%" height="30%">
+                  <img src="{{j.image.url}}" class="img-fluid " width="100%" height="30%">
                   </a>
                </div>
             </div>
          </div>
          {% endfor %}
          {% for i in Profession_Video_obj %}
-         <div class="col-6 col-sm-2 col-md-2 pt-3">
+         <div class="col-12 col-sm-3 col-md-3 pt-3">
             <div class="row">
-               <div class="col-md-12">
-                  <a href="{% url 'video-screen' i.id %}" class="text-light">
-                  <video src="{{i.video.url}}" class="img-fluid rounded" width="100%" height="30%"></video>
+               <div class="col-md-12 profession-video rounded">
+                  <a href="{% url 'video-screen' i.id %}" class="text-light text-decoration-none">
+                     <video src="{{i.video.url}}" class="video-fluid " width="100%" controls></video>
                   </a>
                </div>
             </div>
@@ -414,7 +400,6 @@
    </div>
 </div>
 <!-- End Photos & videos -->
-
 <!-- Satrt Comment input, Chat button -->
 <form action="{% url 'profession-personal-details' Profession_obj.id %}" method="POST">
    {% csrf_token %}
@@ -430,21 +415,19 @@
             <span class="fa fa-star fa-2x checked"></span>
             <span class="fa fa-star fa-2x"></span>
             </div> -->
-
-
          <div class="row">
             <div class="col-md-12 pb-3">
                <span class="rate">
-                  <input type="radio" id="star5" name="rate" value="5" required  />
-                  <label for="star5" title="text">5 stars</label>
-                  <input type="radio" id="star4" name="rate" value="4" />
-                  <label for="star4" title="text">4 stars</label>
-                  <input type="radio" id="star3" name="rate" value="3" />
-                  <label for="star3" title="text">3 stars</label>
-                  <input type="radio" id="star2" name="rate" value="2" />
-                  <label for="star2" title="text">2 stars</label>
-                  <input type="radio" id="star1" name="rate" value="1" />
-                  <label for="star1" title="text">1 star</label>
+               <input type="radio" id="star5" name="rate" value="5" />
+               <label for="star5" title="text">5 stars</label>
+               <input type="radio" id="star4" name="rate" value="4" />
+               <label for="star4" title="text">4 stars</label>
+               <input type="radio" id="star3" name="rate" value="3" />
+               <label for="star3" title="text">3 stars</label>
+               <input type="radio" id="star2" name="rate" value="2" />
+               <label for="star2" title="text">2 stars</label>
+               <input type="radio" id="star1" name="rate" value="1"checked/>
+               <label for="star1" title="text">1 star</label>
                </span>
             </div>
          </div>
@@ -454,7 +437,7 @@
             <input type="radio" name="rate" id="star_3" value="3" checked/><label for="star 3" class="fas fa-star"></label>
             <input type="radio" name="rate" id="star_4" value="4"/><label for="star 4" class="fas fa-star"></label>
             <input type="radio" name="rate" id="star_5" value="5"/><label for="star 5" class="fas fa-star"></label>
-         </div> -->
+            </div> -->
       </div>
       <div class="col-4 col-sm-2 col-md-2 ">
          <button type="submit" class="btn btn-block btn-normal-b">Send</button>
@@ -479,7 +462,7 @@
       <!-- Start user profile and user information -->
       <div class="row mt-5">
          <!-- Start user profile -->
-         <div class="col-md-1">
+         <div class="col-md-1 review-profile">
             <img src="{{k.user_profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
          </div>
          <!-- End user profile -->
@@ -509,51 +492,98 @@
             {{k.Review}}
          </div>
       </div>
-      <div class="row mt-1 pl-3">
-         <span class="fa fa-star {% if k.Rate >= 1 %}checked {% endif %}"></span>
-         <span class="fa fa-star {% if k.Rate >= 2 %}checked {% endif %}"></span>
-         <span class="fa fa-star {% if k.Rate >= 3 %}checked {% endif %}"></span>
-         <span class="fa fa-star {% if k.Rate >= 4 %}checked {% endif %}"></span>
-         <span class="fa fa-star {% if k.Rate >= 5 %}checked {% endif %}"></span>
-      </div>
+      <!--      <div class="row mt-1 pl-3">-->
+      <!--         <span class="fa fa-star {% if k.Rate >= 1 %}checked {% endif %}"></span>-->
+      <!--         <span class="fa fa-star {% if k.Rate >= 2 %}checked {% endif %}"></span>-->
+      <!--         <span class="fa fa-star {% if k.Rate >= 3 %}checked {% endif %}"></span>-->
+      <!--         <span class="fa fa-star {% if k.Rate >= 4 %}checked {% endif %}"></span>-->
+      <!--         <span class="fa fa-star {% if k.Rate >= 5 %}checked {% endif %}"></span>-->
+      <!--      </div>-->
       <!-- End comment -->
-      <!-- Start like and replay -->
-      <div class="row mt-2">
-         <!-- Start flag image -->
-         <div class="col-md-1 likes-heading">
-            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image"> {{k.Rate}}
-         </div>
-         <!-- End flag image -->
-         <div class="col-1 col-sm-1 col-md-1 likes-heading">
-            <form action="{% url 'like_Review' k.id %}">
-               {% if userprofile not in k.like.all %}
-                  <button type="submit" name="profession" value="{{k.Profession.id}}" class="fa-solid fa-thumbs-up"></button>
+      <!-- Start rating, like and comment -->
+      <div class="row">
+         <div class="col-md-12">
+            <span class="likes-heading">
+            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image"> &nbsp; {{k.Rate}}
+            </span>
+            <span>
+               <form action="{% url 'like_Review' k.id %}" class="d-inline-block">
+                  {% if userprofile not in k.like.all %}
+                  <button type="submit" name="profession" value="{{k.Profession.id}}" class="btn likes-heading">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
                   {% else %}
-                  <button type="submit" name="profession" value="{{k.Profession.id}}" class="fa-solid fa-thumbs-down"></button>
+                  <button type="submit" name="profession" value="{{k.Profession.id}}" class="btn likes-heading">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
                   {% endif %}
-               </a>{{ k.like.all.count }} Likes
-            </form>
-            &nbsp;
-            <a href="{% url 'review_Reply' k.id %}">
-               <i class="fa-solid fa-message pl-3"></i>
-               {% if k.Reply is None %}
-               0
-               {% else %}
-               {{k.Reply}}
-               {% endif %}
-            </a>
+                  <span class="likes-heading">{{ k.like.all.count }}</span>
+               </form>
+            </span>
+            <span >
+               <a href="{% url 'review_Reply' k.id %}" class="text-decoration-none likes-heading">
+                  <i class="fa-solid fa-reply pl-3"></i> &nbsp;
+                     {% if k.Reply is None %}
+                     0
+                     {% else %}
+                     {{k.Reply}}
+                     {% endif %}
+                  </a>
+
+            </span>
+            
+            {% if userprofile.id is k.user_profile.id %}
+            <span >
+               <a href="#" class="text-decoration-none likes-heading" data-target="#modal3" data-toggle="modal" onclick="data('{{k.id}}','{{k.Review}}')" >
+                  <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
+               </a>
+
+            </span>
+            
+            <span >
+               <a href="{% url 'Review_Delete' k.id %}" class="text-decoration-none likes-heading">
+                  <i class="fa-solid fa-trash pl-3"></i> &nbsp;
+               </a>
+
+            </span>
+            {% endif %}
          </div>
-         <!-- Start likes heading -->
-         <div class="col-md-2 likes-heading">
-            <a href="{% url 'review_Reply' k.id %}">
-            Reply
-            </a>
-         </div>
-         <!-- End likes heading -->
       </div>
-      <!-- End like and replay -->
+      <!-- End rating, like and comment -->
       {% endfor %}
    </div>
 </div>
 <!-- End Review -->
+<div class="modal create-community-modeal" id="modal3">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Review</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="EditReview" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review</label>
+                  <input type="text" class="form-control" name="Review" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Review</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<script>
+   function data(id,val1){
+      document.getElementById('EditReview').action ='/edit_review/'+id;
+      document.getElementById("demo1").value = val1;
+   }
+</script>
+
 {% endblock content %}

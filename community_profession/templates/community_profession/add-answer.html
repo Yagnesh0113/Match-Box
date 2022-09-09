@@ -23,16 +23,17 @@
       <!-- Start community-heading -->
       <div class="row">
          <div class="col-md-12 community-heading">
-            {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+            {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}} <br>
+            
          </div>
       </div>
       <!-- End community-heading -->
       <!-- Start community-no-members -->
-      <!-- <div class="row">
+      <div class="row">
          <div class="col-md-12">
-
+            {{i.Date}} / {{i.Time}} ago
          </div>
-         </div> -->
+      </div>
       <!-- End community-no-members -->
    </div>
    <!-- End community-heading, no-members -->
@@ -64,13 +65,24 @@
 <div class="row pl-3 pt-3 like-comment-share">
     <!-- Start no-of-like -->
     <div class="col-md-1">
-        <i class="fa-solid fa-thumbs-up"></i> {{i.Like}}
+      <a href="{% url 'like_Question' i.id %}">
+         {% if userprofile not in i.Question_Like.all %}
+         <button type="submit" class="fa-solid fa-thumbs-up"></button>
+         {% else %}
+         <button type="submit" class="fa-solid fa-thumbs-down"></button>
+         {% endif %}
+      </a>{{ i.Question_Like.all.count }} Likes
     </div>
     <!-- End no-of-like -->
 
     <!-- Start  no-of-comments -->
     <div class="col-md-1">
-        <i class="fa-solid fa-message"></i> {{count}}
+        <i class="fa-solid fa-message"></i> 
+        {% if i.answer is None %}
+        0
+        {% else %}
+        {{i.answer}}
+        {% endif %}
     </div>
     <!-- End  no-of-comments -->
 
@@ -145,6 +157,7 @@
          <!-- Start user-community-name, time -->
          <div class="col-10 col-sm-11 col-md-11 user-community-name">
             {{Answer.User_Profile.usertype.user_id.first_name}} {{Answer.User_Profile.usertype.user_id.last_name}} <br>
+            <span>{{Answer.Date}} / {{Answer.Time}} ago</span>
          </div>
          <!-- End user-community-name, time -->
       </div>
@@ -160,10 +173,22 @@
       <div class="row pt-3">
          <div class="col-md-12 like-reply-share">
             <span class="">
-            <i class="fa-solid fa-thumbs-up"></i> 1.2K
+               <a href="{% url 'like_Answer' Answer.id %}">
+                  {% if userprofile not in Answer.Answer_Like.all %}
+                  <button type="submit" class="fa-solid fa-thumbs-up"></button>
+                  {% else %}
+                  <button type="submit" class="fa-solid fa-thumbs-down"></button>
+                  {% endif %}
+               </a>{{ Answer.Answer_Like.all.count}} Likes
             </span>
             <span class="pl-5">
-            <a href="{% url 'Add_Answer_Reply' Answer.id %}" class="text-decoration-none">2 Reply</a>
+            <a href="{% url 'Add_Answer_Reply' Answer.id %}" class="text-decoration-none"><i class="fa-solid fa-message"></i>
+               {% if Answer.reply is None %}
+               0
+               {% else %}
+               {{Answer.reply}}
+               {% endif %}
+            </a>
             </span>
             <span class="pl-5">
             <i class="fa-solid fa-share-nodes"></i>

@@ -6,32 +6,101 @@
 
 {% block own_css %}
 <!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <!-- video-screen css -->
 <link rel="stylesheet" href="{% static 'community_profession/css/video-screen.css' %}">
 {% endblock own_css %}
 
 
 {% block content %}
-Comment : {{Profession_review.Review}}
+
+<div class="row pl-3">
+   <div class="col-md-12 all-comments">
+       <!-- Start user-profile, user-community-name, time -->
+       <div class="row">
+           <!-- Start user-profile -->
+           <div class="col-2 col-sm-1 col-md-1">
+               <img class="img-fluid rounded-circle" src="{{Profession_review.user_profile.profile_image.url}}" alt="Chania">
+           </div>
+           <!-- End user-profile -->
+
+           <!-- Start user-community-name, time -->
+           <div class="col-10 col-sm-11 col-md-11 user-community-name">
+               {{Profession_review.user_profile.usertype.user_id.first_name}} {{Profession_review.user_profile.usertype.user_id.last_name}} <br> 
+               <span class="time">{{Profession_review.Review_Date}} / {{Profession_review.Review_Time}}</span>
+           </div>
+           <!-- End user-community-name, time -->
+       </div>
+       <!-- End user-profile, user-community-name, time -->
+
+       <!-- Start comment -->
+       <div class="row pt-2">
+           <div class="col-12 col-sm-12 col-md-12 comment">
+               {{Profession_review.Review}}
+           </div>
+       </div>
+       <!-- End comment -->
+
+       <!-- Start like-reply-share -->
+       <div class="row">
+         <div class="col-md-12">
+            <span class="likes-heading">
+            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image"> &nbsp; {{Profession_review.Rate}}
+            </span>
+            <span>
+               <form action="{% url 'like_Review' Profession_review.id %}" class="d-inline-block">
+                  {% if userprofile not in Profession_review.like.all %}
+                  <button type="submit" name="profession" value="{{Profession_review.Profession.id}}" class="btn likes-heading">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
+                  {% else %}
+                  <button type="submit" name="profession" value="{{Profession_review.Profession.id}}" class="btn likes-heading">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
+                  {% endif %}
+                  <span class="likes-heading">{{ Profession_review.like.all.count }}</span>
+               </form>
+            </span>
+            <span >
+               <a href="{% url 'review_Reply' Profession_review.id %}" class="text-decoration-none likes-heading">
+                  <i class="fa-solid fa-reply pl-3"></i> &nbsp;
+                     {% if Profession_review.Reply is None %}
+                     0
+                     {% else %}
+                     {{Profession_review.Reply}}
+                     {% endif %}
+               </a>
+            </span>
+         </div>
+      </div>
+       <!-- Start like-reply-share -->
+   </div>
+</div>
+<hr color="ffffff">
+
+
+<!-- Comment : {{Profession_review.Review}} -->
  <!-- Start Reply text-box, post-btn, options -->
  <form action="{% url 'review_Reply' Profession_review.id %}" method="POST">
    {% csrf_token %}
    <div class="row pl-3 reply-form">
       <!-- Start reply-input-box -->
-      <div class="col-md-8 pt-3">
+      <div class="col-md-10 pt-3">
          <div class="form-group">
-            <input name="reply" type="text" class="form-control form-control-sm" id="usr" placeholder="Your Reply">
+            <input required name="reply" type="text" class="form-control form-control-sm" id="usr" placeholder="Your Reply">
          </div>
       </div>
       <!-- End reply-input-box -->
       <!-- Start post btn -->
-      <div class="col-md-3 pt-3">
+      <div class="col-md-2 pt-3">
          <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
       </div>
          
       <!-- End post btn -->
       <!-- Start options -->
-      <div class="col-md-1 pt-3 options">
+      <!-- <div class="col-md-1 pt-3 options">
          <div class="dropdown dropleft float-right">
                <button type="button" class="btn btn-sm btn-block text-light" data-toggle="dropdown">
                   <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -42,7 +111,7 @@ Comment : {{Profession_review.Review}}
                <a class="dropdown-item" href="#">Hide Reply</a>
                </div>
          </div>
-      </div>
+      </div> -->
       <!-- End options -->
    </div>
 </form>
@@ -60,7 +129,7 @@ Comment : {{Profession_review.Review}}
         </div>
         <!-- End user profile-img  -->
         <!-- Start user name -->
-        <div class="col-md-11">
+        <div class="col-md-10">
            <!-- Start User name heading -->
            <div class="row">
               <div class="col-md-12 user-name-heading">
@@ -78,6 +147,20 @@ Comment : {{Profession_review.Review}}
            <!-- End username-sub-heading -->
         </div>
         <!-- End user name -->
+        {% if userprofile.id is i.User_Profile.id %}
+         <div class="col-md-1 pt-3 options">
+            <div class="dropdown dropleft float-right">
+               <button type="button" class="btn btn-sm btn-block text-light" data-toggle="dropdown">
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
+               </button>
+               <div class="dropdown-menu">
+                  <!-- <a class="dropdown-item" href="#">Block Account</a> -->
+                  <a class="dropdown-item" href="{% url 'review_reply_delete' i.id %}">Delete</a>
+                  <a class="dropdown-item" href="#" data-target="#modal3" data-toggle="modal" onclick="data('{{i.id}}','{{i.Review_Reply}}')">Edit Reply</a>
+               </div>
+            </div>
+         </div>
+         {% endif %}
      </div>
      <!-- End user profile-img & user name  -->
 
@@ -92,5 +175,36 @@ Comment : {{Profession_review.Review}}
 </div><br><hr color="ffffff"><br>
 <!-- End Comment -->
 {% endfor %}
+<div class="modal create-community-modeal" id="modal3">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Review Reply</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="EditReviewReply" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review Reply</label>
+                  <input type="text" class="form-control" name="Review_reply" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Review Reply</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<script>
+   function data(id,val1){
+      document.getElementById('EditReviewReply').action ='/edit_review_reply/'+id;
+      document.getElementById("demo1").value = val1;
+   }
+</script>
 {% endblock content %}
 
