@@ -929,6 +929,8 @@ def ans_later(request,id):
         return redirect("community-screen")
     else:
         Answer_later.objects.create(Question=Question,User_Profile=User_Profile_obj,Date=Answer_Date,Time=Answer_time)
+        Question.Answer_later=True
+        Question.save()
         return redirect("community-screen")
 
 @login_required(login_url='/')
