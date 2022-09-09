@@ -7,6 +7,7 @@
 <!--   own css   -->
 <!-- Own css - profile-screen-for-profession -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profile-screen-for-profession.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/sign-up.css' %}">
 {% endblock own_css %}
 {% block content %}
@@ -346,6 +347,7 @@
    <!-- End Sign up slide -->
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 <script>
    $("#state").change(function () {
      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view

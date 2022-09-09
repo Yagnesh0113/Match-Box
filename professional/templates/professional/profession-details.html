@@ -7,7 +7,10 @@
 <!--   own css   -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!--<link rel="stylesheet" href="{% static 'community_profession/css/sign-up.css' %}">-->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<!-- Start ppop-up screen CSS -->
+<link rel="stylesheet" href="{% static 'community_profession/css/pop-up-screen.css' %}">
 <!-- Start Services CSS -->
 <style>
    body {
@@ -32,6 +35,7 @@
    </div>
 </div>
 <!-- End girls parlor heading -->
+
 <!-- Start profile-img and info -->
 <div class="row">
    <div class="col-12 col-sm-12 col-md-12 pl-4 pr-4">
@@ -119,7 +123,7 @@
             <!-- End About users heading -->
             <!-- Start about users content -->
             <div class="row">
-               <div class="col-md-12 about-user-content">
+               <div class="col-md-12 about-user-content text-justify">
                   {{profession.shop_description}}
                </div>
             </div>
@@ -139,6 +143,7 @@
    </div>
 </div>
 <!-- End profile-img and info -->
+
 <!-- Start time & open status, our services, add new service btn -->
 <div class="row pt-3 pb-3 border-top border-bottom">
    <!-- Start time and open status -->
@@ -354,6 +359,7 @@
    <!-- End our services -->
 </div>
 <!-- End time & open status, our services, add new service bt -->
+
 <!-- Start Photos & videos heading, See All links headings -->
 <div class="row photos-videos-see-all">
    <!-- Start Photos and Videos Heading -->
@@ -374,6 +380,7 @@
    <!-- Start see all links -->
 </div>
 <!-- End Photos & videos heading, See All links headings -->
+
 <!-- Start Photos & videos -->
 <div class="row border-bottom">
    <div class="col-12 col-sm-12 col-md-12 p-4">
@@ -441,6 +448,7 @@
       </div> -->
 </div>
 <!-- End Photos & videos -->
+
 <!-- Start Review -->
 <div class="row pt-3">
    <div class="col-12 col-sm-12 col-md-12 reviews">
@@ -492,44 +500,43 @@
       <div class="row">
          <div class="col-md-12">
             <span class="likes-heading">
-               <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image"> {{k.Rate}}
+            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image"> {{k.Rate}}
             </span>
             <span>
                <form action="{% url 'like_Review' k.id %}" class="d-inline-block">
-               {% if userprofile not in k.like.all %}
-               <button type="submit" name="profession" value="{{k.Profession.id}}" class="btn likes-heading">
+                  {% if userprofile not in k.like.all %}
+                  <button type="submit" name="profession" value="{{k.Profession.id}}" class="btn likes-heading">
                   <i class="fa-solid fa-thumbs-up"></i>
-               </button>
-               {% else %}
-               <button type="submit" name="profession" value="{{k.Profession.id}}" class="btn likes-heading">
+                  </button>
+                  {% else %}
+                  <button type="submit" name="profession" value="{{k.Profession.id}}" class="btn likes-heading">
                   <i class="fa-solid fa-thumbs-down"></i>
-               </button>
-               {% endif %}
-               <span class="likes-heading">{{ k.like.all.count }}</span>
-            </form>
+                  </button>
+                  {% endif %}
+                  <span class="likes-heading">{{ k.like.all.count }}</span>
+               </form>
             </span>
             <span>
-               <a href="{% url 'review_Reply' k.id %}" class="text-decoration-none likes-heading">
-                  <i class="fa-solid fa-message pl-3"></i>
-                  {% if k.Reply is None %}
-                  0
-                  {% else %}
-                  {{k.Reply}}
-                  {% endif %}
-               </a>
+            <a href="{% url 'review_Reply' k.id %}" class="text-decoration-none likes-heading">
+            <i class="fa-solid fa-message pl-3"></i>
+            {% if k.Reply is None %}
+            0
+            {% else %}
+            {{k.Reply}}
+            {% endif %}
+            </a>
             </span>
          </div>
-
-         
       </div>
       {% endfor %}
    </div>
 </div>
 <!-- End Review -->
-<!-- ===========Edit Image Modal Starts=============== -->
-<div class="modal fade " id="editimage" tabindex="-1" aria-labelledby="editimageLable" aria-hidden="true">
+
+<!-- Start Edit Modal Pop Up -->
+<div class="modal fade profession-profile-modal" id="editimage" tabindex="-1" aria-labelledby="editimageLable" aria-hidden="true">
    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
+      <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="editimageLable">Update Image</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -541,29 +548,86 @@
             <div class="modal-body">
                <div class="container ">
                   <div class="row">
-                     <div class="col-6">
+                     <div class="col-4">
                         <img src="{{profession.profession_image.url}}" class="img-fluid" alt="Responsive image">
                      </div>
-                     <div class="col-6 mt-5">
+                     <div class="col-8 modal-sub-heading">
                         <label for="profile_image">Select Image</label>
-                        <input type="file" name="profession_image" accept=".jpg,.png">
+                        <input type="file" name="profession_image" accept=".jpg,.png" required>
                      </div>
                   </div>
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-primary">Save changes</button>
+               <button type="submit" class="btn btn-normal-b">Save changes</button>
+               <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
       </div>
    </div>
 </div>
-<!-- ===========Edit Image Modal Ends=============== -->
-<!-- ==============Edit Date Time modal Starts========== -->
-<div class="modal fade " id="editdatetime" tabindex="-1" aria-labelledby="editdatetime" aria-hidden="true">
+<!-- End Edit Modal Pop Up -->
+
+<!-- Start Edit Details -->
+<div class="modal fade profession-profile-modal" id="editDetailModal" tabindex="-1" aria-labelledby="editDetailModal" aria-hidden="true">
    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="editDetailModal">Update Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <form method="POST" action="{% url 'update_profession_details' profession.id  %}">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="container ">
+                  <div class="">
+                     <div class="form-group">
+                        <label for="Name" class="modal-sub-heading">Name</label>
+                        <input type="text" name="name" value="{{profession.shop_name}}" class="form-control" id="Name">
+                     </div>
+                     <div class="form-group">
+                        <label for="Profession" class="modal-sub-heading">Profession</label>
+                        <input disabled value="{{profession.profession}}" type="text" class="form-control" id="Profession">
+                     </div>
+                     <div class="form-group">
+                        <label for="Address" class="modal-sub-heading">Address</label>
+                        <input type="text" name="address" value="{{profession.shop_address}}"class="form-control" id="Address">
+                     </div>
+                     <div class="form-group">
+                        <label for="City" class="modal-sub-heading">City</label>
+                        <input disabled type="text" value="{{profession.shop_city}}" class="form-control" id="City">
+                     </div>
+                     <div class="form-group">
+                        <label for="State" class="modal-sub-heading">State</label>
+                        <input disabled type="text" value="{{profession.shop_state}}" class="form-control" id="State">
+                     </div>
+                     <div class="form-group">
+                        <label for="Experience" class="modal-sub-heading">Experience</label>
+                        <input type="number" name="experiance" class="form-control" value="{{profession.year_of_experience}}" id="Experience">
+                     </div>
+                     <div class="form-group">
+                        <label for="about" class="modal-sub-heading">About</label>
+                        <textarea class="form-control" name="about" id="about">{{profession.shop_description}}</textarea>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="submit" class="btn btn-normal-b">Save Changes</button>
+               <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End Edit Details -->
+
+<!-- Start Time and Open Status -->
+<div class="modal fade profession-profile-modal" id="editdatetime" tabindex="-1" aria-labelledby="editdatetime" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="editdatetime">Update Details</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -575,17 +639,17 @@
             <div class="modal-body">
                <div class="container ">
                   <div class="row">
-                     <div class="form-group col-6 ">
+                     <div class="form-group col-6 modal-sub-heading">
                         <label for="start_time"> Start Time : {{profession.shop_start_time}}</label>
                         <input type="time" name="start_time" value="{{profession.shop_start_time}}" class="form-control" id="start_time">
                      </div>
-                     <div class="form-group col-6 ">
+                     <div class="form-group col-6 modal-sub-heading">
                         <label for="end_time"> End Time : {{profession.shop_close_time}}</label>
                         <input type="time" name="end_time" value="{{profession.shop_close_time}}" class="form-control" id="end_time">
                      </div>
                   </div>
                   <div class="row">
-                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form signup-form-check-btn">
+                     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center sign-up-form signup-form-check-btn">
                         <input name="sunday" type="checkbox" class="btn-check" id="btn-check7" {% if profession.shop_status_sunday %} checked {% endif %} autocomplete="off" />
                         <label class="btn btn-primary" for="btn-check7">S</label>
                         <input name="monday" type="checkbox" class="btn-check" id="btn-check" {% if profession.shop_status_monday %} checked {% endif %} autocomplete="off" />
@@ -605,73 +669,20 @@
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-primary">Submit</button>
+               <button type="submit" class="btn btn-normal-b">Save Changes</button>
+               <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
       </div>
    </div>
 </div>
-<!-- ==============Edit Date Time modal Ends========== -->
-<!-- ==============Edit Details modal Starts========== -->
-<div class="modal fade " id="editDetailModal" tabindex="-1" aria-labelledby="editDetailModal" aria-hidden="true">
+<!-- End Time and Open Status -->
+
+
+<!-- Start Add new services modal pop up -->
+<div class="modal fade profession-profile-modal" id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-         <div class="modal-header">
-            <h5 class="modal-title" id="editDetailModal">Update Details</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <form method="POST" action="{% url 'update_profession_details' profession.id  %}">
-            {% csrf_token %}
-            <div class="modal-body">
-               <div class="container ">
-                  <div class="">
-                     <div class="form-group">
-                        <label for="Name">Name</label>
-                        <input type="text" name="name" value="{{profession.shop_name}}" class="form-control" id="Name">
-                     </div>
-                     <div class="form-group">
-                        <label for="Profession">Profession</label>
-                        <input disabled value="{{profession.profession}}" type="text" class="form-control" id="Profession">
-                     </div>
-                     <div class="form-group">
-                        <label for="Address">Address</label>
-                        <input type="text" name="address" value="{{profession.shop_address}}"class="form-control" id="Address">
-                     </div>
-                     <div class="form-group">
-                        <label for="City">City</label>
-                        <input disabled type="text" value="{{profession.shop_city}}" class="form-control" id="City">
-                     </div>
-                     <div class="form-group">
-                        <label for="State">State</label>
-                        <input disabled type="text" value="{{profession.shop_state}}" class="form-control" id="State">
-                     </div>
-                     <div class="form-group">
-                        <label for="Experience">Experience</label>
-                        <input type="number" name="experiance" class="form-control" value="{{profession.year_of_experience}}" id="Experience">
-                     </div>
-                     <div class="form-group">
-                        <label for="about">About</label>
-                        <textarea class="form-control" name="about" id="about">{{profession.shop_description}}</textarea>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-         </form>
-      </div>
-   </div>
-</div>
-<!-- ==============Edit Details modal Ends========== -->
-<!-- ==============Add New Service modal Starts========== -->
-<div class="modal fade " id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
-   <div class="modal-dialog">
-      <div class="modal-content bg-dark">
+      <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="newServideModal">Add New Service</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -683,11 +694,11 @@
             <div class="modal-body">
                <div class="container ">
                   <div class="">
-                     <div class="form-group">
+                     <div class="form-group modal-sub-heading">
                         <label for="service">Service Name</label>
                         <input type="text" class="form-control" name="service_name" id="service">
                      </div>
-                     <div class="form-group">
+                     <div class="form-group modal-sub-heading">
                         <label for="price">Price</label>
                         <input type="number" class="form-control" name="price" id="exampleInputPassword1">
                      </div>
@@ -695,55 +706,57 @@
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-normal-b">Add Service</button>
+               <button type="button"   class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
       </div>
    </div>
 </div>
-<!-- ==============Add New modal Ends========== -->
-<!-- ==============Edit New Service modal Starts========== -->
-<!-- <div class="modal fade " id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
+<!-- End Add new services modal pop up -->
+
+<!-- Start edit service modal pop up -->
+<div class="modal fade profession-profile-modal" id="editservise" tabindex="-1" aria-labelledby="editservise" aria-hidden="true">
    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
+      <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="newServideModal">Add New Service</h5>
+            <h5 class="modal-title" id="editservise">Edit Service</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
          </div>
-         <form method="post" action="{% url 'add_services' %}">
+         <form method="post" id="serviceedit" action="">
             {% csrf_token %}
             <div class="modal-body">
                <div class="container ">
                   <div class="">
-                     <div class="form-group">
+                     <div class="form-group modal-sub-heading">
                         <label for="service">Service Name</label>
-                        <input type="text" class="form-control" name="service_name" id="service">
+                        <input type="text" class="form-control" name="service_name" id="demo1">
                      </div>
-                     <div class="form-group">
+                     <div class="form-group modal-sub-heading">
                         <label for="price">Price</label>
-                        <input type="number" class="form-control" name="price" id="exampleInputPassword1">
+                        <input type="text" class="form-control" name="price" id="demo2">
                      </div>
                   </div>
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-normal-b">Submit</button>
+               <button type="button"   class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
       </div>
    </div>
-   </div> -->
-<!-- ==============Edit New modal Ends========== -->
-<!-- ===============Add gallary Modal Pop Up========== -->
-<div class="modal fade " id="addimages" tabindex="-1" aria-labelledby="addimages" aria-hidden="true">
+</div>
+<!-- End edit service modal pop up -->
+
+<!-- Add Gallery Photos modal pop up -->
+<div class="modal fade profession-profile-modal" id="addimages" tabindex="-1" aria-labelledby="addimages" aria-hidden="true">
    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
+      <div class="modal-content">
          <div class="modal-header">
-            <h5 class="modal-title" id="addimages">Add Gallary Images</h5>
+            <h5 class="modal-title" id="addimages">Add Profession Gallery Images</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -753,7 +766,7 @@
             <div class="modal-body">
                <div class="container ">
                   <div class="">
-                     <div class="form-group">
+                     <div class="form-group modal-sub-heading">
                         <label for="Photo">Photo</label>
                         <input required type="file" class="" name="image" id="Photo" accept=".jpg,.png">
                      </div>
@@ -761,18 +774,19 @@
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-normal-b">Add</button>
+               <button type="button"   class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
       </div>
    </div>
 </div>
-<!-- ===============Add Galary Pop Up========== -->
-<!-- ===============Add gallary Modal Pop Up========== -->
-<div class="modal fade " id="addvideo" tabindex="-1" aria-labelledby="addvideo" aria-hidden="true">
+<!-- End Gallery Photos modal pop up -->
+
+<!-- Start Add Videos pop up -->
+<div class="modal fade profession-profile-modal" id="addvideo" tabindex="-1" aria-labelledby="addvideo" aria-hidden="true">
    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
+      <div class="modal-content">
          <div class="modal-header">
             <h5 class="modal-title" id="addvideo">Add Profession Video</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -783,7 +797,7 @@
             {% csrf_token %}
             <div class="modal-body">
                <div class="container ">
-                  <div class="">
+                  <div class="modal-sub-heading">
                      <div class="form-group">
                         <label for="f">Video</label>
                         <input required type="file" name="video" accept=".mp4">
@@ -792,49 +806,16 @@
                </div>
             </div>
             <div class="modal-footer">
-               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
+               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-normal-b">Add</button>
+               <button type="button"   class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
       </div>
    </div>
 </div>
-<!-- ===============Add Galary Pop Up========== -->
-<!-- edit service popup -->
-<div class="modal fade " id="editservise" tabindex="-1" aria-labelledby="editservise" aria-hidden="true">
-   <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-         <div class="modal-header">
-            <h5 class="modal-title" id="editservise">Edit Profession Video</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <form method="post" id="serviceedit" action="">
-            {% csrf_token %}
-            <div class="modal-body">
-               <div class="container ">
-                  <div class="">
-                     <div class="form-group">
-                        <label for="service">Service Name</label>
-                        <input type="text" class="form-control" name="service_name" id="demo1">
-                     </div>
-                     <div class="form-group">
-                        <label for="price">Price</label>
-                        <input type="text" class="form-control" name="price" id="demo2">
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
-            </div>
-         </form>
-      </div>
-   </div>
-</div>
-<!-- edit service popup -->
+<!-- End Add Videos pop up -->
+
+
 <script>
    $(function(){
        $('form').submit(function(){
