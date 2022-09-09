@@ -674,6 +674,7 @@
          <div class="row">
             <!-- Start Question Alert -->
             <div class="col-md-12 question-alert">
+               {% if Question %}
                {% for Question in Question %}
                <div class="row">
                   <!-- Start Profile picture -->
@@ -754,6 +755,18 @@
                   </div>
                </div>
                {% endfor %}
+
+               {% else %}
+               <div class="col-5 col-sm-4 col-md-4">
+                  <!-- Start community name -->
+                  <div class="row">
+                     <div class="col-md-12 community-name">
+                       No Questions for You.....
+                     </div>
+                  </div>
+               </div>
+               {% endif %}
+               </div>
             </div>
          </div>
          <div class="modal-footer">
