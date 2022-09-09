@@ -62,22 +62,30 @@ def loadSearchNearestProfessions(request,id):
 
 # --- load -- nearest profession list ---
 @login_required(login_url='/')
-def loadNearestProfessionsList(request,id):
+def loadNearestProfessionsList(request,id=None):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
         State_obj=State.objects.get(id=request.POST.get("state"))
         City_obj=request.POST.get("city")
-        Profession_obj=Profession.objects.filter(profession=id,shop_state=State_obj,shop_city=City_obj)
+        print(State_obj)
+        if State_obj!=None:
+            Profession_obj=Profession.objects.filter(profession=id,shop_state=State_obj,shop_city=City_obj)
+        else:
+            Profession_obj=Profession.objects.filter(profession=id)
         if obj is not None:
             context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_obj":Profession_obj}
         else:
             context={'My_community':My_Community,'userprofile':userprofile,"Profession_obj":Profession_obj}
         return render(request, 'community_profession/nearest-professions-list.html',context)
     else:
+        z=request.lat
+        print(z)
+        Profession_obj=Profession.objects.filter(profession=id)
         if obj is not None:
-            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile}
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj}
         else:
-            context={'My_community':My_Community,'userprofile':userprofile}
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj}
+
         return render(request, 'community_profession/nearest-professions-list.html',context)
 
 # --- load -- profession personal details page ---

@@ -61,6 +61,9 @@ class Profession(models.Model):
     shop_status_saturday=models.BooleanField(null=True, blank=True)
     shop_description= models.TextField(null=True, blank=True)
     Profession_Rating = models.FloatField(default=0)
+    profession_longitude=models.FloatField(null=True, blank=True)
+    profession_latitude=models.FloatField(null=True, blank=True)
+
 
     def __str__(self):
         return self.UserProfile.usertype.user_id.first_name
@@ -82,3 +85,8 @@ class Professionvideo(models.Model):
 class Recent_serach(models.Model):
     Profession_obj=models.ForeignKey(to=Profession, on_delete=models.CASCADE)
     User_obj=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
+
+
+class nearest_profession(models.Model):
+    user=models.OneToOneField(to=User, on_delete=models.CASCADE)
+    near=models.JSONField()

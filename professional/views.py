@@ -1,3 +1,4 @@
+from operator import add
 from django.shortcuts import render, redirect
 from Account.models import *
 from community_profession.models import *
@@ -6,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.http import HttpResponse
 import re
+from geopy.geocoders import ArcGIS
 
 def userprofileobj(request):
     user=request.user
@@ -90,9 +92,9 @@ def update_profile_image(request):
 
 def add_profession(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # user=request.user
-    # usertype=UserType.objects.get(user_id=user)
-    # userprofile=UserProfile.objects.get(usertype=usertype)
+    
+   
+
     if request.method == 'POST':
         experience = request.POST.get('experience')
         profession=request.POST['profession']
@@ -135,6 +137,13 @@ def add_profession(request):
         city=request.POST['city']
         about=request.POST['about']
 
+        
+        nom=ArcGIS()
+        Location=address+city
+       
+        long=nom.geocode(Location).latitude
+        latitude=nom.geocode(Location).longitude
+
         Profession.objects.create(          UserProfile=userprofile,
                                             year_of_experience=experience, 
                                             profession=Profession_obj,
@@ -154,6 +163,8 @@ def add_profession(request):
                                             shop_status_Friday=friday,
                                             shop_status_saturday=saturday,
                                             shop_description=about,
+                                            profession_longitude=long,
+                                            profession_latitude=latitude
                                             )
         return redirect('/profession-profile-screen')
     

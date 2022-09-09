@@ -58,9 +58,9 @@
                            <!-- <input class="form-control form-control" type="text" placeholder="Search your city" name="city" required> -->
                         </div>
                         <div class="form-group">
-                           <a href="#" class="text-decoration-none">
-                              <button type="submit" class="btn btn-block btn-normal-b">Search your nearest location</button>
-                           </a>
+                           
+                              <button type="button" class="btn btn-block btn-normal-b" onclick="getLocation()">Search your nearest location</button>
+                           
                            <!-- <input class="form-control form-control" type="text" placeholder="Search your nearest location" required> -->
                         </div>
                         <div class="form-group">
@@ -97,4 +97,25 @@
     });
 </script>
 
-{% endblock content %}
+<script>
+   var x = document.getElementById("demo");
+   var URL="{% url 'nearest-professions-list' %}"
+   function getLocation() {
+     if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(showPosition);
+     } 
+     else { 
+       x.innerHTML = "Geolocation is not supported by this browser.";
+     }
+   }
+   
+   function showPosition(position) {
+    
+    var a=position.coords.latitude;
+    var b=position.coords.longitude;
+    var data={'long':b,'lat':a}
+    location.href=URL+`?lat=${a}&lon=${b}`
+   }
+   </script>
+
+{% endblock content %}  

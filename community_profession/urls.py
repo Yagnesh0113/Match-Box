@@ -6,6 +6,9 @@ urlpatterns = [
     path('profession-see-all', views.loadProfessionSeeAllScreen, name='profession-see-all'), # profession-see all screen
     path('search-nearest-professions/<int:id>', views.loadSearchNearestProfessions, name='search-nearest-professions'), # search nearest professions
     path('nearest-professions-list/<int:id>', views.loadNearestProfessionsList, name='nearest-professions-list'), # nearest professions list
+
+    path('nearest-professions-list', views.loadNearestProfessionsList, name='nearest-professions-list'), # nearest professions list
+
     path('profession-personal-details/<int:id>', views.loadProfessionPersonalDetails, name='profession-personal-details'), # profession personal details.
     path('see-all-photos-videos/<int:id>', views.loadSeeAllPhotosAndVideos, name='see-all-photos-videos'), # profession all photos and videos
     path('photo-screen/<int:id>', views.loadPhotoScreen, name='photo-screen'), # photo screen
