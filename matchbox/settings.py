@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'community_profession',
     'Account',
     'professional',
+
+
+    # socail share
+    'django_social_share',
 ]
 
 MIDDLEWARE = [
