@@ -1,3 +1,8 @@
+.community-profile-screen .img-fluid
+{
+    height:18.75rem;
+}
+
 .interior-designer-heading
 {
     font-family: var(--font-1);

@@ -10,52 +10,52 @@
 <!-- Ask Post CSS-->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <!-- Start Share icon -->
-<style>
-.fa {
-   padding: 16px;
-   font-size: 30px;
-   width: 63px;
-   text-align: center;
-   text-decoration: none;
-   margin: 6px 2px;
-   border-radius: 50%;
-}
+<!--<style>-->
+<!--.fa {-->
+<!--   padding: 16px;-->
+<!--   font-size: 30px;-->
+<!--   width: 63px;-->
+<!--   text-align: center;-->
+<!--   text-decoration: none;-->
+<!--   margin: 6px 2px;-->
+<!--   border-radius: 50%;-->
+<!--}-->
 
-.fa:hover {
-   background: #3B5998;
-  color: white;
-    opacity: 0.7;
-}
+<!--.fa:hover {-->
+<!--   background: #3B5998;-->
+<!--  color: white;-->
+<!--    opacity: 0.7;-->
+<!--}-->
 
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
+<!--.fa-facebook {-->
+<!--  background: #3B5998;-->
+<!--  color: white;-->
+<!--}-->
 
-.fa-brands
-{
-   padding: 16px;
-   font-size: 30px;
-   width: 63px;
-   text-align: center;
-   text-decoration: none;
-   margin: 6px 2px;
-   border-radius: 50%;
-}
+<!--.fa-brands-->
+<!--{-->
+<!--   padding: 16px;-->
+<!--   font-size: 30px;-->
+<!--   width: 63px;-->
+<!--   text-align: center;-->
+<!--   text-decoration: none;-->
+<!--   margin: 6px 2px;-->
+<!--   border-radius: 50%;-->
+<!--}-->
 
-.fa-brands:hover {
-   background: #51CE5E;
-   color: white;
-   opacity: 0.7;
-}
+<!--.fa-brands:hover {-->
+<!--   background: #51CE5E;-->
+<!--   color: white;-->
+<!--   opacity: 0.7;-->
+<!--}-->
 
-.fa-whatsapp
-{
-   background: #51CE5E;
-   color: white;
-}
+<!--.fa-whatsapp-->
+<!--{-->
+<!--   background: #51CE5E;-->
+<!--   color: white;-->
+<!--}-->
 
-</style>
+<!--</style>-->
 <!-- End Share icon -->
 {% endblock own_css %}
 {% block community_profession_nav %}
@@ -95,11 +95,6 @@
          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Post</a>
             <div class="dropdown-menu">
-               <!--               <a class="dropdown-item" href="#">Post</a>-->
-               <!--               <a class="dropdown-item" href="#">Trending</a>-->
-               <!--               <a class="dropdown-item" href="#">New</a>-->
-               <!--               <a class="dropdown-item" href="#">Hot</a>-->
-               <!--               <a class="dropdown-item" href="#">Top</a>-->
                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">My Post</a>
                <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'Community_My_Image' %}">My Images</a>
@@ -110,22 +105,10 @@
                <a class="dropdown-item" href="{% url 'Community_video' %}">Video</a>
                <a class="dropdown-item" href="{% url 'Community_Question' %}">Questions</a>
                <a class="dropdown-item" href="{% url 'community-screen' %}">All Post</a>
-               <!-- <a class="dropdown-item" href="{% url 'community-screen' %}">Global</a> -->
-               <!-- <a class="dropdown-item" href="#">My Location</a> -->
-               <!-- <a class="dropdown-item" href="#">Other</a> -->
             </div>
          </li>
          <!-- End Post -->
-         <!-- Start Global -->
-         <!--         <li class="nav-item dropdown">-->
-         <!--            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Global</a>-->
-         <!--            <div class="dropdown-menu">-->
-         <!--               <a class="dropdown-item" href="#">Global</a>-->
-         <!--               <a class="dropdown-item" href="#">My Location</a>-->
-         <!--               <a class="dropdown-item" href="#">Other</a>-->
-         <!--            </div>-->
-         <!--         </li>-->
-         <!-- End Global -->
+
          <!-- Start my-communities -->
          <li class="nav-item">
             <a class="nav-link" href="#" data-target="#modal5" data-toggle="modal">My Communities</a>
@@ -185,283 +168,290 @@
 <!-- End community navigation -->
 {% endblock community_nav %}
 {% block community_content %}
-<!-- Start Community -->
-{% for i in User_POST %}
-{% if i.Post %}
 <div class="row">
-   <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
-      <!-- start community profile picture, name, and join button  -->
+   <div class="col-md-12 pl-4">
+      {% for i in User_POST %}
+      {% if i.Post %}
       <div class="row">
-         <!-- Start Profile picture -->
-         <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture">
-            <img class="img-fluid rounded-circle" src="{{i.Post.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
-         </div>
-         <!-- End Profile picture -->
-         <!-- Start Community name and time -->
-         <div class="col-5 col-sm-4 col-md-4">
-            <!-- Start community name -->
+         <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
+            <!-- start community profile picture, name, and join button  -->
             <div class="row">
-               <div class="col-md-12 community-name">
-                  {{i.Post.User_Profile.usertype.user_id.first_name}} {{i.Post.User_Profile.usertype.user_id.last_name}}
+               <!-- Start Profile picture -->
+               <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture">
+                  <img class="img-fluid rounded-circle" src="{{i.Post.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
                </div>
-            </div>
-            <!-- End community name -->
-            <!-- Start community time -->
-            <div class="row">
-               <div class="col-md-12 community-time">
-                  {{i.Post.Post_Date}} / {{i.Post.Post_Time}}
-                  <!-- Ago -->
+               <!-- End Profile picture -->
+               <!-- Start Community name and time -->
+               <div class="col-5 col-sm-4 col-md-4">
+                  <!-- Start community name -->
+                  <div class="row">
+                     <div class="col-md-12 community-name">
+                        {{i.Post.User_Profile.usertype.user_id.first_name}} {{i.Post.User_Profile.usertype.user_id.last_name}}
+                     </div>
+                  </div>
+                  <!-- End community name -->
+                  <!-- Start community time -->
+                  <div class="row">
+                     <div class="col-md-12 community-time">
+                        {{i.Post.Post_Date}} / {{i.Post.Post_Time}}
+                        <!-- Ago -->
+                     </div>
+                  </div>
+                  <!-- End community time -->
                </div>
-            </div>
-            <!-- End community time -->
-         </div>
-         <!-- End Community name and time -->
-         <!-- Start posted by name -->
-         <div class="col-3 col-sm-3 col-md-3">
-            <div class="row">
-               <div class="col-md-12 community-posted-by-heading">
-                  <!-- Posted by/ Name -->
-               </div>
-            </div>
-         </div>
-         <!-- End posted by name -->
-         <!-- Start join buttons, options -->
-         <div class="col-2 col-sm-3 col-md-4 text-right">
-            <div class="row">
-               <!-- Satrt join button -->
-               <!--<div class="col-md-11 text-right">
-                  <a class="btn btn-sm btn-normal-b" href="#" role="button">Join</a>
-                  </div>-->
-               <!-- End join button -->
-               <!-- Start drop down options -->
-               <div class="col-md-12 community-options">
-                  <div class="dropdown">
-                     <button type="button" class="btn text-light" data-toggle="dropdown">
-                     <i class="fa-solid fa-ellipsis-vertical"></i>
-                     </button>
-                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Copy Link</a>
-                        <a class="dropdown-item" href="#">Block Account</a>
-                        <!-- <a class="dropdown-item" href="#">Delete question</a> -->
-                        <!-- <a class="dropdown-item" href="#">Edit question</a> -->
-                        <a class="dropdown-item" href="#">Bookmark</a>
-                        <a class="dropdown-item" href="#">Save</a>
-                        <a class="dropdown-item" href="#">Share</a>
+               <!-- End Community name and time -->
+               <!-- Start posted by name -->
+               <div class="col-3 col-sm-3 col-md-3">
+                  <div class="row">
+                     <div class="col-md-12 community-posted-by-heading">
+                        <!-- Posted by/ Name -->
                      </div>
                   </div>
                </div>
-               <!-- End drop down options -->
+               <!-- End posted by name -->
+               <!-- Start join buttons, options -->
+               <div class="col-2 col-sm-3 col-md-4 text-right">
+                  <div class="row">
+                     <!-- Satrt join button -->
+                     <!--<div class="col-md-11 text-right">
+                        <a class="btn btn-sm btn-normal-b" href="#" role="button">Join</a>
+                        </div>-->
+                     <!-- End join button -->
+                     <!-- Start drop down options -->
+                     <div class="col-md-12 community-options">
+                        <div class="dropdown">
+                           <button type="button" class="btn text-light" data-toggle="dropdown">
+                           <i class="fa-solid fa-ellipsis-vertical"></i>
+                           </button>
+                           <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Copy Link</a>
+                              <a class="dropdown-item" href="#">Block Account</a>
+                              <!-- <a class="dropdown-item" href="#">Delete question</a> -->
+                              <!-- <a class="dropdown-item" href="#">Edit question</a> -->
+                              <a class="dropdown-item" href="#">Bookmark</a>
+                              <a class="dropdown-item" href="#">Save</a>
+                              <a class="dropdown-item" href="#">Share</a>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- End drop down options -->
+                  </div>
+               </div>
+               <!-- Start join buttons, options -->
             </div>
-         </div>
-         <!-- Start join buttons, options -->
-      </div>
-      <!-- End community profile picture, name, and join button  -->
-      <!-- Start community description -->
-      <div class="row pt-3"   >
-         <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
-            {{i.Post.Description}}
-         </div>
-      </div>
-      <!-- End community description -->
-      <!-- Start Community post -->
-      {% if i.Post.Image %}
-      <a href="{% url 'add_comment' i.Post.id %}">
-         <div class="row community-post-image">
-            <div class="col-md-12">
-               <div class="row community-post-image-background">
-                  <div class="col-md-3"></div>
-                  <!-- {% if '.jpg' in i.Post.Image %}
-                     <p>Yes</p>
-                     {% else %}
-                     <p>No</p>
-                     {% endif %}
-                     {{i.Post.Image}} -->
-                  {% if i.Post.post_type1 %}
-                  <div class="col-md-6">
-                     <video width="100%" height="" controls>
-                        <source src="{{i.Post.Image.url}}" type="video/mp4">
-                     </video>
-                  </div>
-                  {%else%}
-                  <div class="col-md-6">
-                     <img src="{{i.Post.Image.url}}" alt="" class="img-fluid" width="100%">
-                  </div>
-                  {% endif %}
-                  <div class="col-md-3"></div>
+            <!-- End community profile picture, name, and join button  -->
+            <!-- Start community description -->
+            <div class="row pt-3"   >
+               <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+                  {{i.Post.Description}}
                </div>
             </div>
-         </div>
-      </a>
-      {% else %}
-      <div></div>
-      {% endif %}
-      <!-- End Community post -->
-      <!-- Start like, comment, share -->
-      <div class="row pt-2 pd-2">
-         <!-- Start like button -->
-         <div class="col-5 col-sm-3 col-md-2">
-            <a href="{% url 'like_post' i.Post.id %}">
-            {% if userprofile not in i.Post.Like.all %}
-            <button type="submit" class="btn community-like-dislike-btn">
-            <i class="fa-solid fa-thumbs-up"></i>
-            </button>
-            {% else %}
-            <button type="submit" class="btn community-like-dislike-btn">
-            <i class="fa-solid fa-thumbs-down"></i>
-            </button>
-            {% endif %}
-            </a>
-            <span class="community-like-dislike-btn">{{ i.Post.Like.all.count }}</span>
-            <a href="{% url 'add_comment' i.Post.id %}" class="text-decoration-none community-like-dislike-btn">
-            <i class="fa-solid fa-message"></i>
-            {% if i.Post.Post_comment is None %}
-            0
-            {% else %}
-            {{i.Post.Post_comment}}
-            {% endif %}
-            </a>
-         </div>
-         <div class="col-6 col-sm-4 col-md-3 btn-comment-answer">
+            <!-- End community description -->
+            <!-- Start Community post -->
+            {% if i.Post.Image %}
             <a href="{% url 'add_comment' i.Post.id %}">
-            <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
-            </a>
-         </div>
-         <!-- End like, comment, share -->
-      </div>
-   </div>
-</div>
-{% else %}
-<div class="row">
-   <div class="col-md-12 border-bottom pb-2 pt-5 community-body">
-      <!-- start community profile picture, name, and join button  -->
-      <div class="row">
-         <!-- Start Profile picture -->
-         <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture">
-            <img class="img-fluid rounded-circle" src="{{i.Question.User_Profile.profile_image.url}}" alt="Chania">
-         </div>
-         <!-- End Profile picture -->
-         <!-- Start Community name and time -->
-         <div class="col-7 col-sm-4 col-md-4">
-            <!-- Start community name -->
-            <div class="row">
-               <div class="col-md-12 community-name">
-                  {{i.Question.User_Profile.usertype.user_id.first_name}} {{i.Question.User_Profile.usertype.user_id.last_name}}
-               </div>
-            </div>
-            <!-- End community name -->
-            <!-- Start community time -->
-            <div class="row">
-               <div class="col-md-12 community-time">
-                  {{i.Question.Date}} / {{i.Question.Time}} 
-                  <!-- Ago -->
-               </div>
-            </div>
-            <!-- End community time -->
-         </div>
-         <!-- End Community name and time -->
-         <!-- Start posted by name -->
-         <div class="col-0 col-sm-0 col-md-0">
-            <div class="row">
-               <div class="col-md-12 community-posted-by-heading">
-                  <!-- Posted by/ Name -->
-               </div>
-            </div>
-         </div>
-         <!-- End posted by name -->
-         <!-- Start join buttons, options -->
-         <div class="col-3 col-sm-7 col-md-7 text-right">
-            <div class="row">
-               <!-- Satrt join button -->
-               <div class="col-md-11 text-right">
-                  <!-- <a class="btn btn-sm btn-normal-b" href="#" role="button">Join</a> -->
-               </div>
-               <!-- End join button -->
-               <!-- Start drop down options -->
-               <div class="col-md-1 community-options ">
-                  <div class="dropdown">
-                     <button type="button" class="btn text-light" data-toggle="dropdown">
-                     <i class="fa-solid fa-ellipsis-vertical"></i>
-                     </button>
-                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Copy Link</a>
-                        <a class="dropdown-item" href="#">Block Account</a>
-                        <a class="dropdown-item" href="{% url 'ans_later' i.Question.id %}">Answer Later</a>
-                        <!-- <a class="dropdown-item" href="#">Delete question</a>
-                           <a class="dropdown-item" href="#">Edit question</a> -->
-                        <a class="dropdown-item" href="#">Bookmark</a>
-                        <a class="dropdown-item" href="#">Save</a>
-                        <a class="dropdown-item" href="#">Share</a>
+               <div class="row community-post-image">
+                  <div class="col-md-12">
+                     <div class="row community-post-image-background">
+                        <div class="col-md-3"></div>
+                        <!-- {% if '.jpg' in i.Post.Image %}
+                           <p>Yes</p>
+                           {% else %}
+                           <p>No</p>
+                           {% endif %}
+                           {{i.Post.Image}} -->
+                        {% if i.Post.post_type1 %}
+                        <div class="col-md-6">
+                           <video width="100%" height="" controls>
+                              <source src="{{i.Post.Image.url}}" type="video/mp4">
+                           </video>
+                        </div>
+                        {%else%}
+                        <div class="col-md-6">
+                           <img src="{{i.Post.Image.url}}" alt="" class="img-fluid" width="100%">
+                        </div>
+                        {% endif %}
+                        <div class="col-md-3"></div>
                      </div>
                   </div>
                </div>
-               <!-- End drop down options -->
+            </a>
+            {% else %}
+            <div></div>
+            {% endif %}
+            <!-- End Community post -->
+            <!-- Start like, comment, share -->
+            <div class="row pt-2 pd-2">
+               <!-- Start like button -->
+               <div class="col-5 col-sm-3 col-md-2">
+                  <a href="{% url 'like_post' i.Post.id %}">
+                  {% if userprofile not in i.Post.Like.all %}
+                  <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
+                  {% else %}
+                  <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
+                  {% endif %}
+                  </a>
+                  <span class="community-like-dislike-btn">{{ i.Post.Like.all.count }}</span>
+                  <a href="{% url 'add_comment' i.Post.id %}" class="text-decoration-none community-like-dislike-btn">
+                  <i class="fa-solid fa-message"></i>
+                  {% if i.Post.Post_comment is None %}
+                  0
+                  {% else %}
+                  {{i.Post.Post_comment}}
+                  {% endif %}
+                  </a>
+               </div>
+               <div class="col-6 col-sm-4 col-md-3 btn-comment-answer">
+                  <a href="{% url 'add_comment' i.Post.id %}">
+                  <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
+                  </a>
+               </div>
+               <!-- End like, comment, share -->
             </div>
          </div>
-         <!-- Start join buttons, options -->
       </div>
-      <!-- End community profile picture, name, and join button  -->
-      <!-- Start community description -->
-      <div class="row pt-3">
-         <div class="col-12 col-sm-12 col-md-12 community-description text-justify">
-            {{i.Question.Question}} ?
+      {% else %}
+      <div class="row">
+         <div class="col-md-12 border-bottom pb-2 pt-5 community-body">
+            <!-- start community profile picture, name, and join button  -->
+            <div class="row">
+               <!-- Start Profile picture -->
+               <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture">
+                  <img class="img-fluid rounded-circle" src="{{i.Question.User_Profile.profile_image.url}}" alt="Chania">
+               </div>
+               <!-- End Profile picture -->
+               <!-- Start Community name and time -->
+               <div class="col-7 col-sm-4 col-md-4">
+                  <!-- Start community name -->
+                  <div class="row">
+                     <div class="col-md-12 community-name">
+                        {{i.Question.User_Profile.usertype.user_id.first_name}} {{i.Question.User_Profile.usertype.user_id.last_name}}
+                     </div>
+                  </div>
+                  <!-- End community name -->
+                  <!-- Start community time -->
+                  <div class="row">
+                     <div class="col-md-12 community-time">
+                        {{i.Question.Date}} / {{i.Question.Time}}
+                        <!-- Ago -->
+                     </div>
+                  </div>
+                  <!-- End community time -->
+               </div>
+               <!-- End Community name and time -->
+               <!-- Start posted by name -->
+               <div class="col-0 col-sm-0 col-md-0">
+                  <div class="row">
+                     <div class="col-md-12 community-posted-by-heading">
+                        <!-- Posted by/ Name -->
+                     </div>
+                  </div>
+               </div>
+               <!-- End posted by name -->
+               <!-- Start join buttons, options -->
+               <div class="col-3 col-sm-7 col-md-7 text-right">
+                  <div class="row">
+                     <!-- Satrt join button -->
+                     <div class="col-md-11 text-right">
+                        <!-- <a class="btn btn-sm btn-normal-b" href="#" role="button">Join</a> -->
+                     </div>
+                     <!-- End join button -->
+                     <!-- Start drop down options -->
+                     <div class="col-md-1 community-options ">
+                        <div class="dropdown">
+                           <button type="button" class="btn text-light" data-toggle="dropdown">
+                           <i class="fa-solid fa-ellipsis-vertical"></i>
+                           </button>
+                           <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Copy Link</a>
+                              <a class="dropdown-item" href="#">Block Account</a>
+                              <a class="dropdown-item" href="{% url 'ans_later' i.Question.id %}">Answer Later</a>
+                              <!-- <a class="dropdown-item" href="#">Delete question</a>
+                                 <a class="dropdown-item" href="#">Edit question</a> -->
+                              <a class="dropdown-item" href="#">Bookmark</a>
+                              <a class="dropdown-item" href="#">Save</a>
+                              <a class="dropdown-item" href="#">Share</a>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- End drop down options -->
+                  </div>
+               </div>
+               <!-- Start join buttons, options -->
+            </div>
+            <!-- End community profile picture, name, and join button  -->
+            <!-- Start community description -->
+            <div class="row pt-3">
+               <div class="col-12 col-sm-12 col-md-12 community-description text-justify">
+                  {{i.Question.Question}} ?
+               </div>
+            </div>
+            <!-- End community description -->
+            <!-- Start like, comment, share -->
+            <div class="row pt-2 pd-2">
+               <!-- Start like button -->
+               <div class="col-4 col-sm-3 col-md-2">
+                  <a href="{% url 'like_Question' i.Question.id %}">
+                  {% if userprofile not in i.Question.Question_Like.all %}
+                  <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
+                  {% else %}
+                  <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
+                  {% endif %}
+                  </a>
+                  <span class="community-like-dislike-btn">
+                  {{ i.Question.Question_Like.all.count }}
+                  </span>
+                  <span class="community-like-dislike-btn">
+                  <i class="fa-solid fa-message"></i>
+                  {% if i.Question.answer is None %}
+                  0
+                  {% else %}
+                  {{i.Question.answer}}
+                  {% endif %}
+                  </span>
+               </div>
+               <!-- End like button -->
+               <!-- Start comment -->
+               <!--            <div class="col-md-1">-->
+               <!--               -->
+               <!--            </div>-->
+               <!-- End comment -->
+               <!-- Start Add comment button -->
+               <div class="col-6 col-sm-4 col-md-3 btn-comment-answer">
+                  <a href="{% url 'Add_Answer' i.Question.id %}">
+                  <button type="submit" class="btn btn-sm btn-block ">Add Answer</button>
+                  </a>
+               </div>
+               <!-- End Add comment button -->
+               <!-- Start Share button -->
+               <div class="col-2 col-sm-1 col-md-1 text-right">
+                  <!-- <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal"> -->
+                     <i class="fa-solid fa-share-nodes"></i>
+                  <!-- </button> -->
+               </div>
+               <!-- End Share button -->
+               <div class="col-0 col-sm-6 col-md-6"></div>
+            </div>
+            <!-- End like, comment, share -->
          </div>
       </div>
-      <!-- End community description -->
-      <!-- Start like, comment, share -->
-      <div class="row pt-2 pd-2">
-         <!-- Start like button -->
-         <div class="col-4 col-sm-3 col-md-2">
-            <a href="{% url 'like_Question' i.Question.id %}">
-            {% if userprofile not in i.Question.Question_Like.all %}
-            <button type="submit" class="btn community-like-dislike-btn">
-            <i class="fa-solid fa-thumbs-up"></i>
-            </button>
-            {% else %}
-            <button type="submit" class="btn community-like-dislike-btn">
-            <i class="fa-solid fa-thumbs-down"></i>
-            </button>
-            {% endif %}
-            </a>
-            <span class="community-like-dislike-btn">
-            {{ i.Question.Question_Like.all.count }}
-            </span>
-            <span class="community-like-dislike-btn">
-            <i class="fa-solid fa-message"></i>
-            {% if i.Question.answer is None %}
-            0
-            {% else %}
-            {{i.Question.answer}}
-            {% endif %}
-            </span>
-         </div>
-         <!-- End like button -->
-         <!-- Start comment -->
-         <!--            <div class="col-md-1">-->
-         <!--               -->
-         <!--            </div>-->
-         <!-- End comment -->
-         <!-- Start Add comment button -->
-         <div class="col-6 col-sm-4 col-md-3 btn-comment-answer">
-            <a href="{% url 'Add_Answer' i.Question.id %}">
-            <button type="submit" class="btn btn-sm btn-block ">Add Answer</button>
-            </a>
-         </div>
-         <!-- End Add comment button -->
-         <!-- Start Share button -->
-         <div class="col-2 col-sm-1 col-md-1 text-right">
-            <!-- <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal"> -->
-               <i class="fa-solid fa-share-nodes"></i>
-            <!-- </button> -->
-         </div>
-         <!-- End Share button -->
-         <div class="col-0 col-sm-6 col-md-6"></div>
-      </div>
-      <!-- End like, comment, share -->
+      {% endif %}
+      {% endfor %}
    </div>
 </div>
-{% endif %}
-{% endfor %}
+<!-- Start Community -->
+
+
 {% endblock community_content %}
+
 <!-- Start Community modeal pop up -->
 <div class="modal fade community-modeal" id="modal5">
    <div class="modal-dialog modal-dialog-scrollable">
@@ -592,6 +582,7 @@
    </div>
 </div>
 <!-- End Community modeal pop up -->
+
 <!-- Start Create Community Modeal pop up -->
 <div class="modal create-community-modeal" id="modal3">
    <div class="modal-dialog modal-lg">
@@ -631,6 +622,18 @@
                   <span class="community-type-heading">Public</span> <span clas="community-type-sub-heading"> Anyone can view post, Comment to this Community.</span>
                   </label>
                </div>
+
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+
+               <div class="row">
+                     <div class="col-md-12 question-text-box">
+                        <div class="form-group">
+                           <textarea name="question" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                        </div>
+                     </div>
+                  </div>
                <!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
                <!--                  <label class="form-check-label">-->
                <!--                  <input type="checkbox" name="restricted" class="form-check-input" value="">-->
@@ -671,19 +674,21 @@
             <h5 class="modal-title">Question For You</h5>
             <a href="#" data-dismiss="modal" class="close">&times;</a>
          </div>
-         <div class="row">
+
+         <div class="modal-body">
+            <div class="row">
             <!-- Start Question Alert -->
-            <div class="col-md-12 question-alert">
+               <div class="col-md-12 question-alert modal-sub-heading">
                {% if Question %}
                {% for Question in Question %}
-               <div class="row">
+               <div class="row pl-2 pt-2">
                   <!-- Start Profile picture -->
                   <div class="col-2 col-sm-1 col-md-1">
                      <img class="img-fluid rounded-circle" src="{{Question.User_Profile.profile_image.url}}" alt="Chania">
                   </div>
                   <!-- End Profile picture -->
                   <!-- Start Community name and time -->
-                  <div class="col-5 col-sm-4 col-md-4">
+                  <div class="col-5 col-sm-4 col-md-4 ">
                      <!-- Start community name -->
                      <div class="row">
                         <div class="col-md-12 community-name">
@@ -708,7 +713,7 @@
                               {{Question.Question}} ?
                            </div>
                         </div>
-                       
+
                         <div class="row">
                            <div class="col-12 col-md-12 pt-2 pb-3 border-bottom answer-share-options">
                               <!-- Start Answer modal -->
@@ -716,11 +721,11 @@
                                  <a href="{% url 'Add_Answer' Question.id %}">
                                     <i class="fa-solid fa-pen"></i> Answer
                                  </a>
-                          
+
                               </span>
                               <!-- End Answer modal -->
                               <!-- <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span> -->
-                              
+
                               <span class="pl-5">
                                  <button type="button" class="btn text-light" data-toggle="dropdown">
                                  <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -735,7 +740,7 @@
                                     <!-- End Answer Later -->
                                     <!-- Edit Question Notify -->
                                     <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Edit The Question</a> -->
-                                    
+
                                     <!-- End Edit question Notify -->
                                     <!-- <a class="dropdown-item" onclick="data('{{Question.Question}}')" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a> -->
                                     <!-- <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a> -->
@@ -769,11 +774,12 @@
                </div>
             </div>
          </div>
+         </div>
          <div class="modal-footer">
-            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
             <a href="{% url 'community-answer' %}">
                <button type="submit" class="btn btn-normal-b">See More Question</button>
             </a>
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
         </div>
       </div>
    </div>
@@ -922,6 +928,7 @@
    </div>
 </div>
 <!-- End Ask-Post Modal pop up -->
+
 <!-- Start Your-added-question-modal-pop-up -->
 <div class="modal fade your-added-questions" id="your-added-questions">
    <div class="modal-dialog modal-lg">

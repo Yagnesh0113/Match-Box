@@ -13,11 +13,11 @@
 {% block community_content %}
 <!-- Start community image -->
 <div class="row p-3">
-   <div class="col-12 col-sm-12 col-md-12">
+   <div class="col-12 col-sm-12 col-md-12 community-profile-screen">
       {% if i.Community_Cover_Image %}
-      <img class="img-fluid" src="{{i.Community_Cover_Image.url}}" width="100%" alt="Chania">
+      <img class="img-fluid rounded" src="{{i.Community_Cover_Image.url}}" width="100%" alt="Chania">
       {% else %}
-      <img class="img-fluid" src="{% static 'community_profession/img/community-slider-img.png' %}" alt="Chania">
+      <img class="img-fluid rounded" src="{% static 'community_profession/img/community-slider-img.png' %}" alt="Chania">
       {% endif %}
    </div>
 </div>

@@ -25,14 +25,13 @@
       <div class="row">
          <div class="col-md-12 community-heading">
             {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}} <br>
-            
          </div>
       </div>
       <!-- End community-heading -->
       <!-- Start community-no-members -->
       <div class="row">
          <div class="col-md-12">
-            {{i.Date}} / {{i.Time}} 
+            {{i.Date}} / {{i.Time}}
             <!-- ago -->
          </div>
       </div>
@@ -47,6 +46,7 @@
    <!-- End community posted-by-u-name -->
 </div>
 <!-- End community-profile-img, heading, post -->
+
 <!-- Start Community sub heading -->
 <div class="row pl-3">
    <!-- Start community-sub-heading -->
@@ -56,6 +56,7 @@
    <!-- End community-sub-heading -->
 </div>
 <!-- End Community sub heading -->
+
 <!-- Start post-img-video -->
 <!-- <div class="row pl-3 pt-3">
    <div class="col-md-12">
@@ -63,46 +64,52 @@
    </div>
    </div> -->
 <!-- End post-img-video -->
+
 <!-- Start no-of-like, no-of-comments, share -->
-<div class="row pl-3 pt-3 like-comment-share">
-    <!-- Start no-of-like -->
-    <div class="col-md-1">
-      <a href="{% url 'like_Question' i.id %}">
-         {% if userprofile not in i.Question_Like.all %}
-         <button type="submit" class="fa-solid fa-thumbs-up"></button>
-         {% else %}
-         <button type="submit" class="fa-solid fa-thumbs-down"></button>
-         {% endif %}
-      </a>{{ i.Question_Like.all.count }} Likes
-    </div>
-    <!-- End no-of-like -->
+<span class="row pl-3 pt-3 like-comment-share">
+   <!-- Start no-of-like -->
+   <span class="">
+      <a href="{% url 'like_Question' i.id %}" class="text-decoration-none ">
+          {% if userprofile not in i.Question_Like.all %}
+          <button type="submit" class="btn community-like-dislike-btn">
+              <i class="fa-solid fa-thumbs-up"></i>
+          </button>
+          {% else %}
+          <button type="submit" class="btn community-like-dislike-btn">
+              <i class="fa-solid fa-thumbs-down"></i>
+          </button>
+          {% endif %}
+      </a>
+       <span class="community-like-dislike-btn">
+            {{ i.Question_Like.all.count }}
+       </span>
+   </span>
+   <!-- End no-of-like -->
+    &nbsp;&nbsp;
+   <!-- Start  no-of-comments -->
+   <span class="community-like-dislike-btn pt-2">
+      <i class="fa-solid fa-message"></i>
+       &nbsp;
+      {% if i.answer is None %}
+      0
+      {% else %}
+      {{i.answer}}
+      {% endif %}
+   </span>
+   <!-- End  no-of-comments -->
 
-    <!-- Start  no-of-comments -->
-    <div class="col-md-1">
-        <i class="fa-solid fa-message"></i> 
-        {% if i.answer is None %}
-        0
-        {% else %}
-        {{i.answer}}
-        {% endif %}
-    </div>
-    <!-- End  no-of-comments -->
-
-    <!-- Start share -->
-    <div class="col-md-1">
+   <!-- Start share -->
+   <span>
       <button type="submit" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal"><i class="fa-solid fa-share-nodes"></i></button>
-    </div>
-    <!-- End share -->
+   </span>
+   <!-- End share -->
 
-    <div class="col-md-9"></div>
-</div>
-
-
+</span>
 <!-- End no-of-like, no-of-comments, share -->
 
 <!-- Start community-user-name -->
-<div class="row pl-3 pt-2 community-user-name">
-   <div class="col-3 col-sm-2 col-md-1 pl-5 pr-3">
+<div class="row pl-3 pt-2 community-user-name ">
+   <div class="col-3 col-sm-2 col-md-1  ">
       <img class="img-fluid rounded-circle" src="{{user.profile_image.url}}" alt="Chania">
    </div>
    <div class="col-9 col-sm-5 col-md-5 pt-3">
@@ -111,6 +118,7 @@
    </div>
 </div>
 <!-- End community-user-name -->
+
 <!-- Start comment-text-box -->
 <form action="{% url 'Add_Answer' i.id %}" method="POST">
    {% csrf_token %}
@@ -127,8 +135,8 @@
       <div class="col-md-12 pb-3 text-right border-bottom">
          <!-- Start cancel-btn -->
          <!--<span class="cancel-btn">
-         <button type="submit" class="btn pl-5 pr-5">Cancel</button>
-         </span>-->
+            <button type="submit" class="btn pl-5 pr-5">Cancel</button>
+            </span>-->
          <!-- End cancel-btn -->
          <!-- Start post-btn -->
          <span class="post-btn">
@@ -139,12 +147,15 @@
    </div>
 </form>
 <!-- End cancel-post-btn -->
+
 <!-- Start Comments heading -->
 <div class="row pl-3 pt-3 pb-3">
    <div class="col-md-12 comments-heading">
+
    </div>
 </div>
 <!-- End Comments heading -->
+
 <!-- Start Comments -->
 {% for Answer in Answer_id %}
 <div class="row pl-3">
@@ -159,7 +170,8 @@
          <!-- Start user-community-name, time -->
          <div class="col-10 col-sm-11 col-md-11 user-community-name">
             {{Answer.User_Profile.usertype.user_id.first_name}} {{Answer.User_Profile.usertype.user_id.last_name}} <br>
-            <span>{{Answer.Date}} / {{Answer.Time}} 
+            <span>
+               {{Answer.Date}} / {{Answer.Time}}
                <!-- ago -->
             </span>
          </div>
@@ -176,90 +188,94 @@
       <!-- Start like-reply-share -->
       <div class="row pt-3">
          <div class="col-md-12 like-reply-share">
-            <span class="">
-               <a href="{% url 'like_Answer' Answer.id %}">
-                  {% if userprofile not in Answer.Answer_Like.all %}
-                  <button type="submit" class="fa-solid fa-thumbs-up"></button>
-                  {% else %}
-                  <button type="submit" class="fa-solid fa-thumbs-down"></button>
-                  {% endif %}
-               </a>{{ Answer.Answer_Like.all.count}} Likes
+            <span class="community-like-dislike-btn">
+                <a href="{% url 'like_Answer' Answer.id %}">
+                    {% if userprofile not in Answer.Answer_Like.all %}
+                    <button type="submit" class="btn community-like-dislike-btn">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+                    {% else %}
+                    <button type="submit" class="btn community-like-dislike-btn">
+                        <i class="fa-solid fa-thumbs-down"></i>
+                    </button>
+                    {% endif %}
+                </a>
+
+                {{ Answer.Answer_Like.all.count}}
             </span>
-            <span class="pl-5">
-            <a href="{% url 'Add_Answer_Reply' Answer.id %}" class="text-decoration-none"><i class="fa-solid fa-message"></i>
-               {% if Answer.reply is None %}
-               0
-               {% else %}
-               {{Answer.reply}}
-               {% endif %}
-            </a>
+            <span class="pl-1 community-like-dislike-btn">
+                <a href="{% url 'Add_Answer_Reply' Answer.id %}" class="text-decoration-none">
+                    <i class="fa-solid fa-message"></i>
+                    &nbsp;
+                    {% if Answer.reply is None %}
+                    0
+                    {% else %}
+                    {{Answer.reply}}
+                    {% endif %}
+                </a>
             </span>
-            <span class="pl-5">
-               <i class="fa-solid fa-share-nodes"></i>
+            <span class="pl-1 community-like-dislike-btn">
+                <i class="fa-solid fa-share-nodes"></i>
             </span>
          </div>
       </div>
       <!-- Start like-reply-share -->
    </div>
 </div>
-
 {% endfor %}
 <!-- Start Share Modal -->
 <div class="modal create-community-modeal" id="share-modal">
    <div class="modal-dialog modal-lg modal-dialog-centered">
-       <div class="modal-content">
-           <div class="modal-header">
-               <div class="row your-added-questions-heading">
-                  <div class="col-md-12">Share</div>
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row your-added-questions-heading">
+               <div class="col-md-12">Share</div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Share Icon -->
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <a>{% post_to_facebook object_or_url %}</a>
+                  <!-- <a href="" class=" text-decoration-none">
+                     <i class="fa fa-facebook">{% post_to_facebook object_or_url %} </i>
+                     </a> -->
+                  &nbsp;
+                  <a>{% post_to_whatsapp object_or_url %}</a>
+                  <!-- <a href="#" class=" text-decoration-none">
+                     <i class="fa-brands fa-whatsapp"></i>
+                     </a> -->
+                  &nbsp;
+                  <!-- Reddit Icon -->
+                  <a>{% post_to_reddit object_or_url %}</a>
+                  <!-- end reddit icon -->
+                  &nbsp;
                </div>
-               <a href="#" data-dismiss="modal" class="close">&times;</a>
-           </div>
-           <div class="modal-body">
-              <!-- Start Share Icon -->
-              <div class="row">
-                 <div class="col-md-12 text-center">
-                   <a>{% post_to_facebook object_or_url %}</a>
-                      <!-- <a href="" class=" text-decoration-none">
-                         <i class="fa fa-facebook">{% post_to_facebook object_or_url %} </i>
-                      </a> -->
-                      &nbsp;
-                      <a>{% post_to_whatsapp object_or_url %}</a>
-                      <!-- <a href="#" class=" text-decoration-none">
-                         <i class="fa-brands fa-whatsapp"></i>
-                      </a> -->
-                      &nbsp;
-                      <!-- Reddit Icon -->
-                      <a>{% post_to_reddit object_or_url %}</a>
-                      <!-- end reddit icon -->
-                      &nbsp;
- 
- 
-                 </div>
-              </div>
-              <!-- End Share Icon -->
-              <!-- Start copy link text box -->
-              <div class="row d-flex justify-content-center pt-3">
-                 <div class="col-md-8">
-                    <form>
+            </div>
+            <!-- End Share Icon -->
+            <!-- Start copy link text box -->
+            <div class="row d-flex justify-content-center pt-3">
+               <div class="col-md-8">
+                  <form>
                      <div class="input-group mb-3">
-                       <input type="text" class="form-control" placeholder="CopyURL">
-                       <div class="input-group-append">
-                         <!-- <span class="input-group-text">COPY</span> -->
-                         <span>{% copy_to_clipboard object_or_url%}</span>
-                       </div>
+                        <input type="text" class="form-control" placeholder="CopyURL">
+                        <div class="input-group-append">
+                           <!-- <span class="input-group-text">COPY</span> -->
+                           <span>{% copy_to_clipboard object_or_url%}</span>
+                        </div>
                      </div>
-                   </form>
-                 </div>
-              </div>
-              <!-- End copy link text box -->
-           </div>
-           <div class="modal-footer">
-               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
-           </div>
-       </div>
+                  </form>
+               </div>
+            </div>
+            <!-- End copy link text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
    </div>
- </div>
- <!-- End Share Modal -->
- 
+</div>
+<!-- End Share Modal -->
 <!-- End Comments -->
 {% endblock community_content %}

@@ -86,53 +86,53 @@
    </div>
    <!-- Start profile-img -->
    <!-- Start info -->
-   <div class="col-8 col-sm-9 col-md-10 personal-info">
+   <div class="col-10 col-sm-9 col-md-10 personal-info">
       <!-- Start name info -->
       <div class="row">
-         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+         <div class="col-3  col-sm-2  col-md-2 sub-heading">
             Name
          </div>
-         <div class="col-10 col-sm-10 col-md-10 content">
+         <div class="col-9 col-sm-10 col-md-10 content">
             : {{Profession_obj.shop_name}}
          </div>
       </div>
       <!-- End name info -->
       <!-- Start profession -->
       <div class="row">
-         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+         <div class="col-3  col-sm-2  col-md-2 sub-heading">
             Profession
          </div>
-         <div class="col-10 col-sm-10 col-md-10 content">
+         <div class="col-9 col-sm-10 col-md-10 content">
             : {{Profession_obj.profession.Profession_Name}}
          </div>
       </div>
       <!-- End profession -->
       <!-- Start Address -->
       <div class="row">
-         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+         <div class="col-3  col-sm-2  col-md-2 sub-heading">
             Address
          </div>
-         <div class="col-10 col-sm-10 col-md-10 content">
+         <div class="col-9 col-sm-10 col-md-10 content">
             : {{Profession_obj.shop_address}} {{Profession_obj.shop_city}}, {{Profession_obj.shop_state}}
          </div>
       </div>
       <!-- End Address -->
       <!-- Start Experience -->
       <div class="row">
-         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+         <div class="col-3  col-sm-2  col-md-2 sub-heading">
             Experience
          </div>
-         <div class="col-10 col-sm-10 col-md-10 content">
+         <div class="col-9 col-sm-10 col-md-10 content">
             : {{Profession_obj.year_of_experience}} Year
          </div>
       </div>
       <!-- End Experience -->
       <!-- Start Rating -->
       <div class="row">
-         <div class="col-2  col-sm-2  col-md-2 sub-heading">
+         <div class="col-3  col-sm-2  col-md-2 sub-heading">
             Rating
          </div>
-         <div class="col-10 col-sm-10 col-md-10 content">
+         <div class="col-9 col-sm-10 col-md-10 content">
             :
             <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
             <!-- <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
@@ -334,7 +334,7 @@
 <!-- Start Photos & videos heading, See All links headings -->
 <div class="row photos-videos-see-all">
    <!-- Start Photos and Videos Heading -->
-   <div class="col-10 col-md-6">
+   <div class="col-6 col-md-6">
       <div class="row">
          <div class="col-md-12 photos-videos-heading">
             Photos & Videos
@@ -343,7 +343,7 @@
    </div>
    <!-- End Photos and Videos Heading -->
    <!-- Start see all links -->
-   <div class="col-2 col-md-6 text-right">
+   <div class="col-6 col-md-6 text-right">
       <div class="row">
          <div class="col-md-12 text-right ">
             <a href="{% url 'see-all-photos-videos' Profession_obj.id %}" class="see-all">
