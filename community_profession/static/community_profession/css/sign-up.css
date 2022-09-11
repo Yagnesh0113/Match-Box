@@ -305,6 +305,7 @@ Note: this css file is use for all following pages: sign-up, sign-up-for-profess
 
     .sign-up-form .form-control
     {
+        color:var(--color-2);
         background-color: var(--color-15);
         border: 0.125rem solid var(--color-5);
     }

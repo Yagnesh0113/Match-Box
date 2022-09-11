@@ -6,6 +6,7 @@
 {% block own_css %}
 <!--   own css   -->
 <link rel="stylesheet" href="{% static 'community_profession/css/see-all-photos-and-videos.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 {% endblock own_css %}
 {% block content %}
 <!-- Start all photos and videos -->
@@ -20,13 +21,11 @@
                </div>
             </div>
             <div class="row">
-               <div class="col-6 col-sm-6 col-md-6">
-                  <a href="{% url 'photo-screen' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
+               <div class="col-12 col-sm-12 col-md-12">
+                  <a href="{% url 'photo-screen' i.id %}" class="btn btn-normal btn-sm text-dark m-2 d-inline-block">
                      <i class="fa-solid fa-eye"></i>
                   </a>
-               </div>
-               <div class="col-6 col-sm-6 col-md-6 text-right">
-                  <form action="{% url 'delete_Image' i.id %}">
+                  <form action="{% url 'delete_Image' i.id %}" class="d-inline-block">
                      <button type="submit" value="{{i.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
                         <i class="fa-solid fa-trash-can"></i>
                      </button>
@@ -47,13 +46,12 @@
                </div>
             </div>
             <div class="row">
-               <div class="col-6 col-sm-6 col-md-6">
-                  <a href="{% url 'video-screen' j.id %}" class="btn btn-normal btn-sm text-dark m-2">
+               <div class="col-12 col-sm-12 col-md-12">
+                  <a href="{% url 'video-screen' j.id %}" class="btn btn-normal btn-sm text-dark m-2 d-inline-block">
                      <i class="fa-solid fa-eye"></i>
                   </a>
-               </div>
-               <div class="col-6 col-sm-6 col-md-6 text-right">
-                  <form action="{% url 'delete_Image' j.id %}">
+
+                  <form action="{% url 'delete_Image' j.id %}" class="d-inline-block">
                      <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-2">
                         <i class="fa-solid fa-trash-can"></i>
                      </button>
