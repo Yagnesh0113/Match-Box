@@ -217,3 +217,9 @@ class Answer_later(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
     Date=models.DateField(null=True, blank=True)
     Time=models.TimeField(null=True, blank=True)
+
+
+
+class distance_calculation(models.Model):
+    user_profile = models.OneToOneField(UserProfile,on_delete=models.CASCADE)
+    distance=models.JSONField()

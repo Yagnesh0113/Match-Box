@@ -6,6 +6,8 @@ from professional.models import *
 from professional.views import is_user_is_professional_user
 from datetime import date, datetime
 from django.http import JsonResponse
+import haversine as hs
+from haversine import Unit
 
 # Create your views here.
 
@@ -68,7 +70,6 @@ def loadNearestProfessionsList(request,id=None):
     if request.method=="POST":
         State_obj=State.objects.get(id=request.POST.get("state"))
         City_obj=request.POST.get("city")
-        print(State_obj)
         if State_obj!=None:
             Profession_obj=Profession.objects.filter(profession=id,shop_state=State_obj,shop_city=City_obj)
         else:
@@ -79,15 +80,41 @@ def loadNearestProfessionsList(request,id=None):
             context={'My_community':My_Community,'userprofile':userprofile,"Profession_obj":Profession_obj}
         return render(request, 'community_profession/nearest-professions-list.html',context)
     else:
-        z=request.lat
-        print(z)
-        Profession_obj=Profession.objects.filter(profession=id)
+        
+        lat=float(request.GET['lat'])
+        lon=float(request.GET['lon'])   
+        loc1=(lat,lon)
+        print(loc1)
+        pro_id= request.GET['id']
+
+        Profession_obj=Profession.objects.filter(profession=pro_id)
+        distance=dict()
+        for i in Profession_obj:
+            loc2=(i.profession_latitude,i.profession_longitude)
+            print(loc2)
+            dis=round(hs.haversine(loc1,loc2,unit=Unit.KILOMETERS),2)
+            if dis<1:
+                dis=str(round(hs.haversine(loc1,loc2,unit=Unit.METERS),2))+' m'
+            else:
+                dis=str(dis)+' km'
+            distance[i]=dis
+           
+
+        distance={k: v for k, v in sorted(distance.items(), key=lambda item: item[1])}
+        print(distance)
+ 
+        
         if obj is not None:
-            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj}
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
         else:
-            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj}
+            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
 
         return render(request, 'community_profession/nearest-professions-list.html',context)
+
+
+
+
+
 
 # --- load -- profession personal details page ---
 # @login_required(login_url='/')
