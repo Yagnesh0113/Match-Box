@@ -1,6 +1,6 @@
 /* Start Navigation css */
 .custom-nav {
-	background-color: var(--color-12);
+        /*background-color: var(--color-12);*/
 }
 
 .custom-nav .navbar {
@@ -13,7 +13,7 @@
 
 .custom-nav .nav-item .nav-link {
 	padding: 0.5rem 0.5rem;
-	color: var(--color-13);
+	color: var(--color-2);
 }
 
 /* End Navigation css */
