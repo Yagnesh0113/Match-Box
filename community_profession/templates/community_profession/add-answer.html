@@ -1,5 +1,6 @@
 {% extends 'community_profession/community.html' %}
 {% load static %}
+{% load social_share %}
 {% block title %}
 <title>Write Comment</title>
 {% endblock title %}
@@ -31,7 +32,8 @@
       <!-- Start community-no-members -->
       <div class="row">
          <div class="col-md-12">
-            {{i.Date}} / {{i.Time}} ago
+            {{i.Date}} / {{i.Time}} 
+            <!-- ago -->
          </div>
       </div>
       <!-- End community-no-members -->
@@ -88,7 +90,7 @@
 
     <!-- Start share -->
     <div class="col-md-1">
-        <i class="fa-solid fa-share-nodes"></i>
+      <button type="submit" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal"><i class="fa-solid fa-share-nodes"></i></button>
     </div>
     <!-- End share -->
 
@@ -157,7 +159,9 @@
          <!-- Start user-community-name, time -->
          <div class="col-10 col-sm-11 col-md-11 user-community-name">
             {{Answer.User_Profile.usertype.user_id.first_name}} {{Answer.User_Profile.usertype.user_id.last_name}} <br>
-            <span>{{Answer.Date}} / {{Answer.Time}} ago</span>
+            <span>{{Answer.Date}} / {{Answer.Time}} 
+               <!-- ago -->
+            </span>
          </div>
          <!-- End user-community-name, time -->
       </div>
@@ -191,7 +195,7 @@
             </a>
             </span>
             <span class="pl-5">
-            <i class="fa-solid fa-share-nodes"></i>
+               <i class="fa-solid fa-share-nodes"></i>
             </span>
          </div>
       </div>
@@ -200,5 +204,62 @@
 </div>
 
 {% endfor %}
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+       <div class="modal-content">
+           <div class="modal-header">
+               <div class="row your-added-questions-heading">
+                  <div class="col-md-12">Share</div>
+               </div>
+               <a href="#" data-dismiss="modal" class="close">&times;</a>
+           </div>
+           <div class="modal-body">
+              <!-- Start Share Icon -->
+              <div class="row">
+                 <div class="col-md-12 text-center">
+                   <a>{% post_to_facebook object_or_url %}</a>
+                      <!-- <a href="" class=" text-decoration-none">
+                         <i class="fa fa-facebook">{% post_to_facebook object_or_url %} </i>
+                      </a> -->
+                      &nbsp;
+                      <a>{% post_to_whatsapp object_or_url %}</a>
+                      <!-- <a href="#" class=" text-decoration-none">
+                         <i class="fa-brands fa-whatsapp"></i>
+                      </a> -->
+                      &nbsp;
+                      <!-- Reddit Icon -->
+                      <a>{% post_to_reddit object_or_url %}</a>
+                      <!-- end reddit icon -->
+                      &nbsp;
+ 
+ 
+                 </div>
+              </div>
+              <!-- End Share Icon -->
+              <!-- Start copy link text box -->
+              <div class="row d-flex justify-content-center pt-3">
+                 <div class="col-md-8">
+                    <form>
+                     <div class="input-group mb-3">
+                       <input type="text" class="form-control" placeholder="CopyURL">
+                       <div class="input-group-append">
+                         <!-- <span class="input-group-text">COPY</span> -->
+                         <span>{% copy_to_clipboard object_or_url%}</span>
+                       </div>
+                     </div>
+                   </form>
+                 </div>
+              </div>
+              <!-- End copy link text box -->
+           </div>
+           <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+           </div>
+       </div>
+   </div>
+ </div>
+ <!-- End Share Modal -->
+ 
 <!-- End Comments -->
 {% endblock community_content %}
