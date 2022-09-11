@@ -73,7 +73,7 @@ class User_Question(models.Model):
     answer=models.IntegerField(null=True, blank=True)
     Question_Like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='Question_Like' )
     Answer_later=models.BooleanField(default=False)
-    Question_Edit=models.BooleanField(default=False)
+    Question_Edit=models.BooleanField(default=False,null=True,blank=True)
 
     def __str__(self):
         return self.Question
@@ -218,3 +218,9 @@ class Answer_later(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
     Date=models.DateField(null=True, blank=True)
     Time=models.TimeField(null=True, blank=True)
+
+
+
+class distance_calculation(models.Model):
+    user_profile = models.OneToOneField(UserProfile,on_delete=models.CASCADE)
+    distance=models.JSONField()

@@ -139,10 +139,13 @@ def add_profession(request):
 
         
         nom=ArcGIS()
-        Location=address+city
+        Location=address+' '+city+' '+state.name
+        
        
-        long=nom.geocode(Location).latitude
-        latitude=nom.geocode(Location).longitude
+        latitude=nom.geocode(Location).latitude
+        long=nom.geocode(Location).longitude
+
+        print(latitude,long)
 
         Profession.objects.create(          UserProfile=userprofile,
                                             year_of_experience=experience, 

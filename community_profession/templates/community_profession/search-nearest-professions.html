@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                            
-                              <button type="button" class="btn btn-block btn-normal-b" onclick="getLocation()">Search your nearest location</button>
+                              <button type="button" class="btn btn-block btn-normal-b" onclick="getLocation('{{profession.id}}')">Search your nearest location</button>
                            
                            <!-- <input class="form-control form-control" type="text" placeholder="Search your nearest location" required> -->
                         </div>
@@ -100,7 +100,11 @@
 <script>
    var x = document.getElementById("demo");
    var URL="{% url 'nearest-professions-list' %}"
-   function getLocation() {
+   var id=null
+
+
+   function getLocation(a) {
+      id=a
      if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(showPosition);
      } 
@@ -114,7 +118,8 @@
     var a=position.coords.latitude;
     var b=position.coords.longitude;
     var data={'long':b,'lat':a}
-    location.href=URL+`?lat=${a}&lon=${b}`
+    
+    location.href=URL+`?lat=${a}&lon=${b}&id=${id}`
    }
    </script>
 

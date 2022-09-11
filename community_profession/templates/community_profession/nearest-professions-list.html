@@ -37,7 +37,7 @@
          </div>
       </div>
       <!-- Start find-artist-window search bar -->
-      {% for i in Profession_obj %}
+      {% for i,j in distance.items %}
       <!-- Start profession list -->
       <div class="row pl-4 pr-4">
          <div class="col-md-12 mt-3">
@@ -64,7 +64,7 @@
                         <!-- Start Profession sub heading -->
                         <div class="row">
                            <div class="col-sm-12 profession-subheading">
-                              {{i.profession.Profession_Name}}
+                              {{i.profession.Profession_Name}}-{{j}}
                            </div>
                         </div>
                         <!-- End Profession sub heading -->
