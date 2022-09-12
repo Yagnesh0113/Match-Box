@@ -59,7 +59,7 @@
 {% block community_profession_nav %}
 <!-- Start Community - Profession Navigation -->
 <div class="row">
-   <div class="col-md-12 community-profession">
+   <div class="col-9 col-sm-10 col-md-10 community-profession">
       <nav class="navbar justify-content-between">
          <!-- Start Community and Profession -->
          <ul class="nav justify-content-end">
@@ -80,6 +80,7 @@
          <!-- End right side see all nav -->
       </nav>
    </div>
+
 </div>
 <!-- End Community - Profession Navigation -->
 {% endblock community_profession_nav %}
@@ -1467,7 +1468,6 @@
    </div>
 </div>
 <!-- End Community modeal pop up -->
-
 <!-- Start Create Community Modeal pop up -->
 <div class="modal create-community-modeal" id="modal3">
    <div class="modal-dialog modal-lg">
@@ -1548,144 +1548,8 @@
    </div>
 </div>
 <!-- End Create Community Modeal pop up -->
-
 <!-- Start Answer asked by another user -->
-<div class="modal create-community-modeal" id="askedanswer">
-   <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title">Question For You</h5>
-            <a href="#" data-dismiss="modal" class="close">&times;</a>
-         </div>
-         <div class="modal-body">
-            <div class="row">
-               <!-- Start Question Alert -->
-               <div class="col-md-12 question-alert modal-sub-heading">
-                  {% if Question %}
-                  {% for Question in Question %}
-                  <div class="row pl-2 pt-2">
-                     <!-- Start Profile picture -->
-                     <div class="col-2 col-sm-1 col-md-1">
-                        <img class="img-fluid rounded-circle" src="{{Question.User_Profile.profile_image.url}}" alt="Chania">
-                     </div>
-                     <!-- End Profile picture -->
-                     <!-- Start Community name and time -->
-                     <div class="col-5 col-sm-4 col-md-4 ">
-                        <!-- Start community name -->
-                        <div class="row">
-                           <div class="col-md-12 community-name">
-                              {{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-12 community-name">
-                              {{Question.Date}} {{Question.Time}}
-                           </div>
-                        </div>
-                     </div>
-                     <!-- End Community name and time -->
-                  </div>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="alert  alert-dismissible fade show">
-                           <button type="button" class="close" data-dismiss="alert">&times;</button>
-                           <!-- Start question-alert heading -->
-                           <div class="row">
-                              <div class="col-md-12 heading">
-                                 {{Question.Question}} ?
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-12 col-md-12 pt-2 pb-3 border-bottom answer-share-options">
-                                 <!-- Start Answer modal -->
-                                 <span>
-                                 <a href="{% url 'Add_Answer' Question.id %}">
-                                 <i class="fa-solid fa-pen"></i> Answer
-                                 </a>
-                                 </span>
-                                 <!-- End Answer modal -->
-                                 <!-- <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span> -->
-                                 <span class="pl-5">
-                                    <button type="button" class="btn text-light" data-toggle="dropdown">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                       <!-- For Answer Later -->
-                                       {% if Question.Answer_later %}
-                                       <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
-                                       {% else %}
-                                       <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
-                                       {% endif %}
-                                       <!-- End Answer Later -->
-                                       <!-- Edit Question Notify -->
-                                       <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Edit The Question</a> -->
-                                       <!-- End Edit question Notify -->
-                                       <!-- <a class="dropdown-item" onclick="data('{{Question.Question}}')" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a> -->
-                                       <!-- <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a> -->
-                                       <!-- <a class="dropdown-item" href="#" data-target="#my-answer" data-toggle="modal"><i class="fa-solid fa-pen"></i> My Answer</a> -->
-                                       <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
-                                       <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
-                                    </div>
-                                 </span>
-                                 {% if Question.Question_Edit %}
-                                 <span class="pl-5"><i class="fa-solid fa-bell"></i> Edited The Question </span>
-                                 {% else %}
-                                 {% endif %}
-                              </div>
-                           </div>
-                           <!-- End answer, share, options -->
-                        </div>
-                     </div>
-                  </div>
-                  {% endfor %}
-                  {% else %}
-                  <div class="col-5 col-sm-4 col-md-4">
-                     <!-- Start community name -->
-                     <div class="row">
-                        <div class="col-md-12 community-name">
-                           No Questions for You.....
-                        </div>
-                     </div>
-                  </div>
-<<<<<<< Updated upstream
-                  {% endif %}
-=======
-               </div>
-               {% endif %}
-               <div class="row ">
-                  <div class="col-md-9"></div>
-                  <div class="col-md-3">
-                     <button type="submit" class="btn btn-sm btn-normal-b btn-block">See More Question</button>
-                  </div>
-               </div>
-              
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-               </div>
-            
-            </div>
-         </div>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      </div>
-      <div class="modal-footer">
-         <a href="{% url 'community-answer' %}">
-         <button type="submit" class="btn btn-normal-b">See More Question</button>
-         </a>
-         <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
-=======
-        
-        
->>>>>>> Stashed changes
-=======
-        
-        
->>>>>>> Stashed changes
-      </div>
-   </div>
-</div>
+
 </div>
 <!-- Ends Answer Asked by another user -->
 <!-- Start Ask-Post Modal pop up -->
@@ -2002,4 +1866,7 @@
 <!-- End Ask and post js -->
 
 
+
 {% endblock content %}
+
+
