@@ -49,10 +49,7 @@
 <!--   background: #51CE5E;-->
 <!--   color: white;-->
 <!--}-->
-<!--</style>-->
-<!-- End Share icon -->
-<!-- Start navigation css -->
-<!-- End navigation css -->
+
 {% endblock own_css %}
 {% block community_profession_nav %}
 <!-- Start Community - Profession Navigation -->
@@ -78,6 +75,7 @@
          <!-- End right side see all nav -->
       </nav>
    </div>
+
 </div>
 <!-- End Community - Profession Navigation -->
 {% endblock community_profession_nav %}
@@ -120,7 +118,7 @@
          <!-- End ask -->
          <!-- Start answer -->
          <li class="nav-item border-bottom">
-            <a class="nav-link notification" href="#" data-target="#answers" data-toggle="modal">
+            <a class="nav-link notification" href="#" data-target="#askedanswer" data-toggle="modal">
             <i class="fa-solid fa-pen"></i>
             Answer
             <span class="badge">{{Question_count}}</span>
@@ -160,6 +158,7 @@
       </ul>
    </div>
 </div>
+
 <!-- End community navigation -->
 {% endblock community_nav %}
 {% block community_content %}
@@ -442,9 +441,15 @@
       {% endif %}
       {% endfor %}
       {% endif %}
+
+
+
+
+
       <!--Start Others Post  -->
       {% if User_post_obj_image %}
       {% for i in User_post_obj_image %}
+      
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -586,13 +591,16 @@
                <!-- End like, comment, share -->
             </div>
          </div>
-      </div>
+      </div> 
       {% endfor %}
       {% endif %}
       <!-- End Others Post -->
+
+
       <!-- Start Others Video -->
       {% if User_post_obj_video %}
       {% for i in User_post_obj_video %}
+      
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -734,13 +742,16 @@
                <!-- End like, comment, share -->
             </div>
          </div>
-      </div>
+      </div> 
       {% endfor %}
       {% endif %}
       <!-- End others Video -->
+
+
       <!-- Start Others Questions -->
       {% if User_question %}
       {% for i in User_question %}
+      
       <div class="row">
          <div class="col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -762,7 +773,7 @@
                   <!-- Start community time -->
                   <div class="row">
                      <div class="col-md-12 community-time">
-                        {{i.Date}} / {{i.Time}}
+                        {{i.Date}} / {{i.Time}} 
                         <!-- Ago -->
                      </div>
                   </div>
@@ -822,27 +833,29 @@
                <!-- Start like button -->
                <div class="col-4 col-sm-3 col-md-2">
                   <a href="{% url 'like_Question' i.id %}">
-                  {% if userprofile not in i.Question_Like.all %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-thumbs-up"></i>
-                  </button>
-                  {% else %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-thumbs-down"></i>
-                  </button>
-                  {% endif %}
+                     {% if userprofile not in i.Question_Like.all %}
+                     <button type="submit" class="btn community-like-dislike-btn">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                     </button>
+                     {% else %}
+                     <button type="submit" class="btn community-like-dislike-btn">
+                        <i class="fa-solid fa-thumbs-down"></i>
+                     </button>
+                     {% endif %}
                   </a>
                   <span class="community-like-dislike-btn">
-                  {{ i.Question_Like.all.count }}
+                     {{ i.Question_Like.all.count }}
                   </span>
+      
                   <span class="community-like-dislike-btn">
-                  <i class="fa-solid fa-message"></i>
-                  {% if i.answer is None %}
-                  0
-                  {% else %}
-                  {{i.answer}}
-                  {% endif %}
+                     <i class="fa-solid fa-message"></i>
+                     {% if i.answer is None %}
+                        0
+                     {% else %}
+                        {{i.answer}}
+                     {% endif %}
                   </span>
+      
                </div>
                <!-- End like button -->
                <!-- Start comment -->
@@ -870,6 +883,9 @@
       {% endfor %}
       {% endif %}
       <!-- End Others Questions -->
+
+
+
       <!-- Start My Video -->
       {% if User_POST_my_video %}
       {% for i in User_POST_my_video %}
@@ -1014,13 +1030,17 @@
                <!-- End like, comment, share -->
             </div>
          </div>
-      </div>
+      </div> 
+      
       {% endfor %}
       {% endif %}
       <!-- End My Video -->
+
+
       <!-- Start My Images -->
       {% if User_POST_my_image %}
       {% for i in User_POST_my_image %}
+      
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -1162,13 +1182,21 @@
                <!-- End like, comment, share -->
             </div>
          </div>
-      </div>
+      </div> 
       {% endfor %}
       {% endif %}
       <!-- End My Image -->
+
+
+
+
+
+
+
       <!-- Start My Questions -->
       {% if User_POST_my_question %}
       {% for i in User_POST_my_question %}
+      
       <div class="row">
          <div class="col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -1190,7 +1218,7 @@
                   <!-- Start community time -->
                   <div class="row">
                      <div class="col-md-12 community-time">
-                        {{i.Date}} / {{i.Time}}
+                        {{i.Date}} / {{i.Time}} 
                         <!-- Ago -->
                      </div>
                   </div>
@@ -1250,27 +1278,29 @@
                <!-- Start like button -->
                <div class="col-4 col-sm-3 col-md-2">
                   <a href="{% url 'like_Question' i.id %}">
-                  {% if userprofile not in i.Question_Like.all %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-thumbs-up"></i>
-                  </button>
-                  {% else %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-thumbs-down"></i>
-                  </button>
-                  {% endif %}
+                     {% if userprofile not in i.Question_Like.all %}
+                     <button type="submit" class="btn community-like-dislike-btn">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                     </button>
+                     {% else %}
+                     <button type="submit" class="btn community-like-dislike-btn">
+                        <i class="fa-solid fa-thumbs-down"></i>
+                     </button>
+                     {% endif %}
                   </a>
                   <span class="community-like-dislike-btn">
-                  {{ i.Question_Like.all.count }}
+                     {{ i.Question_Like.all.count }}
                   </span>
+      
                   <span class="community-like-dislike-btn">
-                  <i class="fa-solid fa-message"></i>
-                  {% if i.answer is None %}
-                  0
-                  {% else %}
-                  {{i.answer}}
-                  {% endif %}
+                     <i class="fa-solid fa-message"></i>
+                     {% if i.answer is None %}
+                        0
+                     {% else %}
+                        {{i.answer}}
+                     {% endif %}
                   </span>
+      
                </div>
                <!-- End like button -->
                <!-- Start comment -->
@@ -1298,10 +1328,115 @@
       {% endfor %}
       {% endif %}
       <!-- End My Questions -->
+
    </div>
 </div>
 <!-- Start Community -->
 {% endblock community_content %}
+<!-- Start Answer -->
+<div class="modal create-community-modeal" id="askedanswer">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Answer</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+
+<div class="row">
+   <!-- Start Question Alert -->
+   <div class="col-md-12 question-alert">
+      {% for Question in Question %}
+      <div class="row">
+         <!-- Start Profile picture -->
+         <div class="col-2 col-sm-1 col-md-1">
+            <img class="img-fluid rounded-circle" src="{{Question.User_Profile.profile_image.url}}" alt="Chania">
+         </div>
+         <!-- End Profile picture -->
+         <!-- Start Community name and time -->
+         <div class="col-5 col-sm-4 col-md-4">
+            <!-- Start community name -->
+            <div class="row">
+               <div class="col-md-12 community-name">
+                  {{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 community-name">
+                  {{Question.Date}} {{Question.Time}}
+               </div>
+            </div>
+         </div>
+         <!-- End Community name and time -->
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="alert  alert-dismissible fade show">
+               <!-- Start question-alert heading -->
+               <div class="row">
+                  <div class="col-md-12 heading">
+                     {{Question.Question}} ?
+                  </div>
+               </div>
+               <!-- End question-alert heading -->
+             
+               <!-- Start answer, share, options -->
+               <div class="row">
+                  <div class="col-12 col-md-12 pt-2 pb-3 border-bottom answer-share-options">
+                     <!-- Start Answer modal -->
+                     <span>
+                        <a href="{% url 'Add_Answer' Question.id %}">
+                           <i class="fa-solid fa-pen"></i> Answer
+                        </a>
+<!--                     <a href="#" data-target="#answer-modal" data-toggle="modal">-->
+<!--                     <i class="fa-solid fa-pen"></i> Answer-->
+<!--                     </a>-->
+                     </span>
+                     <!-- End Answer modal -->
+                     <!-- <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span> -->
+                     <span class="pl-5">
+                        <button type="button" class="btn text-light" data-toggle="dropdown">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                           <!-- For Answer Later -->
+                           {% if Question.Answer_later %}
+                              <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
+                           {% else %}
+                              <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
+                           {% endif %}
+                          
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+               
+                        </div>
+                     </span>
+                     {% if Question.Question_Edit %}
+                     <span class="pl-5"><i class="fa-solid fa-bell"></i> Edited The Question </span>
+                     {% else %}
+                     {% endif %}
+                  </div>
+               </div>
+               <!-- End answer, share, options -->
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+   <!-- End Question Alert -->
+</div>
+
+
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+            <a href="{% url 'community-answer' %}">
+            <button type="submit" class="btn btn-normal-b">All Questions</button>
+            </a>
+         </div>
+      </div>
+   </div>
+</div>   
+<!-- end answer -->
+
+
 
 <!-- Start Community modeal pop up -->
 <div class="modal fade community-modeal" id="modal5">
@@ -1433,88 +1568,6 @@
    </div>
 </div>
 <!-- End Community modeal pop up -->
-
-<!-- Start answers pop up -->
-<div class="modal create-community-modeal" id="answers">
-   <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title">Answers</h5>
-            <a href="#" data-dismiss="modal" class="close">&times;</a>
-         </div>
-         <form action="{% url 'Create_Community' %}" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="modal-body">
-               <div class="form-group">
-                  <label for="" class="modal-sub-heading">Community Name</label>
-                  <input type="text" class="form-control" placeholder="Enter Community Name" name="Communiy_Name" id="text" required="true">
-                  <label class="form-check-label modal-message">21 Characters remaining</label>
-               </div>
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="" class="modal-sub-heading">Community Cover Image</label>
-                        <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Image" required>
-                        <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="" class="modal-sub-heading">Community Profile Image</label>
-                        <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Profile" required="true">
-                        <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
-                     </div>
-                  </div>
-               </div>
-               <span class="modal-sub-heading">Community type</span>
-               <div class="form-check border rounded mt-3 pt-2 pb-2">
-                  <label class="form-check-label">
-                  <input type="checkbox" name="public" class="form-check-input" value="" required>
-                  <span class="community-type-heading">Public</span> <span clas="community-type-sub-heading"> Anyone can view post, Comment to this Community.</span>
-                  </label>
-               </div>
-               <div class="row modal-sub-heading pt-3 pb-3">
-                  <div class="col-md-12">Description</div>
-               </div>
-               <div class="row">
-                  <div class="col-md-12 question-text-box">
-                     <div class="form-group">
-                        <textarea name="question" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
-                     </div>
-                  </div>
-               </div>
-               <!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
-               <!--                  <label class="form-check-label">-->
-               <!--                  <input type="checkbox" name="restricted" class="form-check-input" value="">-->
-               <!--                  <span class="community-type-heading">Restricted</span> <span clas="community-type-sub-heading"> Anyone can view this Community, But only approved users can post.</span>-->
-               <!--                  </label>-->
-               <!--               </div>-->
-               <!--               <div class="form-check border rounded mt-3 mb-3 pt-2 pb-2">-->
-               <!--                  <label class="form-check-label">-->
-               <!--                  <input type="checkbox" name="private" class="form-check-input" value="">-->
-               <!--                  <span class="community-type-heading">Private</span> <span clas="community-type-sub-heading"> Only approved users can view and submit to this community.</span>-->
-               <!--                  </label>-->
-               <!--               </div>-->
-               <!--               <span class="modal-sub-heading">Adult Content </span>-->
-               <!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
-               <!--                  <label class="form-check-label">-->
-               <!--                  <input type="checkbox" name="adult" class="form-check-input" value="">-->
-               <!--                  18+ year old community-->
-               <!--                  </label>-->
-               <!--               </div>-->
-            </div>
-            <div class="modal-footer">
-               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
-               <a href="#">
-               <button type="submit" class="btn btn-normal-b">Create Community</button>
-               </a>
-            </div>
-         </form>
-      </div>
-   </div>
-</div>
-<!-- End answers pop up -->
-
 <!-- Start Create Community Modeal pop up -->
 <div class="modal create-community-modeal" id="modal3">
    <div class="modal-dialog modal-lg">
@@ -1596,8 +1649,7 @@
 </div>
 <!-- End Create Community Modeal pop up -->
 
-<!-- Start Answer asked by another user -->
-</div>
+   </div>
 <!-- Ends Answer Asked by another user -->
 <!-- Start Ask-Post Modal pop up -->
 <div class="modal ask-post" id="ask-post">
@@ -1614,46 +1666,10 @@
             <div id="London" class="w3-container city">
                <form action="{% url 'Add_question' %}" method="POST">
                   {% csrf_token %}
-                  <!-- Start Add Question Heading -->
-                  <div class="row add-question-heading">
-                     <div class="col-md-12">
-                        Tips on getting good answer quickly
-                     </div>
-                  </div>
-                  <!-- End Add Question Heading -->
-                  <!-- Start Add Question sub points -->
-                  <div class="row">
-                     <div class="col-md-12 add-question-sup-points">
-                        <ul>
-                           <li>Make sure your question has not been asked already</li>
-                           <li>Keep your question short and to the point</li>
-                           <li>Double-check grammar and spelling</li>
-                        </ul>
-                     </div>
-                  </div>
+                 
                   <!-- End Add Question sub points -->
                   <!-- Start Public - Limited drpdown -->
-                  <div class="row">
-                     <div class="col-md-4 public-limited">
-                        <div class="dropdown">
-                           <select name="UserId" id="" class="form-control">
-                              <option value="Public" selected>--- For All ---</option>
-                              {% for userid in userid %}
-                              <option value="{{userid.id}}">{{userid.usertype.user_id.first_name}}</option>
-                              {% endfor %}
-                           </select>
-                           <!-- <button type="button" class="btn btn-sm btn-block btn-normal-b dropdown-toggle" data-toggle="dropdown">
-                              <i class="fa-solid fa-users"></i> &nbsp; &nbsp;Public
-                              </button> -->
-                           <!-- <div class="dropdown-menu"> -->
-                           <!-- <h5 class="dropdown-header "><i class="fa-solid fa-users"></i> &nbsp; &nbsp;Public</h5>
-                              <a class="dropdown-item" href="#">Others will see your identity alongside this question on your profile and in their feeds.</a>
-                              <h5 class="dropdown-header"><i class="fa-solid fa-user"></i> &nbsp; &nbsp;Limited</h5>
-                              <a class="dropdown-item" href="#">Your identity will be shown but this question will not appear in your followers' feeds or your profile.</a> -->
-                           <!-- </div> -->
-                        </div>
-                     </div>
-                  </div>
+                  
                   <!-- End Public - Limited drp down -->
                   <!-- Start your question note -->
                   <div class="row">
@@ -1911,4 +1927,9 @@
    }
 </script>
 <!-- End Ask and post js -->
+
+
+
 {% endblock content %}
+
+
