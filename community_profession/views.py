@@ -637,6 +637,7 @@ def Create_Community(request):
         Community_Restricted=request.POST.get("restricted")
         Community_Public=request.POST.get("public")
         Adult_content=request.POST.get("adult")
+        community_description=request.POST.get("community_descrition")
         if Community_Public != None:
             Community_Public = True
         else:
@@ -662,7 +663,8 @@ def Create_Community(request):
             User_Profile=User_Profile_obj,Community_Name=Community_name,
             Community_Cover_Image=Community_image, Public=Community_Public,
             Private=Community_Private,Restricted=Community_Restricted,
-            Adult_Content=Adult_content,Community_Profile_Image=Community_profile
+            Adult_Content=Adult_content,Community_Profile_Image=Community_profile,
+            community_Description=community_description,
             )
             comunity_obj.save()
             Join_Community.objects.create(User_profile=User_Profile_obj,Commnunity_id=comunity_obj)

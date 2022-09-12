@@ -138,7 +138,7 @@
                   <!-- End Personal Detail Edit btn -->
 
                   <!-- End Whatsapp numbers -->
-                  <div class="row pt-1">
+                  <div class="row pt-1"
                      <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
                         What's App Number
                      </div>
@@ -327,9 +327,12 @@
                      <div class="form-group">
                         <label for="message-text" class="col-form-label modal-sub-heading">State:</label>
                         <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1" required>
-                           <option class="border" value="{{userprofile.state}}">{{userprofile.state}}</option>
                            {% for i in state %}
+                           {% if userprofile.state in i.name %}
                            <option value="{{i.id}}" class="border">{{i.name}}</option>
+                           {% else %}
+                           <option value="{{i.id}}" class="border">{{i.name}}</option>
+                           {% endif %}
                            {% endfor %}
                         </select>   
                      </div>

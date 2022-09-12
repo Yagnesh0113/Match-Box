@@ -127,6 +127,7 @@ class Community(models.Model):
     Adult_Content=models.BooleanField(default=False)
     Community_Type=models.BooleanField(default=True)
     community_member=models.IntegerField(blank=True,null=True,default=0)
+    community_Description=models.TextField(blank=True,null=True)
     def __str__(self):
         return self.Community_Name
 
