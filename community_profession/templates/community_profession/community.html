@@ -51,9 +51,7 @@
 <!--}-->
 <!--</style>-->
 <!-- End Share icon -->
-
 <!-- Start navigation css -->
-
 <!-- End navigation css -->
 {% endblock own_css %}
 {% block community_profession_nav %}
@@ -80,7 +78,6 @@
          <!-- End right side see all nav -->
       </nav>
    </div>
-
 </div>
 <!-- End Community - Profession Navigation -->
 {% endblock community_profession_nav %}
@@ -123,7 +120,7 @@
          <!-- End ask -->
          <!-- Start answer -->
          <li class="nav-item border-bottom">
-            <a class="nav-link notification" href="#" data-target="#askedanswer" data-toggle="modal">
+            <a class="nav-link notification" href="#" data-target="#answers" data-toggle="modal">
             <i class="fa-solid fa-pen"></i>
             Answer
             <span class="badge">{{Question_count}}</span>
@@ -163,7 +160,6 @@
       </ul>
    </div>
 </div>
-
 <!-- End community navigation -->
 {% endblock community_nav %}
 {% block community_content %}
@@ -446,15 +442,9 @@
       {% endif %}
       {% endfor %}
       {% endif %}
-
-
-
-
-
       <!--Start Others Post  -->
       {% if User_post_obj_image %}
       {% for i in User_post_obj_image %}
-      
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -596,16 +586,13 @@
                <!-- End like, comment, share -->
             </div>
          </div>
-      </div> 
+      </div>
       {% endfor %}
       {% endif %}
       <!-- End Others Post -->
-
-
       <!-- Start Others Video -->
       {% if User_post_obj_video %}
       {% for i in User_post_obj_video %}
-      
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -747,16 +734,13 @@
                <!-- End like, comment, share -->
             </div>
          </div>
-      </div> 
+      </div>
       {% endfor %}
       {% endif %}
       <!-- End others Video -->
-
-
       <!-- Start Others Questions -->
       {% if User_question %}
       {% for i in User_question %}
-      
       <div class="row">
          <div class="col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -778,7 +762,7 @@
                   <!-- Start community time -->
                   <div class="row">
                      <div class="col-md-12 community-time">
-                        {{i.Date}} / {{i.Time}} 
+                        {{i.Date}} / {{i.Time}}
                         <!-- Ago -->
                      </div>
                   </div>
@@ -838,29 +822,27 @@
                <!-- Start like button -->
                <div class="col-4 col-sm-3 col-md-2">
                   <a href="{% url 'like_Question' i.id %}">
-                     {% if userprofile not in i.Question_Like.all %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                     </button>
-                     {% else %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                     </button>
-                     {% endif %}
+                  {% if userprofile not in i.Question_Like.all %}
+                  <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
+                  {% else %}
+                  <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
+                  {% endif %}
                   </a>
                   <span class="community-like-dislike-btn">
-                     {{ i.Question_Like.all.count }}
+                  {{ i.Question_Like.all.count }}
                   </span>
-      
                   <span class="community-like-dislike-btn">
-                     <i class="fa-solid fa-message"></i>
-                     {% if i.answer is None %}
-                        0
-                     {% else %}
-                        {{i.answer}}
-                     {% endif %}
+                  <i class="fa-solid fa-message"></i>
+                  {% if i.answer is None %}
+                  0
+                  {% else %}
+                  {{i.answer}}
+                  {% endif %}
                   </span>
-      
                </div>
                <!-- End like button -->
                <!-- Start comment -->
@@ -888,9 +870,6 @@
       {% endfor %}
       {% endif %}
       <!-- End Others Questions -->
-
-
-
       <!-- Start My Video -->
       {% if User_POST_my_video %}
       {% for i in User_POST_my_video %}
@@ -1035,17 +1014,13 @@
                <!-- End like, comment, share -->
             </div>
          </div>
-      </div> 
-      
+      </div>
       {% endfor %}
       {% endif %}
       <!-- End My Video -->
-
-
       <!-- Start My Images -->
       {% if User_POST_my_image %}
       {% for i in User_POST_my_image %}
-      
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -1187,21 +1162,13 @@
                <!-- End like, comment, share -->
             </div>
          </div>
-      </div> 
+      </div>
       {% endfor %}
       {% endif %}
       <!-- End My Image -->
-
-
-
-
-
-
-
       <!-- Start My Questions -->
       {% if User_POST_my_question %}
       {% for i in User_POST_my_question %}
-      
       <div class="row">
          <div class="col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
@@ -1223,7 +1190,7 @@
                   <!-- Start community time -->
                   <div class="row">
                      <div class="col-md-12 community-time">
-                        {{i.Date}} / {{i.Time}} 
+                        {{i.Date}} / {{i.Time}}
                         <!-- Ago -->
                      </div>
                   </div>
@@ -1283,29 +1250,27 @@
                <!-- Start like button -->
                <div class="col-4 col-sm-3 col-md-2">
                   <a href="{% url 'like_Question' i.id %}">
-                     {% if userprofile not in i.Question_Like.all %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                     </button>
-                     {% else %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                     </button>
-                     {% endif %}
+                  {% if userprofile not in i.Question_Like.all %}
+                  <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
+                  {% else %}
+                  <button type="submit" class="btn community-like-dislike-btn">
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
+                  {% endif %}
                   </a>
                   <span class="community-like-dislike-btn">
-                     {{ i.Question_Like.all.count }}
+                  {{ i.Question_Like.all.count }}
                   </span>
-      
                   <span class="community-like-dislike-btn">
-                     <i class="fa-solid fa-message"></i>
-                     {% if i.answer is None %}
-                        0
-                     {% else %}
-                        {{i.answer}}
-                     {% endif %}
+                  <i class="fa-solid fa-message"></i>
+                  {% if i.answer is None %}
+                  0
+                  {% else %}
+                  {{i.answer}}
+                  {% endif %}
                   </span>
-      
                </div>
                <!-- End like button -->
                <!-- Start comment -->
@@ -1333,11 +1298,11 @@
       {% endfor %}
       {% endif %}
       <!-- End My Questions -->
-
    </div>
 </div>
 <!-- Start Community -->
 {% endblock community_content %}
+
 <!-- Start Community modeal pop up -->
 <div class="modal fade community-modeal" id="modal5">
    <div class="modal-dialog modal-dialog-scrollable">
@@ -1468,6 +1433,88 @@
    </div>
 </div>
 <!-- End Community modeal pop up -->
+
+<!-- Start answers pop up -->
+<div class="modal create-community-modeal" id="answers">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Answers</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="{% url 'Create_Community' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Community Name</label>
+                  <input type="text" class="form-control" placeholder="Enter Community Name" name="Communiy_Name" id="text" required="true">
+                  <label class="form-check-label modal-message">21 Characters remaining</label>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="" class="modal-sub-heading">Community Cover Image</label>
+                        <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Image" required>
+                        <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="" class="modal-sub-heading">Community Profile Image</label>
+                        <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Profile" required="true">
+                        <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
+                     </div>
+                  </div>
+               </div>
+               <span class="modal-sub-heading">Community type</span>
+               <div class="form-check border rounded mt-3 pt-2 pb-2">
+                  <label class="form-check-label">
+                  <input type="checkbox" name="public" class="form-check-input" value="" required>
+                  <span class="community-type-heading">Public</span> <span clas="community-type-sub-heading"> Anyone can view post, Comment to this Community.</span>
+                  </label>
+               </div>
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 question-text-box">
+                     <div class="form-group">
+                        <textarea name="question" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                     </div>
+                  </div>
+               </div>
+               <!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
+               <!--                  <label class="form-check-label">-->
+               <!--                  <input type="checkbox" name="restricted" class="form-check-input" value="">-->
+               <!--                  <span class="community-type-heading">Restricted</span> <span clas="community-type-sub-heading"> Anyone can view this Community, But only approved users can post.</span>-->
+               <!--                  </label>-->
+               <!--               </div>-->
+               <!--               <div class="form-check border rounded mt-3 mb-3 pt-2 pb-2">-->
+               <!--                  <label class="form-check-label">-->
+               <!--                  <input type="checkbox" name="private" class="form-check-input" value="">-->
+               <!--                  <span class="community-type-heading">Private</span> <span clas="community-type-sub-heading"> Only approved users can view and submit to this community.</span>-->
+               <!--                  </label>-->
+               <!--               </div>-->
+               <!--               <span class="modal-sub-heading">Adult Content </span>-->
+               <!--               <div class="form-check border rounded mt-3 pt-2 pb-2">-->
+               <!--                  <label class="form-check-label">-->
+               <!--                  <input type="checkbox" name="adult" class="form-check-input" value="">-->
+               <!--                  18+ year old community-->
+               <!--                  </label>-->
+               <!--               </div>-->
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Create Community</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End answers pop up -->
+
 <!-- Start Create Community Modeal pop up -->
 <div class="modal create-community-modeal" id="modal3">
    <div class="modal-dialog modal-lg">
@@ -1548,8 +1595,8 @@
    </div>
 </div>
 <!-- End Create Community Modeal pop up -->
-<!-- Start Answer asked by another user -->
 
+<!-- Start Answer asked by another user -->
 </div>
 <!-- Ends Answer Asked by another user -->
 <!-- Start Ask-Post Modal pop up -->
@@ -1864,9 +1911,4 @@
    }
 </script>
 <!-- End Ask and post js -->
-
-
-
 {% endblock content %}
-
-
