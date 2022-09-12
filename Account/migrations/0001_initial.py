@@ -92,7 +92,7 @@ class Migration(migrations.Migration):
             name='Professionvideo',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('video', models.FileField(upload_to='Video/%y', validators=[Account.validator.file_size])),
+                ('video', models.FileField(upload_to='Video/%y', validators=[Account.validator.video_file_size])),
                 ('profession', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='Account.profession')),
             ],
         ),

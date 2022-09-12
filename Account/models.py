@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from django.db import models
 from django.contrib.auth.models import User
-from .validator import file_size
+from .validator import *
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 
 class State(models.Model):
@@ -17,8 +17,9 @@ class City(models.Model):
 
 class Admin_Profession(models.Model):
     Profession_Name=models.CharField(max_length=100)
-    Profession_Outside_Image=models.ImageField(upload_to="Profession_Outside_Image")
-    Profession_Inside_Image=models.ImageField(upload_to="Profession_Inside_Image")
+    Profession_Outside_Image=models.FileField(upload_to="Profession_Outside_Image",validators=[Image_file_size])  #imagefield to transfer in filefiled
+    Profession_Inside_Image=models.FileField(upload_to="Profession_Inside_Image",validators=[Image_file_size])  #imagefield to transfer in filefiled
+
 
     def __str__(self):
         return self.Profession_Name
@@ -31,7 +32,8 @@ class UserType(models.Model):
 class UserProfile(models.Model):
     usertype=models.OneToOneField(to=UserType,on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=10,null=True, blank=True)
-    profile_image=models.ImageField(upload_to='Profile_Pic',null=True, blank=True)
+    profile_image=models.FileField(upload_to='Profile_Pic',null=True, blank=True,validators=[Image_file_size])  #imagefield to transfer in filefiled
+    # profile_image=models.ImageField(upload_to='Profile_Pic',null=True, blank=True)
     terms_conditions=models.BooleanField(null=True, blank=True)
     state=models.CharField(max_length=50)
     city=models.CharField(max_length=50)
@@ -44,7 +46,8 @@ class UserProfile(models.Model):
 class Profession(models.Model):
     UserProfile=models.ForeignKey(to=UserProfile,on_delete=models.CASCADE)
     profession = models.ForeignKey(to=Admin_Profession, on_delete=models.CASCADE)
-    profession_image=models.ImageField(upload_to='Profession')
+    profession_image=models.FileField(upload_to='Profession',validators=[Image_file_size] )  #imagefield to transfer in filefiled
+    # profession_image=models.ImageField(upload_to='Profession')
     year_of_experience = models.IntegerField(null=True, blank=True)
     shop_name = models.CharField(max_length=50,null=True, blank=True)
     shop_start_time= models.TimeField(null=True, blank=True)
@@ -77,11 +80,15 @@ class ProfessionServices(models.Model):
 
 class Professionimage(models.Model):
     profession= models.ForeignKey(to=Profession,on_delete=models.CASCADE)
-    image=models.ImageField(upload_to='Profession')
+    # image=models.ImageField(upload_to='Profession')
+    image=models.FileField(upload_to='Profession',validators=[Image_file_size]) #imagefield to transfer in filefiled
+
 
 class Professionvideo(models.Model):
     profession= models.ForeignKey(to=Profession,on_delete=models.CASCADE)
-    video=models.FileField(upload_to='Video/%y',validators=[file_size])
+    # video=models.FileField(upload_to='Video/%y',validators=[file_size])
+    video=models.FileField(upload_to='Video/%y',validators=[video_file_size])
+
 
 
 class Recent_serach(models.Model):

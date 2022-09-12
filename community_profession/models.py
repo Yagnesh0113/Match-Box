@@ -1,12 +1,15 @@
 from django.db import models
 from Account.models import *
-from Account.validator import file_size
+# from Account.validator import file_siz
+from Account.validator import *
+
 from datetime import date,datetime
 # Create your models here.
 
 class UserPost(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE, related_name='User_Profile')
-    Image=models.FileField(upload_to="Post", validators=[file_size], null=True,blank=True)
+    # Image=models.FileField(upload_to="Post", validators=[file_size], null=True,blank=True)
+    Image=models.FileField(upload_to="Post", validators=[Image_file_size], null=True,blank=True)
     Description=models.TextField(null=True, blank=True)
     Like=models.ManyToManyField(to=UserProfile,null=True, blank=True, related_name='liked')
     Post_Date=models.DateField(null=True, blank=True)
@@ -153,8 +156,10 @@ class Join_Community(models.Model):
     Commnunity_id=models.ForeignKey(to=Community,on_delete=models.CASCADE, null=True, blank=True)
     
 class News(models.Model):
-    Image=models.FileField(upload_to='Image',null=True,blank=True,validators=[file_size])
-    Video=models.FileField(upload_to='Video',null=True,blank=True,validators=[file_size])
+    # Image=models.FileField(upload_to='Image',null=True,blank=True,validators=[file_size])
+    # Video=models.FileField(upload_to='Video',null=True,blank=True,validators=[file_size])
+    Image=models.FileField(upload_to='Image',null=True,blank=True,validators=[Image_file_size])
+    Video=models.FileField(upload_to='Video',null=True,blank=True,validators=[video_file_size])
     Description=models.TextField()
     Date=models.DateField(default=date.today())
     Time=models.TimeField(default=datetime.now())

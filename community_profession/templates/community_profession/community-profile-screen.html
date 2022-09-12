@@ -188,29 +188,56 @@
       <!-- End post description -->
       <!-- Start post img, videos -->
       {% if Post.user_post.Image %}
-      <div class="row pl-3 pt-3">
-         <div class="col-md-12 rounded ">
-            <img src="{{Post.user_post.Image.url}}" alt="">
+         {% if Post.user_post.post_type1 %}
+         <div class="row pl-3 pt-3">
+            <div class="col-md-12 rounded ">
+               <video src="{{Post.user_post.Image.url}}" width="100%" height="" controls >
+            </div>
          </div>
-      </div>
+         {% else %}
+         <div class="row pl-3 pt-3">
+            <div class="col-md-12 rounded ">
+               <img src="{{Post.user_post.Image.url}}" alt="" width="100%" class="img-fluid" >
+            </div>
+         </div>
+         {% endif %}
       {% else %}
       <div></div>
       {% endif %}
       <!-- End post img, videos -->
       <!-- Start like, comment, share -->
-      <div class="row">
+      <div class="row pt-2 pd-2">
          <!-- Start Like -->
-         <div class="col-12 col-md-1 pt-3">
-            <i class="fa-solid fa-thumbs-up"></i> 1.2k
+         <div class="col-5 col-sm-3 col-md-2">
+            <a href="{% url 'like_post' Post.user_post.id %}">
+               {% if userprofile not in Post.user_post.Like.all %}
+               <button type="submit" class="btn community-like-dislike-btn">
+               <i class="fa-solid fa-thumbs-up"></i>
+               </button>
+               {% else %}
+               <button type="submit" class="btn community-like-dislike-btn">
+               <i class="fa-solid fa-thumbs-down"></i>
+               </button>
+               {% endif %}
+            </a>
+            <span class="community-like-dislike-btn">{{ Post.user_post.Like.all.count }}</span>
+            <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none community-like-dislike-btn">
+               <i class="fa-solid fa-message"></i>
+               {% if i.Post.Post_comment is None %}
+               0
+               {% else %}
+               {{i.Post.Post_comment}}
+               {% endif %}
+               </a>
          </div>
          <!-- End Like -->
          <!-- Start Comment -->
-         <div class="col-12 col-md-1 pt-3">
+         <!-- <div class="col-12 col-md-1 pt-3">
             <i class="fa-solid fa-message"></i> 3.9k
-         </div>
+         </div> -->
          <!-- End Comment -->
          <!-- Start add cooment buuton -->
-         <div class="col-12 col-md-2 pt-3 add-comment-btn">
+         <div class="col-6 col-sm-4 col-md-3 add-comment-btn">
             <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none">
             <button type="button" class="btn btn-block">Add Comment</button>
             </a>
@@ -218,7 +245,7 @@
          <!-- End add cooment buuton -->
          <!-- Start Share -->
          <div class="col-12 col-md-1 pt-3">
-            <i class="fa-solid fa-share-nodes"></i>
+            <!-- <i class="fa-solid fa-share-nodes"></i> -->
          </div>
          <!-- End Share -->
          <div class="col-12 col-md-7"></div>

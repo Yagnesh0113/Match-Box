@@ -1,6 +1,11 @@
 from django.core.exceptions import ValidationError
 
-def file_size(value):
+def video_file_size(value):
     filesize=value.size
-    if filesize>10000000:
-        raise ValidationError('Maximum size is 10 mb')
+    if filesize>4000000:
+        raise ValidationError('Maximum size is 4 mb')
+
+def Image_file_size(value):
+    filesize=value.size
+    if filesize>2000000:
+        raise ValidationError('Maximum size is 2 mb')

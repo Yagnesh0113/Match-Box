@@ -435,7 +435,16 @@
         font-size: 0.625rem;
         line-height: 0.938rem;
         color: var(--color-2);
+
     }
+
+    .community-mobile-nav .community-nav .nav .nav-item .nav-link
+    {
+       padding-left:0.313rem;
+       padding-right:0.313rem;
+
+    }
+
     /* Start my community modal pop up */
     .community-body .community-post-image .community-post-image-background
     {
@@ -573,6 +582,16 @@
         font-size: 12px;
     }
     /* End your added questions modal */
+
+    .community-desktop-nav
+    {
+        display: none;
+    }
+
+    .community-mobile-nav
+    {
+        background: rgba(206, 211, 211, 0.4);
+    }
 }
 
 @media (min-width: 577px)
@@ -589,6 +608,11 @@
         font-size: 0.5rem;
         line-height: 1rem;
         color: var(--color-2);
+    }
+
+    .community-mobile-nav
+    {
+        display:none;
     }
 }
 

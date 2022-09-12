@@ -10,6 +10,43 @@
 <!-- Ask Post CSS-->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <!-- Start Share icon -->
+<!-- Start navigation menu -->
+<style>
+   .menu-area{background: #d61a5e}
+   .dropdown-menu{padding:0;margin:0;border:0 solid transition!important;border:0 solid rgba(0,0,0,.15);border-radius:0;-webkit-box-shadow:none!important;box-shadow:none!important}
+   .mainmenu a, .navbar-default .navbar-nav > li > a, .mainmenu ul li a , .navbar-expand-lg .navbar-nav .nav-link{color:#fff;font-size:16px;text-transform:capitalize;padding:16px 15px;font-family:'Roboto',sans-serif;display: block !important;}
+   .mainmenu .active a,.mainmenu .active a:focus,.mainmenu .active a:hover,.mainmenu li a:hover,.mainmenu li a:focus ,.navbar-default .navbar-nav>.show>a, .navbar-default .navbar-nav>.show>a:focus, .navbar-default .navbar-nav>.show>a:hover{color: #fff;background: #4CAF50;outline: 0;}
+   /*==========Sub Menu=v==========*/
+   .mainmenu .collapse ul > li:hover > a{background: #4CAF50;}
+   .mainmenu .collapse ul ul > li:hover > a, .navbar-default .navbar-nav .show .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .show .dropdown-menu > li > a:hover{background: #4CAF50;}
+   .mainmenu .collapse ul ul ul > li:hover > a{background: #4CAF50;}
+   
+   .mainmenu .collapse ul ul, .mainmenu .collapse ul ul.dropdown-menu{background:#1565C0;}
+   .mainmenu .collapse ul ul ul, .mainmenu .collapse ul ul ul.dropdown-menu{background:#1E88E5}
+   .mainmenu .collapse ul ul ul ul, .mainmenu .collapse ul ul ul ul.dropdown-menu{background:#64B5F6}
+   
+   /******************************Drop-down menu work on hover**********************************/
+   .mainmenu{background: none;border: 0 solid;margin: 0;padding: 0;min-height:20px;width: 100%;}
+   @media only screen and (min-width: 767px) {
+   .mainmenu .collapse ul li:hover> ul{display:block}
+   .mainmenu .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
+   /*******/
+   .mainmenu .collapse ul ul li{position:relative}
+   .mainmenu .collapse ul ul li:hover> ul{display:block}
+   .mainmenu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
+   /*******/
+   .mainmenu .collapse ul ul ul li{position:relative}
+   .mainmenu .collapse ul ul ul li:hover ul{display:block}
+   .mainmenu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
+   
+   }
+   @media only screen and (max-width: 767px) {
+   .navbar-nav .show .dropdown-menu .dropdown-menu > li > a{padding:16px 15px 16px 35px}
+   .navbar-nav .show .dropdown-menu .dropdown-menu .dropdown-menu > li > a{padding:16px 15px 16px 45px}
+   }
+</style>
+<!-- End navigation menu -->
+
 <!--<style>-->
 <!--.fa {-->
 <!--   padding: 16px;-->
@@ -81,27 +118,40 @@
 {% endblock community_profession_nav %}
 {% block content %}
 {% block community_nav %}
-<!-- Start community navigation -->
-<div class="row">
+<!-- Start community navigation Desktop View -->
+<div class="row community-desktop-nav">
    <div class="col-sm-12 col-md-12 community-nav">
       <ul class="nav nav-pills ">
-         <!-- Start Post -->
+
+         <!-- Start Post new drop down -->
          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Post</a>
-            <div class="dropdown-menu">
-               <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">My Post</a>
-               <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'Community_My_Image' %}">My Images</a>
-                  <a class="dropdown-item" href="{% url 'Community_My_Video' %}">My Video</a>
-                  <a class="dropdown-item" href="{% url 'Community_My_Question' %}">My Questions</a>
-               </div>
-               <a class="dropdown-item" href="{% url 'Community_image' %}">Image</a>
-               <a class="dropdown-item" href="{% url 'Community_video' %}">Video</a>
-               <a class="dropdown-item" href="{% url 'Community_Question' %}">Questions</a>
-               <a class="dropdown-item" href="{% url 'community-screen' %}">All Post</a>
-            </div>
-         </li>
-         <!-- End Post -->
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Post</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+              <li><a class="dropdown-item" href="{% url 'Community_image' %}">Image</a></li>
+              <li><a class="dropdown-item" href="{% url 'Community_video' %}">Video</a></li>
+              <li><a class="dropdown-item" href="{% url 'Community_Question' %}">Questions</a></li>
+              <li><a class="dropdown-item" href="{% url 'community-screen' %}">All Post</a></li>
+              <li class="dropdown dropright">
+                  <a class="dropdown-toggle dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Post</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'Community_My_Image' %}">My Images</a></li>
+                  <li><a class="dropdown-item" href="{% url 'Community_My_Video' %}">My Video</a></li>
+                  <li><a class="dropdown-item" href="{% url 'Community_My_Question' %}">My Questions</a></li>
+<!--                  <li class="dropdown">-->
+<!--                      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown3</a>-->
+<!--                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                          <li><a href="#">Action</a></li>-->
+<!--                          <li><a href="#">Another action</a></li>-->
+<!--                          <li><a href="#">Something else here</a></li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+                  </ul>
+              </li>
+              </ul>
+          </li>
+         <!-- End Post new drop down -->
+
          <!-- Start my-communities -->
          <li class="nav-item">
             <a class="nav-link" href="#" data-target="#modal5" data-toggle="modal">My Communities</a>
@@ -116,6 +166,7 @@
             </a>
          </li>
          <!-- End ask -->
+
          <!-- Start answer -->
          <li class="nav-item border-bottom">
             <a class="nav-link notification" href="#" data-target="#askedanswer" data-toggle="modal">
@@ -158,8 +209,102 @@
       </ul>
    </div>
 </div>
+<!-- End community navigation Desktop View -->
 
-<!-- End community navigation -->
+<!-- Start community navigation Mobile View -->
+<div class="row community-mobile-nav">
+   <div class="col-sm-12 col-md-12 community-nav">
+      <ul class="nav nav-pills ">
+
+         <!-- Start Post new drop down -->
+         <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Post</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+              <li><a class="dropdown-item" href="{% url 'Community_image' %}">Image</a></li>
+              <li><a class="dropdown-item" href="{% url 'Community_video' %}">Video</a></li>
+              <li><a class="dropdown-item" href="{% url 'Community_Question' %}">Questions</a></li>
+              <li><a class="dropdown-item" href="{% url 'community-screen' %}">All Post</a></li>
+              <li class="dropdown dropright">
+                  <a class="dropdown-toggle dropdown-item" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Post</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'Community_My_Image' %}">My Images</a></li>
+                  <li><a class="dropdown-item" href="{% url 'Community_My_Video' %}">My Video</a></li>
+                  <li><a class="dropdown-item" href="{% url 'Community_My_Question' %}">My Questions</a></li>
+<!--                  <li class="dropdown">-->
+<!--                      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown3</a>-->
+<!--                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--                          <li><a href="#">Action</a></li>-->
+<!--                          <li><a href="#">Another action</a></li>-->
+<!--                          <li><a href="#">Something else here</a></li>-->
+<!--                      </ul>-->
+<!--                  </li>-->
+                  </ul>
+              </li>
+              </ul>
+          </li>
+         <!-- End Post new drop down -->
+
+         <!-- Start my-communities -->
+         <li class="nav-item">
+            <a class="nav-link" href="#" data-target="#modal5" data-toggle="modal">My Communities</a>
+         </li>
+         <!-- End my-communities -->
+
+         <!-- Start ask, answer, post -->
+         <!-- Start ask -->
+         <li class="nav-item border-bottom">
+            <a class="nav-link" href="#" data-target="#ask-post" data-toggle="modal">
+            Ask
+            </a>
+         </li>
+         <!-- End ask -->
+
+         <!-- Start answer -->
+         <li class="nav-item border-bottom">
+            <a class="nav-link notification" href="#" data-target="#askedanswer" data-toggle="modal">
+            Answer
+            <span class="badge">{{Question_count}}</span>
+            </a>
+         </li>
+         <!-- End answer -->
+
+         <!-- Start post -->
+         <li class="nav-item border-bottom">
+            <a class="nav-link" href="#" data-target="#ask-post" data-toggle="modal">
+            Post
+            </a>
+         </li>
+         <!-- End post -->
+
+         <!-- End ask, answer, post -->
+         <!-- Start create-community btn -->
+<!--         <li class="nav-item pl-3 pr-2">-->
+<!--            <a class="nav-link active text-dark" href="#" data-target="#modal3" data-toggle="modal">Create Community</a>-->
+<!--         </li>-->
+         <!-- End create-community btn -->
+
+         <!-- Start my-communities -->
+         <li class="nav-item">
+            <a class="nav-link notification" href="#" data-target="#your-added-questions" data-toggle="modal">
+
+            Your question
+            <span class="badge">{{Answer_count}}</span>
+            </a>
+         </li>
+
+         <li class="nav-item">
+            <a class="nav-link notification" href="{% url 'news' %}">
+
+            <span class="badge">{{Our_News_count}}</span>
+
+            News
+            </a>
+         </li>
+      </ul>
+   </div>
+</div>
+<!-- End community navigation Mobile View -->
 {% endblock community_nav %}
 {% block community_content %}
 <div class="row">
@@ -1454,7 +1599,7 @@
                <div class="col-3 col-sm-3 pt-2 created-community">
                   <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
                </div>
-               <div class="col-6 col-sm-6 pt-2">
+               <div class="col-5 col-sm-5 pt-2">
                   <!-- Start modeal community heading  -->
                   <div class="row">
                      <div class="col-md-12 community-heading">
@@ -1473,14 +1618,12 @@
                   <!-- End modeal community members  -->
                </div>
                {% if userprofile.id is i.Commnunity_id.User_Profile.id %}
-               <div class="col-2 col-sm-2 pt-2">
+               <div class="col-4 col-sm-4 pt-2">
                   <a href="{% url 'Edit_Community' i.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Edit</button></a>
-               </div>
-               <div class="col-2 col-sm-2 pt-2 pl-1">
                   <a href="{% url 'Delete_Community' i.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Delete</button></a>
                </div>
                {% else %}
-               <div class="col-3 col-sm-3 pt-2">
+               <div class="col-4 col-sm-4 pt-2">
                   <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Joined</button></a>
                </div>
                {% endif %}
@@ -1587,15 +1730,17 @@
                <div class="row">
                   <div class="col-md-6">
                      <div class="form-group">
+                        <input id="max_obj" type="hidden" name="MAX_FILE_SIZE" value="2000000" />
                         <label for="" class="modal-sub-heading">Community Cover Image</label>
-                        <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Image" required>
+                        <input onchange="community_check1()" id="file_1" type="file" class="form-control" accept="image/*" name="Communiy_Image" required>
                         <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
                      </div>
                   </div>
                   <div class="col-md-6">
                      <div class="form-group">
+                        <input id="max_obj1" type="hidden" name="MAX_FILE_SIZE" value="2000000" />
                         <label for="" class="modal-sub-heading">Community Profile Image</label>
-                        <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Profile" required="true">
+                        <input onchange="community_check2()" id="file_2" type="file" class="form-control" accept="image/*" name="Communiy_Profile" required>
                         <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
                      </div>
                   </div>
@@ -1720,7 +1865,8 @@
                   <div class="row">
                      <div class="col-md-12 file-field">
                         <div class="form-group">
-                           <input class="form-control" name="File" type="file">
+                           <input onchange="upload_check()" class="form-control" id="file_id" name="File" type="file" accept="image/*,video/*">
+                           <p id="file-result"></p>
                         </div>
                      </div>
                   </div>
@@ -1745,7 +1891,7 @@
                   <div class="row ">
                      <div class="col-md-9"></div>
                      <div class="col-md-3">
-                        <button type="submit" class="btn btn-sm btn-block btn-normal-b">post</button>
+                        <button disabled id="file-submit" type="submit" class="btn btn-sm btn-block btn-normal-b">post</button>
                      </div>
                   </div>
                   <!-- End post btn -->
@@ -1908,6 +2054,61 @@
 <!-- End Share Modal -->
 <!-- copy to clupboard -->
 {% add_copy_script %}
+
+<!-- For Post Image and video Restriction -->
+<script>
+   let fileInput = document.getElementById("file_id");
+   let fileResult = document.getElementById("file-result");
+   let fileSubmit = document.getElementById("file-submit");
+
+   fileInput.addEventListener("change", function(){
+      if (fileInput.files.length > 0){
+         const fileSize=fileInput.files.item(0).size;
+         const fileMb=fileSize/1024**2;
+         if (fileMb >= 2){
+            fileResult.innerHTML="Please select a file less than 2MB.";
+            fileSubmit.disabled = true;
+         } else {
+            fileResult.innerHTML="Success, your file is "+ fileMb.toFixed(1) +"MB.";
+            fileSubmit.disabled = false;
+         }
+
+      }
+   });
+</script>
+<!-- End Post Restriction -->
+
+<!-- For Communiuty Image Restriction -->
+<!-- file 1 -->
+<script>
+   function community_check1()
+{
+   var file1 = document.getElementById("file_1"); 
+   var max_id = document.getElementById("max_obj").value;
+
+   if (file1.files[0].size > max_id)
+   {
+      alert("Please select a file less than 2MB.");
+      file1.value = "";
+   }
+};
+</script>
+<!-- file 2 -->
+<script>
+   function community_check2()
+{
+   var file2 = document.getElementById("file_2");
+   var max2 = document.getElementById("max_obj1").value;
+
+   if (file2.files[0].size > max2)
+   {
+      alert("Please select a file less than 2MB.");
+      file2.value = "";
+   }
+};
+</script>
+<!-- End Community Image restriction -->
+
 <!-- Start Ask and post js -->
 <script>
    document.getElementsByClassName("tablink")[0].click();
@@ -1928,7 +2129,25 @@
 </script>
 <!-- End Ask and post js -->
 
+<!-- Start navigation drop down script -->
+<script>
+   (function($){
+$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+if (!$(this).next().hasClass('show')) {
+ $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+}
+var $subMenu = $(this).next(".dropdown-menu");
+$subMenu.toggleClass('show');
 
+$(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+ $('.dropdown-submenu .show').removeClass("show");
+});
+
+return false;
+});
+})(jQuery)
+</script>
+<!-- End navigation drop down script -->
 
 {% endblock content %}
 

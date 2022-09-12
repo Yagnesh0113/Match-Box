@@ -43,9 +43,9 @@ class Migration(migrations.Migration):
             name='News',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('Image', models.FileField(blank=True, null=True, upload_to='Image', validators=[Account.validator.file_size])),
-                ('Video', models.FileField(blank=True, null=True, upload_to='Video', validators=[Account.validator.file_size])),
-                ('Description', models.TextField()),
+                ('Image', models.FileField(blank=True, null=True, upload_to='Image', validators=[Account.validator.Image_file_size])),
+                ('Video', models.FileField(blank=True, null=True, upload_to='Video', validators=[Account.validator.video_file_size])),
+                 ('Description', models.TextField()),
                 ('Date', models.DateField(default=datetime.date(2022, 9, 11))),
                 ('Time', models.TimeField(default=datetime.datetime(2022, 9, 11, 15, 42, 57, 692449))),
                 ('comment', models.IntegerField(blank=True, null=True)),
@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
             name='UserPost',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('Image', models.FileField(blank=True, null=True, upload_to='Post', validators=[Account.validator.file_size])),
+                ('Image', models.FileField(blank=True, null=True, upload_to='Post', validators=[Account.validator.Image_file_size])),
                 ('Description', models.TextField(blank=True, null=True)),
                 ('Post_Date', models.DateField(blank=True, null=True)),
                 ('Post_Time', models.TimeField(blank=True, null=True)),

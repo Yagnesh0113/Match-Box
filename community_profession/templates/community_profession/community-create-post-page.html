@@ -47,7 +47,7 @@
                <div class="form-group">
                   <!-- <textarea class="form-control rounded" rows="5" id="comment" name="editor1"></textarea> -->
                   <!-- Start drop down - username, everyone -->
-                  <div class="row">
+                  <!-- <div class="row">
                      <div class="col-md-12">
                         <div class="dropdown">
                            <button type="button" class="btn btn-sm btn-normal-b dropdown-toggle" data-toggle="dropdown">
@@ -60,20 +60,20 @@
                            </div>
                         </div>
                      </div>
-                  </div>
+                  </div> -->
                   <!-- End drop down - username, everyone -->
                   <!-- Start say - something heading -->
-                  <div class="row pt-2 pb-2">
+                  <!-- <div class="row pt-2 pb-2">
                      <div class="col-md-12 say-something-heading">
                         Say Something...
                      </div>
-                  </div>
+                  </div> -->
                   <!-- End say - something heading -->
                   <!-- Start crete post text box -->
                   <div class="row">
                      <div class="col-md-12">
                         <div class="form-group">
-                           <input class="form-control" name="images" type="file" required>
+                           <input class="form-control" id="file_id" name="images" type="file" required>
                         </div>
                      </div>
                   </div>
@@ -97,7 +97,7 @@
                </span>-->
 
                <span class="post-btn pl-2">
-                  <button type="submit" class="btn btn-sm pl-5 pr-5">Post</button>
+                  <button disabled id="file-submit" type="submit" class="btn btn-sm pl-5 pr-5">Post</button>
                </span>
             </div>
          </div>
@@ -122,6 +122,26 @@
   </div>
 </div>
 <!-- End post edit box -->
+
+<script>
+   let fileInput = document.getElementById("file_id");
+   let fileSubmit = document.getElementById("file-submit");
+
+   fileInput.addEventListener("change", function(){
+      if (fileInput.files.length > 0){
+         const fileSize=fileInput.files.item(0).size;
+         const fileMb=fileSize/1024**2;
+         if (fileMb >= 2){
+            alert("Please select a file less than 2MB.")
+            fileInput.value=""
+            fileSubmit.disabled = true;
+         } else {
+            fileSubmit.disabled = false;
+         }
+
+      }
+   });
+</script>
 
 <!-- Start ckeditor text for post -->
       <!-- <script>
