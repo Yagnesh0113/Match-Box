@@ -13,40 +13,38 @@
 {% endblock own_css %}
 {% block community_content %}
 
-<!-- Start community-profile-img, heading, post -->
-<div class="row pl-3">
-   <!-- Start community-profile-img -->
-   <div class="col-2 col-sm-1 col-md-1 pt-2 community-user-name">
-      <img class="img-fluid rounded-circle" src="{{User_Post_obj.User_Profile.profile_image.url}}" alt="Chania">
+<!-- Start Profile image and name by post -->
+<div class="row community-body pt-3">
+   <!-- Start Profile picture -->
+   <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+      <img class="img-fluid rounded-circle" src="{{User_Post_obj.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
    </div>
-   <!-- End community-profile-img -->
-   <!-- Start community-heading, no-members -->
-   <div class="col-8 col-sm-3 col-md-3 pt-2 community-heading-members">
-      <!-- Start community-heading -->
+   <!-- End Profile picture -->
+
+   <!-- Start Community name and time -->
+   <div class="col-5 col-sm-4 col-md-4 pl-0">
+      <!-- Start community name -->
       <div class="row">
-         <div class="col-md-12 community-heading">
+         <div class="col-md-12 community-name pl-0">
             {{User_Post_obj.User_Profile.usertype.user_id.first_name}} {{User_Post_obj.User_Profile.usertype.user_id.last_name}}
          </div>
       </div>
-      <!-- End community-heading -->
-      <!-- Start community-no-members -->
+      <!-- End community name -->
+      <!-- Start community time -->
       <div class="row">
-         <div class="col-md-12">
+         <div class="col-md-12 community-time pl-0">
             {{User_Post_obj.Post_Date}} / {{User_Post_obj.Post_Time}}
+            <!-- Ago -->
          </div>
       </div>
-      <!-- End community-no-members -->
+      <!-- End community time -->
    </div>
-   <!-- End community-heading, no-members -->
-   <!-- Stat community posted-by-u-name -->
-   <div class="col-2 col-sm-8 col-md-8 pt-2">
-      <div class="row posted-by-u-name">
-      </div>
-   </div>
-   <!-- End community posted-by-u-name -->
+   <!-- End Community name and time -->
+
 </div>
-<!-- End community-profile-img, heading, post -->
-<!-- Start Community sub heading -->
+<!-- End Profile image and name by post -->
+
+<!-- Start Post description -->
 <div class="row pl-3 pt-3">
    <!-- Start community-sub-heading -->
    <div class="col-sm-12 col-md-12 community-sub-heading pt-2">
@@ -54,7 +52,8 @@
    </div>
    <!-- End community-sub-heading -->
 </div>
-<!-- End Community sub heading -->
+<!-- End Post description -->
+
 <!-- Start post-img-video -->
 <div class="row ">
    <div class="col-md-12 pt-3 pl-5">
@@ -76,6 +75,7 @@
    </div>
 </div>
 <!-- End post-img-video -->
+
 <!-- Start no-of-like, no-of-comments, share -->
 <div class="row ">
    <div class="col-md-12 pl-5">
@@ -114,21 +114,31 @@
    </div>
 </div>
 <!-- End no-of-like, no-of-comments, share -->
-<!-- Start community-user-name -->
-<div class="row pl-3 pt-2 community-user-name">
-   <!-- <div class="col-md-12"> -->
-   <!-- <span class="commnet-as"></span> -->
-   <!-- <span>community name or User name</span> -->
-   <div class="col-3 col-sm-2 col-md-1 community-user-name">
-      <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
+
+<!-- Start User Profile icon and name -->
+<div class="row community-body pt-3 pl-3">
+
+   <!-- Start Profile picture -->
+   <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+      <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania" height="100%" width="100%">
    </div>
-   <div class="col-9 col-sm-5 col-md-5 pt-3">
-      <!-- <span class="commnet-as">Comment as</span> -->
-      <span>{{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}</span>
+   <!-- End Profile picture -->
+
+   <!-- Start Community name and time -->
+   <div class="col-5 col-sm-4 col-md-4 pl-0">
+      <!-- Start community name -->
+      <div class="row">
+         <div class="col-md-12 community-name pl-0 pt-2">
+            {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+         </div>
+      </div>
+      <!-- End community name -->
    </div>
-   <!-- </div> -->
+   <!-- End Community name and time -->
+
 </div>
-<!-- End community-user-name -->
+<!-- End User Profile icon and name -->
+
 <!-- Start comment-text-box -->
 <form action="{% url 'add_comment' User_Post_obj.id  %}" method="POST">
    {% csrf_token %}
@@ -157,28 +167,40 @@
    </div>
 </form>
 <!-- End cancel-post-btn -->
-<!-- Start Comments heading -->
-<div class="row pl-3 pt-3 pb-3">
-   <div class="col-md-12 comments-heading">
-   </div>
-</div>
-<!-- End Comments heading -->
+
+
 <!-- Start Comments -->
 {% for i in All_Comment %}
 <div class="row pl-3">
    <div class="col-md-12 all-comments">
       <!-- Start user-profile, user-community-name, time -->
-      <div class="row">
-         <!-- Start user-profile -->
-         <div class="col-2 col-sm-1 col-md-1">
-            <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania">
+      <div class="row community-body pt-3">
+         <!-- Start Profile picture -->
+         <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+            <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
          </div>
-         <!-- End user-profile -->
-         <!-- Start user-community-name, time -->
-         <div class="col-10 col-sm-11 col-md-11 user-community-name">
-            {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}} <br> <span class="time">{{i.Comment_Date}} / {{i.Commenet_Time}}</span>
+         <!-- End Profile picture -->
+
+         <!-- Start Community name and time -->
+         <div class="col-5 col-sm-4 col-md-4 pl-0">
+            <!-- Start community name -->
+            <div class="row">
+               <div class="col-md-12 community-name pl-0">
+                  {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+               </div>
+            </div>
+            <!-- End community name -->
+            <!-- Start community time -->
+            <div class="row">
+               <div class="col-md-12 community-time pl-0">
+                  {{i.Comment_Date}} / {{i.Commenet_Time}}
+                  <!-- Ago -->
+               </div>
+            </div>
+            <!-- End community time -->
          </div>
-         <!-- End user-community-name, time -->
+         <!-- End Community name and time -->
+
       </div>
       <!-- End user-profile, user-community-name, time -->
       <!-- Start comment -->
@@ -224,9 +246,9 @@
       <!-- Start like-reply-share -->
    </div>
 </div>
-<br><br>
 {% endfor %}
 <!-- End Comments -->
+
 <!-- Start Share Modal -->
 <div class="modal create-community-modeal" id="share-modal">
    <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -281,44 +303,6 @@
    </div>
 </div>
 <!-- End Share Modal -->
-<!-- <div class="modal fade " id="reply" tabindex="-1" aria-labelledby="editservise" aria-hidden="true">
-   <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-         <div class="modal-header">
-            <h5 class="modal-title" id="reply">Reply</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <form method="post" id="reply" action="">
-            {% csrf_token %}
-            <div class="modal-body">
-               <div class="container ">
-                  <div class="">
-                     <div class="form-group">
-                        <label for="service">Comment </label>
-                        <input disabled class="form-control" id="demo1">
-                     </div>
-                     <div class="form-group">
-                        <label for="price">Reply</label>
-                        <input type="text" class="form-control" name="Reply" id="demo2">
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="modal-footer">
-               <button type="button"   class="btn btn-secondary" data-dismiss="modal">Close</button>
-               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-primary">Submit</button>
-            </div>
-         </form>
-      </div>
-   </div>
-   </div> -->
-<!-- <script>
-   function data(id,val1){
-       console.log()
-      document.getElementById('reply').action ='/Post_comment_reply/'+id;
-      document.getElementById("demo1").value = val1;
-   }
-   </script> -->
+
+
 {% endblock community_content %}
