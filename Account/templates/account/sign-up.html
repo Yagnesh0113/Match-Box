@@ -237,7 +237,7 @@
                                  <div class="input-group-prepend pt-2">
                                     &nbsp; <span class="add-your-profile-text">Add Your Profile</span>
                                  </div>
-                                 <input required type="file" class="form-control border-0 " aria-label="Default" aria-describedby="inputGroup-sizing-default" name="profile_image" placeholder="Add Your Profile" accept=".jpg, .png">
+                                 <input id="file_id" required type="file" class="form-control border-0 " aria-label="Default" aria-describedby="inputGroup-sizing-default" name="profile_image" placeholder="Add Your Profile" accept=".jpg, .png">
                               </div>
                            </div>
                            <!-- End add your profile -->
@@ -334,7 +334,7 @@
                            <!-- Start sign up button -->
                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
                               <!-- <input required class="btn btn-block btn-normal" type="submit" value="Sign up"> -->
-                              <button class="btn btn-block btn-normal" type="submit">Sign up</button>
+                              <button disabled id="file-submit" class="btn btn-block btn-normal" type="submit">Sign up</button>
                            </div>
                            <!-- End sign up button -->
                         </div>
@@ -375,6 +375,29 @@
          </div>
       </div>-->
       <!--  Start splash screen Scripts-->
+
+      <!-- For profession profile Restriction -->
+      <script>
+         let fileInput = document.getElementById("file_id");
+         let fileSubmit = document.getElementById("file-submit");
+
+         fileInput.addEventListener("change", function(){
+            if (fileInput.files.length > 0){
+               const fileSize=fileInput.files.item(0).size;
+               const fileMb=fileSize/1024**2;
+               if (fileMb >= 2){
+                  alert("Please select a file less than 2MB.")
+                  fileInput.value = "";
+                  fileSubmit.disabled = true;
+               } else {
+                  fileSubmit.disabled = false;
+               }
+
+            }
+         });
+      </script>
+      <!-- End Post Restriction -->
+
       <!-- Start splash screen -->
       <script src="{% static 'community_profession/js/splash-screen.js' %}"></script>
       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
