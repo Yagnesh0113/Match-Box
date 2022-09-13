@@ -46,16 +46,16 @@
    <div class="col-sm-6 col-md-6 text-right pt-4">
       <!-- Start join - btn -->
       {% if z %}
-         {% if userprofile.id is z.Commnunity_id.User_Profile.id %}
-         <span class="join-btn pl-5 pr-5">
-            <a href="{% url 'Edit_Community' z.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Edit</button></a>
-            <a href="{% url 'Delete_Community' z.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Delete</button></a>
-         </span>
-         {% else %}
-         <span class="join-btn pl-5 pr-5">
-            <a href="{% url 'Unjoin' z.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Un Join</button></a>
-         </span>
-         {% endif %}
+      {% if userprofile.id is z.Commnunity_id.User_Profile.id %}
+      <span class="join-btn pl-5 pr-5">
+      <a href="{% url 'Edit_Community' z.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Edit</button></a>
+      <a href="{% url 'Delete_Community' z.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Delete</button></a>
+      </span>
+      {% else %}
+      <span class="join-btn pl-5 pr-5">
+      <a href="{% url 'Unjoin' z.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Un Join</button></a>
+      </span>
+      {% endif %}
       {% else %}
       <span class="join-btn pl-5 pr-5">
       <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Join</button></a>
@@ -95,9 +95,6 @@
             <div class="col-md-6">
                Create Post
             </div>
-            <!-- <div class="col-md-6 text-right">
-               <i class="fa-solid fa-image"></i> &nbsp; &nbsp; <i class="fa-solid fa-link"></i>
-               </div> -->
          </div>
       </a>
    </div>
@@ -143,22 +140,36 @@
 <!-- Start Post -->
 {% for Post in Community_Post_obj %}
 <div class="row">
-   <div class="col-md-12 pt-3 pl-3 border-bottom pb-4 post">
+   <div class="col-md-12 pt-3 pl-3 border-bottom pb-4 post community-body">
       <!-- Start Posted by heading and options -->
       <div class="row">
-         <!-- Start heading -->
-         <div class="col-md-1">
+
+         <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
             <img class="img-fluid rounded-circle" src="{{Post.user_post.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
          </div>
-         <div class="col-md-6 posted-by-heading">
-            <h4>{{Post.user_post.User_Profile.usertype.user_id.first_name}} {{Post.user_post.User_Profile.usertype.user_id.last_name}}</h4>
-            <h6>{{Post.user_post.Post_Date}} {{Post.user_post.Post_Time}} 
-               <!-- ago  -->
-            </h6>
+
+         <!-- Start heading -->
+         <div class="col-5 col-sm-4 col-md-4 pl-0">
+            <!-- Start community name -->
+            <div class="row">
+               <div class="col-md-12 community-name pl-0">
+                  {{Post.user_post.User_Profile.usertype.user_id.first_name}} {{Post.user_post.User_Profile.usertype.user_id.last_name}}
+               </div>
+            </div>
+            <!-- End community name -->
+            <!-- Start community time -->
+            <div class="row">
+               <div class="col-md-12 community-time pl-0">
+                 {{Post.user_post.Post_Date}} {{Post.user_post.Post_Time}}
+                  <!-- Ago -->
+               </div>
+            </div>
+            <!-- End community time -->
          </div>
          <!-- End heading -->
+
          <!-- Start options -->
-         <div class="col-md-6 iterator-design-options">
+         <div class="col-5 col-sm-7 col-md-7 text-right iterator-design-options">
             <div class="dropdown dropleft float-right">
                <button type="button" class="dropdown-btn" data-toggle="dropdown">
                <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -180,27 +191,39 @@
       </div>
       <!-- End Posted by heading and options -->
       <!-- Start post description -->
-      <div class="row">
-         <div class="col-md-12 post-description">
-            <h5>{{Post.user_post.Description}}</h5>
+      <div class="row pt-3 pl-3">
+         <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+            {{Post.user_post.Description}}
          </div>
       </div>
       <!-- End post description -->
       <!-- Start post img, videos -->
       {% if Post.user_post.Image %}
-         {% if Post.user_post.post_type1 %}
-         <div class="row pl-3 pt-3">
-            <div class="col-md-12 rounded ">
-               <video src="{{Post.user_post.Image.url}}" width="100%" height="" controls >
+      {% if Post.user_post.post_type1 %}
+      <!-- Start Video -->
+      <div class="row pl-3 pt-3">
+         <div class="col-md-12 rounded ">
+            <video src="{{Post.user_post.Image.url}}" width="100%" height="" controls ></video>
+         </div>
+      </div>
+      <!-- End video -->
+      {% else %}
+      <!-- Start Post image -->
+      <div class="row community-post-image">
+         <div class="col-md-12">
+            <div class="row community-post-image-background">
+               <div class="col-md-3"></div>
+
+               <div class="col-md-6">
+                  <img src="{{Post.user_post.Image.url}}" alt="" class="img-fluid" width="100%">
+               </div>
+
+               <div class="col-md-3"></div>
             </div>
          </div>
-         {% else %}
-         <div class="row pl-3 pt-3">
-            <div class="col-md-12 rounded ">
-               <img src="{{Post.user_post.Image.url}}" alt="" width="100%" class="img-fluid" >
-            </div>
-         </div>
-         {% endif %}
+      </div>
+      <!-- End Post image -->
+      {% endif %}
       {% else %}
       <div></div>
       {% endif %}
@@ -208,38 +231,40 @@
       <!-- Start like, comment, share -->
       <div class="row pt-2 pd-2">
          <!-- Start Like -->
-         <div class="col-5 col-sm-3 col-md-2">
+         <div class="col-5 col-sm-3 col-md-2 text-center">
             <a href="{% url 'like_post' Post.user_post.id %}">
                {% if userprofile not in Post.user_post.Like.all %}
-               <button type="submit" class="btn community-like-dislike-btn">
-               <i class="fa-solid fa-thumbs-up"></i>
-               </button>
+                  <button type="submit" class="btn community-like-dislike-btn">
+                     <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
                {% else %}
-               <button type="submit" class="btn community-like-dislike-btn">
-               <i class="fa-solid fa-thumbs-down"></i>
-               </button>
+                  <button type="submit" class="btn community-like-dislike-btn">
+                     <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
                {% endif %}
             </a>
             <span class="community-like-dislike-btn">{{ Post.user_post.Like.all.count }}</span>
+            &nbsp;
             <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none community-like-dislike-btn">
-               <i class="fa-solid fa-message"></i>
-               {% if i.Post.Post_comment is None %}
-               0
-               {% else %}
-               {{i.Post.Post_comment}}
-               {% endif %}
-               </a>
+            <i class="fa-solid fa-message"></i>
+               &nbsp;
+            {% if i.Post.Post_comment is None %}
+            0
+            {% else %}
+            {{i.Post.Post_comment}}
+            {% endif %}
+            </a>
          </div>
          <!-- End Like -->
          <!-- Start Comment -->
          <!-- <div class="col-12 col-md-1 pt-3">
             <i class="fa-solid fa-message"></i> 3.9k
-         </div> -->
+            </div> -->
          <!-- End Comment -->
          <!-- Start add cooment buuton -->
-         <div class="col-6 col-sm-4 col-md-3 add-comment-btn">
+         <div class="col-6 col-sm-4 col-md-3 add-comment-btn pl-0">
             <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none">
-            <button type="button" class="btn btn-block">Add Comment</button>
+            <button type="button" class="btn btn-sm btn-block">Add Comment</button>
             </a>
          </div>
          <!-- End add cooment buuton -->
