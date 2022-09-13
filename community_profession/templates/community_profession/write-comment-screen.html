@@ -11,98 +11,128 @@
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 {% endblock own_css %}
 {% block community_content %}
-<!-- Start community-profile-img, heading, post -->
-<div class="row pl-3">
-   <!-- Start community-profile-img -->
-   <div class="col-2  col-sm-2  col-md-2 pt-2 ">
-      <img class="img-fluid" src="{{i.Community_obj.Community_Profile_Image.url}}" alt="Chania">
+<!-- Start community-profile-img, heading, members -->
+<div class="row community-body">
+   <!-- Start Profile picture -->
+   <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+      <img class="img-fluid rounded-circle" src="{{i.Community_obj.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
    </div>
-   <!-- End community-profile-img -->
-   <!-- Start community-heading, no-members -->
-   <div class="col-10 col-sm-10 col-md-10 pt-2 community-heading-members">
-      <!-- Start community-heading -->
+   <!-- End Profile picture -->
+
+   <!-- Start Community name and time -->
+   <div class="col-9 col-sm-11 col-md-11 pl-0">
+      <!-- Start community name -->
       <div class="row">
-         <div class="col-md-12 community-heading">
+         <div class="col-md-12 community-name pl-0">
             {{i.Community_obj.Community_Name}}
          </div>
       </div>
-      <!-- End community-heading -->
-      <!-- Start community-no-members -->
+      <!-- End community name -->
+      <!-- Start community time -->
       <div class="row">
-         <div class="col-md-12 community-no-members">
+         <div class="col-md-12 community-time pl-0">
             Members : 0
+            <!-- Ago -->
          </div>
       </div>
-      <!-- End community-no-members -->
+      <!-- End community time -->
    </div>
-   <!-- End community-heading, no-members -->
-   <!-- Stat community posted-by-u-name -->
-   <div class="col-12 col-sm-12 col-md-12 pt-2">
-      <div class="row posted-by-u-name">
-         <div class="col-md-12">
-            Posted by {{i.user_post.User_Profile.usertype.user_id.first_name}} {{i.user_post.User_Profile.usertype.user_id.last_name}}/{{i.user_post.Post_Date}} {{i.user_post.Post_Time}} 
-            <!-- ago -->
-         </div>
-      </div>
-   </div>
-   <!-- End community posted-by-u-name -->
+   <!-- End Community name and time -->
 </div>
-<!-- End community-profile-img, heading, post -->
-<!-- Start Community sub heading -->
-<div class="row pl-3">
+<!-- End community-profile-img, heading, members -->
+
+<!-- Start Community description -->
+<div class="row pl-3 community-body">
    <!-- Start community-sub-heading -->
-   <div class="col-12 col-sm-12 col-md-12 community-sub-heading pt-2">
+   <div class="col-12 col-sm-12 col-md-12 community-description pt-2">
       {{i.user_post.Description}}
    </div>
    <!-- End community-sub-heading -->
 </div>
-<!-- End Community sub heading -->
+<!-- End Community description -->
+
 <!-- Start post-img-video -->
 {% if i.user_post.Image %}
-<div class="row pl-3 pt-3">
-   <div class="col-12 col-sm-12 col-md-12 rounded">
-      <img src="{{i.user_post.Image.url}}" alt="" class="img-fluid rounded">
+<div class="row community-body pl-4">
+   <div class="col-md-12 community-post-image">
+      <div class="row community-post-image-background">
+         <div class="col-md-3"></div>
+
+         <div class="col-md-6">
+            <img src="{{i.user_post.Image.url}}" alt="" class="img-fluid" width="100%">
+         </div>
+
+         <div class="col-md-3"></div>
+      </div>
    </div>
 </div>
 {% else %}
 <div></div>
 {% endif %}
 <!-- End post-img-video -->
+
 <!-- Start no-of-like, no-of-comments, share -->
-<div class="row pl-3 pt-3 like-comment-share">
-   <!-- Start no-of-like -->
-   <div class="col-3 col-sm-2 col-md-2">
-      <i class="fa-solid fa-thumbs-up"></i> 1.2K
+<div class="row ">
+   <div class="col-md-12 pl-5">
+      <div class="row  pt-3 pb-3 like-comment-share border-bottom">
+         <!-- Start no-of-like -->
+         <span>
+         <a href="/like_post/15">
+
+         <button type="submit" class="btn community-like-dislike-btn">
+         <i class="fa-solid fa-thumbs-up"></i>
+         </button>
+
+         </a>
+         <span class="community-like-dislike-btn">
+         0
+         </span>
+         </span>
+         <!-- End no-of-like -->
+         <!-- Start  no-of-comments -->
+         <span class=" community-like-dislike-btn pt-2">
+         &nbsp; &nbsp; <i class="fa-solid fa-message"></i>  &nbsp; {{count}}
+         </span>
+         <!-- End  no-of-comments -->
+         <!-- Start share -->
+         <span>
+            <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+               <i class="fa-solid fa-share-nodes"></i>
+            </button>
+         </span>
+         <!-- End share -->
+      </div>
    </div>
-   <!-- End no-of-like -->
-   <!-- Start  no-of-comments -->
-   <div class="col-2 col-sm-2 col-md-2">
-      <i class="fa-solid fa-message"></i> {{count}}
-   </div>
-   <!-- End  no-of-comments -->
-   <!-- Start share -->
-   <div class="col-1 col-sm-1 col-md-1">
-      <i class="fa-solid fa-share-nodes"></i>
-   </div>
-   <!-- End share -->
-   <div class="col-6 col-sm-7 col-md-7"></div>
 </div>
 <!-- End no-of-like, no-of-comments, share -->
-<!-- Start community-user-name -->
-<div class="row pl-3 pt-2 community-user-name">
+
+<!-- Start login user -profile, name  -->
+<div class="row community-body pt-3 pl-3">
+   <!-- Start Profile picture -->
    {% if userprofile.profile_image %}
-   <div class="col-2 col-sm-1 col-md-1 pt-2 ">
-      <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
+   <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+      <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania" height="100%" width="100%">
    </div>
-   {% else %}
+    {% else %}
    <div></div>
    {% endif %}
-   <div class="col-5 col-sm-5 col-md-5">
-      <!-- <span class="commnet-as"></span> -->
-      <span>{{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}</span>
+   <!-- End Profile picture -->
+
+   <!-- Start Community name and time -->
+   <div class="col-9 col-sm-11 col-md-11 pl-0">
+      <!-- Start community name -->
+      <div class="row">
+         <div class="col-md-12 community-name pl-0 pt-2">
+            {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+         </div>
+      </div>
+      <!-- End community name -->
    </div>
+   <!-- End Community name and time -->
 </div>
-<!-- End community-user-name -->
+<!-- End login user -profile, name  -->
+
+<!-- Start Post form -->
 <form action="{% url 'community-write-comment-screen' i.id %}" method="POST">
    {% csrf_token %}
    <!-- Start comment-text-box -->
@@ -131,30 +161,45 @@
    </div>
    <!-- End cancel-post-btn -->
 </form>
-<!-- Start Comments heading -->
-<div class="row pl-3 pt-3 pb-3">
-   <div class="col-md-12 comments-heading">
-   </div>
-</div>
-<!-- End Comments heading -->
+<!-- End Post form -->
+
+
+
 {% for All_comment in All_comment %}
 <!-- Start Comments -->
 <div class="row pl-3">
    <div class="col-md-12 all-comments border-bottom pb-3 pt-3">
+
       <!-- Start user-profile, user-community-name, time -->
-      <div class="row">
-         <!-- Start user-profile -->
-         <div class="col-2 col-sm-1  col-md-1">
-            <img class="img-fluid rounded-circle" src="{{All_comment.Community_Comment.User_Profile.profile_image.url}}" alt="Chania">
+      <div class="row community-body">
+         <!-- Start Profile picture -->
+         <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+            <img class="img-fluid rounded-circle" src="{{All_comment.Community_Comment.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
          </div>
-         <!-- End user-profile -->
-         <!-- Start user-community-name, time -->
-         <div class="col-10 col-sm-11 col-md-11 user-community-name">
-            {{All_comment.Community_Comment.User_Profile.usertype.user_id.first_name}} {{All_comment.Community_Comment.User_Profile.usertype.user_id.last_name}}/ <span class="time">{{All_comment.Community_Comment.Comment_Date}}  {{All_comment.Community_Comment.Commenet_Time}}</span>
+         <!-- End Profile picture -->
+
+         <!-- Start Community name and time -->
+         <div class="col-9 col-sm-11 col-md-11 pl-0">
+            <!-- Start community name -->
+            <div class="row">
+               <div class="col-md-12 community-name pl-0">
+                  {{All_comment.Community_Comment.User_Profile.usertype.user_id.first_name}} {{All_comment.Community_Comment.User_Profile.usertype.user_id.last_name}}
+               </div>
+            </div>
+            <!-- End community name -->
+            <!-- Start community time -->
+            <div class="row">
+               <div class="col-md-12 community-time pl-0">
+                  {{All_comment.Community_Comment.Comment_Date}} / {{All_comment.Community_Comment.Commenet_Time}}
+                  <!-- Ago -->
+               </div>
+            </div>
+            <!-- End community time -->
          </div>
-         <!-- End user-community-name, time -->
+         <!-- End Community name and time -->
       </div>
       <!-- End user-profile, user-community-name, time -->
+
       <!-- Start comment -->
       <div class="row pt-2">
          <div class="col-md-12 comment">
@@ -162,24 +207,43 @@
          </div>
       </div>
       <!-- End comment -->
+
       <!-- Start like-reply-share -->
-      <div class="row pt-3">
-         <div class="col-md-12 like-reply-share">
-            <span class="">
-            <i class="fa-solid fa-thumbs-up"></i> 1.2K
-            </span>
-            <span class="pl-5">
-            <a href="{% url 'community-comment-reply-screen' All_comment.id %}" class="text-decoration-none">2 Reply</a>
-            </span>
-            <span class="pl-5">
-            <i class="fa-solid fa-share-nodes"></i>
-            </span>
+      <div class="row ">
+         <div class="col-md-12 pl-5">
+            <div class="row  pt-3 pb-3 like-comment-share">
+               <!-- Start no-of-like -->
+               <span>
+               <a href="/like_post/15">
+
+               <button type="submit" class="btn community-like-dislike-btn">
+               <i class="fa-solid fa-thumbs-up"></i>
+               </button>
+
+               </a>
+               <span class="community-like-dislike-btn">
+               1.2K
+               </span>
+               </span>
+               <!-- End no-of-like -->
+               <!-- Start  no-of-comments -->
+               <span class=" community-like-dislike-btn pt-2">
+               &nbsp; &nbsp; <i class="fa-solid fa-message"></i>  &nbsp;
+               </span>
+               <!-- End  no-of-comments -->
+               <!-- Start share -->
+               <span>
+                  <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+                     <i class="fa-solid fa-share-nodes"></i>
+                  </button>
+               </span>
+               <!-- End share -->
+            </div>
          </div>
       </div>
       <!-- Start like-reply-share -->
    </div>
 </div>
-
 <!-- End Comments -->
 {% endfor %}
 {% endblock community_content %}
