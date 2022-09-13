@@ -17,13 +17,12 @@
       <!-- Start find-artist-window heading -->
       <div class="row">
          <div class="col-md-12 find-artist-window-heading">
-            <!-- Find your artist & Saloons -->
             {% for profession in Profession_obj %}
-               {% if forloop.counter <= 1 %}
+               {% if forloop.counter == 1 %}
                {{profession.profession.Profession_Name}}
                {% endif %}
             {% endfor %}
-         </div>
+         </div> 
       </div>
       <!-- End find-artist-window heading -->
       <!-- Start find-artist-window search bar -->
@@ -32,9 +31,12 @@
             <form>
                <div class="input-group ">
                   <div class="input-group-prepend">
-                     <span class="input-group-text">
+                     <!-- <span class="input-group-text">
                      <i class="fa-solid fa-magnifying-glass"></i>
-                     </span>
+                     </span> -->
+                     <button class="input-group-text">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                     </button>
                   </div>
                   <input type="text" class="form-control">
                </div>
@@ -52,7 +54,8 @@
                   <div class="col-2 col-sm-2 col-md-1">
                      <div class="row">
                         <div class="col-md-12">
-                           <img src="{{i.UserProfile.profile_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
+                           <!-- <img src="{{i.UserProfile.profile_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" > -->
+                           <img src="{{i.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
                         </div>
                      </div>
                   </div>
@@ -85,8 +88,10 @@
 
                   <div class="col-md-3">
                      <div class="row">
-                        <div class="col-md-12">
-                           {{i.shop_address}}, {{i.shop_city}}, {{i.shop_state}}
+                        <div class="col-md-12 rating-online-status text-light">
+                           <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                           {{i.Profession_Rating}}
+                           
                         </div>
                      </div>
                   </div>
@@ -96,20 +101,18 @@
                   <div class="col-3 col-sm-3 col-md-3 text-right">
                      <!-- Start Rating -->
                      <div class="row">
-                        <div class="col-md-12 rating-online-status text-light">
-                           <!-- <i class="fa-solid fa-star"></i> 5 -->
-                           <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                           {{i.Profession_Rating}}
+                        <div class="col-md-12">
+                           {{i.shop_address}}, {{i.shop_city}}, {{i.shop_state}}--{{j}}
                         </div>
                      </div>
                      <!-- End Rating -->
 
                      <!-- Start distance -->
-                     <div class="row">
+                     <!-- <div class="row">
                         <div class="col-md-12">
-                           {{j}}
+                           
                         </div>
-                     </div>
+                     </div> -->
                   </div>
                   <!-- End rating and online status -->
             </div>
@@ -127,7 +130,7 @@
                   <div class="col-2 col-sm-2 col-md-1">
                      <div class="row">
                         <div class="col-md-12">
-                           <img src="{{k.UserProfile.profile_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
+                           <img src="{{k.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
                         </div>
                      </div>
                   </div>
@@ -160,8 +163,10 @@
 
                   <div class="col-md-3">
                      <div class="row">
-                        <div class="col-md-12">
-                           {{k.shop_address}}, {{k.shop_city}}, {{k.shop_state}}
+                        <div class="col-md-12 rating-online-status text-light">
+                           <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                           {{k.Profession_Rating}}
+                           
                         </div>
                      </div>
                   </div>
@@ -171,10 +176,8 @@
                   <div class="col-3 col-sm-3 col-md-3 text-right">
                      <!-- Start Rating -->
                      <div class="row">
-                        <div class="col-md-12 rating-online-status text-light">
-                           <!-- <i class="fa-solid fa-star"></i> 5 -->
-                           <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                           {{k.Profession_Rating}}
+                        <div class="col-md-12">
+                           {{k.shop_address}}, {{k.shop_city}}, {{k.shop_state}}
                         </div>
                      </div>
                      <!-- End Rating -->
@@ -202,6 +205,6 @@
 
 
 
-  
+
 <!-- End finnd our artist and saloon window -->
 {% endblock content %}
