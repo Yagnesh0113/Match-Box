@@ -69,6 +69,28 @@
 <!-- End Services CSS -->
 <!-- Start our rating color -->
 <!-- End our rating color -->
+
+<!-- Start whatsapp - go to chat -->
+<style>
+.fa-brands-1 {
+  padding: 0px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50%;
+}
+
+.fa-brands-1:hover {
+    opacity: 0.7;
+}
+
+.fa-whatsapp-1 {
+  background: #51CE5E;
+  color: white;
+}
+</style>
+<!-- End whatsapp - go to chat -->
 {% endblock own_css %}
 {% block content %}
 <!-- Start girls parlor heading -->
@@ -404,17 +426,11 @@
 <form action="{% url 'profession-personal-details' Profession_obj.id %}" method="POST">
    {% csrf_token %}
    <div class="row">
-      <div class="col-8 col-sm-8 col-md-8">
+      <div class="col-7 col-sm-8 col-md-8">
          <div class="form-group comment-input">
             <textarea maxlength="300" class="form-control" type="text" placeholder="Write a Comment" name="Comment" required></textarea>
          </div>
-         <!-- <div>
-            <span class="fa fa-star fa-2x checked"></span>
-            <span class="fa fa-star fa-2x checked"></span>
-            <span class="fa fa-star fa-2x checked"></span>
-            <span class="fa fa-star fa-2x checked"></span>
-            <span class="fa fa-star fa-2x"></span>
-            </div> -->
+
          <div class="row">
             <div class="col-md-12 pb-3">
                <span class="rate">
@@ -431,19 +447,15 @@
                </span>
             </div>
          </div>
-         <!-- <div class="">
-            <input type="radio" name="rate" id="star_1" value="1"/><label for="star 1" class="fas fa-star"></label>
-            <input type="radio" name="rate" id="star_2" value="2"/><label for="star 2" class="fas fa-star"></label>
-            <input type="radio" name="rate" id="star_3" value="3" checked/><label for="star 3" class="fas fa-star"></label>
-            <input type="radio" name="rate" id="star_4" value="4"/><label for="star 4" class="fas fa-star"></label>
-            <input type="radio" name="rate" id="star_5" value="5"/><label for="star 5" class="fas fa-star"></label>
-            </div> -->
+
       </div>
-      <div class="col-4 col-sm-2 col-md-2 ">
+      <div class="col-3 col-sm-2 col-md-2 ">
          <button type="submit" class="btn btn-block btn-normal-b">Send</button>
       </div>
-      <div class="col-12 col-sm-2 col-md-2 pt-2">
-         <a href="https://api.whatsapp.com/send/?phone={{Profession_obj.UserProfile.country_code}}{{Profession_obj.UserProfile.whatsapp_number}}&text&type=phone_number" class="text-light" target="_blank">Go to chat</a>
+      <div class="col-1 col-sm-2 col-md-2 pt-2">
+         <a href="https://api.whatsapp.com/send/?phone={{Profession_obj.UserProfile.country_code}}{{Profession_obj.UserProfile.whatsapp_number}}&text&type=phone_number" class="text-light" target="_blank">
+            <i class="fa-brands fa-whatsapp fa-brands-1 fa-whatsapp-1"></i>
+         </a>
       </div>
    </div>
 </form>
