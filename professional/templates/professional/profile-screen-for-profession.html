@@ -284,13 +284,13 @@
                                  Select Image
                               </span>
 
-                              <input type="file" name="profile_image" class="text-dark" required>
+                              <input id="file_id" type="file" name="profile_image" class="text-dark" required>
                            </div>
                         </div>
                      </div>
                   </div>
                   <div class="modal-footer">
-                     <button type="submit" class="btn btn-normal-b">Save changes</button>
+                     <button disabled id="file-submit" type="submit" class="btn btn-normal-b">Save changes</button>
                      <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
                   </div>
                </form>
@@ -393,6 +393,29 @@
    </div>
 </div>
 <!-- End Profession Profiles screen -->
+
+<!-- For profile photo Restriction -->
+<script>
+   let fileInput = document.getElementById("file_id");
+   let fileSubmit = document.getElementById("file-submit");
+
+   fileInput.addEventListener("change", function(){
+      if (fileInput.files.length > 0){
+         const fileSize=fileInput.files.item(0).size;
+         const fileMb=fileSize/1024**2;
+         if (fileMb >= 2){
+            alert("Please select a file less than 2MB.")
+            fileInput.value = "";
+            fileSubmit.disabled = true;
+         } else {
+            fileSubmit.disabled = false;
+         }
+
+      }
+   });
+</script>
+<!-- End Post Restriction -->
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
    $("#state").change(function () {

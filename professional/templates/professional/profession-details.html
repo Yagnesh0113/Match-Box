@@ -554,13 +554,13 @@
                      </div>
                      <div class="col-8 modal-sub-heading">
                         <label for="profile_image">Select Image</label>
-                        <input type="file" name="profession_image" accept=".jpg,.png" required>
+                        <input id="file_id" type="file" name="profession_image" accept=".jpg,.png" required>
                      </div>
                   </div>
                </div>
             </div>
             <div class="modal-footer">
-               <button type="submit" class="btn btn-normal-b">Save changes</button>
+               <button disabled id="file-submit" type="submit" class="btn btn-normal-b">Save changes</button>
                <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
@@ -769,13 +769,13 @@
                   <div class="">
                      <div class="form-group modal-sub-heading">
                         <label for="Photo">Photo</label>
-                        <input required type="file" class="" name="image" id="Photo" accept=".jpg,.png">
+                        <input id="file_id1" required type="file" class="" name="image" id="Photo" accept=".jpg,.png">
                      </div>
                   </div>
                </div>
             </div>
             <div class="modal-footer">
-               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-normal-b">Add</button>
+               <button disabled id="file-submit1" type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-normal-b">Add</button>
                <button type="button"   class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
@@ -801,13 +801,13 @@
                   <div class="modal-sub-heading">
                      <div class="form-group">
                         <label for="f">Video</label>
-                        <input required type="file" name="video" accept=".mp4">
+                        <input id="file_id2" required type="file" name="video" accept=".mp4">
                      </div>
                   </div>
                </div>
             </div>
             <div class="modal-footer">
-               <button type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-normal-b">Add</button>
+               <button disabled id="file-submit2" type="submit" value="{{profession.id}}" name="profession_id" class="btn btn-normal-b">Add</button>
                <button type="button"   class="btn btn-cancel" data-dismiss="modal">Close</button>
             </div>
          </form>
@@ -816,6 +816,72 @@
 </div>
 <!-- End Add Videos pop up -->
 
+
+<!-- For profession profile Restriction -->
+<script>
+   let fileInput = document.getElementById("file_id");
+   let fileSubmit = document.getElementById("file-submit");
+
+   fileInput.addEventListener("change", function(){
+      if (fileInput.files.length > 0){
+         const fileSize=fileInput.files.item(0).size;
+         const fileMb=fileSize/1024**2;
+         if (fileMb >= 2){
+            alert("Please select a file less than 2MB.")
+            fileInput.value = "";
+            fileSubmit.disabled = true;
+         } else {
+            fileSubmit.disabled = false;
+         }
+
+      }
+   });
+</script>
+<!-- End Post Restriction -->
+
+<!-- For profession profile Restriction -->
+<script>
+   let fileInput1 = document.getElementById("file_id1");
+   let fileSubmit1 = document.getElementById("file-submit1");
+
+   fileInput1.addEventListener("change", function(){
+      if (fileInput1.files.length > 0){
+         const fileSize1=fileInput1.files.item(0).size;
+         const fileMb1=fileSize1/1024**2;
+         if (fileMb1 >= 2){
+            alert("Please select a file less than 2MB.")
+            fileInput1.value = "";
+            fileSubmit1.disabled = true;
+         } else {
+            fileSubmit1.disabled = false;
+         }
+
+      }
+   });
+</script>
+<!-- End Post Restriction -->
+
+<!-- For profession profile Restriction -->
+<script>
+   let fileInput2 = document.getElementById("file_id2");
+   let fileSubmit2 = document.getElementById("file-submit2");
+
+   fileInput2.addEventListener("change", function(){
+      if (fileInput2.files.length > 0){
+         const fileSize2=fileInput2.files.item(0).size;
+         const fileMb2=fileSize2/1024**2;
+         if (fileMb2 >= 2){
+            alert("Please select a file less than 2MB.")
+            fileInput2.value = "";
+            fileSubmit2.disabled = true;
+         } else {
+            fileSubmit2.disabled = false;
+         }
+
+      }
+   });
+</script>
+<!-- End Post Restriction -->
 
 <script>
    $(function(){
