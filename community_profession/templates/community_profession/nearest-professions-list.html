@@ -31,179 +31,366 @@
             <form>
                <div class="input-group ">
                   <div class="input-group-prepend">
-                     <!-- <span class="input-group-text">
-                     <i class="fa-solid fa-magnifying-glass"></i>
-                     </span> -->
-                     <button class="input-group-text">
+                     <span class="input-group-text">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                     </button>
+                     </span>
                   </div>
-                  <input type="text" class="form-control">
+                  <input onkeyup="professionSearch()" id="profession-search" type="text" placeholder="Search....." class="form-control"> <br>
+
+                  <ul class="list-unstyled" id="profession_id">
+                     {% if distance %}
+                     {% for i,j in distance.items %}
+                     <!-- Start profession list -->
+                     <li>
+                        <div class="row pl-4 pr-4">
+                           <div class="col-md-12 mt-3">
+                              <div class="row border rounded border-primary pt-2 pb-2">
+                                    <!-- Start Profile img -->
+                                    <div class="col-2 col-sm-2 col-md-1">
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             <!-- <img src="{{i.UserProfile.profile_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" > -->
+                                             <img src="{{i.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- End Profile img -->
+
+                                    <!-- Start Professionist name & profession -->
+                                    <div class="col-7 col-sm-7 col-md-5">
+                                       <a href="{% url 'profession-personal-details' i.id %}">
+                                          <!-- Start Profession heading -->
+                                          <div class="row">
+                                             <div class="col-sm-12 profession-name">
+                                                <!-- {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}} -->
+                                                {{i.shop_name}}
+                                             </div>
+                                          </div>
+                                          <!-- End Profession heading -->
+                                          <!-- Start Profession sub heading -->
+                                          <div class="row">
+                                             <div class="col-sm-12 profession-subheading">
+                                                {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}}
+                                                <!-- {{i.profession.Profession_Name}} -->
+                                             </div>
+                                          </div>
+                                          <!-- End Profession sub heading -->
+                                       </a>
+                                    </div>
+                                    <!-- End Professionist name & profession -->
+
+                                    <!-- Start Address -->
+
+                                    <div class="col-md-3">
+                                       <div class="row">
+                                          <div class="col-md-12 rating-online-status text-light">
+                                             <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                                             {{i.Profession_Rating}}
+
+                                          </div>
+                                       </div>
+                                    </div>
+
+
+                                    <!-- Start rating and online status -->
+                                    <div class="col-3 col-sm-3 col-md-3 text-right">
+                                       <!-- Start Rating -->
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             {{i.shop_address}}, {{i.shop_city}}, {{i.shop_state}}--{{j}}
+                                          </div>
+                                       </div>
+                                       <!-- End Rating -->
+
+                                       <!-- Start distance -->
+                                       <!-- <div class="row">
+                                          <div class="col-md-12">
+
+                                          </div>
+                                       </div> -->
+                                    </div>
+                                    <!-- End rating and online status -->
+                              </div>
+                           </div>
+                        </div>
+                     </li>
+                     <!-- End profession list -->
+                     {% endfor %}
+                     {% else %}
+                     {% for k in Profession_obj %}
+                     <!-- Start profession list -->
+                     <li>
+                        <div class="row pl-4 pr-4">
+                           <div class="col-md-12 mt-3">
+                              <div class="row border rounded border-primary pt-2 pb-2">
+                                    <!-- Start Profile img -->
+                                    <div class="col-2 col-sm-2 col-md-1">
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             <img src="{{k.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- End Profile img -->
+
+                                    <!-- Start Professionist name & profession -->
+                                    <div class="col-7 col-sm-7 col-md-5">
+                                       <a href="{% url 'profession-personal-details' k.id %}">
+                                          <!-- Start Profession heading -->
+                                          <div class="row">
+                                             <div class="col-sm-12 profession-name">
+                                                <!-- {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}} -->
+                                                {{k.shop_name}}
+                                             </div>
+                                          </div>
+                                          <!-- End Profession heading -->
+                                          <!-- Start Profession sub heading -->
+                                          <div class="row">
+                                             <div class="col-sm-12 profession-subheading">
+                                                {{k.UserProfile.usertype.user_id.first_name}} {{k.UserProfile.usertype.user_id.last_name}}
+                                                <!-- {{i.profession.Profession_Name}} -->
+                                             </div>
+                                          </div>
+                                          <!-- End Profession sub heading -->
+                                       </a>
+                                    </div>
+                                    <!-- End Professionist name & profession -->
+
+                                    <!-- Start Address -->
+
+                                    <div class="col-md-3">
+                                       <div class="row">
+                                          <div class="col-md-12 rating-online-status text-light">
+                                             <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+                                             {{k.Profession_Rating}}
+
+                                          </div>
+                                       </div>
+                                    </div>
+
+
+                                    <!-- Start rating and online status -->
+                                    <div class="col-3 col-sm-3 col-md-3 text-right">
+                                       <!-- Start Rating -->
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             {{k.shop_address}}, {{k.shop_city}}, {{k.shop_state}}
+                                          </div>
+                                       </div>
+                                       <!-- End Rating -->
+
+                                       <!-- Start distance -->
+                                       <!-- <div class="row">
+                                          <div class="col-md-12">
+                                             {{j}}
+                                          </div>
+                                       </div> -->
+                                    </div>
+                                    <!-- End rating and online status -->
+                              </div>
+                           </div>
+                        </div>
+                     </li>
+                     <!-- End profession list -->
+                     {% endfor %}
+                     {% endif %}
+                  </ul>
                </div>
             </form>
+<!--            <form>-->
+<!--               <div class="input-group ">-->
+<!--                  <div class="input-group-prepend">-->
+<!--                     &lt;!&ndash; <span class="input-group-text">-->
+<!--                     <i class="fa-solid fa-magnifying-glass"></i>-->
+<!--                     </span> &ndash;&gt;-->
+<!--                     <button class="input-group-text">-->
+<!--                        <i class="fa-solid fa-magnifying-glass"></i>-->
+<!--                     </button>-->
+<!--                  </div>-->
+<!--                  <input type="text" class="form-control">-->
+<!--               </div>-->
+<!--            </form>-->
          </div>
       </div>
       <!-- Start find-artist-window search bar -->
-      {% if distance %}
-      {% for i,j in distance.items %}
-      <!-- Start profession list -->
-      <div class="row pl-4 pr-4">
-         <div class="col-md-12 mt-3">
-            <div class="row border rounded border-primary pt-2 pb-2">
-                  <!-- Start Profile img -->
-                  <div class="col-2 col-sm-2 col-md-1">
-                     <div class="row">
-                        <div class="col-md-12">
-                           <!-- <img src="{{i.UserProfile.profile_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" > -->
-                           <img src="{{i.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
-                        </div>
-                     </div>
-                  </div>
-                  <!-- End Profile img -->
+<!--      {% if distance %}-->
+<!--      {% for i,j in distance.items %}-->
+<!--      &lt;!&ndash; Start profession list &ndash;&gt;-->
+<!--      <div class="row pl-4 pr-4">-->
+<!--         <div class="col-md-12 mt-3">-->
+<!--            <div class="row border rounded border-primary pt-2 pb-2">-->
+<!--                  &lt;!&ndash; Start Profile img &ndash;&gt;-->
+<!--                  <div class="col-2 col-sm-2 col-md-1">-->
+<!--                     <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                           &lt;!&ndash; <img src="{{i.UserProfile.profile_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" > &ndash;&gt;-->
+<!--                           <img src="{{i.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >-->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; End Profile img &ndash;&gt;-->
 
-                  <!-- Start Professionist name & profession -->
-                  <div class="col-7 col-sm-7 col-md-5">
-                     <a href="{% url 'profession-personal-details' i.id %}">
-                        <!-- Start Profession heading -->
-                        <div class="row">
-                           <div class="col-sm-12 profession-name">
-                              <!-- {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}} -->
-                              {{i.shop_name}}
-                           </div>
-                        </div>
-                        <!-- End Profession heading -->
-                        <!-- Start Profession sub heading -->
-                        <div class="row">
-                           <div class="col-sm-12 profession-subheading">
-                              {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}}
-                              <!-- {{i.profession.Profession_Name}} -->
-                           </div>
-                        </div>
-                        <!-- End Profession sub heading -->
-                     </a>
-                  </div>
-                  <!-- End Professionist name & profession -->
+<!--                  &lt;!&ndash; Start Professionist name & profession &ndash;&gt;-->
+<!--                  <div class="col-7 col-sm-7 col-md-5">-->
+<!--                     <a href="{% url 'profession-personal-details' i.id %}">-->
+<!--                        &lt;!&ndash; Start Profession heading &ndash;&gt;-->
+<!--                        <div class="row">-->
+<!--                           <div class="col-sm-12 profession-name">-->
+<!--                              &lt;!&ndash; {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}} &ndash;&gt;-->
+<!--                              {{i.shop_name}}-->
+<!--                           </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; End Profession heading &ndash;&gt;-->
+<!--                        &lt;!&ndash; Start Profession sub heading &ndash;&gt;-->
+<!--                        <div class="row">-->
+<!--                           <div class="col-sm-12 profession-subheading">-->
+<!--                              {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}}-->
+<!--                              &lt;!&ndash; {{i.profession.Profession_Name}} &ndash;&gt;-->
+<!--                           </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; End Profession sub heading &ndash;&gt;-->
+<!--                     </a>-->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; End Professionist name & profession &ndash;&gt;-->
 
-                  <!-- Start Address -->
+<!--                  &lt;!&ndash; Start Address &ndash;&gt;-->
 
-                  <div class="col-md-3">
-                     <div class="row">
-                        <div class="col-md-12 rating-online-status text-light">
-                           <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                           {{i.Profession_Rating}}
-                           
-                        </div>
-                     </div>
-                  </div>
-
-
-                  <!-- Start rating and online status -->
-                  <div class="col-3 col-sm-3 col-md-3 text-right">
-                     <!-- Start Rating -->
-                     <div class="row">
-                        <div class="col-md-12">
-                           {{i.shop_address}}, {{i.shop_city}}, {{i.shop_state}}--{{j}}
-                        </div>
-                     </div>
-                     <!-- End Rating -->
-
-                     <!-- Start distance -->
-                     <!-- <div class="row">
-                        <div class="col-md-12">
-                           
-                        </div>
-                     </div> -->
-                  </div>
-                  <!-- End rating and online status -->
-            </div>
-         </div>
-      </div>
-      <!-- End profession list -->
-      {% endfor %}
-      {% else %}
-      {% for k in Profession_obj %}
-      <!-- Start profession list -->
-      <div class="row pl-4 pr-4">
-         <div class="col-md-12 mt-3">
-            <div class="row border rounded border-primary pt-2 pb-2">
-                  <!-- Start Profile img -->
-                  <div class="col-2 col-sm-2 col-md-1">
-                     <div class="row">
-                        <div class="col-md-12">
-                           <img src="{{k.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
-                        </div>
-                     </div>
-                  </div>
-                  <!-- End Profile img -->
-
-                  <!-- Start Professionist name & profession -->
-                  <div class="col-7 col-sm-7 col-md-5">
-                     <a href="{% url 'profession-personal-details' k.id %}">
-                        <!-- Start Profession heading -->
-                        <div class="row">
-                           <div class="col-sm-12 profession-name">
-                              <!-- {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}} -->
-                              {{k.shop_name}}
-                           </div>
-                        </div>
-                        <!-- End Profession heading -->
-                        <!-- Start Profession sub heading -->
-                        <div class="row">
-                           <div class="col-sm-12 profession-subheading">
-                              {{k.UserProfile.usertype.user_id.first_name}} {{k.UserProfile.usertype.user_id.last_name}}
-                              <!-- {{i.profession.Profession_Name}} -->
-                           </div>
-                        </div>
-                        <!-- End Profession sub heading -->
-                     </a>
-                  </div>
-                  <!-- End Professionist name & profession -->
-
-                  <!-- Start Address -->
-
-                  <div class="col-md-3">
-                     <div class="row">
-                        <div class="col-md-12 rating-online-status text-light">
-                           <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                           {{k.Profession_Rating}}
-                           
-                        </div>
-                     </div>
-                  </div>
+<!--                  <div class="col-md-3">-->
+<!--                     <div class="row">-->
+<!--                        <div class="col-md-12 rating-online-status text-light">-->
+<!--                           <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">-->
+<!--                           {{i.Profession_Rating}}-->
+<!--                           -->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                  </div>-->
 
 
-                  <!-- Start rating and online status -->
-                  <div class="col-3 col-sm-3 col-md-3 text-right">
-                     <!-- Start Rating -->
-                     <div class="row">
-                        <div class="col-md-12">
-                           {{k.shop_address}}, {{k.shop_city}}, {{k.shop_state}}
-                        </div>
-                     </div>
-                     <!-- End Rating -->
+<!--                  &lt;!&ndash; Start rating and online status &ndash;&gt;-->
+<!--                  <div class="col-3 col-sm-3 col-md-3 text-right">-->
+<!--                     &lt;!&ndash; Start Rating &ndash;&gt;-->
+<!--                     <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                           {{i.shop_address}}, {{i.shop_city}}, {{i.shop_state}}&#45;&#45;{{j}}-->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                     &lt;!&ndash; End Rating &ndash;&gt;-->
 
-                     <!-- Start distance -->
-                     <!-- <div class="row">
-                        <div class="col-md-12">
-                           {{j}}
-                        </div>
-                     </div> -->
-                  </div>
-                  <!-- End rating and online status -->
-            </div>
-         </div>
-      </div>
-      <!-- End profession list -->
-      {% endfor %}
-      {% endif %}
-      <!-- Start profession list -->
+<!--                     &lt;!&ndash; Start distance &ndash;&gt;-->
+<!--                     &lt;!&ndash; <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                           -->
+<!--                        </div>-->
+<!--                     </div> &ndash;&gt;-->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; End rating and online status &ndash;&gt;-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; End profession list &ndash;&gt;-->
+<!--      {% endfor %}-->
+<!--      {% else %}-->
+<!--      {% for k in Profession_obj %}-->
+<!--      &lt;!&ndash; Start profession list &ndash;&gt;-->
+<!--      <div class="row pl-4 pr-4">-->
+<!--         <div class="col-md-12 mt-3">-->
+<!--            <div class="row border rounded border-primary pt-2 pb-2">-->
+<!--                  &lt;!&ndash; Start Profile img &ndash;&gt;-->
+<!--                  <div class="col-2 col-sm-2 col-md-1">-->
+<!--                     <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                           <img src="{{k.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >-->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; End Profile img &ndash;&gt;-->
+
+<!--                  &lt;!&ndash; Start Professionist name & profession &ndash;&gt;-->
+<!--                  <div class="col-7 col-sm-7 col-md-5">-->
+<!--                     <a href="{% url 'profession-personal-details' k.id %}">-->
+<!--                        &lt;!&ndash; Start Profession heading &ndash;&gt;-->
+<!--                        <div class="row">-->
+<!--                           <div class="col-sm-12 profession-name">-->
+<!--                              &lt;!&ndash; {{i.UserProfile.usertype.user_id.first_name}} {{i.UserProfile.usertype.user_id.last_name}} &ndash;&gt;-->
+<!--                              {{k.shop_name}}-->
+<!--                           </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; End Profession heading &ndash;&gt;-->
+<!--                        &lt;!&ndash; Start Profession sub heading &ndash;&gt;-->
+<!--                        <div class="row">-->
+<!--                           <div class="col-sm-12 profession-subheading">-->
+<!--                              {{k.UserProfile.usertype.user_id.first_name}} {{k.UserProfile.usertype.user_id.last_name}}-->
+<!--                              &lt;!&ndash; {{i.profession.Profession_Name}} &ndash;&gt;-->
+<!--                           </div>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash; End Profession sub heading &ndash;&gt;-->
+<!--                     </a>-->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; End Professionist name & profession &ndash;&gt;-->
+
+<!--                  &lt;!&ndash; Start Address &ndash;&gt;-->
+
+<!--                  <div class="col-md-3">-->
+<!--                     <div class="row">-->
+<!--                        <div class="col-md-12 rating-online-status text-light">-->
+<!--                           <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">-->
+<!--                           {{k.Profession_Rating}}-->
+<!--                           -->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                  </div>-->
+
+
+<!--                  &lt;!&ndash; Start rating and online status &ndash;&gt;-->
+<!--                  <div class="col-3 col-sm-3 col-md-3 text-right">-->
+<!--                     &lt;!&ndash; Start Rating &ndash;&gt;-->
+<!--                     <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                           {{k.shop_address}}, {{k.shop_city}}, {{k.shop_state}}-->
+<!--                        </div>-->
+<!--                     </div>-->
+<!--                     &lt;!&ndash; End Rating &ndash;&gt;-->
+
+<!--                     &lt;!&ndash; Start distance &ndash;&gt;-->
+<!--                     &lt;!&ndash; <div class="row">-->
+<!--                        <div class="col-md-12">-->
+<!--                           {{j}}-->
+<!--                        </div>-->
+<!--                     </div> &ndash;&gt;-->
+<!--                  </div>-->
+<!--                  &lt;!&ndash; End rating and online status &ndash;&gt;-->
+<!--            </div>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; End profession list &ndash;&gt;-->
+<!--      {% endfor %}-->
+<!--      {% endif %}-->
+<!--      &lt;!&ndash; Start profession list &ndash;&gt;-->
 
    </div>
    <div class="col-12 col-sm-2 col-md-2"></div>
 </div>
 
 
-
+<!-- search script -->
+ <script>
+   function professionSearch() {
+     var input, filter, ul, li, a, i;
+     input = document.getElementById("profession-search");
+     filter = input.value.toUpperCase();
+     ul = document.getElementById("profession_id");
+     li = ul.getElementsByTagName("li");
+     for (i = 0; i < li.length; i++) {
+       a = li[i].getElementsByTagName("a")[0];
+       if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+         li[i].style.display = "";
+       } else {
+         li[i].style.display = "none";
+       }
+     }
+   }
+ </script>
+<!-- end search script -->
 
 
 <!-- End finnd our artist and saloon window -->
