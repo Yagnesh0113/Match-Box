@@ -603,7 +603,7 @@ def Post_comment_reply(request, id):
         obj=Comment_reply.objects.filter(Comment=Post_obj)
         Post_obj.Post_comment_reply=len(obj)
         Post_obj.save()
-        return redirect(f"/add_comment/{Post_obj.User_Post.id}")
+        return redirect(f"/Post_comment_reply/{id}")
     else:
         Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
         Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
