@@ -1120,6 +1120,9 @@ def ans_later(request,id):
 @login_required(login_url='/')
 def delete_ans_later(request,id):
     Answer=Answer_later.objects.get(id=id)
+    Question=User_Question.objects.get(id=Answer.Question.id)
+    Question.Answer_later=False
+    Question.save()
     Answer.delete()
     return redirect("community-screen")
 
