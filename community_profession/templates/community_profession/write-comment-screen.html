@@ -226,39 +226,33 @@
       <!-- End comment -->
 
       <!-- Start like-reply-share -->
-      <div class="row ">
-         <div class="col-md-12 pl-5">
-            <div class="row  pt-3 pb-3 like-comment-share">
-               <!-- Start no-of-like -->
-               <span>
-               <a href="/like_post/15">
-
-               <button type="submit" class="btn community-like-dislike-btn">
-               <i class="fa-solid fa-thumbs-up"></i>
-               </button>
-
-               </a>
-               <span class="community-like-dislike-btn">
-               1.2K
-               </span>
-               </span>
-               <!-- End no-of-like -->
-               <!-- Start  no-of-comments -->
-               <span class=" community-like-dislike-btn pt-2">
-               &nbsp; &nbsp; <i class="fa-solid fa-message"></i>  &nbsp;
-               </span>
-               <!-- End  no-of-comments -->
-               <!-- Start share -->
-               <span>
-                  <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
-                     <i class="fa-solid fa-share-nodes"></i>
-                  </button>
-               </span>
-               <!-- End share -->
-            </div>
+      <div class="row pt-3">
+         <div class="col-md-12 like-reply-share">
+            <a href="{% url 'like_post_comment' All_comment.Community_Comment.id %}">
+            {% if userprofile not in All_comment.Community_Comment.Comment_like.all %}
+            <button type="submit" class="btn community-like-dislike-btn">
+            <i class="fa-solid fa-thumbs-up"></i>
+            </button>
+            {% else %}
+            <button type="submit" class="btn community-like-dislike-btn">
+            <i class="fa-solid fa-thumbs-down"></i>
+            </button>
+            {% endif %}
+            </a>
+            <span class="community-like-dislike-btn">{{ All_comment.Community_Comment.Comment_like.all.count }}</span>
+            <span class="pl-2 community-like-dislike-btn">
+            <a href="{% url 'Post_comment_reply' All_comment.Community_Comment.id %}" class="text-decoration-none">
+            <i class="fa-solid fa-message"></i> &nbsp;
+            {% if All_comment.Community_Comment.Post_comment_reply is None %}
+            0
+            {% else %}
+            {{All_comment.Community_Comment.Post_comment_reply}}
+            {% endif %}
+            </a>
+            </span>
          </div>
       </div>
-      <!-- Start like-reply-share -->
+      <!-- End like-reply-share -->
    </div>
 </div>
 <!-- End Comments -->

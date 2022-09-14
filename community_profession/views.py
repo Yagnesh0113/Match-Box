@@ -945,8 +945,6 @@ def loadCommunityWriteCommentScreen(request,id):
         Post_obj=Post_Commment.objects.create(User_Post=Community_obj.user_post,User_Profile=userprofile,Comment=Post_Comment_obj,Comment_Date=Post_Date,Commenet_Time=Post_time)
         
         obj=Post_Commment.objects.filter(User_Post=Community_obj.user_post)
-        # print("obj",len(obj))
-        # print("Obj1",Community_obj.user_post.id)
         Community_obj.user_post.Post_comment=len(obj)
         Community_obj.user_post.save()
         
