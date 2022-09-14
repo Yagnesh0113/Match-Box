@@ -1083,7 +1083,7 @@ def news_comment_reply(request, id):
         obj=News_Comment_reply.objects.filter(Comment=Post_obj)
         Post_obj.reply=len(obj)
         Post_obj.save()
-        return redirect(f"/news_comment/{Post_obj.News_id.id}")
+        return redirect(f"/news_comment_reply/{id}")
     else:
         Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
         Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
