@@ -112,36 +112,26 @@
 <!-- End Login Profile info -->
 
 <!-- Start Reply text-box, post-btn, options -->
-<form action="#" method="POST">
+<form action="{% url 'Add_Answer_Reply' Answer_obj.id %}" method="POST">
    {% csrf_token %}
-   <div class="row pl-3 reply-form border-bottom">
-      <!-- Start reply-input-box -->
-      <div class="col-8 col-sm-8 col-md-8 pt-3">
-         <div class="form-group">
-            <textarea maxlength="300" type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply"></textarea>
-         </div>
-      </div>
-      <!-- End reply-input-box -->
-      <!-- Start post btn -->
-      <div class="col-3 col-sm-3 col-md-3 pt-3">
-         <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
-      </div>
-      <!-- End post btn -->
-      <!-- Start options -->
-      <div class="col-1 col-sm-1 col-md-1 pt-3 options">
-<!--         <div class="dropdown dropleft float-right">-->
-<!--            <button type="button" class="btn btn-sm btn-block text-light" data-toggle="dropdown">-->
-<!--            <i class="fa-solid fa-ellipsis-vertical"></i>-->
-<!--            </button>-->
-<!--            <div class="dropdown-menu">-->
-<!--               <a class="dropdown-item" href="#">Block Account</a>-->
-<!--               <a class="dropdown-item" href="#">Delete</a>-->
-<!--               <a class="dropdown-item" href="#">Hide Reply</a>-->
-<!--            </div>-->
-<!--         </div>-->
-      </div>
-      <!-- End options -->
-   </div>
+    <div class="row pl-3">
+        <div class="col-md-12 border-bottom">
+            <div class="row reply-form ">
+              <!-- Start reply-input-box -->
+              <div class="col-10 col-sm-10 col-md-10 pt-3 pl-0">
+                 <div class="form-group">
+                    <input type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply">
+                 </div>
+              </div>
+              <!-- End reply-input-box -->
+              <!-- Start post btn -->
+              <div class="col-2 col-sm-2 col-md-2 pt-3">
+                 <button type="submit" class="btn btn-block btn-sm btn-normal-b">Answer</button>
+              </div>
+              <!-- End post btn -->
+            </div>
+        </div>
+    </div>
 </form>
 <!-- End Reply text-box, post-btn, options -->
 
