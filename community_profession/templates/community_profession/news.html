@@ -18,7 +18,7 @@
       <!-- Start news posted by heading -->
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 posted-by-heading">
-            Posted by/ Matchbox
+            Posted by/ We Creators
          </div>
       </div>
       <!-- End news posted by heading -->
@@ -30,20 +30,20 @@
       </div>
       <!-- End no of days -->
       <!-- Start news content -->
-      <div class="row">
-         <div class="col-12 col-sm-12 col-md-12 news-content">
+      <div class="row community-body">
+         <div class="col-12 col-sm-12 col-md-12 community-description text-justify">
             {{i.Description}}
          </div>
       </div>
       <!-- End news content -->
       <!-- Start news img-video -->
-      <div class="row news-img-video">
-         <div class="col-12 col-sm-12 col-md-12">
-            <div class="row background">
+      <div class="row community-body pl-2">
+         <div class="col-12 col-sm-12 col-md-12 community-post-image">
+            <div class="row community-post-image-background">
                <div class="col-0 col-sm-3 col-md-3"></div>
-               <div class="col-12 col-sm-6 col-md-6">
+               <div class="col-12 col-sm-6 col-md-6 ">
                   {% if i.Video %}
-                  <video width="100%" controls controlslist="nodownload" oncontextmenu="return false">
+                  <video width="100%" class="img-fluid" controls controlslist="nodownload" oncontextmenu="return false">
                      <source src="{{i.Video.url}}" type="video/mp4">
                   </video>
                   {% elif i.Image %}
@@ -60,32 +60,40 @@
       <!-- Start like, comment, add-comment, share -->
       <div class="row like-comment-share">
          <!-- Start like -->
-         <div class="col-1 col-sm-1 col-md-1 like">
+         <div class="col-5 col-sm-3 col-md-2 text-center p-0">
             <a href="{% url 'like_news' i.id %}">
                {% if userprofile not in i.News_like.all %}
-               <button type="submit" class="fa-solid fa-thumbs-up"></button>
+                  <button type="submit" class="btn community-like-dislike-btn">
+                     <i class="fa-solid fa-thumbs-up"></i>
+                  </button>
                {% else %}
-               <button type="submit" class="fa-solid fa-thumbs-down"></button>
+                  <button type="submit" class="btn community-like-dislike-btn">
+                     <i class="fa-solid fa-thumbs-down"></i>
+                  </button>
                {% endif %}
-            </a>{{ i.News_like.all.count }} Likes
+            </a>
+            <span class="community-like-dislike-btn">{{ i.News_like.all.count }}</span>
+
+            <span class="community-like-dislike-btn">
+               &nbsp; <i class="fa-solid fa-message"></i>
+            </span>
+            <span class="community-like-dislike-btn">
+               &nbsp;{{i.comment}}
+            </span>
          </div>
          <!-- End like -->
-         <!-- Start  comment -->
-         <div class="col-3 col-sm-2 col-md-1 comment">
-            <i class="fa-solid fa-message"></i> {{i.comment}}
-         </div>
-         <!-- End  comment -->
+
          <!-- Start add-comment btn -->
-         <div class="col-5 col-sm-4 col-md-3">
+         <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
             <a href="{% url 'news_comment' i.id %}">
-            <button type="submit" class="btn btn-block add-comment-btn">Add Comments</button>
+               <button type="submit" class="btn btn-block btn-sm add-comment-btn">Add Comments</button>
             </a>
          </div>
          <!-- End add-comment btn -->
          <!-- Start Share -->
-         <div class="col-2 col-sm-2 col-md-2 share">
-            <i class="fa-solid fa-share-nodes"></i>
-         </div>
+<!--         <div class="col-2 col-sm-2 col-md-2 share">-->
+<!--            <i class="fa-solid fa-share-nodes"></i>-->
+<!--         </div>-->
          <!-- End Share -->
       </div>
       <!-- End like, comment, add-comment, share -->
