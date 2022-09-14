@@ -560,7 +560,6 @@
          </div>
       </div>
       <!--  End Post Questions    -->
-
       {% endif %}
       {% endfor %}
       {% endif %}
@@ -1058,13 +1057,13 @@
                            <i class="fa-solid fa-ellipsis-vertical"></i>
                            </button>
                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#">Copy Link</a>
-                              <a class="dropdown-item" href="#">Block Account</a>
-                              <!-- <a class="dropdown-item" href="#">Delete question</a> -->
-                              <!-- <a class="dropdown-item" href="#">Edit question</a> -->
+                              <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
+                              <!-- <a class="dropdown-item" href="#">Block Account</a> -->
+                              <a class="dropdown-item" href="{% url 'Community_Delete_My_Video' i.id %}">Delete Video</a>
+                              <a class="dropdown-item" href="{% url 'Community_Edit_My_Video' i.id %}">Edit Video</a>
                               <a class="dropdown-item" href="#">Bookmark</a>
-                              <a class="dropdown-item" href="#">Save</a>
-                              <a class="dropdown-item" href="#">Share</a>
+                              <!-- <a class="dropdown-item" href="#">Save</a> -->
+                              <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
                         </div>
                      </div>
@@ -1151,7 +1150,6 @@
             </div>
          </div>
       </div>
-
       {% endfor %}
       {% endif %}
       <!-- End My Video -->
@@ -1212,13 +1210,13 @@
                            <i class="fa-solid fa-ellipsis-vertical"></i>
                            </button>
                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#">Copy Link</a>
-                              <a class="dropdown-item" href="#">Block Account</a>
-                              <!-- <a class="dropdown-item" href="#">Delete question</a> -->
-                              <!-- <a class="dropdown-item" href="#">Edit question</a> -->
+                              <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
+                              <!-- <a class="dropdown-item" href="#">Block Account</a> -->
+                              <a class="dropdown-item" href="{% url 'Community_Delete_My_Image' i.id %}">Delete question</a>
+                              <a class="dropdown-item" href="{% url 'Community_Edit_My_Image' i.id %}">Edit question</a>
                               <a class="dropdown-item" href="#">Bookmark</a>
-                              <a class="dropdown-item" href="#">Save</a>
-                              <a class="dropdown-item" href="#">Share</a>
+                              <!-- <a class="dropdown-item" href="#">Save</a> -->
+                              <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
                         </div>
                      </div>
@@ -1364,14 +1362,14 @@
                            <i class="fa-solid fa-ellipsis-vertical"></i>
                            </button>
                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#">Copy Link</a>
-                              <a class="dropdown-item" href="#">Block Account</a>
+                              <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
+                              <!-- <a class="dropdown-item" href="#">Block Account</a> -->
                               <a class="dropdown-item" href="{% url 'ans_later' i.id %}">Answer Later</a>
-                              <a class="dropdown-item" href="#">Delete question</a>
-                              <a class="dropdown-item" href="#">Edit question</a>
+                              <a class="dropdown-item" href="{% url 'Community_Delete_My_Question' i.id %}">Delete question</a>
+                              <a class="dropdown-item" href="{% url 'Community_Edit_My_Question' i.id %}">Edit question</a>
                               <a class="dropdown-item" href="#">Bookmark</a>
-                              <a class="dropdown-item" href="#">Save</a>
-                              <a class="dropdown-item" href="#">Share</a>
+                              <!-- <a class="dropdown-item" href="#">Save</a> -->
+                              <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
                         </div>
                      </div>
@@ -1514,7 +1512,7 @@
                                           </button>
                                           <div class="dropdown-menu">
                                              <!-- For Answer Later -->
-                                             {% if Question.Answer_later %}
+                                             {% if Question.Answer_later is True %}
                                              <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
                                              {% else %}
                                              <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
@@ -1784,7 +1782,18 @@
 
                   <!-- End Add Question sub points -->
                   <!-- Start Public - Limited drpdown -->
-
+                  <div class="row">
+                     <div class="col-md-12 public-limited">
+                        <div class="dropdown">
+                           <select name="UserId" id="" class="form-control">
+                              <option value="Public" selected>--- For All ---</option>
+                              {% for userid in userid %}
+                              <option value="{{userid.id}}">{{userid.usertype.user_id.first_name}}</option>
+                              {% endfor %}
+                           </select>
+                        </div>
+                     </div>
+                  </div>
                   <!-- End Public - Limited drp down -->
                   <!-- Start your question note -->
                   <div class="row">
@@ -1836,7 +1845,6 @@
                      <div class="col-md-12 file-field">
                         <div class="form-group">
                            <input onchange="upload_check()" class="form-control" id="file_id" name="File" type="file" accept="image/*,video/*">
-                           <p id="file-result"></p>
                         </div>
                      </div>
                   </div>
@@ -1929,7 +1937,6 @@
 <!-- For Post Image and video Restriction -->
 <script>
    let fileInput = document.getElementById("file_id");
-   let fileResult = document.getElementById("file-result");
    let fileSubmit = document.getElementById("file-submit");
 
    fileInput.addEventListener("change", function(){
@@ -1937,10 +1944,10 @@
          const fileSize=fileInput.files.item(0).size;
          const fileMb=fileSize/1024**2;
          if (fileMb >= 2){
-            fileResult.innerHTML="Please select a file less than 2MB.";
+            alert("Please select a file less than 2MB.")
+            fileInput.value="";
             fileSubmit.disabled = true;
          } else {
-            fileResult.innerHTML="Success, your file is "+ fileMb.toFixed(1) +"MB.";
             fileSubmit.disabled = false;
          }
 
@@ -2003,20 +2010,20 @@
 <!-- Start navigation drop down script -->
 <script>
    (function($){
-$('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
-if (!$(this).next().hasClass('show')) {
- $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-}
-var $subMenu = $(this).next(".dropdown-menu");
-$subMenu.toggleClass('show');
+      $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
+      if (!$(this).next().hasClass('show')) {
+      $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
+      }
+      var $subMenu = $(this).next(".dropdown-menu");
+      $subMenu.toggleClass('show');
 
-$(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
- $('.dropdown-submenu .show').removeClass("show");
-});
+      $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
+      $('.dropdown-submenu .show').removeClass("show");
+      });
 
-return false;
-});
-})(jQuery)
+      return false;
+      });
+      })(jQuery)
 </script>
 <!-- End navigation drop down script -->
 
