@@ -50,13 +50,13 @@
                            <div class="col-md-12 mt-3">
                               <div class="row border rounded border-primary pt-2 pb-2 pl-1">
                                     <!-- Start Profile img -->
-                                    <div class="col-1 col-sm-1 col-md-1 p-0 community-post-profile-picture">
+                                    <div class="col-1 col-sm-1 col-md-1 p-0 text-right community-post-profile-picture">
                                        <img src="{{i.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre">
                                     </div>
                                     <!-- End Profile img -->
 
                                     <!-- Start Professionist name & profession -->
-                                    <div class="col-3 col-sm-3 col-md-3">
+                                    <div class="col-7 col-sm-3 col-md-3 pl-2">
                                        <a href="{% url 'profession-personal-details' i.id %}">
                                           <!-- Start Profession heading -->
                                           <div class="row">
@@ -79,35 +79,26 @@
                                     <!-- End Professionist name & profession -->
 
                                     <!-- Start Rating -->
-                                    <div class="col-3 col-sm-3 col-md-3">
+                                    <div class="col-3 col-sm-2 col-md-2 pt-3">
                                        <div class="row">
                                           <div class="col-md-12 rating-online-status text-light">
                                              <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
                                              &nbsp;
-                                             <span class="profession-subheading">{{i.Profession_Rating}}</span>
+                                             <span class="profession-subheading pt-5" >{{i.Profession_Rating}}</span>
                                           </div>
                                        </div>
                                     </div>
                                     <!-- End Rating -->
 
-                                    <!-- Start rating and online status -->
-                                    <div class="col-5 col-sm-5 col-md-5  profession-subheading">
-                                       <!-- Start Rating -->
+                                    <!-- Start Address -->
+                                    <div class="col-12 col-sm-6 col-md-6  profession-address">
                                        <div class="row">
                                           <div class="col-md-12">
                                              {{i.shop_address}}, {{i.shop_city}}, {{i.shop_state}}--{{j}}
                                           </div>
                                        </div>
-                                       <!-- End Rating -->
-
-                                       <!-- Start distance -->
-                                       <!-- <div class="row">
-                                          <div class="col-md-12">
-
-                                          </div>
-                                       </div> -->
                                     </div>
-                                    <!-- End rating and online status -->
+                                    <!-- End Address -->
                               </div>
                            </div>
                         </div>
@@ -118,21 +109,17 @@
                      {% for k in Profession_obj %}
                      <!-- Start profession list by drop down -->
                      <li>
-                        <div class="row pl-4 pr-4">
+                         <div class="row pl-4 pr-4">
                            <div class="col-md-12 mt-3">
-                              <div class="row border rounded border-primary pt-2 pb-2">
+                              <div class="row border rounded border-primary pt-2 pb-2 pl-1">
                                     <!-- Start Profile img -->
-                                    <div class="col-2 col-sm-2 col-md-1">
-                                       <div class="row">
-                                          <div class="col-md-12">
-                                             <img src="{{k.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre" >
-                                          </div>
-                                       </div>
+                                    <div class="col-1 col-sm-1 col-md-1 p-0 text-right community-post-profile-picture">
+                                       <img src="{{k.profession_image.url}}" class="img-fluid rounded-circle" alt="Cinque Terre">
                                     </div>
                                     <!-- End Profile img -->
 
                                     <!-- Start Professionist name & profession -->
-                                    <div class="col-7 col-sm-7 col-md-5">
+                                    <div class="col-7 col-sm-3 col-md-3 pl-2">
                                        <a href="{% url 'profession-personal-details' k.id %}">
                                           <!-- Start Profession heading -->
                                           <div class="row">
@@ -154,37 +141,27 @@
                                     </div>
                                     <!-- End Professionist name & profession -->
 
-                                    <!-- Start Address -->
-
-                                    <div class="col-md-3">
+                                    <!-- Start Rating -->
+                                    <div class="col-3 col-sm-2 col-md-2 pt-3">
                                        <div class="row">
                                           <div class="col-md-12 rating-online-status text-light">
                                              <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                                             {{k.Profession_Rating}}
-
+                                             &nbsp;
+                                             <span class="profession-subheading pt-5" >{{k.Profession_Rating}}</span>
                                           </div>
                                        </div>
                                     </div>
+                                    <!-- End Rating -->
 
-
-                                    <!-- Start rating and online status -->
-                                    <div class="col-3 col-sm-3 col-md-3 text-right">
-                                       <!-- Start Rating -->
+                                    <!-- Start Address -->
+                                    <div class="col-12 col-sm-6 col-md-6  profession-address">
                                        <div class="row">
                                           <div class="col-md-12">
-                                             {{k.shop_address}}, {{k.shop_city}}, {{k.shop_state}}
+                                            {{k.shop_address}}, {{k.shop_city}}, {{k.shop_state}}
                                           </div>
                                        </div>
-                                       <!-- End Rating -->
-
-                                       <!-- Start distance -->
-                                       <!-- <div class="row">
-                                          <div class="col-md-12">
-                                             {{j}}
-                                          </div>
-                                       </div> -->
                                     </div>
-                                    <!-- End rating and online status -->
+                                    <!-- End Address -->
                               </div>
                            </div>
                         </div>
