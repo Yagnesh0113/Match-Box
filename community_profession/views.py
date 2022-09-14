@@ -772,7 +772,11 @@ def Add_Answer_Reply(request,id):
     Answer=User_Answer.objects.get(id=id)
     if request.method=="POST":
         Reply_obj=request.POST.get("reply")
-        Answer_Reply.objects.create(Answer=Answer,User_Profile=userprofile,Reply=Reply_obj)
+        reply_Date=date.today()
+        now = datetime.now()
+        reply_Time = now.strftime("%H:%M:%S")
+
+        Answer_Reply.objects.create(Answer=Answer,User_Profile=userprofile,Reply=Reply_obj,Reply_date=reply_Date,Reply_Time=reply_Time)
         obj=Answer_Reply.objects.filter(Answer=Answer)
         Answer.reply=len(obj)
         Answer.save()

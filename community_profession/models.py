@@ -118,6 +118,8 @@ class Answer_Reply(models.Model):
     Answer=models.ForeignKey(to=User_Answer, on_delete=models.CASCADE)
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
     Reply=models.TextField()
+    Reply_date=models.DateField(null=True, blank=True)
+    Reply_Time=models.TimeField(null=True, blank=True)
 
 class Community(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE,null=True,blank=True)
