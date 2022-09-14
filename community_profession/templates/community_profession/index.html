@@ -188,12 +188,13 @@
                               <!-- =============================== Joined Community ====================================== -->
                                  {% for i in joincommunityobj %}
                                     {% if i.Commnunity_id.Community_Type%}
+                                    <!-- Start own created and joined -->
                                        <li>
                                           <div class="row pt-3">
-                                             <div class="col-3 col-sm-3 pt-2 created-community">
+                                             <div class="col-3 col-sm-3 created-community pr-0 pt-0 pb-0 community-post-profile-picture">
                                                 <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
                                              </div>
-                                             <div class="col-6 col-sm-6 pt-2">
+                                             <div class="col-6 col-sm-6 ">
                                                 <!-- Start modeal community heading  -->
                                                 <div class="row">
                                                    <div class="col-md-12 community-heading">
@@ -213,19 +214,21 @@
                                              </div>
                                              {% if userprofile.id is i.Commnunity_id.User_Profile.id %}
                                              {% else %}
-                                             <div class="col-3 col-sm-3 pt-2">
+                                             <div class="col-3 col-sm-3 ">
                                                 <a href="{% url 'Unjoin' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Joined</button></a>
                                              </div>
                                              {% endif %}
                                           </div>
                                        </li>
+                                    <!-- End own created and joined -->
                                     {% else %}
+                                       <!-- Start Match box created community  but joined -->
                                        <li>
                                           <div class="row pt-3">
-                                             <div class="col-3 col-sm-3 pt-2">
+                                             <div class="col-3 col-sm-3 pr-0 pt-0 pb-0 community-post-profile-picture">
                                                 <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
                                              </div>
-                                             <div class="col-6 col-sm-6 pt-2">
+                                             <div class="col-6 col-sm-6">
                                                 <!-- Start modeal community heading  -->
                                                 <div class="row">
                                                    <div class="col-md-12 community-heading">
@@ -245,7 +248,7 @@
                                              </div>
                                              {% if i.User_Profile %}
                                              {% else %}
-                                             <div class="col-3 col-sm-3 pt-2">
+                                             <div class="col-3 col-sm-3">
                                                 <a href="{% url 'Unjoin' i.id %}">
                                                    <button type="submit" class="btn btn-sm  btn-normal-b">
                                                       Joined
@@ -255,18 +258,20 @@
                                              {% endif %}
                                           </div>
                                        </li>
+                                       <!-- End Match box created community  but joined -->
                                     {% endif %}
                                  {% endfor %}
                                  <!-- =============================== End Joined Community ====================================== -->
                                  <!-- =============================== Non-Joined Community ====================================== -->
                                  {% for i in My_community %}
                                     {% if i.Community_Type%}
+                                       <!-- Start created community by other but we not joined -->
                                        <li>
                                           <div class="row pt-3 created-community">
-                                             <div class="col-3 col-sm-3 pt-2">
+                                             <div class="col-3 col-sm-3 pr-0 pt-0 pb-0 community-post-profile-picture">
                                                 <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania">
                                              </div>
-                                             <div class="col-6 col-sm-6 pt-2">
+                                             <div class="col-6 col-sm-6">
                                                 <!-- Start modeal community heading  -->
                                                 <div class="row">
                                                    <div class="col-md-12 community-heading">
@@ -287,19 +292,21 @@
                                                 <!-- <p>{{userprofile.id}},{{i.User_Profile.id}}</p> -->
                                                 {% if userprofile.id is i.User_Profile.id %}
                                                 {% else %}
-                                                <div class="col-3 col-sm-3 pt-2">
+                                                <div class="col-3 col-sm-3">
                                                    <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Join</button></a>
                                                 </div>
                                                 {% endif %}
                                              </div>
                                           </li>
+                                       <!-- End created community by other but we not joined -->
                                        {% else %}
+                                          <!-- Start created community by  match box but we not joined-->
                                           <li>
                                              <div class="row pt-3">
-                                             <div class="col-3 col-sm-3 pt-2">
+                                             <div class="col-3 col-sm-3 pr-0 pt-0 pb-0 community-post-profile-picture">
                                                 <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania">
                                              </div>
-                                             <div class="col-6 col-sm-6 pt-2">
+                                             <div class="col-6 col-sm-6">
                                                 <!-- Start modeal community heading  -->
                                                 <div class="row">
                                                    <div class="col-md-12 community-heading">
@@ -317,11 +324,12 @@
                                                 </div>
                                                 <!-- End modeal community members  -->
                                              </div>
-                                             <div class="col-3 col-sm-3 pt-2">
+                                             <div class="col-3 col-sm-3">
                                                 <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Join</button></a>
                                              </div>
                                           </div>
                                           </li>
+                                          <!-- End created community by  match box but we not joined-->
                                        {% endif %}
                                     {% endfor %}
                                  <!-- =============================== End Non-Joined Community ====================================== -->

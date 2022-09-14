@@ -107,7 +107,7 @@ def loadNearestProfessionsList(request,id=None):
         if obj is not None:
             context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
         else:
-            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
+            context={'joincommunityobj':joincommunityobj,"My_community":My_Community,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
 
         return render(request, 'community_profession/nearest-professions-list.html',context)
 
