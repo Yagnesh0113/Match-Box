@@ -907,7 +907,14 @@ def loadCommunityCreatePostPage(request, id):
         Community_Post_Date=date.today()
         now = datetime.now()
         Community_Post_time = now.strftime("%H:%M:%S")
-        obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time)
+
+        if Community_image is not None and ('.mp4' in str(Community_image) or '.mov' in str(Community_image)):
+            obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time,post_type1=True)
+        else:
+            obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time,post_type1=False)
+        
+        
+        # obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time)
         Community_Post.objects.create(Community_obj=Community_obj,Community_type="Community",user_post=obj)
         return redirect(f"/community-profile-screen/{id}")
     else:
@@ -931,13 +938,18 @@ def loadCommunityWriteCommentScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Community_obj=Community_Post.objects.get(id=id)
     if request.method=="POST":
-        Post_Comment=request.POST.get("Comment")
+        Post_Comment_obj=request.POST.get("Comment")
         Post_Date=date.today()
         now = datetime.now()
         Post_time = now.strftime("%H:%M:%S")
-        Post_obj=Post_Commment.objects.create(User_Post=Community_obj.user_post,
-        User_Profile=userprofile,Comment=Post_Comment,Comment_Date=Post_Date,
-        Commenet_Time=Post_time)
+        Post_obj=Post_Commment.objects.create(User_Post=Community_obj.user_post,User_Profile=userprofile,Comment=Post_Comment_obj,Comment_Date=Post_Date,Commenet_Time=Post_time)
+        
+        obj=Post_Commment.objects.filter(User_Post=Community_obj.user_post)
+        # print("obj",len(obj))
+        # print("Obj1",Community_obj.user_post.id)
+        Community_obj.user_post.Post_comment=len(obj)
+        Community_obj.user_post.save()
+        
         Community_Post_Comment.objects.create(Community_Post_obj=Community_obj,Community_Comment=Post_obj)
         return redirect(f"/community-write-comment-screen/{id}")
     else:
@@ -1083,7 +1095,7 @@ def news_comment_reply(request, id):
         obj=News_Comment_reply.objects.filter(Comment=Post_obj)
         Post_obj.reply=len(obj)
         Post_obj.save()
-        return redirect(f"/news_comment/{Post_obj.News_id.id}")
+        return redirect(f"/news_comment_reply/{id}")
     else:
         Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
         Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()

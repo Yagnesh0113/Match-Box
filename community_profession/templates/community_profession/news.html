@@ -78,7 +78,12 @@
                &nbsp; <i class="fa-solid fa-message"></i>
             </span>
             <span class="community-like-dislike-btn">
-               &nbsp;{{i.comment}}
+               &nbsp;
+               {% if i.comment is None %}
+               0
+               {% else %}
+               {{i.comment}}
+               {% endif %}
             </span>
          </div>
          <!-- End like -->

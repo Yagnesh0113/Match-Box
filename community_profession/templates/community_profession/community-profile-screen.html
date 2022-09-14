@@ -141,6 +141,7 @@
 {% for Post in Community_Post_obj %}
 <div class="row">
    <div class="col-md-12 pt-3 pl-3 border-bottom pb-4 post community-body">
+
       <!-- Start Posted by heading and options -->
       <div class="row">
 
@@ -190,6 +191,7 @@
          <!-- End options -->
       </div>
       <!-- End Posted by heading and options -->
+
       <!-- Start post description -->
       <div class="row pt-3 pl-3">
          <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
@@ -197,37 +199,43 @@
          </div>
       </div>
       <!-- End post description -->
+
       <!-- Start post img, videos -->
       {% if Post.user_post.Image %}
-      {% if Post.user_post.post_type1 %}
-      <!-- Start Video -->
-      <div class="row pl-3 pt-3">
-         <div class="col-md-12 rounded ">
-            <video src="{{Post.user_post.Image.url}}" width="100%" height="" controls ></video>
-         </div>
-      </div>
-      <!-- End video -->
-      {% else %}
-      <!-- Start Post image -->
-      <div class="row community-post-image">
-         <div class="col-md-12">
-            <div class="row community-post-image-background">
-               <div class="col-md-3"></div>
+      <a href="{% url 'community-write-comment-screen' Post.id %}">
+         <div class="row community-post-image">
+            <div class="col-md-12">
+               <div class="row community-post-image-background">
+                  <div class="col-md-3"></div>
+                  {% if Post.user_post.post_type1 %}
 
-               <div class="col-md-6">
-                  <img src="{{Post.user_post.Image.url}}" alt="" class="img-fluid" width="100%">
+                  <!-- Start Video -->
+                  <div class="col-md-6">
+                     <video class="img-fluid" width="100%"  controls>
+                        <source src="{{Post.user_post.Image.url}}" type="video/mp4">
+                     </video>
+                  </div>
+                  <!-- End Video -->
+
+                  {%else%}
+
+                  <!-- Start Image -->
+                  <div class="col-md-6">
+                     <img src="{{Post.user_post.Image.url}}" alt="" class="img-fluid" width="100%">
+                  </div>
+                  <!-- End Image -->
+
+                  {% endif %}
+                  <div class="col-md-3"></div>
                </div>
-
-               <div class="col-md-3"></div>
             </div>
          </div>
-      </div>
-      <!-- End Post image -->
-      {% endif %}
+      </a>
       {% else %}
       <div></div>
       {% endif %}
       <!-- End post img, videos -->
+
       <!-- Start like, comment, share -->
       <div class="row pt-2 pd-2">
          <!-- Start Like -->
@@ -248,10 +256,10 @@
             <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none community-like-dislike-btn">
             <i class="fa-solid fa-message"></i>
                &nbsp;
-            {% if i.Post.Post_comment is None %}
+            {% if Post.user_post.Post_comment is None %}
             0
             {% else %}
-            {{i.Post.Post_comment}}
+            {{Post.user_post.Post_comment}}
             {% endif %}
             </a>
          </div>
@@ -276,6 +284,7 @@
          <div class="col-12 col-md-7"></div>
       </div>
       <!-- End like, comment, share -->
+      
    </div>
 </div>
 {% endfor %}
