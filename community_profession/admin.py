@@ -11,5 +11,6 @@ admin.site.register(News_Comment_reply)
 admin.site.register(User_Question)
 admin.site.register(UserPost)
 admin.site.register(Post_Commment)
+admin.site.register(Bookmark)
 
 

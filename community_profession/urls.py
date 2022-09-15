@@ -71,6 +71,12 @@ urlpatterns = [
 
     path('loaddata/', views.load_more, name='loaddata'),
 
-
+    path('bookmark_post/<int:id>',views.bookmark_post,name='bookmark_post'),
+    path('bookmark_question/<int:id>',views.bookmark_question,name='bookmark_question'),
+    path('bookmark_News/<int:id>',views.bookmark_News,name='bookmark_News'),
+    path('bookmark_page',views.bookmark_page,name='bookmark_page'),
+    path('remove_post_bookmark/<int:id>',views.remove_post_bookmark,name='remove_post_bookmark'),
+    path('remove_question_bookmark/<int:id>',views.remove_question_bookmark,name='remove_question_bookmark'),
+    path('remove_news_bookmark/<int:id>',views.remove_news_bookmark,name='remove_news_bookmark'),
 
 ]

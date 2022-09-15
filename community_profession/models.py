@@ -17,6 +17,7 @@ class UserPost(models.Model):
     is_active=models.BooleanField(default=True)
     Post_comment=models.IntegerField(null=True, blank=True)
     post_type1 = models.BooleanField(null=True, blank=True)
+    Post_bookmark=models.BooleanField(default=False)
 
     def __str__(self):
         return self.Description
@@ -77,6 +78,7 @@ class User_Question(models.Model):
     Question_Like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='Question_Like' )
     Answer_later=models.BooleanField(default=False)
     Question_Edit=models.BooleanField(default=False,null=True,blank=True)
+    Question_bookmark=models.BooleanField(default=False)
 
     def __str__(self):
         return self.Question
@@ -167,6 +169,7 @@ class News(models.Model):
     Time=models.TimeField(default=datetime.now())
     comment=models.IntegerField(null=True, blank=True)
     News_like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='News_like' )
+    News_bookmark=models.BooleanField(default=False)
 
     def __str__(self):
         return self.Description
@@ -227,7 +230,14 @@ class Answer_later(models.Model):
     Date=models.DateField(null=True, blank=True)
     Time=models.TimeField(null=True, blank=True)
 
+class Bookmark(models.Model):
+    user_profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
+    post=models.ForeignKey(to=UserPost, on_delete=models.CASCADE,null=True, blank=True)
+    question=models.ForeignKey(to=User_Question, on_delete=models.CASCADE, null=True, blank=True)
+    news=models.ForeignKey(to=News, on_delete=models.CASCADE, null=True, blank=True)
 
+    def __str__(self):
+        return str(self.user_profile)
 
 class distance_calculation(models.Model):
     user_profile = models.OneToOneField(UserProfile,on_delete=models.CASCADE)

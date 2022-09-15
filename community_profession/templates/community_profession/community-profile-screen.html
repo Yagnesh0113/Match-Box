@@ -103,6 +103,18 @@
 <div></div>
 {% endif %}
 <!-- End Create Post -->
+
+<!-- Start Description -->
+<div class="row pl-5 pt-3 pr-4 community-body">
+   <div class="col-md-12 p-0 text-justify community-description">
+      {% if  i.community_Description is None %}
+      {% else %}
+         {{i.community_Description}}
+      {% endif %}
+   </div>
+</div>
+<!-- End Description -->
+
 <!-- Start filter navigation - all post and all time -->
 <!-- Use same community navigation -->
 <div class="row pt-3">

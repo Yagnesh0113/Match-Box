@@ -1324,3 +1324,80 @@ def load_more(request):
     }
     print(data)
     return JsonResponse(data=data)
+
+@login_required(login_url='/')
+def bookmark_post(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    post = UserPost.objects.get(id=id)
+    print("post")
+    Bookmark.objects.create(user_profile=userprofile,post=post)
+    post.Post_bookmark=True
+    post.save()
+    return redirect("community-screen")
+
+@login_required(login_url='/')
+def bookmark_question(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    question = User_Question.objects.get(id=id)
+    print("Question")
+    Bookmark.objects.create(user_profile=userprofile,question=question)
+    question.Question_bookmark=True
+    question.save()
+    return redirect("community-screen")
+
+@login_required(login_url='/')
+def bookmark_News(request, id):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    News_obj = News.objects.get(id=id)
+    print("news")
+    Bookmark.objects.create(user_profile=userprofile,news=News_obj)
+    News_obj.News_bookmark=True
+    News_obj.save()
+    return redirect("news")
+
+@login_required(login_url='/')
+def bookmark_page(request):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    bookmark=Bookmark.objects.filter(user_profile=userprofile)[::-1]
+    User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+    Date=date.today()
+    User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
+    User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
+    Our_News_count=News.objects.filter(Date=Date).count()
+    Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
+    Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+    if obj is not None:
+        context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,
+        "userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"bookmark":bookmark}
+    else:
+        context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,
+        "userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"bookmark":bookmark}
+    return render(request, 'community_profession/Bookmark.html',context)
+
+
+@login_required(login_url='/')
+def remove_post_bookmark(request, id):
+    post=UserPost.objects.get(id=id)
+    bookmark=Bookmark.objects.get(post=post.id)
+    post.Post_bookmark=False
+    post.save()
+    bookmark.delete()
+    return redirect("bookmark_page")
+
+@login_required(login_url='/')
+def remove_question_bookmark(request, id):
+    question=User_Question.objects.get(id=id)
+    bookmark=Bookmark.objects.get(question=question.id)
+    question.Question_bookmark=False
+    question.save()
+    bookmark.delete()
+    return redirect("bookmark_page")
+
+@login_required(login_url='/')
+def remove_news_bookmark(request, id):
+    news_obj=News.objects.get(id=id)
+    bookmark=Bookmark.objects.get(news=news_obj.id)
+    news_obj.News_bookmark=False
+    news_obj.save()
+    bookmark.delete()
+    return redirect("bookmark_page")

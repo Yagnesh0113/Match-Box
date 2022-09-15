@@ -350,7 +350,15 @@
                               <a class="dropdown-item" href="#">Block Account</a>
                               <!-- <a class="dropdown-item" href="#">Delete question</a> -->
                               <!-- <a class="dropdown-item" href="#">Edit question</a> -->
-                              <a class="dropdown-item" href="#">Bookmark</a>
+
+                              <!-- Start Post Book Mark -->
+                              {% if i.Post.Post_bookmark is False %}
+                              <a class="dropdown-item" href="{% url 'bookmark_post' i.Post.id %}">Bookmark</a>
+                              {% else %}
+                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.Post.id %}">Remove Bookmark</a>
+                              {% endif %}
+                              <!-- End Post Book Mark -->
+
                               <a class="dropdown-item" href="#">Save</a>
                               <a class="dropdown-item" href="#">Share</a>
                            </div>
@@ -487,7 +495,15 @@
                               <a class="dropdown-item" href="{% url 'ans_later' i.Question.id %}">Answer Later</a>
                               <!-- <a class="dropdown-item" href="#">Delete question</a>
                                  <a class="dropdown-item" href="#">Edit question</a> -->
-                              <a class="dropdown-item" href="#">Bookmark</a>
+                              
+                              <!-- Start Question Book mark -->
+                              {% if i.Question.Question_bookmark is False %}
+                              <a class="dropdown-item" href="{% url 'bookmark_question' i.Question.id %}">Bookmark</a>
+                              {% else %}
+                              <a class="dropdown-item" href="{% url 'remove_question_bookmark' i.Question.id %}">Remove Bookmark</a>
+                              {% endif %}
+                              <!-- End Question Book mark -->
+
                               <a class="dropdown-item" href="#">Save</a>
                               <a class="dropdown-item" href="#">Share</a>
                            </div>
@@ -624,7 +640,15 @@
                               <a class="dropdown-item" href="#">Block Account</a>
                               <!-- <a class="dropdown-item" href="#">Delete question</a> -->
                               <!-- <a class="dropdown-item" href="#">Edit question</a> -->
-                              <a class="dropdown-item" href="#">Bookmark</a>
+
+                              <!-- Start Post Book Mark -->
+                              {% if i.Post_bookmark is False %}
+                              <a class="dropdown-item" href="{% url 'bookmark_post' i.id %}">Bookmark</a>
+                              {% else %}
+                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.id %}">Remove Bookmark</a>
+                              {% endif %}
+                              <!-- End Post Book Mark -->
+
                               <a class="dropdown-item" href="#">Save</a>
                               <a class="dropdown-item" href="#">Share</a>
                            </div>
@@ -770,7 +794,15 @@
                               <a class="dropdown-item" href="#">Block Account</a>
                               <!-- <a class="dropdown-item" href="#">Delete question</a> -->
                               <!-- <a class="dropdown-item" href="#">Edit question</a> -->
-                              <a class="dropdown-item" href="#">Bookmark</a>
+                              
+                              <!-- Start Post Book Mark -->
+                              {% if i.Post_bookmark is False %}
+                              <a class="dropdown-item" href="{% url 'bookmark_post' i.id %}">Bookmark</a>
+                              {% else %}
+                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.id %}">Remove Bookmark</a>
+                              {% endif %}
+                              <!-- End Post Book Mark -->
+
                               <a class="dropdown-item" href="#">Save</a>
                               <a class="dropdown-item" href="#">Share</a>
                            </div>
@@ -923,7 +955,15 @@
                               <a class="dropdown-item" href="{% url 'ans_later' i.id %}">Answer Later</a>
                               <a class="dropdown-item" href="#">Delete question</a>
                               <a class="dropdown-item" href="#">Edit question</a>
-                              <a class="dropdown-item" href="#">Bookmark</a>
+
+                              <!-- Start Question Book mark -->
+                              {% if i.Question.Question_bookmark is False %}
+                              <a class="dropdown-item" href="{% url 'bookmark_question' i.id %}">Bookmark</a>
+                              {% else %}
+                              <a class="dropdown-item" href="{% url 'remove_question_bookmark' i.id %}">Remove Bookmark</a>
+                              {% endif %}
+                              <!-- End Question Book mark -->
+
                               <a class="dropdown-item" href="#">Save</a>
                               <a class="dropdown-item" href="#">Share</a>
                            </div>
@@ -1061,7 +1101,15 @@
                               <!-- <a class="dropdown-item" href="#">Block Account</a> -->
                               <a class="dropdown-item" href="{% url 'Community_Delete_My_Video' i.id %}">Delete Video</a>
                               <a class="dropdown-item" href="{% url 'Community_Edit_My_Video' i.id %}">Edit Video</a>
-                              <a class="dropdown-item" href="#">Bookmark</a>
+                              
+                              <!-- Start Post Book Mark -->
+                              {% if i.Post_bookmark is False %}
+                              <a class="dropdown-item" href="{% url 'bookmark_post' i.id %}">Bookmark</a>
+                              {% else %}
+                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.id %}">Remove Bookmark</a>
+                              {% endif %}
+                              <!-- End Post Book Mark -->
+
                               <!-- <a class="dropdown-item" href="#">Save</a> -->
                               <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
@@ -1214,7 +1262,15 @@
                               <!-- <a class="dropdown-item" href="#">Block Account</a> -->
                               <a class="dropdown-item" href="{% url 'Community_Delete_My_Image' i.id %}">Delete question</a>
                               <a class="dropdown-item" href="{% url 'Community_Edit_My_Image' i.id %}">Edit question</a>
-                              <a class="dropdown-item" href="#">Bookmark</a>
+                              
+                              <!-- Start Post Book Mark -->
+                              {% if i.Post_bookmark is False %}
+                              <a class="dropdown-item" href="{% url 'bookmark_post' i.id %}">Bookmark</a>
+                              {% else %}
+                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.id %}">Remove Bookmark</a>
+                              {% endif %}
+                              <!-- End Post Book Mark -->
+
                               <!-- <a class="dropdown-item" href="#">Save</a> -->
                               <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
@@ -1367,7 +1423,15 @@
                               <a class="dropdown-item" href="{% url 'ans_later' i.id %}">Answer Later</a>
                               <a class="dropdown-item" href="{% url 'Community_Delete_My_Question' i.id %}">Delete question</a>
                               <a class="dropdown-item" href="{% url 'Community_Edit_My_Question' i.id %}">Edit question</a>
-                              <a class="dropdown-item" href="#">Bookmark</a>
+                              
+                              <!-- Start Question Book mark -->
+                              {% if i.Question.Question_bookmark is False %}
+                              <a class="dropdown-item" href="{% url 'bookmark_question' i.id %}">Bookmark</a>
+                              {% else %}
+                              <a class="dropdown-item" href="{% url 'remove_question_bookmark' i.id %}">Remove Bookmark</a>
+                              {% endif %}
+                              <!-- End Question Book mark -->
+
                               <!-- <a class="dropdown-item" href="#">Save</a> -->
                               <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
