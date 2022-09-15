@@ -1,7 +1,7 @@
 {% extends 'community_profession/community.html' %}
 {% load static %}
 {% block title %}
-<title>News</title>
+<title>Book Mark</title>
 {% endblock title %}
 {% block own_css %}
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
@@ -397,9 +397,26 @@
        {% else %}
 
         <!-- Start No Book mark -->
-        <div class="row">
-            <div class="col-md-12 community-name pl-0">
-                No BookMark for Now
+
+        <div class="row community-body">
+            <div class="col-md-12 community-name pl-0 community-post-image pt-4">
+                <div class="row pl-4">
+                    <div class="col-md-12 text-center community-post-image-background">
+                        <div class="row">
+                            <div class="col-md-12 display-3">
+                                No BookMark for Now
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 display-2">
+                                <i class="fa-regular fa-face-meh-blank"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
         <!-- End No Book mark -->
