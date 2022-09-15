@@ -686,6 +686,7 @@ def Edit_Community(request,id):
             edit_coummunity.Community_Profile_Image=request.FILES["Communiy_Profile"]
         except:
             pass
+        edit_coummunity.community_Description=request.POST.get("description")
         edit_coummunity.save()
         return redirect(f"/community-profile-screen/{id}")
     else:
