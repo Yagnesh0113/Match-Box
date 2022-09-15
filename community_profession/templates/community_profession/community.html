@@ -1462,78 +1462,89 @@
             <div class="row">
                <!-- Start Question Alert -->
                <div class="col-md-12 question-alert">
-                  {% for Question in Question %}
-                  <div class="row">
-                     <!-- Start Profile picture -->
-                     <div class="col-2 col-sm-1 col-md-1 text-center">
-                        <img class="img-fluid rounded-circle" src="{{Question.User_Profile.profile_image.url}}" alt="Chania">
-                     </div>
-                     <!-- End Profile picture -->
-                     <!-- Start Community name and time -->
-                     <div class="col-5 col-sm-4 col-md-4 pl-0">
-                        <!-- Start community name -->
-                        <div class="row">
-                           <div class="col-md-12 community-name modal-sub-heading pl-1">
-                              {{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}
-                           </div>
+
+                  {% if Question %}
+                     {% for Question in Question %}
+                     <div class="row">
+                        <!-- Start Profile picture -->
+                        <div class="col-2 col-sm-1 col-md-1 text-center">
+                           <img class="img-fluid rounded-circle" src="{{Question.User_Profile.profile_image.url}}" alt="Chania">
                         </div>
-                        <div class="row">
-                           <div class="col-md-12 community-name modal-sub-heading pl-1">
-                              {{Question.Date}} {{Question.Time}}
-                           </div>
-                        </div>
-                     </div>
-                     <!-- End Community name and time -->
-                  </div>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="alert  alert-dismissible fade show">
-                           <!-- Start question-alert heading -->
+                        <!-- End Profile picture -->
+                        <!-- Start Community name and time -->
+                        <div class="col-5 col-sm-4 col-md-4 pl-0">
+                           <!-- Start community name -->
                            <div class="row">
-                              <div class="col-md-12 heading modal-sub-heading">
-                                 {{Question.Question}} ?
+                              <div class="col-md-12 community-name modal-sub-heading pl-1">
+                                 {{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}
                               </div>
                            </div>
-                           <!-- End question-alert heading -->
-                           <!-- Start answer, share, options -->
                            <div class="row">
-                              <div class="col-12 col-md-12 pt-2 pb-3 border-bottom answer-share-options modal-sub-heading">
-                                 <!-- Start Answer modal -->
-                                 <div class="row">
-                                    <div class="col-6 col-sm-6 col-md-6">
-                                        <a href="{% url 'Add_Answer' Question.id %}">
-                                          <i class="fa-solid fa-pen"></i> Answer
-                                        </a>
-                                    </div>
-                                    <div class="col-6 col-sm-6 col-md-6 text-right community-body">
-                                          <span class="pl-5 community-options dropdown dropleft">
-                                          <button type="button" class="btn" data-toggle="dropdown">
-                                             <i class="fa-solid fa-ellipsis-vertical"></i>
-                                          </button>
-                                          <div class="dropdown-menu">
-                                             <!-- For Answer Later -->
-                                             {% if Question.Answer_later is True %}
-                                             <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
-                                             {% else %}
-                                             <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
-                                             {% endif %}
-                                             <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
-                                          </div>
-                                       </span>
-                                       {% if Question.Question_Edit %}
-                                       <span class="pl-5"><i class="fa-solid fa-bell"></i> Edited The Question </span>
-                                       {% else %}
-                                       {% endif %}
-                                    </div>
+                              <div class="col-md-12 community-name modal-sub-heading pl-1">
+                                 {{Question.Date}} {{Question.Time}}
+                              </div>
+                           </div>
+                        </div>
+                        <!-- End Community name and time -->
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="alert  alert-dismissible fade show">
+                              <!-- Start question-alert heading -->
+                              <div class="row">
+                                 <div class="col-md-12 heading modal-sub-heading">
+                                    {{Question.Question}} ?
                                  </div>
-                                 <!-- End Answer modal -->
                               </div>
+                              <!-- End question-alert heading -->
+                              <!-- Start answer, share, options -->
+                              <div class="row">
+                                 <div class="col-12 col-md-12 pt-2 pb-3 border-bottom answer-share-options modal-sub-heading">
+                                    <!-- Start Answer modal -->
+                                    <div class="row">
+                                       <div class="col-6 col-sm-6 col-md-6">
+                                          <a href="{% url 'Add_Answer' Question.id %}">
+                                             <i class="fa-solid fa-pen"></i> Answer
+                                          </a>
+                                       </div>
+                                       <div class="col-6 col-sm-6 col-md-6 text-right community-body">
+                                             <span class="pl-5 community-options dropdown dropleft">
+                                             <button type="button" class="btn" data-toggle="dropdown">
+                                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                                             </button>
+                                             <div class="dropdown-menu">
+                                                <!-- For Answer Later -->
+                                                {% if Question.Answer_later is True %}
+                                                <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
+                                                {% else %}
+                                                <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
+                                                {% endif %}
+                                                <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                                             </div>
+                                          </span>
+                                          {% if Question.Question_Edit %}
+                                          <span class="pl-5"><i class="fa-solid fa-bell"></i> Edited The Question </span>
+                                          {% else %}
+                                          {% endif %}
+                                       </div>
+                                    </div>
+                                    <!-- End Answer modal -->
+                                 </div>
+                              </div>
+                              <!-- End answer, share, options -->
                            </div>
-                           <!-- End answer, share, options -->
                         </div>
                      </div>
-                  </div>
-                  {% endfor %}
+                     {% endfor %}
+                  {% else %}
+                     <div class="row">
+                        <div class="col-md-12 community-name modal-sub-heading pl-1">
+                           <center>
+                              No Question for You
+                           </center>
+                        </div>
+                     </div>
+                  {% endif %}
                </div>
                <!-- End Question Alert -->
             </div>
@@ -1892,39 +1903,49 @@
          <a href="#" data-dismiss="modal" class="close">&times;</a>
       </div>
       <div class="modal-body">
-         {% for i in Answer %}
-         <!-- Start question heading -->
-         <div class="row pt-3">
-            <div class="col-md-12 question-heading">
-               {{i.Question.Question}}
+         {% if Answer %}
+            {% for i in Answer %}
+            <!-- Start question heading -->
+            <div class="row pt-3">
+               <div class="col-md-12 question-heading">
+                  {{i.Question.Question}}
+               </div>
             </div>
-         </div>
-         <!-- End question heading -->
-         <!-- Start question sub-content -->
-         <div class="row pt-3">
-            <div class="col-md-12 question-sub-content">
-               <!-- <span>No Answer yet</span> -->
-               <span class="pl-1">
-                  {{i.Date}} / {{i.Time}}
-                  <!-- ago -->
-               </span>
-            </div>
-         </div>
-         <!-- End question sub-content -->
-         <!-- Start answer, share, delete -->
-         <div class="row pt-3 pb-3 answer-share-delete">
-            <div class="col-md-12 ">
-               <span>
-               <a href="{% url 'Add_Answer' i.Question.id %}">
-               <i class="fa-solid fa-pen"></i> Answer
-               </a>
-               </span>
-               <span class="pl-4"><i class="fa-solid fa-share-nodes"></i></span>
-               <span class="pl-3"><a href="{% url 'delete_ans_later' i.id %}"><i class="fa-solid fa-trash"></i></a></span>
+            <!-- End question heading -->
+            <!-- Start question sub-content -->
+            <div class="row pt-3">
+               <div class="col-md-12 question-sub-content">
+                  <!-- <span>No Answer yet</span> -->
+                  <span class="pl-1">
+                     {{i.Date}} / {{i.Time}}
+                     <!-- ago -->
+                  </span>
+               </div>
             </div>
             <!-- End question sub-content -->
-         </div>
-         {% endfor %}
+            <!-- Start answer, share, delete -->
+            <div class="row pt-3 pb-3 answer-share-delete">
+               <div class="col-md-12 ">
+                  <span>
+                  <a href="{% url 'Add_Answer' i.Question.id %}">
+                  <i class="fa-solid fa-pen"></i> Answer
+                  </a>
+                  </span>
+                  <span class="pl-4"><i class="fa-solid fa-share-nodes"></i></span>
+                  <span class="pl-3"><a href="{% url 'delete_ans_later' i.id %}"><i class="fa-solid fa-trash"></i></a></span>
+               </div>
+               <!-- End question sub-content -->
+            </div>
+            {% endfor %}
+         {% else %}
+            <div class="row">
+               <div class="col-md-12 community-name modal-sub-heading pl-1">
+                  <center>
+                     No Question in Answer Later
+                  </center>
+               </div>
+            </div>
+         {% endif %}
       </div>
    </div>
 </div>
