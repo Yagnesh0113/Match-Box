@@ -181,6 +181,7 @@
     .sign-in-main-body .sign-in-right-body-form .sign-in-form .form-control,
     .sign-in-main-body .sign-in-right-body-form .sign-in-form .input-group-text
     {
+        color:var(--color-2);
         background-color: var(--color-15);
         border: 0.125rem solid var(--color-5);
     }

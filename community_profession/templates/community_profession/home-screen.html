@@ -6,13 +6,9 @@
 {% block own_css %}
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
-{% endblock own_css %}
-{% block content %}
-<!-- Start oweal carosuel - style and script -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Start oweal carosuel - style -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
-<!-- Start Owl CSS -->
 <style>
    /*
    * 	Core Owl Carousel CSS File
@@ -81,7 +77,6 @@
    -ms-transform: translate3d(0,0,0);
    }
 </style>
-<!-- End Owl CSS -->
 <style>
    .stretch-card>.card
    {
@@ -124,25 +119,10 @@
    width:100%;
    }
 </style>
-<script>
-   $(document).ready(function() {
-    $(".owl-carousel").owlCarousel({
-        autoPlay: 3000,
-        items: 4,
-        itemsDesktop: [1199, 3],
-        itemsDesktopSmall: [979, 3],
-        center: true,
-        nav: true,
-        loop: true,
-        responsive: {
-            600: {
-                items: 3
-            }
-        }
-    });
-   });
-</script>
-<!-- End oweal carosuel - style and script -->
+<!-- Start oweal carosuel - style -->
+{% endblock own_css %}
+
+{% block content %}
 <!-- Start our Professions heading  -->
 <div class="row your-recent-search">
    <div class="col-md-10 recent-searches-heading">
@@ -318,4 +298,27 @@
    </div>
 </div>
 <!-- End Community - Profession Carosuel -->
+
+<!-- Start oweal carosuel - style and script -->
+<script>
+   $(document).ready(function() {
+    $(".owl-carousel").owlCarousel({
+        autoPlay: 3000,
+        items: 4,
+        itemsDesktop: [1199, 3],
+        itemsDesktopSmall: [979, 3],
+        center: true,
+        nav: true,
+        loop: true,
+        responsive: {
+            600: {
+                items: 3
+            }
+        }
+    });
+   });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.js"></script>
+<!-- End oweal carosuel - style and script -->
 {% endblock content %}

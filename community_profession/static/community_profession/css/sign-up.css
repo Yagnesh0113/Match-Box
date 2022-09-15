@@ -341,6 +341,16 @@ Note: this css file is use for all following pages: sign-up, sign-up-for-profess
     {
         color:var(--color-2);
     }
+
+    .show-password
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        color: var(--color-2);
+    }
 }
 
 @media (min-width: 577px)
