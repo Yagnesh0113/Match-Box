@@ -4,6 +4,8 @@ urlpatterns = [
 
     # --- Load Professions Pages ---
     path('profession-profile-screen', views.loadProfessionProfileScreen, name='profession-profile-screen'), # profession profile screen
+    path('profession-profile-screen/<int:id>', views.loadProfessionProfileScreen, name='profession-profile-screen'), # profession profile screen
+    
     path('add_profession', views.add_profession, name='add_profession'), # profession profile screen
     path('profession_details/<int:id>', views.profession_details, name='profession_details'), # profession profile screen
     path('add_services',views.add_services,name='add_services'),

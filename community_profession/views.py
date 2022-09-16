@@ -1373,6 +1373,11 @@ def bookmark_page(request):
     Our_News_count=News.objects.filter(Date=Date).count()
     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+
+    # print({{ request.path }}, {{ request.get_full_path }})
+    a=request.path
+    print(a)
+
     if obj is not None:
         context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,
         "userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"bookmark":bookmark}

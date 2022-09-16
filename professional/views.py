@@ -40,17 +40,29 @@ def is_user_is_professional_user(request):
         return False
 
 @login_required(login_url='/')
-def loadProfessionProfileScreen(request):
+def loadProfessionProfileScreen(request,id=None):
     # try:
         userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-        profession=Profession.objects.filter(UserProfile=userprofile)
-        state=State.objects.all()
-        print(profession)
-        if obj is not None:
-            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession,"state":state}
+        if id==None:
+            profession=Profession.objects.filter(UserProfile=userprofile)
+            state=State.objects.all()
+            print(profession)
+            if obj is not None:
+                context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession,"state":state,'loginuser':userprofile}
+            else:
+                context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,"state":state,'loginuser':userprofile}
+            return render(request, 'professional/profile-screen-for-profession.html',context)
         else:
-            context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,"state":state}
-        return render(request, 'professional/profile-screen-for-profession.html',context)
+            userobj=User.objects.get(id=id)
+            usertypeobj=UserType.objects.get(user_id=userobj)
+            userprofile1 = UserProfile.objects.get(usertype=usertypeobj)
+            profession=Profession.objects.filter(UserProfile=userprofile1)
+
+            if obj is not None:
+                context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile1':userprofile1,'profession':profession,'userprofile':userprofile,}
+            else:
+                context={'My_community':My_Community,'userprofile1':userprofile1,'profession':profession,'userprofile':userprofile,}
+            return render(request, 'professional/profile-screen-for-profession.html',context)
     # except:
     #     return HttpResponse("<h1>404 Data Not Found<h1>")
 

@@ -322,7 +322,7 @@
                   <!-- Start community name -->
                   <div class="row">
                      <div class="col-md-12 community-name pl-0">
-                        {{i.Post.User_Profile.usertype.user_id.first_name}} {{i.Post.User_Profile.usertype.user_id.last_name}}
+                        <a href="{% url 'profession-profile-screen' i.Post.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.Post.User_Profile.usertype.user_id.first_name}} {{i.Post.User_Profile.usertype.user_id.last_name}}</a>
                      </div>
                   </div>
                   <!-- End community name -->
@@ -348,8 +348,18 @@
                            <div class="dropdown-menu">
                               <a class="dropdown-item" href="#">Copy Link</a>
                               <a class="dropdown-item" href="#">Block Account</a>
-                              <!-- <a class="dropdown-item" href="#">Delete question</a> -->
-                              <!-- <a class="dropdown-item" href="#">Edit question</a> -->
+
+                              <!-- Start Edit and Delete login User -->
+                              {% if userprofile.id is i.Post.User_Profile.id %}
+                                 {% if i.Post.post_type1 %}
+                                    <a class="dropdown-item" href="{% url 'Community_Delete_My_Video' i.Post.id %}">Delete Video</a>
+                                    <a class="dropdown-item" href="{% url 'Community_Edit_My_Video' i.Post.id %}">Edit Video</a>
+                                 {% else %}
+                                    <a class="dropdown-item" href="{% url 'Community_Delete_My_Image' i.Post.id %}">Delete Image</a>
+                                    <a class="dropdown-item" href="{% url 'Community_Edit_My_Image' i.Post.id %}">Edit Image</a>
+                                 {% endif %}
+                              {% endif %}
+                              <!-- End Edit and Delete login User -->
 
                               <!-- Start Post Book Mark -->
                               {% if i.Post.Post_bookmark is False %}
@@ -461,7 +471,7 @@
                   <!-- Start community name -->
                   <div class="row">
                      <div class="col-md-12 community-name pl-0">
-                        {{i.Question.User_Profile.usertype.user_id.first_name}} {{i.Question.User_Profile.usertype.user_id.last_name}}
+                        <a href="{% url 'profession-profile-screen' i.Question.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.Question.User_Profile.usertype.user_id.first_name}} {{i.Question.User_Profile.usertype.user_id.last_name}}</a>
                      </div>
                   </div>
                   <!-- End community name -->
@@ -493,8 +503,13 @@
                               <a class="dropdown-item" href="#">Copy Link</a>
                               <a class="dropdown-item" href="#">Block Account</a>
                               <a class="dropdown-item" href="{% url 'ans_later' i.Question.id %}">Answer Later</a>
-                              <!-- <a class="dropdown-item" href="#">Delete question</a>
-                                 <a class="dropdown-item" href="#">Edit question</a> -->
+                              
+                              <!-- Start Edit and Delete login User -->
+                              {% if userprofile.id is i.Question.User_Profile.id %}
+                              <a class="dropdown-item" href="{% url 'Community_Delete_My_Question' i.Question.id %}">Delete</a>
+                              <a class="dropdown-item" href="{% url 'Community_Edit_My_Question' i.Question.id %}">Edit Post</a>
+                              {% endif %}
+                              <!-- End Edit and Delete login User -->
                               
                               <!-- Start Question Book mark -->
                               {% if i.Question.Question_bookmark is False %}
@@ -598,7 +613,7 @@
                   <!-- Start community name -->
                   <div class="row">
                      <div class="col-md-12 community-name pl-0">
-                        {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+                        <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
                      </div>
                   </div>
                   <!-- End community name -->
@@ -752,7 +767,7 @@
                   <!-- Start community name -->
                   <div class="row">
                      <div class="col-md-12 community-name pl-0">
-                        {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+                        <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
                      </div>
                   </div>
                   <!-- End community name -->
@@ -912,7 +927,7 @@
                   <!-- Start community name -->
                   <div class="row">
                      <div class="col-md-12 community-name pl-0">
-                        {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+                        <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
                      </div>
                   </div>
                   <!-- End community name -->
@@ -957,7 +972,7 @@
                               <a class="dropdown-item" href="#">Edit question</a>
 
                               <!-- Start Question Book mark -->
-                              {% if i.Question.Question_bookmark is False %}
+                              {% if i.Question_bookmark is False %}
                               <a class="dropdown-item" href="{% url 'bookmark_question' i.id %}">Bookmark</a>
                               {% else %}
                               <a class="dropdown-item" href="{% url 'remove_question_bookmark' i.id %}">Remove Bookmark</a>
@@ -1425,7 +1440,7 @@
                               <a class="dropdown-item" href="{% url 'Community_Edit_My_Question' i.id %}">Edit question</a>
                               
                               <!-- Start Question Book mark -->
-                              {% if i.Question.Question_bookmark is False %}
+                              {% if i.Question_bookmark is False %}
                               <a class="dropdown-item" href="{% url 'bookmark_question' i.id %}">Bookmark</a>
                               {% else %}
                               <a class="dropdown-item" href="{% url 'remove_question_bookmark' i.id %}">Remove Bookmark</a>
@@ -1578,12 +1593,12 @@
                                              </button>
                                              <div class="dropdown-menu">
                                                 <!-- For Answer Later -->
-                                                {% if Question.Answer_later is True %}
-                                                <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
-                                                {% else %}
+                                                {% if Question.Answer_later is False %}
                                                 <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
+                                                {% else %}
+                                                <a class="dropdown-item" href=""><i class="fa-solid fa-pen"></i> Already Answer</a>
                                                 {% endif %}
-                                                <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                                                <a class="dropdown-item" href="{% url 'remove_question' Question.id %}"><i class="fa-solid fa-trash"></i> Delete Question</a>
                                              </div>
                                           </span>
                                           {% if Question.Question_Edit %}
