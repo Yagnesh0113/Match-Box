@@ -15,6 +15,11 @@ from haversine import Unit
  
 def userprofileobj(request):
     user=request.user
+    try:
+        Usertype=UserType.objects.get(user_id=user)
+    except:
+        usertypeobj=UserType.objects.create(user_id=user)
+        UserProfile.objects.create(usertype=usertypeobj)
     Usertype=UserType.objects.get(user_id=user)
     Userprofile=UserProfile.objects.get(usertype=Usertype)
     joincommunityobj=Join_Community.objects.filter(User_profile=Userprofile)
@@ -30,6 +35,7 @@ def userprofileobj(request):
 
 @login_required(login_url='/')
 def loadHomeScreenPage(request):
+    print(request.user)
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Admin_Profession.objects.all()[:14]
     Popular_profession=Profession.objects.order_by("Profession_Rating")[:5][::-1]

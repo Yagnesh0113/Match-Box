@@ -35,9 +35,9 @@ class UserProfile(models.Model):
     profile_image=models.FileField(upload_to='Profile_Pic',null=True, blank=True,validators=[Image_file_size])  #imagefield to transfer in filefiled
     # profile_image=models.ImageField(upload_to='Profile_Pic',null=True, blank=True)
     terms_conditions=models.BooleanField(null=True, blank=True)
-    state=models.CharField(max_length=50)
-    city=models.CharField(max_length=50)
-    country_code = models.CharField(max_length=2, null=True, blank=True)
+    state=models.CharField(max_length=50,null=True, blank=True)
+    city=models.CharField(max_length=50,null=True, blank=True)
+    country_code = models.CharField(max_length=2, null=True, blank=True,)
     whatsapp_number = models.CharField(max_length=10, null=True, blank=True)
 
     def __str__(self):

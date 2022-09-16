@@ -49,7 +49,7 @@
       <!-- Start Profile image -->
       <!-- <div class="row justify-content-center">
          <div class="col-4 col-md-1">
-             <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image">
+             
          </div>
          </div> -->
       <!-- End Profile image -->
@@ -63,7 +63,12 @@
                   <!-- Start Profile img -->
                   <div class="row">
                      <div class="col-md-12">
+                        {% if  userprofile.profile_image %}
                         <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                        {% else %}
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                        {% endif %}
+
                      </div>
                   </div>
                   <!-- End Profile img -->
@@ -107,7 +112,7 @@
                         Phone No
                      </div>
                      <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
-                        : {{userprofile.phone_number}}
+                        : {% if userprofile.phone_number is None %}Add Your Phone Number{% else %}{{userprofile.phone_number}}{% endif %}
                      </div>
                   </div>
                   <div class="row pt-1">
@@ -277,7 +282,11 @@
                      <div class="container ">
                         <div class="row">
                            <div class="col-4">
-                              <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                              {% if  userprofile.profile_image %}
+                        <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                        {% else %}
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                        {% endif %}
                            </div>
                            <div class="col-8">
                               <span class="modal-sub-heading">
@@ -322,7 +331,11 @@
                      </div>
                      <div class="form-group">
                         <label for="phone-number" class="col-form-label modal-sub-heading">Phone Number:</label>
+                        {% if userprofile.phone_number %}
                         <input type="text" class="form-control" value="{{userprofile.phone_number}}" id="phone-number" name="phone_number" maxlength="10">
+                        {% else %}
+                        <input type="text" class="form-control" placeholder="Add Your Phone Number" id="phone-number" name="phone_number" maxlength="10">
+                        {% endif %}
                      </div>
                      <div class="form-group">
                         <label for="message-text" class="col-form-label modal-sub-heading">State:</label>

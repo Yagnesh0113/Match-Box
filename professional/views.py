@@ -11,6 +11,12 @@ from geopy.geocoders import ArcGIS
 
 def userprofileobj(request):
     user=request.user
+    try:
+        Usertype=UserType.objects.get(user_id=user)
+    except:
+        usertypeobj=UserType.objects.create(user_id=user)
+        UserProfile.objects.create(usertype=usertypeobj)
+
     Usertype=UserType.objects.get(user_id=user)
     Userprofile=UserProfile.objects.get(usertype=Usertype)
     joincommunityobj=Join_Community.objects.filter(User_profile=Userprofile)
@@ -35,7 +41,7 @@ def is_user_is_professional_user(request):
 
 @login_required(login_url='/')
 def loadProfessionProfileScreen(request):
-    try:
+    # try:
         userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
         profession=Profession.objects.filter(UserProfile=userprofile)
         state=State.objects.all()
@@ -45,8 +51,8 @@ def loadProfessionProfileScreen(request):
         else:
             context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,"state":state}
         return render(request, 'professional/profile-screen-for-profession.html',context)
-    except:
-        return HttpResponse("<h1>404 Data Not Found<h1>")
+    # except:
+    #     return HttpResponse("<h1>404 Data Not Found<h1>")
 
 @login_required(login_url='/')
 def update_details(request):
