@@ -45,7 +45,16 @@ INSTALLED_APPS = [
 
     # socail share
     'django_social_share',
+
+    #google Authentication
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

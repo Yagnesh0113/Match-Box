@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load socialaccount %}
 <html lang="en">
    <head>
       <meta charset="UTF-8">
@@ -157,7 +158,7 @@
                <!-- Start Log In with Google button -->
                <div class="row">
                   <div class="col-md-12">
-                     <button class="btn btn-block btn-normal-outlined"><i class="fa-brands fa-google"></i> &nbsp; <span class="text-color-white-m-view">Log in with Google</span></button>
+                     <button class="btn btn-block btn-normal-outlined"><a href="{% provider_login_url 'google' method = 'oauth2' %}"><i class="fa-brands fa-google"></i> &nbsp; <span class="text-color-white-m-view">Log in with Google</span></button></a>
                   </div>
                </div>
                <!-- End Log In with Google button -->
