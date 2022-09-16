@@ -96,6 +96,20 @@
 
 /* End Nav Notification CSS */
 
+.main-nav-drop-down
+{
+    background-color:var(--color-11);
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+}
+
+.main-nav-drop-down .dropdown-divider
+{
+    border-color:rgba(22, 24, 24, 0.2);
+}
 
 /* Start home page body */
 .search-bar .form-control {
@@ -471,6 +485,11 @@ body {
 	    height: auto;
     }
 
+    .home-screen-nav-icon-desktop-view
+    {
+        display:none;
+    }
+
 }
 
 @media (min-width: 577px) {
@@ -481,6 +500,11 @@ body {
 	#scrollable-container
     {
 	    height: auto;
+    }
+
+    .home-screen-nav-icon-mobile-view
+    {
+        display:none;
     }
 }
 
