@@ -25,7 +25,7 @@
               <!-- Start community name -->
               <div class="row">
                  <div class="col-md-12 community-name pl-0">
-                    {{Post_obj.User_Profile.usertype.user_id.first_name}} {{Post_obj.User_Profile.usertype.user_id.last_name}}
+                  <a href="{% url 'profession-profile-screen' Post_obj.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{Post_obj.User_Profile.usertype.user_id.first_name}} {{Post_obj.User_Profile.usertype.user_id.last_name}}</a>
                  </div>
               </div>
               <!-- End community name -->
@@ -157,7 +157,7 @@
               <!-- Start community name -->
               <div class="row">
                  <div class="col-md-12 community-name pl-0">
-                    {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+                  <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
                  </div>
               </div>
               <!-- End community name -->

@@ -1,5 +1,6 @@
 {% extends 'community_profession/index.html' %}
 {% load static %}
+{% load social_share %}
 {% block title %}
 <title>Profession Profile Screen</title>
 {% endblock title %}
@@ -455,13 +456,16 @@
 <!--                  <i class="fa-solid fa-ban"></i> Block Users-->
 <!--                  </a>-->
                   <a class="dropdown-item" href="#">
-                  <i class="fa-solid fa-bell"></i> My Notifications
+                     <i class="fa-solid fa-bell"></i> Post
                   </a>
                   <a class="dropdown-item" href="#">
-                  <i class="fa-solid fa-clock"></i> History
+                     <i class="fa-solid fa-bell"></i> Post
                   </a>
                   <a class="dropdown-item" href="#">
-                  <i class="fa-solid fa-clock"></i> Avg. Response time : 1 Hour
+                     <i class="fa-solid fa-clock"></i> Question
+                  </a>
+                  <a class="dropdown-item" href="" data-target="#share-modal" data-toggle="modal">
+                     <i class="fa-solid fa-clock"></i> Share
                   </a>
                   <!-- <a class="dropdown-item" href="{% url 'user_logout' %}">
                   <i class="fa-solid fa-right-from-bracket"></i> Sign Out
@@ -701,6 +705,61 @@
 <!-- End Profession Profiles screen -->
 {% endif %}
 
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row your-added-questions-heading">
+               <div class="col-md-12">Share</div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Share Icon -->
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <a>{% post_to_facebook object_or_url %}</a>
+                  <!-- <a href="" class=" text-decoration-none">
+                     <i class="fa fa-facebook">{% post_to_facebook object_or_url %} </i>
+                     </a> -->
+                  <!-- &nbsp; -->
+                  <a>{% post_to_whatsapp object_or_url %}</a>
+                  <!-- <a href="#" class=" text-decoration-none">
+                     <i class="fa-brands fa-whatsapp"></i>
+                     </a> -->
+                  <!-- &nbsp; -->
+                  <!-- Reddit Icon -->
+                  <a>{% post_to_reddit object_or_url %}</a>
+                  <!-- end reddit icon -->
+                  <!-- &nbsp; -->
+               </div>
+            </div>
+            <!-- End Share Icon -->
+            <!-- Start copy link text box -->
+            <div class="row d-flex justify-content-center pt-3">
+               <div class="col-md-8">
+                  <form>
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="CopyURL">
+                        <div class="input-group-append">
+                           <!-- <span class="input-group-text">COPY</span> -->
+                           <span>{% copy_to_clipboard object_or_url%}</span>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <!-- End copy link text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Share Modal -->
+
 <!-- For profile photo Restriction -->
 <script>
    let fileInput = document.getElementById("file_id");
@@ -741,4 +800,7 @@
 
    });
 </script>
+
+{% add_copy_script %}
+
 {% endblock content %}
