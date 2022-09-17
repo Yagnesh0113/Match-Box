@@ -26,7 +26,7 @@
       <!-- Start community name -->
       <div class="row">
          <div class="col-md-12 community-name pl-0">
-            {{User_Post_obj.User_Profile.usertype.user_id.first_name}} {{User_Post_obj.User_Profile.usertype.user_id.last_name}}
+            <a href="{% url 'profession-profile-screen' User_Post_obj.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{User_Post_obj.User_Profile.usertype.user_id.first_name}} {{User_Post_obj.User_Profile.usertype.user_id.last_name}}</a>
          </div>
       </div>
       <!-- End community name -->
@@ -186,7 +186,7 @@
             <!-- Start community name -->
             <div class="row">
                <div class="col-md-12 community-name pl-0">
-                  {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+                  <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
                </div>
             </div>
             <!-- End community name -->
@@ -267,16 +267,16 @@
                   <!-- <a href="" class=" text-decoration-none">
                      <i class="fa fa-facebook">{% post_to_facebook object_or_url %} </i>
                      </a> -->
-                  &nbsp;
+                  <!-- &nbsp; -->
                   <a>{% post_to_whatsapp object_or_url %}</a>
                   <!-- <a href="#" class=" text-decoration-none">
                      <i class="fa-brands fa-whatsapp"></i>
                      </a> -->
-                  &nbsp;
+                  <!-- &nbsp; -->
                   <!-- Reddit Icon -->
                   <a>{% post_to_reddit object_or_url %}</a>
                   <!-- end reddit icon -->
-                  &nbsp;
+                  <!-- &nbsp; -->
                </div>
             </div>
             <!-- End Share Icon -->
