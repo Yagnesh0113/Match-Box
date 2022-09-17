@@ -242,3 +242,16 @@ class Bookmark(models.Model):
 class distance_calculation(models.Model):
     user_profile = models.OneToOneField(UserProfile,on_delete=models.CASCADE)
     distance=models.JSONField()
+
+class Report(models.Model):
+    user_profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
+    post=models.ForeignKey(to=UserPost, on_delete=models.CASCADE, null=True, blank=True)
+    question=models.ForeignKey(to=User_Question, on_delete=models.CASCADE, null=True, blank=True)
+    community_id=models.ForeignKey(to=Community, on_delete=models.CASCADE, null=True, blank=True)
+    news_id=models.ForeignKey(to=News, on_delete=models.CASCADE, null=True, blank=True)
+    user_id=models.IntegerField(null=True, blank=True)
+    report_date=models.DateField(null=True, blank=True)
+    report_time=models.TimeField(null=True, blank=True)
+    adult_content=models.BooleanField(default=False)
+    abusing_content=models.BooleanField(default=False)
+    report_description=models.TextField()

@@ -1413,3 +1413,65 @@ def remove_news_bookmark(request, id):
     news_obj.save()
     bookmark.delete()
     return redirect("bookmark_page")
+
+@login_required(login_url='/')
+def report_post(request):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    if request.method=="POST":
+        post=request.POST.get("post_id")
+        post_id=UserPost.objects.get(id=int(post))
+        report=request.POST.get("report_descrition")
+        adult=request.POST.get("adult")
+        abuse=request.POST.get("abuse")
+
+        if adult != None:
+            adult = True
+        else:
+            adult = False
+
+        if abuse != None:
+            abuse = True
+        else:
+            abuse = False
+        
+        Repost_Date=date.today()
+        now = datetime.now()
+        Repost_Time = now.strftime("%H:%M:%S")
+
+        Report.objects.create(report_description=report,user_profile=userprofile,post=post_id,report_date=Repost_Date,report_time=Repost_Time,adult_content=adult,abusing_content=abuse)
+
+        return redirect("community-screen")
+    else:
+        return redirect("community-screen")
+
+@login_required(login_url='/')
+def report_question(request):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    if request.method=="POST":
+        question=request.POST.get("question_id")
+        question_id=User_Question.objects.get(id=int(question))
+        report=request.POST.get("report_descrition")
+        adult=request.POST.get("adult")
+        abuse=request.POST.get("abuse")
+        
+        if adult != None:
+            adult = True
+        else:
+            adult = False
+
+        if abuse != None:
+            abuse = True
+        else:
+            abuse = False
+        
+        Repost_Date=date.today()
+        now = datetime.now()
+        Repost_Time = now.strftime("%H:%M:%S")
+
+        Report.objects.create(report_description=report,user_profile=userprofile,question=question_id,report_date=Repost_Date,report_time=Repost_Time,adult_content=adult,abusing_content=abuse)
+
+        return redirect("community-screen")
+    else:
+        return redirect("community-screen")
+
+
