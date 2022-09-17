@@ -346,7 +346,7 @@
                            </button>
                            <div class="dropdown-menu">
                               <a class="dropdown-item" href="#">Copy Link</a>
-                              <a class="dropdown-item" href="#">Block Account</a>
+                              <a class="dropdown-item" href="#"data-target="#report" data-toggle="modal" onclick="Report('{{i.Post.id}}')">Report</a>
 
                               <!-- Start Edit and Delete login User -->
                               {% if userprofile.id is i.Post.User_Profile.id %}
@@ -1767,6 +1767,51 @@
 </div>
 <!-- End Community modeal pop up -->
 
+
+<!-- Start Create Report -->
+<div class="modal create-community-modeal" id="report">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="report">Create Report</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="number" id="demo1" name="post_id" hidden  >
+               </div>
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 question-text-box">
+                     <div class="form-group">
+                        <textarea name="report_descrition" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                     </div>
+                  </div>
+               </div>
+               <span class="modal-sub-heading">Adult Content </span>
+               <div class="form-check border rounded mt-3 pt-2 pb-2">
+                  <label class="form-check-label">
+                     <input type="checkbox" name="adult" class="form-check-input" value="">
+                        18+ year old community
+                  </label>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Create Community</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End Create Report -->
+
 <!-- Start Create Community Modeal pop up -->
 <div class="modal create-community-modeal" id="modal3">
    <div class="modal-dialog modal-lg">
@@ -2125,6 +2170,15 @@
       })(jQuery)
 </script>
 <!-- End navigation drop down script -->
+
+<!-- Start the report script -->
+<script>
+   function Report(id){
+      document.getElementById('report').action ='';
+      document.getElementById("demo1").value = id;
+   }
+</script>
+<!-- End the report script -->
 
 {% endblock content %}
 

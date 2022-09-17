@@ -263,20 +263,11 @@
             <!-- Start Share Icon -->
             <div class="row">
                <div class="col-md-12 text-center">
-                  <a>{% post_to_facebook object_or_url %}</a>
-                  <!-- <a href="" class=" text-decoration-none">
-                     <i class="fa fa-facebook">{% post_to_facebook object_or_url %} </i>
-                     </a> -->
-                  <!-- &nbsp; -->
-                  <a>{% post_to_whatsapp object_or_url %}</a>
-                  <!-- <a href="#" class=" text-decoration-none">
-                     <i class="fa-brands fa-whatsapp"></i>
-                     </a> -->
-                  <!-- &nbsp; -->
-                  <!-- Reddit Icon -->
-                  <a>{% post_to_reddit object_or_url %}</a>
-                  <!-- end reddit icon -->
-                  <!-- &nbsp; -->
+                  
+                     <span>{% post_to_facebook object_or_url %}</span>
+                     <span>{% post_to_whatsapp object_or_url %}</span>
+                     <span>{% post_to_reddit object_or_url %}</span>
+                 
                </div>
             </div>
             <!-- End Share Icon -->
@@ -285,7 +276,7 @@
                <div class="col-md-8">
                   <form>
                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="CopyURL">
+                        <input type="text" class="form-control" value="{{ copy_url }}" placeholder="CopyURL">
                         <div class="input-group-append">
                            <!-- <span class="input-group-text">COPY</span> -->
                            <span>{% copy_to_clipboard object_or_url%}</span>
