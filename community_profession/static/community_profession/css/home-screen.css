@@ -129,10 +129,6 @@
 	border-bottom: 0.063rem solid rgba(181, 223, 223, 0.2);
 }
 
-.community-profession .navbar ul .profession-default a {
-	border-bottom: 0.063rem solid var(--color-12);
-}
-
 .community-profession .navbar ul li a:hover {
 	font-family: var(--font-2);
 	font-style: normal;
@@ -143,6 +139,12 @@
 	color: var(--color-2);
 	border-bottom: 0.063rem solid var(--color-12);
 }
+
+.community-profession .navbar ul .profession-default a {
+	border-bottom: 0.063rem solid var(--color-12);
+}
+
+
 
 .community-profession .navbar .see-all li a {
 	font-family: var(--font-1);
@@ -469,11 +471,21 @@ body {
         font-family: var(--font-2);
         font-style: normal;
         font-weight: 400;
-        font-size: 1rem;
+        font-size: 0.75rem;
         line-height: 1.563rem;
         text-align: center;
         color: var(--color-2);
         border-bottom: 0.063rem solid rgba(181, 223, 223, 0.2);
+    }
+
+    .community-profession .navbar .see-all li a
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.5rem;
+        color: var(--color-12);
     }
 
 	.community-window {
@@ -488,6 +500,12 @@ body {
     .home-screen-nav-icon-desktop-view
     {
         display:none;
+    }
+
+    .recent-searches-window
+    {
+        background-color: var(--color-15);
+        border-radius: 0.625rem;
     }
 
 }

@@ -192,6 +192,7 @@
       <!-- End my profession heading and add new btn -->
 
       <!-- Start my Profession card -->
+      {% if profession %}
       <div class="row">
          {% for i in profession %}
          <div class="col-12 col-sm-6 col-md-4">
@@ -265,6 +266,28 @@
          </div>
          {% endfor %}
       </div>
+      {% else %}
+          <!-- fcgvhbkjnlm,.;/ fcghvkjnlm, -->
+         <div class="row pl-4 pt-3">
+            <div class="col-md-12 text-center recent-searches-window">
+               <div class="row">
+                  <div class="col-md-12 search-icon">
+                     <i class="fa-regular fa-square-plus"></i>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 search-heading">
+                     Add New Profession
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 search-sub-heading">
+                     Create Your Profession
+                  </div>
+               </div>
+            </div>
+         </div>
+      {% endif %}
       <!-- End my Profession card -->
 
       <!-- Start pdate profile image modal -->
@@ -579,6 +602,7 @@
       </div>
       <!-- End my profession heading and add new btn -->
       <!-- Start my Profession card -->
+      {% if profession %}
       <div class="row">
          {% for i in profession %}
          <div class="col-12 col-sm-6 col-md-4">
@@ -648,7 +672,30 @@
          </div>
          {% endfor %}
       </div>
+      {% else %}
+      <!-- fcgvhbkjnlm,.;/ fcghvkjnlm, -->
+      <div class="row pl-4 pt-3">
+            <div class="col-md-12 text-center recent-searches-window">
+               <div class="row">
+                  <div class="col-md-12 search-icon">
+                     <i class="fa-solid fa-ban"></i>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 search-heading">
+                     No Profession
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 search-sub-heading">
+                   For Now
+                  </div>
+               </div>
+            </div>
+         </div>
+      {% endif %}
       <!-- End my Profession card -->
+
    </div>
 </div>
 <!-- End Profession Profiles screen -->

@@ -66,16 +66,16 @@
                </span>
                <!-- End animated-nav and company logo -->
 
-               <!-- <ul class="nav justify-content-center">
+               <ul class="nav justify-content-center">
                   <li class="nav-item " >
-                        <a href="{% url 'home-screen' %}">
+                        <a href="{% url 'home-screen' %}" class="text-decoration-none">
                            <span class="home-screen-nav-icon-mobile-view">
                               <img src="{% static 'community_profession/img/home-screen-nav-icon-mobile-view.png' %}" class="img-fluid" alt="Responsive image">
                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                            </span>
                         </a>
                   </li>
-               </ul> -->
+               </ul>
 
                <!-- Start right side navigation -->
                <!--<ul class="nav justify-content-end">
@@ -113,11 +113,11 @@
                      <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                      {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
                      </span>
-                     {% if userprofile.profile_image%}
+                      {% if userprofile.profile_image%}
                      <img src="{{userprofile.profile_image.url}}" class="rounded-circle" alt="Cinque Terre" width="30" height="30">
                      {% else %}
                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="rounded-circle" alt="Cinque Terre" width="30" height="30">
-                     {% endif %}
+                        {% endif %}
                      </a>
                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in main-nav-drop-down rounded">
                         <a class="dropdown-item" href="{% url 'profession-profile-screen' %}">

@@ -6,7 +6,7 @@
 {% endblock title %}
 {% block own_css %}
 <!--   own css   -->
-<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+
 <!-- Ask Post CSS-->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <!-- Start Share icon -->
@@ -46,7 +46,7 @@
    }
 </style>
 <!-- End navigation menu -->
-
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!--<style>-->
 <!--.fa {-->
 <!--   padding: 16px;-->
@@ -102,10 +102,9 @@
                <a class="nav-link active" href="{% url 'home-screen' %}">Profession</a>
             </li>
          </ul>
-
+         <!-- End Community and Profession -->
       </nav>
    </div>
-
 </div>
 <!-- End Community - Profession Navigation -->
 {% endblock community_profession_nav %}
@@ -395,19 +394,19 @@
                <div class="row community-post-image">
                   <div class="col-md-12">
                      <div class="row community-post-image-background">
-                        <div class="col-md-3"></div>
+                        <div class="col-0 col-sm-3 col-md-3"></div>
                         {% if i.Post.post_type1 %}
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                            <video class="img-fluid" width="100%"  controls>
                               <source src="{{i.Post.Image.url}}" type="video/mp4">
                            </video>
                         </div>
                         {%else%}
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                            <img src="{{i.Post.Image.url}}" alt="" class="img-fluid" width="100%">
                         </div>
                         {% endif %}
-                        <div class="col-md-3"></div>
+                        <div class="col-0 col-sm-3 col-md-3"></div>
                      </div>
                   </div>
                </div>
@@ -688,19 +687,19 @@
                <div class="row community-post-image">
                   <div class="col-md-12">
                      <div class="row community-post-image-background">
-                        <div class="col-md-3"></div>
+                        <div class="col-md-0 col-sm-3 col-md-3"></div>
                         {% if i.post_type1 %}
-                        <div class="col-md-6">
+                        <div class="col-md-12 col-sm-6 col-md-6">
                            <video width="100%" height="" controls>
                               <source src="{{i.Image.url}}" type="video/mp4">
                            </video>
                         </div>
                         {%else%}
-                        <div class="col-md-6">
+                        <div class="col-md-12 col-sm-6 col-md-6">
                            <img src="{{i.Image.url}}" alt="" class="img-fluid" width="100%">
                         </div>
                         {% endif %}
-                        <div class="col-md-3"></div>
+                        <div class="col-md-0 col-sm-3 col-md-3"></div>
                      </div>
                   </div>
                </div>
@@ -842,19 +841,19 @@
                <div class="row community-post-image">
                   <div class="col-md-12">
                      <div class="row community-post-image-background">
-                        <div class="col-md-3"></div>
+                        <div class="col-md-0 col-sm-3 col-md-3"></div>
                         {% if i.post_type1 %}
-                        <div class="col-md-6">
+                        <div class="col-md-12 col-sm-6 col-md-6">
                            <video width="100%" class="img-fluid" controls>
                               <source src="{{i.Image.url}}" type="video/mp4">
                            </video>
                         </div>
                         {%else%}
-                        <div class="col-md-6">
+                        <div class="col-md-12 col-sm-6 col-md-6">
                            <img src="{{i.Image.url}}" alt="" class="img-fluid" width="100%">
                         </div>
                         {% endif %}
-                        <div class="col-md-3"></div>
+                        <div class="col-md-0 col-sm-3 col-md-3"></div>
                      </div>
                   </div>
                </div>
@@ -1149,7 +1148,7 @@
                <div class="row community-post-image">
                   <div class="col-md-12">
                      <div class="row community-post-image-background">
-                        <div class="col-md-3"></div>
+                        <div class="col-0 col-sm-3 col-md-3"></div>
                         <!-- {% if '.jpg' in i.Post.Image %}
                            <p>Yes</p>
                            {% else %}
@@ -1157,17 +1156,17 @@
                            {% endif %}
                            {{i.Post.Image}} -->
                         {% if i.post_type1 %}
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                            <video width="100%" height="" class="img-fluid" controls>
                               <source src="{{i.Image.url}}" type="video/mp4">
                            </video>
                         </div>
                         {%else%}
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                            <img src="{{i.Image.url}}" alt="" class="img-fluid" width="100%">
                         </div>
                         {% endif %}
-                        <div class="col-md-3"></div>
+                        <div class="col-0 col-sm-3 col-md-3"></div>
                      </div>
                   </div>
                </div>
@@ -1310,7 +1309,7 @@
                <div class="row community-post-image">
                   <div class="col-md-12">
                      <div class="row community-post-image-background">
-                        <div class="col-md-3"></div>
+                        <div class="col-0 col-sm-3 col-md-3"></div>
                         <!-- {% if '.jpg' in i.Post.Image %}
                            <p>Yes</p>
                            {% else %}
@@ -1318,17 +1317,17 @@
                            {% endif %}
                            {{i.Post.Image}} -->
                         {% if i.post_type1 %}
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                            <video width="100%" height="" controls>
                               <source src="{{i.Image.url}}" type="video/mp4">
                            </video>
                         </div>
                         {%else%}
-                        <div class="col-md-6">
+                        <div class="col-12 col-sm-6 col-md-6">
                            <img src="{{i.Image.url}}" alt="" class="img-fluid" width="100%">
                         </div>
                         {% endif %}
-                        <div class="col-md-3"></div>
+                        <div class="col-0 col-sm-3 col-md-3"></div>
                      </div>
                   </div>
                </div>
@@ -1598,7 +1597,7 @@
                                                 {% else %}
                                                 <a class="dropdown-item" href=""><i class="fa-solid fa-pen"></i> Already Answer</a>
                                                 {% endif %}
-                                                <a class="dropdown-item" href="{% url 'remove_question' Question.id %}"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                                                <a class="dropdown-item" href=""><i class="fa-solid fa-trash"></i> Delete Question</a>
                                              </div>
                                           </span>
                                           {% if Question.Question_Edit %}
