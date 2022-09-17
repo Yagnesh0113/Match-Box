@@ -180,12 +180,12 @@
 </div>
 <!-- End your recent searches heading  -->
 <!-- Start recent search window -->
+{% if Recent %}
 <div class="page-content page-container" id="page-content1">
    <div class="padding">
       <div class="row ">
          <div class="col-lg-12 grid-margin stretch-card">
             <div class="owl-carousel">
-               {% if Recent %}
                {% for recent in Recent %}
                <a href="{% url 'profession-personal-details' recent.Profession_obj.id %}">
                   <div class="item">
@@ -202,34 +202,32 @@
                   </div>
                </a>
                {% endfor %}
-               {% else %}
-               <div class="col-md-12 pl-4">
-                  <div class="row">
-                     <div class="col-md-12 text-center recent-searches-window">
-                        <div class="row">
-                           <div class="col-md-12 search-icon">
-                              <i class="fa-solid fa-magnifying-glass"></i>
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-12 search-heading">
-                              Find Something You Love
-                           </div>
-                        </div>
-                        <div class="row">
-                           <div class="col-md-12 search-sub-heading">
-                              Search For Your Categories
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               {% endif %}
             </div>
          </div>
       </div>
    </div>
 </div>
+{% else %}
+<div class="row pl-4">
+   <div class="col-md-12 text-center recent-searches-window">
+      <div class="row">
+         <div class="col-md-12 search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12 search-heading">
+            Find Something You Love
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12 search-sub-heading">
+            Search For Your Categories
+         </div>
+      </div>
+   </div>
+</div>
+{% endif %}
 <!-- End recent search window -->
 <!-- Start recent search window -->
 <!-- <div class="row">

@@ -4,9 +4,10 @@
 <title>Book Mark</title>
 {% endblock title %}
 {% block own_css %}
-<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community-news.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 
 {% block community_content %}
@@ -223,7 +224,7 @@
                 <!-- End community description -->
                 <!-- Start like, comment, share -->
                 <div class="row pt-2 pd-2">
-    
+
                     <!-- Start like button -->
                     <div class="col-4 col-sm-3 col-md-2 text-center">
                     <a href="{% url 'like_Question' i.question.id %}">
@@ -252,7 +253,7 @@
                     </span>
                     </div>
                     <!-- End like button -->
-    
+
                     <!-- Start Add comment button -->
                     <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
                     <a href="{% url 'Add_Answer' i.question.id %}">
@@ -260,7 +261,7 @@
                     </a>
                     </div>
                     <!-- End Add comment button -->
-    
+
                     <!-- Start Share button -->
                     <div class="col-2 col-sm-1 col-md-1 text-right">
                     <!-- <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal"> -->
@@ -268,7 +269,7 @@
                     <!-- </button> -->
                     </div>
                     <!-- End Share button -->
-    
+
                     <div class="col-0 col-sm-6 col-md-6"></div>
                 </div>
                 <!-- End like, comment, share -->
@@ -397,28 +398,46 @@
        {% else %}
 
         <!-- Start No Book mark -->
-
-        <div class="row community-body">
-            <div class="col-md-12 community-name pl-0 community-post-image pt-4">
-                <div class="row pl-4">
-                    <div class="col-md-12 text-center community-post-image-background">
-                        <div class="row">
-                            <div class="col-md-12 display-3">
-                                No BookMark for Now
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 display-2">
-                                <i class="fa-regular fa-face-meh-blank"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+        <div class="row pl-3 pt-3">
+            <div class="col-md-12 text-center recent-searches-window">
+               <div class="row">
+                  <div class="col-md-12 search-icon">
+                     <i class="fa-regular fa-face-meh-blank"></i>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 search-heading">
+                      No Book-Mark For Now
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 search-sub-heading">
+                    Add Book Mark
+                  </div>
+               </div>
             </div>
-        </div>
+         </div>
+<!--        <div class="row community-body">-->
+<!--            <div class="col-md-12 community-name pl-0 community-post-image pt-4">-->
+<!--                <div class="row pl-4">-->
+<!--                    <div class="col-md-12 text-center community-post-image-background">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-12 display-3">-->
+<!--                                No BookMark for Now-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-12 display-2">-->
+<!--                                <i class="fa-regular fa-face-meh-blank"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+<!--            </div>-->
+<!--        </div>-->
         <!-- End No Book mark -->
 
        {% endif %}
