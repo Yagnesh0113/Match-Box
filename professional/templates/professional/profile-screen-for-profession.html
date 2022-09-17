@@ -66,11 +66,11 @@
                   <!-- Start Profile img -->
                   <div class="row">
                      <div class="col-md-12">
-                        {% if  userprofile.profile_image %}
-                        <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
-                        {% else %}
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
-                        {% endif %}
+                           {% if  userprofile.profile_image %}
+                           <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                           {% else %}
+                           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                           {% endif %}
 
                      </div>
                   </div>
@@ -486,7 +486,12 @@
                   <!-- Start Profile img -->
                   <div class="row">
                      <div class="col-md-12">
-                        <img src="{{userprofile1.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                         {% if  userprofile1.profile_image %}
+                           <img src="{{userprofile1.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                           {% else %}
+                           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                           {% endif %}
+
                      </div>
                   </div>
                   <!-- End Profile img -->

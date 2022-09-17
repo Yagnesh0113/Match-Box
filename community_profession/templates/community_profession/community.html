@@ -312,7 +312,14 @@
             <div class="row">
                <!-- Start Profile picture -->
                <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+                  {% if  i.Post.User_Profile.profile_image %}
+
                   <img class="img-fluid rounded-circle" src="{{i.Post.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
+
+                  {% else %}
+                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                  {% endif %}
+
                </div>
                <!-- End Profile picture -->
 
@@ -462,8 +469,14 @@
             <div class="row">
                <!-- Start Profile picture -->
                <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture pr-0">
+
+                  {% if  i.Question.User_Profile.profile_image %}
                   <img class="img-fluid rounded-circle" src="{{i.Question.User_Profile.profile_image.url}}" alt="Chania">
-               </div>
+                  {% else %}
+                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                  {% endif %}
+
+                  </div>
                <!-- End Profile picture -->
                <!-- Start Community name and time -->
                <div class="col-7 col-sm-4 col-md-4 pl-0">
@@ -557,6 +570,7 @@
                   </span>
                   &nbsp;
                   <span class="community-like-dislike-btn">
+                     <a href="{% url 'Add_Answer' i.Question.id %}" class="text-decoration-none">
                      <i class="fa-solid fa-message"></i>
                      &nbsp;
                      {% if i.Question.answer is None %}
@@ -564,6 +578,7 @@
                      {% else %}
                      {{i.Question.answer}}
                      {% endif %}
+                     </a>
                   </span>
                </div>
                <!-- End like button -->

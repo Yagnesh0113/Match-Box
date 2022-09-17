@@ -32,7 +32,7 @@ class UserType(models.Model):
 class UserProfile(models.Model):
     usertype=models.OneToOneField(to=UserType,on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=10,null=True, blank=True)
-    profile_image=models.FileField(upload_to='Profile_Pic',null=True, blank=True,validators=[Image_file_size])  #imagefield to transfer in filefiled
+    profile_image=models.FileField(upload_to='Profile_Pic',null=True, blank=True,validators=[Image_file_size],default='default.webp')  #imagefield to transfer in filefiled
     # profile_image=models.ImageField(upload_to='Profile_Pic',null=True, blank=True)
     terms_conditions=models.BooleanField(null=True, blank=True)
     state=models.CharField(max_length=50,null=True, blank=True)
