@@ -22,6 +22,7 @@ urlpatterns = [
     path('normal-user-community-screen', views.loadNormalUserCommunityScreen, name='normal-user-community-screen'),
     path('community-profile-screen/<int:id>', views.loadCommunityProfileScreen, name='community-profile-screen'),
     path('community-create-post-page/<int:id>', views.loadCommunityCreatePostPage, name='community-create-post-page'),
+    path('community-create-post-page', views.loadCommunityCreatePostPage, name='community-create-post-page'),
     path('community-write-comment-screen/<int:id>', views.loadCommunityWriteCommentScreen, name='community-write-comment-screen'),
     path('community-comment-reply-screen/<int:id>', views.loadCommunityCommentReplyScreen, name='community-comment-reply-screen'),
 
@@ -82,6 +83,10 @@ urlpatterns = [
 
     path('report_post',views.report_post,name='report_post'),
     path('report_question',views.report_question,name='report_question'),
+    path('report_news',views.report_news,name='report_news'),
+    path('report_profile',views.report_profile,name='report_profile'),
+
+
 
 
 

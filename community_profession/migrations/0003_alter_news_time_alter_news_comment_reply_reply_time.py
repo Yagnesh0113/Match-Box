@@ -7,18 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('professional', '0002_alter_professionreview_review_time_and_more'),
+        ('community_profession', '0002_alter_news_time_alter_news_comment_reply_reply_time_and_more'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='professionreview',
-            name='Review_Time',
+            model_name='news',
+            name='Time',
             field=models.TimeField(default=datetime.datetime(2022, 9, 19, 17, 4, 57, 643717)),
         ),
         migrations.AlterField(
-            model_name='professionreview_reply',
-            name='Review_Reply_Time',
+            model_name='news_comment_reply',
+            name='Reply_Time',
             field=models.TimeField(default=datetime.datetime(2022, 9, 19, 17, 4, 57, 643717)),
         ),
     ]

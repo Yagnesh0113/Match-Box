@@ -12,5 +12,6 @@ admin.site.register(User_Question)
 admin.site.register(UserPost)
 admin.site.register(Post_Commment)
 admin.site.register(Bookmark)
+admin.site.register(POST_and_Question)
 
 
