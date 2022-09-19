@@ -6,10 +6,42 @@
 {% endblock title %}
 {% block own_css %}
 <!--   use Community css as a base css   -->
-<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- own css Community write comment screen css -->
+<!-- Start Social icon CSS-->
+<style>
+  .social-icon {
+  padding: 15px;
+    font-size: 23px;
+    width: 59px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+}
+
+.social-icon:hover {
+    opacity: 0.7;
+}
+
+.own-fb {
+  background: #3B5998;
+  color: white;
+}
+
+.own-reddit {
+  background: #ff5700;
+  color: white;
+}
+
+.own-whats-aap {
+  background: #51CE5E;
+  color: white;
+}
+</style>
+<!-- End Social icon CSS-->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community-write-comment-screen.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 {% block community_content %}
 

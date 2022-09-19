@@ -6,10 +6,9 @@
 {% block own_css %}
 
 <!--   use Community css as a base css   -->
-<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community-edit-community.css' %}">
-
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 
 {% block community_content %}
@@ -26,11 +25,11 @@
                     </div>
                     <div class="form-group">
                         <a href="{{edit_coummunity.Community_Cover_Image.url}}" target="_self"><label>Community Cover Image</label></a>
-                        <input type="file" class="form-control" value="{{edit_coummunity.Community_Cover_Image}}" name="Communiy_Image" id="text">
+                        <input type="file" class="form-control border-0" value="{{edit_coummunity.Community_Cover_Image}}" name="Communiy_Image" id="text">
                     </div>
                     <div class="form-group">
                         <a href="{{edit_coummunity.Community_Profile_Image.url}}" target="_self"><label>Community Profile Image</label></a>
-                        <input type="file" class="form-control" value="{{edit_coummunity.Community_Profile_Image}}" name="Communiy_Profile" id="text">
+                        <input type="file" class="form-control border-0" value="{{edit_coummunity.Community_Profile_Image}}" name="Communiy_Profile" id="text">
                     </div>
 
                     <div class="form-group">

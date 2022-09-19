@@ -6,6 +6,7 @@
 .edit-community .form-group .form-control
 {
     background-color:var(--color-15);
+
 }
 
 .edit-community .form-group label
@@ -18,5 +19,5 @@
 form .form-group .form-control
 {
     background-color: #fff0;
-    border: 0.063rem solid rgba(255, 255, 255, 0.2);
+    border:0.125rem solid var(--color-5);
 }
