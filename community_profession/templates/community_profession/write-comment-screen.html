@@ -25,7 +25,8 @@
       <!-- Start community name -->
       <div class="row">
          <div class="col-md-12 community-name pl-0">
-            {{i.Community_obj.Community_Name}}
+            <a href="{% url 'profession-profile-screen' i.user_post.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.user_post.User_Profile.usertype.user_id.first_name}} {{i.user_post.User_Profile.usertype.user_id.last_name}}</a>/
+            <a href="{% url 'community-profile-screen' i.Community_obj.id  %}" class="text-decoration-none">{{i.Community_obj.Community_Name}}</a>
          </div>
       </div>
       <!-- End community name -->

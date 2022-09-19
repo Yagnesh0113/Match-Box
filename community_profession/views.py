@@ -378,9 +378,10 @@ def loadUserProfileScreen(request):
 @login_required(login_url='/')
 def loadCommunityScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    Community_obj=POST_and_Question.objects.all()[::-1]
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
-    User_POST_Question=POST_and_Question.objects.all()[::-1]
+    # User_POST_Question=POST_and_Question.objects.all()[::-1]
     # User_POST_Question_obj=POST_and_Question.objects.all()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
@@ -389,9 +390,9 @@ def loadCommunityScreen(request):
     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
     # print(User_POST_Question_obj.Question)
     if obj is not None:
-        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_POST_Question,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
+        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":Community_obj,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
     else:
-        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_POST_Question,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"Question":User_Question_obj}
+        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":Community_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"Question":User_Question_obj}
     return render(request, 'community_profession/community.html',context)
 
 
@@ -902,47 +903,74 @@ def loadCommunityProfileScreen(request, id):
 
 # --- load -- community create post page ---
 @login_required(login_url='/')
-def loadCommunityCreatePostPage(request, id):
+def loadCommunityCreatePostPage(request, id=None):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    Community_obj=Community.objects.get(id=id)
-    if request.method=="POST":
-        try:
-            Community_image=request.FILES["images"]
-        except:
-            Community_image=None
-        Community_Description=request.POST.get("description")
-        Community_Post_Date=date.today()
-        now = datetime.now()
-        Community_Post_time = now.strftime("%H:%M:%S")
 
-        if Community_image is not None and ('.mp4' in str(Community_image) or '.mov' in str(Community_image)):
-            obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time,post_type1=True)
+    if id==None:
+        if request.method=="POST":
+            community_obj=request.POST.get("CommunityId")
+            Community_id=Community.objects.get(id=community_obj)
+            try:
+                Post_Image=request.FILES["File"]
+            except:
+                Post_Image=None
+            Describe=request.POST.get("description")
+            Post_Date=date.today()
+            now = datetime.now()
+            Post_Time = now.strftime("%H:%M:%S")
+
+            if Post_Image is not None and ('.mp4' in str(Post_Image) or '.mov' in str(Post_Image)):
+                obj1=UserPost.objects.create(User_Profile=userprofile,Image=Post_Image,Description=Describe,Post_Date=Post_Date,Post_Time=Post_Time,post_type1=True)
+            else:
+                obj1=UserPost.objects.create(User_Profile=userprofile,Image=Post_Image,Description=Describe,Post_Date=Post_Date,Post_Time=Post_Time,post_type1=False)
+
+            post=Community_Post(Community_obj=Community_id,Community_type="Community",user_post=obj1)
+            post.save()
+            POST_and_Question.objects.create(Post=post)
+            return redirect("community-screen")
         else:
-            obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time,post_type1=False)
-        
-        
-        # obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time)
-        Community_Post.objects.create(Community_obj=Community_obj,Community_type="Community",user_post=obj)
-        return redirect(f"/community-profile-screen/{id}")
+            return redirect("community-screen")
     else:
-        Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
-        Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
-        # My_Community=Community.objects.all()
-        User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
-        User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
-        Date=date.today()
-        User_id=UserProfile.objects.all().exclude(id=userprofile.id)
-        Our_News_count=News.objects.filter(Date=Date).count()
-        if obj is not None:
-            context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Community_obj}
+        Community_obj=Community.objects.get(id=id)
+        if request.method=="POST":
+            try:
+                Community_image=request.FILES["images"]
+            except:
+                Community_image=None
+            Community_Description=request.POST.get("description")
+            Community_Post_Date=date.today()
+            now = datetime.now()
+            Community_Post_time = now.strftime("%H:%M:%S")
+
+            if Community_image is not None and ('.mp4' in str(Community_image) or '.mov' in str(Community_image)):
+                obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time,post_type1=True)
+            else:
+                obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time,post_type1=False)
+            
+            
+            # obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time)
+            Community_Post.objects.create(Community_obj=Community_obj,Community_type="Community",user_post=obj)
+            return redirect(f"/community-profile-screen/{id}")
         else:
-            context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj}
-        return render(request, 'community_profession/community-create-post-page.html',context)
+            Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
+            Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+            # My_Community=Community.objects.all()
+            User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
+            User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
+            Date=date.today()
+            User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+            Our_News_count=News.objects.filter(Date=Date).count()
+            if obj is not None:
+                context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Community_obj}
+            else:
+                context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj}
+            return render(request, 'community_profession/community-create-post-page.html',context)
 
 # --- load -- write-comment-screen ---
 @login_required(login_url='/')
 def loadCommunityWriteCommentScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    print(id)
     Community_obj=Community_Post.objects.get(id=id)
     if request.method=="POST":
         Post_Comment_obj=request.POST.get("Comment")
@@ -966,7 +994,7 @@ def loadCommunityWriteCommentScreen(request,id):
         User_id=UserProfile.objects.all().exclude(id=userprofile.id)
         Our_News_count=News.objects.filter(Date=Date).count()
         All_comment=Community_Post_Comment.objects.filter(Community_Post_obj=Community_obj)
-        All_comment_count=Community_Post_Comment.objects.filter(Community_Post_obj=Community_obj).count()
+        All_comment_count=Community_Post_Comment.objects.filter(Community_Post_obj=Community_obj).count() 
         if obj is not None:
             context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
         else:
@@ -1474,4 +1502,64 @@ def report_question(request):
     else:
         return redirect("community-screen")
 
+@login_required(login_url='/')
+def report_news(request):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    if request.method=="POST":
+        news_obj=request.POST.get("news_id")
+        news_id=News.objects.get(id=int(news_obj))
+        report=request.POST.get("report_descrition")
+        adult=request.POST.get("adult")
+        abuse=request.POST.get("abuse")
+        
+        if adult != None:
+            adult = True
+        else:
+            adult = False
+
+        if abuse != None:
+            abuse = True
+        else:
+            abuse = False
+        
+        Repost_Date=date.today()
+        now = datetime.now()
+        Repost_Time = now.strftime("%H:%M:%S")
+
+        Report.objects.create(report_description=report,user_profile=userprofile,news_id=news_id,report_date=Repost_Date,report_time=Repost_Time,adult_content=adult,abusing_content=abuse)
+
+        return redirect("news")
+    else:
+        return redirect("news")
+
+@login_required(login_url='/')
+def report_profile(request):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    if request.method=="POST":
+        profile=request.POST.get("profile_id")
+        print(profile)
+        # profile_id=UserProfile.objects.get(id=int(profile))
+        report=request.POST.get("report_descrition")
+        adult=request.POST.get("adult")
+        abuse=request.POST.get("abuse")
+        
+        if adult != None:
+            adult = True
+        else:
+            adult = False
+
+        if abuse != None:
+            abuse = True
+        else:
+            abuse = False
+        
+        Repost_Date=date.today()
+        now = datetime.now()
+        Repost_Time = now.strftime("%H:%M:%S")
+
+        Report.objects.create(report_description=report,user_profile=userprofile,user_id=profile,report_date=Repost_Date,report_time=Repost_Time,adult_content=adult,abusing_content=abuse)
+
+        return redirect(f"/profession-profile-screen/{profile}")
+    else:
+        return redirect(f"/profession-profile-screen/{profile}")
 
