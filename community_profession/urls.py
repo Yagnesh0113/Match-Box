@@ -79,4 +79,10 @@ urlpatterns = [
     path('remove_question_bookmark/<int:id>',views.remove_question_bookmark,name='remove_question_bookmark'),
     path('remove_news_bookmark/<int:id>',views.remove_news_bookmark,name='remove_news_bookmark'),
 
+
+    path('report_post',views.report_post,name='report_post'),
+    path('report_question',views.report_question,name='report_question'),
+
+
+
 ]
