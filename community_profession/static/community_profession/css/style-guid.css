@@ -67,7 +67,7 @@
 .btn-normal-outlined:hover
 {
     border-color: var(--color-6);
-    color: var(--color-2);   
+    color: var(--color-2);
 }
 
 .btn-disabled
