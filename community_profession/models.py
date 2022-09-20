@@ -223,7 +223,7 @@ class News_Comment_reply(models.Model):
 class POST_and_Question(models.Model):
     Post=models.ForeignKey(to=Community_Post, on_delete=models.CASCADE,null=True,blank=True)
     Question=models.ForeignKey(to=User_Question, on_delete=models.CASCADE,null=True,blank=True)
-    news=models.ForeignKey(to=News, on_delete=models.Cas)
+
 
     def __str__(self):
         return str(self.Post)

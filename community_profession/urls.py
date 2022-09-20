@@ -86,6 +86,15 @@ urlpatterns = [
     path('report_news',views.report_news,name='report_news'),
     path('report_profile',views.report_profile,name='report_profile'),
 
+    
+
+    path('edit_comment/<int:id>',views.edit_comment,name='edit_comment'),
+    path('comment_delete/<int:id>',views.comment_delete,name='comment_delete'),
+
+    path('edit_reply/<int:id>',views.edit_reply,name='edit_reply'),
+    path('reply_delete/<int:id>',views.reply_delete,name='reply_delete'),
+
+
 
 
 
