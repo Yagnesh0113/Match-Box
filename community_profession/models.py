@@ -224,6 +224,7 @@ class POST_and_Question(models.Model):
     Post=models.ForeignKey(to=Community_Post, on_delete=models.CASCADE,null=True,blank=True)
     Question=models.ForeignKey(to=User_Question, on_delete=models.CASCADE,null=True,blank=True)
 
+
     def __str__(self):
         return str(self.Post)
 

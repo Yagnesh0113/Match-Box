@@ -171,6 +171,31 @@
               <!-- End community time -->
            </div>
            <!-- End Community name and time -->
+            <!-- Start Community name and time -->
+            <div class="col-5 col-sm-4 col-md-4 pl-0">
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time pl-0">
+                     <div class="col-md-12 like-reply-share">
+                        <span>
+                           {% if userprofile.id is i.User_Profile.id %}
+                              <a href="#" class="text-decoration-none likes-heading" data-target="#editreply" data-toggle="modal" onclick="data('{{i.id}}','{{i.Reply}}')" >
+                                 <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
+                              </a>
+                              <a href="{% url 'reply_delete' i.id %}" class="text-decoration-none likes-heading">
+                                 <i class="fa-solid fa-trash pl-3"></i> &nbsp;
+                              </a>
+                           {% endif %}
+                        </span>
+                     </div>
+                     
+                     
+                     <!-- Ago -->
+                  </div>
+               </div>
+               <!-- End community time -->
+            </div>
+            <!-- End Community name and time -->
        </div>
       <!-- End user profile-img & user name  -->
       <!-- Start comment-conetnt -->
@@ -185,4 +210,40 @@
 </div>
 {% endfor %}
 <!-- End Comment -->
+
+<!-- start reply edit modal -->
+<div class="modal create-community-modeal" id="editreply">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Reply</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="EditReply" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review</label>
+                  <input type="text" class="form-control" name="reply" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Reply</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- end reply edit modal -->
+
+
+<script>
+   function data(id,val1){
+      document.getElementById('EditReply').action ='/edit_reply/'+id;
+      document.getElementById("demo1").value = val1;
+   }
+</script>
 {% endblock community_content %}
