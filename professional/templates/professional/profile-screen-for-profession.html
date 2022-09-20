@@ -14,8 +14,9 @@
 <link rel="stylesheet" href="/static/community_profession/css/community/community.css">
 {% endblock own_css %}
 {% block content %}
-<!-- Start Profession Profiles screen -->
+
 {% if loginuser is userprofile %}
+<!-- Start Profession Profiles screen - for login user -->
 <div class="row">
    <div class="col-md-12 profession-profile-screen">
       <!-- Start Profile Heading and options -->
@@ -195,21 +196,21 @@
 
       <!-- Start my Profession card -->
       {% if profession %}
-      <div class="row">
+      <div class="row ">
          {% for i in profession %}
-         <div class="col-12 col-sm-6 col-md-4">
+         <div class="col-12 col-sm-6 col-md-4 d-flex flex-nowrap">
             <div class="row p-3 profession-cart">
                <div class="col-12 col-sm-12 col-md-12 border-1 rounded">
                   <!-- Start image -->
                   <div class="row profession-img">
-                     <div class="col-12 col-sm-9 col-md-9 pt-3">
+                     <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
                         <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
                      </div>
                   </div>
                   <!-- End image -->
                   <!-- Start profession heading -->
                   <div class="row">
-                     <div class="col-md-12 heading">
+                     <div class="col-md-12 heading pt-5 pl-2">
                         {{i.profession}}
                      </div>
                   </div>
@@ -220,30 +221,30 @@
                         <!-- Start name -->
                         <div class="row">
                            <!-- Start sub heading -->
-                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Name</div>
+                           <div class="col-2 col-sm-2 col-md-2 sub-heading pl-2">Name</div>
                            <!-- End sub heading -->
                            <!-- Start content -->
-                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_name}}</div>
+                           <div class="col-10 col-sm-10 col-md-10 content">: {{i.shop_name}}</div>
                            <!-- End content -->
                         </div>
                         <!-- End name -->
                         <!-- Start address -->
                         <div class="row">
                            <!-- Start sub heading -->
-                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Address</div>
+                           <div class="col-2 col-sm-2 col-md-2 sub-heading pl-2">Address</div>
                            <!-- End sub heading -->
                            <!-- Start content -->
-                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_address}}</div>
+                           <div class="col-10 col-sm-10 col-md-10 content">: {{i.shop_address}}</div>
                            <!-- End content -->
                         </div>
                         <!-- End address -->
                         <!-- Start Time -->
                         <div class="row">
                            <!-- Start sub heading -->
-                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Time</div>
+                           <div class="col-2 col-sm-2 col-md-2 sub-heading pl-2">Time</div>
                            <!-- End sub heading -->
                            <!-- Start content -->
-                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
+                           <div class="col-10 col-sm-10 col-md-10 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
                            <!-- End content -->
                         </div>
                         <!-- End Time -->
@@ -251,14 +252,16 @@
                   </div>
                   <!-- End Profession sub heading and content-->
                   <!-- Start btn -->
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12">
-                        <a href="{% url 'profession_details' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
-                           <i class="fa-solid fa-eye"></i>
+                  <div class="row pt-4 align-self-end">
+                     <div class="col-6 col-sm-6 col-md-6 pl-0">
+                        <a href="{% url 'profession_details' i.id %}" class="btn btn-normal btn-sm btn-block text-dark m-2">
+                           <i class="fa-solid fa-eye"></i> View
                         </a>
+                     </div>
 
-                        <a href="{% url 'delete_Profession' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
-                           <i class="fa-solid fa-trash-can"></i>
+                     <div class="col-6 col-sm-6 col-md-6 ">
+                        <a href="{% url 'delete_Profession' i.id %}" class="btn btn-normal btn-sm btn-block text-dark m-2">
+                           <i class="fa-solid fa-trash-can"></i> Delete
                         </a>
                      </div>
                   </div>
@@ -438,8 +441,9 @@
       <!-- End Whatsapp number pop up -->
    </div>
 </div>
+<!-- End Profession Profiles screen - for login user -->
 {% else %}
-<!-- Start Profession Profiles screen -->
+<!-- Start Profession Profiles screen - for other user -->
 <div class="row">
    <div class="col-md-12 profession-profile-screen">
       <!-- Start Profile Heading and options -->
@@ -711,7 +715,7 @@
 
    </div>
 </div>
-<!-- End Profession Profiles screen -->
+<!-- End Profession Profiles screen - for other user -->
 {% endif %}
 
 
