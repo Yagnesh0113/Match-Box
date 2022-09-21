@@ -90,6 +90,12 @@
     color: rgba(255, 255, 255, 0.6);
 }
 
+.profession-cart .card
+{
+    background-color:var(--color-15);
+    min-width: 100%;
+}
+
 .profession-cart .profession-img .img-fluid
 {
     height:9.375rem;
@@ -131,6 +137,7 @@
     line-height: 180%;
     color: rgba(255, 255, 255, 0.6);
 }
+
 
 
 
