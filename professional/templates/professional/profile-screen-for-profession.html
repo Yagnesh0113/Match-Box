@@ -14,10 +14,11 @@
 <link rel="stylesheet" href="/static/community_profession/css/community/community.css">
 {% endblock own_css %}
 {% block content %}
-<!-- Start Profession Profiles screen -->
 {% if loginuser is userprofile %}
+<!-- Start Profession Profiles screen - for login user -->
 <div class="row">
    <div class="col-md-12 profession-profile-screen">
+
       <!-- Start Profile Heading and options -->
       <div class="row">
          <div class="col-6 col-sm-6 col-md-6 profile-heading pt-4">
@@ -29,9 +30,9 @@
                <i class="fa-solid fa-ellipsis-vertical"></i>
                </button>
                <div class="dropdown-menu">
-<!--                  <a class="dropdown-item" href="#">-->
-<!--                  <i class="fa-solid fa-ban"></i> Block Users-->
-<!--                  </a>-->
+                  <!--                  <a class="dropdown-item" href="#">-->
+                  <!--                  <i class="fa-solid fa-ban"></i> Block Users-->
+                  <!--                  </a>-->
                   <a class="dropdown-item" href="#">
                   <i class="fa-solid fa-bell"></i> My Notifications
                   </a>
@@ -49,13 +50,6 @@
          </div>
       </div>
       <!-- End Profile Heading and options -->
-      <!-- Start Profile image -->
-      <!-- <div class="row justify-content-center">
-         <div class="col-4 col-md-1">
-             
-         </div>
-         </div> -->
-      <!-- End Profile image -->
 
       <!-- Start Personal information -->
       <div class="row justify-content-center pt-3 pb-3 border-bottom">
@@ -66,21 +60,19 @@
                   <!-- Start Profile img -->
                   <div class="row">
                      <div class="col-md-12">
-                           {% if  userprofile.profile_image %}
-                           <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
-                           {% else %}
-                           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
-                           {% endif %}
-
+                        {% if  userprofile.profile_image %}
+                        <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                        {% else %}
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                        {% endif %}
                      </div>
                   </div>
                   <!-- End Profile img -->
-
                   <!-- Start Edit Profile img btn -->
                   <div class="row">
                      <div class="col-md-12 pt-3 text-center edit-profile-btn">
                         <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-                           <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+                        <i class="fa-solid fa-pen-to-square"></i> Edit Profile
                         </button>
                      </div>
                   </div>
@@ -139,12 +131,11 @@
                   <div class="row ">
                      <div class="col-md-12 edit-profile-btn">
                         <button type="submit" class="btn" data-toggle="modal" data-target="#exampleModalLabel1">
-                           <i class="fa-solid fa-pen-to-square"></i> Edit Details
+                        <i class="fa-solid fa-pen-to-square"></i> Edit Details
                         </button>
                      </div>
                   </div>
                   <!-- End Personal Detail Edit btn -->
-
                   <!-- End Whatsapp numbers -->
                   <div class="row pt-1">
                      <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
@@ -155,7 +146,7 @@
                         : +{{userprofile.country_code}} {{userprofile.whatsapp_number}}
                      </div>
                      {% else %}
-                      <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
                         : Add Your Whatsapp Number
                      </div>
                      {% endif %}
@@ -165,12 +156,11 @@
                   <div class="row ">
                      <div class="col-md-12 edit-profile-btn">
                         <button type="submit" class="btn" data-toggle="modal" data-target="#whatsapp">
-                           <i class="fa-solid fa-pen-to-square"></i> Edit Details
+                        <i class="fa-solid fa-pen-to-square"></i> Edit Details
                         </button>
                      </div>
                   </div>
                   <!-- End edit Whatsapp number -->
-
                </div>
             </div>
             <!-- End Profession Personal information -->
@@ -179,7 +169,6 @@
       </div>
       <!-- End Personal information -->
 
-
       <!-- Start my profession heading and add new btn -->
       <div class="row">
          <!-- Start My Profession Heading -->
@@ -187,108 +176,113 @@
             My Profession
          </div>
          <!-- End My Profession Heading -->
+
          <div class="col-6 col-sm-6 col-md-6 profile-heading text-right pt-4">
             <a href="{% url 'add_profession' %}" class="btn btn-normal text-dark">Add New</a>
          </div>
       </div>
       <!-- End my profession heading and add new btn -->
-
       <!-- Start my Profession card -->
       {% if profession %}
-      <div class="row">
+      <div class="row pl-2">
          {% for i in profession %}
-         <div class="col-12 col-sm-6 col-md-4">
-            <div class="row p-3 profession-cart">
-               <div class="col-12 col-sm-12 col-md-12 border-1 rounded">
-                  <!-- Start image -->
-                  <div class="row profession-img">
-                     <div class="col-12 col-sm-9 col-md-9 pt-3">
+         <div class="col-12 col-sm-6 col-md-4 d-flex mt-4 profession-cart">
+            <div class="card border-1">
+               <div class="card-header">
+                   <div class="row profession-img">
+                     <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
                         <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
                      </div>
-                  </div>
-                  <!-- End image -->
-                  <!-- Start profession heading -->
-                  <div class="row">
-                     <div class="col-md-12 heading">
-                        {{i.profession}}
-                     </div>
-                  </div>
-                  <!-- End profession heading -->
-                  <!-- Start Profession sub heading and content-->
-                  <div class="row">
-                     <div class="col-md-12">
-                        <!-- Start name -->
-                        <div class="row">
-                           <!-- Start sub heading -->
-                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Name</div>
-                           <!-- End sub heading -->
-                           <!-- Start content -->
-                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_name}}</div>
-                           <!-- End content -->
-                        </div>
-                        <!-- End name -->
-                        <!-- Start address -->
-                        <div class="row">
-                           <!-- Start sub heading -->
-                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Address</div>
-                           <!-- End sub heading -->
-                           <!-- Start content -->
-                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_address}}</div>
-                           <!-- End content -->
-                        </div>
-                        <!-- End address -->
-                        <!-- Start Time -->
-                        <div class="row">
-                           <!-- Start sub heading -->
-                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Time</div>
-                           <!-- End sub heading -->
-                           <!-- Start content -->
-                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
-                           <!-- End content -->
-                        </div>
-                        <!-- End Time -->
-                     </div>
-                  </div>
-                  <!-- End Profession sub heading and content-->
-                  <!-- Start btn -->
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12">
-                        <a href="{% url 'profession_details' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
-                           <i class="fa-solid fa-eye"></i>
-                        </a>
+                   </div>
+               </div>
 
-                        <a href="{% url 'delete_Profession' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
-                           <i class="fa-solid fa-trash-can"></i>
-                        </a>
+               <div class="card-body">
+                     <!-- Start profession heading -->
+                     <div class="row">
+                        <div class="col-md-12 heading pt-5">
+                           {{i.profession}}
+                        </div>
                      </div>
-                  </div>
-                  <!-- End btn -->
+                     <!-- End profession heading -->
+
+                     <!-- Start Profession sub heading and content-->
+                     <div class="row">
+                        <div class="col-md-12">
+                           <!-- Start name -->
+                           <div class="row">
+                              <!-- Start sub heading -->
+                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Name</div>
+                              <!-- End sub heading -->
+                              <!-- Start content -->
+                              <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_name}}</div>
+                              <!-- End content -->
+                           </div>
+                           <!-- End name -->
+                           <!-- Start address -->
+                           <div class="row">
+                              <!-- Start sub heading -->
+                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Address</div>
+                              <!-- End sub heading -->
+                              <!-- Start content -->
+                              <div class="col-9 col-sm-9 col-md-9 content text-justify">: {{i.shop_address}}</div>
+                              <!-- End content -->
+                           </div>
+                           <!-- End address -->
+                           <!-- Start Time -->
+                           <div class="row">
+                              <!-- Start sub heading -->
+                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Time</div>
+                              <!-- End sub heading -->
+                              <!-- Start content -->
+                              <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
+                              <!-- End content -->
+                           </div>
+                           <!-- End Time -->
+                        </div>
+                     </div>
+                     <!-- End Profession sub heading and content-->
+               </div>
+
+               <div class="card-footer">
+                  <div class="row pt-4 align-self-end">
+                        <div class="col-6 col-sm-6 col-md-6 ">
+                           <a href="{% url 'profession_details' i.id %}" class="btn btn-normal-b btn-block text-dark">
+                              <i class="fa-solid fa-eye"></i> Views
+                           </a>
+                        </div>
+
+                        <div class="col-6 col-sm-6 col-md-6 ">
+                           <a href="{% url 'delete_Profession' i.id %}" class="btn btn-normal-b btn-block text-dark">
+                              <i class="fa-solid fa-trash-can"></i> Delete
+                           </a>
+                        </div>
+                     </div>
                </div>
             </div>
          </div>
          {% endfor %}
       </div>
       {% else %}
-          <!-- fcgvhbkjnlm,.;/ fcghvkjnlm, -->
-         <div class="row pl-4 pt-3">
-            <div class="col-md-12 text-center recent-searches-window">
-               <div class="row">
-                  <div class="col-md-12 search-icon">
-                     <i class="fa-regular fa-square-plus"></i>
-                  </div>
+      <!-- fcgvhbkjnlm,.;/ fcghvkjnlm, -->
+      <div class="row pl-4 pt-3">
+         <div class="col-md-12 text-center recent-searches-window">
+            <div class="row">
+               <div class="col-md-12 search-icon">
+                  <i class="fa-regular fa-square-plus"></i>
                </div>
-               <div class="row">
-                  <div class="col-md-12 search-heading">
-                     Add New Profession
-                  </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-heading">
+                  Add New Profession
                </div>
-               <div class="row">
-                  <div class="col-md-12 search-sub-heading">
-                     Create Your Profession
-                  </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-sub-heading">
+                  Create Your Profession
                </div>
             </div>
          </div>
+      </div>
       {% endif %}
       <!-- End my Profession card -->
 
@@ -309,16 +303,15 @@
                         <div class="row">
                            <div class="col-4">
                               {% if  userprofile.profile_image %}
-                        <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
-                        {% else %}
-                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
-                        {% endif %}
+                              <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                              {% else %}
+                              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                              {% endif %}
                            </div>
                            <div class="col-8">
                               <span class="modal-sub-heading">
-                                 Select Image
+                              Select Image
                               </span>
-
                               <input id="file_id" type="file" name="profile_image" class="text-dark" required>
                            </div>
                         </div>
@@ -367,27 +360,26 @@
                         <label for="message-text" class="col-form-label modal-sub-heading">State:{{userprofile.state}}</label>
                         <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1" required>
                            {% if userprofile.state is None %}
-                              <option value="" class="border">Please Select The State</option>
-                              {% for i in state %}
-                                 <option value="{{i.id}}" class="border">{{i.name}}</option>
-                              {% endfor %}
+                           <option value="" class="border">Please Select The State</option>
+                           {% for i in state %}
+                           <option value="{{i.id}}" class="border">{{i.name}}</option>
+                           {% endfor %}
                            {% else %}
-                              {% for i in state %}
-                                 {% if userprofile.state in i.name %}
-                                    <option value="{{i.id}}" class="border">{{i.name}}</option>
-                                 {% else %}
-                                    <option value="{{i.id}}" class="border">{{i.name}}</option>
-                                 {% endif %}
-                              {% endfor %}
+                           {% for i in state %}
+                           {% if userprofile.state in i.name %}
+                           <option value="{{i.id}}" class="border">{{i.name}}</option>
+                           {% else %}
+                           <option value="{{i.id}}" class="border">{{i.name}}</option>
                            {% endif %}
-                        </select>   
+                           {% endfor %}
+                           {% endif %}
+                        </select>
                      </div>
                      <div class="form-group">
                         <label for="message-text" class="col-form-label modal-sub-heading">City:</label>
                         <select name="city" class="form-control border-left-0" id="city" required>
                            <option class="border" value="{{userprofile.city}}">{% if userprofile.city is None %}Please Select First State{% else %}{{userprofile.city}}{% endif %}</option>
-
-                        </select> 
+                        </select>
                      </div>
                   </div>
                   <div class="modal-footer">
@@ -412,7 +404,7 @@
                </div>
                <form action="{% url 'update_whatsapp_number' %}" method="POST">
                   {% csrf_token %}
-               <div class="modal-body">
+                  <div class="modal-body">
                      <div class="form-group">
                         <label for="Country-Code" class="col-form-label modal-sub-heading">Country Code:</label>
                         <input type="text" value="+91" class="form-control" id="Country-Code" name="country_code" disabled>
@@ -420,26 +412,26 @@
                      <div class="form-group">
                         <label for="Number" class="col-form-label modal-sub-heading">Number:</label>
                         {% if userprofile.whatsapp_number %}
-                           <input type="text" class="form-control" required id="Number" value="{{userprofile.whatsapp_number}}" name="whatsapp_number" maxlength="10">
+                        <input type="text" class="form-control" required id="Number" value="{{userprofile.whatsapp_number}}" name="whatsapp_number" maxlength="10">
                         {% else %}
-                           <input type="text" class="form-control" required id="Number" placeholder="Add Your Whatsapp Number" name="whatsapp_number" maxlength="10">
+                        <input type="text" class="form-control" required id="Number" placeholder="Add Your Whatsapp Number" name="whatsapp_number" maxlength="10">
                         {% endif %}
                      </div>
-
-               </div>
-               <div class="modal-footer">
-                  <button type="submit" class="btn btn-normal-b">Save Changes</button>
-                  <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
-               </div>
-            </form>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="submit" class="btn btn-normal-b">Save Changes</button>
+                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
+                  </div>
+               </form>
             </div>
          </div>
       </div>
       <!-- End Whatsapp number pop up -->
    </div>
 </div>
+<!-- End Profession Profiles screen - for login user -->
 {% else %}
-<!-- Start Profession Profiles screen -->
+<!-- Start Profession Profiles screen - for other user -->
 <div class="row">
    <div class="col-md-12 profession-profile-screen">
       <!-- Start Profile Heading and options -->
@@ -453,33 +445,32 @@
                <i class="fa-solid fa-ellipsis-vertical"></i>
                </button>
                <div class="dropdown-menu">
-<!--                  <a class="dropdown-item" href="#">-->
-<!--                  <i class="fa-solid fa-ban"></i> Block Users-->
-<!--                  </a>-->
+                  <!--                  <a class="dropdown-item" href="#">-->
+                  <!--                  <i class="fa-solid fa-ban"></i> Block Users-->
+                  <!--                  </a>-->
                   <a class="dropdown-item" href="#">
-                     <i class="fa-solid fa-bell"></i> Post
+                  <i class="fa-solid fa-bell"></i> Post
                   </a>
                   <a class="dropdown-item" href="#">
-                     <i class="fa-solid fa-bell"></i> Post
+                  <i class="fa-solid fa-bell"></i> Post
                   </a>
                   <a class="dropdown-item" href="#">
-                     <i class="fa-solid fa-clock"></i> Question
+                  <i class="fa-solid fa-clock"></i> Question
                   </a>
                   <a class="dropdown-item" href="#"data-target="#report-profile" data-toggle="modal" onclick="Reportprofile('{{userprofile1.usertype.user_id.id}}')">
                      <i class="fa-solid fa-ban"></i> Report
                   </a>
                   <a class="dropdown-item" href="" data-target="#share-modal" data-toggle="modal">
-                     <i class="fa-solid fa-clock"></i> Share
+                  <i class="fa-solid fa-clock"></i> Share
                   </a>
                   <!-- <a class="dropdown-item" href="{% url 'user_logout' %}">
-                  <i class="fa-solid fa-right-from-bracket"></i> Sign Out
-                  </a> -->
+                     <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                     </a> -->
                </div>
             </div>
          </div>
       </div>
       <!-- End Profile Heading and options -->
-
       <!-- Start Personal information -->
       <div class="row justify-content-center pt-3 pb-3 border-bottom">
          <!-- Start Profile picture -->
@@ -489,25 +480,22 @@
                   <!-- Start Profile img -->
                   <div class="row">
                      <div class="col-md-12">
-                         {% if  userprofile1.profile_image %}
-                           <img src="{{userprofile1.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
-                           {% else %}
-                           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
-                           {% endif %}
-
+                        {% if  userprofile1.profile_image %}
+                        <img src="{{userprofile1.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                        {% else %}
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                        {% endif %}
                      </div>
                   </div>
                   <!-- End Profile img -->
-
                   <!-- Start Edit Profile img btn -->
-                 
                   <!-- <div class="row">
                      <div class="col-md-12 pt-3 text-center edit-profile-btn">
                         <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
                            <i class="fa-solid fa-pen-to-square"></i> Edit Profile
                         </button>
                      </div>
-                  </div> -->
+                     </div> -->
                   <!-- End Edit Profile img btn -->
                </div>
             </div>
@@ -566,9 +554,8 @@
                            <i class="fa-solid fa-pen-to-square"></i> Edit Details
                         </button>
                      </div>
-                  </div> -->
+                     </div> -->
                   <!-- End Personal Detail Edit btn -->
-
                   <!-- End Whatsapp numbers -->
                   <div class="row pt-1">
                      <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
@@ -579,7 +566,7 @@
                         : +{{userprofile1.country_code}} {{userprofile1.whatsapp_number}}
                      </div>
                      {% else %}
-                      <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
                         : Add Your Whatsapp Number
                      </div>
                      {% endif %}
@@ -592,7 +579,7 @@
                            <i class="fa-solid fa-pen-to-square"></i> Edit Details
                         </button>
                      </div>
-                  </div> -->
+                     </div> -->
                   <!-- End edit Whatsapp number -->
                </div>
             </div>
@@ -601,7 +588,6 @@
          <!-- End Personal information -->
       </div>
       <!-- End Personal information -->
-
       <!-- Start my profession heading and add new btn -->
       <div class="row">
          <!-- Start My Profession Heading -->
@@ -611,110 +597,177 @@
          <!-- End My Profession Heading -->
          <!-- <div class="col-6 col-sm-6 col-md-6 profile-heading text-right pt-4">
             <a href="{% url 'add_profession' %}" class="btn btn-normal text-dark">Add New</a>
-         </div> -->
+            </div> -->
       </div>
       <!-- End my profession heading and add new btn -->
       <!-- Start my Profession card -->
       {% if profession %}
       <div class="row">
          {% for i in profession %}
-         <div class="col-12 col-sm-6 col-md-4">
+
+          <div class="col-12 col-sm-6 col-md-4 d-flex mt-4 profession-cart">
+            <div class="card border-1">
+               <div class="card-header">
+                   <div class="row profession-img">
+                     <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
+                        <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
+                     </div>
+                   </div>
+               </div>
+
+               <div class="card-body">
+                     <!-- Start profession heading -->
+                     <div class="row">
+                        <div class="col-md-12 heading pt-5">
+                           {{i.profession}}
+                        </div>
+                     </div>
+                     <!-- End profession heading -->
+
+                     <!-- Start Profession sub heading and content-->
+                     <div class="row">
+                        <div class="col-md-12">
+                           <!-- Start name -->
+                           <div class="row">
+                              <!-- Start sub heading -->
+                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Name</div>
+                              <!-- End sub heading -->
+                              <!-- Start content -->
+                              <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_name}}</div>
+                              <!-- End content -->
+                           </div>
+                           <!-- End name -->
+                           <!-- Start address -->
+                           <div class="row">
+                              <!-- Start sub heading -->
+                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Address</div>
+                              <!-- End sub heading -->
+                              <!-- Start content -->
+                              <div class="col-9 col-sm-9 col-md-9 content text-justify">: {{i.shop_address}}</div>
+                              <!-- End content -->
+                           </div>
+                           <!-- End address -->
+                           <!-- Start Time -->
+                           <div class="row">
+                              <!-- Start sub heading -->
+                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Time</div>
+                              <!-- End sub heading -->
+                              <!-- Start content -->
+                              <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
+                              <!-- End content -->
+                           </div>
+                           <!-- End Time -->
+                        </div>
+                     </div>
+                     <!-- End Profession sub heading and content-->
+               </div>
+
+               <div class="card-footer">
+                  <div class="row pt-4 d-flex justify-content-center">
+                        <div class="col-5 col-sm-5 col-md-5">
+                           <a href="{% url 'profession-personal-details' i.id %}" class="btn btn-normal btn-sm btn-block text-dark m-2">
+                              <i class="fa-solid fa-eye"></i> View
+                           </a>
+                        </div>
+                  </div>
+               </div>
+            </div>
+          </div>
+
+         <!--<div class="col-12 col-sm-6 col-md-4">
             <div class="row p-3 profession-cart">
                <div class="col-12 col-sm-12 col-md-12 border-1 rounded">
-                  <!-- Start image -->
+                  &lt;!&ndash; Start image &ndash;&gt;
                   <div class="row profession-img">
                      <div class="col-12 col-sm-9 col-md-9 pt-3">
                         <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
                      </div>
                   </div>
-                  <!-- End image -->
-                  <!-- Start profession heading -->
+                  &lt;!&ndash; End image &ndash;&gt;
+                  &lt;!&ndash; Start profession heading &ndash;&gt;
                   <div class="row">
                      <div class="col-md-12 heading">
                         {{i.profession}}
                      </div>
                   </div>
-                  <!-- End profession heading -->
-                  <!-- Start Profession sub heading and content-->
+                  &lt;!&ndash; End profession heading &ndash;&gt;
+                  &lt;!&ndash; Start Profession sub heading and content&ndash;&gt;
                   <div class="row">
                      <div class="col-md-12">
-                        <!-- Start name -->
+                        &lt;!&ndash; Start name &ndash;&gt;
                         <div class="row">
-                           <!-- Start sub heading -->
+                           &lt;!&ndash; Start sub heading &ndash;&gt;
                            <div class="col-4 col-sm-4 col-md-4 sub-heading">Name</div>
-                           <!-- End sub heading -->
-                           <!-- Start content -->
+                           &lt;!&ndash; End sub heading &ndash;&gt;
+                           &lt;!&ndash; Start content &ndash;&gt;
                            <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_name}}</div>
-                           <!-- End content -->
+                           &lt;!&ndash; End content &ndash;&gt;
                         </div>
-                        <!-- End name -->
-                        <!-- Start address -->
+                        &lt;!&ndash; End name &ndash;&gt;
+                        &lt;!&ndash; Start address &ndash;&gt;
                         <div class="row">
-                           <!-- Start sub heading -->
+                           &lt;!&ndash; Start sub heading &ndash;&gt;
                            <div class="col-4 col-sm-4 col-md-4 sub-heading">Address</div>
-                           <!-- End sub heading -->
-                           <!-- Start content -->
+                           &lt;!&ndash; End sub heading &ndash;&gt;
+                           &lt;!&ndash; Start content &ndash;&gt;
                            <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_address}}</div>
-                           <!-- End content -->
+                           &lt;!&ndash; End content &ndash;&gt;
                         </div>
-                        <!-- End address -->
-                        <!-- Start Time -->
+                        &lt;!&ndash; End address &ndash;&gt;
+                        &lt;!&ndash; Start Time &ndash;&gt;
                         <div class="row">
-                           <!-- Start sub heading -->
+                           &lt;!&ndash; Start sub heading &ndash;&gt;
                            <div class="col-4 col-sm-4 col-md-4 sub-heading">Time</div>
-                           <!-- End sub heading -->
-                           <!-- Start content -->
+                           &lt;!&ndash; End sub heading &ndash;&gt;
+                           &lt;!&ndash; Start content &ndash;&gt;
                            <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
-                           <!-- End content -->
+                           &lt;!&ndash; End content &ndash;&gt;
                         </div>
-                        <!-- End Time -->
+                        &lt;!&ndash; End Time &ndash;&gt;
                      </div>
                   </div>
-                  <!-- End Profession sub heading and content-->
-                  <!-- Start btn -->
+                  &lt;!&ndash; End Profession sub heading and content&ndash;&gt;
+                  &lt;!&ndash; Start btn &ndash;&gt;
                   <div class="row">
                      <div class="col-12 col-sm-12 col-md-12">
                         <a href="{% url 'profession-personal-details' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
-                           <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-eye"></i>
                         </a>
                      </div>
                   </div>
-                  <!-- End btn -->
+                  &lt;!&ndash; End btn &ndash;&gt;
                </div>
             </div>
-         </div>
+         </div>-->
          {% endfor %}
       </div>
       {% else %}
       <!-- fcgvhbkjnlm,.;/ fcghvkjnlm, -->
       <div class="row pl-4 pt-3">
-            <div class="col-md-12 text-center recent-searches-window">
-               <div class="row">
-                  <div class="col-md-12 search-icon">
-                     <i class="fa-solid fa-ban"></i>
-                  </div>
+         <div class="col-md-12 text-center recent-searches-window">
+            <div class="row">
+               <div class="col-md-12 search-icon">
+                  <i class="fa-solid fa-ban"></i>
                </div>
-               <div class="row">
-                  <div class="col-md-12 search-heading">
-                     No Profession
-                  </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-heading">
+                  No Profession
                </div>
-               <div class="row">
-                  <div class="col-md-12 search-sub-heading">
-                   For Now
-                  </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-sub-heading">
+                  For Now
                </div>
             </div>
          </div>
+      </div>
       {% endif %}
       <!-- End my Profession card -->
-
    </div>
 </div>
-<!-- End Profession Profiles screen -->
+<!-- End Profession Profiles screen - for other user -->
 {% endif %}
-
-
 <!-- Start Create Report-question -->
 <div class="modal create-community-modeal" id="report-profile">
    <div class="modal-dialog modal-lg">
@@ -744,8 +797,8 @@
                      <span class="modal-sub-heading">Adult Content </span>
                      <div class="form-check border rounded mt-3 pt-2 pb-2">
                         <label class="form-check-label">
-                           <input type="checkbox" name="adult" class="form-check-input" value="">
-                              18+ content
+                        <input type="checkbox" name="adult" class="form-check-input" value="">
+                        18+ content
                         </label>
                      </div>
                   </div>
@@ -753,13 +806,12 @@
                      <span class="modal-sub-heading">Abusing Content </span>
                      <div class="form-check border rounded mt-3 pt-2 pb-2">
                         <label class="form-check-label">
-                           <input type="checkbox" name="adult" class="form-check-input" value="">
-                              Abusing Content
+                        <input type="checkbox" name="adult" class="form-check-input" value="">
+                        Abusing Content
                         </label>
                      </div>
                   </div>
                </div>
-               
             </div>
             <div class="modal-footer">
                <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
@@ -772,7 +824,6 @@
    </div>
 </div>
 <!-- End Create Report-question -->
-
 <!-- Start Share Modal -->
 <div class="modal create-community-modeal" id="share-modal">
    <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -827,7 +878,6 @@
    </div>
 </div>
 <!-- End Share Modal -->
-
 <!-- For profile photo Restriction -->
 <script>
    let fileInput = document.getElementById("file_id");
@@ -849,7 +899,6 @@
    });
 </script>
 <!-- End Post Restriction -->
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
    $("#state").change(function () {
@@ -868,9 +917,7 @@
 
    });
 </script>
-
 {% add_copy_script %}
-
 <!-- Start the report-question script -->
 <script>
    function Reportprofile(id){
@@ -879,5 +926,4 @@
    }
 </script>
 <!-- End the report-question script -->
-
 {% endblock content %}
