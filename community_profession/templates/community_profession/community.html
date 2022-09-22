@@ -355,7 +355,10 @@
                            </button>
                            <div class="dropdown-menu">
                               <!-- <a class="dropdown-item" href="#">{% copy_to_clipboard object_or_url%}Copy Link</a> -->
-                              <a class="dropdown-item" href="#"data-target="#report-post" data-toggle="modal" onclick="Reportpost('{{i.Post.id}}')">Report</a>
+                              {% if userprofile.id is i.Post.user_post.User_Profile.id %}
+                              {% else %}
+                              <a class="dropdown-item" href="#"data-target="#report-post" data-toggle="modal" onclick="Reportpost('{{i.Post.user_post.id}}')">Report</a>
+                              {% endif %}
 
                               <!-- Start Edit and Delete login User -->
                               {% if userprofile.id is i.Post.user_post.User_Profile.id %}
@@ -431,11 +434,15 @@
                   <a href="{% url 'like_post' i.Post.user_post.id %}">
                      {% if userprofile not in i.Post.user_post.Like.all %}
                         <button type="submit" class="btn community-like-dislike-btn">
-                           <i class="fa-solid fa-thumbs-up"></i>
+                           <span id="icon">
+                              <i class="fa-solid fa-thumbs-up"></i>
+                           </span>
                         </button>
                      {% else %}
                         <button type="submit" class="btn community-like-dislike-btn">
-                           <i class="fa-solid fa-thumbs-down"></i>
+                           <span id="icon">
+                              <i class="fa-solid fa-thumbs-down"></i>
+                           </span>
                         </button>
                      {% endif %}
                   </a>
@@ -514,8 +521,12 @@
                            <i class="fa-solid fa-ellipsis-vertical"></i>
                            </button>
                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#">Copy Link</a>
+                              <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
+                              {% if userprofile.id is i.Question.User_Profile.id %}
+                              {% else %}
                               <a class="dropdown-item" href="#"data-target="#report-question" data-toggle="modal" onclick="Reportquestion('{{i.Question.id}}')">Report</a>
+                              {% endif %}
+
                               <a class="dropdown-item" href="{% url 'ans_later' i.Question.id %}">Answer Later</a>
                               
                               <!-- Start Edit and Delete login User -->
@@ -533,8 +544,8 @@
                               {% endif %}
                               <!-- End Question Book mark -->
 
-                              <a class="dropdown-item" href="#">Save</a>
-                              <a class="dropdown-item" href="#">Share</a>
+                              <!-- <a class="dropdown-item" href="#">Save</a> -->
+                              <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
                         </div>
                      </div>
@@ -680,8 +691,8 @@
                               {% endif %}
                               <!-- End Post Book Mark -->
 
-                              <a class="dropdown-item" href="#">Save</a>
-                              <a class="dropdown-item" href="#">Share</a>
+                              <!-- <a class="dropdown-item" href="#">Save</a> -->
+                              <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
                         </div>
                      </div>
@@ -765,7 +776,6 @@
       {% endif %}
       <!-- End Others Image Post -->
 
-
       <!-- Start Others Video Post -->
       {% if User_post_obj_video %}
       {% for i in User_post_obj_video %}
@@ -834,8 +844,8 @@
                               {% endif %}
                               <!-- End Post Book Mark -->
 
-                              <a class="dropdown-item" href="#">Save</a>
-                              <a class="dropdown-item" href="#">Share</a>
+                              <!-- <a class="dropdown-item" href="#">Save</a> -->
+                              <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
                         </div>
                      </div>
@@ -925,7 +935,6 @@
       {% endif %}
       <!-- End others Video Post -->
 
-
       <!-- Start Others Questions Post -->
       {% if User_question %}
       {% for i in User_question %}
@@ -981,11 +990,11 @@
                            <i class="fa-solid fa-ellipsis-vertical"></i>
                            </button>
                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#">Copy Link</a>
+                              <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
                               <a class="dropdown-item" href="#"data-target="#report-question" data-toggle="modal" onclick="Reportquestion('{{i.id}}')">Report</a>
                               <a class="dropdown-item" href="{% url 'ans_later' i.id %}">Answer Later</a>
-                              <a class="dropdown-item" href="#">Delete question</a>
-                              <a class="dropdown-item" href="#">Edit question</a>
+                              <!-- <a class="dropdown-item" href="#">Delete question</a> -->
+                              <!-- <a class="dropdown-item" href="#">Edit question</a> -->
 
                               <!-- Start Question Book mark -->
                               {% if i.Question_bookmark is False %}
@@ -995,8 +1004,8 @@
                               {% endif %}
                               <!-- End Question Book mark -->
 
-                              <a class="dropdown-item" href="#">Save</a>
-                              <a class="dropdown-item" href="#">Share</a>
+                              <!-- <a class="dropdown-item" href="#">Save</a> -->
+                              <!-- <a class="dropdown-item" href="#">Share</a> -->
                            </div>
                         </div>
                      </div>
@@ -1070,8 +1079,6 @@
       {% endfor %}
       {% endif %}
       <!-- End Others Questions Post -->
-
-
 
       <!-- Start My Video -->
       {% if User_POST_my_video %}
@@ -1233,7 +1240,6 @@
       {% endif %}
       <!-- End My Video -->
 
-
       <!-- Start My Images -->
       {% if User_POST_my_image %}
       {% for i in User_POST_my_image %}
@@ -1392,7 +1398,6 @@
       {% endfor %}
       {% endif %}
       <!-- End My Image -->
-
 
       <!-- Start My Questions -->
       {% if User_POST_my_question %}
@@ -1956,12 +1961,19 @@
                   <div class="row">
                      <div class="col-md-12 public-limited">
                         <div class="dropdown">
-                           <select name="UserId" id="" class="form-control">
+                           <input onkeyup="userSearch()" id="user-serach" class="form-control" name="search_community" placeholder="Search...." type="text">
+                           <ul class="list-unstyled" id="user_id">
+                              <li> {{userid.usertype.user_id.first_name}} &nbsp; {{userid.usertype.user_id.last_name}} &nbsp;&nbsp;{{userid.usertype.user_id.email}}
+                              </li>
+                           </ul>
+                           <!-- <select name="UserId" id="" class="form-control">
                               <option value="Public" selected>--- For All ---</option>
                               {% for userid in userid %}
-                              <option value="{{userid.id}}">{{userid.usertype.user_id.first_name}}</option>
+                              <optgroup label="{{userid.usertype.user_id.first_name}} {{userid.usertype.user_id.last_name}} ">
+                                 <option value="{{userid.id}}"><label for=""> Email </label><label for=""> : </label> {{userid.usertype.user_id.email}}</option>
+                              </optgroup>
                               {% endfor %}
-                           </select>
+                           </select> -->
                         </div>
                      </div>
                   </div>
@@ -2242,6 +2254,25 @@
 </script>
 <!-- End the report-question script -->
 
+<!-- search script -->
+<script>
+   function userSearch() {
+     var input, filter, ul, li, a, i;
+     input = document.getElementById("user-serach");
+     filter = input.value.toUpperCase();
+     ul = document.getElementById("user_id");
+     li = ul.getElementsByTagName("li");
+     for (i = 0; i < li.length; i++) {
+       a = li[i].getElementsByTagName("a")[0];
+       if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+         li[i].style.display = "";
+       } else {
+         li[i].style.display = "none";
+       }
+     }
+   }
+</script>
+<!-- end search script -->
 {% endblock content %}
 
 

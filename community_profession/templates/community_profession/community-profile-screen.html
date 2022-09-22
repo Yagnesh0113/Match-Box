@@ -1,5 +1,6 @@
 {% extends 'community_profession/community.html' %}
 {% load static %}
+{% load social_share %}
 {% block title %}
 <title>Community Profile Screen</title>
 {% endblock title %}
@@ -47,21 +48,6 @@
       <!-- Start join - btn -->
       {% if z %}
       {% if userprofile.id is z.Commnunity_id.User_Profile.id %}
-      <span class="join-btn pl-5 pr-5">
-      <a href="{% url 'Edit_Community' z.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Edit</button></a>
-      <a href="{% url 'Delete_Community' z.Commnunity_id.id %}"><button type="submit" class="btn btn-sm  btn-normal-b">Delete</button></a>
-      </span>
-      {% else %}
-      <span class="join-btn pl-5 pr-5">
-      <a href="{% url 'Unjoin' z.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Un Join</button></a>
-      </span>
-      {% endif %}
-      {% else %}
-      <span class="join-btn pl-5 pr-5">
-      <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Join</button></a>
-      </span>
-      {% endif %}
-      <!-- End join - btn -->
       <!-- Start options -->
       <span class="iterator-design-options">
          <div class="dropdown dropleft float-right pr-4">
@@ -69,19 +55,53 @@
             <i class="fa-solid fa-ellipsis-vertical"></i>
             </button>
             <div class="dropdown-menu">
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a>
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a>
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-ban"></i> Block Account</a>
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Edit post </a>
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete post</a>
-               <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Save</a>
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a> -->
+               <a class="dropdown-item" href="" data-target="#share-modal" data-toggle="modal"><i class="fa-solid fa-share-nodes"></i> Share</a>
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a> -->
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
+               {% if userprofile.id is i.User_Profile.id %}
+               <a class="dropdown-item" href="{% url 'Edit_Community' z.Commnunity_id.id %}"><i class="fa-solid fa-pen"></i> Edit Community </a>
+               <a class="dropdown-item" href="{% url 'Delete_Community' z.Commnunity_id.id %}"><i class="fa-solid fa-trash"></i> Delete Community</a>
+               {% endif %}
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Save</a> -->
             </div>
          </div>
       </span>
       <!-- End options -->
+      {% else %}
+      <span class="join-btn pl-5 pr-5">
+      <a href="{% url 'Unjoin' z.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Un Join</button></a>
+      </span>
+      <!-- Start options -->
+      <span class="iterator-design-options">
+         <div class="dropdown dropleft float-right pr-4">
+            <button type="button" class="dropdown-btn" data-toggle="dropdown">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <div class="dropdown-menu">
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a> -->
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a> -->
+
+               <a class="dropdown-item" href="#" data-target="#report-community" data-toggle="modal" onclick="Reportcommunity('{{i.id}}')"><i class="fa-solid fa-ban"></i> Report</a>
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
+               <!-- <a class="dropdown-item" href="{% url 'Edit_Community' z.Commnunity_id.id %}"><i class="fa-solid fa-pen"></i> Edit Community </a>
+               <a class="dropdown-item" href="{% url 'Delete_Community' z.Commnunity_id.id %}"><i class="fa-solid fa-trash"></i> Delete Community</a> -->
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Save</a> -->
+            </div>
+         </div>
+      </span>
+      <!-- End options -->
+      {% endif %}
+      {% else %}
+      <span class="join-btn pl-5 pr-5">
+      <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Join</button></a>
+      </span>
+      {% endif %}
+      <!-- End join - btn -->
+      
    </div>
    <!-- End share community and join btn -->
 </div>
@@ -188,15 +208,17 @@
                <i class="fa-solid fa-ellipsis-vertical"></i>
                </button>
                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-ban"></i> Block Account</a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a> -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a> -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a> -->
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-ban"></i> Report </a>
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
+                  {% if userprofile.id is Post.user_post.User_Profile.id %}
                   <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Edit post </a>
                   <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete post</a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Save</a>
+                  {% endif %}
+                  <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Bookmark</a>
                </div>
             </div>
          </div>
@@ -301,4 +323,116 @@
 </div>
 {% endfor %}
 <!-- End Post -->
+
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row your-added-questions-heading">
+               <div class="col-md-12">Share</div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Share Icon -->
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <span>{% post_to_facebook object_or_url %}</span>
+                  <span>{% post_to_whatsapp object_or_url %}</span>
+                  <span>{% post_to_reddit object_or_url %}</span>
+               </div>
+            </div>
+            <!-- End Share Icon -->
+            <!-- Start copy link text box -->
+            <div class="row d-flex justify-content-center pt-3">
+               <div class="col-md-8">
+                  <form>
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="{{ copy_url }}" placeholder="CopyURL">
+                        <div class="input-group-append">
+                           <!-- <span class="input-group-text">COPY</span> -->
+                           <span>{% copy_to_clipboard object_or_url%}</span>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <!-- End copy link text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Share Modal -->
+
+<!-- Start Create Report-post modal -->
+<div class="modal create-community-modeal" id="report-community">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="report-community">Create Community</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="{% url 'report_community' %}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="number" id="demo1" name="community_id" hidden >
+               </div>
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 question-text-box">
+                     <div class="form-group">
+                        <textarea name="report_descrition" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Adult Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="adult" class="form-check-input" value="">
+                              18+ content
+                        </label>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Abusing Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="abuse" class="form-check-input" value="">
+                              Abusing Content
+                        </label>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Report</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End Create Report-post modal -->
+
+<!-- Start the report-post script -->
+<script>
+   function Reportcommunity(id){
+      document.getElementById('report-community').action ='';
+      document.getElementById("demo1").value = id;
+   }
+</script>
+<!-- End the report-post script -->
+
 {% endblock community_content %}
