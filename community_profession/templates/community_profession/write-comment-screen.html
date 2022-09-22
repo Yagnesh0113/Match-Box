@@ -290,10 +290,10 @@
                </a>
             </span>
             {% if userprofile.id is All_comment.Community_Comment.User_Profile.id %}
-               <a href="#" class="text-decoration-none likes-heading" data-target="#edit" data-toggle="modal" onclick="data('{{All_comment.id}}','{{All_comment.Community_Comment.Comment}}')" >
+               <a href="#" class="btn community-like-dislike-btn" data-target="#edit" data-toggle="modal" onclick="data('{{All_comment.id}}','{{All_comment.Community_Comment.Comment}}')" >
                   <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
                </a>
-               <a href="{% url 'comment_delete' All_comment.id %}" class="text-decoration-none likes-heading">
+               <a href="{% url 'comment_delete' All_comment.id %}" class="btn community-like-dislike-btn">
                   <i class="fa-solid fa-trash pl-3"></i> &nbsp;
                </a>
             {% endif %}

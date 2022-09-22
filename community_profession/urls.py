@@ -85,6 +85,8 @@ urlpatterns = [
     path('report_question',views.report_question,name='report_question'),
     path('report_news',views.report_news,name='report_news'),
     path('report_profile',views.report_profile,name='report_profile'),
+    path('report_community',views.report_community,name='report_community'),
+
 
     
 

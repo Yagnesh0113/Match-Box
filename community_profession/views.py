@@ -957,9 +957,10 @@ def loadCommunityCreatePostPage(request, id=None):
             else:
                 obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time,post_type1=False)
             
-            
-            # obj=UserPost.objects.create(User_Profile=userprofile,Image=Community_image,Description=Community_Description,Post_Date=Community_Post_Date,Post_Time=Community_Post_time)
-            Community_Post.objects.create(Community_obj=Community_obj,Community_type="Community",user_post=obj)
+            # Community_Post.objects.create(Community_obj=Community_obj,Community_type="Community",user_post=obj)
+            post=Community_Post(Community_obj=Community_obj,Community_type="Community",user_post=obj)
+            post.save()
+            POST_and_Question.objects.create(Post=post)
             return redirect(f"/community-profile-screen/{id}")
         else:
             Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
@@ -1268,7 +1269,7 @@ def Community_Edit_My_Image(request,id):
     if request.method=="POST":
         User_post_obj.Description=request.POST.get("Description")
         User_post_obj.save()
-        return redirect("Community_My_Image")
+        return redirect("community-screen")
     else:
         User_id=UserProfile.objects.all().exclude(id=userprofile.id)
         Date=date.today()
@@ -1287,7 +1288,7 @@ def Community_Edit_My_Image(request,id):
 def Community_Delete_My_Image(request, id):
     User_post_obj=UserPost.objects.get(id=id)
     User_post_obj.delete()
-    return redirect("Community_My_Image")
+    return redirect("community-screen")
 
 @login_required(login_url='/')
 def Community_Edit_My_Question(request, id):
@@ -1573,8 +1574,6 @@ def report_profile(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
         profile=request.POST.get("profile_id")
-        # print(profile)
-        # profile_id=UserProfile.objects.get(id=int(profile))
         report=request.POST.get("report_descrition")
         adult=request.POST.get("adult")
         abuse=request.POST.get("abuse")
@@ -1598,4 +1597,34 @@ def report_profile(request):
         return redirect(f"/profession-profile-screen/{profile}")
     else:
         return redirect(f"/profession-profile-screen/{profile}")
+
+@login_required(login_url='/')
+def report_community(request):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    if request.method=="POST":
+        community_id=request.POST.get("community_id")
+        Community_id=Community.objects.get(id=int(community_id))
+        report=request.POST.get("report_descrition")
+        adult=request.POST.get("adult")
+        abuse=request.POST.get("abuse")
+
+        if adult != None:
+            adult = True
+        else:
+            adult = False
+
+        if abuse != None:
+            abuse = True
+        else:
+            abuse = False
+        
+        Repost_Date=date.today()
+        now = datetime.now()
+        Repost_Time = now.strftime("%H:%M:%S")
+
+        Report.objects.create(report_description=report,user_profile=userprofile,community_id=Community_id,report_date=Repost_Date,report_time=Repost_Time,adult_content=adult,abusing_content=abuse)
+
+        return redirect(f"/community-profile-screen/{Community_id.id}")
+    else:
+        return redirect(f"/community-profile-screen/{Community_id.id}")
 
