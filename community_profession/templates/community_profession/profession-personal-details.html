@@ -96,11 +96,17 @@
 <link href="{% static 'community_profession/css/rating.css' %}" type="text/css" rel="stylesheet"/>
 <SCRIPT type="text/javascript">
 function replace_stars(value){
-	var html="<form onsubmit='return replace_stars(this.rating.value);'>\n";
+	var html="<form action='{% url 'profession-personal-details' Profession_obj.id %}'>\n";
+
 	var i;
+	html+="<textarea required>"
+	html+="</textarea>"
 	for(i=1;i<=5;i++){
 		html+=" <input class='star' type='radio' name='rating' value='"+i+"' "+(value==i?"checked='checked'":"")+" />\n";
 	}
+
+	html+="<button type='submit'> Submit"
+	html+="</button>"
 	html+="</form>\n";
 	html+="<script type='text/javascript'>\n";
 	html+="  $('#container').find('.star').rating({\n";
@@ -448,7 +454,7 @@ $(document).ready(function(){
 </div>
 <!-- End Photos & videos -->
 <!-- Satrt Comment input, Chat button -->
-<form action="{% url 'profession-personal-details' Profession_obj.id %}" method="POST">
+<form action="{% url 'profession-personal-details' Profession_obj.id %}" method="POST" >
    {% csrf_token %}
    <div class="row">
       <div class="col-7 col-sm-8 col-md-8">
@@ -474,15 +480,15 @@ $(document).ready(function(){
          </div>-->
 
          <DIV id="container">
-          <FORM onSubmit="return replace_stars(this.rating.value);">
-           <INPUT type="hidden" name="rating" value="3">
-           <DIV class="cancel"><A title="Cancel Rating"></A></DIV>
-           <DIV class="star star_group_rating star_live star_on"><A title="1">1</A></DIV>
-           <DIV class="star star_group_rating star_live star_on"><A title="2">2</A></DIV>
-           <DIV class="star star_group_rating star_live star_on"><A title="3">3</A></DIV>
-           <DIV class="star star_group_rating star_live"><A title="4">4</A></DIV>
-           <DIV class="star star_group_rating star_live"><A title="5">5</A></DIV>
-          </FORM>
+<!--          <FORM onSubmit="return replace_stars(this.rating.value);">-->
+<!--           <INPUT type="RADIO" name="rating" value="3">-->
+<!--           <DIV class="cancel"><A title="Cancel Rating"></A></DIV>-->
+<!--           <DIV class="star star_group_rating star_live star_on"><A title="1">1</A></DIV>-->
+<!--           <DIV class="star star_group_rating star_live star_on"><A title="2">2</A></DIV>-->
+<!--           <DIV class="star star_group_rating star_live star_on"><A title="3">3</A></DIV>-->
+<!--           <DIV class="star star_group_rating star_live"><A title="4">4</A></DIV>-->
+<!--           <DIV class="star star_group_rating star_live"><A title="5">5</A></DIV>-->
+<!--          </FORM>-->
          </DIV>
 
 

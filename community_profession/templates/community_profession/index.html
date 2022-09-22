@@ -54,7 +54,7 @@
       </style>
       <!-- End Scrollbar CSS -->
    </head>
-   <body class="bg-dark">
+   <body class="bg-dark" style="overflow-x: hidden;">
       <!-- Start Navigation -->
       <div class="row pl-2 pt-2 pr-2">
          <div class="col-12 col-md-12 custom-nav">
@@ -251,7 +251,11 @@
                   <div class="row">
                      <div class="col-md-12 pt-2 search-bar">
                         <div class="table-cell fill-width">
-                           <input onkeyup="communitySearch()" id="community-serach" class="form-control" name="search_community" placeholder="Search...." type="text">
+                           <div class="row">
+                              <div class="col-md-12 pr-4">
+                                 <input onkeyup="communitySearch()" id="community-serach" class="form-control" name="search_community" placeholder="Search...." type="text">
+                              </div>
+                           </div>
                            <ul class="list-unstyled" id="community_id">
                               <!-- =============================== Joined Community ====================================== -->
                               {% for i in joincommunityobj %}
