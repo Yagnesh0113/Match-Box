@@ -138,15 +138,14 @@ def loadProfessionPersonalDetails(request, id):
             rate = request.POST.get("rating")
 
             print(request.POST)
-            # ProfessionReview.objects.create(Profession=Profession_obj, user_profile=userprofile, Review=review,
-            #                                 Rate=rate)
-            # Rating = ProfessionReview.objects.aggregate(Avg('Rate'))
-            # print(Profession_obj.Profession_Rating)
-            # Profession_obj.Profession_Rating = float(round(Rating['Rate__avg'], 1))
-            # Profession_obj.save()
+            ProfessionReview.objects.create(Profession=Profession_obj, user_profile=userprofile, Review=review,
+                                            Rate=rate)
+            Rating = ProfessionReview.objects.aggregate(Avg('Rate'))
+            Profession_obj.Profession_Rating = float(round(Rating['Rate__avg'], 1))
+            Profession_obj.save()
             return redirect(f"/profession-personal-details/{id}")
         else:
-            print(request.GET)
+            
             ProfessionReview_obj = ProfessionReview.objects.filter(Profession=Profession_obj)[::-1][0:3]
             ProfessionReview_obj_count = ProfessionReview.objects.filter(Profession=Profession_obj).count()
 
@@ -167,7 +166,7 @@ def loadProfessionPersonalDetails(request, id):
         Recent_serach.objects.create(Profession_obj=Profession_obj, User_obj=userprofile)
         if request.method == "POST":
             review = request.POST.get("Comment")
-            rate = request.POST.get("rate")
+            rate = request.POST.get("rating")
             # print(review)
             ProfessionReview.objects.create(Profession=Profession_obj, User_Profile=userprofile, Review=review,
                                             Rate=rate)
@@ -1009,8 +1008,6 @@ def loadCommunityWriteCommentScreen(request,id):
         else:
             context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
         return render(request, 'community_profession/write-comment-screen.html',context)
-
-
 
 @login_required(login_url='/')
 def edit_comment(request,id):
