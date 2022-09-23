@@ -117,54 +117,6 @@ def loadNearestProfessionsList(request,id=None):
 
         return render(request, 'community_profession/nearest-professions-list.html',context)
 
-
-
-
-
-
-# --- load -- profession personal details page ---
-# @login_required(login_url='/')
-# def loadProfessionPersonalDetails(request,id):
-#     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-#     Profession_obj=Profession.objects.get(id=id)
-#     Profession_service_obj=ProfessionServices.objects.filter(Profession=Profession_obj)
-#     Profession_Image_obj=Professionimage.objects.filter(profession=Profession_obj)[:4]
-#     Profession_Video_obj=Professionvideo.objects.filter(profession=Profession_obj)
-#     if Recent_serach.objects.filter(Profession_obj=Profession_obj,User_obj=userprofile):
-#         # print("The data is already exits")
-#         if request.method=="POST":
-#             review=request.POST.get("Comment")
-#             rate=request.POST.get("rate")
-#             # print(review)
-#             ProfessionReview.objects.create(Profession=Profession_obj,User_Profile=userprofile,Review=review,Rate=rate)
-#             return redirect(f"/profession-personal-details/{id}")
-#         else:
-#             ProfessionReview_obj=ProfessionReview.objects.filter(Profession=Profession_obj)
-#             ProfessionReview_obj_count=ProfessionReview.objects.filter(Profession=Profession_obj).count()
-#
-#             if obj is not None:
-#                 context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_obj":Profession_obj,"Profession_service_obj":Profession_service_obj,"Profession_Image_obj":Profession_Image_obj,"ProfessionReview_obj":ProfessionReview_obj,"Profession_Video_obj":Profession_Video_obj,"ProfessionReview_obj_count":ProfessionReview_obj_count}
-#             else:
-#                 context={'My_community':My_Community,'userprofile':userprofile,"Profession_obj":Profession_obj,"Profession_service_obj":Profession_service_obj,"Profession_Image_obj":Profession_Image_obj,"ProfessionReview_obj":ProfessionReview_obj,"Profession_Video_obj":Profession_Video_obj,"ProfessionReview_obj_count":ProfessionReview_obj_count}
-#             return render(request, 'community_profession/profession-personal-details.html',context)
-#     else:
-#         Recent_serach.objects.create(Profession_obj=Profession_obj,User_obj=userprofile)
-#         if request.method=="POST":
-#             review=request.POST.get("Comment")
-#             rate=request.POST.get("rate")
-#             # print(review)
-#             ProfessionReview.objects.create(Profession=Profession_obj,User_Profile=userprofile,Review=review,Rate=rate)
-#             return redirect(f"/profession-personal-details/{id}")
-#         else:
-#             ProfessionReview_obj=ProfessionReview.objects.filter(Profession=Profession_obj)
-#             ProfessionReview_obj_count=ProfessionReview.objects.filter(Profession=Profession_obj).count()
-#
-#             if obj is not None:
-#                 context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_obj":Profession_obj,"Profession_service_obj":Profession_service_obj,"Profession_Image_obj":Profession_Image_obj,"ProfessionReview_obj":ProfessionReview_obj,"Profession_Video_obj":Profession_Video_obj,"ProfessionReview_obj_count":ProfessionReview_obj_count}
-#             else:
-#                 context={'My_community':My_Community,'userprofile':userprofile,"Profession_obj":Profession_obj,"Profession_service_obj":Profession_service_obj,"Profession_Image_obj":Profession_Image_obj,"ProfessionReview_obj":ProfessionReview_obj,"Profession_Video_obj":Profession_Video_obj,"ProfessionReview_obj_count":ProfessionReview_obj_count}
-#             return render(request, 'community_profession/profession-personal-details.html',context)
-
 from django.db.models import Avg
 # --- load -- profession personal details page ---
 @login_required(login_url='/')
@@ -259,21 +211,29 @@ def review_Reply(request,id):
         return render(request, 'community_profession/review-reply.html',context)
 
 @login_required(login_url='/')
-def like_post_comment(request, id):
+def like_post_comment(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # userpost=request.GET['user']
-    post=Post_Commment.objects.get(id=id)
-    if userprofile in post.Comment_like.all():
-        post.Comment_like.remove(userprofile)
-    else:
-        post.Comment_like.add(userprofile)
-    like, created=Post_Comment_Like.objects.get_or_create(user_profile=userprofile,Post_comment=post)
-    if not created:
-        if like.value=="Like":
-            like.value="Unlike"
+    if request.method=="POST":
+        post_obj=request.POST.get("post_id")
+        print(post_obj)
+        post=Post_Commment.objects.get(id=post_obj)
+        if userprofile in post.Comment_like.all():
+            post.Comment_like.remove(userprofile)
         else:
-            like.value="Like"
-    like.save()
+            post.Comment_like.add(userprofile)
+        like, created=Post_Comment_Like.objects.get_or_create(user_profile=userprofile,Post_comment=post)
+        if not created:
+            if like.value=="Like":
+                like.value="Unlike"
+            else:
+                like.value="Like"
+        like.save()
+
+        data={
+            'value':like.value,
+            'post': post.Comment_like.all().count()
+        }
+        return JsonResponse(data, safe=False)
     return redirect(f"/add_comment/{post.User_Post.id}")
 
 @login_required(login_url='/')
@@ -915,7 +875,6 @@ def loadCommunityProfileScreen(request, id):
 @login_required(login_url='/')
 def loadCommunityCreatePostPage(request, id=None):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-
     if id==None:
         if request.method=="POST":
             community_obj=request.POST.get("CommunityId")
@@ -981,7 +940,7 @@ def loadCommunityCreatePostPage(request, id=None):
 @login_required(login_url='/')
 def loadCommunityWriteCommentScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    # print(id)
+
     Community_obj=Community_Post.objects.get(id=id)
     if request.method=="POST":
         Post_Comment_obj=request.POST.get("Comment")
@@ -1018,6 +977,8 @@ def loadCommunityWriteCommentScreen(request,id):
         else:
             context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
         return render(request, 'community_profession/write-comment-screen.html',context)
+
+
 
 @login_required(login_url='/')
 def edit_comment(request,id):

@@ -172,25 +172,22 @@
            </div>
            <!-- End Community name and time -->
             <!-- Start Community name and time -->
-            <div class="col-5 col-sm-4 col-md-4 pl-0">
+            <div class="col-5 col-sm-4 col-md-4 pl-6 text-right">
                <!-- Start community time -->
                <div class="row">
                   <div class="col-md-12 community-time pl-0">
-                     <div class="col-md-12 like-reply-share">
+                     <div class="col-md-12 like-reply-share ">
                         <span>
                            {% if userprofile.id is i.User_Profile.id %}
                               <a href="#" class="btn community-like-dislike-btn" data-target="#editreply" data-toggle="modal" onclick="data('{{i.id}}','{{i.Reply}}')" >
-                                 <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
+                                 <i class="fa-solid fa-pencil"></i> &nbsp; 
                               </a>
                               <a href="{% url 'reply_delete' i.id %}" class="btn community-like-dislike-btn">
-                                 <i class="fa-solid fa-trash pl-3"></i> &nbsp;
+                                 <i class="fa-solid fa-trash"></i> &nbsp;
                               </a>
                            {% endif %}
                         </span>
                      </div>
-                     
-                     
-                     <!-- Ago -->
                   </div>
                </div>
                <!-- End community time -->

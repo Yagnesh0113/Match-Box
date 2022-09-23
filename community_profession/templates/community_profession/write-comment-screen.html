@@ -131,7 +131,6 @@
 
 <!-- Start User Profile icon and name -->
 <div class="row community-body pt-3 pl-3">
-
    <!-- Start Profile picture -->
    <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
       <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania" height="100%" width="100%">
@@ -149,7 +148,6 @@
       <!-- End community name -->
    </div>
    <!-- End Community name -->
-
 </div>
 <!-- End User Profile icon and name -->
 
@@ -226,48 +224,58 @@
       </div>
       <!-- End comment -->
 
-      <!-- <div class="row pt-3">
+      <div class="row pt-3">
          <div class="col-md-12 like-reply-share">
-            <span>
-               <form action="{% url 'like_post_comment' All_comment.Community_Comment.id %}" class="d-inline-block">
-                  {% if userprofile not in All_comment.Community_Comment.Comment_like.all %}
-                  <button type="submit" class="btn likes-heading">
-                  <i class="fa-solid fa-thumbs-up"></i>
-                  </button>
-                  {% else %}
-                  <button type="submit" class="btn likes-heading">
-                  <i class="fa-solid fa-thumbs-down"></i>
-                  </button>
-                  {% endif %} 
-                  <span class="likes-heading">{{ All_comment.Community_Comment.Comment_like.all.count }}</span>
+            {{All_comment.Community_Comment.id}}
+            <span class="d-inline-block">
+               <form action="{% url 'like_post_comment' %}" method="POST" class="like-form" id="{{All_comment.Community_Comment.id}}">
+                  {% csrf_token %}
+                  <input type="hidden" name="post_id" value="{{All_comment.Community_Comment.id}}">
+                     <button type="submit" class="btn community-like-dislike-btn like-btn{{All_comment.Community_Comment.id}}">
+                        {% if userprofile not in All_comment.Community_Comment.Comment_like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                           <!-- Like -->
+                        {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                           <!-- Unlike -->
+                        {% endif %} 
+                     </button>
+                  <span class="btn community-like-dislike-btn like-count{{All_comment.Community_Comment.id}}">{{ All_comment.Community_Comment.Comment_like.all.count }}</span>
                </form>
             </span>
-            <span >
+            <span class="pl-2 community-like-dislike-btn">
                <a href="{% url 'Post_comment_reply' All_comment.Community_Comment.id %}" class="text-decoration-none likes-heading">
-                  <i class="fa-solid fa-reply pl-3"></i> &nbsp;
-                  {% if All_comment.Community_Comment.Post_comment_reply is None %}
-                     0
-                  {% else %}
-                     {{All_comment.Community_Comment.Post_comment_reply}}
-                  {% endif %}
-               </a>
+                  <i class="fa-solid fa-reply"></i> &nbsp;
+                     {% if All_comment.Community_Comment.Post_comment_reply is None %}
+                        0
+                     {% else %}
+                        {{All_comment.Community_Comment.Post_comment_reply}}
+                     {% endif %}
+                  </a>
             </span>
             
             {% if userprofile.id is All_comment.Community_Comment.User_Profile.id %}
-                  <a href="#" class="text-decoration-none likes-heading" data-target="#modal3" data-toggle="modal" onclick="data('{{All_comment.id}}','{{All_comment.Community_Comment.Comment}}')" >
-                     <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
-                  </a>
-                  <a href="{% url 'comment_delete' All_comment.id %}" class="text-decoration-none likes-heading">
-                     <i class="fa-solid fa-trash pl-3"></i> &nbsp;
-                  </a>
+            <span >
+               <a href="#" class="text-decoration-none btn community-like-dislike-btn" data-target="#edit" data-toggle="modal" onclick="data('{{All_comment.id}}','{{All_comment.Community_Comment.Comment}}')" >
+                  <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
+               </a>
+
+            </span>
+            
+            <span >
+               <a href="{% url 'comment_delete' All_comment.id %}" class="text-decoration-none btn community-like-dislike-btn">
+                  <i class="fa-solid fa-trash"></i> &nbsp;
+               </a>
+
+            </span>
             {% endif %}
          </div>
-      </div> -->
+      </div>
 
       <!-- Start like-reply-share -->
-      <div class="row pt-3">
+      <!-- <div class="row pt-3">
          <div class="col-md-12 like-reply-share">
-            <a href="{% url 'like_post_comment' All_comment.Community_Comment.id %}">
+            <a href="{% url 'like_post_comment' %}">
                {% if userprofile not in All_comment.Community_Comment.Comment_like.all %}
                   <button type="submit" class="btn community-like-dislike-btn">
                      <i class="fa-solid fa-thumbs-up"></i>
@@ -289,16 +297,9 @@
                   {% endif %}
                </a>
             </span>
-            {% if userprofile.id is All_comment.Community_Comment.User_Profile.id %}
-               <a href="#" class="btn community-like-dislike-btn" data-target="#edit" data-toggle="modal" onclick="data('{{All_comment.id}}','{{All_comment.Community_Comment.Comment}}')" >
-                  <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
-               </a>
-               <a href="{% url 'comment_delete' All_comment.id %}" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-trash pl-3"></i> &nbsp;
-               </a>
-            {% endif %}
+            
          </div>
-      </div>
+      </div> -->
       <!-- End like-reply-share -->
    </div>
 </div>
@@ -383,6 +384,56 @@
       document.getElementById('EditReview').action ='/edit_comment/'+id;
       document.getElementById("demo1").value = val1;
    }
+</script>
+
+<!-- <script src="{% static 'community_profession/js/splash-screen.js' %}"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+   $('.like-form').submit(function(e){
+      e.preventDefault()
+      //console.log('works')
+      const post_id = $(this).attr('id')
+      //console.log(post_id)
+      const liketext = $(`.like-btn${post_id}`).text()
+      //console.log(liketext)
+      const trim = $.trim(liketext)
+      //console.log(trim)
+      const url = $(this).attr('action')
+      //console.log(url)
+      let res;
+      const likes = $(`.like-count${post_id}`).text()
+      //console.log(likes + 1)
+      const trimCount = parseInt(likes)
+      //console.log(trimCount + 1)
+
+      $.ajax(
+         {
+         type : "POST",
+         url : url,
+         data : {
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            'post_id':post_id,
+         },
+         success: function(response){
+            //console.log('success', response)
+            if(trim === 'Unlike') {
+               $(`.like-btn${post_id}`).html('Like')
+               res = trimCount - 1
+            } else {
+               $(`.like-btn${post_id}`).text('Unlike')
+               res = trimCount + 1
+            }
+
+           $(`.like-count${post_id}`).text(res)
+         },
+         error: function(response) {
+            console.log('error', response)
+        }
+      }
+      )
+
+   })
 </script>
 
 {% endblock community_content %}
