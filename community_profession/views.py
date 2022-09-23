@@ -38,8 +38,11 @@ def loadHomeScreenPage(request):
     # print(request.user)
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Admin_Profession.objects.all()[:14]
+    print("profession: ",profession)
     Popular_profession=Profession.objects.order_by("Profession_Rating")[:5][::-1]
+    print("Popular_profession: ",Popular_profession)
     Recent_Serch_obj=Recent_serach.objects.filter(User_obj=userprofile)[::-1]
+    print("Recent_Serch_obj:",Recent_Serch_obj)
     if obj is not None:
         context={ 'Popular_profession':Popular_profession, 'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
     else:

@@ -308,45 +308,51 @@
       {% if i.Post %}
       <!--  Start Post Image & Videos    -->
       <div class="row">
-         <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
+         <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 community-body">
             <!-- start community profile picture, name, and join button  -->
-            <div class="row">
+            <div class="row pt-3">
                <!-- Start Profile picture -->
-               <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
-                  {% if  i.Post.Community_obj.Community_Profile_Image.url %}
-
-                  <img class="img-fluid rounded-circle" src="{{i.Post.Community_obj.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
-
-                  {% else %}
-                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
-                  {% endif %}
-
-               </div>
-               <!-- End Profile picture -->
-
-               <!-- Start Community name and time -->
-               <div class="col-5 col-sm-4 col-md-4 pl-0">
-                  <!-- Start community name -->
-                  <div class="row">
-                     <div class="col-md-12 community-name pl-0">
-                        <a href="{% url 'profession-profile-screen' i.Post.user_post.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.Post.user_post.User_Profile.usertype.user_id.first_name}} {{i.Post.user_post.User_Profile.usertype.user_id.last_name}}</a>/
-                        <a href="{% url 'community-profile-screen' i.Post.Community_obj.id  %}" class="text-decoration-none">{{i.Post.Community_obj.Community_Name}}</a>
+               <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container">
+                  <!-- Start Profile Picture -->
+                  <div class="float-child">
+                     <div class="row">
+                        <div class="col-md-12">
+                           {% if  i.Post.Community_obj.Community_Profile_Image.url %}
+                           <img class="img-fluid rounded-circle" src="{{i.Post.Community_obj.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
+                           {% else %}
+                           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                           {% endif %}
+                        </div>
                      </div>
                   </div>
-                  <!-- End community name -->
-                  <!-- Start community time -->
-                  <div class="row">
-                     <div class="col-md-12 community-time pl-0">
-                        {{i.Post.user_post.Post_Date}} / {{i.Post.user_post.Post_Time}}
-                        <!-- Ago -->
+                  <!-- End Profile Picture -->
+
+                  <div class="float-child-1">
+                     <!-- Start community name -->
+                     <div class="row">
+                        <div class="col-md-12 community-name">
+                           <a href="{% url 'profession-profile-screen' i.Post.user_post.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">
+                              {{i.Post.user_post.User_Profile.usertype.user_id.first_name}} {{i.Post.user_post.User_Profile.usertype.user_id.last_name}}
+                           </a>/
+                           <a href="{% url 'community-profile-screen' i.Post.Community_obj.id  %}" class="text-decoration-none">
+                              {{i.Post.Community_obj.Community_Name}}
+                           </a>
+                        </div>
                      </div>
+                     <!-- End community name -->
+                     <!-- Start community time -->
+                     <div class="row">
+                        <div class="col-md-12 community-time">
+                           {{i.Post.user_post.Post_Date}} / {{i.Post.user_post.Post_Time}}
+                        </div>
+                     </div>
+                     <!-- End community time -->
                   </div>
-                  <!-- End community time -->
                </div>
                <!-- End Community name and time -->
 
                <!-- Start join buttons, options -->
-               <div class="col-5 col-sm-7 col-md-7 text-right">
+               <div class="col-2 col-sm-6 col-md-6 text-right">
                   <div class="row">
                      <div class="col-md-12 community-options">
                         <div class="dropdown">
@@ -393,7 +399,7 @@
             <!-- End community profile picture, name, and join button  -->
 
             <!-- Start community description -->
-            <div class="row pt-3"   >
+            <div class="row pt-3 pb-3"   >
                <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
                   {{i.Post.user_post.Description}}
                </div>
@@ -476,38 +482,45 @@
          <div class="col-md-12 border-bottom pb-2 pt-5 community-body">
             <!-- start community profile picture, name, and join button  -->
             <div class="row">
+
                <!-- Start Profile picture -->
-               <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture pr-0">
-
-                  {% if  i.Question.User_Profile.profile_image %}
-                  <img class="img-fluid rounded-circle" src="{{i.Question.User_Profile.profile_image.url}}" alt="Chania">
-                  {% else %}
-                  <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
-                  {% endif %}
-
-                  </div>
-               <!-- End Profile picture -->
-               <!-- Start Community name and time -->
-               <div class="col-7 col-sm-4 col-md-4 pl-0">
-                  <!-- Start community name -->
-                  <div class="row">
-                     <div class="col-md-12 community-name pl-0">
-                        <a href="{% url 'profession-profile-screen' i.Question.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.Question.User_Profile.usertype.user_id.first_name}} {{i.Question.User_Profile.usertype.user_id.last_name}}</a>
+               <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container">
+                  <!-- Start Profile Picture -->
+                  <div class="float-child">
+                     <div class="row">
+                        <div class="col-md-12">
+                           {% if  i.Question.User_Profile.profile_image %}
+                           <img class="img-fluid rounded-circle" src="{{i.Question.User_Profile.profile_image.url}}" alt="Chania">
+                           {% else %}
+                           <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                           {% endif %}
+                        </div>
                      </div>
                   </div>
-                  <!-- End community name -->
-                  <!-- Start community time -->
-                  <div class="row">
-                     <div class="col-md-12 community-time pl-0">
-                        {{i.Question.Date}} / {{i.Question.Time}}
-                        <!-- Ago -->
+                  <!-- End Profile Picture -->
+
+                  <div class="float-child-1">
+                     <!-- Start community name -->
+                     <div class="row">
+                        <div class="col-md-12 community-name">
+                           <a href="{% url 'profession-profile-screen' i.Question.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.Question.User_Profile.usertype.user_id.first_name}} {{i.Question.User_Profile.usertype.user_id.last_name}}</a>
+                        </div>
                      </div>
+                     <!-- End community name -->
+                     <!-- Start community time -->
+                     <div class="row">
+                        <div class="col-md-12 community-time">
+                           {{i.Question.Date}} / {{i.Question.Time}}
+                           <!-- Ago -->
+                        </div>
+                     </div>
+                     <!-- End community time -->
                   </div>
-                  <!-- End community time -->
                </div>
                <!-- End Community name and time -->
+
                <!-- Start join buttons, options -->
-               <div class="col-3 col-sm-7 col-md-7 text-right">
+               <div class="col-2 col-sm-6 col-md-6 text-right">
                   <div class="row">
                      <!-- Satrt join button -->
                      <div class="col-md-11 text-right">
