@@ -557,18 +557,18 @@ $(document).ready(function(){
             <span class="likes-heading">
             <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image"> &nbsp; {{k.Rate}}
             </span>
-            <span>
-               <form action="{% url 'like_Review' k.id %}" class="d-inline-block">
-                  {% if userprofile not in k.like.all %}
-                  <button type="submit" name="profession" value="{{k.Profession.id}}" class="btn likes-heading">
-                  <i class="fa-solid fa-thumbs-up"></i>
-                  </button>
-                  {% else %}
-                  <button type="submit" name="profession" value="{{k.Profession.id}}" class="btn likes-heading">
-                  <i class="fa-solid fa-thumbs-down"></i>
-                  </button>
-                  {% endif %} 
-                  <span class="likes-heading">{{ k.like.all.count }}</span>
+            <span class="d-inline-block">
+               <form action="{% url 'like_Review' %}" method="POST" class="like-form" id="{{k.id}}">
+                  {% csrf_token %}
+                  <input type="hidden" name="post_id" value="{{k.id}}">
+                     <button type="submit" class="btn community-like-dislike-btn like-btn{{k.id}}">
+                        {% if userprofile not in k.like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                        {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                        {% endif %} 
+                     </button>
+                  <span class="btn community-like-dislike-btn like-count{{k.id}}">{{ k.like.all.count }}</span>
                </form>
             </span>
             <span >
@@ -1071,5 +1071,54 @@ if (window.jQuery)(function($) {
 /*# AVOID COLLISIONS #*/
 </script>
 <!-- End Star rating JS -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+   $('.like-form').submit(function(e){
+      e.preventDefault()
+      //console.log('works')
+      const post_id = $(this).attr('id')
+      //console.log(post_id)
+      const liketext = $(`.like-btn${post_id}`).html()
+      //console.log(liketext)
+      const trim = $.trim(liketext)
+      //console.log(trim)
+      const url = $(this).attr('action')
+      //console.log(url)
+      let res;
+      const likes = $(`.like-count${post_id}`).text()
+      //console.log(likes + 1)
+      const trimCount = parseInt(likes)
+      //console.log(trimCount + 1)
+
+      $.ajax(
+         {
+         type : "POST",
+         url : url,
+         data : {
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            'post_id':post_id,
+         },
+         success: function(response){
+            //console.log('success', response)
+            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
+               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
+               res = trimCount - 1
+            } else {
+               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
+               res = trimCount + 1
+            }
+
+           $(`.like-count${post_id}`).text(res)
+         },
+         error: function(response) {
+            console.log('error', response)
+        }
+      }
+      )
+
+   })
+</script>
 
 {% endblock content %}
