@@ -5,7 +5,7 @@ from community_profession.models import *
 from.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import re
 from geopy.geocoders import ArcGIS
 
@@ -393,22 +393,29 @@ def delete_Profession(request,id):
     profession.delete()
     return redirect("profession-profile-screen")
 
-def like_Review(request, id):
+def like_Review(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    profession_id=request.GET['profession']
-    Profession_Review=ProfessionReview.objects.get(id=id)
-    if userprofile in Profession_Review.like.all():
-        Profession_Review.like.remove(userprofile)
-    else:
-        Profession_Review.like.add(userprofile)
-    like, created=Review_Like.objects.get_or_create(user_profile=userprofile,Profession_Review=Profession_Review)
-    if not created:
-        if like.value=="Like":
-            like.value="Unlike"
+    if request.method=="POST":
+        profession_id=request.POST.get("post_id")
+        print(profession_id)
+        Profession_Review=ProfessionReview.objects.get(id=profession_id)
+        if userprofile in Profession_Review.like.all():
+            Profession_Review.like.remove(userprofile)
         else:
-            like.value="Like"
-    like.save()
-    return redirect(f"/profession-personal-details/{profession_id}")
+            Profession_Review.like.add(userprofile)
+        like, created=Review_Like.objects.get_or_create(user_profile=userprofile,Profession_Review=Profession_Review)
+        if not created:
+            if like.value=="Like":
+                like.value="Unlike"
+            else:
+                like.value="Like"
+        like.save()
+        data={
+            'value':like.value,
+            'post': Profession_Review.like.all().count()
+        }
+        return JsonResponse(data, safe=False)
+    return redirect(f"/profession-personal-details/{Profession_Review.Profession.id}")
 
 def edit_service(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)

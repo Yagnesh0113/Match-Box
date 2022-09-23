@@ -59,21 +59,19 @@
    <div class="col-md-12 pl-5">
       <div class="row  pt-3 pb-3 like-comment-share border-bottom">
          <!-- Start no-of-like -->
-         <span>
-         <a href="{% url 'like_Question' i.id %}">
-         {% if userprofile not in i.Question_Like.all %}
-         <button type="submit" class="btn community-like-dislike-btn" >
-         <i class="fa-solid fa-thumbs-up"></i>
-         </button>
-         {% else %}
-         <button type="submit" class="btn community-like-dislike-btn">
-         <i class="fa-solid fa-thumbs-down"></i>
-         </button>
-         {% endif %}
-         </a>
-         <span class="community-like-dislike-btn">
-         {{ i.Question_Like.all.count }}
-         </span>
+         <span class="d-inline-block">
+            <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.id}}">
+               {% csrf_token %}
+               <input type="hidden" name="post_id" value="{{i.id}}">
+                  <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                     {% if userprofile not in i.Question_Like.all %}
+                        <i class="fa-solid fa-thumbs-up"></i>
+                     {% else %}
+                        <i class="fa-solid fa-thumbs-down"></i>
+                     {% endif %} 
+                  </button>
+               <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.Question_Like.all.count }}</span>
+            </form>
          </span>
          <!-- End no-of-like -->
          <!-- Start  no-of-comments -->
@@ -204,21 +202,25 @@
             <!-- <span class="">
                <i class="fa-solid fa-thumbs-up"></i> 1.2K
                </span> -->
-            <a href="{% url 'like_Answer' Answer.id %}">
-            {% if userprofile not in Answer.Answer_Like.all %}
-            <button type="submit" class="btn community-like-dislike-btn">
-            <i class="fa-solid fa-thumbs-up"></i>
-            </button>
-            {% else %}
-            <button type="submit" class="btn community-like-dislike-btn">
-            <i class="fa-solid fa-thumbs-down"></i>
-            </button>
-            {% endif %}
-            </a>
-            <span class="community-like-dislike-btn">{{Answer.Answer_Like.all.count}}</span>
+
+               <span class="d-inline-block">
+                  <form action="{% url 'like_Answer' %}" method="POST" class="like-form" id="{{Answer.id}}">
+                     {% csrf_token %}
+                     <input type="hidden" name="post_id" value="{{Answer.id}}">
+                        <button type="submit" class="btn community-like-dislike-btn like-btn{{Answer.id}}">
+                           {% if userprofile not in Answer.Answer_Like.all %}
+                              <i class="fa-solid fa-thumbs-up"></i>
+                           {% else %}
+                              <i class="fa-solid fa-thumbs-down"></i>
+                           {% endif %} 
+                        </button>
+                     <span class="btn community-like-dislike-btn like-count{{Answer.id}}">{{ Answer.Answer_Like.all.count }}</span>
+                  </form>
+               </span>
+            
             <span class="pl-2 community-like-dislike-btn">
             <a href="{% url 'Add_Answer_Reply' Answer.id %}" class="text-decoration-none">
-            <i class="fa-solid fa-message"></i> &nbsp;
+            <i class="fa-solid fa-reply"></i> &nbsp;
             {% if Answer.reply is None %}
                0
             {% else %}
@@ -226,9 +228,19 @@
             {% endif %}
             </a>
             </span>
-            <!-- <span class="pl-5">
-               <i class="fa-solid fa-share-nodes"></i>
-               </span> -->
+            {% if userprofile.id is Answer.User_Profile.id %}
+            <span >
+               <a href="#" class="text-decoration-none btn community-like-dislike-btn" data-target="#answer" data-toggle="modal" onclick="Answer_obj('{{Answer.id}}','{{Answer.Answer}}')" >
+                  <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
+               </a>
+            </span>
+            
+            <span >
+               <a href="{% url 'delete_Answer' Answer.id %}" class="text-decoration-none btn community-like-dislike-btn">
+                  <i class="fa-solid fa-trash"></i> &nbsp;
+               </a>
+            </span>
+            {% endif %}
          </div>
       </div>
       <!-- Start like-reply-share -->
@@ -236,7 +248,6 @@
 </div>
 {% endfor %}
 <!-- End Comments -->
-
 
 <!-- Start Share Modal -->
 <div class="modal create-community-modeal" id="share-modal">
@@ -292,5 +303,39 @@
    </div>
 </div>
 <!-- End Share Modal -->
-<!-- End Comments -->
+
+<!-- start comment edit modal -->
+<div class="modal create-community-modeal" id="answer">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Review</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="Answer" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review</label>
+                  <input type="text" class="form-control" name="Review" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Review</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- end comment edit modal -->
+
+<script>
+   function Answer_obj(id,val1){
+      document.getElementById('Answer').action ='/edit_answer/'+id;
+      document.getElementById("demo1").value = val1;
+   }
+</script> 
 {% endblock community_content %}

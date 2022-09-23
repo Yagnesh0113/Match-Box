@@ -52,16 +52,16 @@ urlpatterns = [
     path("Community_My_Image",views.Community_My_Image,name="Community_My_Image"),
     path("Community_My_Video",views.Community_My_Video,name="Community_My_Video"),
     path("Community_My_Question",views.Community_My_Question,name="Community_My_Question"),
-    path("like_post/<int:id>",views.like_post,name="like_post"),
+    path("like_post",views.like_post,name="like_post"),
     path("Community_Edit_My_Image/<int:id>",views.Community_Edit_My_Image,name="Community_Edit_My_Image"),
     path("Community_Delete_My_Image/<int:id>",views.Community_Delete_My_Image,name="Community_Delete_My_Image"),
     path("Community_Edit_My_Question/<int:id>",views.Community_Edit_My_Question,name="Community_Edit_My_Question"),
     path("Community_Delete_My_Question/<int:id>",views.Community_Delete_My_Question,name="Community_Delete_My_Question"),
-    path("like_Question/<int:id>",views.like_Question,name="like_Question"),
+    path("like_Question",views.like_Question,name="like_Question"),
     path("Community_Edit_My_Video/<int:id>",views.Community_Edit_My_Video,name="Community_Edit_My_Video"),
     path("Community_Delete_My_Video/<int:id>",views.Community_Delete_My_Video,name="Community_Delete_My_Video"),
     path("like_post_comment",views.like_post_comment,name="like_post_comment"),
-    path("like_Answer/<int:id>",views.like_Answer,name="like_Answer"),
+    path("like_Answer",views.like_Answer,name="like_Answer"),
     path("like_news/<int:id>",views.like_news,name="like_news"),
     path("like_Comment_news/<int:id>",views.like_Comment_news,name="like_Comment_news"),
     path("news_comment_reply/<int:id>",views.news_comment_reply,name="news_comment_reply"),
@@ -95,6 +95,12 @@ urlpatterns = [
 
     path('edit_reply/<int:id>',views.edit_reply,name='edit_reply'),
     path('reply_delete/<int:id>',views.reply_delete,name='reply_delete'),
+
+    path('delete_Answer/<int:id>',views.delete_Answer,name='delete_Answer'),
+    path('edit_answer/<int:id>',views.edit_answer,name='edit_answer'),
+
+    path('delete_answer_reply/<int:id>',views.delete_answer_reply,name='delete_answer_reply'),
+    path('edit_answer_reply/<int:id>',views.edit_answer_reply,name='edit_answer_reply'),
 
 
 

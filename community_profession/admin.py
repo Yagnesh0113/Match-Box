@@ -13,5 +13,7 @@ admin.site.register(UserPost)
 admin.site.register(Post_Commment)
 admin.site.register(Bookmark)
 admin.site.register(POST_and_Question)
-
-
+admin.site.register(Like)
+admin.site.register(Post_Comment_Like)
+admin.site.register(Question_Like)
+admin.site.register(Answer_Like)

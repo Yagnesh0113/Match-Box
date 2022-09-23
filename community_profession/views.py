@@ -244,54 +244,79 @@ def like_post_comment(request):
     return redirect(f"/add_comment/{post.User_Post.id}")
 
 @login_required(login_url='/')
-def like_post(request, id):
+def like_post(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    post=UserPost.objects.get(id=id)
-    if userprofile in post.Like.all():
-        post.Like.remove(userprofile)
-    else:
-        post.Like.add(userprofile)
-    like, created=Like.objects.get_or_create(user_profile=userprofile,Post=post)
-    if not created:
-        if like.value=="Like":
-            like.value="Unlike"
+    if request.method=="POST":
+        post_obj=request.POST.get("post_id")
+        post=UserPost.objects.get(id=post_obj)
+        print("yes")
+        if userprofile in post.Like.all():
+            post.Like.remove(userprofile)
         else:
-            like.value="Like"
-    like.save()
+            post.Like.add(userprofile)
+        like, created=Like.objects.get_or_create(user_profile=userprofile,Post=post)
+        if not created:
+            if like.value=="Like":
+                like.value="Unlike"
+            else:
+                like.value="Like"
+        like.save()
+
+        data={
+            'value':like.value,
+            'post':post.Like.all().count()
+        }
+        return JsonResponse(data, safe=False)
     return redirect("community-screen")
 
 @login_required(login_url='/')
-def like_Question(request, id):
+def like_Question(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    Question=User_Question.objects.get(id=id)
-    if userprofile in Question.Question_Like.all():
-        Question.Question_Like.remove(userprofile)
-    else:
-        Question.Question_Like.add(userprofile)
-    like, created=Question_Like.objects.get_or_create(user_profile=userprofile,Question=Question)
-    if not created:
-        if like.value=="Like":
-            like.value="Unlike"
+    if request.method=="POST":
+        question_obj=request.POST.get("post_id")
+        print(question_obj)
+        Question=User_Question.objects.get(id=question_obj)
+        print('yes')
+        if userprofile in Question.Question_Like.all():
+            Question.Question_Like.remove(userprofile)
         else:
-            like.value="Like"
-    like.save()
+            Question.Question_Like.add(userprofile)
+        like, created=Question_Like.objects.get_or_create(user_profile=userprofile,Question=Question)
+        if not created:
+            if like.value=="Like":
+                like.value="Unlike"
+            else:
+                like.value="Like"
+        like.save()
+        data={
+            'value':like.value,
+            'post':Question.Question_Like.all().count()
+        }
+        return JsonResponse(data, safe=False)
     return redirect("community-screen")
 
 @login_required(login_url='/')
-def like_Answer(request, id):
+def like_Answer(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    Answer=User_Answer.objects.get(id=id)
-    if userprofile in Answer.Answer_Like.all():
-        Answer.Answer_Like.remove(userprofile)
-    else:
-        Answer.Answer_Like.add(userprofile)
-    like, created=Answer_Like.objects.get_or_create(user_profile=userprofile,Answer=Answer)
-    if not created:
-        if like.value=="Like":
-            like.value="Unlike"
+    if request.method=="POST":
+        answer_obj=request.POST.get("post_id")
+        Answer=User_Answer.objects.get(id=answer_obj)
+        if userprofile in Answer.Answer_Like.all():
+            Answer.Answer_Like.remove(userprofile)
         else:
-            like.value="Like"
-    like.save()
+            Answer.Answer_Like.add(userprofile)
+        like, created=Answer_Like.objects.get_or_create(user_profile=userprofile,Answer=Answer)
+        if not created:
+            if like.value=="Like":
+                like.value="Unlike"
+            else:
+                like.value="Like"
+        like.save()
+        data={
+            'value':like.value,
+            'post':Answer.Answer_Like.all().count()
+        }
+        return JsonResponse(data, safe=False)
     return redirect(f"/Add_Answer/{Answer.Question.id}")
 
 # --- load -- see all photos and videos of professions ---
@@ -1596,3 +1621,48 @@ def report_community(request):
     else:
         return redirect(f"/community-profile-screen/{Community_id.id}")
 
+@login_required(login_url='/')
+def delete_Answer(request, id):
+    Answer_obj=User_Answer.objects.get(id=id)
+    print(Answer_obj)
+    obj=Answer_obj.Question.answer
+    print(obj)
+    obj2=obj-1
+    Answer_obj.Question.answer=obj2
+    Answer_obj.Question.save()
+    Answer_obj.delete()
+    return redirect(f"/Add_Answer/{Answer_obj.Question.id}")
+
+@login_required(login_url='/')
+def edit_answer(request,id):
+    obj=User_Answer.objects.get(id=id)
+    if request.method=="POST":
+        review=request.POST.get("Review")
+        obj.Answer=review
+        obj.save()
+        return redirect(f"/Add_Answer/{obj.Question.id}")
+    else:
+        return redirect(f"/Add_Answer/{obj.Question.id}")
+
+@login_required(login_url='/')
+def delete_answer_reply(request, id):
+    reply_obj=Answer_Reply.objects.get(id=id)
+    print(reply_obj)
+    obj=reply_obj.Answer.reply
+    print(obj)
+    obj2=obj-1
+    reply_obj.Answer.reply=obj2
+    reply_obj.Answer.save()
+    reply_obj.delete()
+    return redirect(f"/Add_Answer_Reply/{reply_obj.Answer.id}")
+
+@login_required(login_url='/')
+def edit_answer_reply(request,id):
+    obj=Answer_Reply.objects.get(id=id)
+    if request.method=="POST":
+        review=request.POST.get("Review")
+        obj.Reply=review
+        obj.save()
+        return redirect(f"/Add_Answer_Reply/{obj.Answer.id}")
+    else:
+        return redirect(f"/Add_Answer/{obj.Answer.id}")

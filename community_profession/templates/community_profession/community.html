@@ -437,22 +437,35 @@
             <div class="row pt-2 pd-2">
                <!-- Start like button -->
                <div class="col-5 col-sm-3 col-md-2 text-center p-0">
-                  <a href="{% url 'like_post' i.Post.user_post.id %}">
-                     {% if userprofile not in i.Post.user_post.Like.all %}
-                        <button type="submit" class="btn community-like-dislike-btn">
-                           <span id="icon">
+                  <!-- <span class="d-inline-block">
+                     <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{i.Post.user_post.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.Post.user_post.id}}">
+                        <button type="submit" class="btn community-like-dislike-btn like-btn{{i.Post.user_post.id}}">
+                           {% if userprofile not in i.Post.user_post.Like.all %}
                               <i class="fa-solid fa-thumbs-up"></i>
-                           </span>
-                        </button>
-                     {% else %}
-                        <button type="submit" class="btn community-like-dislike-btn">
-                           <span id="icon">
+                           {% else %}
                               <i class="fa-solid fa-thumbs-down"></i>
-                           </span>
+                           {% endif %}
                         </button>
-                     {% endif %}
-                  </a>
-                  <span class="community-like-dislike-btn">{{ i.Post.user_post.Like.all.count }}</span>
+                        <span class="community-like-dislike-btn like-count{{i.Post.user_post.id}}">{{ i.Post.user_post.Like.all.count }}</span>
+                     </form>
+                  </span> -->
+                  <span class="d-inline-block">
+                     <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{i.Post.user_post.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.Post.user_post.id}}">
+                           <button type="submit" class="btn community-like-dislike-btn like-btn{{i.Post.user_post.id}}">
+                              {% if userprofile not in i.Post.user_post.Like.all %}
+                                 <i class="fa-solid fa-thumbs-up"></i>
+                              {% else %}
+                                 <i class="fa-solid fa-thumbs-down"></i>
+                              {% endif %} 
+                           </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.Post.user_post.id}}">{{ i.Post.user_post.Like.all.count }}</span>
+                     </form>
+                  </span>
+                  
                   &nbsp;
                   <a href="{% url 'community-write-comment-screen' i.Post.id %}" class="text-decoration-none community-like-dislike-btn">
                      <i class="fa-solid fa-message"></i>
@@ -583,20 +596,21 @@
 
                <!-- Start like button -->
                <div class="col-4 col-sm-3 col-md-2 text-center">
-                  <a href="{% url 'like_Question' i.Question.id %}">
-                  {% if userprofile not in i.Question.Question_Like.all %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                     <i class="fa-solid fa-thumbs-up"></i>
-                  </button>
-                  {% else %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                     <i class="fa-solid fa-thumbs-down"></i>
-                  </button>
-                  {% endif %}
-                  </a>
-                  <span class="community-like-dislike-btn">
-                  {{ i.Question.Question_Like.all.count }}
+                  <span class="d-inline-block">
+                     <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.Question.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.Question.id}}">
+                           <button type="submit" class="btn community-like-dislike-btn like-btn{{i.Question.id}}">
+                              {% if userprofile not in i.Question.Question_Like.all %}
+                                 <i class="fa-solid fa-thumbs-up"></i>
+                              {% else %}
+                                 <i class="fa-solid fa-thumbs-down"></i>
+                              {% endif %} 
+                           </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.Question.id}}">{{ i.Question.Question_Like.all.count }}</span>
+                     </form>
                   </span>
+                  
                   &nbsp;
                   <span class="community-like-dislike-btn">
                      <a href="{% url 'Add_Answer' i.Question.id %}" class="text-decoration-none">
@@ -756,18 +770,20 @@
             <div class="row pt-2 pd-2">
                <!-- Start like button -->
                <div class="col-5 col-sm-3 col-md-2 text-center">
-                  <a href="{% url 'like_post' i.id %}">
-                  {% if userprofile not in i.Like.all %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                     </button>
-                  {% else %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                     </button>
-                  {% endif %}
-                  </a>
-                  <span class="community-like-dislike-btn">{{ i.Like.all.count }}</span>
+                  <span class="d-inline-block">
+                     <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{i.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                           <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                              {% if userprofile not in i.Like.all %}
+                                 <i class="fa-solid fa-thumbs-up"></i>
+                              {% else %}
+                                 <i class="fa-solid fa-thumbs-down"></i>
+                              {% endif %} 
+                           </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.Like.all.count }}</span>
+                     </form>
+                  </span>
                   &nbsp;
                   <a href="{% url 'add_comment' i.id %}" class="text-decoration-none community-like-dislike-btn">
                   <i class="fa-solid fa-message"></i>
@@ -909,20 +925,20 @@
             <div class="row pt-2 pd-2">
                <!-- Start like button -->
                <div class="col-5 col-sm-3 col-md-2 text-center">
-                  <a href="{% url 'like_post' i.id %}">
-                     {% if userprofile not in i.Like.all %}
-                        <button type="submit" class="btn community-like-dislike-btn">
-                           <i class="fa-solid fa-thumbs-up"></i>
-                        </button>
-                     {% else %}
-                        <button type="submit" class="btn community-like-dislike-btn">
-                           <i class="fa-solid fa-thumbs-down"></i>
-                        </button>
-                     {% endif %}
-                  </a>
-
-                  <span class="community-like-dislike-btn">{{ i.Like.all.count }}</span>
-
+                  <span class="d-inline-block">
+                     <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{i.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                           <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                              {% if userprofile not in i.Like.all %}
+                                 <i class="fa-solid fa-thumbs-up"></i>
+                              {% else %}
+                                 <i class="fa-solid fa-thumbs-down"></i>
+                              {% endif %} 
+                           </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.Like.all.count }}</span>
+                     </form>
+                  </span>
                   &nbsp;
 
                   <a href="{% url 'add_comment' i.id %}" class="text-decoration-none community-like-dislike-btn">
@@ -1047,32 +1063,31 @@
             <div class="row pt-2 pd-2">
                <!-- Start like button -->
                <div class="col-4 col-sm-3 col-md-2 text-center">
-                  <a href="{% url 'like_Question' i.id %}">
-                     {% if userprofile not in i.Question_Like.all %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                     </button>
-                     {% else %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                     </button>
-                     {% endif %}
-                  </a>
-                  <span class="community-like-dislike-btn">
-                     {{ i.Question_Like.all.count }}
+                  <span class="d-inline-block">
+                     <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                           <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                              {% if userprofile not in i.Question_Like.all %}
+                                 <i class="fa-solid fa-thumbs-up"></i>
+                              {% else %}
+                                 <i class="fa-solid fa-thumbs-down"></i>
+                              {% endif %} 
+                           </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.Question_Like.all.count }}</span>
+                     </form>
                   </span>
-
                   <span class="community-like-dislike-btn">
-                     &nbsp;
-                     <i class="fa-solid fa-message"></i>
-                     &nbsp;
-                     {% if i.answer is None %}
-                        0
-                     {% else %}
-                        {{i.answer}}
-                     {% endif %}
+                     <a href="{% url 'Add_Answer' i.id %}" class="text-decoration-none">
+                        <i class="fa-solid fa-message"></i>
+                           &nbsp;
+                        {% if i.answer is None %}
+                           0
+                        {% else %}
+                           {{i.answer}}
+                        {% endif %}
+                     </a>
                   </span>
-
                </div>
                <!-- End like button -->
                <!-- Start comment -->
@@ -1224,19 +1239,20 @@
             <div class="row pt-2 pd-2">
                <!-- Start like button -->
                <div class="col-5 col-sm-3 col-md-2 text-center">
-                  <a href="{% url 'like_post' i.id %}">
-                  {% if userprofile not in i.Like.all %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-thumbs-up"></i>
-                  </button>
-                  {% else %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                  <i class="fa-solid fa-thumbs-down"></i>
-                  </button>
-                  {% endif %}
-                  </a>
-
-                  <span class="community-like-dislike-btn">{{ i.Like.all.count }}</span>
+                  <span class="d-inline-block">
+                     <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{i.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                           <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                              {% if userprofile not in i.Like.all %}
+                                 <i class="fa-solid fa-thumbs-up"></i>
+                              {% else %}
+                                 <i class="fa-solid fa-thumbs-down"></i>
+                              {% endif %} 
+                           </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.Like.all.count }}</span>
+                     </form>
+                  </span>
                   &nbsp;
                   <a href="{% url 'add_comment' i.id %}" class="text-decoration-none community-like-dislike-btn">
                   <i class="fa-solid fa-message"></i>
@@ -1384,18 +1400,20 @@
             <div class="row pt-2 pd-2">
                <!-- Start like button -->
                <div class="col-5 col-sm-3 col-md-2 text-center">
-                  <a href="{% url 'like_post' i.id %}">
-                     {% if userprofile not in i.Like.all %}
-                        <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                        </button>
-                        {% else %}
-                        <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                        </button>
-                     {% endif %}
-                  </a>
-                  <span class="community-like-dislike-btn">{{ i.Like.all.count }}</span>
+                  <span class="d-inline-block">
+                     <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{i.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                           <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                              {% if userprofile not in i.Like.all %}
+                                 <i class="fa-solid fa-thumbs-up"></i>
+                              {% else %}
+                                 <i class="fa-solid fa-thumbs-down"></i>
+                              {% endif %} 
+                           </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.Like.all.count }}</span>
+                     </form>
+                  </span>
                   &nbsp;
                   <a href="{% url 'add_comment' i.id %}" class="text-decoration-none community-like-dislike-btn">
                   <i class="fa-solid fa-message"></i>
@@ -1517,30 +1535,30 @@
             <div class="row pt-2 pd-2">
                <!-- Start like button -->
                <div class="col-4 col-sm-3 col-md-2 text-center">
-                  <a href="{% url 'like_Question' i.id %}">
-                     {% if userprofile not in i.Question_Like.all %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                     </button>
-                     {% else %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                     </button>
-                     {% endif %}
-                  </a>
-                  <span class="community-like-dislike-btn">
-                     {{ i.Question_Like.all.count }}
+                  <span class="d-inline-block">
+                     <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                           <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                              {% if userprofile not in i.Question_Like.all %}
+                                 <i class="fa-solid fa-thumbs-up"></i>
+                              {% else %}
+                                 <i class="fa-solid fa-thumbs-down"></i>
+                              {% endif %} 
+                           </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.Question_Like.all.count }}</span>
+                     </form>
                   </span>
-
                   <span class="community-like-dislike-btn">
-                     &nbsp;
-                     <i class="fa-solid fa-message"></i>
-                     &nbsp;
-                     {% if i.answer is None %}
-                        0
-                     {% else %}
-                        {{i.answer}}
-                     {% endif %}
+                     <a href="{% url 'Add_Answer' i.id %}" class="text-decoration-none">
+                        <i class="fa-solid fa-message"></i>
+                           &nbsp;
+                        {% if i.answer is None %}
+                           0
+                        {% else %}
+                           {{i.answer}}
+                        {% endif %}
+                     </a>
                   </span>
 
                </div>
@@ -1817,7 +1835,6 @@
 </div>
 <!-- End Community modeal pop up -->
 
-
 <!-- Start Create Report-post modal -->
 <div class="modal create-community-modeal" id="report-post">
    <div class="modal-dialog modal-lg">
@@ -2005,8 +2022,7 @@
 </div>
 <!-- End Create Community Modeal pop up -->
 
-<!-- </div>
-Ends Answer Asked by another user -->
+<!-- Ends Answer Asked by another user -->
 
 <!-- Start Ask-Post Modal pop up -->
 <div class="modal ask-post" id="ask-post">
@@ -2324,25 +2340,54 @@ Ends Answer Asked by another user -->
 </script>
 <!-- End the report-question script -->
 
-<!-- search script -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-   function userSearch() {
-     var input1, filter1, ul1, li1, a1, i1;
-     input1 = document.getElementById("user-serach");
-     filter1 = input.value.toUpperCase();
-     ul1 = document.getElementById("user_id");
-     li1 = ul1.getElementsByTagName("li");
-     for (i1 = 0; i1 < li1.length; i1++) {
-       a1 = li1[i1].getElementsByTagName("a")[0];
-       if (a1.innerHTML.toUpperCase().indexOf(filter1) > -1) {
-         li1[i].style.display = "";
-       } else {
-         li1[i1].style.display = "none";
-       }
-     }
-   }
+   $('.like-form').submit(function(e){
+      e.preventDefault()
+      //console.log('works')
+      const post_id = $(this).attr('id')
+      //console.log(post_id)
+      const liketext = $(`.like-btn${post_id}`).html()
+      //console.log(liketext)
+      const trim = $.trim(liketext)
+      //console.log(trim)
+      const url = $(this).attr('action')
+      //console.log(url)
+      let res;
+      const likes = $(`.like-count${post_id}`).text()
+      //console.log(likes + 1)
+      const trimCount = parseInt(likes)
+      //console.log(trimCount + 1)
+
+      $.ajax(
+         {
+         type : "POST",
+         url : url,
+         data : {
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            'post_id':post_id,
+         },
+         success: function(response){
+            //console.log('success', response)
+            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
+               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
+               res = trimCount - 1
+            } else {
+               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
+               res = trimCount + 1
+            }
+
+           $(`.like-count${post_id}`).text(res)
+         },
+         error: function(response) {
+            console.log('error', response)
+        }
+      }
+      )
+
+   })
 </script>
-<!-- end search script -->
+
 {% endblock content %}
 
 

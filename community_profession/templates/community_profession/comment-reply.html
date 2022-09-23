@@ -53,21 +53,20 @@
       <!-- Start like-reply-share -->
       <div class="row pt-3">
          <div class="col-md-12 like-reply-share">
-            <a href="{% url 'like_post_comment' Post_obj.id %}">
-                {% if userprofile not in Post_obj.Comment_like.all %}
-                    <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                    </button>
-                {% else %}
-                    <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                    </button>
-                {% endif %}
-            </a>
-             <span class="community-like-dislike-btn">
-                 {{ Post_obj.Comment_like.all.count }}
-             </span>
-
+            <span class="d-inline-block">
+               <form action="{% url 'like_post_comment' %}" method="POST" class="like-form" id="{{Post_obj.id}}">
+                  {% csrf_token %}
+                  <input type="hidden" name="post_id" value="{{Post_obj.id}}">
+                     <button type="submit" class="btn community-like-dislike-btn like-btn{{Post_obj.id}}">
+                        {% if userprofile not in Post_obj.Comment_like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                        {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                        {% endif %} 
+                     </button>
+                  <span class="btn community-like-dislike-btn like-count{{Post_obj.id}}">{{ Post_obj.Comment_like.all.count }}</span>
+               </form>
+            </span>
             <span class=" community-like-dislike-btn">
                 &nbsp;
                 <i class="fa-solid fa-message"></i>
