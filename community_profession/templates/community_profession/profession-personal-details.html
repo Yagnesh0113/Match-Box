@@ -110,7 +110,7 @@ function replace_stars(value){
 	$("#container").html(html);
 }
 $(document).ready(function(){
- replace_stars(3);
+ replace_stars(1);
 });
 </SCRIPT>
 <!-- End our Star rating -->
@@ -453,7 +453,12 @@ $(document).ready(function(){
       <div class="col-7 col-sm-8 col-md-8">
          <div class="form-group comment-input" >
             <textarea maxlength="300" class="form-control" type="text" placeholder="Write a Comment" name="Comment" required></textarea>
-            <div id="container"></div>
+            <div class="row">
+               <div class="col-md-12 pt-3">
+                  <div id="container"></div>
+               </div>
+            </div>
+
          </div>
 
          

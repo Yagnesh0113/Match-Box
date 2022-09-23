@@ -13,7 +13,7 @@ div.star-rating {
 
 div.rating-cancel,
 div.rating-cancel a {
-	background: url(delete.gif) no-repeat 0 -16px;
+	/*background: url(delete.gif) no-repeat 0 -16px;*/
 }
 
 div.star-rating,
