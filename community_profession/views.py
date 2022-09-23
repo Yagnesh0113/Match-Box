@@ -118,6 +118,7 @@ def loadNearestProfessionsList(request,id=None):
         return render(request, 'community_profession/nearest-professions-list.html',context)
 
 from django.db.models import Avg
+import json
 # --- load -- profession personal details page ---
 @login_required(login_url='/')
 def loadProfessionPersonalDetails(request, id):
@@ -131,15 +132,18 @@ def loadProfessionPersonalDetails(request, id):
         # print("The data is already exits")
         if request.method == "POST":
             review = request.POST.get("Comment")
-            rate = request.POST.get("rate")
-            ProfessionReview.objects.create(Profession=Profession_obj, user_profile=userprofile, Review=review,
-                                            Rate=rate)
-            Rating = ProfessionReview.objects.aggregate(Avg('Rate'))
+            rate = request.POST.get("rating")
+
+            print(request.POST)
+            # ProfessionReview.objects.create(Profession=Profession_obj, user_profile=userprofile, Review=review,
+            #                                 Rate=rate)
+            # Rating = ProfessionReview.objects.aggregate(Avg('Rate'))
             # print(Profession_obj.Profession_Rating)
-            Profession_obj.Profession_Rating = float(round(Rating['Rate__avg'], 1))
-            Profession_obj.save()
+            # Profession_obj.Profession_Rating = float(round(Rating['Rate__avg'], 1))
+            # Profession_obj.save()
             return redirect(f"/profession-personal-details/{id}")
         else:
+            print(request.GET)
             ProfessionReview_obj = ProfessionReview.objects.filter(Profession=Profession_obj)[::-1][0:3]
             ProfessionReview_obj_count = ProfessionReview.objects.filter(Profession=Profession_obj).count()
 
