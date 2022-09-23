@@ -233,11 +233,11 @@
                   <input type="hidden" name="post_id" value="{{All_comment.Community_Comment.id}}">
                      <button type="submit" class="btn community-like-dislike-btn like-btn{{All_comment.Community_Comment.id}}">
                         {% if userprofile not in All_comment.Community_Comment.Comment_like.all %}
-                           <i class="fa-solid fa-thumbs-up"></i>
-                           <!-- Like -->
+                           <!-- <i class="fa-solid fa-thumbs-up"></i> -->
+                           Like
                         {% else %}
-                           <i class="fa-solid fa-thumbs-down"></i>
-                           <!-- Unlike -->
+                           <!-- <i class="fa-solid fa-thumbs-down"></i> -->
+                           Unlike
                         {% endif %} 
                      </button>
                   <span class="btn community-like-dislike-btn like-count{{All_comment.Community_Comment.id}}">{{ All_comment.Community_Comment.Comment_like.all.count }}</span>
