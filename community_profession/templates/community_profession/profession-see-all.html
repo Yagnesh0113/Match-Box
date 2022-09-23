@@ -8,6 +8,7 @@
 <!-- Profession see all screen -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-see-all-screen.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="/static/community_profession/css/community/community.css">
 {% endblock own_css %}
 
 {% block content %}
@@ -23,7 +24,7 @@
 <div class="row">
    {% for i in profession %}
    <div class="col-4 pt-4">
-      <a href="{% url 'search-nearest-professions' i.id %}" class="">
+      <a href="{% url 'search-nearest-professions' i.id %}" class="text-decoration-none">
          <!-- Start image -->
          <div class="row">
             <div class="col-md-12">

@@ -8,6 +8,7 @@
 <!-- search-nearest-profession-list.css -->
 <link rel="stylesheet" href="{% static 'community_profession/css/search-nearest-profession-list.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="/static/community_profession/css/community/community.css">
 {% endblock own_css %}
 {% block content %}
 <!-- Start Hair artist & Saloon window  -->
@@ -80,7 +81,7 @@
    </div>
 </div>
 <!-- End Hair artist & Saloon window  -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
 <script>
    $("#state").change(function () {
       var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view

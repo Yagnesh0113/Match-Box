@@ -274,18 +274,22 @@
       <div class="row pt-2 pd-2">
          <!-- Start Like -->
          <div class="col-5 col-sm-3 col-md-2 text-center">
-            <a href="{% url 'like_post' Post.user_post.id %}">
-               {% if userprofile not in Post.user_post.Like.all %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                     <i class="fa-solid fa-thumbs-up"></i>
+            <span class="d-inline-block">
+            <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{Post.user_post.id}}">
+               {% csrf_token %}
+               <input type="hidden" name="post_id" value="{{Post.user_post.id}}">
+                  <button type="submit" class="btn community-like-dislike-btn like-btn{{Post.user_post.id}}">
+                     {% if userprofile not in Post.user_post.Like.all %}
+                        <i class="fa-solid fa-thumbs-up"></i>
+                     {% else %}
+                        <i class="fa-solid fa-thumbs-down"></i>
+                     {% endif %}
                   </button>
-               {% else %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                     <i class="fa-solid fa-thumbs-down"></i>
-                  </button>
-               {% endif %}
-            </a>
-            <span class="community-like-dislike-btn">{{ Post.user_post.Like.all.count }}</span>
+               <span class="btn community-like-dislike-btn like-count{{Post.user_post.id}}">{{ Post.user_post.Like.all.count }}</span>
+            </form>
+         </span>
+
+
             &nbsp;
             <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none community-like-dislike-btn">
             <i class="fa-solid fa-message"></i>
