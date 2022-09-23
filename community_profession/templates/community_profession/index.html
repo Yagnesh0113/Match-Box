@@ -168,6 +168,7 @@
          </div>
       </div>
       <!-- End Navigation -->
+
       <!-- Start Mainn body content -->
       <div class="row bg-dark" id="scrollable-container">
          <!-- Start Main Content -->
@@ -416,14 +417,19 @@
          <!-- End Community window -->
       </div>
       <!-- End Mainn body content -->
+
       <!-- Start Footer - mobile -->
       <div class="row bg-dark text-light border-top pt-3 footer-mobile">
          <div class="col-md-2">
             <div class="row">
-               <div class="col-md-12">Community</div>
+               <!-- <a class="nav-link active" href="{% url 'community-screen' %}"> -->
+                  <div class="col-md-12">Community</div>
+               <!-- </a> -->
             </div>
             <div class="row">
-               <div class="col-md-12">Profession</div>
+               <!-- <a class="nav-link active" href="{% url 'home-screen' %}"> -->
+                  <div class="col-md-12">Profession</div>
+               <!-- </a> -->
             </div>
             <div class="row">
                <div class="col-md-12">Ask</div>
@@ -434,7 +440,9 @@
          </div>
          <div class="col-md-8">
             <div class="row">
-               <div class="col-md-12">My Community</div>
+               <!-- <a class="nav-link" href="#" data-target="#modal10" data-toggle="modal"> -->
+                  <div class="col-md-12">My Community</div>
+               <!-- </a> -->
             </div>
             <div class="row">
                <div class="col-md-12">Popular services</div>
@@ -469,6 +477,7 @@
          </div>
       </div>
       <!-- End Footer - mobile -->
+      
       <!-- Start Create Community Modeal pop up -->
       <div class="modal create-community-modeal" id="modal3">
          <div class="modal-dialog modal-lg">
@@ -483,49 +492,49 @@
                      <div class="form-group">
                         <label for="" class="modal-sub-heading">Community Name</label>
                         <input type="text" class="form-control" placeholder="Enter Community Name" name="Communiy_Name" id="text" required="true">
-                        <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
+                        <label class="form-check-label modal-message">21 Characters remaining</label>
                      </div>
+      
                      <div class="row">
                         <div class="col-md-6">
                            <div class="form-group">
+                              <input id="max_obj" type="hidden" name="MAX_FILE_SIZE" value="2000000" />
                               <label for="" class="modal-sub-heading">Community Cover Image</label>
-                              <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Image">
+                              <input onchange="community_check1()" id="file_1" type="file" class="form-control border-0" accept="image/*" name="Communiy_Image" required>
                               <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
                            </div>
                         </div>
                         <div class="col-md-6">
                            <div class="form-group">
+                              <input id="max_obj1" type="hidden" name="MAX_FILE_SIZE" value="2000000" />
                               <label for="" class="modal-sub-heading">Community Profile Image</label>
-                              <input type="file" class="form-control" accept=".jpg,.png" placeholder="Enter Community Name" name="Communiy_Profile" required="true">
+                              <input onchange="community_check2()" id="file_2" type="file" class="form-control border-0" accept="image/*" name="Communiy_Profile" required>
                               <!-- <label class="form-check-label modal-message">21 Characters remaining</label> -->
                            </div>
                         </div>
                      </div>
+      
                      <span class="modal-sub-heading">Community type</span>
-                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+      
+      
+                     <div class="form-check rounded pt-2  pb-2">
                         <label class="form-check-label">
-                        <input type="checkbox" name="public" class="form-check-input" value="">
-                        <span class="community-type-heading">Public</span> <span clas="community-type-sub-heading"> Anyone can view post, Comment to this Community.</span>
+                        <input type="checkbox" name="public" class="form-check-input" value="" required>
+                        <span class="community-type-heading">Public</span>
+                        <span class="community-type-sub-heading"> Anyone can view post, Comment to this Community.</span>
                         </label>
                      </div>
-                     <div class="form-check border rounded mt-3 pt-2 pb-2">
-                        <label class="form-check-label">
-                        <input type="checkbox" name="restricted" class="form-check-input" value="">
-                        <span class="community-type-heading">Restricted</span> <span clas="community-type-sub-heading"> Anyone can view this Community, But only approved users can post.</span>
-                        </label>
+      
+                     <div class="row modal-sub-heading pt-3 pb-3">
+                        <div class="col-md-12">Description</div>
                      </div>
-                     <div class="form-check border rounded mt-3 mb-3 pt-2 pb-2">
-                        <label class="form-check-label">
-                        <input type="checkbox" name="private" class="form-check-input" value="">
-                        <span class="community-type-heading">Private</span> <span clas="community-type-sub-heading"> Only approved users can view and submit to this community.</span>
-                        </label>
-                     </div>
-                     <span class="modal-sub-heading">Adult Content </span>
-                     <div class="form-check border rounded mt-3 pt-2 pb-2">
-                        <label class="form-check-label">
-                        <input type="checkbox" name="adult" class="form-check-input" value="">
-                        18+ year old community
-                        </label>
+      
+                     <div class="row">
+                        <div class="col-md-12 question-text-box">
+                           <div class="form-group">
+                              <textarea name="community_descrition" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                           </div>
+                        </div>
                      </div>
                   </div>
                   <div class="modal-footer">
@@ -539,6 +548,7 @@
          </div>
       </div>
       <!-- End Create Community Modeal pop up -->
+
       <!-- Start Community modeal pop up -->
       <div class="modal fade community-modeal" id="modal10">
          <div class="modal-dialog modal-dialog-scrollable">
@@ -665,9 +675,11 @@
          </div>
       </div>
       <!-- End Community modeal pop up -->
+
       <!-- Start Animated Sidenav -->
       <script src="{% static 'community_profession/js/mb-main.js' %}"></script>
       <!-- End Animated Sidenav -->
+
       <!-- search script -->
       <script>
          function communitySearch() {
