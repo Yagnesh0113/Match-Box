@@ -212,13 +212,26 @@
                   <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a> -->
                   <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a> -->
                   <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a> -->
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-ban"></i> Report </a>
                   <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
                   {% if userprofile.id is Post.user_post.User_Profile.id %}
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Edit post </a>
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete post</a>
+                     {% if Post.user_post.post_type1 %}
+                        <a class="dropdown-item" href="{% url 'Community_Edit_My_Video' Post.user_post.id %}"><i class="fa-solid fa-pen"></i> Edit Video </a>
+                        <a class="dropdown-item" href="{% url 'Community_Delete_My_Video' Post.user_post.id %}"><i class="fa-solid fa-trash"></i> Delete Video</a>
+                     {% else %}
+                        <a class="dropdown-item" href="{% url 'Community_Edit_My_Image' Post.user_post.id %}"><i class="fa-solid fa-pen"></i> Edit post </a>
+                        <a class="dropdown-item" href="{% url 'Community_Delete_My_Image' Post.user_post.id %}"><i class="fa-solid fa-trash"></i> Delete post</a>
+                     {% endif %}
+                  {% else %}
+                     <a class="dropdown-item" href="#" data-target="#community-post" data-toggle="modal" onclick="Reportpost('{{Post.user_post.id}}')"><i class="fa-solid fa-ban"></i> Report </a>
                   {% endif %}
-                  <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Bookmark</a>
+                  <!-- Start Post Book Mark -->
+                  {% if Post.user_post.Post_bookmark is False %}
+                     <a class="dropdown-item" href="{% url 'bookmark_post' Post.id %}"><i class="fa-solid fa-file-arrow-down"></i> Bookmark</a>
+                  {% else %}
+                     <a class="dropdown-item" href="{% url 'remove_post_bookmark' Post.id %}"><i class="fa-solid fa-file-arrow-up"></i> Remove Bookmark</a>
+                  {% endif %}
+                  <!-- End Post Book Mark -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Bookmark</a> -->
                </div>
             </div>
          </div>
@@ -328,6 +341,64 @@
 {% endfor %}
 <!-- End Post -->
 
+<!-- Start Create Report-post modal -->
+<div class="modal create-community-modeal" id="community-post">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="report-post">Create Report</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="{% url 'report_post' %}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="number" id="demo1" name="post_id" hidden>
+               </div>
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 question-text-box">
+                     <div class="form-group">
+                        <textarea name="report_descrition" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Adult Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="adult" class="form-check-input" value="">
+                              18+ content
+                        </label>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Abusing Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="abuse" class="form-check-input" value="">
+                              Abusing Content
+                        </label>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Report</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End Create Report-post modal -->
+
 <!-- Start Share Modal -->
 <div class="modal create-community-modeal" id="share-modal">
    <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -429,6 +500,15 @@
    </div>
 </div>
 <!-- End Create Report-post modal -->
+
+<!-- Start the report-post script -->
+<script>
+   function Reportpost(id){
+      document.getElementById('report-post').action ='';
+      document.getElementById("demo1").value = id;
+   }
+</script>
+<!-- End the report-post script -->
 
 <!-- Start the report-post script -->
 <script>

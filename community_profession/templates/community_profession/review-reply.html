@@ -18,33 +18,46 @@
 
 <div class="row pl-3">
    <div class="col-md-12 all-comments">
-       <!-- Start user-profile, user-community-name, time -->
-       <div class="row">
-           <!-- Start user-profile -->
-           <div class="col-2 col-sm-1 col-md-1">
+      <!-- Start user-profile, user-community-name, time -->
+      <div class="row">
+         <!-- Start user-profile -->
+         <div class="col-2 col-sm-1 col-md-1  community-post-profile-picture">
                <img class="img-fluid rounded-circle" src="{{Profession_review.user_profile.profile_image.url}}" alt="Chania">
-           </div>
-           <!-- End user-profile -->
+         </div>
+         <!-- End user-profile -->
 
-           <!-- Start user-community-name, time -->
-           <div class="col-10 col-sm-11 col-md-11 user-community-name">
-               {{Profession_review.user_profile.usertype.user_id.first_name}} {{Profession_review.user_profile.usertype.user_id.last_name}} <br> 
-               <span class="time">{{Profession_review.Review_Date}} / {{Profession_review.Review_Time}}</span>
-           </div>
-           <!-- End user-community-name, time -->
-       </div>
-       <!-- End user-profile, user-community-name, time -->
+         <!-- Start user-community-name, time -->
+         <div class="col-9 col-sm-11 col-md-11 pl-0">
+            <!-- Start community name -->
+            <div class="row">
+               <div class="col-md-12 community-name pl-0">
+                  <a href="{% url 'profession-profile-screen' Profession_review.user_profile.usertype.user_id.id  %}" class="text-decoration-none">{{Profession_review.user_profile.usertype.user_id.first_name}} {{Profession_review.user_profile.usertype.user_id.last_name}}</a>
+               </div>
+            </div>
+            <!-- End community name -->
+            <!-- Start community time -->
+            <div class="row">
+               <div class="col-md-12 community-time pl-0">
+                  {{Profession_review.Review_Date}} / {{Profession_review.Review_Time}}
+                  <!-- Ago -->
+               </div>
+            </div>
+            <!-- End community time -->
+         </div>
+         <!-- End user-community-name, time -->
+      </div>
+      <!-- End user-profile, user-community-name, time -->
 
-       <!-- Start comment -->
-       <div class="row pt-2">
-           <div class="col-12 col-sm-12 col-md-12 comment">
-               {{Profession_review.Review}}
-           </div>
-       </div>
-       <!-- End comment -->
+      <!-- Start comment -->
+      <div class="row pt-2">
+         <div class="col-12 col-sm-12 col-md-12 comment">
+            {{Profession_review.Review}}
+         </div>
+      </div>
+      <!-- End comment -->
 
-       <!-- Start like-reply-share -->
-       <div class="row">
+      <!-- Start like-reply-share -->
+      <div class="row">
          <div class="col-md-12">
             <span class="likes-heading">
             <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image"> &nbsp; {{Profession_review.Rate}}
@@ -74,107 +87,131 @@
             </span>
          </div>
       </div>
-       <!-- Start like-reply-share -->
+      <!-- Start like-reply-share -->
    </div>
 </div>
 <hr color="ffffff">
 
 
-<!-- Comment : {{Profession_review.Review}} -->
- <!-- Start Reply text-box, post-btn, options -->
- <form action="{% url 'review_Reply' Profession_review.id %}" method="POST">
-   {% csrf_token %}
-   <div class="row pl-3 reply-form">
-      <!-- Start reply-input-box -->
-      <div class="col-md-10 pt-3">
-         <div class="form-group">
-            <input required name="reply" type="text" class="form-control form-control-sm" id="usr" placeholder="Your Reply">
-         </div>
-      </div>
-      <!-- End reply-input-box -->
-      <!-- Start post btn -->
-      <div class="col-md-2 pt-3">
-         <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
-      </div>
-         
-      <!-- End post btn -->
-      <!-- Start options -->
-      <!-- <div class="col-md-1 pt-3 options">
-         <div class="dropdown dropleft float-right">
-               <button type="button" class="btn btn-sm btn-block text-light" data-toggle="dropdown">
-                  <i class="fa-solid fa-ellipsis-vertical"></i>
-               </button>
-               <div class="dropdown-menu">
-               <a class="dropdown-item" href="#">Block Account</a>
-               <a class="dropdown-item" href="#">Delete</a>
-               <a class="dropdown-item" href="#">Hide Reply</a>
-               </div>
-         </div>
-      </div> -->
-      <!-- End options -->
+<!-- Start Login Profile info -->
+<div class="row pl-1 pt-3">
+   <div class="col-md-12 pb-3 all-comments community-body">
+       <div class="row">
+            <!-- Start user-profile -->
+            <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
+               <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
+            </div>
+            <!-- End user-profile -->
+            <!-- Start user-community-name, time -->
+             <div class="col-5 col-sm-4 col-md-4 pl-0 pt-2">
+                 <!-- Start community name -->
+                 <div class="row font-weight-bolder">
+                    <div class="col-md-12 community-name  pl-0">
+                       {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+                    </div>
+                 </div>
+                 <!-- End community name -->
+             </div>
+            <!-- End user-community-name, time -->
+       </div>
    </div>
+</div>
+<!-- End Login Profile info -->
+
+<!-- Start Reply text-box, post-btn, options -->
+<form action="{% url 'review_Reply' Profession_review.id %}" method="POST">
+   {% csrf_token %}
+    <div class="row pl-3">
+        <div class="col-md-12 border-bottom">
+            <div class="row reply-form ">
+              <!-- Start reply-input-box -->
+              <div class="col-10 col-sm-10 col-md-10 pt-3 pl-0">
+                 <div class="form-group">
+                    <input type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply">
+                 </div>
+              </div>
+              <!-- End reply-input-box -->
+              <!-- Start post btn -->
+              <div class="col-2 col-sm-2 col-md-2 pt-3">
+                 <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
+              </div>
+              <!-- End post btn -->
+            </div>
+        </div>
+    </div>
 </form>
+
 <!-- End Reply text-box, post-btn, options -->
 
 {% for i in Review_obj %}
 <!-- Start Comment -->
-<div class="row pt-4">
-  <div class="col-md-12 comment">
-     <!-- Start user profile-img & user name  -->
-     <div class="row">
-        <!-- Start user profile-img  -->
-        <div class="col-md-1">
-           <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania">
-        </div>
-        <!-- End user profile-img  -->
-        <!-- Start user name -->
-        <div class="col-md-10">
-           <!-- Start User name heading -->
-           <div class="row">
-              <div class="col-md-12 user-name-heading">
-                {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
-              </div>
-           </div>
-           <!-- End User name heading -->
+<div class="row pt-4 pl-3">
+   <div class="col-md-12 comment border-bottom pb-3">
+      <!-- Start user profile-img & user name  -->
 
-           <!-- Start username-sub-heading -->
-           <div class="row">
-              <div class="col-md-12 username-sub-heading">
-                 {{i.Review_Reply_Date}} {{i.Review_Reply_Time}} 
-                 <!-- ago -->
-              </div>
+       <div class="row community-body">
+           <!-- Start Profile picture -->
+           <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+              <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
            </div>
-           <!-- End username-sub-heading -->
-        </div>
-        <!-- End user name -->
-        {% if userprofile.id is i.User_Profile.id %}
-         <div class="col-md-1 pt-3 options">
-            <div class="dropdown dropleft float-right">
-               <button type="button" class="btn btn-sm btn-block text-light" data-toggle="dropdown">
-                  <i class="fa-solid fa-ellipsis-vertical"></i>
-               </button>
-               <div class="dropdown-menu">
-                  <!-- <a class="dropdown-item" href="#">Block Account</a> -->
-                  <a class="dropdown-item" href="{% url 'review_reply_delete' i.id %}">Delete</a>
-                  <a class="dropdown-item" href="#" data-target="#modal3" data-toggle="modal" onclick="data('{{i.id}}','{{i.Review_Reply}}')">Edit Reply</a>
+           <!-- End Profile picture -->
+
+           <!-- Start Community name and time -->
+           <div class="col-5 col-sm-4 col-md-4 pl-0">
+              <!-- Start community name -->
+              <div class="row">
+                 <div class="col-md-12 community-name pl-0">
+                  <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
+                 </div>
+              </div>
+              <!-- End community name -->
+              <!-- Start community time -->
+              <div class="row">
+                 <div class="col-md-12 community-time pl-0">
+                     {{i.Review_Reply_Date}} {{i.Review_Reply_Time}}
+                    <!-- Ago -->
+                 </div>
+              </div>
+              <!-- End community time -->
+           </div>
+           <!-- End Community name and time -->
+            <!-- Start Community name and time -->
+            <div class="col-5 col-sm-4 col-md-4 pl-6 text-right">
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time pl-0">
+                     <div class="col-md-12 like-reply-share ">
+                        <span>
+                           {% if userprofile.id is i.User_Profile.id %}
+                              <a href="#" class="btn community-like-dislike-btn" data-target="#modal3" data-toggle="modal" onclick="data('{{i.id}}','{{i.Review_Reply}}')" >
+                                 <i class="fa-solid fa-pencil"></i> &nbsp; 
+                              </a>
+                              <a href="{% url 'review_reply_delete' i.id %}" class="btn community-like-dislike-btn">
+                                 <i class="fa-solid fa-trash"></i> &nbsp;
+                              </a>
+                           {% endif %}
+                        </span>
+                     </div>
+                  </div>
                </div>
+               <!-- End community time -->
             </div>
-         </div>
-         {% endif %}
-     </div>
-     <!-- End user profile-img & user name  -->
+            <!-- End Community name and time -->
+       </div>
+      <!-- End user profile-img & user name  -->
+      <!-- Start comment-conetnt -->
 
-     <!-- Start comment-conetnt -->
-     <div class="row pt-1">
-        <div class="col-md-12 comment-conetnt">
-           {{i.Review_Reply}}
-        </div>
-     </div>
-     <!-- End comment-conetnt -->
-  </div>
-</div><br><hr color="ffffff"><br>
+       <div class="row pt-3">
+           <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+            {{i.Review_Reply}}
+           </div>
+       </div>
+      <!-- End comment-conetnt -->
+   </div>
+</div>
 <!-- End Comment -->
 {% endfor %}
+
 <div class="modal create-community-modeal" id="modal3">
    <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -200,6 +237,7 @@
       </div>
    </div>
 </div>
+
 <script>
    function data(id,val1){
       document.getElementById('EditReviewReply').action ='/edit_review_reply/'+id;
@@ -246,11 +284,11 @@
                res = trimCount + 1
             }
 
-           $(`.like-count${post_id}`).text(res)
+         $(`.like-count${post_id}`).text(res)
          },
          error: function(response) {
             console.log('error', response)
-        }
+      }
       }
       )
 

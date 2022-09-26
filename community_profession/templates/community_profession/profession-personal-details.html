@@ -1,5 +1,6 @@
 {% extends 'community_profession/index.html' %}
 {% load static %}
+{% load social_share %}
 {% block title %}
 <title>Profession Personal Details</title>
 {% endblock title %}
@@ -119,8 +120,15 @@ $(document).ready(function(){
 {% block content %}
 <!-- Start girls parlor heading -->
 <div class="row">
-   <div class="col-md-12 girls-parlor-heading">
+   <div class="col-md-11 girls-parlor-heading">
       {{Profession_obj.profession.Profession_Name}}
+   </div>
+   <div class="col-md-1 girls-parlor-heading">
+      <span>
+         <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+            <i class="fa-solid fa-share-nodes"></i>
+         </button>
+      </span>
    </div>
 </div>
 <!-- End girls parlor heading -->
@@ -603,6 +611,53 @@ $(document).ready(function(){
       </div>
    </div>
 </div>
+
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row your-added-questions-heading">
+               <div class="col-md-12">Share</div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Share Icon -->
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <span>{% post_to_facebook object_or_url %}</span>
+                  <span>{% post_to_whatsapp object_or_url %}</span>
+                  <span>{% post_to_reddit object_or_url %}</span>
+               </div>
+            </div>
+            <!-- End Share Icon -->
+            <!-- Start copy link text box -->
+            <div class="row d-flex justify-content-center pt-3">
+               <div class="col-md-8">
+                  <form>
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="{{ copy_url }}" placeholder="CopyURL">
+                        <div class="input-group-append">
+                           <!-- <span class="input-group-text">COPY</span> -->
+                           <span>{% copy_to_clipboard object_or_url%}</span>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <!-- End copy link text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Share Modal -->
+
+{% add_copy_script %}
+
 <script>
    function data(id,val1){
       document.getElementById('EditReview').action ='/edit_review/'+id;

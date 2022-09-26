@@ -1415,6 +1415,10 @@ def edit_review(request,id):
 @login_required(login_url='/')
 def review_reply_delete(request, id):
     obj=ProfessionReview_Reply.objects.get(id=id)
+    obj1=obj.Review.Reply
+    obj2=obj1-1
+    obj.Review.Reply=obj2
+    obj.Review.save()
     obj.delete()
     return redirect(f"/review_Reply/{obj.Review.id}")
 
@@ -1530,6 +1534,7 @@ def report_post(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
         post=request.POST.get("post_id")
+        print(post)
         post_id=UserPost.objects.get(id=int(post))
         report=request.POST.get("report_descrition")
         adult=request.POST.get("adult")

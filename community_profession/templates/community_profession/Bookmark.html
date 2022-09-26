@@ -233,17 +233,12 @@
                                     <!-- Start Edit and Delete login User -->
                                     {% if userprofile.id is i.Question.User_Profile.id %}
                                     <a class="dropdown-item" href="{% url 'Community_Delete_My_Question' i.question.id %}">Delete</a>
-                                    <a class="dropdown-item" href="{% url 'Community_Edit_My_Question' i.question.id %}">Edit Post</a>
+                                    <a class="dropdown-item" href="{% url 'Community_Edit_My_Question' i.question.id %}">Edit Question</a>
                                     {% endif %}
 
-                                <a class="dropdown-item" href="#">Copy Link</a>
-                                <a class="dropdown-item" href="#">Block Account</a>
-                                <a class="dropdown-item" href="{% url 'ans_later' i.question.id %}">Answer Later</a>
-                                <!-- <a class="dropdown-item" href="#">Delete question</a>
-                                    <a class="dropdown-item" href="#">Edit question</a> -->
+                                <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
+                                <!-- <a class="dropdown-item" href="#">Block Account</a> -->
                                 <a class="dropdown-item" href="{% url 'remove_question_bookmark' i.question.id %}">Remove Bookmark</a>
-                                <a class="dropdown-item" href="#">Save</a>
-                                <a class="dropdown-item" href="#">Share</a>
                                 </div>
                             </div>
                         </div>
