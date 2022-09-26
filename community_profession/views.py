@@ -1014,7 +1014,6 @@ def edit_comment(request,id):
     obj=Community_Post_Comment.objects.get(id=id)
     if request.method=="POST":
         review=request.POST.get("Review")
-        # print(review)
         obj.Community_Comment.Comment=review
         obj.Community_Comment.save()
         return redirect(f"/community-write-comment-screen/{obj.Community_Post_obj.id}")
@@ -1079,20 +1078,27 @@ def news(request):
     return render(request, 'community_profession/news.html',context)
 
 @login_required(login_url='/')
-def like_news(request, id):
+def like_news(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    our_news=News.objects.get(id=id)
-    if userprofile in our_news.News_like.all():
-        our_news.News_like.remove(userprofile)
-    else:
-        our_news.News_like.add(userprofile)
-    like, created=News_Main_Like.objects.get_or_create(user_profile=userprofile,news=our_news)
-    if not created:
-        if like.value=="Like":
-            like.value="Unlike"
+    if request.method=="POST":
+        news_obj=request.POST.get("post_id")
+        our_news=News.objects.get(id=news_obj)
+        if userprofile in our_news.News_like.all():
+            our_news.News_like.remove(userprofile)
         else:
-            like.value="Like"
-    like.save()
+            our_news.News_like.add(userprofile)
+        like, created=News_Main_Like.objects.get_or_create(user_profile=userprofile,news=our_news)
+        if not created:
+            if like.value=="Like":
+                like.value="Unlike"
+            else:
+                like.value="Like"
+        like.save()
+        data={
+            'value':like.value,
+            'post':our_news.News_like.all().count()
+        }
+        return JsonResponse(data, safe=False)
     return redirect("news")
 
 @login_required(login_url='/')
@@ -1130,21 +1136,49 @@ def news_comment(request,id):
         return render(request,'community_profession/news-comment.html',context)
 
 @login_required(login_url='/')
-def like_Comment_news(request, id):
+def like_Comment_news(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    our_comment_news=News_Comment.objects.get(id=id)
-    if userprofile in our_comment_news.News_comment_like.all():
-        our_comment_news.News_comment_like.remove(userprofile)
-    else:
-        our_comment_news.News_comment_like.add(userprofile)
-    like, created=News_Comment_Like.objects.get_or_create(user_profile=userprofile,news_comment=our_comment_news)
-    if not created:
-        if like.value=="Like":
-            like.value="Unlike"
+    if request.method=="POST":
+        news_obj=request.POST.get("post_id")
+        our_comment_news=News_Comment.objects.get(id=news_obj)
+        if userprofile in our_comment_news.News_comment_like.all():
+            our_comment_news.News_comment_like.remove(userprofile)
         else:
-            like.value="Like"
-    like.save()
+            our_comment_news.News_comment_like.add(userprofile)
+        like, created=News_Comment_Like.objects.get_or_create(user_profile=userprofile,news_comment=our_comment_news)
+        if not created:
+            if like.value=="Like":
+                like.value="Unlike"
+            else:
+                like.value="Like"
+        like.save()
+        data={
+            'value':like.value,
+            'post':our_comment_news.News_comment_like.all().count()
+        }
+        return JsonResponse(data, safe=False)
     return redirect("news")
+
+@login_required(login_url='/')
+def edit_news_comment(request, id):
+    obj=News_Comment.objects.get(id=id)
+    if request.method=="POST":
+        comment_obj=request.POST.get("Review")
+        obj.Comment=comment_obj
+        obj.save()
+        return redirect(f"/news_comment/{obj.News_id.id}")
+    else:
+        return redirect(f"/news_comment/{obj.News_id.id}")
+
+@login_required(login_url='/')
+def delete_news_commenrt(request, id):
+    news_comment_obj=News_Comment.objects.get(id=id)
+    obj=news_comment_obj.News_id.comment
+    obj1=obj-1
+    news_comment_obj.News_id.comment=obj1
+    news_comment_obj.News_id.save()
+    news_comment_obj.delete()
+    return redirect(f"/news_comment/{news_comment_obj.News_id.id}")
 
 @login_required(login_url='/')
 def news_comment_reply(request, id):
@@ -1177,6 +1211,29 @@ def news_comment_reply(request, id):
             context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,'Reply':Reply,"Post_obj":Post_obj}
         # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"Post_obj":Post_obj,'Reply':Reply,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/news-comment-reply.html',context)
+
+@login_required(login_url='/')
+def edit_news_reply(request, id):
+    obj=News_Comment_reply.objects.get(id=id)
+    if request.method=="POST":
+        reply=request.POST.get("Review")
+        obj.Reply=reply
+        obj.save()
+        return redirect(f"/news_comment_reply/{obj.Comment.id}")
+    else:
+        return redirect(f"/news_comment_reply/{obj.Comment.id}")
+
+@login_required(login_url='/')
+def delete_news_reply(request, id):
+    obj=News_Comment_reply.objects.get(id=id)
+    # print(obj)
+    obj1=obj.Comment.reply
+    # print(obj1)
+    obj2=int(obj1)-1
+    obj.Comment.reply=obj2
+    obj.Comment.save()
+    obj.delete()
+    return redirect(f"/news_comment_reply/{obj.Comment.id}")
 
 @login_required(login_url='/')
 def ans_later(request,id):
@@ -1358,6 +1415,10 @@ def edit_review(request,id):
 @login_required(login_url='/')
 def review_reply_delete(request, id):
     obj=ProfessionReview_Reply.objects.get(id=id)
+    obj1=obj.Review.Reply
+    obj2=obj1-1
+    obj.Review.Reply=obj2
+    obj.Review.save()
     obj.delete()
     return redirect(f"/review_Reply/{obj.Review.id}")
 
@@ -1391,11 +1452,10 @@ def load_more(request):
 @login_required(login_url='/')
 def bookmark_post(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    post = UserPost.objects.get(id=id)
-    # print("post")
+    post = Community_Post.objects.get(id=id)
     Bookmark.objects.create(user_profile=userprofile,post=post)
-    post.Post_bookmark=True
-    post.save()
+    post.user_post.Post_bookmark=True
+    post.user_post.save()
     return redirect("community-screen")
 
 @login_required(login_url='/')
@@ -1474,6 +1534,7 @@ def report_post(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
         post=request.POST.get("post_id")
+        print(post)
         post_id=UserPost.objects.get(id=int(post))
         report=request.POST.get("report_descrition")
         adult=request.POST.get("adult")

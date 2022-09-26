@@ -62,8 +62,8 @@ urlpatterns = [
     path("Community_Delete_My_Video/<int:id>",views.Community_Delete_My_Video,name="Community_Delete_My_Video"),
     path("like_post_comment",views.like_post_comment,name="like_post_comment"),
     path("like_Answer",views.like_Answer,name="like_Answer"),
-    path("like_news/<int:id>",views.like_news,name="like_news"),
-    path("like_Comment_news/<int:id>",views.like_Comment_news,name="like_Comment_news"),
+    path("like_news",views.like_news,name="like_news"),
+    path("like_Comment_news",views.like_Comment_news,name="like_Comment_news"),
     path("news_comment_reply/<int:id>",views.news_comment_reply,name="news_comment_reply"),
     path("Review_Delete/<int:id>",views.Review_Delete,name="Review_Delete"),
     path("edit_review/<int:id>",views.edit_review,name="edit_review"),
@@ -102,6 +102,11 @@ urlpatterns = [
     path('delete_answer_reply/<int:id>',views.delete_answer_reply,name='delete_answer_reply'),
     path('edit_answer_reply/<int:id>',views.edit_answer_reply,name='edit_answer_reply'),
 
+    path('delete_news_commenrt/<int:id>',views.delete_news_commenrt,name='delete_news_commenrt'),
+    path('edit_news_comment/<int:id>',views.edit_news_comment,name='edit_news_comment'),
+
+    path('delete_news_reply/<int:id>',views.delete_news_reply,name='delete_news_reply'),
+    path('edit_news_reply/<int:id>',views.edit_news_reply,name='edit_news_reply'),
 
 
 

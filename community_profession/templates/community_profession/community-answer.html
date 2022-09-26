@@ -22,6 +22,7 @@
    </div>
 </div>
 <!-- End Question for you heading -->
+
 <!-- Start Questions Alert And Add topics -->
 <div class="row">
    <!-- Start Question Alert -->
@@ -29,21 +30,22 @@
       {% for Question in Question_obj %}
       <div class="row">
          <!-- Start Profile picture -->
-         <div class="col-2 col-sm-1 col-md-1">
+         <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
             <img class="img-fluid rounded-circle" src="{{Question.User_Profile.profile_image.url}}" alt="Chania">
          </div>
          <!-- End Profile picture -->
+
          <!-- Start Community name and time -->
-         <div class="col-5 col-sm-4 col-md-4">
+         <div class="col-5 col-sm-4 col-md-4 pl-0">
             <!-- Start community name -->
             <div class="row">
-               <div class="col-md-12 community-name">
-                  {{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}
+               <div class="col-md-12 community-name pl-0">
+                  <a href="{% url 'profession-profile-screen' Question.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}</a>
                </div>
             </div>
             <div class="row">
-               <div class="col-md-12 community-name">
-                  {{Question.Date}} {{Question.Time}}
+               <div class="col-md-12 community-time pl-0">
+                  {{Question.Date}} / {{Question.Time}}
                </div>
             </div>
          </div>
@@ -52,24 +54,25 @@
       <div class="row">
          <div class="col-md-12">
             <div class="alert  alert-dismissible fade show">
-               <button type="button" class="close" data-dismiss="alert">&times;</button>
+               <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
                <!-- Start question-alert heading -->
-               <div class="row">
-                  <div class="col-md-12 heading">
+               <div class="row pt-2">
+                  <div class="col-12 col-sm-12 col-md-12 comment">
                      {{Question.Question}} ?
                   </div>
                </div>
                <!-- End question-alert heading -->
+
                <!-- Start Answers yet and last followed ago -->
-<!--               <div class="row">-->
-<!--                  <div class="col-md-12 pt-2 answer-last-follow">-->
-<!--                     <span>-->
-<!--                     <a href="{% url 'community-users-questions-answer' %}">-->
-<!--                     2 Answers-->
-<!--                     </a>-->
-<!--                     </span>-->
-<!--                  </div>-->
-<!--               </div>-->
+              <!-- <div class="row">
+                 <div class="col-md-12 pt-2 answer-last-follow">
+                    <span>
+                    <a href="{% url 'community-users-questions-answer' %}">
+                    2 Answers
+                    </a>
+                    </span>
+                 </div>
+              </div> -->
                <!-- End Answers and last followed ago -->
                <!-- Start answer, share, options -->
                <div class="row">
@@ -79,9 +82,9 @@
                         <a href="{% url 'Add_Answer' Question.id %}">
                            <i class="fa-solid fa-pen"></i> Answer
                         </a>
-<!--                     <a href="#" data-target="#answer-modal" data-toggle="modal">-->
-<!--                     <i class="fa-solid fa-pen"></i> Answer-->
-<!--                     </a>-->
+                    <!-- <a href="#" data-target="#answer-modal" data-toggle="modal">
+                    <i class="fa-solid fa-pen"></i> Answer
+                    </a> -->
                      </span>
                      <!-- End Answer modal -->
                      <!-- <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span> -->

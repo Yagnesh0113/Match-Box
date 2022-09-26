@@ -29,7 +29,7 @@
                 <div class="row">
                     <!-- Start Profile picture -->
                     <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
-                    <img class="img-fluid rounded-circle" src="{{i.post.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
+                    <img class="img-fluid rounded-circle" src="{{i.post.Community_obj.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
                     </div>
                     <!-- End Profile picture -->
     
@@ -38,14 +38,19 @@
                     <!-- Start community name -->
                     <div class="row">
                         <div class="col-md-12 community-name pl-0">
-                            {{i.post.User_Profile.usertype.user_id.first_name}} {{i.post.User_Profile.usertype.user_id.last_name}}
+                            <a href="{% url 'profession-profile-screen' i.post.user_post.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">
+                                {{i.post.user_post.User_Profile.usertype.user_id.first_name}} {{i.post.user_post.User_Profile.usertype.user_id.last_name}}
+                            </a>/
+                            <a href="{% url 'community-profile-screen' i.post.Community_obj.id  %}" class="text-decoration-none">
+                                {{i.post.Community_obj.Community_Name}}
+                             </a>
                         </div>
                     </div>
                     <!-- End community name -->
                     <!-- Start community time -->
                     <div class="row">
                         <div class="col-md-12 community-time pl-0">
-                            {{i.post.Post_Date}} / {{i.post.Post_Time}}
+                            {{i.post.user_post.Post_Date}} / {{i.post.user_post.Post_Time}}
                             <!-- Ago -->
                         </div>
                     </div>
@@ -62,11 +67,24 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </button>
                                 <div class="dropdown-menu">
+                                {% if userprofile.id is i.post.user_post.User_Profile.id %}
+                                {% else %}
+                                <a class="dropdown-item" href="#"data-target="#report-post" data-toggle="modal" onclick="Reportpost('{{i.post.user_post.id}}')">Report</a>
+                                {% endif %}
+
+                                <!-- Start Edit and Delete login User -->
+                                {% if userprofile.id is i.Post.user_post.User_Profile.id %}
+                                    {% if i.post.user_post.post_type1 %}
+                                        <a class="dropdown-item" href="{% url 'Community_Delete_My_Video' i.post.user_post.id %}">Delete Video</a>
+                                        <a class="dropdown-item" href="{% url 'Community_Edit_My_Video' i.post.user_post.id %}">Edit Video</a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="{% url 'Community_Delete_My_Image' i.post.user_post.id %}">Delete Image</a>
+                                        <a class="dropdown-item" href="{% url 'Community_Edit_My_Image' i.post.user_post.id %}">Edit Image</a>
+                                    {% endif %}
+                                {% endif %}
+                                <!-- End Edit and Delete login User -->
                                 <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
-                                <!-- <a class="dropdown-item" href="#">Block Account</a> -->
-                                <!-- <a class="dropdown-item" href="#">Delete question</a> -->
-                                <!-- <a class="dropdown-item" href="#">Edit question</a> -->
-                                <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.post.id %}">Remove Bookmark</a>
+                                <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.post.user_post.id %}">Remove Bookmark</a>
                                 <!-- <a class="dropdown-item" href="#">Save</a> -->
                                 <!-- <a class="dropdown-item" href="#">Share</a> -->
                                 </div>
@@ -82,34 +100,34 @@
                 <!-- Start community description -->
                 <div class="row pt-3"   >
                     <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
-                    {{i.post.Description}}
+                    {{i.post.user_post.Description}}
                     </div>
                 </div>
                 <!-- End community description -->
     
                 <!-- Start Community post -->
-                {% if i.post.Image %}
-                <a href="{% url 'add_comment' i.post.id %}">
+                {% if i.post.user_post.Image %}
+                <a href="{% url 'community-write-comment-screen' i.post.id %}">
                     <div class="row community-post-image">
-                    <div class="col-md-12">
-                        <div class="row community-post-image-background">
-                            <div class="col-md-3"></div>
-                            {% if i.post.post_type1 %}
-                            <div class="col-md-6">
-                                <video class="img-fluid" width="100%"  controls>
-                                <source src="{{i.post.Image.url}}" type="video/mp4">
+                       <div class="col-md-12">
+                          <div class="row community-post-image-background">
+                             <div class="col-0 col-sm-3 col-md-3"></div>
+                             {% if i.post.user_post.post_type1 %}
+                             <div class="col-12 col-sm-6 col-md-6 ">
+                                <video class="img-fluid" width="100%" controls>
+                                   <source src="{{i.post.user_post.Image.url}}" type="video/mp4">
                                 </video>
-                            </div>
-                            {%else%}
-                            <div class="col-md-6">
-                                <img src="{{i.post.Image.url}}" alt="" class="img-fluid" width="100%">
-                            </div>
-                            {% endif %}
-                            <div class="col-md-3"></div>
-                        </div>
+                             </div>
+                             {%else%}
+                             <div class="col-12 col-sm-6 col-md-6">
+                                <img src="{{i.post.user_post.Image.url}}" alt="" class="img-fluid" width="100%">
+                             </div>
+                             {% endif %}
+                             <div class="col-0 col-sm-3 col-md-3"></div>
+                          </div>
+                       </div>
                     </div>
-                    </div>
-                </a>
+                 </a>
                 {% else %}
                 <div></div>
                 {% endif %}
@@ -118,33 +136,35 @@
                 <div class="row pt-2 pd-2">
                     <!-- Start like button -->
                     <div class="col-5 col-sm-3 col-md-2 text-center p-0">
-                    <a href="{% url 'like_post' i.post.id %}">
-                        {% if userprofile not in i.post.Like.all %}
-                            <button type="submit" class="btn community-like-dislike-btn">
-                                <i class="fa-solid fa-thumbs-up"></i>
-                            </button>
-                        {% else %}
-                            <button type="submit" class="btn community-like-dislike-btn">
-                                <i class="fa-solid fa-thumbs-down"></i>
-                            </button>
-                        {% endif %}
-                    </a>
-                    <span class="community-like-dislike-btn">{{ i.post.Like.all.count }}</span>
-                    &nbsp;
-                    <a href="{% url 'add_comment' i.post.id %}" class="text-decoration-none community-like-dislike-btn">
-                        <i class="fa-solid fa-message"></i>
+                        <span class="d-inline-block">
+                            <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{i.post.user_post.id}}">
+                               {% csrf_token %}
+                               <input type="hidden" name="post_id" value="{{i.post.user_post.id}}">
+                                  <button type="submit" class="btn community-like-dislike-btn like-btn{{i.post.user_post.id}}">
+                                     {% if userprofile not in i.post.user_post.Like.all %}
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                     {% else %}
+                                        <i class="fa-solid fa-thumbs-down"></i>
+                                     {% endif %} 
+                                  </button>
+                               <span class="btn community-like-dislike-btn like-count{{i.post.user_post.id}}">{{ i.post.user_post.Like.all.count }}</span>
+                            </form>
+                         </span>
                         &nbsp;
-                        {% if i.post.Post_comment is None %}
-                        0
-                        {% else %}
-                        {{i.post.Post_comment}}
-                        {% endif %}
-                    </a>
+                        <a href="{% url 'community-write-comment-screen' i.post.id %}" class="text-decoration-none community-like-dislike-btn">
+                            <i class="fa-solid fa-message"></i>
+                            &nbsp;
+                            {% if i.post.user_post.Post_comment is None %}
+                                0
+                            {% else %}
+                                {{i.post.user_post.Post_comment}}
+                            {% endif %}
+                         </a>
                     </div>
                     <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
-                    <a href="{% url 'add_comment' i.post.id %}">
-                        <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
-                    </a>
+                        <a href="{% url 'community-write-comment-screen' i.post.id %}">
+                           <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
+                        </a>
                     </div>
                     <!-- End like, comment, share -->
                 </div>
@@ -198,14 +218,27 @@
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Copy Link</a>
-                                <a class="dropdown-item" href="#">Block Account</a>
-                                <a class="dropdown-item" href="{% url 'ans_later' i.question.id %}">Answer Later</a>
-                                <!-- <a class="dropdown-item" href="#">Delete question</a>
-                                    <a class="dropdown-item" href="#">Edit question</a> -->
+
+                                    {% if userprofile.id is i.question.User_Profile.id %}
+                                    {% else %}
+                                    <a class="dropdown-item" href="#"data-target="#report-question" data-toggle="modal" onclick="Reportquestion('{{i.question.id}}')">Report</a>
+                                    {% endif %}
+
+                                    {% if i.question.Answer_later is False %}
+                                       <a class="dropdown-item" href="{% url 'ans_later' i.question.id  %}"> Answer Later</a>
+                                    {% else %}
+                                       <a class="dropdown-item" href=""> Already Answer</a>
+                                    {% endif %}
+                                    
+                                    <!-- Start Edit and Delete login User -->
+                                    {% if userprofile.id is i.Question.User_Profile.id %}
+                                    <a class="dropdown-item" href="{% url 'Community_Delete_My_Question' i.question.id %}">Delete</a>
+                                    <a class="dropdown-item" href="{% url 'Community_Edit_My_Question' i.question.id %}">Edit Question</a>
+                                    {% endif %}
+
+                                <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
+                                <!-- <a class="dropdown-item" href="#">Block Account</a> -->
                                 <a class="dropdown-item" href="{% url 'remove_question_bookmark' i.question.id %}">Remove Bookmark</a>
-                                <a class="dropdown-item" href="#">Save</a>
-                                <a class="dropdown-item" href="#">Share</a>
                                 </div>
                             </div>
                         </div>
@@ -227,30 +260,32 @@
 
                     <!-- Start like button -->
                     <div class="col-4 col-sm-3 col-md-2 text-center">
-                    <a href="{% url 'like_Question' i.question.id %}">
-                    {% if userprofile not in i.question.Question_Like.all %}
-                    <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                    </button>
-                    {% else %}
-                    <button type="submit" class="btn community-like-dislike-btn">
-                        <i class="fa-solid fa-thumbs-down"></i>
-                    </button>
-                    {% endif %}
-                    </a>
-                    <span class="community-like-dislike-btn">
-                    {{ i.question.Question_Like.all.count }}
-                    </span>
-                    &nbsp;
-                    <span class="community-like-dislike-btn">
-                        <i class="fa-solid fa-message"></i>
+                        <span class="d-inline-block">
+                            <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.question.id}}">
+                               {% csrf_token %}
+                               <input type="hidden" name="post_id" value="{{i.question.id}}">
+                                  <button type="submit" class="btn community-like-dislike-btn like-btn{{i.question.id}}">
+                                     {% if userprofile not in i.question.Question_Like.all %}
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                     {% else %}
+                                        <i class="fa-solid fa-thumbs-down"></i>
+                                     {% endif %} 
+                                  </button>
+                               <span class="btn community-like-dislike-btn like-count{{i.question.id}}">{{ i.question.Question_Like.all.count }}</span>
+                            </form>
+                        </span>
                         &nbsp;
-                        {% if i.question.answer is None %}
-                        0
-                        {% else %}
-                        {{i.question.answer}}
-                        {% endif %}
-                    </span>
+                        <span class="community-like-dislike-btn">
+                            <a href="{% url 'Add_Answer' i.question.id %}" class="text-decoration-none">
+                               <i class="fa-solid fa-message"></i>
+                                  &nbsp;
+                               {% if i.question.answer is None %}
+                                  0
+                               {% else %}
+                                  {{i.question.answer}}
+                               {% endif %}
+                            </a>
+                        </span>
                     </div>
                     <!-- End like button -->
 
@@ -296,7 +331,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Copy Link</a>
-                                <a class="dropdown-item" href="#">Block Account</a>
+                                <a class="dropdown-item" href="#"data-target="#report-news" data-toggle="modal" onclick="Reportnews('{{i.news.id}}')">Report</a>
                                 <a class="dropdown-item" href="#">Delete question</a>
                                 <a class="dropdown-item" href="#">Edit question</a>
                                 <a class="dropdown-item" href="{% url 'remove_news_bookmark' i.news.id %}"> Remove Bookmark</a>
@@ -325,42 +360,46 @@
                 </div>
                 <!-- End news content -->
                 <!-- Start news img-video -->
-                <div class="row community-body pl-2">
-                <div class="col-12 col-sm-12 col-md-12 community-post-image">
-                    <div class="row community-post-image-background">
-                        <div class="col-0 col-sm-3 col-md-3"></div>
-                        <div class="col-12 col-sm-6 col-md-6 ">
-                            {% if i.news.Video %}
-                            <video width="100%" class="img-fluid" controls controlslist="nodownload" oncontextmenu="return false">
-                            <source src="{{i.news.Video.url}}" type="video/mp4">
-                            </video>
-                            {% elif i.Image %}
-                            <img class="img-fluid" src="{{i.news.Image.url}}" alt="Chania" width="100%">
-                            {% else %}
-                            <div></div>
-                            {% endif %}
+                <a href="{% url 'news_comment' i.news.id %}">
+                    <div class="row community-body pl-2">
+                        <div class="col-12 col-sm-12 col-md-12 community-post-image">
+                            <div class="row community-post-image-background">
+                                <div class="col-0 col-sm-3 col-md-3"></div>
+                                <div class="col-12 col-sm-6 col-md-6 ">
+                                    {% if i.news.Video %}
+                                    <video width="100%" class="img-fluid" controls controlslist="nodownload" oncontextmenu="return false">
+                                    <source src="{{i.news.Video.url}}" type="video/mp4">
+                                    </video>
+                                    {% elif i.Image %}
+                                    <img class="img-fluid" src="{{i.news.Image.url}}" alt="Chania" width="100%">
+                                    {% else %}
+                                    <div></div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-0 col-sm-3 col-md-3"></div>
+                            </div>
                         </div>
-                        <div class="col-0 col-sm-3 col-md-3"></div>
                     </div>
-                </div>
-                </div>
+                </a>
                 <!-- End news img-video -->
                 <!-- Start like, comment, add-comment, share -->
                 <div class="row like-comment-share">
                 <!-- Start like -->
                     <div class="col-5 col-sm-3 col-md-2 text-center p-0">
-                        <a href="{% url 'like_news' i.news.id %}">
-                            {% if userprofile not in i.news.News_like.all %}
-                            <button type="submit" class="btn community-like-dislike-btn">
-                                <i class="fa-solid fa-thumbs-up"></i>
-                            </button>
-                            {% else %}
-                            <button type="submit" class="btn community-like-dislike-btn">
-                                <i class="fa-solid fa-thumbs-down"></i>
-                            </button>
-                            {% endif %}
-                        </a>
-                        <span class="community-like-dislike-btn">{{ i.news.News_like.all.count }}</span>
+                        <span class="d-inline-block">
+                            <form action="{% url 'like_news' %}" method="POST" class="like-form" id="{{i.news.id}}">
+                               {% csrf_token %}
+                               <input type="hidden" name="post_id" value="{{i.news.id}}">
+                                  <button type="submit" class="btn community-like-dislike-btn like-btn{{i.news.id}}">
+                                     {% if userprofile not in i.news.News_like.all %}
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                     {% else %}
+                                        <i class="fa-solid fa-thumbs-down"></i>
+                                     {% endif %} 
+                                  </button>
+                               <span class="btn community-like-dislike-btn like-count{{i.news.id}}">{{ i.news.News_like.all.count }}</span>
+                            </form>
+                        </span>
                         
                         <a href="{% url 'news_comment' i.news.id %}">
                             <span class="community-like-dislike-btn">
@@ -417,27 +456,6 @@
                </div>
             </div>
          </div>
-<!--        <div class="row community-body">-->
-<!--            <div class="col-md-12 community-name pl-0 community-post-image pt-4">-->
-<!--                <div class="row pl-4">-->
-<!--                    <div class="col-md-12 text-center community-post-image-background">-->
-<!--                        <div class="row">-->
-<!--                            <div class="col-md-12 display-3">-->
-<!--                                No BookMark for Now-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                        <div class="row">-->
-<!--                            <div class="col-md-12 display-2">-->
-<!--                                <i class="fa-regular fa-face-meh-blank"></i>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-
-<!--            </div>-->
-<!--        </div>-->
         <!-- End No Book mark -->
 
        {% endif %}

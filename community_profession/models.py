@@ -236,7 +236,7 @@ class Answer_later(models.Model):
 
 class Bookmark(models.Model):
     user_profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
-    post=models.ForeignKey(to=UserPost, on_delete=models.CASCADE,null=True, blank=True)
+    post=models.ForeignKey(to=Community_Post, on_delete=models.CASCADE,null=True, blank=True)
     question=models.ForeignKey(to=User_Question, on_delete=models.CASCADE, null=True, blank=True)
     news=models.ForeignKey(to=News, on_delete=models.CASCADE, null=True, blank=True)
 

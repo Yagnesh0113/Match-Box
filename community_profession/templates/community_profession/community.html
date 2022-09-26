@@ -131,6 +131,8 @@
                   <li><a class="dropdown-item" href="{% url 'Community_My_Image' %}">My Images</a></li>
                   <li><a class="dropdown-item" href="{% url 'Community_My_Video' %}">My Video</a></li>
                   <li><a class="dropdown-item" href="{% url 'Community_My_Question' %}">My Questions</a></li>
+                  <li><a class="dropdown-item" href="#">My Answer</a></li>
+
 <!--                  <li class="dropdown">-->
 <!--                      <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown3</a>-->
 <!--                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">-->
@@ -380,9 +382,9 @@
 
                               <!-- Start Post Book Mark -->
                               {% if i.Post.user_post.Post_bookmark is False %}
-                              <a class="dropdown-item" href="{% url 'bookmark_post' i.Post.user_post.id %}">Bookmark</a>
+                              <a class="dropdown-item" href="{% url 'bookmark_post' i.Post.id %}">Bookmark</a>
                               {% else %}
-                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.Post.user_post.id %}">Remove Bookmark</a>
+                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.Post.id %}">Remove Bookmark</a>
                               {% endif %}
                               <!-- End Post Book Mark -->
 
@@ -1847,7 +1849,7 @@
             {% csrf_token %}
             <div class="modal-body">
                <div class="form-group">
-                  <input type="number" id="demo1" name="post_id" hidden >
+                  <input type="number" id="demo1" name="post_id" >
                </div>
                <div class="row modal-sub-heading pt-3 pb-3">
                   <div class="col-md-12">Description</div>
@@ -2045,12 +2047,6 @@
                   <div class="row">
                      <div class="col-md-12 public-limited">
                         <div class="dropdown">
-                           <!-- <input onkeyup="userSearch()" id="user-serach" class="form-control" name="search_community" placeholder="Search...." type="text">
-                           <ul class="list-unstyled" id="user_id">
-                              {% for userid in userid %}
-                              <li> {{userid.usertype.user_id.first_name}} &nbsp; {{userid.usertype.user_id.last_name}} &nbsp;&nbsp;{{userid.usertype.user_id.email}}</li>
-                              {% endfor %}
-                           </ul> -->
                            <select name="UserId" id="" class="form-control">
                               <option value="Public" selected>--- For All ---</option>
                               {% for userid in userid %}
@@ -2113,7 +2109,7 @@
                   <div class="row">
                      <div class="col-md-12 public-limited">
                         <div class="dropdown">
-                           <select name="CommunityId" id="" class="form-control">
+                           <select name="CommunityId" id="" class="form-control" required>
                               <option value="">Select The Any Community</option>
                               {% for joincommunityobj in joincommunityobj %}
                               <option value="{{joincommunityobj.Commnunity_id.id}}">{{joincommunityobj.Commnunity_id.Community_Name}}</option>
@@ -2224,8 +2220,10 @@
    </div>
 </div>
 <!-- End Your-added-question-modal-pop-up -->
+
 <!-- Share Modal -->
 <!-- End Share Modal -->
+
 <!-- copy to clupboard -->
 {% add_copy_script %}
 
