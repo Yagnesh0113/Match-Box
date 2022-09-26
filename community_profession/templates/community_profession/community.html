@@ -380,9 +380,9 @@
 
                               <!-- Start Post Book Mark -->
                               {% if i.Post.user_post.Post_bookmark is False %}
-                              <a class="dropdown-item" href="{% url 'bookmark_post' i.Post.user_post.id %}">Bookmark</a>
+                              <a class="dropdown-item" href="{% url 'bookmark_post' i.Post.id %}">Bookmark</a>
                               {% else %}
-                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.Post.user_post.id %}">Remove Bookmark</a>
+                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.Post.id %}">Remove Bookmark</a>
                               {% endif %}
                               <!-- End Post Book Mark -->
 

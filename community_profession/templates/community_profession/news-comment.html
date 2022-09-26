@@ -79,27 +79,7 @@
 <!-- End post-img-video -->
 
 <!-- Start no-of-like, no-of-comments, share -->
-<!-- <div class="row pl-3 pt-3 like-comment-share">
-    <div class="col-md-1">
-        <a href="{% url 'like_news' News.id %}">
-            {% if userprofile not in News.News_like.all %}
-            <button type="submit" class="fa-solid fa-thumbs-up"></button>
-            {% else %}
-            <button type="submit" class="fa-solid fa-thumbs-down"></button>
-            {% endif %}
-         </a>{{ News.News_like.all.count }}
-    </div>
 
-    <div class="col-md-1">
-        <i class="fa-solid fa-message"></i> {{News.comment}}
-    </div>
-
-    <div class="col-md-1">
-        <i class="fa-solid fa-share-nodes"></i>
-    </div>
-
-    <div class="col-md-9"></div>
-</div> -->
 <!-- End no-of-like, no-of-comments, share -->
 
 <!-- Start no-of-like, no-of-comments, share -->
@@ -107,21 +87,19 @@
     <div class="col-md-12 pl-5">
         <div class="row  pt-3 pb-3 like-comment-share border-bottom">
             <!-- Start no-of-like -->
-            <span>
-                <a href="{% url 'like_news' News.id %}">
-                {% if userprofile not in News.News_like.all %}
-                    <button type="submit" class="btn community-like-dislike-btn" >
-                        <i class="fa-solid fa-thumbs-up"></i>
-                    </button>
-                {% else %}
-                    <button type="submit" class="btn community-like-dislike-btn">
-                    <i class="fa-solid fa-thumbs-down"></i>
-                    </button>
-                {% endif %}
-                </a>
-                <span class="community-like-dislike-btn">
-                    {{ News.News_like.all.count }}
-                </span>
+            <span class="d-inline-block">
+                <form action="{% url 'like_news' %}" method="POST" class="like-form" id="{{News.id}}">
+                   {% csrf_token %}
+                   <input type="hidden" name="post_id" value="{{News.id}}">
+                      <button type="submit" class="btn community-like-dislike-btn like-btn{{News.id}}">
+                         {% if userprofile not in News.News_like.all %}
+                            <i class="fa-solid fa-thumbs-up"></i>
+                         {% else %}
+                            <i class="fa-solid fa-thumbs-down"></i>
+                         {% endif %} 
+                      </button>
+                   <span class="btn community-like-dislike-btn like-count{{News.id}}">{{ News.News_like.all.count }}</span>
+                </form>
             </span>
             <!-- End no-of-like -->
             <!-- Start  no-of-comments -->
@@ -216,28 +194,7 @@
             </div>
         </div>
 
-        <div class="row pt-3">
-            <div class="col-md-12 like-reply-share">
-                <span class="">
-                    <a href="{% url 'like_Comment_news' i.id %}">
-                        {% if userprofile not in i.News_comment_like.all %}
-                        <button type="submit" class="fa-solid fa-thumbs-up"></button>
-                        {% else %}
-                        <button type="submit" class="fa-solid fa-thumbs-down"></button>
-                        {% endif %}
-                     </a>{{ i.News_comment_like.all.count }}
-                </span>
-
-                <span class="pl-5">
-                    <a href="{% url 'news_comment_reply' i.id %}" class="text-decoration-none">
-                        <i class="fa-solid fa-message"></i> {{i.reply}}</a>
-                </span>
-
-                <span class="pl-5">
-                    <i class="fa-solid fa-share-nodes"></i>
-                </span>
-            </div>
-        </div>
+        
     </div>
 </div> -->
 
@@ -288,19 +245,21 @@
                 <!-- <span class="">
                     <i class="fa-solid fa-thumbs-up"></i> 1.2K
                     </span> -->
-                <a href="{% url 'like_Comment_news' i.id %}">
-                    {% if userprofile not in i.News_comment_like.all %}
-                        <button type="submit" class="btn community-like-dislike-btn">
-                            <i class="fa-solid fa-thumbs-up"></i>
-                        </button>
-                    {% else %}
-                        <button type="submit" class="btn community-like-dislike-btn">
-                            <i class="fa-solid fa-thumbs-down"></i>
-                        </button>
-                    {% endif %}
-                </a>
-                <span class="community-like-dislike-btn">{{ i.News_comment_like.all.count }}</span>
-
+                <span class="d-inline-block">
+                    <form action="{% url 'like_Comment_news' %}" method="POST" class="like-form" id="{{i.id}}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                            <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                                {% if userprofile not in i.News_comment_like.all %}
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                {% else %}
+                                <i class="fa-solid fa-thumbs-down"></i>
+                                {% endif %} 
+                            </button>
+                        <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.News_comment_like.all.count }}</span>
+                    </form>
+                </span>
+                
                 <span class="pl-2 community-like-dislike-btn">
                     <a href="{% url 'news_comment_reply' i.id %}" class="text-decoration-none">
                         <i class="fa-solid fa-message"></i> &nbsp;
@@ -311,6 +270,22 @@
                         {% endif %}
                     </a>
                 </span>
+
+                {% if userprofile.id is i.User_Profile.id %}
+                <span >
+                <a href="#" class="text-decoration-none btn community-like-dislike-btn" data-target="#edit_comment" data-toggle="modal" onclick="data('{{i.id}}','{{i.Comment}}')" >
+                    <i class="fa-solid fa-pencil pl-3"></i> &nbsp; 
+                </a>
+
+                </span>
+                
+                <span >
+                <a href="{% url 'delete_news_commenrt' i.id %}" class="text-decoration-none btn community-like-dislike-btn">
+                    <i class="fa-solid fa-trash"></i> &nbsp;
+                </a>
+
+                </span>
+                {% endif %}
           </div>
        </div>
        <!-- Start like-reply-share -->
@@ -371,7 +346,90 @@
           </div>
        </div>
     </div>
- </div>
- <!-- End Share Modal -->
+</div>
+<!-- End Share Modal -->
+
+<!-- start comment edit modal -->
+<div class="modal create-community-modeal" id="edit_comment">
+    <div class="modal-dialog modal-lg">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title">Edit Review</h5>
+             <a href="#" data-dismiss="modal" class="close">&times;</a>
+          </div>
+          <form action="" id="Editcomment" method="POST">
+             {% csrf_token %}
+             <div class="modal-body">
+                <div class="form-group">
+                   <label for="" class="modal-sub-heading">Review</label>
+                   <input type="text" class="form-control" name="Review" id="demo1" required="true">
+                </div>
+             </div>
+             <div class="modal-footer">
+                <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+                <a href="#">
+                <button type="submit" class="btn btn-normal-b">Update Review</button>
+                </a>
+             </div>
+          </form>
+       </div>
+    </div>
+</div>
+<!-- end comment edit modal -->
+
+<script>
+    function data(id,val1){
+    document.getElementById('Editcomment').action ='/edit_news_comment/'+id;
+    document.getElementById("demo1").value = val1;
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $('.like-form').submit(function(e){
+    e.preventDefault()
+    //console.log('works')
+    const post_id = $(this).attr('id')
+    //console.log(post_id)
+    const liketext = $(`.like-btn${post_id}`).html()
+    //console.log(liketext)
+    const trim = $.trim(liketext)
+    //console.log(trim)
+    const url = $(this).attr('action')
+    //console.log(url)
+    let res;
+    const likes = $(`.like-count${post_id}`).text()
+    //console.log(likes + 1)
+    const trimCount = parseInt(likes)
+    //console.log(trimCount + 1)
+
+    $.ajax(
+        {
+        type : "POST",
+        url : url,
+        data : {
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            'post_id':post_id,
+        },
+        success: function(response){
+            //console.log('success', response)
+            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
+            $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
+            res = trimCount - 1
+            } else {
+            $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
+            res = trimCount + 1
+            }
+
+        $(`.like-count${post_id}`).text(res)
+        },
+        error: function(response) {
+            console.log('error', response)
+        }
+    }
+    )
+
+    })
+</script>
 
 {% endblock community_content %}

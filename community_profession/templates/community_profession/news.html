@@ -67,43 +67,47 @@
       </div>
       <!-- End news content -->
       <!-- Start news img-video -->
-      <div class="row community-body pl-2">
-         <div class="col-12 col-sm-12 col-md-12 community-post-image">
-            <div class="row community-post-image-background">
-               <div class="col-0 col-sm-3 col-md-3"></div>
-               <div class="col-12 col-sm-6 col-md-6 ">
-                  {% if i.Video %}
-                  <video width="100%" class="img-fluid" controls controlslist="nodownload" oncontextmenu="return false">
-                     <source src="{{i.Video.url}}" type="video/mp4">
-                  </video>
-                  {% elif i.Image %}
-                  <img class="img-fluid" src="{{i.Image.url}}" alt="Chania" width="100%">
-                  {% else %}
-                  <div></div>
-                  {% endif %}
+      <a href="{% url 'news_comment' i.id %}">
+         <div class="row community-body pl-2">
+            <div class="col-12 col-sm-12 col-md-12 community-post-image">
+               <div class="row community-post-image-background">
+                  <div class="col-0 col-sm-3 col-md-3"></div>
+                  <div class="col-12 col-sm-6 col-md-6 ">
+                     {% if i.Video %}
+                     <video width="100%" class="img-fluid" controls controlslist="nodownload" oncontextmenu="return false">
+                        <source src="{{i.Video.url}}" type="video/mp4">
+                     </video>
+                     {% elif i.Image %}
+                     <img class="img-fluid" src="{{i.Image.url}}" alt="Chania" width="100%">
+                     {% else %}
+                     <div></div>
+                     {% endif %}
+                  </div>
+                  <div class="col-0 col-sm-3 col-md-3"></div>
                </div>
-               <div class="col-0 col-sm-3 col-md-3"></div>
             </div>
          </div>
-      </div>
+      </a>
       <!-- End news img-video -->
+      
       <!-- Start like, comment, add-comment, share -->
       <div class="row like-comment-share">
          <!-- Start like -->
          <div class="col-5 col-sm-3 col-md-2 text-center p-0">
-            <a href="{% url 'like_news' i.id %}">
-               {% if userprofile not in i.News_like.all %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                     <i class="fa-solid fa-thumbs-up"></i>
-                  </button>
-               {% else %}
-                  <button type="submit" class="btn community-like-dislike-btn">
-                     <i class="fa-solid fa-thumbs-down"></i>
-                  </button>
-               {% endif %}
-            </a>
-            <span class="community-like-dislike-btn">{{ i.News_like.all.count }}</span>
-
+            <span class="d-inline-block">
+               <form action="{% url 'like_news' %}" method="POST" class="like-form" id="{{i.id}}">
+                  {% csrf_token %}
+                  <input type="hidden" name="post_id" value="{{i.id}}">
+                     <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                        {% if userprofile not in i.News_like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                        {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                        {% endif %} 
+                     </button>
+                  <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.News_like.all.count }}</span>
+               </form>
+            </span>
             <a href="{% url 'news_comment' i.id %}">
                <span class="community-like-dislike-btn">
                   &nbsp; <i class="fa-solid fa-message"></i>
@@ -206,5 +210,53 @@
    }
 </script>
 <!-- End the report-question script -->
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+   $('.like-form').submit(function(e){
+      e.preventDefault()
+      //console.log('works')
+      const post_id = $(this).attr('id')
+      //console.log(post_id)
+      const liketext = $(`.like-btn${post_id}`).html()
+      //console.log(liketext)
+      const trim = $.trim(liketext)
+      //console.log(trim)
+      const url = $(this).attr('action')
+      //console.log(url)
+      let res;
+      const likes = $(`.like-count${post_id}`).text()
+      //console.log(likes + 1)
+      const trimCount = parseInt(likes)
+      //console.log(trimCount + 1)
+
+      $.ajax(
+         {
+         type : "POST",
+         url : url,
+         data : {
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            'post_id':post_id,
+         },
+         success: function(response){
+            //console.log('success', response)
+            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
+               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
+               res = trimCount - 1
+            } else {
+               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
+               res = trimCount + 1
+            }
+
+           $(`.like-count${post_id}`).text(res)
+         },
+         error: function(response) {
+            console.log('error', response)
+        }
+      }
+      )
+
+   })
+</script>
 
 {% endblock community_content %}

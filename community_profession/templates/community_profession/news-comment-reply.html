@@ -55,37 +55,37 @@
        <!-- Start like-reply-share -->
        <div class="row pt-3">
           <div class="col-md-12 like-reply-share">
-             <a href="{% url 'like_Comment_news' Post_obj.id %}">
-                {% if userprofile not in Post_obj.News_comment_like.all %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                         <i class="fa-solid fa-thumbs-up"></i>
-                     </button>
-                 {% else %}
-                     <button type="submit" class="btn community-like-dislike-btn">
-                         <i class="fa-solid fa-thumbs-down"></i>
-                     </button>
-                 {% endif %}
-             </a>
-              <span class="community-like-dislike-btn">
-                {{ Post_obj.News_comment_like.all.count }}
-              </span>
+            <span class="d-inline-block">
+               <form action="{% url 'like_Comment_news' %}" method="POST" class="like-form" id="{{Post_obj.id}}">
+                   {% csrf_token %}
+                   <input type="hidden" name="post_id" value="{{Post_obj.id}}">
+                       <button type="submit" class="btn community-like-dislike-btn like-btn{{Post_obj.id}}">
+                           {% if userprofile not in Post_obj.News_comment_like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                           {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                           {% endif %} 
+                       </button>
+                   <span class="btn community-like-dislike-btn like-count{{Post_obj.id}}">{{ Post_obj.News_comment_like.all.count }}</span>
+               </form>
+            </span>
  
-             <span class=" community-like-dislike-btn">
-                 &nbsp;
-                 <i class="fa-solid fa-message"></i>
-                 &nbsp;
-                 {% if Post_obj.reply is None %}
-                    0
-                {% else %}
-                    {{Post_obj.reply}}
-                {% endif %}
-             </span>
-          </div>
-       </div>
-       <!-- Start like-reply-share -->
- 
-    </div>
- </div>
+            <span class=" community-like-dislike-btn">
+               &nbsp;
+               <i class="fa-solid fa-message"></i>
+               &nbsp;
+               {% if Post_obj.reply is None %}
+                  0
+               {% else %}
+                  {{Post_obj.reply}}
+               {% endif %}
+            </span>
+         </div>
+      </div>
+      <!-- Start like-reply-share -->
+
+   </div>
+</div>
 
 <!-- Start Login Profile info -->
 <div class="row pl-1 pt-3">
@@ -168,6 +168,28 @@
                <!-- End community time -->
             </div>
             <!-- End Community name and time -->
+            <!-- Start Community name and time -->
+            <div class="col-5 col-sm-4 col-md-4 pl-6 text-right">
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time pl-0">
+                     <div class="col-md-12 like-reply-share ">
+                        <span>
+                           {% if userprofile.id is i.User_Profile.id %}
+                              <a href="#" class="btn community-like-dislike-btn" data-target="#editnewsreply" data-toggle="modal" onclick="data('{{i.id}}','{{i.Reply}}')" >
+                                 <i class="fa-solid fa-pencil"></i> &nbsp; 
+                              </a>
+                              <a href="{% url 'delete_news_reply' i.id %}" class="btn community-like-dislike-btn">
+                                 <i class="fa-solid fa-trash"></i> &nbsp;
+                              </a>
+                           {% endif %}
+                        </span>
+                     </div>
+                  </div>
+               </div>
+               <!-- End community time -->
+            </div>
+            <!-- End Community name and time -->
         </div>
        <!-- End user profile-img & user name  -->
        <!-- Start comment-conetnt -->
@@ -182,4 +204,88 @@
  </div>
 {% endfor %}
 <!-- End Comment -->
+
+<!-- start comment edit modal -->
+<div class="modal create-community-modeal" id="editnewsreply">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Review</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="Editnews_reply" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review</label>
+                  <input type="text" class="form-control" name="Review" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Review</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- end comment edit modal -->
+
+<script>
+   function data(id,val1){
+   document.getElementById('Editnews_reply').action ='/edit_news_reply/'+id;
+   document.getElementById("demo1").value = val1;
+   }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $('.like-form').submit(function(e){
+    e.preventDefault()
+    //console.log('works')
+    const post_id = $(this).attr('id')
+    //console.log(post_id)
+    const liketext = $(`.like-btn${post_id}`).html()
+    //console.log(liketext)
+    const trim = $.trim(liketext)
+    //console.log(trim)
+    const url = $(this).attr('action')
+    //console.log(url)
+    let res;
+    const likes = $(`.like-count${post_id}`).text()
+    //console.log(likes + 1)
+    const trimCount = parseInt(likes)
+    //console.log(trimCount + 1)
+
+    $.ajax(
+        {
+        type : "POST",
+        url : url,
+        data : {
+            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
+            'post_id':post_id,
+        },
+        success: function(response){
+            //console.log('success', response)
+            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
+            $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
+            res = trimCount - 1
+            } else {
+            $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
+            res = trimCount + 1
+            }
+
+        $(`.like-count${post_id}`).text(res)
+        },
+        error: function(response) {
+            console.log('error', response)
+        }
+    }
+    )
+
+    })
+</script>
+
 {% endblock community_content %}
