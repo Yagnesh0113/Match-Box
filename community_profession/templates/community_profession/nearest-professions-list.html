@@ -7,10 +7,10 @@
 <!--   own css   -->
 <link rel="stylesheet" href="{% static 'community_profession/css/nearrest-professions-list.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
-
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 {% block content %}
-<!-- Start finnd our artist and saloon window -->
+<!-- Start find our artist and saloon window -->
 <div class="row">
    <div class="col-12 col-sm-2 col-md-2"></div>
    <div class="col-12 col-sm-8 col-md-8 rounded find-artist-window pb-3">
@@ -215,26 +215,10 @@
    </div>
    <div class="col-12 col-sm-2 col-md-2"></div>
 </div>
-
+<!-- End find our artist and saloon window -->
 
 <!-- search script -->
- <script>
-   function professionSearch() {
-     var input, filter, ul, li, a, i;
-     input = document.getElementById("profession-search");
-     filter = input.value.toUpperCase();
-     ul = document.getElementById("profession_id");
-     li = ul.getElementsByTagName("li");
-     for (i = 0; i < li.length; i++) {
-       a = li[i].getElementsByTagName("a")[0];
-       if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-         li[i].style.display = "";
-       } else {
-         li[i].style.display = "none";
-       }
-     }
-   }
- </script>
+<script src="{% static 'community_profession/js/nearest-professions-list.js' %}"></script>
 <!-- end search script -->
 
 

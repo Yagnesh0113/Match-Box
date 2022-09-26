@@ -8,7 +8,7 @@
 <!-- search-nearest-profession-list.css -->
 <link rel="stylesheet" href="{% static 'community_profession/css/search-nearest-profession-list.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
-<link rel="stylesheet" href="/static/community_profession/css/community/community.css">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 {% block content %}
 <!-- Start Hair artist & Saloon window  -->
@@ -82,24 +82,7 @@
 </div>
 <!-- End Hair artist & Saloon window  -->
 <script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
-<script>
-   $("#state").change(function () {
-      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view
-      var stateId = $(this).val();  // get the selected programming ID from the HTML input
-
-      $.ajax({                       // initialize an AJAX request
-        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
-        data: {
-          'state': stateId       // add the programming id to the GET parameters
-        },
-        success: function (data) {   // `data` is the return of the `load_courses` view function
-          $("#city").html(data);  // replace the contents of the course input with the data that came from the server
-        }
-      });
-
-    });
-</script>
-
+<script src="{% static 'community_profession/js/search-nearest-professions.js' %}"></script>
 <script>
    var x = document.getElementById("demo");
    var URL="{% url 'nearest-professions-list' %}"
@@ -110,20 +93,19 @@
       id=a
      if (navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(showPosition);
-     } 
-     else { 
+     }
+     else {
        x.innerHTML = "Geolocation is not supported by this browser.";
      }
    }
-   
+
    function showPosition(position) {
-    
+
     var a=position.coords.latitude;
     var b=position.coords.longitude;
     var data={'long':b,'lat':a}
-    
+
     location.href=URL+`?lat=${a}&lon=${b}&id=${id}`
    }
-   </script>
-
+</script>
 {% endblock content %}  
