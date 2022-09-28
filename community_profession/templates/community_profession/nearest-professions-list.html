@@ -19,6 +19,9 @@
          <div class="col-md-12 find-artist-window-heading">
             {% for profession in Profession_obj %}
                {% if forloop.counter == 1 %}
+             <a href="" class="text-decoration-none">
+                 <i class="fa-solid fa-arrow-left"></i>
+             </a> &nbsp;
                {{profession.profession.Profession_Name}}
                {% endif %}
             {% endfor %}
@@ -198,7 +201,9 @@
                                   </div>
                                   <div class="row">
                                      <div class="col-md-12 search-sub-heading">
-
+                                        <a href="" class="text-decoration-none">
+                                             <i class="fa-solid fa-arrow-left" style="font-size:3.25rem"></i>
+                                         </a>
                                      </div>
                                   </div>
                                </div>

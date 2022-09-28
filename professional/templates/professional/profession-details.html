@@ -12,19 +12,7 @@
 <!-- Start ppop-up screen CSS -->
 <link rel="stylesheet" href="{% static 'community_profession/css/pop-up-screen.css' %}">
 <!-- Start Services CSS -->
-<style>
-   body {
-   background-color:#E7E9EB;
-   }
-   #myDIV {
-   height:15.625rem;
-   }
-   .ex1 {
-   width: 150px;
-   height: 250px;
-   overflow:auto;
-   }
-</style>
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- End Services CSS -->
 {% endblock own_css %}
 {% block content %}
@@ -35,7 +23,6 @@
    </div>
 </div>
 <!-- End girls parlor heading -->
-
 <!-- Start profile-img and info -->
 <div class="row">
    <div class="col-12 col-sm-12 col-md-12 pl-4 pr-4">
@@ -143,7 +130,6 @@
    </div>
 </div>
 <!-- End profile-img and info -->
-
 <!-- Start time & open status, our services, add new service btn -->
 <div class="row pt-3 pb-3 border-top border-bottom">
    <!-- Start time and open status -->
@@ -155,7 +141,7 @@
          </div>
          <div class="col-2 pt-1">
             <a href="" data-toggle="modal" data-target="#editdatetime">
-            <i class="fa-solid fa-pen-to-square"></i>
+               <i class="fa-solid fa-pen-to-square"></i>
             </a>
          </div>
       </div>
@@ -359,7 +345,6 @@
    <!-- End our services -->
 </div>
 <!-- End time & open status, our services, add new service bt -->
-
 <!-- Start Photos & videos heading, See All links headings -->
 <div class="row photos-videos-see-all">
    <!-- Start Photos and Videos Heading -->
@@ -380,7 +365,6 @@
    <!-- Start see all links -->
 </div>
 <!-- End Photos & videos heading, See All links headings -->
-
 <!-- Start Photos & videos -->
 <div class="row border-bottom">
    <div class="col-12 col-sm-12 col-md-12 p-4">
@@ -448,7 +432,6 @@
       </div> -->
 </div>
 <!-- End Photos & videos -->
-
 <!-- Start Review -->
 <div class="row pt-3">
    <div class="col-12 col-sm-12 col-md-12 reviews">
@@ -479,7 +462,7 @@
             <!-- Start date -->
             <div class="row">
                <div class="col-md-12 reviews-date">
-                  {{k.Review_Date}} {{k.Review_Time}} 
+                  {{k.Review_Date}} {{k.Review_Time}}
                   <!-- ago. -->
                </div>
             </div>
@@ -507,13 +490,13 @@
                <form action="{% url 'like_Review' %}" method="POST" class="like-form" id="{{k.id}}">
                   {% csrf_token %}
                   <input type="hidden" name="post_id" value="{{k.id}}">
-                     <button type="submit" class="btn community-like-dislike-btn like-btn{{k.id}}">
-                        {% if userprofile not in k.like.all %}
-                           <i class="fa-solid fa-thumbs-up"></i>
-                        {% else %}
-                           <i class="fa-solid fa-thumbs-down"></i>
-                        {% endif %} 
-                     </button>
+                  <button type="submit" class="btn community-like-dislike-btn like-btn{{k.id}}">
+                  {% if userprofile not in k.like.all %}
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  {% else %}
+                  <i class="fa-solid fa-thumbs-down"></i>
+                  {% endif %}
+                  </button>
                   <span class="btn community-like-dislike-btn like-count{{k.id}}">{{ k.like.all.count }}</span>
                </form>
             </span>
@@ -533,7 +516,6 @@
    </div>
 </div>
 <!-- End Review -->
-
 <!-- Start Edit Modal Pop Up -->
 <div class="modal fade profession-profile-modal" id="editimage" tabindex="-1" aria-labelledby="editimageLable" aria-hidden="true">
    <div class="modal-dialog">
@@ -568,7 +550,6 @@
    </div>
 </div>
 <!-- End Edit Modal Pop Up -->
-
 <!-- Start Edit Details -->
 <div class="modal fade profession-profile-modal" id="editDetailModal" tabindex="-1" aria-labelledby="editDetailModal" aria-hidden="true">
    <div class="modal-dialog">
@@ -624,7 +605,6 @@
    </div>
 </div>
 <!-- End Edit Details -->
-
 <!-- Start Time and Open Status -->
 <div class="modal fade profession-profile-modal" id="editdatetime" tabindex="-1" aria-labelledby="editdatetime" aria-hidden="true">
    <div class="modal-dialog">
@@ -678,8 +658,6 @@
    </div>
 </div>
 <!-- End Time and Open Status -->
-
-
 <!-- Start Add new services modal pop up -->
 <div class="modal fade profession-profile-modal" id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
    <div class="modal-dialog">
@@ -715,7 +693,6 @@
    </div>
 </div>
 <!-- End Add new services modal pop up -->
-
 <!-- Start edit service modal pop up -->
 <div class="modal fade profession-profile-modal" id="editservise" tabindex="-1" aria-labelledby="editservise" aria-hidden="true">
    <div class="modal-dialog">
@@ -751,7 +728,6 @@
    </div>
 </div>
 <!-- End edit service modal pop up -->
-
 <!-- Add Gallery Photos modal pop up -->
 <div class="modal fade profession-profile-modal" id="addimages" tabindex="-1" aria-labelledby="addimages" aria-hidden="true">
    <div class="modal-dialog">
@@ -783,7 +759,6 @@
    </div>
 </div>
 <!-- End Gallery Photos modal pop up -->
-
 <!-- Start Add Videos pop up -->
 <div class="modal fade profession-profile-modal" id="addvideo" tabindex="-1" aria-labelledby="addvideo" aria-hidden="true">
    <div class="modal-dialog">
@@ -816,74 +791,9 @@
 </div>
 <!-- End Add Videos pop up -->
 
-
-<!-- For profession profile Restriction -->
-<script>
-   let fileInput = document.getElementById("file_id");
-   let fileSubmit = document.getElementById("file-submit");
-
-   fileInput.addEventListener("change", function(){
-      if (fileInput.files.length > 0){
-         const fileSize=fileInput.files.item(0).size;
-         const fileMb=fileSize/1024**2;
-         if (fileMb >= 2){
-            alert("Please select a file less than 2MB.")
-            fileInput.value = "";
-            fileSubmit.disabled = true;
-         } else {
-            fileSubmit.disabled = false;
-         }
-
-      }
-   });
-</script>
-<!-- End Post Restriction -->
-
-<!-- For profession profile Restriction -->
-<script>
-   let fileInput1 = document.getElementById("file_id1");
-   let fileSubmit1 = document.getElementById("file-submit1");
-
-   fileInput1.addEventListener("change", function(){
-      if (fileInput1.files.length > 0){
-         const fileSize1=fileInput1.files.item(0).size;
-         const fileMb1=fileSize1/1024**2;
-         if (fileMb1 >= 2){
-            alert("Please select a file less than 2MB.")
-            fileInput1.value = "";
-            fileSubmit1.disabled = true;
-         } else {
-            fileSubmit1.disabled = false;
-         }
-
-      }
-   });
-</script>
-<!-- End Post Restriction -->
-
-<!-- For profession profile Restriction -->
-<script>
-   let fileInput2 = document.getElementById("file_id2");
-   let fileSubmit2 = document.getElementById("file-submit2");
-
-   fileInput2.addEventListener("change", function(){
-      if (fileInput2.files.length > 0){
-         const fileSize2=fileInput2.files.item(0).size;
-         const fileMb2=fileSize2/1024**2;
-         if (fileMb2 >= 2){
-            alert("Please select a file less than 2MB.")
-            fileInput2.value = "";
-            fileSubmit2.disabled = true;
-         } else {
-            fileSubmit2.disabled = false;
-         }
-
-      }
-   });
-</script>
-<!-- End Post Restriction -->
-
-<script>
+<!-- Start Professions details -->
+<script src="{% static 'community_profession/js/profession-details.js' %}"></script>
+<!--<script>
    $(function(){
        $('form').submit(function(){
            var isOk = true;
@@ -898,61 +808,7 @@
            return isOk;
        });
    });
-</script>
-<script>
-   function data(id,val1,val2){
-      document.getElementById('serviceedit').action ='/edit_service/'+id;
-      document.getElementById("demo1").value = val1;
-      document.getElementById("demo2").value = val2; 
-   }
-</script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-<script>
-   $('.like-form').submit(function(e){
-      e.preventDefault()
-      //console.log('works')
-      const post_id = $(this).attr('id')
-      //console.log(post_id)
-      const liketext = $(`.like-btn${post_id}`).html()
-      //console.log(liketext)
-      const trim = $.trim(liketext)
-      //console.log(trim)
-      const url = $(this).attr('action')
-      //console.log(url)
-      let res;
-      const likes = $(`.like-count${post_id}`).text()
-      //console.log(likes + 1)
-      const trimCount = parseInt(likes)
-      //console.log(trimCount + 1)
-
-      $.ajax(
-         {
-         type : "POST",
-         url : url,
-         data : {
-            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
-            'post_id':post_id,
-         },
-         success: function(response){
-            //console.log('success', response)
-            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
-               res = trimCount - 1
-            } else {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
-               res = trimCount + 1
-            }
-
-           $(`.like-count${post_id}`).text(res)
-         },
-         error: function(response) {
-            console.log('error', response)
-        }
-      }
-      )
-
-   })
-</script>
+</script>-->
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
 {% endblock content %}
