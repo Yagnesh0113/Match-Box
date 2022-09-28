@@ -110,7 +110,7 @@ urlpatterns = [
 
     # -- privacy policy --
     path('privacy-policy', views.loadPrivacyPolicy, name='privacy-policy'),
-
-
+    # -- terms and condition --
+    path('terms-condition', views.loadTermsAndCondition, name='terms-condition'),
 
 ]

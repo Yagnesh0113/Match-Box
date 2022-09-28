@@ -1729,3 +1729,7 @@ def edit_answer_reply(request,id):
 # -- load privacy policy page --
 def loadPrivacyPolicy(request):
     return render(request, 'community_profession/privacy-policy.html')
+
+# -- load Terms & Condition page --
+def loadTermsAndCondition(request):
+    return render(request, 'community_profession/terms-condition.html')
