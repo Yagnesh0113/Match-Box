@@ -11,7 +11,20 @@
 .sign-in-main-body .sign-in-right-body-form {
 	background-color: var(--color-12);
 	border-radius: 0rem 1.625rem 1.625rem 0rem;
-	padding: 10.375rem 15.438rem 10.375rem 5.625rem;
+
+}
+
+.sign-in-main-body .sign-in-right-body-form .sign-up-desktop-btn
+{
+    padding-top:6.25rem;
+    padding-bottom:1.313rem;
+    padding-right:4.375rem;
+}
+
+.sign-in-main-body .sign-in-right-body-form .form-content
+{
+    padding-left:5.813rem;
+    padding-right:15.438rem;
 }
 
 .sign-in-main-body .sign-in-right-body-form .sign-in-heading {
@@ -67,7 +80,7 @@
 }
 
 .sign-in-main-body .sign-in-right-body-form .new-to-mb-sign-up {
-	padding-top: 1.5rem;
+	padding-top: 0rem;
 	font-family: var(--font-1);
 	font-style: normal;
 	font-weight: 400;
@@ -96,6 +109,14 @@
 .btn-normal-outlined-google:hover {
 	border-color: var(--color-6);
 	color: var(--gray-dark);
+}
+
+.fa-google {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Start Splash screen */
@@ -212,7 +233,7 @@ body,
 	.sign-in-main-body .sign-in-right-body-form {
 		background-color: var(--color-15);
 		border-radius: 0rem 0rem 0rem 0rem;
-		padding: 1.875rem 2.875rem 2.875rem 2.875rem;
+		/*padding: 1.875rem 2.875rem 2.875rem 2.875rem;*/
 	}
 
 	.sign-in-main-body .sign-in-right-body-form .sign-in-heading {
@@ -257,11 +278,33 @@ body,
 	.text-color-white-m-view {
 		color: var(--color-2);
 	}
+
+	.sign-in-main-body .sign-in-right-body-form .sign-up-desktop-btn
+    {
+       padding-top: 1rem;
+        padding-bottom: 1.313rem;
+        padding-right: 1.5rem;
+    }
+
+    .sign-in-main-body .sign-in-right-body-form .form-content
+    {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .new-to-mb-sign-up-desktop-view
+    {
+        display:none;
+    }
 }
 
 @media (min-width: 577px) {
 	html {
 		font-size: 40%;
+	}
+	.new-to-mb-sign-up-mobile-view
+	{
+	    display:none;
 	}
 }
 

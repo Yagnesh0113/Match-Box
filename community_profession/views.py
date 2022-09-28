@@ -1724,3 +1724,8 @@ def edit_answer_reply(request,id):
         return redirect(f"/Add_Answer_Reply/{obj.Answer.id}")
     else:
         return redirect(f"/Add_Answer/{obj.Answer.id}")
+
+
+# -- load privacy policy page --
+def loadPrivacyPolicy(request):
+    return render(request, 'community_profession/privacy-policy.html')
