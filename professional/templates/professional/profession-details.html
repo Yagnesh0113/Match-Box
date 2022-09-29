@@ -51,56 +51,61 @@
          <div class="col-10 col-sm-9 col-md-10 personal-info">
             <!-- Start name info -->
             <div class="row">
-               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+               <div class="col-3  col-sm-2  col-md-2 sub-heading">
                   Name
                </div>
-               <div class="col-10 col-sm-10 col-md-10 content">
+               <div class="col-9 col-sm-10 col-md-10 content">
                   : {{profession.shop_name}}
                </div>
             </div>
             <!-- End name info -->
+
             <!-- Start profession -->
             <div class="row">
-               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+               <div class="col-3  col-sm-2  col-md-2 sub-heading">
                   Profession
                </div>
-               <div class="col-10 col-sm-10 col-md-10 content">
+               <div class="col-9 col-sm-10 col-md-10 content">
                   : {{profession.profession}}
                </div>
             </div>
             <!-- End profession -->
+
             <!-- Start Address -->
             <div class="row">
-               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+               <div class="col-3  col-sm-2  col-md-2 sub-heading">
                   Address
                </div>
-               <div class="col-10 col-sm-10 col-md-10 content">
+               <div class="col-9 col-sm-10 col-md-10 content">
                   : {{profession.shop_address}}, {{profession.shop_city}}, {{profession.shop_state}}
                </div>
             </div>
             <!-- End Address -->
+
             <!-- Start Experience -->
-            <div class="row">
-               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+            <div class="row"  >
+               <div class="col-3  col-sm-2  col-md-2 sub-heading">
                   Experience
                </div>
-               <div class="col-10 col-sm-10 col-md-10 content">
+               <div class="col-9 col-sm-10 col-md-10 content">
                   : {{profession.year_of_experience}} Year
                </div>
             </div>
             <!-- End Experience -->
+
             <!-- Start Rating -->
             <div class="row">
-               <div class="col-2  col-sm-2  col-md-2 sub-heading">
+               <div class="col-3  col-sm-2  col-md-2 sub-heading">
                   Rating
                </div>
-               <div class="col-10 col-sm-10 col-md-10 content">
+               <div class="col-9 col-sm-10 col-md-10 content">
                   :
                   <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
                   {{profession.Profession_Rating}}
                </div>
             </div>
             <!-- End Rating -->
+
             <!-- Start About users heading -->
             <div class="row">
                <div class="col-md-12 about-user-heading">
@@ -108,6 +113,7 @@
                </div>
             </div>
             <!-- End About users heading -->
+
             <!-- Start about users content -->
             <div class="row">
                <div class="col-md-12 about-user-content text-justify">
@@ -115,6 +121,7 @@
                </div>
             </div>
             <!-- End about users content -->
+
             <!-- Start Edit btn -->
             <div class="row edit-btn">
                <div class="col-md-12 pt-2">
@@ -131,7 +138,7 @@
 </div>
 <!-- End profile-img and info -->
 <!-- Start time & open status, our services, add new service btn -->
-<div class="row pt-3 pb-3 border-top border-bottom">
+<div class="row pt-3 pb-3 pl-1 border-top border-bottom">
    <!-- Start time and open status -->
    <div class="col-12 col-sm-3 col-md-3 border-right  time-open-status">
       <!-- Start time & open status heading -->
@@ -139,7 +146,7 @@
          <div class="col-10 col-sm-10 col-md-10 heading">
             Times & Open Status
          </div>
-         <div class="col-2 pt-1">
+         <div class="col-2 pt-1 text-right">
             <a href="" data-toggle="modal" data-target="#editdatetime">
                <i class="fa-solid fa-pen-to-square"></i>
             </a>
@@ -291,11 +298,11 @@
    <!-- Start our services -->
    <div class="col-12 col-sm-9 col-md-9 pl-4 our-services">
       <!-- Start our services heading -->
-      <div class="row">
-         <div class="col-5 col-sm-9 col-md-9 our-services-heading">
+      <div class="row pl-1 pr-1">
+         <div class="col-5 col-sm-9 col-md-9 our-services-heading pl-0">
             Our Services
          </div>
-         <div class="col-7 col-sm-3 col-md-3 text-center">
+         <div class="col-7 col-sm-3 col-md-3 text-right pr-0">
             <button type="button" class="btn btn-normal" data-toggle="modal" data-target="#newServideModal">
             Add New Service
             </button>
@@ -348,7 +355,7 @@
 <!-- Start Photos & videos heading, See All links headings -->
 <div class="row photos-videos-see-all">
    <!-- Start Photos and Videos Heading -->
-   <div class="col-12  col-sm-6 col-md-6">
+   <div class="col-6  col-sm-6 col-md-6">
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 photos-videos-heading">
             Photos & Videos
@@ -357,74 +364,94 @@
    </div>
    <!-- End Photos and Videos Heading -->
    <!-- Start see all links -->
-   <div class="col-12  col-sm-6 col-md-6 pl-2 pr-2 text-right">
-      <a class="btn btn-normal " data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
-      <a class="btn btn-normal " data-toggle="modal" data-target="#addimages">Add Photos</a>
+   <div class="col-6  col-sm-6 col-md-6 pl-2 pr-2 text-right">
+      <a class="btn btn-normal add-photos-videos-desktop-view" data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
+      <a class="btn btn-normal add-photos-videos-desktop-view" data-toggle="modal" data-target="#addimages">Add Photos</a>
       <a href="{% url 'See-all-photos-videos' profession.id %}" class="see-all">See All</a>
    </div>
    <!-- Start see all links -->
 </div>
 <!-- End Photos & videos heading, See All links headings -->
+
+<!-- Start add photos - videos btn -- mobile view -->
+<div class="row pt-2 add-photos-videos-mobile-view">
+   <div class="col-6 col-md-6 pr-1">
+      <a class="btn btn-normal btn-block btn-sm" data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
+   </div>
+   <div class="col-6 col-md-6 pl-1 pr-1">
+      <a class="btn btn-normal btn-block btn-sm" data-toggle="modal" data-target="#addimages">Add Photos</a>
+   </div>
+</div>
+<!-- End add photos - videos btn -- mobile view -->
+
 <!-- Start Photos & videos -->
-<div class="row border-bottom">
-   <div class="col-12 col-sm-12 col-md-12 p-4">
-      <div class="row profession-details">
-         {% for i in profession_image  %}
-         <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
-            <div class="row p-1">
-               <div class="col-md-12 border border-dark rounded pt-2">
-                  <div class="row">
-                     <div class="col-md-12 rounded">
-                        <!-- <a href="" class="text-light"> -->
-                        <img src="{{i.image.url}}" class="img-fluid rounded" width="100%">
-                        <!-- </a> -->
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12">
-                        <a href="{% url 'photo-screen' i.id %}" class="btn btn-normal btn-sm text-dark m-1 d-inline-block">
-                        <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <form action="{% url 'delete_Image' i.id %}" class="d-inline-block">
-                           <button type="submit" value="{{i.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-1 ">
-                           <i class="fa-solid fa-trash-can"></i>
-                           </button>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         {% endfor %}
-         {% for j in profession_video  %}
-         <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
-            <div class="row p-1">
-               <div class="col-md-12 border border-dark rounded pt-1 ">
-                  <div class="row">
-                     <div class="col-md-12 border-1 rounded">
-                        <!-- <a href="" class="text-light"> -->
-                        <video src="{{j.video.url}}" class="img-fluid rounded" width="100%" controls ></video>
-                        <!-- </a> -->
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-12 col-sm-12 col-md-12">
-                        <a href="{% url 'video-screen' j.id %}" class="btn btn-normal btn-sm text-dark m-1 d-inline-block">
-                        <i class="fa-solid fa-eye"></i>
-                        </a>
-                        <form action="{% url 'delete_Video' j.id %}" class="d-inline-block">
-                           <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-normal btn-sm text-dark m-1">
-                           <i class="fa-solid fa-trash-can"></i>
-                           </button>
-                        </form>
+<div class="row border-bottom pl-2">
+   <div class="col-md-12">
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 pl-4 pr-4 pb-4">
+            <div class="row profession-details">
+               {% for i in profession_image  %}
+               <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
+                  <div class="row p-1">
+                     <div class="col-md-12 border border-dark rounded pt-2">
+                        <div class="row">
+                           <div class="col-md-12 rounded">
+                              <!-- <a href="" class="text-light"> -->
+                              <img src="{{i.image.url}}" class="img-fluid rounded" width="100%">
+                              <!-- </a> -->
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-12 col-sm-12 col-md-12">
+                              <a href="{% url 'photo-screen' i.id %}" class="btn btn-sm m-1 d-inline-block" style="color:#B5DFDF;">
+                              <i class="fa-solid fa-eye"></i> Views
+                              </a>
+                              <form action="{% url 'delete_Image' i.id %}" class="d-inline-block">
+                                 <button type="submit" value="{{i.profession.id}}" name="profession" class="btn btn-sm m-1 " style="color:#B5DFDF;">
+                                 <i class="fa-solid fa-trash-can"></i>
+                                 </button>
+                              </form>
+                           </div>
+                        </div>
                      </div>
                   </div>
                </div>
+               {% endfor %}
+               {% for j in profession_video  %}
+               <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
+                  <div class="row p-1">
+                     <div class="col-md-12 border border-dark rounded pt-1 ">
+                        <div class="row">
+                           <div class="col-md-12 border-1 rounded">
+                              <!-- <a href="" class="text-light"> -->
+                              <video width="100%" class="img-fluid rounded" controls="">
+                                 <source src="{{j.video.url}}" type="video/mp4">
+                              </video>
+                              <!--<video src="{{j.video.url}}" class="img-fluid rounded" width="100%" controls ></video>-->
+                              <!-- </a> -->
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-12 col-sm-12 col-md-12">
+                              <a href="{% url 'video-screen' j.id %}" class="btn btn-sm m-1 d-inline-block" style="color:#B5DFDF;">
+                              <i class="fa-solid fa-eye"></i> Views
+                              </a>
+                              <form action="{% url 'delete_Video' j.id %}" class="d-inline-block">
+                                 <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-sm m-1" style="color:#B5DFDF;">
+                                 <i class="fa-solid fa-trash-can"></i>
+                                 </button>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               {% endfor %}
             </div>
          </div>
-         {% endfor %}
       </div>
    </div>
+
    <!-- <div class="col-4 col-sm-4 col-md-4 p-4">
       <div class="row profession-details">
 
@@ -432,6 +459,8 @@
       </div> -->
 </div>
 <!-- End Photos & videos -->
+
+
 <!-- Start Review -->
 <div class="row pt-3">
    <div class="col-12 col-sm-12 col-md-12 reviews">
@@ -445,30 +474,44 @@
       {% for k in profession_review %}
       <!-- Start user profile and user information -->
       <div class="row mt-5">
-         <!-- Start user profile -->
-         <div class="col-2 col-sm-1 col-md-1 review-profile">
-            <img src="{{k.user_profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
-         </div>
-         <!-- End user profile -->
-         <!-- Start User information -->
-         <div class="col-10 col-sm-11 col-md-11">
-            <!-- Start User Name -->
-            <div class="row">
-               <div class="col-md-12 user-name-heading">
-                  {{k.user_profile.usertype.user_id.first_name}} {{k.user_profile.usertype.user_id.last_name}}
+         <div class="col-md-12 float-container">
+            <div class="profession-float-child">
+               <!-- Start user profile -->
+               <div class="row">
+                  <div class="col-md-12 review-profile">
+                     <img src="{{k.user_profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+                  </div>
                </div>
+               <!-- End user profile -->
             </div>
-            <!-- End User Name -->
-            <!-- Start date -->
-            <div class="row">
-               <div class="col-md-12 reviews-date">
-                  {{k.Review_Date}} {{k.Review_Time}}
-                  <!-- ago. -->
+            <div class="profession-float-child-1">
+               <!-- Start User information -->
+               <div class="row">
+                  <div class="col-md-12">
+                  <!-- Start User Name -->
+                  <div class="row">
+                     <div class="col-md-12 user-name-heading">
+                        {{k.user_profile.usertype.user_id.first_name}} {{k.user_profile.usertype.user_id.last_name}}
+                     </div>
+                  </div>
+                  <!-- End User Name -->
+                  <!-- Start date -->
+                  <div class="row">
+                     <div class="col-md-12 reviews-date">
+                        {{k.Review_Date}} {{k.Review_Time}}
+                        <!-- ago. -->
+                     </div>
+                  </div>
+                  <!-- End date -->
                </div>
+               </div>
+               <!-- End User information -->
             </div>
-            <!-- End date -->
          </div>
-         <!-- End User information -->
+
+
+
+
       </div>
       <!-- End user profile and user information -->
       <!-- Start comment -->
@@ -516,6 +559,7 @@
    </div>
 </div>
 <!-- End Review -->
+
 <!-- Start Edit Modal Pop Up -->
 <div class="modal fade profession-profile-modal" id="editimage" tabindex="-1" aria-labelledby="editimageLable" aria-hidden="true">
    <div class="modal-dialog">
@@ -550,6 +594,7 @@
    </div>
 </div>
 <!-- End Edit Modal Pop Up -->
+
 <!-- Start Edit Details -->
 <div class="modal fade profession-profile-modal" id="editDetailModal" tabindex="-1" aria-labelledby="editDetailModal" aria-hidden="true">
    <div class="modal-dialog">
@@ -605,6 +650,7 @@
    </div>
 </div>
 <!-- End Edit Details -->
+
 <!-- Start Time and Open Status -->
 <div class="modal fade profession-profile-modal" id="editdatetime" tabindex="-1" aria-labelledby="editdatetime" aria-hidden="true">
    <div class="modal-dialog">
@@ -658,6 +704,7 @@
    </div>
 </div>
 <!-- End Time and Open Status -->
+
 <!-- Start Add new services modal pop up -->
 <div class="modal fade profession-profile-modal" id="newServideModal" tabindex="-1" aria-labelledby="newServideModal" aria-hidden="true">
    <div class="modal-dialog">
@@ -693,6 +740,7 @@
    </div>
 </div>
 <!-- End Add new services modal pop up -->
+
 <!-- Start edit service modal pop up -->
 <div class="modal fade profession-profile-modal" id="editservise" tabindex="-1" aria-labelledby="editservise" aria-hidden="true">
    <div class="modal-dialog">
@@ -728,6 +776,7 @@
    </div>
 </div>
 <!-- End edit service modal pop up -->
+
 <!-- Add Gallery Photos modal pop up -->
 <div class="modal fade profession-profile-modal" id="addimages" tabindex="-1" aria-labelledby="addimages" aria-hidden="true">
    <div class="modal-dialog">
@@ -759,6 +808,7 @@
    </div>
 </div>
 <!-- End Gallery Photos modal pop up -->
+
 <!-- Start Add Videos pop up -->
 <div class="modal fade profession-profile-modal" id="addvideo" tabindex="-1" aria-labelledby="addvideo" aria-hidden="true">
    <div class="modal-dialog">

@@ -527,11 +527,63 @@ body {
 		line-height: 0.938rem;
 		color: #B4F1F1;
 	}
+
+    .add-photos-videos-desktop-view
+    {
+        display:none;
+    }
+
+    .profession-float-child .review-profile .img-fluid
+	{
+        width: 30px;
+        height: 30px;
+    }
+
+    .profession-float-child {
+		width: 12%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.profession-float-child-1 {
+		width: 80%;
+		float: left;
+		padding-left: 8px;
+		/*border: 2px solid red;*/
+	}
 }
 
 @media (min-width: 577px) {
 	html {
 		font-size: 40%;
+	}
+
+	.add-photos-videos-mobile-view
+	{
+	    display:none;
+	}
+
+	.profession-float-child .review-profile .img-fluid
+	{
+        width: 30px;
+        height: 30px;
+    }
+
+
+	.profession-float-child {
+		width: 5%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.profession-float-child-1 {
+		width: 92%;
+		float: left;
+		padding-left: 0px;
+		/*border: 2px solid red;*/
+		padding-top:5px;
 	}
 }
 
@@ -539,11 +591,47 @@ body {
 	html {
 		font-size: 45%;
 	}
+
+	.profession-float-child .review-profile .img-fluid
+	{
+        width: 30px;
+        height: 30px;
+    }
+
+	.profession-float-child {
+		width: 5%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.profession-float-child-1 {
+		width: 92%;
+		float: left;
+		padding-left: 0px;
+		padding-top:0.688rem;
+		/*border: 2px solid red;*/
+	}
 }
 
 @media (min-width: 992px) {
 	html {
 		font-size: 60%;
+	}
+
+	.profession-float-child {
+		width: 6%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.profession-float-child-1 {
+		width: 92%;
+		float: left;
+		padding-left: 0px;
+		padding-top:0.563rem;
+		/*border: 2px solid red;*/
 	}
 }
 
@@ -551,6 +639,21 @@ body {
 @media (min-width: 1200px) {
 	html {
 		font-size: 80%;
+	}
+
+	.profession-float-child {
+		width: 4%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.profession-float-child-1 {
+		width: 92%;
+		float: left;
+		padding-left: 0px;
+		/*border: 2px solid red;*/
+		padding-top:0rem
 	}
 }
 
