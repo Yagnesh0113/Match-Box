@@ -6,88 +6,9 @@
 {% endblock title %}
 {% block own_css %}
 <!--   own css   -->
-
-
 <!-- Ask Post CSS-->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
-<!-- Start Share icon -->
-<!-- Start navigation menu -->
-<style>
-   .menu-area{background: #d61a5e}
-   .dropdown-menu{padding:0;margin:0;border:0 solid transition!important;border:0 solid rgba(0,0,0,.15);border-radius:0;-webkit-box-shadow:none!important;box-shadow:none!important}
-   .mainmenu a, .navbar-default .navbar-nav > li > a, .mainmenu ul li a , .navbar-expand-lg .navbar-nav .nav-link{color:#fff;font-size:16px;text-transform:capitalize;padding:16px 15px;font-family:'Roboto',sans-serif;display: block !important;}
-   .mainmenu .active a,.mainmenu .active a:focus,.mainmenu .active a:hover,.mainmenu li a:hover,.mainmenu li a:focus ,.navbar-default .navbar-nav>.show>a, .navbar-default .navbar-nav>.show>a:focus, .navbar-default .navbar-nav>.show>a:hover{color: #fff;background: #4CAF50;outline: 0;}
-   /*==========Sub Menu=v==========*/
-   .mainmenu .collapse ul > li:hover > a{background: #4CAF50;}
-   .mainmenu .collapse ul ul > li:hover > a, .navbar-default .navbar-nav .show .dropdown-menu > li > a:focus, .navbar-default .navbar-nav .show .dropdown-menu > li > a:hover{background: #4CAF50;}
-   .mainmenu .collapse ul ul ul > li:hover > a{background: #4CAF50;}
-
-   .mainmenu .collapse ul ul, .mainmenu .collapse ul ul.dropdown-menu{background:#1565C0;}
-   .mainmenu .collapse ul ul ul, .mainmenu .collapse ul ul ul.dropdown-menu{background:#1E88E5}
-   .mainmenu .collapse ul ul ul ul, .mainmenu .collapse ul ul ul ul.dropdown-menu{background:#64B5F6}
-
-   /******************************Drop-down menu work on hover**********************************/
-   .mainmenu{background: none;border: 0 solid;margin: 0;padding: 0;min-height:20px;width: 100%;}
-   @media only screen and (min-width: 767px) {
-   .mainmenu .collapse ul li:hover> ul{display:block}
-   .mainmenu .collapse ul ul{position:absolute;top:100%;left:0;min-width:250px;display:none}
-   /*******/
-   .mainmenu .collapse ul ul li{position:relative}
-   .mainmenu .collapse ul ul li:hover> ul{display:block}
-   .mainmenu .collapse ul ul ul{position:absolute;top:0;left:100%;min-width:250px;display:none}
-   /*******/
-   .mainmenu .collapse ul ul ul li{position:relative}
-   .mainmenu .collapse ul ul ul li:hover ul{display:block}
-   .mainmenu .collapse ul ul ul ul{position:absolute;top:0;left:-100%;min-width:250px;display:none;z-index:1}
-
-   }
-   @media only screen and (max-width: 767px) {
-   .navbar-nav .show .dropdown-menu .dropdown-menu > li > a{padding:16px 15px 16px 35px}
-   .navbar-nav .show .dropdown-menu .dropdown-menu .dropdown-menu > li > a{padding:16px 15px 16px 45px}
-   }
-</style>
-<!-- End navigation menu -->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
-<!--<style>-->
-<!--.fa {-->
-<!--   padding: 16px;-->
-<!--   font-size: 30px;-->
-<!--   width: 63px;-->
-<!--   text-align: center;-->
-<!--   text-decoration: none;-->
-<!--   margin: 6px 2px;-->
-<!--   border-radius: 50%;-->
-<!--}-->
-<!--.fa:hover {-->
-<!--   background: #3B5998;-->
-<!--  color: white;-->
-<!--    opacity: 0.7;-->
-<!--}-->
-<!--.fa-facebook {-->
-<!--  background: #3B5998;-->
-<!--  color: white;-->
-<!--}-->
-<!--.fa-brands-->
-<!--{-->
-<!--   padding: 16px;-->
-<!--   font-size: 30px;-->
-<!--   width: 63px;-->
-<!--   text-align: center;-->
-<!--   text-decoration: none;-->
-<!--   margin: 6px 2px;-->
-<!--   border-radius: 50%;-->
-<!--}-->
-<!--.fa-brands:hover {-->
-<!--   background: #51CE5E;-->
-<!--   color: white;-->
-<!--   opacity: 0.7;-->
-<!--}-->
-<!--.fa-whatsapp-->
-<!--{-->
-<!--   background: #51CE5E;-->
-<!--   color: white;-->
-<!--}-->
-
 {% endblock own_css %}
 {% block community_profession_nav %}
 <!-- Start Community - Profession Navigation -->
@@ -417,7 +338,7 @@
                         <div class="col-0 col-sm-3 col-md-3"></div>
                         {% if i.Post.user_post.post_type1 %}
                         <div class="col-12 col-sm-6 col-md-6 ">
-                           <video class="img-fluid" width="100%" controls>
+                           <video class="img-fluid-video" width="100%" controls>
                               <source src="{{i.Post.user_post.Image.url}}" type="video/mp4">
                            </video>
                         </div>
@@ -594,10 +515,11 @@
             </div>
             <!-- End community description -->
             <!-- Start like, comment, share -->
-            <div class="row pt-2 pd-2">
 
+
+            <div class="row pt-2 pd-2">
                <!-- Start like button -->
-               <div class="col-4 col-sm-3 col-md-2 text-center">
+               <div class="col-6 col-sm-4 col-md-2 text-center pr-0">
                   <span class="d-inline-block">
                      <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.Question.id}}">
                         {% csrf_token %}
@@ -629,7 +551,7 @@
                <!-- End like button -->
 
                <!-- Start Add comment button -->
-               <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
+               <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-1">
                   <a href="{% url 'Add_Answer' i.Question.id %}">
                   <button type="submit" class="btn btn-sm btn-block ">Add Answer</button>
                   </a>
@@ -637,14 +559,15 @@
                <!-- End Add comment button -->
 
                <!-- Start Share button -->
-               <div class="col-2 col-sm-1 col-md-1 text-right">
-                  <!-- <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal"> -->
-                 <!-- <i class="fa-solid fa-share-nodes"></i>-->
-                  <!-- </button> -->
-               </div>
+               <!--<div class="col-2 col-sm-1 col-md-1 text-right">
+                   <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+                  <i class="fa-solid fa-share-nodes"></i>
+                   </button>
+
+               </div>-->
                <!-- End Share button -->
 
-               <div class="col-0 col-sm-6 col-md-6"></div>
+
             </div>
             <!-- End like, comment, share -->
          </div>
@@ -1849,7 +1772,7 @@
             {% csrf_token %}
             <div class="modal-body">
                <div class="form-group">
-                  <input type="number" id="demo1" name="post_id" >
+                  <input type="number" id="demo1" name="post_id" hidden>
                </div>
                <div class="row modal-sub-heading pt-3 pb-3">
                   <div class="col-md-12">Description</div>
@@ -1864,19 +1787,19 @@
                <div class="row">
                   <div class="col-md-6">
                      <span class="modal-sub-heading">Adult Content </span>
-                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                     <div class="form-check form-control rounded mt-3 pt-2 pb-2">
                         <label class="form-check-label">
                            <input type="checkbox" name="adult" class="form-check-input" value="">
-                              18+ content
+                              <span class="modal-sub-heading">18+ content</span>
                         </label>
                      </div>
                   </div>
                   <div class="col-md-6">
                      <span class="modal-sub-heading">Abusing Content </span>
-                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                     <div class="form-check form-control rounded mt-3 pt-2 pb-2">
                         <label class="form-check-label">
                            <input type="checkbox" name="abuse" class="form-check-input" value="">
-                              Abusing Content
+                              <span class="modal-sub-heading">Abusing Content</span>
                         </label>
                      </div>
                   </div>
@@ -2221,170 +2144,16 @@
 </div>
 <!-- End Your-added-question-modal-pop-up -->
 
-<!-- Share Modal -->
-<!-- End Share Modal -->
-
 <!-- copy to clupboard -->
 {% add_copy_script %}
 
-<!-- For Post Image and video Restriction -->
-<script>
-   let fileInput = document.getElementById("file_id");
-   let fileSubmit = document.getElementById("file-submit");
+<!-- Start Community js-->
+<script src="{% static 'community_profession/js/community.js' %}"></script>
+<!-- End Community js-->
 
-   fileInput.addEventListener("change", function(){
-      if (fileInput.files.length > 0){
-         const fileSize=fileInput.files.item(0).size;
-         const fileMb=fileSize/1024**2;
-         if (fileMb >= 2){
-            alert("Please select a file less than 2MB.")
-            fileInput.value="";
-            fileSubmit.disabled = true;
-         } else {
-            fileSubmit.disabled = false;
-         }
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
 
-      }
-   });
-</script>
-<!-- End Post Restriction -->
-
-<!-- For Communiuty Image Restriction -->
-<!-- file 1 -->
-<script>
-   function community_check1()
-{
-   var file1 = document.getElementById("file_1");
-   var max_id = document.getElementById("max_obj").value;
-
-   if (file1.files[0].size > max_id)
-   {
-      alert("Please select a file less than 2MB.");
-      file1.value = "";
-   }
-};
-</script>
-<!-- file 2 -->
-<script>
-   function community_check2()
-{
-   var file2 = document.getElementById("file_2");
-   var max2 = document.getElementById("max_obj1").value;
-
-   if (file2.files[0].size > max2)
-   {
-      alert("Please select a file less than 2MB.");
-      file2.value = "";
-   }
-};
-</script>
-<!-- End Community Image restriction -->
-
-<!-- Start Ask and post js -->
-<script>
-   document.getElementsByClassName("tablink")[0].click();
-
-   function openCity(evt, cityName) {
-     var i, x, tablinks;
-     x = document.getElementsByClassName("city");
-     for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-     }
-     tablinks = document.getElementsByClassName("tablink");
-     for (i = 0; i < x.length; i++) {
-       tablinks[i].classList.remove("w3-light-grey");
-     }
-     document.getElementById(cityName).style.display = "block";
-     evt.currentTarget.classList.add("w3-light-grey");
-   }
-</script>
-<!-- End Ask and post js -->
-
-<!-- Start navigation drop down script -->
-<script>
-   (function($){
-      $('.dropdown-menu a.dropdown-toggle').on('click', function(e) {
-      if (!$(this).next().hasClass('show')) {
-      $(this).parents('.dropdown-menu').first().find('.show').removeClass("show");
-      }
-      var $subMenu = $(this).next(".dropdown-menu");
-      $subMenu.toggleClass('show');
-
-      $(this).parents('li.nav-item.dropdown.show').on('hidden.bs.dropdown', function(e) {
-      $('.dropdown-submenu .show').removeClass("show");
-      });
-
-      return false;
-      });
-      })(jQuery)
-</script>
-<!-- End navigation drop down script -->
-
-<!-- Start the report-post script -->
-<script>
-   function Reportpost(id){
-      document.getElementById('report-post').action ='';
-      document.getElementById("demo1").value = id;
-   }
-</script>
-<!-- End the report-post script -->
-
-<!-- Start the report-question script -->
-<script>
-   function Reportquestion(id){
-      document.getElementById('report-question').action ='';
-      document.getElementById("demo2").value = id;
-   }
-</script>
-<!-- End the report-question script -->
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-   $('.like-form').submit(function(e){
-      e.preventDefault()
-      //console.log('works')
-      const post_id = $(this).attr('id')
-      //console.log(post_id)
-      const liketext = $(`.like-btn${post_id}`).html()
-      //console.log(liketext)
-      const trim = $.trim(liketext)
-      //console.log(trim)
-      const url = $(this).attr('action')
-      //console.log(url)
-      let res;
-      const likes = $(`.like-count${post_id}`).text()
-      //console.log(likes + 1)
-      const trimCount = parseInt(likes)
-      //console.log(trimCount + 1)
-
-      $.ajax(
-         {
-         type : "POST",
-         url : url,
-         data : {
-            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
-            'post_id':post_id,
-         },
-         success: function(response){
-            //console.log('success', response)
-            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
-               res = trimCount - 1
-            } else {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
-               res = trimCount + 1
-            }
-
-           $(`.like-count${post_id}`).text(res)
-         },
-         error: function(response) {
-            console.log('error', response)
-        }
-      }
-      )
-
-   })
-</script>
+<script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
 
 {% endblock content %}
 

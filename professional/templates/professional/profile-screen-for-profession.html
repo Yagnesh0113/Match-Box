@@ -11,14 +11,13 @@
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <!-- Start ppop-up screen CSS -->
 <link rel="stylesheet" href="{% static 'community_profession/css/pop-up-screen.css' %}">
-<link rel="stylesheet" href="/static/community_profession/css/community/community.css">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 {% block content %}
 {% if loginuser is userprofile %}
 <!-- Start Profession Profiles screen - for login user -->
 <div class="row">
    <div class="col-md-12 profession-profile-screen">
-
       <!-- Start Profile Heading and options -->
       <div class="row">
          <div class="col-6 col-sm-6 col-md-6 profile-heading pt-4">
@@ -44,10 +43,9 @@
                   </a>
                </div>
             </div>
-         </div> -->
+            </div> -->
       </div>
       <!-- End Profile Heading and options -->
-
       <!-- Start Personal information -->
       <div class="row justify-content-center pt-3 pb-3 border-bottom">
          <!-- Start Profile picture -->
@@ -165,7 +163,6 @@
          <!-- End Personal information -->
       </div>
       <!-- End Personal information -->
-
       <!-- Start my profession heading and add new btn -->
       <div class="row">
          <!-- Start My Profession Heading -->
@@ -173,7 +170,6 @@
             My Profession
          </div>
          <!-- End My Profession Heading -->
-
          <div class="col-6 col-sm-6 col-md-6 profile-heading text-right pt-4">
             <a href="{% url 'add_profession' %}" class="btn btn-normal text-dark">Add New</a>
          </div>
@@ -186,74 +182,70 @@
          <div class="col-12 col-sm-6 col-md-4 d-flex mt-4 profession-cart">
             <div class="card border-1">
                <div class="card-header">
-                   <div class="row profession-img">
+                  <div class="row profession-img">
                      <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
                         <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
                      </div>
-                   </div>
+                  </div>
                </div>
-
                <div class="card-body">
-                     <!-- Start profession heading -->
-                     <div class="row">
-                        <div class="col-md-12 heading pt-5">
-                           {{i.profession}}
-                        </div>
+                  <!-- Start profession heading -->
+                  <div class="row">
+                     <div class="col-md-12 heading pt-5">
+                        {{i.profession}}
                      </div>
-                     <!-- End profession heading -->
-
-                     <!-- Start Profession sub heading and content-->
-                     <div class="row">
-                        <div class="col-md-12">
-                           <!-- Start name -->
-                           <div class="row">
-                              <!-- Start sub heading -->
-                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Name</div>
-                              <!-- End sub heading -->
-                              <!-- Start content -->
-                              <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_name}}</div>
-                              <!-- End content -->
-                           </div>
-                           <!-- End name -->
-                           <!-- Start address -->
-                           <div class="row">
-                              <!-- Start sub heading -->
-                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Address</div>
-                              <!-- End sub heading -->
-                              <!-- Start content -->
-                              <div class="col-9 col-sm-9 col-md-9 content text-justify">: {{i.shop_address}}</div>
-                              <!-- End content -->
-                           </div>
-                           <!-- End address -->
-                           <!-- Start Time -->
-                           <div class="row">
-                              <!-- Start sub heading -->
-                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Time</div>
-                              <!-- End sub heading -->
-                              <!-- Start content -->
-                              <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
-                              <!-- End content -->
-                           </div>
-                           <!-- End Time -->
+                  </div>
+                  <!-- End profession heading -->
+                  <!-- Start Profession sub heading and content-->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <!-- Start name -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Name</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_name}}</div>
+                           <!-- End content -->
                         </div>
+                        <!-- End name -->
+                        <!-- Start address -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Address</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content text-justify">: {{i.shop_address}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End address -->
+                        <!-- Start Time -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Time</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End Time -->
                      </div>
-                     <!-- End Profession sub heading and content-->
+                  </div>
+                  <!-- End Profession sub heading and content-->
                </div>
-
                <div class="card-footer">
                   <div class="row pt-4 align-self-end">
-                        <div class="col-6 col-sm-6 col-md-6 ">
-                           <a href="{% url 'profession_details' i.id %}" class="btn btn-normal-b btn-block text-dark">
-                              <i class="fa-solid fa-eye"></i> Views
-                           </a>
-                        </div>
-
-                        <div class="col-6 col-sm-6 col-md-6 ">
-                           <a href="{% url 'delete_Profession' i.id %}" class="btn btn-normal-b btn-block text-dark">
-                              <i class="fa-solid fa-trash-can"></i> Delete
-                           </a>
-                        </div>
+                     <div class="col-6 col-sm-6 col-md-6 ">
+                        <a href="{% url 'profession_details' i.id %}" class="btn btn-normal-b btn-block text-dark">
+                        <i class="fa-solid fa-eye"></i> Views
+                        </a>
                      </div>
+                     <div class="col-6 col-sm-6 col-md-6 ">
+                        <a href="{% url 'delete_Profession' i.id %}" class="btn btn-normal-b btn-block text-dark">
+                        <i class="fa-solid fa-trash-can"></i> Delete
+                        </a>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
@@ -282,7 +274,6 @@
       </div>
       {% endif %}
       <!-- End my Profession card -->
-
       <!-- Start update profile image modal -->
       <div class="modal fade profession-profile-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div class="modal-dialog">
@@ -323,7 +314,6 @@
          </div>
       </div>
       <!-- End update profile image modal -->
-
       <!-- Start personal details edit button -->
       <div class="modal fade profession-profile-modal" id="exampleModalLabel1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
          <div class="modal-dialog">
@@ -388,7 +378,6 @@
          </div>
       </div>
       <!-- End personal details edit button -->
-
       <!-- Start Whatsapp number pop up -->
       <div class="modal fade profession-profile-modal" id="whatsapp" tabindex="-1" aria-labelledby="whatsapp" aria-hidden="true">
          <div class="modal-dialog">
@@ -459,7 +448,7 @@
                   </a>
                </div>
             </div>
-         </div> -->
+            </div> -->
       </div>
       <!-- End Profile Heading and options -->
       <!-- Start Personal information -->
@@ -496,8 +485,13 @@
          <div class="col-8 col-sm-7 profession-detail">
             <!-- Start Personal details heading -->
             <div class="row">
-               <div class="col-md-12 personal-detail-heading">
+               <div class="col-10 col-sm-10 col-md-11 personal-detail-heading">
                   <i class="fa-solid fa-user"></i>  Personal details
+               </div>
+               <div class="col-2 col-sm-2 col-md-1 personal-detail-heading">
+                  <a href="" data-target="#report-profile" data-toggle="modal" onclick="Reportprofile('{{userprofile1.usertype.user_id.id}}')" class="text-decoration-none">
+                  <i class="fa-solid fa-ban"></i>
+                  </a>
                </div>
             </div>
             <!-- End Personal details heading -->
@@ -595,76 +589,71 @@
       {% if profession %}
       <div class="row">
          {% for i in profession %}
-
-          <div class="col-12 col-sm-6 col-md-4 d-flex mt-4 profession-cart">
+         <div class="col-12 col-sm-6 col-md-4 d-flex mt-4 profession-cart">
             <div class="card border-1">
                <div class="card-header">
-                   <div class="row profession-img">
+                  <div class="row profession-img">
                      <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
                         <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
                      </div>
-                   </div>
+                  </div>
                </div>
-
                <div class="card-body">
-                     <!-- Start profession heading -->
-                     <div class="row">
-                        <div class="col-md-12 heading pt-5">
-                           {{i.profession}}
-                        </div>
+                  <!-- Start profession heading -->
+                  <div class="row">
+                     <div class="col-md-12 heading pt-5">
+                        {{i.profession}}
                      </div>
-                     <!-- End profession heading -->
-
-                     <!-- Start Profession sub heading and content-->
-                     <div class="row">
-                        <div class="col-md-12">
-                           <!-- Start name -->
-                           <div class="row">
-                              <!-- Start sub heading -->
-                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Name</div>
-                              <!-- End sub heading -->
-                              <!-- Start content -->
-                              <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_name}}</div>
-                              <!-- End content -->
-                           </div>
-                           <!-- End name -->
-                           <!-- Start address -->
-                           <div class="row">
-                              <!-- Start sub heading -->
-                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Address</div>
-                              <!-- End sub heading -->
-                              <!-- Start content -->
-                              <div class="col-9 col-sm-9 col-md-9 content text-justify">: {{i.shop_address}}</div>
-                              <!-- End content -->
-                           </div>
-                           <!-- End address -->
-                           <!-- Start Time -->
-                           <div class="row">
-                              <!-- Start sub heading -->
-                              <div class="col-3 col-sm-3 col-md-3 sub-heading">Time</div>
-                              <!-- End sub heading -->
-                              <!-- Start content -->
-                              <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
-                              <!-- End content -->
-                           </div>
-                           <!-- End Time -->
+                  </div>
+                  <!-- End profession heading -->
+                  <!-- Start Profession sub heading and content-->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <!-- Start name -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Name</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_name}}</div>
+                           <!-- End content -->
                         </div>
+                        <!-- End name -->
+                        <!-- Start address -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Address</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content text-justify">: {{i.shop_address}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End address -->
+                        <!-- Start Time -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Time</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End Time -->
                      </div>
-                     <!-- End Profession sub heading and content-->
+                  </div>
+                  <!-- End Profession sub heading and content-->
                </div>
-
                <div class="card-footer">
                   <div class="row pt-4 d-flex justify-content-center">
-                        <div class="col-5 col-sm-5 col-md-5">
-                           <a href="{% url 'profession-personal-details' i.id %}" class="btn btn-normal btn-sm btn-block text-dark m-2">
-                              <i class="fa-solid fa-eye"></i> View
-                           </a>
-                        </div>
+                     <div class="col-5 col-sm-5 col-md-5">
+                        <a href="{% url 'profession-personal-details' i.id %}" class="btn btn-normal btn-sm btn-block text-dark m-2">
+                        <i class="fa-solid fa-eye"></i> View
+                        </a>
+                     </div>
                   </div>
                </div>
             </div>
-          </div>
-
+         </div>
          <!--<div class="col-12 col-sm-6 col-md-4">
             <div class="row p-3 profession-cart">
                <div class="col-12 col-sm-12 col-md-12 border-1 rounded">
@@ -729,7 +718,7 @@
                   &lt;!&ndash; End btn &ndash;&gt;
                </div>
             </div>
-         </div>-->
+            </div>-->
          {% endfor %}
       </div>
       {% else %}
@@ -869,52 +858,15 @@
    </div>
 </div>
 <!-- End Share Modal -->
-<!-- For profile photo Restriction -->
-<script>
-   let fileInput = document.getElementById("file_id");
-   let fileSubmit = document.getElementById("file-submit");
 
-   fileInput.addEventListener("change", function(){
-      if (fileInput.files.length > 0){
-         const fileSize=fileInput.files.item(0).size;
-         const fileMb=fileSize/1024**2;
-         if (fileMb >= 2){
-            alert("Please select a file less than 2MB.")
-            fileInput.value = "";
-            fileSubmit.disabled = true;
-         } else {
-            fileSubmit.disabled = false;
-         }
+<!-- Start profile screen for profession -->
+<script src="{% static 'community_profession/js/profile-screen-for-profession.js' %}"></script>
+<!-- End profile screen for profession -->
 
-      }
-   });
-</script>
-<!-- End Post Restriction -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-   $("#state").change(function () {
-     var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view
-     var stateId = $(this).val();  // get the selected programming ID from the HTML input
 
-     $.ajax({                       // initialize an AJAX request
-       url: url,                    // set the url of the request (= localhost:8000/load-courses/)
-       data: {
-         'state': stateId       // add the programming id to the GET parameters
-       },
-       success: function (data) {   // `data` is the return of the `load_courses` view function
-         $("#city").html(data);  // replace the contents of the course input with the data that came from the server
-       }
-     });
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
 
-   });
-</script>
 {% add_copy_script %}
-<!-- Start the report-question script -->
-<script>
-   function Reportprofile(id){
-      document.getElementById('report-profile').action ='';
-      document.getElementById("demo1").value = id;
-   }
-</script>
-<!-- End the report-question script -->
+
+
 {% endblock content %}

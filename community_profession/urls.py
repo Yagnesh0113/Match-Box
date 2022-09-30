@@ -108,8 +108,9 @@ urlpatterns = [
     path('delete_news_reply/<int:id>',views.delete_news_reply,name='delete_news_reply'),
     path('edit_news_reply/<int:id>',views.edit_news_reply,name='edit_news_reply'),
 
-
-
-
+    # -- privacy policy --
+    path('privacy-policy', views.loadPrivacyPolicy, name='privacy-policy'),
+    # -- terms and condition --
+    path('terms-condition', views.loadTermsAndCondition, name='terms-condition'),
 
 ]
