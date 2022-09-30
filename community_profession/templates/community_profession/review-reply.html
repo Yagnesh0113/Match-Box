@@ -7,44 +7,54 @@
 {% block own_css %}
 <!--   own css   -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
 <!-- video-screen css -->
 <link rel="stylesheet" href="{% static 'community_profession/css/video-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/comment-reply-screen.css' %}">
 {% endblock own_css %}
 
 
 {% block content %}
-
+<!--    -->
 <div class="row pl-3">
    <div class="col-md-12 all-comments">
       <!-- Start user-profile, user-community-name, time -->
-      <div class="row">
-         <!-- Start user-profile -->
-         <div class="col-2 col-sm-1 col-md-1  community-post-profile-picture">
-               <img class="img-fluid rounded-circle" src="{{Profession_review.user_profile.profile_image.url}}" alt="Chania">
-         </div>
-         <!-- End user-profile -->
-
-         <!-- Start user-community-name, time -->
-         <div class="col-9 col-sm-11 col-md-11 pl-0">
-            <!-- Start community name -->
-            <div class="row">
-               <div class="col-md-12 community-name pl-0">
-                  <a href="{% url 'profession-profile-screen' Profession_review.user_profile.usertype.user_id.id  %}" class="text-decoration-none">{{Profession_review.user_profile.usertype.user_id.first_name}} {{Profession_review.user_profile.usertype.user_id.last_name}}</a>
-               </div>
-            </div>
-            <!-- End community name -->
-            <!-- Start community time -->
-            <div class="row">
-               <div class="col-md-12 community-time pl-0">
-                  {{Profession_review.Review_Date}} / {{Profession_review.Review_Time}}
-                  <!-- Ago -->
-               </div>
-            </div>
-            <!-- End community time -->
-         </div>
-         <!-- End user-community-name, time -->
+      <div class="row reviews">
+          <div class="col-md-12 float-container">
+              <div class="profession-float-child">
+                   <!-- Start user profile -->
+                   <div class="row">
+                      <div class="col-md-12 review-profile">
+                         <img src="{{Profession_review.user_profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+                      </div>
+                   </div>
+                   <!-- End user profile -->
+              </div>
+              <div class="profession-float-child-1">
+                   <!-- Start User information -->
+                   <div class="row">
+                      <div class="col-md-12">
+                          <!-- Start User Name -->
+                          <div class="row">
+                             <div class="col-md-12 user-name-heading">
+                                <a href="{% url 'profession-profile-screen' Profession_review.user_profile.usertype.user_id.id  %}" class="text-decoration-none">{{Profession_review.user_profile.usertype.user_id.first_name}} {{Profession_review.user_profile.usertype.user_id.last_name}}</a>
+                             </div>
+                          </div>
+                          <!-- End User Name -->
+                          <!-- Start date -->
+                          <div class="row">
+                             <div class="col-md-12 reviews-date">
+                                {{Profession_review.Review_Date}} / {{Profession_review.Review_Time}}
+                                <!-- ago. -->
+                             </div>
+                          </div>
+                          <!-- End date -->
+                      </div>
+                   </div>
+                   <!-- End User information -->
+              </div>
+          </div>
       </div>
       <!-- End user-profile, user-community-name, time -->
 
@@ -57,10 +67,10 @@
       <!-- End comment -->
 
       <!-- Start like-reply-share -->
-      <div class="row">
+      <div class="row border-bottom pb-3">
          <div class="col-md-12">
-            <span class="likes-heading">
-            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image"> &nbsp; {{Profession_review.Rate}}
+            <span class="community-like-dislike-btn">
+                <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image"> &nbsp; {{Profession_review.Rate}}
             </span>
             <span class="d-inline-block">
                <form action="{% url 'like_Review' %}" method="POST" class="like-form" id="{{Profession_review.id}}">
@@ -73,12 +83,12 @@
                            <i class="fa-solid fa-thumbs-down"></i>
                         {% endif %} 
                      </button>
-                  <span class="btn community-like-dislike-btn like-count{{Profession_review.id}}">{{ Profession_review.like.all.count }}</span>
+                  <span class="community-like-dislike-btn like-count{{Profession_review.id}}">{{ Profession_review.like.all.count }}</span>
                </form>
             </span>
             <span class="community-like-dislike-btn">
                &nbsp;
-               <i class="fa-solid fa-reply pl-3"></i> &nbsp;
+               <i class="fa-solid fa-reply"></i> &nbsp;
                   {% if Profession_review.Reply is None %}
                   0
                   {% else %}
@@ -90,30 +100,42 @@
       <!-- Start like-reply-share -->
    </div>
 </div>
-<hr color="ffffff">
+
 
 
 <!-- Start Login Profile info -->
 <div class="row pl-1 pt-3">
    <div class="col-md-12 pb-3 all-comments community-body">
-       <div class="row">
-            <!-- Start user-profile -->
-            <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
-               <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
-            </div>
-            <!-- End user-profile -->
-            <!-- Start user-community-name, time -->
-             <div class="col-5 col-sm-4 col-md-4 pl-0 pt-2">
-                 <!-- Start community name -->
-                 <div class="row font-weight-bolder">
-                    <div class="col-md-12 community-name  pl-0">
-                       {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
-                    </div>
-                 </div>
-                 <!-- End community name -->
-             </div>
-            <!-- End user-community-name, time -->
-       </div>
+       <!-- Start user-profile, user-community-name, time -->
+       <div class="row reviews">
+          <div class="col-md-12 float-container">
+              <div class="profession-float-child">
+                   <!-- Start user profile -->
+                   <div class="row">
+                      <div class="col-md-12 review-profile">
+                         <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+                      </div>
+                   </div>
+                   <!-- End user profile -->
+              </div>
+              <div class="profession-float-child-1">
+                   <!-- Start User information -->
+                   <div class="row">
+                      <div class="col-md-12 pt-1">
+                          <!-- Start User Name -->
+                          <div class="row">
+                             <div class="col-md-12 user-name-heading">
+                                 {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+                             </div>
+                          </div>
+                          <!-- End User Name -->
+                      </div>
+                   </div>
+                   <!-- End User information -->
+              </div>
+          </div>
+      </div>
+       <!-- End user-profile, user-community-name, time -->
    </div>
 </div>
 <!-- End Login Profile info -->
@@ -123,16 +145,16 @@
    {% csrf_token %}
     <div class="row pl-3">
         <div class="col-md-12 border-bottom">
-            <div class="row reply-form ">
+            <div class="row reply-form">
               <!-- Start reply-input-box -->
-              <div class="col-10 col-sm-10 col-md-10 pt-3 pl-0">
+              <div class="col-9 col-sm-10 col-md-10 pt-3 pl-0">
                  <div class="form-group">
                     <input type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply">
                  </div>
               </div>
               <!-- End reply-input-box -->
               <!-- Start post btn -->
-              <div class="col-2 col-sm-2 col-md-2 pt-3">
+              <div class="col-3 col-sm-2 col-md-2 pt-3 pl-0">
                  <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
               </div>
               <!-- End post btn -->
@@ -150,38 +172,54 @@
       <!-- Start user profile-img & user name  -->
 
        <div class="row community-body">
-           <!-- Start Profile picture -->
-           <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
-              <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
-           </div>
-           <!-- End Profile picture -->
-
-           <!-- Start Community name and time -->
-           <div class="col-5 col-sm-4 col-md-4 pl-0">
-              <!-- Start community name -->
-              <div class="row">
-                 <div class="col-md-12 community-name pl-0">
-                  <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
-                 </div>
+           <div class="col-8 col-md-9 pl-1 pr-0">
+              <!-- Start user-profile, user-community-name, time -->
+              <div class="row reviews">
+                  <div class="col-md-12 float-container">
+                      <div class="profession-float-child">
+                           <!-- Start user profile -->
+                           <div class="row">
+                              <div class="col-md-12 review-profile">
+                                 <img src="{{i.User_Profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+                              </div>
+                           </div>
+                           <!-- End user profile -->
+                      </div>
+                      <div class="profession-float-child-1">
+                           <!-- Start User information -->
+                           <div class="row">
+                              <div class="col-md-12">
+                                  <!-- Start User Name -->
+                                  <div class="row">
+                                     <div class="col-md-12 user-name-heading">
+                                        <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">
+                                          {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+                                        </a>
+                                     </div>
+                                  </div>
+                                  <!-- End User Name -->
+                                  <!-- Start date -->
+                                  <div class="row">
+                                     <div class="col-md-12 reviews-date">
+                                        {{i.Review_Reply_Date}} {{i.Review_Reply_Time}}
+                                        <!-- ago. -->
+                                     </div>
+                                  </div>
+                                  <!-- End date -->
+                              </div>
+                           </div>
+                           <!-- End User information -->
+                      </div>
+                  </div>
               </div>
-              <!-- End community name -->
-              <!-- Start community time -->
-              <div class="row">
-                 <div class="col-md-12 community-time pl-0">
-                     {{i.Review_Reply_Date}} {{i.Review_Reply_Time}}
-                    <!-- Ago -->
-                 </div>
-              </div>
-              <!-- End community time -->
+              <!-- End user-profile, user-community-name, time -->
            </div>
-           <!-- End Community name and time -->
             <!-- Start Community name and time -->
-            <div class="col-5 col-sm-4 col-md-4 pl-6 text-right">
+            <div class="col-4 col-md-3 pl-6 text-right">
                <!-- Start community time -->
                <div class="row">
-                  <div class="col-md-12 community-time pl-0">
-                     <div class="col-md-12 like-reply-share ">
-                        <span>
+                  <div class="col-md-12 community-time like-reply-share pl-0">
+                    <span>
                            {% if userprofile.id is i.User_Profile.id %}
                               <a href="#" class="btn community-like-dislike-btn" data-target="#modal3" data-toggle="modal" onclick="data('{{i.id}}','{{i.Review_Reply}}')" >
                                  <i class="fa-solid fa-pencil"></i> &nbsp; 
@@ -191,7 +229,6 @@
                               </a>
                            {% endif %}
                         </span>
-                     </div>
                   </div>
                </div>
                <!-- End community time -->
@@ -238,61 +275,12 @@
    </div>
 </div>
 
-<script>
-   function data(id,val1){
-      document.getElementById('EditReviewReply').action ='/edit_review_reply/'+id;
-      document.getElementById("demo1").value = val1;
-   }
-</script>
 
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'community_profession/js/review-reply.js' %}"></script>
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
 
-<script>
-   $('.like-form').submit(function(e){
-      e.preventDefault()
-      //console.log('works')
-      const post_id = $(this).attr('id')
-      //console.log(post_id)
-      const liketext = $(`.like-btn${post_id}`).html()
-      //console.log(liketext)
-      const trim = $.trim(liketext)
-      //console.log(trim)
-      const url = $(this).attr('action')
-      //console.log(url)
-      let res;
-      const likes = $(`.like-count${post_id}`).text()
-      //console.log(likes + 1)
-      const trimCount = parseInt(likes)
-      //console.log(trimCount + 1)
+<script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
 
-      $.ajax(
-         {
-         type : "POST",
-         url : url,
-         data : {
-            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
-            'post_id':post_id,
-         },
-         success: function(response){
-            //console.log('success', response)
-            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
-               res = trimCount - 1
-            } else {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
-               res = trimCount + 1
-            }
-
-         $(`.like-count${post_id}`).text(res)
-         },
-         error: function(response) {
-            console.log('error', response)
-      }
-      }
-      )
-
-   })
-</script>
 {% endblock content %}
 
