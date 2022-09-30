@@ -391,7 +391,11 @@ def Community_image(request):
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
 
-    User_post_obj_image=UserPost.objects.filter(post_type1=False).exclude(User_Profile=userprofile)[::-1]
+    
+    User_post_obj=UserPost.objects.filter(post_type1=False).exclude(User_Profile=userprofile)
+    print(User_post_obj)
+    for i in User_post_obj:
+        User_post_obj_image=Community_Post.objects.filter(user_post=i.id)[::-1]
 
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
