@@ -2,44 +2,52 @@
 {% load static %}
 {% load social_share %}
 {% block title %}
-<title>Write Comment</title>
+<title>Add Answer</title>
 {% endblock title %}
 {% block own_css %}
-<!--   use Community css as a base css   -->
-<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- own css Community write comment screen css -->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community-write-comment-screen.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 {% block community_content %}
 <!-- Start community-profile-img, heading, post -->
-<div class="row community-body pt-3">
-   <!-- Start community-profile-img -->
-   <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
-      <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
-   </div>
-   <!-- End community-profile-img -->
-
-   <!-- Start Community name and time -->
-   <div class="col-5 col-sm-4 col-md-4 pl-0">
-      <!-- Start community name -->
-      <div class="row">
-         <div class="col-md-12 community-name pl-0">
-            <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
+<div class="row community-body pt-3 pl-3">
+   <div class="col-md-12">
+      <div class="comment-float-child">
+         <div class="row">
+            <!-- Start community-profile-img -->
+            <div class="col-12 col-sm-12 col-md-12   community-post-profile-picture">
+               <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
+            </div>
+            <!-- End community-profile-img -->
          </div>
       </div>
-      <!-- End community name -->
-      <!-- Start community time -->
-      <div class="row">
-         <div class="col-md-12 community-time pl-0">
-            {{i.Date}} / {{i.Time}}
-            <!-- Ago -->
+      <div class="comment-float-child-1">
+         <div class="row">
+            <!-- Start Community name and time -->
+            <div class="col-12 col-sm-12 col-md-12 pl-0">
+               <!-- Start community name -->
+               <div class="row">
+                  <div class="col-md-12 community-name pl-0">
+                     <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
+                  </div>
+               </div>
+               <!-- End community name -->
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time pl-0">
+                     {{i.Date}} / {{i.Time}}
+                     <!-- Ago -->
+                  </div>
+               </div>
+               <!-- End community time -->
+            </div>
+            <!-- End Community name and time -->
          </div>
       </div>
-      <!-- End community time -->
    </div>
-   <!-- End Community name and time -->
-
 </div>
 <!-- End community-profile-img, heading, post -->
 
@@ -157,36 +165,42 @@
 
 <!-- Start Comments -->
 {% for Answer in Answer_id %}
-<div class="row pl-3">
+<div class="row pl-4">
    <div class="col-md-12 all-comments">
       <!-- Start user-profile, user-community-name, time -->
       <div class="row community-body pt-3">
-         <!-- Start Profile picture -->
-         <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
-            <img class="img-fluid rounded-circle" src="{{Answer.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
-         </div>
-         <!-- End Profile picture -->
-
-         <!-- Start Community name and time -->
-         <div class="col-5 col-sm-4 col-md-4 pl-0">
-            <!-- Start community name -->
+         <div class="comment-float-child">
             <div class="row">
-               <div class="col-md-12 community-name pl-0">
-                  <a href="{% url 'profession-profile-screen' Answer.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{Answer.User_Profile.usertype.user_id.first_name}} {{Answer.User_Profile.usertype.user_id.last_name}}</a>
+               <!-- Start Profile picture -->
+               <div class="col-12 col-sm-12 col-md-12   community-post-profile-picture">
+                  <img class="img-fluid rounded-circle" src="{{Answer.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
                </div>
+               <!-- End Profile picture -->
             </div>
-            <!-- End community name -->
-            <!-- Start community time -->
-            <div class="row">
-               <div class="col-md-12 community-time pl-0">
-                  {{Answer.Date}} / {{Answer.Time}}
-                  <!-- Ago -->
-               </div>
-            </div>
-            <!-- End community time -->
          </div>
-         <!-- End Community name and time -->
-
+         <div class="comment-float-child-1">
+            <div class="row">
+               <!-- Start Community name and time -->
+               <div class="col-12 col-sm-12 col-md-12 pl-0">
+                  <!-- Start community name -->
+                  <div class="row">
+                     <div class="col-md-12 community-name pl-0">
+                        <a href="{% url 'profession-profile-screen' Answer.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{Answer.User_Profile.usertype.user_id.first_name}} {{Answer.User_Profile.usertype.user_id.last_name}}</a>
+                     </div>
+                  </div>
+                  <!-- End community name -->
+                  <!-- Start community time -->
+                  <div class="row">
+                     <div class="col-md-12 community-time pl-0">
+                        {{Answer.Date}} / {{Answer.Time}}
+                        <!-- Ago -->
+                     </div>
+                  </div>
+                  <!-- End community time -->
+               </div>
+               <!-- End Community name and time -->
+            </div>
+         </div>
       </div>
       <!-- End user-profile, user-community-name, time -->
       <!-- Start comment -->

@@ -1,20 +1,20 @@
 {% extends 'community_profession/community.html' %}
 {% load static %}
 {% block title %}
-<title>Comment Reply Screen</title>
+<title>Answer Reply Screen</title>
 {% endblock title %}
 {% block own_css %}
-<!--   use Community css as a base css   -->
-<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- own css Community comment reply screen css -->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/comment-reply-screen.css' %}">
 <!-- Ask Post CSS-->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 {% block community_content %}
 
 <!-- Start answer-heading -->
-<div class="row pl-3 ">
+<div class="row pl-3 pt-2">
    <div class="col-md-12 pb-3 border-bottom all-comments community-body">
       <!-- Start user-profile, user-community-name, time -->
       <div class="row">
@@ -120,7 +120,7 @@
         <div class="col-md-12 border-bottom">
             <div class="row reply-form ">
               <!-- Start reply-input-box -->
-              <div class="col-10 col-sm-10 col-md-10 pt-3 pl-0">
+              <div class="col-9 col-sm-10 col-md-10 pt-3">
                  <div class="form-group">
                     <input type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply">
                  </div>
@@ -128,7 +128,7 @@
               <!-- End reply-input-box -->
 
               <!-- Start post btn -->
-              <div class="col-2 col-sm-2 col-md-2 pt-3">
+              <div class="col-3 col-sm-2 col-md-2 pt-3 pr-1">
                  <button type="submit" class="btn btn-block btn-sm btn-normal-b">Answer</button>
               </div>
               <!-- End post btn -->
@@ -171,7 +171,7 @@
            </div>
            <!-- End Community name and time -->
            <!-- Start Community name and time -->
-           <div class="col-5 col-sm-4 col-md-4 pl-6 text-right">
+           <div class="col-5 col-sm-7 col-md-7 text-right">
             <!-- Start community time -->
             <div class="row">
                <div class="col-md-12 community-time pl-0">
@@ -234,10 +234,6 @@
 </div>
 <!-- end comment edit modal -->
 
-<script>
-   function Answer_obj(id,val1){
-      document.getElementById('Answer').action ='/edit_answer_reply/'+id;
-      document.getElementById("demo1").value = val1;
-   }
-</script> 
+<script src="{% static 'community_profession/js/answer-reply-edit.js' %}"></script>
+
 {% endblock community_content %}
