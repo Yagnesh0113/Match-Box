@@ -1,0 +1,23 @@
+.edit-community
+{
+    background-color:var(--color-12);
+}
+
+.edit-community .form-group .form-control
+{
+    background-color:var(--color-15);
+
+}
+
+.edit-community .form-group label
+
+{
+    color:var(--color-13);
+}
+
+
+form .form-group .form-control
+{
+    background-color: #fff0;
+    border:0.125rem solid var(--color-5);
+}

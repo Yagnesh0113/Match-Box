@@ -1,0 +1,872 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% load social_share %}
+{% block title %}
+<title>Profession Profile Screen</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<!-- Own css - profile-screen-for-profession -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profile-screen-for-profession.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!-- Start ppop-up screen CSS -->
+<link rel="stylesheet" href="{% static 'community_profession/css/pop-up-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+{% endblock own_css %}
+{% block content %}
+{% if loginuser is userprofile %}
+<!-- Start Profession Profiles screen - for login user -->
+<div class="row">
+   <div class="col-md-12 profession-profile-screen">
+      <!-- Start Profile Heading and options -->
+      <div class="row">
+         <div class="col-6 col-sm-6 col-md-6 profile-heading pt-4">
+            Profile
+         </div>
+         <!-- <div class="col-6 col-sm-6 col-md-6 text-right profile-options pt-4">
+            <div class="dropdown dropleft float-right">
+               <button type="button" class="btn text-light" data-toggle="dropdown">
+               <i class="fa-solid fa-ellipsis-vertical"></i>
+               </button>
+               <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-bell"></i> My Notifications
+                  </a>
+                  <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-clock"></i> History
+                  </a>
+                  <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-clock"></i> Avg. Response time : 1 Hour
+                  </a>
+                  <a class="dropdown-item" href="{% url 'user_logout' %}">
+                  <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+                  </a>
+               </div>
+            </div>
+            </div> -->
+      </div>
+      <!-- End Profile Heading and options -->
+      <!-- Start Personal information -->
+      <div class="row justify-content-center pt-3 pb-3 border-bottom">
+         <!-- Start Profile picture -->
+         <div class="col-4 col-sm-5 pt-4">
+            <div class="row justify-content-center">
+               <div class="col-md-5">
+                  <!-- Start Profile img -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        {% if  userprofile.profile_image %}
+                        <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                        {% else %}
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                        {% endif %}
+                     </div>
+                  </div>
+                  <!-- End Profile img -->
+                  <!-- Start Edit Profile img btn -->
+                  <div class="row">
+                     <div class="col-md-12 pt-3 text-center edit-profile-btn">
+                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                        <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+                        </button>
+                     </div>
+                  </div>
+                  <!-- End Edit Profile img btn -->
+               </div>
+            </div>
+         </div>
+         <!-- End Profile picture -->
+         <!-- Start Personal information -->
+         <div class="col-8 col-sm-7 profession-detail">
+            <!-- Start Personal details heading -->
+            <div class="row">
+               <div class="col-md-12 personal-detail-heading">
+                  <i class="fa-solid fa-user"></i>  Personal details
+               </div>
+            </div>
+            <!-- End Personal details heading -->
+            <!-- Start Profession Personal information -->
+            <div class="row pt-3">
+               <div class="col-md-12">
+                  <!-- Start Personal Details -->
+                  <div class="row">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        Name
+                     </div>
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+                     </div>
+                  </div>
+                  <div class="row pt-1">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        Phone No
+                     </div>
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : {% if userprofile.phone_number is None %}Add Your Phone Number{% else %}{{userprofile.phone_number}}{% endif %}
+                     </div>
+                  </div>
+                  <div class="row pt-1">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        Email
+                     </div>
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : {{userprofile.usertype.user_id.email}}
+                     </div>
+                  </div>
+                  <div class="row pt-1">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        Location
+                     </div>
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : {% if userprofile.city is None and userprofile.state is None %}Please Add State And City{% else %}{{userprofile.city}}, {{userprofile.state}}{% endif %}
+                     </div>
+                  </div>
+                  <!-- End Personal Details -->
+                  <!-- Start Personal Detail Edit btn -->
+                  <div class="row ">
+                     <div class="col-md-12 edit-profile-btn">
+                        <button type="submit" class="btn" data-toggle="modal" data-target="#exampleModalLabel1">
+                        <i class="fa-solid fa-pen-to-square"></i> Edit Details
+                        </button>
+                     </div>
+                  </div>
+                  <!-- End Personal Detail Edit btn -->
+                  <!-- End Whatsapp numbers -->
+                  <div class="row pt-1">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        What's App Number
+                     </div>
+                     {% if userprofile.whatsapp_number %}
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : +{{userprofile.country_code}} {{userprofile.whatsapp_number}}
+                     </div>
+                     {% else %}
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : Add Your Whatsapp Number
+                     </div>
+                     {% endif %}
+                  </div>
+                  <!-- End Whatsapp numbers -->
+                  <!-- Start edit Whatsapp number -->
+                  <div class="row ">
+                     <div class="col-md-12 edit-profile-btn">
+                        <button type="submit" class="btn" data-toggle="modal" data-target="#whatsapp">
+                        <i class="fa-solid fa-pen-to-square"></i> Edit Details
+                        </button>
+                     </div>
+                  </div>
+                  <!-- End edit Whatsapp number -->
+               </div>
+            </div>
+            <!-- End Profession Personal information -->
+         </div>
+         <!-- End Personal information -->
+      </div>
+      <!-- End Personal information -->
+      <!-- Start my profession heading and add new btn -->
+      <div class="row">
+         <!-- Start My Profession Heading -->
+         <div class="col-6 col-sm-6 col-md-6 profile-heading pt-4">
+            My Profession
+         </div>
+         <!-- End My Profession Heading -->
+         <div class="col-6 col-sm-6 col-md-6 profile-heading text-right pt-4">
+            <a href="{% url 'add_profession' %}" class="btn btn-normal text-dark">Add New</a>
+         </div>
+      </div>
+      <!-- End my profession heading and add new btn -->
+      <!-- Start my Profession card -->
+      {% if profession %}
+      <div class="row pl-2">
+         {% for i in profession %}
+         <div class="col-12 col-sm-6 col-md-4 d-flex mt-4 profession-cart">
+            <div class="card border-1">
+               <div class="card-header">
+                  <div class="row profession-img">
+                     <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
+                        <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
+                     </div>
+                  </div>
+               </div>
+               <div class="card-body">
+                  <!-- Start profession heading -->
+                  <div class="row">
+                     <div class="col-md-12 heading pt-5">
+                        {{i.profession}}
+                     </div>
+                  </div>
+                  <!-- End profession heading -->
+                  <!-- Start Profession sub heading and content-->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <!-- Start name -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Name</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_name}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End name -->
+                        <!-- Start address -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Address</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content text-justify">: {{i.shop_address}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End address -->
+                        <!-- Start Time -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Time</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End Time -->
+                     </div>
+                  </div>
+                  <!-- End Profession sub heading and content-->
+               </div>
+               <div class="card-footer">
+                  <div class="row pt-4 align-self-end">
+                     <div class="col-6 col-sm-6 col-md-6 ">
+                        <a href="{% url 'profession_details' i.id %}" class="btn btn-normal-b btn-block text-dark">
+                        <i class="fa-solid fa-eye"></i> Views
+                        </a>
+                     </div>
+                     <div class="col-6 col-sm-6 col-md-6 ">
+                        <a href="{% url 'delete_Profession' i.id %}" class="btn btn-normal-b btn-block text-dark">
+                        <i class="fa-solid fa-trash-can"></i> Delete
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+      {% else %}
+      <!-- fcgvhbkjnlm,.;/ fcghvkjnlm, -->
+      <div class="row pl-4 pt-3">
+         <div class="col-md-12 text-center recent-searches-window">
+            <div class="row">
+               <div class="col-md-12 search-icon">
+                  <i class="fa-regular fa-square-plus"></i>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-heading">
+                  Add New Profession
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-sub-heading">
+                  Create Your Profession
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endif %}
+      <!-- End my Profession card -->
+      <!-- Start update profile image modal -->
+      <div class="modal fade profession-profile-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Image</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <form action="{% url 'update_profile_image' %}" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                     <div class="container ">
+                        <div class="row">
+                           <div class="col-4">
+                              {% if  userprofile.profile_image %}
+                              <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                              {% else %}
+                              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                              {% endif %}
+                           </div>
+                           <div class="col-8">
+                              <span class="modal-sub-heading">
+                              Select Image
+                              </span>
+                              <input id="file_id" type="file" name="profile_image" class="text-dark" required>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button disabled id="file-submit" type="submit" class="btn btn-normal-b">Save changes</button>
+                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- End update profile image modal -->
+      <!-- Start personal details edit button -->
+      <div class="modal fade profession-profile-modal" id="exampleModalLabel1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Update Personal Detail</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <form data-city-url="{% url 'load_city' %}" id="indexForm" action="{% url 'update_details' %}" method="POST">
+                  <div class="modal-body">
+                     {% csrf_token %}
+                     <div class="form-group">
+                        <label for="first-name" class="col-form-label modal-sub-heading">First Name:</label>
+                        <input type="text" class="form-control" id="first-name" value="{{userprofile.usertype.user_id.first_name}}" placeholder="First Name"name="first_name">
+                     </div>
+                     <div class="form-group">
+                        <label for="last-name" class="col-form-label modal-sub-heading">Last Name:</label>
+                        <input type="text" class="form-control" value="{{userprofile.usertype.user_id.last_name}}" id="last-name" name="last_name">
+                     </div>
+                     <div class="form-group">
+                        <label for="phone-number" class="col-form-label modal-sub-heading">Phone Number:</label>
+                        {% if userprofile.phone_number %}
+                        <input type="text" class="form-control" value="{{userprofile.phone_number}}" id="phone-number" name="phone_number" maxlength="10">
+                        {% else %}
+                        <input type="text" class="form-control" placeholder="Add Your Phone Number" id="phone-number" name="phone_number" maxlength="10">
+                        {% endif %}
+                     </div>
+                     <div class="form-group">
+                        <label for="message-text" class="col-form-label modal-sub-heading">State:{{userprofile.state}}</label>
+                        <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1" required>
+                           {% if userprofile.state is None %}
+                           <option value="" class="border">Please Select The State</option>
+                           {% for i in state %}
+                           <option value="{{i.id}}" class="border">{{i.name}}</option>
+                           {% endfor %}
+                           {% else %}
+                           {% for i in state %}
+                           {% if userprofile.state in i.name %}
+                           <option value="{{i.id}}" class="border">{{i.name}}</option>
+                           {% else %}
+                           <option value="{{i.id}}" class="border">{{i.name}}</option>
+                           {% endif %}
+                           {% endfor %}
+                           {% endif %}
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <label for="message-text" class="col-form-label modal-sub-heading">City:</label>
+                        <select name="city" class="form-control border-left-0" id="city" required>
+                           <option class="border" value="{{userprofile.city}}">{% if userprofile.city is None %}Please Select First State{% else %}{{userprofile.city}}{% endif %}</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="submit" class="btn btn-normal-b">Save Changes</button>
+                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- End personal details edit button -->
+      <!-- Start Whatsapp number pop up -->
+      <div class="modal fade profession-profile-modal" id="whatsapp" tabindex="-1" aria-labelledby="whatsapp" aria-hidden="true">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="whatsapp">Whats App Number:</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <form action="{% url 'update_whatsapp_number' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="modal-body">
+                     <div class="form-group">
+                        <label for="Country-Code" class="col-form-label modal-sub-heading">Country Code:</label>
+                        <input type="text" value="+91" class="form-control" id="Country-Code" name="country_code" disabled>
+                     </div>
+                     <div class="form-group">
+                        <label for="Number" class="col-form-label modal-sub-heading">Number:</label>
+                        {% if userprofile.whatsapp_number %}
+                        <input type="text" class="form-control" required id="Number" value="{{userprofile.whatsapp_number}}" name="whatsapp_number" maxlength="10">
+                        {% else %}
+                        <input type="text" class="form-control" required id="Number" placeholder="Add Your Whatsapp Number" name="whatsapp_number" maxlength="10">
+                        {% endif %}
+                     </div>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="submit" class="btn btn-normal-b">Save Changes</button>
+                     <button type="button" class="btn btn-cancel" data-dismiss="modal">Close</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- End Whatsapp number pop up -->
+   </div>
+</div>
+<!-- End Profession Profiles screen - for login user -->
+{% else %}
+<!-- Start Profession Profiles screen - for other user -->
+<div class="row">
+   <div class="col-md-12 profession-profile-screen">
+      <!-- Start Profile Heading and options -->
+      <div class="row">
+         <div class="col-6 col-sm-6 col-md-6 profile-heading pt-4">
+            Profile
+         </div>
+         <!-- <div class="col-6 col-sm-6 col-md-6 text-right profile-options pt-4">
+            <div class="dropdown dropleft float-right">
+               <button type="button" class="btn text-light" data-toggle="dropdown">
+               <i class="fa-solid fa-ellipsis-vertical"></i>
+               </button>
+               <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-bell"></i> Post
+                  </a>
+                  <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-bell"></i> Post
+                  </a>
+                  <a class="dropdown-item" href="#">
+                  <i class="fa-solid fa-clock"></i> Question
+                  </a>
+                  <a class="dropdown-item" href="#"data-target="#report-profile" data-toggle="modal" onclick="Reportprofile('{{userprofile1.usertype.user_id.id}}')">
+                     <i class="fa-solid fa-ban"></i> Report
+                  </a>
+                  <a class="dropdown-item" href="" data-target="#share-modal" data-toggle="modal">
+                  <i class="fa-solid fa-clock"></i> Share
+                  </a>
+               </div>
+            </div>
+            </div> -->
+      </div>
+      <!-- End Profile Heading and options -->
+      <!-- Start Personal information -->
+      <div class="row justify-content-center pt-3 pb-3 border-bottom">
+         <!-- Start Profile picture -->
+         <div class="col-4 col-sm-5 pt-4">
+            <div class="row justify-content-center">
+               <div class="col-md-5">
+                  <!-- Start Profile img -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        {% if  userprofile1.profile_image %}
+                        <img src="{{userprofile1.profile_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                        {% else %}
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" class="img-fluid rounded" alt="Responsive image">
+                        {% endif %}
+                     </div>
+                  </div>
+                  <!-- End Profile img -->
+                  <!-- Start Edit Profile img btn -->
+                  <!-- <div class="row">
+                     <div class="col-md-12 pt-3 text-center edit-profile-btn">
+                        <button type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                           <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+                        </button>
+                     </div>
+                     </div> -->
+                  <!-- End Edit Profile img btn -->
+               </div>
+            </div>
+         </div>
+         <!-- End Profile picture -->
+         <!-- Start Personal information -->
+         <div class="col-8 col-sm-7 profession-detail">
+            <!-- Start Personal details heading -->
+            <div class="row">
+               <div class="col-10 col-sm-10 col-md-11 personal-detail-heading">
+                  <i class="fa-solid fa-user"></i>  Personal details
+               </div>
+               <div class="col-2 col-sm-2 col-md-1 personal-detail-heading">
+                  <a href="" data-target="#report-profile" data-toggle="modal" onclick="Reportprofile('{{userprofile1.usertype.user_id.id}}')" class="text-decoration-none">
+                  <i class="fa-solid fa-ban"></i>
+                  </a>
+               </div>
+            </div>
+            <!-- End Personal details heading -->
+            <!-- Start Profession Personal information -->
+            <div class="row pt-3">
+               <div class="col-md-12">
+                  <!-- Start Personal Details -->
+                  <div class="row">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        Name
+                     </div>
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : {{userprofile1.usertype.user_id.first_name}} {{userprofile1.usertype.user_id.last_name}}
+                     </div>
+                  </div>
+                  <div class="row pt-1">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        Phone No
+                     </div>
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : {{userprofile1.phone_number}}
+                     </div>
+                  </div>
+                  <div class="row pt-1">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        Email
+                     </div>
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : {{userprofile1.usertype.user_id.email}}
+                     </div>
+                  </div>
+                  <div class="row pt-1">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        Location
+                     </div>
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : {{userprofile1.city}}, {{userprofile.state}}
+                     </div>
+                  </div>
+                  <!-- End Personal Details -->
+                  <!-- Start Personal Detail Edit btn -->
+                  <!-- <div class="row ">
+                     <div class="col-md-12 edit-profile-btn">
+                        <button type="submit" class="btn" data-toggle="modal" data-target="#exampleModalLabel1">
+                           <i class="fa-solid fa-pen-to-square"></i> Edit Details
+                        </button>
+                     </div>
+                     </div> -->
+                  <!-- End Personal Detail Edit btn -->
+                  <!-- End Whatsapp numbers -->
+                  <div class="row pt-1">
+                     <div class="col-4 col-sm-4 col-md-4 personal-detail-sub-heading">
+                        What's App Number
+                     </div>
+                     {% if userprofile.whatsapp_number %}
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : +{{userprofile1.country_code}} {{userprofile1.whatsapp_number}}
+                     </div>
+                     {% else %}
+                     <div class="col-8 col-sm-8 col-md-8 personal-detail-content">
+                        : Add Your Whatsapp Number
+                     </div>
+                     {% endif %}
+                  </div>
+                  <!-- End Whatsapp numbers -->
+                  <!-- Start edit Whatsapp number -->
+                  <!-- <div class="row ">
+                     <div class="col-md-12 edit-profile-btn">
+                        <button type="submit" class="btn" data-toggle="modal" data-target="#whatsapp">
+                           <i class="fa-solid fa-pen-to-square"></i> Edit Details
+                        </button>
+                     </div>
+                     </div> -->
+                  <!-- End edit Whatsapp number -->
+               </div>
+            </div>
+            <!-- End Profession Personal information -->
+         </div>
+         <!-- End Personal information -->
+      </div>
+      <!-- End Personal information -->
+      <!-- Start my profession heading and add new btn -->
+      <div class="row">
+         <!-- Start My Profession Heading -->
+         <div class="col-6 col-sm-6 col-md-6 profile-heading pt-4">
+            My Profession
+         </div>
+         <!-- End My Profession Heading -->
+         <!-- <div class="col-6 col-sm-6 col-md-6 profile-heading text-right pt-4">
+            <a href="{% url 'add_profession' %}" class="btn btn-normal text-dark">Add New</a>
+            </div> -->
+      </div>
+      <!-- End my profession heading and add new btn -->
+      <!-- Start my Profession card -->
+      {% if profession %}
+      <div class="row">
+         {% for i in profession %}
+         <div class="col-12 col-sm-6 col-md-4 d-flex mt-4 profession-cart">
+            <div class="card border-1">
+               <div class="card-header">
+                  <div class="row profession-img">
+                     <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
+                        <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
+                     </div>
+                  </div>
+               </div>
+               <div class="card-body">
+                  <!-- Start profession heading -->
+                  <div class="row">
+                     <div class="col-md-12 heading pt-5">
+                        {{i.profession}}
+                     </div>
+                  </div>
+                  <!-- End profession heading -->
+                  <!-- Start Profession sub heading and content-->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <!-- Start name -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Name</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_name}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End name -->
+                        <!-- Start address -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Address</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content text-justify">: {{i.shop_address}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End address -->
+                        <!-- Start Time -->
+                        <div class="row">
+                           <!-- Start sub heading -->
+                           <div class="col-3 col-sm-3 col-md-3 sub-heading">Time</div>
+                           <!-- End sub heading -->
+                           <!-- Start content -->
+                           <div class="col-9 col-sm-9 col-md-9 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
+                           <!-- End content -->
+                        </div>
+                        <!-- End Time -->
+                     </div>
+                  </div>
+                  <!-- End Profession sub heading and content-->
+               </div>
+               <div class="card-footer">
+                  <div class="row pt-4 d-flex justify-content-center">
+                     <div class="col-5 col-sm-5 col-md-5">
+                        <a href="{% url 'profession-personal-details' i.id %}" class="btn btn-normal btn-sm btn-block text-dark m-2">
+                        <i class="fa-solid fa-eye"></i> View
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!--<div class="col-12 col-sm-6 col-md-4">
+            <div class="row p-3 profession-cart">
+               <div class="col-12 col-sm-12 col-md-12 border-1 rounded">
+                  &lt;!&ndash; Start image &ndash;&gt;
+                  <div class="row profession-img">
+                     <div class="col-12 col-sm-9 col-md-9 pt-3">
+                        <img class="img-fluid rounded" src="{{i.profession_image.url}}" alt="Chania">
+                     </div>
+                  </div>
+                  &lt;!&ndash; End image &ndash;&gt;
+                  &lt;!&ndash; Start profession heading &ndash;&gt;
+                  <div class="row">
+                     <div class="col-md-12 heading">
+                        {{i.profession}}
+                     </div>
+                  </div>
+                  &lt;!&ndash; End profession heading &ndash;&gt;
+                  &lt;!&ndash; Start Profession sub heading and content&ndash;&gt;
+                  <div class="row">
+                     <div class="col-md-12">
+                        &lt;!&ndash; Start name &ndash;&gt;
+                        <div class="row">
+                           &lt;!&ndash; Start sub heading &ndash;&gt;
+                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Name</div>
+                           &lt;!&ndash; End sub heading &ndash;&gt;
+                           &lt;!&ndash; Start content &ndash;&gt;
+                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_name}}</div>
+                           &lt;!&ndash; End content &ndash;&gt;
+                        </div>
+                        &lt;!&ndash; End name &ndash;&gt;
+                        &lt;!&ndash; Start address &ndash;&gt;
+                        <div class="row">
+                           &lt;!&ndash; Start sub heading &ndash;&gt;
+                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Address</div>
+                           &lt;!&ndash; End sub heading &ndash;&gt;
+                           &lt;!&ndash; Start content &ndash;&gt;
+                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_address}}</div>
+                           &lt;!&ndash; End content &ndash;&gt;
+                        </div>
+                        &lt;!&ndash; End address &ndash;&gt;
+                        &lt;!&ndash; Start Time &ndash;&gt;
+                        <div class="row">
+                           &lt;!&ndash; Start sub heading &ndash;&gt;
+                           <div class="col-4 col-sm-4 col-md-4 sub-heading">Time</div>
+                           &lt;!&ndash; End sub heading &ndash;&gt;
+                           &lt;!&ndash; Start content &ndash;&gt;
+                           <div class="col-8 col-sm-8 col-md-8 content">: {{i.shop_start_time}} - {{i.shop_close_time}}</div>
+                           &lt;!&ndash; End content &ndash;&gt;
+                        </div>
+                        &lt;!&ndash; End Time &ndash;&gt;
+                     </div>
+                  </div>
+                  &lt;!&ndash; End Profession sub heading and content&ndash;&gt;
+                  &lt;!&ndash; Start btn &ndash;&gt;
+                  <div class="row">
+                     <div class="col-12 col-sm-12 col-md-12">
+                        <a href="{% url 'profession-personal-details' i.id %}" class="btn btn-normal btn-sm text-dark m-2">
+                        <i class="fa-solid fa-eye"></i>
+                        </a>
+                     </div>
+                  </div>
+                  &lt;!&ndash; End btn &ndash;&gt;
+               </div>
+            </div>
+            </div>-->
+         {% endfor %}
+      </div>
+      {% else %}
+      <!-- fcgvhbkjnlm,.;/ fcghvkjnlm, -->
+      <div class="row pl-4 pt-3">
+         <div class="col-md-12 text-center recent-searches-window">
+            <div class="row">
+               <div class="col-md-12 search-icon">
+                  <i class="fa-solid fa-ban"></i>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-heading">
+                  No Profession
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-sub-heading">
+                  For Now
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endif %}
+      <!-- End my Profession card -->
+   </div>
+</div>
+<!-- End Profession Profiles screen - for other user -->
+{% endif %}
+<!-- Start Create Report-question -->
+<div class="modal create-community-modeal" id="report-profile">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="report-profile">Create Report</h5>
+            <a href="" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="{% url 'report_profile' %}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="number" id="demo1" name="profile_id" hidden>
+               </div>
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 question-text-box">
+                     <div class="form-group">
+                        <textarea name="report_descrition" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Adult Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                        <input type="checkbox" name="adult" class="form-check-input" value="">
+                        18+ content
+                        </label>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Abusing Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                        <input type="checkbox" name="adult" class="form-check-input" value="">
+                        Abusing Content
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Report</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End Create Report-question -->
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row your-added-questions-heading">
+               <div class="col-md-12">Share</div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Share Icon -->
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <a>{% post_to_facebook object_or_url %}</a>
+                  <!-- <a href="" class=" text-decoration-none">
+                     <i class="fa fa-facebook">{% post_to_facebook object_or_url %} </i>
+                     </a> -->
+                  <!-- &nbsp; -->
+                  <a>{% post_to_whatsapp object_or_url %}</a>
+                  <!-- <a href="#" class=" text-decoration-none">
+                     <i class="fa-brands fa-whatsapp"></i>
+                     </a> -->
+                  <!-- &nbsp; -->
+                  <!-- Reddit Icon -->
+                  <a>{% post_to_reddit object_or_url %}</a>
+                  <!-- end reddit icon -->
+                  <!-- &nbsp; -->
+               </div>
+            </div>
+            <!-- End Share Icon -->
+            <!-- Start copy link text box -->
+            <div class="row d-flex justify-content-center pt-3">
+               <div class="col-md-8">
+                  <form>
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="CopyURL">
+                        <div class="input-group-append">
+                           <!-- <span class="input-group-text">COPY</span> -->
+                           <span>{% copy_to_clipboard object_or_url%}</span>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <!-- End copy link text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Share Modal -->
+
+<!-- Start profile screen for profession -->
+<script src="{% static 'community_profession/js/profile-screen-for-profession.js' %}"></script>
+<!-- End profile screen for profession -->
+
+
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
+
+{% add_copy_script %}
+
+
+{% endblock content %}

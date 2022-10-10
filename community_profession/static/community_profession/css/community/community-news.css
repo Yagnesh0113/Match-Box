@@ -1,0 +1,192 @@
+.news
+{
+    padding-left:1.875rem;
+}
+
+.news .posted-by-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-2);
+}
+
+.news .no-of-days
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.313rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.news .news-content
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: var(--color-2);
+    padding-top:0.5rem;
+}
+
+.news .news-img-video
+{
+    padding-top:1.25rem;
+}
+
+.news .news-img-video .background
+{
+    background-color:var(--color-12);
+}
+
+.news-img-video .background .img-fluid
+{
+    height:31.25rem;
+}
+
+.like-comment-share
+{
+    padding-top:0.938rem;
+}
+
+.like-comment-share .like,
+.like-comment-share .comment,
+.like-comment-share .share
+{
+    padding-top:0.625rem;
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-2);
+}
+
+.like-comment-share .add-comment-btn
+{
+    background-color:#606363;
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-2);
+}
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px)
+{
+
+}
+
+
+@media all and (max-width: 576px)
+{
+    .news .posted-by-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.313rem;
+        color: var(--color-2);
+    }
+
+    .news .no-of-days
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .news .news-content
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.313rem;
+        color: var(--color-2);
+        padding-top: 0.5rem;
+    }
+
+    .news .news-img-video .background
+    {
+        background-color: var(--color-15);
+    }
+
+    .news-img-video .background .img-fluid
+    {
+        height: 20.25rem;
+    }
+
+    .like-comment-share .like,
+    .like-comment-share .comment,
+    .like-comment-share .share
+    {
+        padding-top: 0.625rem;
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.625rem;
+        line-height: 0.938rem;
+        color: var(--color-2);
+    }
+
+    .like-comment-share .add-comment-btn
+    {
+        background-color: #606363;
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.625rem;
+        line-height: 0.938rem;
+        color: var(--color-2);
+    }
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+}
+
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+}
+/* End Mobile Views */

@@ -1,0 +1,306 @@
+.community-heading-members .community-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    color: var(--color-2);
+}
+
+.community-heading-members .community-no-members
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.posted-by-u-name
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.community-sub-heading
+{
+    font-family: var( --font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: var(--color-2);
+}
+
+.post-img-video
+{
+    background-color: var(--color-12);
+}
+
+.like-comment-share
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-2);
+}
+
+.community-user-name
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.community-user-name .commnet-as
+{
+    color: var(--color-2);
+}
+
+.comment-text-box .form-group .form-control
+{
+    background-color: #fff0;
+    border: 0.063rem solid rgba(255, 255, 255, 0.6);
+    color: var(--color-2);
+}
+
+.cancel-post-btn .cancel-btn .btn
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    color: var(--color-2);
+    border: 0.063rem solid var(--color-12);
+}
+
+.cancel-post-btn .post-btn .btn
+{
+    font-family: var( --font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    background-color: var(--color-12);
+    color: var(--color-13);
+}
+
+.comments-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.313rem;
+    color: var(--color-2);
+}
+.community-user-name .img-fluid,
+.all-comments .img-fluid
+{
+    width:40px;
+    height:40px;
+}
+
+.all-comments .user-community-name
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-2);
+}
+
+.all-comments .user-community-name .time
+{
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.all-comments .comment
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    color: var(--color-2);
+}
+
+.all-comments .like-reply-share
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px)
+{
+
+}
+
+
+@media all and (max-width: 576px)
+{
+    .community-heading-members .community-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        color: var(--color-2);
+    }
+
+    .community-sub-heading
+    {
+        font-family: var( --font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.625rem;
+        line-height: 1.25rem;
+        color: var(--color-2);
+    }
+
+    .all-comments .comment
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        color: var(--color-2);
+    }
+
+    .post-img-video
+    {
+        background-color: var(--color-15);
+    }
+
+     .comment-float-child
+    {
+        width: 20%;
+        float: left;
+        padding-top: 20px;
+        /* border: 2px solid red; */
+    }
+    .comment-float-child-1
+    {
+        width: 80%;
+        float: left;
+        padding-top: 20px;
+        /* border: 2px solid red; */
+    }
+
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+     .comment-float-child
+    {
+        width: 5.3%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
+
+
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+
+    .comment-float-child
+    {
+        width: 5.3%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+
+    .comment-float-child
+    {
+        width: 5.3%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
+}
+
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+
+    .comment-float-child
+    {
+        width: 6.5%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
+
+    .comment-float-child-1
+    {
+        width: 92%;
+        float: left;
+        padding-left: 0px;
+        /* border: 2px solid red; */
+    }
+}
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+
+    .comment-float-child
+    {
+        width: 6%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
+
+    .comment-float-child-1
+    {
+        width: 92%;
+        float: left;
+        padding-left: 0px;
+        /* border: 2px solid red; */
+    }
+}
+/* End Mobile Views */

@@ -1,0 +1,125 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% load social_share %}
+{% block title %}
+<title>All Photos & Videos</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<style>
+   .see-all-photos-videos .img-fluid
+   {
+   height:250px;
+   }
+</style>
+{% endblock own_css %}
+{% block content %}
+<!-- Start all photos and videos -->
+<div class="row see-all-photos-videos">
+   <div class="col-md-12 p-4">
+      <div class="row">
+         <div class="col-md-11">
+            <h4>Image</h4>
+         </div>
+         <div class="col-md-1">
+            <span>
+               <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+                  <i class="fa-solid fa-share-nodes"></i>
+               </button>
+            </span>
+         </div>
+      </div>
+      <div class="row">
+         {% for i in Profession_Image_obj %}
+         <div class="col-md-3 mt-4">
+            <div class="row">
+               <div class="col-md-12">
+                  <a href="{% url 'photo-screen' i.id %}" class="text-light">
+                  <img src="{{i.image.url}}" class="img-fluid rounded" width="100%">
+                  </a>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+      <div class="row">
+         <div class="col-md-11">
+            <h4>Video</h4>
+         </div>
+         <div class="col-md-1">
+            <span>
+               <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+                  <i class="fa-solid fa-share-nodes"></i>
+               </button>
+            </span>
+         </div>
+      </div>
+      <div class="row">
+         {% for j in Profession_video_obj %}
+         <div class="col-md-3 mt-4">
+            <div class="row p-2">
+               <div class="col-md-12 border border-info rounded">
+                  <a href="{% url 'video-screen' j.id %}" class="text-light">
+                     <video class="img-fluid rounded" width="100%" controls="">
+                        <source src="{{j.video.url}}" type="video/mp4">
+                     </video>
+
+                     <!--<video src="{{j.video.url}}"  width="100%" class="rounded" controls></video>-->
+                  </a>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+      </div>
+   </div>
+</div>
+<!-- End all photos and videos -->
+
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row your-added-questions-heading">
+               <div class="col-md-12">Share</div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Share Icon -->
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <span>{% post_to_facebook object_or_url %}</span>
+                  <span>{% post_to_whatsapp object_or_url %}</span>
+                  <span>{% post_to_reddit object_or_url %}</span>
+               </div>
+            </div>
+            <!-- End Share Icon -->
+            <!-- Start copy link text box -->
+            <div class="row d-flex justify-content-center pt-3">
+               <div class="col-md-8">
+                  <form>
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="{{ copy_url }}" placeholder="CopyURL">
+                        <div class="input-group-append">
+                           <!-- <span class="input-group-text">COPY</span> -->
+                           <span>{% copy_to_clipboard object_or_url%}</span>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <!-- End copy link text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Share Modal -->
+
+{% add_copy_script %}
+{% endblock content %}

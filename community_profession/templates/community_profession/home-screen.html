@@ -1,0 +1,198 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Home Screen</title>
+{% endblock title %}
+{% block own_css %}
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- Font awsome kit -->
+<script src="{% static 'community_profession/js/font-awsome-kit.js' %}"></script>
+<!-- Start profession-home-screen.css  -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-home-screen.css' %}">
+{% endblock own_css %}
+
+{% block content %}
+<!-- Start our Professions heading  -->
+<div class="row your-recent-search">
+   <div class="col-md-10 recent-searches-heading">
+      Our Professions
+   </div>
+   <div class="col-md-2 pt-5 pr-5 text-right see-all">
+      <!--<a href="" class="text-decoration-none">
+         See All
+         </a>-->
+   </div>
+</div>
+<!-- End our Professions heading  -->
+<!-- Start our Professions -->
+<div class="page-content page-container" id="page-content">
+   <div class="padding">
+      <div class="row ">
+         <div class="col-lg-12 grid-margin stretch-card">
+            <div class="">
+               <div class="">
+                  <div class="owl-carousel">
+                     {% for profession in profession %}
+                     <a href="{% url 'search-nearest-professions' profession.id %}" class="text-decoration-none">
+                        <div class="item">
+                           <div class="row">
+                              <div class="col-12">
+                                 <img src="{{profession.Profession_Outside_Image.url}}" class="img-fluid" alt="Responsive image">
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-12 text-light profession-tex">
+                                 {{profession.Profession_Name}}
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End our Professions -->
+<!-- Start your recent searches heading  -->
+<div class="row your-recent-search">
+   <div class="col-md-10 recent-searches-heading">
+      Your recent searches
+   </div>
+   <div class="col-md-2 pt-5 pr-5 text-right see-all">
+      <!--<a href="" class="text-decoration-none">
+         See All
+         </a>-->
+   </div>
+</div>
+<!-- End your recent searches heading  -->
+<!-- Start recent search window -->
+{% if Recent %}
+<div class="page-content page-container" id="page-content1">
+   <div class="padding">
+      <div class="row ">
+         <div class="col-lg-12 grid-margin stretch-card">
+            <div class="owl-carousel">
+               {% for recent in Recent %}
+               <a href="{% url 'profession-personal-details' recent.Profession_obj.id %}" class="text-decoration-none">
+                  <div class="item">
+                     <div class="row recent-searches">
+                        <div class="col-12">
+                           <img src="{{recent.Profession_obj.profession_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-12 text-light profession-tex">
+                           {{recent.Profession_obj.shop_name}}
+                        </div>
+                     </div>
+                  </div>
+               </a>
+               {% endfor %}
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% else %}
+<div class="row pl-4">
+   <div class="col-md-12 text-center recent-searches-window">
+      <div class="row">
+         <div class="col-md-12 search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12 search-heading">
+            Find Something You Love
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12 search-sub-heading">
+            Search For Your Categories
+         </div>
+      </div>
+   </div>
+</div>
+{% endif %}
+<!-- End recent search window -->
+<!-- Start recent search window -->
+<!-- <div class="row">
+   <div class="col-md-12 pl-4">
+      <div class="row">
+         <div class="col-md-12 text-center recent-searches-window">
+            <div class="row">
+               <div class="col-md-12 search-icon">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-heading">
+                  Find Something You Love
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 search-sub-heading">
+                  Search For Your Categories
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   </div> -->
+<!-- End recent search window -->
+<!-- Start your recent searches  heading  -->
+<!-- Use same css for popular services -->
+<div class="row">
+   <div class="col-md-12 recent-searches-heading">
+      Popular Services
+   </div>
+</div>
+<!-- End your recent searches heading  -->
+
+<!-- Start Communit - Profession Carosuel -->
+<!-- Use same css for popular services -->
+<div class="page-content page-container" id="page-content">
+   <div class="padding">
+      <div class="row ">
+         <div class="col-lg-12 grid-margin stretch-card">
+            <div class="">
+               <div class="">
+                  <div class="owl-carousel">
+                     {% for Popular_obj in Popular_profession %}
+                     <a href="{% url 'profession-personal-details' Popular_obj.id %}" class="text-decoration-none">
+                        <div class="item">
+                           <div class="row recent-searches">
+                              <div class="col-12">
+                                 <img src="{{Popular_obj.profession_image.url}}" class="img-fluid rounded" alt="Responsive image">
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-md-12 text-light profession-tex">
+                                 {{Popular_obj.shop_name}}
+                              </div>
+                           </div>
+                        </div>
+                     </a>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Community - Profession Carosuel -->
+
+<!-- Start oweal carosuel - style and script -->
+<script src="{% static 'community_profession/js/profession-home-screen.js' %}"></script>
+<!-- End oweal carosuel - style and script -->
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!-- Start oweal carosuel JS - 2  -->
+<script src="{% static 'community_profession/js/owl.carousel.js' %}"></script>
+<!-- End oweal carosuel JS - 2  -->
+{% endblock content %}

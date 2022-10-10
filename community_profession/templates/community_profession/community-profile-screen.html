@@ -1,0 +1,522 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% load social_share %}
+{% block title %}
+<title>Community Profile Screen</title>
+{% endblock title %}
+{% block own_css %}
+<!-- own css Community profile screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-profile-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+{% endblock own_css %}
+{% block community_content %}
+<!-- Start community image -->
+<div class="row p-3">
+   <div class="col-12 col-sm-12 col-md-12 community-profile-screen">
+      {% if i.Community_Cover_Image %}
+      <img class="img-fluid rounded" src="{{i.Community_Cover_Image.url}}" width="100%" alt="Chania">
+      {% else %}
+      <img class="img-fluid rounded" src="{% static 'community_profession/img/community-slider-img.png' %}" alt="Chania">
+      {% endif %}
+   </div>
+</div>
+<!-- End community image -->
+<!-- Start interior designer heading, share community, join btn, options -->
+<div class="row">
+   <!-- Start Heading and Members -->
+   <div class="col-sm-6 col-md-6">
+      <!-- Start heading -->
+      <div class="row">
+         <div class="pl-5 col-md-12 interior-designer-heading">
+            {{i.Community_Name}}
+         </div>
+      </div>
+      <!-- Start heading -->
+      <!-- Start no of members and online -->
+      <div class="row">
+         <div class="pl-5 col-md-12 interior-designer-no-member">
+            Members : {{i.community_member}}
+         </div>
+      </div>
+      <!-- Start no of members and online -->
+   </div>
+   <!-- End Heading and Members -->
+   <!-- Start share community and join btn -->
+   <div class="col-sm-6 col-md-6 text-right pt-4">
+      <!-- Start join - btn -->
+      {% if z %}
+      {% if userprofile.id is z.Commnunity_id.User_Profile.id %}
+      <!-- Start options -->
+      <span class="iterator-design-options">
+         <div class="dropdown dropleft float-right pr-4">
+            <button type="button" class="dropdown-btn" data-toggle="dropdown">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <div class="dropdown-menu">
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a> -->
+               <a class="dropdown-item" href="" data-target="#share-modal" data-toggle="modal"><i class="fa-solid fa-share-nodes"></i> Share</a>
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a> -->
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
+               {% if userprofile.id is i.User_Profile.id %}
+               <a class="dropdown-item" href="{% url 'Edit_Community' z.Commnunity_id.id %}"><i class="fa-solid fa-pen"></i> Edit Community </a>
+               <a class="dropdown-item" href="{% url 'Delete_Community' z.Commnunity_id.id %}"><i class="fa-solid fa-trash"></i> Delete Community</a>
+               {% endif %}
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Save</a> -->
+            </div>
+         </div>
+      </span>
+      <!-- End options -->
+      {% else %}
+      <span class="join-btn pl-5 pr-5">
+      <a href="{% url 'Unjoin' z.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Un Join</button></a>
+      </span>
+      <!-- Start options -->
+      <span class="iterator-design-options">
+         <div class="dropdown dropleft float-right pr-4">
+            <button type="button" class="dropdown-btn" data-toggle="dropdown">
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <div class="dropdown-menu">
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a> -->
+               <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a> -->
+
+               <a class="dropdown-item" href="#" data-target="#report-community" data-toggle="modal" onclick="Reportcommunity('{{i.id}}')"><i class="fa-solid fa-ban"></i> Report</a>
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
+               <!-- <a class="dropdown-item" href="{% url 'Edit_Community' z.Commnunity_id.id %}"><i class="fa-solid fa-pen"></i> Edit Community </a>
+               <a class="dropdown-item" href="{% url 'Delete_Community' z.Commnunity_id.id %}"><i class="fa-solid fa-trash"></i> Delete Community</a> -->
+               <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Save</a> -->
+            </div>
+         </div>
+      </span>
+      <!-- End options -->
+      {% endif %}
+      {% else %}
+      <span class="join-btn pl-5 pr-5">
+      <a href="{% url 'Join_Coummunity' i.id %}"><button type="submit" class="btn btn-sm pl-3 pr-3">Join</button></a>
+      </span>
+      {% endif %}
+      <!-- End join - btn -->
+      
+   </div>
+   <!-- End share community and join btn -->
+</div>
+<!-- End interior designer heading, share community, join btn, options -->
+{% if z %}
+<!-- Start Create Post -->
+<div class="row pl-5 pt-3 pr-4">
+   <div class="col-md-12 create-post">
+      <a href="{% url 'community-create-post-page' i.id %}" class="text-decoration-none text-dark" >
+         <div class="row pt-2 pb-2">
+            <div class="col-md-6">
+               Create Post
+            </div>
+         </div>
+      </a>
+   </div>
+</div>
+{% else %}
+<div></div>
+{% endif %}
+<!-- End Create Post -->
+
+<!-- Start Description -->
+<div class="row pl-5 pt-3 pr-4 community-body">
+   <div class="col-md-12 p-0 text-justify community-description">
+      {% if  i.community_Description is None %}
+      {% else %}
+         {{i.community_Description}}
+      {% endif %}
+   </div>
+</div>
+<!-- End Description -->
+
+<!-- Start filter navigation - all post and all time -->
+<!-- Use same community navigation -->
+<div class="row pt-3">
+   <div class="col-md-12 community-nav ">
+      <ul class="nav nav-pills border-bottom pl-3">
+         <!-- Start Post -->
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">All Post</a>
+            <div class="dropdown-menu">
+               <a class="dropdown-item" href="#">All</a>
+               <a class="dropdown-item" href="#">Trending</a>
+               <a class="dropdown-item" href="#">New</a>
+               <a class="dropdown-item" href="#">Hot</a>
+               <a class="dropdown-item" href="#">Top</a>
+            </div>
+         </li>
+         <!-- End Post -->
+         <!-- Start Global -->
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">All Time</a>
+            <div class="dropdown-menu">
+               <a class="dropdown-item" href="#">All Time</a>
+               <a class="dropdown-item" href="#">1 Year Ago</a>
+               <a class="dropdown-item" href="#">1 Month Ago</a>
+               <a class="dropdown-item" href="#">1 Weak Ago</a>
+               <a class="dropdown-item" href="#">24 Hour Ago</a>
+               <a class="dropdown-item" href="#">1 Hour Ago</a>
+            </div>
+         </li>
+         <!-- End Global -->
+      </ul>
+   </div>
+</div>
+<!-- End filter navigation - all post and all time -->
+<!-- Start Post -->
+{% for Post in Community_Post_obj %}
+<div class="row">
+   <div class="col-md-12 pt-3 pl-3 border-bottom pb-4 post community-body">
+
+      <!-- Start Posted by heading and options -->
+      <div class="row">
+
+         <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
+            <img class="img-fluid rounded-circle" src="{{Post.user_post.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
+         </div>
+
+         <!-- Start heading -->
+         <div class="col-5 col-sm-4 col-md-4 pl-0">
+            <!-- Start community name -->
+            <div class="row">
+               <div class="col-md-12 community-name pl-0">
+                  {{Post.user_post.User_Profile.usertype.user_id.first_name}} {{Post.user_post.User_Profile.usertype.user_id.last_name}}
+               </div>
+            </div>
+            <!-- End community name -->
+            <!-- Start community time -->
+            <div class="row">
+               <div class="col-md-12 community-time pl-0">
+                 {{Post.user_post.Post_Date}} {{Post.user_post.Post_Time}}
+                  <!-- Ago -->
+               </div>
+            </div>
+            <!-- End community time -->
+         </div>
+         <!-- End heading -->
+
+         <!-- Start options -->
+         <div class="col-5 col-sm-7 col-md-7 text-right iterator-design-options">
+            <div class="dropdown dropleft float-right">
+               <button type="button" class="dropdown-btn" data-toggle="dropdown">
+               <i class="fa-solid fa-ellipsis-vertical"></i>
+               </button>
+               <div class="dropdown-menu">
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-plus"></i> Create Community</a> -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a> -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-export"></i> Latest Post</a> -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
+                  {% if userprofile.id is Post.user_post.User_Profile.id %}
+                     {% if Post.user_post.post_type1 %}
+                        <a class="dropdown-item" href="{% url 'Community_Edit_My_Video' Post.user_post.id %}"><i class="fa-solid fa-pen"></i> Edit Video </a>
+                        <a class="dropdown-item" href="{% url 'Community_Delete_My_Video' Post.user_post.id %}"><i class="fa-solid fa-trash"></i> Delete Video</a>
+                     {% else %}
+                        <a class="dropdown-item" href="{% url 'Community_Edit_My_Image' Post.user_post.id %}"><i class="fa-solid fa-pen"></i> Edit post </a>
+                        <a class="dropdown-item" href="{% url 'Community_Delete_My_Image' Post.user_post.id %}"><i class="fa-solid fa-trash"></i> Delete post</a>
+                     {% endif %}
+                  {% else %}
+                     <a class="dropdown-item" href="#" data-target="#community-post" data-toggle="modal" onclick="Reportpost('{{Post.user_post.id}}')"><i class="fa-solid fa-ban"></i> Report </a>
+                  {% endif %}
+                  <!-- Start Post Book Mark -->
+                  {% if Post.user_post.Post_bookmark is False %}
+                     <a class="dropdown-item" href="{% url 'bookmark_post' Post.id %}"><i class="fa-solid fa-file-arrow-down"></i> Bookmark</a>
+                  {% else %}
+                     <a class="dropdown-item" href="{% url 'remove_post_bookmark' Post.id %}"><i class="fa-solid fa-file-arrow-up"></i> Remove Bookmark</a>
+                  {% endif %}
+                  <!-- End Post Book Mark -->
+                  <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-file-arrow-down"></i> Bookmark</a> -->
+               </div>
+            </div>
+         </div>
+         <!-- End options -->
+      </div>
+      <!-- End Posted by heading and options -->
+
+      <!-- Start post description -->
+      <div class="row pt-3 pl-3">
+         <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+            {{Post.user_post.Description}}
+         </div>
+      </div>
+      <!-- End post description -->
+
+      <!-- Start post img, videos -->
+      {% if Post.user_post.Image %}
+      <a href="{% url 'community-write-comment-screen' Post.id %}">
+         <div class="row community-post-image">
+            <div class="col-md-12">
+               <div class="row community-post-image-background">
+                  <div class="col-md-3"></div>
+                  {% if Post.user_post.post_type1 %}
+
+                  <!-- Start Video -->
+                  <div class="col-md-6">
+                     <video class="img-fluid" width="100%"  controls>
+                        <source src="{{Post.user_post.Image.url}}" type="video/mp4">
+                     </video>
+                  </div>
+                  <!-- End Video -->
+
+                  {%else%}
+
+                  <!-- Start Image -->
+                  <div class="col-md-6">
+                     <img src="{{Post.user_post.Image.url}}" alt="" class="img-fluid" width="100%">
+                  </div>
+                  <!-- End Image -->
+
+                  {% endif %}
+                  <div class="col-md-3"></div>
+               </div>
+            </div>
+         </div>
+      </a>
+      {% else %}
+      <div></div>
+      {% endif %}
+      <!-- End post img, videos -->
+
+      <!-- Start like, comment, share -->
+      <div class="row pt-2 pd-2">
+         <!-- Start Like -->
+         <div class="col-5 col-sm-3 col-md-2 text-center">
+            <span class="d-inline-block">
+            <form action="{% url 'like_post' %}" method="POST" class="like-form" id="{{Post.user_post.id}}">
+               {% csrf_token %}
+               <input type="hidden" name="post_id" value="{{Post.user_post.id}}">
+                  <button type="submit" class="btn community-like-dislike-btn like-btn{{Post.user_post.id}}">
+                     {% if userprofile not in Post.user_post.Like.all %}
+                        <i class="fa-solid fa-thumbs-up"></i>
+                     {% else %}
+                        <i class="fa-solid fa-thumbs-down"></i>
+                     {% endif %}
+                  </button>
+               <span class="btn community-like-dislike-btn like-count{{Post.user_post.id}}">{{ Post.user_post.Like.all.count }}</span>
+            </form>
+         </span>
+
+
+            &nbsp;
+            <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none community-like-dislike-btn">
+            <i class="fa-solid fa-message"></i>
+               &nbsp;
+            {% if Post.user_post.Post_comment is None %}
+            0
+            {% else %}
+            {{Post.user_post.Post_comment}}
+            {% endif %}
+            </a>
+         </div>
+         <!-- End Like -->
+         <!-- Start Comment -->
+         <!-- <div class="col-12 col-md-1 pt-3">
+            <i class="fa-solid fa-message"></i> 3.9k
+            </div> -->
+         <!-- End Comment -->
+         <!-- Start add cooment buuton -->
+         <div class="col-6 col-sm-4 col-md-3 add-comment-btn pl-0">
+            <a href="{% url 'community-write-comment-screen' Post.id %}" class="text-decoration-none">
+            <button type="button" class="btn btn-sm btn-block">Add Comment</button>
+            </a>
+         </div>
+         <!-- End add cooment buuton -->
+         <!-- Start Share -->
+         <div class="col-12 col-md-1 pt-3">
+            <!-- <i class="fa-solid fa-share-nodes"></i> -->
+         </div>
+         <!-- End Share -->
+         <div class="col-12 col-md-7"></div>
+      </div>
+      <!-- End like, comment, share -->
+      
+   </div>
+</div>
+{% endfor %}
+<!-- End Post -->
+
+<!-- Start Create Report-post modal -->
+<div class="modal create-community-modeal" id="community-post">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="report-post">Create Report</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="{% url 'report_post' %}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="number" id="demo1" name="post_id" hidden>
+               </div>
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 question-text-box">
+                     <div class="form-group">
+                        <textarea name="report_descrition" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Adult Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="adult" class="form-check-input" value="">
+                              18+ content
+                        </label>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Abusing Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="abuse" class="form-check-input" value="">
+                              Abusing Content
+                        </label>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Report</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End Create Report-post modal -->
+
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row your-added-questions-heading">
+               <div class="col-md-12">Share</div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Share Icon -->
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <span>{% post_to_facebook object_or_url %}</span>
+                  <span>{% post_to_whatsapp object_or_url %}</span>
+                  <span>{% post_to_reddit object_or_url %}</span>
+               </div>
+            </div>
+            <!-- End Share Icon -->
+            <!-- Start copy link text box -->
+            <div class="row d-flex justify-content-center pt-3">
+               <div class="col-md-8">
+                  <form>
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="{{ copy_url }}" placeholder="CopyURL">
+                        <div class="input-group-append">
+                           <!-- <span class="input-group-text">COPY</span> -->
+                           <span>{% copy_to_clipboard object_or_url%}</span>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <!-- End copy link text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Share Modal -->
+
+<!-- Start Create Report-post modal -->
+<div class="modal create-community-modeal" id="report-community">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="report-community">Create Community</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="{% url 'report_community' %}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="number" id="demo1" name="community_id" hidden >
+               </div>
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 question-text-box">
+                     <div class="form-group">
+                        <textarea name="report_descrition" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Adult Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="adult" class="form-check-input" value="">
+                              18+ content
+                        </label>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Abusing Content </span>
+                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                        <label class="form-check-label">
+                           <input type="checkbox" name="abuse" class="form-check-input" value="">
+                              Abusing Content
+                        </label>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Report</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End Create Report-post modal -->
+
+<!-- Start the report-post script -->
+<script>
+   function Reportpost(id){
+      document.getElementById('report-post').action ='';
+      document.getElementById("demo1").value = id;
+   }
+</script>
+<!-- End the report-post script -->
+
+<!-- Start the report-post script -->
+<script>
+   function Reportcommunity(id){
+      document.getElementById('report-community').action ='';
+      document.getElementById("demo1").value = id;
+   }
+</script>
+<!-- End the report-post script -->
+
+{% endblock community_content %}

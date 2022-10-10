@@ -1,0 +1,336 @@
+.sign-in-main-body {
+	padding: 5.625rem 16.25rem;
+}
+
+.sign-in-main-body .sign-in-left-body {
+	background-color: var(--color-11);
+	border-radius: 1.625rem 0rem 0rem 1.625rem;
+	padding: 14.375rem 0.84rem 17.938rem 1.875rem;
+}
+
+.sign-in-main-body .sign-in-right-body-form {
+	background-color: var(--color-12);
+	border-radius: 0rem 1.625rem 1.625rem 0rem;
+
+}
+
+.sign-in-main-body .sign-in-right-body-form .sign-up-desktop-btn
+{
+    padding-top:6.25rem;
+    padding-bottom:1.313rem;
+    padding-right:4.375rem;
+}
+
+.sign-in-main-body .sign-in-right-body-form .form-content
+{
+    padding-left:5.813rem;
+    padding-right:15.438rem;
+}
+
+.sign-in-main-body .sign-in-right-body-form .sign-in-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 700;
+	font-size: 1.5rem;
+	line-height: 1.75rem;
+	color: var(--color-13);
+	padding-top: 1.5rem;
+}
+
+.sign-in-main-body .sign-in-right-body-form .sign-in-email-phone-no-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.125rem;
+	color: var(--color-13);
+	padding-top: 1rem;
+	padding-bottom: 0.813rem;
+}
+
+.sign-in-main-body .sign-in-right-body-form .sign-in-form .form-control,
+.sign-in-main-body .sign-in-right-body-form .sign-in-form .input-group-text {
+	background-color: var(--color-12);
+	border: 0.125rem solid var(--color-5);
+}
+
+.sign-in-main-body .sign-in-right-body-form .sign-in-password-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.125rem;
+	color: var(--color-13);
+	padding-top: 1.875rem;
+	padding-bottom: 0.813rem;
+}
+
+.btn-normal {
+	margin-top: 0.938rem;
+	color: var(--color-9);
+}
+
+.btn-normal-outlined {
+	margin-top: 1.875rem;
+	color: var(--color-13);
+}
+
+.btn-normal-outlined .fa-google {
+	color: var(--color-6);
+}
+
+.sign-in-main-body .sign-in-right-body-form .new-to-mb-sign-up {
+	padding-top: 0rem;
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.875rem;
+	line-height: 1.313rem;
+	color: var(--color-13);
+}
+
+.forgot-password {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.75rem;
+	line-height: 1.125rem;
+	color: var(--color-13);
+}
+
+.password-border-remove {
+	background-color: var(--color-15);
+	border: 0.125rem solid var(--color-5);
+	border-top-right-radius: 0.313rem 0.313rem;
+	border-bottom-right-radius: 0.313rem 0.313rem;
+	padding: 0.313rem 0.375rem 0rem 0rem;
+}
+
+.btn-normal-outlined-google:hover {
+	border-color: var(--color-6);
+	color: var(--gray-dark);
+}
+
+.fa-google {
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Start Splash screen */
+html,
+body,
+.viewport {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.flex-container {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-moz-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+#flex-item {
+	text-align: center;
+	/* margin: auto; */
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.splash {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: var(--color-13);
+	z-index: 200;
+	color: white;
+	text-align: center;
+	line-height: 90vh;
+}
+
+.splash.display-none {
+	position: fixed;
+	opacity: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: black;
+	z-index: -10;
+	color: white;
+	text-align: center;
+	line-height: 90vh;
+	transition: all 0.5s;
+}
+
+@keyframes fadeIn {
+	to {
+		opacity: 1;
+	}
+}
+
+.fade-in {
+	opacity: 0;
+	animation: fadeIn 1s ease-in forwards;
+}
+
+/* End Splash screen */
+
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px) {
+	.mobile-icon {
+		display: none;
+	}
+}
+
+
+@media all and (max-width: 576px) {
+	.desktop-icon {
+		display: none;
+	}
+
+	.sign-in-main-body {
+		padding: 1rem 1rem;
+	}
+
+	.sign-in-main-body .sign-in-left-body {
+		background-color: var(--color-12);
+		border-radius: 0rem 0rem 0rem 0rem;
+		padding: 1.375rem 0.84rem 1.375rem 1.875rem;
+	}
+
+	.sign-in-main-body .sign-in-right-body-form {
+		background-color: var(--color-15);
+		border-radius: 0rem 0rem 0rem 0rem;
+		/*padding: 1.875rem 2.875rem 2.875rem 2.875rem;*/
+	}
+
+	.sign-in-main-body .sign-in-right-body-form .sign-in-heading {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 700;
+		font-size: 1.375rem;
+		line-height: 1.75rem;
+		color: var(--color-2);
+		padding-top: 1.5rem;
+	}
+
+	.sign-in-main-body .sign-in-right-body-form .sign-in-email-phone-no-heading {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.125rem;
+		color: var(--color-2);
+		padding-top: 1rem;
+		padding-bottom: 0.813rem;
+	}
+
+	.sign-in-main-body .sign-in-right-body-form .sign-in-password-heading {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.125rem;
+		color: var(--color-2);
+		padding-top: 1.875rem;
+		padding-bottom: 0.813rem;
+	}
+
+	.sign-in-main-body .sign-in-right-body-form .sign-in-form .form-control,
+	.sign-in-main-body .sign-in-right-body-form .sign-in-form .input-group-text {
+		color: var(--color-2);
+		background-color: var(--color-15);
+		border: 0.125rem solid var(--color-5);
+	}
+
+	.text-color-white-m-view {
+		color: var(--color-2);
+	}
+
+	.sign-in-main-body .sign-in-right-body-form .sign-up-desktop-btn
+    {
+       padding-top: 1rem;
+        padding-bottom: 1.313rem;
+        padding-right: 1.5rem;
+    }
+
+    .sign-in-main-body .sign-in-right-body-form .form-content
+    {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .new-to-mb-sign-up-desktop-view
+    {
+        display:none;
+    }
+}
+
+@media (min-width: 577px) {
+	html {
+		font-size: 40%;
+	}
+	.new-to-mb-sign-up-mobile-view
+	{
+	    display:none;
+	}
+}
+
+@media (min-width: 768px) {
+	html {
+		font-size: 45%;
+	}
+}
+
+@media (min-width: 992px) {
+	html {
+		font-size: 60%;
+	}
+}
+
+
+@media (min-width: 1200px) {
+	html {
+		font-size: 80%;
+	}
+}
+
+@media (min-width: 1920px) {
+	html {
+		font-size: 100%;
+	}
+}
+
+/* End Mobile Views */

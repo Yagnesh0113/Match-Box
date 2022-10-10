@@ -1,0 +1,559 @@
+/* Start Navigation css */
+.custom-nav {
+        /*background-color: var(--color-12);*/
+}
+
+.custom-nav .navbar {
+	padding: 0rem 0rem;
+}
+
+.custom-nav .nav-icon {
+	padding-left: 1.875rem;
+}
+
+.custom-nav .nav-item .nav-link {
+	padding: 0.5rem 0.5rem;
+	color: var(--color-2);
+}
+
+/* End Navigation css */
+
+/* Start Animated Sidenav css */
+.sidenav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: var(--color-11);
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 3.438rem;
+}
+
+.sidenav a {
+	padding: 0.75rem 0.5rem 0.75rem 2rem;
+	text-decoration: none;
+	display: block;
+	transition: 0.3s;
+
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-13);
+	border-top: 0.031rem solid rgba(22, 24, 24, 0.2);
+}
+
+.sidenav .sidenav-last-a {
+	border-bottom: 0.031rem solid rgba(22, 24, 24, 0.2);
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 1.563rem;
+	font-size: 2.25rem;
+	margin-left: 3.125rem;
+	border-top: none;
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {
+		padding-top: 0.938rem;
+	}
+
+	.sidenav a {
+		font-size: 1.125rem;
+	}
+}
+
+/* End Animated Sidenav css */
+
+/* Start Nav Notification CSS */
+.notification {
+	text-decoration: none;
+	position: relative;
+	display: inline-block;
+	border-radius: 0.125rem;
+}
+
+.notification .badge {
+	position: absolute;
+	top: 0.188rem;
+	right: -0.313rem;
+	padding: 0.125rem 0.313rem;
+	border-radius: 50%;
+	background-color: red;
+	color: white;
+}
+
+/* End Nav Notification CSS */
+
+.main-nav-drop-down
+{
+    background-color:var(--color-11);
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+}
+
+.main-nav-drop-down .dropdown-divider
+{
+    border-color:rgba(22, 24, 24, 0.2);
+}
+
+/* Start home page body */
+.search-bar .form-control {
+	background-color: var(--color-11);
+	border: 0.063rem solid var(--color-11);
+	color: var(--color-13);
+}
+
+.community-profession .navbar ul li a {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.375rem;
+	line-height: 1.563rem;
+	text-align: center;
+	color: var(--color-2);
+	border-bottom: 0.063rem solid rgba(181, 223, 223, 0.2);
+}
+
+.community-profession .navbar ul li a:hover {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 700;
+	font-size: 1.375rem;
+	line-height: 1.563rem;
+	text-align: center;
+	color: var(--color-2);
+	border-bottom: 0.063rem solid var(--color-12);
+}
+
+.community-profession .navbar ul .profession-default a {
+	border-bottom: 0.063rem solid var(--color-12);
+}
+
+
+
+.community-profession .navbar .see-all li a {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-12);
+}
+
+.community-profession .navbar .see-all li a:hover {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-12);
+	border-bottom: 0.063rem solid var(--color-12);
+}
+
+.your-recent-search .see-all a {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-12);
+}
+
+.your-recent-search .see-all a:hover {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-12);
+	border-bottom: 0.063rem solid var(--color-12);
+}
+
+/* End home page body */
+
+/* Start Community - Profession Carosuel */
+.community-profession-carousel .carousel-inner {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	padding: 0rem 2.5rem 0rem 2.5rem;
+}
+
+.community-profession-carousel .carousel-control-next,
+.community-profession-carousel .carousel-control-prev {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	width: 2%;
+	padding: 0;
+	color: #fff;
+	text-align: center;
+	background: 0 0;
+	border: 0;
+	opacity: .5;
+	transition: opacity .15s ease;
+}
+
+.community-profession-carousel .carousel-element .profession-tex {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+}
+
+/* End Community - Profession Carosuel */
+
+
+/* Start Recent Searches */
+.recent-searches-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 2rem;
+	line-height: 2.313rem;
+	color: var(--color-2);
+	padding-top: 1.688rem;
+	padding-bottom: 0.938rem;
+}
+
+.recent-searches-window {
+	background-color: var(--color-11);
+	border-radius: 0.625rem;
+}
+
+.recent-searches-window .search-icon {
+	font-size: 7.5rem;
+}
+
+.recent-searches-window .search-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.75rem;
+	line-height: 2rem;
+	text-align: center;
+	color: var(--color-2);
+
+}
+
+.recent-searches-window .search-sub-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.25rem;
+	line-height: 145%;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.8);
+	padding-top: 0.438rem;
+	padding-bottom: 4.313rem;
+}
+
+.recent-searches .img-fluid {
+	height: 12rem;
+	width: 100%;
+}
+
+/* End Recent Searches */
+
+/* Start Meassages */
+.message {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.125rem;
+	color: var(--color-2);
+}
+
+.message-notification {
+	text-decoration: none;
+	position: relative;
+	display: inline-block;
+
+	border-bottom: 1rem solid var(--color-12);
+}
+
+.message-notification .badge2 {
+	position: absolute;
+	top: -1.063rem;
+	right: -0.313rem;
+	padding: 0.125rem 0.313rem;
+	border-radius: 50%;
+	background-color: #108D34;
+	color: white;
+}
+
+.message-person-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.125rem;
+	color: var(--color-2);
+}
+
+.message-person-sub-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.625rem;
+	line-height: 145%;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+/* End Messages */
+
+/* Start Community window */
+.community-window .heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.125rem;
+	text-align: center;
+	color: var(--color-2);
+}
+
+.community-window .community-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-2);
+}
+
+.community-window .community-sub-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.75rem;
+	line-height: 1.125rem;
+	color: rgba(255, 255, 255, 0.8);
+}
+
+.created-community .img-fluid {
+	height: 1.875rem;
+}
+
+/* End Community window */
+
+/* Start splash-screen css */
+html,
+body,
+.viewport {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.flex-container {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-moz-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-moz-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+
+#flex-item {
+	text-align: center;
+	/* margin: auto; */
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+/* End splash-screen css */
+
+/* Start Scroll bar CSS */
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+}
+
+#scrollable-container {
+	height: 100%;
+}
+
+#scrollable-content {
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+	width: 82%;
+	overflow: auto;
+}
+
+#scrollable-sidebar {
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+	width: 18%;
+	overflow: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#scrollable-content::-webkit-scrollbar,
+#scrollable-sidebar::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+#scrollable-content,
+#scrollable-sidebar {
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	/* Firefox */
+}
+
+/* End Scroll bar CSS */
+
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px) {}
+
+
+@media all and (max-width: 576px) {
+	.community-profession-carousel .carousel-element .profession-tex {
+		font-family: 'Poppins';
+		font-style: normal;
+		font-weight: 400;
+		font-size: 0.625rem;
+		line-height: 0.938rem;
+	}
+	.community-profession .navbar ul li a
+	{
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.563rem;
+        text-align: center;
+        color: var(--color-2);
+        border-bottom: 0.063rem solid rgba(181, 223, 223, 0.2);
+    }
+
+    .community-profession .navbar .see-all li a
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.5rem;
+        color: var(--color-12);
+    }
+
+	.community-window {
+		/*display:none;*/
+	}
+
+    #scrollable-container
+    {
+	    height: auto;
+    }
+
+    .home-screen-nav-icon-desktop-view
+    {
+        display:none;
+    }
+
+    .recent-searches-window
+    {
+        background-color: var(--color-15);
+        border-radius: 0.625rem;
+    }
+
+}
+
+@media (min-width: 577px) {
+	html {
+		font-size: 40%;
+	}
+
+	#scrollable-container
+    {
+	    height: auto;
+    }
+
+    .home-screen-nav-icon-mobile-view
+    {
+        display:none;
+    }
+}
+
+@media (min-width: 768px) {
+	html {
+		font-size: 45%;
+	}
+
+	#scrollable-container
+    {
+	    height: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+	html {
+		font-size: 60%;
+	}
+}
+
+
+@media (min-width: 1200px) {
+	html {
+		font-size: 80%;
+	}
+}
+
+@media (min-width: 1920px) {
+	html {
+		font-size: 100%;
+	}
+}
+
+/* End Mobile Views */

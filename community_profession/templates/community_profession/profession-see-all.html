@@ -1,0 +1,47 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>See All - Professions </title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<!-- Profession see all screen -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-see-all-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="/static/community_profession/css/community/community.css">
+{% endblock own_css %}
+
+{% block content %}
+<!-- Start your profession  heading  -->
+<!-- Use same css for popular services -->
+<div class="row">
+   <div class="col-md-12 recent-searches-heading">
+      Profession
+   </div>
+</div>
+<!-- End your profession heading  -->
+<!-- Start Profession list -->
+<div class="row">
+   {% for i in profession %}
+   <div class="col-4 pt-4">
+      <a href="{% url 'search-nearest-professions' i.id %}" class="text-decoration-none">
+         <!-- Start image -->
+         <div class="row">
+            <div class="col-md-12">
+               <img src="{{i.Profession_Outside_Image.url}}" class="img-fluid" alt="Responsive image">
+            </div>
+         </div>
+         <!-- End image -->
+         <!-- Start heading -->
+         <div class="row pt-3">
+            <div class="col-md-12 profession-heading">
+               {{i.Profession_Name}}
+            </div>
+         </div>
+         <!-- End heading -->
+      </a>
+   </div>
+   {% endfor %}
+</div>
+<!-- End hair cut, amkeup artist, photography -->
+{% endblock content %}

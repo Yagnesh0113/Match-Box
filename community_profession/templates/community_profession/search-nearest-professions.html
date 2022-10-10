@@ -1,0 +1,111 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Search Nearest Profession Lists</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<!-- search-nearest-profession-list.css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/search-nearest-profession-list.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+{% endblock own_css %}
+{% block content %}
+<!-- Start Hair artist & Saloon window  -->
+<div class="row">
+   <div class="col-md-12 saloon-window-pl-pr">
+      <div class="row saloon-window rounded">
+         <div class="col-md-12">
+            <!-- Start heading -->
+            <div class="row">
+               <div class="col-md-12 saloon-window-heading">
+                  {{profession.Profession_Name}}
+               </div>
+            </div>
+            <!-- End heading -->
+            <!-- Start image, form -->
+            <div class="row image-and-form">
+               <!-- Start left side image -->
+               <div class="col-12 col-sm-5 left-side-img">
+                  <img src="{{profession.Profession_Inside_Image.url}}" class="img-fluid" alt="Responsive image">
+               </div>
+               <!-- End left side image -->
+               <div class="col-sm-1"></div>
+               <!-- Start Form -->
+               <div class="col-12 col-sm-4 pt-3 pl-4 pr-3">
+                  <div class="card h-100  justify-content-center">
+                     <form data-city-url="{% url 'load_city' %}" id="indexForm" method="POST" action="{% url 'nearest-professions-list' profession.id  %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                           <div class="input-group mb-3">
+                              <select name="state" id="state"  class="form-control " id="exampleFormControlSelect1" required>
+                                 <option class="">-- Select State -- </option>
+                                 {% for i in state %}
+                                    <option value="{{i.id}}" class="border">{{i.name}}</option>
+                                 {% endfor %}
+                              </select>
+                           </div>
+                           <!-- <input class="form-control form-control" type="text" placeholder="Search your state" name="State" required> -->
+                        </div>
+                        <div class="form-group">
+                           <div class="input-group mb-3">
+                              <!-- <div class="input-group-prepend">
+                                 <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
+                              </div> -->
+                              <select name="city" class="form-control" id="city" required>
+                                 
+                              </select>
+                           </div>
+                           <!-- <input class="form-control form-control" type="text" placeholder="Search your city" name="city" required> -->
+                        </div>
+                        <div class="form-group border border-secondary border-top-0 border-right-0 border-left-0 pb-3">
+                           <button type="submit" class="btn btn-block btn-normal-b">Continue</button>
+                        </div>
+
+                        <div class="form-group">
+                           
+                              <button type="button" class="btn btn-block btn-normal-b" onclick="getLocation('{{profession.id}}')">Search your nearest location</button>
+                           
+                           <!-- <input class="form-control form-control" type="text" placeholder="Search your nearest location" required> -->
+                        </div>
+                        
+                     </form>
+                  </div>
+               </div>
+               <!-- End Form -->
+               <div class="col-sm-2"></div>
+            </div>
+            <!-- End image, form -->
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Hair artist & Saloon window  -->
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'community_profession/js/search-nearest-professions.js' %}"></script>
+<script>
+   var x = document.getElementById("demo");
+   var URL="{% url 'nearest-professions-list' %}"
+   var id=null
+
+
+   function getLocation(a) {
+      id=a
+     if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(showPosition);
+     }
+     else {
+       x.innerHTML = "Geolocation is not supported by this browser.";
+     }
+   }
+
+   function showPosition(position) {
+
+    var a=position.coords.latitude;
+    var b=position.coords.longitude;
+    var data={'long':b,'lat':a}
+
+    location.href=URL+`?lat=${a}&lon=${b}&id=${id}`
+   }
+</script>
+{% endblock content %}  

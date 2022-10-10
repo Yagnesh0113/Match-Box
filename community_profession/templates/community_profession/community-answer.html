@@ -1,0 +1,530 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Community Answer Screen</title>
+{% endblock title %}
+{% block own_css %}
+
+<!-- own css community-answer -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-answer.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+{% endblock own_css %}
+
+
+
+{% block community_content %}
+<!-- Start Question for you heading -->
+<div class="row pt-3 pl-3">
+   <div class="col-md-12 pb-3 border-bottom question-for-u-heading">
+      Questions for you
+   </div>
+</div>
+<!-- End Question for you heading -->
+
+<!-- Start Questions Alert And Add topics -->
+<div class="row">
+   <!-- Start Question Alert -->
+   <div class="col-md-12 question-alert">
+      {% for Question in Question_obj %}
+      <div class="row pt-3">
+         <!-- Start Profile picture -->
+         <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
+            <img class="img-fluid rounded-circle" src="{{Question.User_Profile.profile_image.url}}" alt="Chania">
+         </div>
+         <!-- End Profile picture -->
+
+         <!-- Start Community name and time -->
+         <div class="col-5 col-sm-4 col-md-4 pl-0">
+            <!-- Start community name -->
+            <div class="row">
+               <div class="col-md-12 community-name pl-0">
+                  <a href="{% url 'profession-profile-screen' Question.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{Question.User_Profile.usertype.user_id.first_name}} {{Question.User_Profile.usertype.user_id.last_name}}</a>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 community-time pl-0">
+                  {{Question.Date}} / {{Question.Time}}
+               </div>
+            </div>
+         </div>
+         <!-- End Community name and time -->
+      </div>
+      <div class="row">
+         <div class="col-md-12">
+            <div class="alert  alert-dismissible fade show">
+               <!-- <button type="button" class="close" data-dismiss="alert">&times;</button> -->
+               <!-- Start question-alert heading -->
+               <div class="row pt-2">
+                  <div class="col-12 col-sm-12 col-md-12 comment">
+                     {{Question.Question}} ?
+                  </div>
+               </div>
+               <!-- End question-alert heading -->
+
+               <!-- Start Answers yet and last followed ago -->
+              <!-- <div class="row">
+                 <div class="col-md-12 pt-2 answer-last-follow">
+                    <span>
+                    <a href="{% url 'community-users-questions-answer' %}">
+                    2 Answers
+                    </a>
+                    </span>
+                 </div>
+              </div> -->
+               <!-- End Answers and last followed ago -->
+               <!-- Start answer, share, options -->
+               <div class="row">
+                  <div class="col-12 col-md-12 pt-2 pb-3 border-bottom answer-share-options">
+                     <!-- Start Answer modal -->
+                     <span>
+                        <a href="{% url 'Add_Answer' Question.id %}">
+                           <i class="fa-solid fa-pen"></i> Answer
+                        </a>
+                    <!-- <a href="#" data-target="#answer-modal" data-toggle="modal">
+                    <i class="fa-solid fa-pen"></i> Answer
+                    </a> -->
+                     </span>
+                     <!-- End Answer modal -->
+                     <!-- <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span> -->
+                     <span class="pl-5">
+                        <button type="button" class="btn text-light" data-toggle="dropdown">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                           <!-- For Answer Later -->
+                           {% if Question.Answer_later %}
+                              <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Already Answer</a>
+                           {% else %}
+                              <a class="dropdown-item" href="{% url 'ans_later' Question.id  %}"><i class="fa-solid fa-pen"></i> Answer Later</a>
+                           {% endif %}
+                           <!-- End Answer Later -->
+                           <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notify Me About Edits</a> -->
+                           <!-- <a class="dropdown-item" onclick="data('{{Question.Question}}')" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a> -->
+                           <!-- <a class="dropdown-item" href="#" data-target="#my-question" data-toggle="modal"><i class="fa-regular fa-circle-question"></i> My Question</a> -->
+                           <!-- <a class="dropdown-item" href="#" data-target="#my-answer" data-toggle="modal"><i class="fa-solid fa-pen"></i> My Answer</a> -->
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                           <!-- <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a> -->
+                        </div>
+                     </span>
+                     {% if Question.Question_Edit %}
+                     <span class="pl-5"><i class="fa-solid fa-bell"></i> Edited The Question </span>
+                     {% else %}
+                     {% endif %}
+                  </div>
+               </div>
+               <!-- End answer, share, options -->
+            </div>
+         </div>
+      </div>
+      {% endfor %}
+      <!-- <div class="row">
+         <div class="col-md-12">
+            <div class="alert  alert-dismissible fade show">
+               <button type="button" class="close" data-dismiss="alert">&times;</button>
+               <div class="row">
+                  <div class="col-md-12 heading">
+                     Success! This alert box could indicate a successful or positive action.
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 pt-2 answer-last-follow">
+                     <span>2 Answers</span>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12 col-md-12 pt-2 pb-3 border-bottom answer-share-options">
+                     <span><i class="fa-solid fa-pen"></i> Answer</span>
+                     <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span>
+                     <span class="pl-5">
+                        <button type="button" class="btn text-light" data-toggle="dropdown">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Answer Later</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notify Me About Edits</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit Question</a>
+                           <a class="dropdown-item" href="#"><i class="fa-regular fa-circle-question"></i> My Question</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> My Answer</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
+                        </div>
+                     </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         </div>
+         <div class="row">
+         <div class="col-md-12">
+            <div class="alert  alert-dismissible fade show">
+               <button type="button" class="close" data-dismiss="alert">&times;</button>
+               <div class="row">
+                  <div class="col-md-12 heading">
+                     Success! This alert box could indicate a successful or positive action.
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 pt-2 answer-last-follow">
+                     <span>2 Answers</span>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-12 col-md-12 pt-2 pb-3 border-bottom answer-share-options">
+                     <span><i class="fa-solid fa-pen"></i> Answer</span>
+                     <span class="pl-5"><i class="fa-solid fa-share-nodes"></i></span>
+                     <span class="pl-5">
+                        <button type="button" class="btn text-light" data-toggle="dropdown">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> Answer Later</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notify Me About Edits</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit Question</a>
+                           <a class="dropdown-item" href="#"><i class="fa-regular fa-circle-question"></i> My Question</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-pen"></i> My Answer</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
+                        </div>
+                     </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+         </div> -->
+   </div>
+   <!-- End Question Alert -->
+</div>
+<!-- End Questions Alert And Add topics -->
+<!-- Start add topic - Search Menu  -->
+<div class="modal fade search-menu" id="search-menu">
+   <div class="modal-dialog modal-dialog-scrollable ">
+      <div class="modal-content">
+         <div class="modal-header">
+            <!-- Start - Topics you know about - heading -->
+            <div class="row">
+               <div class="col-md-12 topics-about-heading">Topics you know about</div>
+            </div>
+            <!-- Start - Topics you know about - heading -->
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <div class="row">
+               <div class="left" >
+                  <!-- Start - Topics you know about - content -->
+                  <div class="row">
+                     <div class="col-md-12 topics-about-content text-justify">
+                        Topics are how matchbox knows what questions to send your way. Be as comprehensive and specific as possible to get the most relevant questions.
+                     </div>
+                  </div>
+                  <!-- Start - Topics you know about - content -->
+                  <!-- Start seaarch bar -->
+                  <div class="row">
+                     <div class="col-md-12 pt-3 pb-3">
+                        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category" class="rounded">
+                     </div>
+                  </div>
+                  <!-- End seaarch bar -->
+                  <ul id="myMenu">
+                     <li><a href="#">HTML</a></li>
+                     <li><a href="#">CSS</a></li>
+                     <li><a href="#">JavaScript</a></li>
+                     <li><a href="#">PHP</a></li>
+                     <li><a href="#">Python</a></li>
+                     <li><a href="#">jQuery</a></li>
+                     <li><a href="#">SQL</a></li>
+                     <li><a href="#">Bootstrap</a></li>
+                     <li><a href="#">Node.js</a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End add topic - Search Menu  -->
+<!-- Start answer moadl pop up -->
+<div class="modal answer-modal" id="answer-modal">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row modal-title">
+               <div class="col-2  col-md-2 pl-4 pr-4">
+                  <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania"  width="100%">
+               </div>
+               <div class="col-10 col-md-10 pt-3">
+                  <!-- Start User name -->
+                  <div class="row">
+                     <div class="col-md-12 user-name">
+                        User Name
+                     </div>
+                  </div>
+                  <!-- End User name -->
+                  <!-- Start edit - credential -->
+                  <div class="row">
+                     <div class="col-md-12 edit-credential">
+                        Edit Credential
+                     </div>
+                  </div>
+                  <!-- End edit - credential -->
+               </div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Question -->
+            <div class="row">
+               <div class="col-md-12 text-dark">
+                  What is the indian movie "KGF" being popular in Man City, UK?
+               </div>
+            </div>
+            <!-- End Question -->
+            <!-- Start Your answer -->
+            <div class="row">
+               <div class="col-md-12 your-answer">
+                  <div class="form-group">
+                     <textarea class="form-control" rows="5" id="comment" placeholder="Write your answer.."></textarea>
+                  </div>
+               </div>
+            </div>
+            <!-- End Your answer -->
+         </div>
+         <div class="modal-footer">
+            <!-- <button class="btn btn-danger" data-dismiss="modal">Close</button> -->
+            <button class="btn btn-normal-b btn-sm pl-5 pr-5">Post</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End answer modal pop up -->
+<!-- Star My Question - Modal -->
+<div class="modal my-question" id="my-question">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <!-- Start My Question Heading -->
+            <div class="row">
+               <div class="col-md-12 my-question-heading">
+                  My Question
+               </div>
+            </div>
+            <!-- End My Question Heading -->
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Questio -->
+            <div class="row pt-3">
+               <div class="col-md-12 qustion">
+                  Why is the indian movie 'KGF' being popular in Man City, UK?
+               </div>
+            </div>
+            <!-- End Questio -->
+            <!-- Start answer and options -->
+            <div class="row answer-option">
+               <!-- Start answer -->
+               <div class="col-md-6 answer">
+                  2 Answer
+               </div>
+               <!-- End answer -->
+               <!-- Start options -->
+               <div class="col-md-6 text-right options">
+                  <div class="dropdown">
+                     <button type="button" class="btn" data-toggle="dropdown">
+                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                     </button>
+                     <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
+                        <a class="dropdown-item" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square" ></i> Edit Question</a>
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i>    Copy Links</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End options -->
+            </div>
+            <!-- End no-answer-yet and options -->
+            <!-- Start Questio -->
+            <div class="row pt-3">
+               <div class="col-md-12 qustion">
+                  Why is the indian movie 'KGF' being popular in Man City, UK?
+               </div>
+            </div>
+            <!-- End Questio -->
+            <!-- Start answer and options -->
+            <div class="row answer-option">
+               <!-- Start answer -->
+               <div class="col-md-6 answer">
+                  2 Answer
+               </div>
+               <!-- End answer -->
+               <!-- Start options -->
+               <div class="col-md-6 text-right options">
+                  <div class="dropdown">
+                     <button type="button" class="btn" data-toggle="dropdown">
+                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                     </button>
+                     <div class="dropddataown-menu">
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
+                        <a class="dropdown-item" href="#" data-target="#edit-question" data-toggle="modal"><i class="fa-solid fa-pen-to-square"></i> Edit Question</a>
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                        <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i>    Copy Links</a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End options -->
+            </div>
+            <!-- End no-answer-yet and options -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-sm btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End My Question - Modal -->
+<!-- Start Edit Question - Modal -->
+<div class="modal edit-question" id="edit-question">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <!-- Start Edit Question Heading -->
+            <div class="row">
+               <div class="col-md-12 edit-question-heading">
+                  Edit Question
+               </div>
+            </div>
+            <!-- End Edit Question Heading -->
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start edit question text box -->
+            <div class="form-group">
+               <textarea class="form-control" rows="2"  id="demo"> </textarea>
+            </div>
+            <!-- End edit question text box -->
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-cancel" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-sm btn-normal-b">Save</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Edit Question - Modal -->
+<!-- Start my-answer - Modal -->
+<div class="modal my-answer" id="my-answer">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <!-- Start - My Answer Heading -->
+            <div class="row">
+               <div class="col-md-12 my-answer-heading">
+                  My Answer
+               </div>
+            </div>
+            <!-- End - My Answer Heading -->
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start question-heading -->
+            <div class="row pt-2">
+               <div class="col-md-12 question">
+                  Q: How was Vijay Thalapathi's new movie Raw (beast)?
+               </div>
+            </div>
+            <!-- End question-heading -->
+            <!-- Start Answer and options -->
+            <div class="row pt-2 pb-4 answer-options">
+               <!-- Start Answer -->
+               <div class="col-md-11 answer">
+                  Answer: the movie was average.
+               </div>
+               <!-- End answer -->
+               <!-- Start Options -->
+               <div class="row">
+                  <div class="col-md-1 options">
+                     <div class="dropdown dropleft float-right">
+                        <button type="button" class="btn " data-toggle="dropdown">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-share-nodes"></i> Share</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit Question</a>
+                           <a class="dropdown-item" href="#" data-target="#edit-answer" data-toggle="modal" ><i class="fa-solid fa-pen"></i> Edit Answer</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-trash"></i> Delete Question</a>
+                           <a class="dropdown-item" href="#"><i class="fa-solid fa-link"></i> Copy Link</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Options -->
+            </div>
+            <!-- End Answer and options -->
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End my-answer - Modal -->
+<!-- Start edit-answer modal -->
+<div class="modal edit-answer" id="edit-answer">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <!-- Start edit-answer heading -->
+            <div class="row">
+               <div class="col-md-12 modal-title edit-answer-heading">
+                  Edit Answer
+               </div>
+            </div>
+            <!-- End edit-answer heading -->
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start edit answer text box -->
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="form-group">
+                     <label for="comment">Comment:</label>
+                     <textarea class="form-control" rows="2" id="comment">the movie was average.</textarea>
+                  </div>
+               </div>
+            </div>
+            <!-- End edit answer text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-sm pl-3 pr-3 btn-normal-b" >Save</button>
+            <button class="btn btn-sm btn-cancel pl-3 pr-3" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End edit-answer modal -->
+<!-- Start Search menu -->
+<script>
+   function myFunction() {
+     var input, filter, ul, li, a, i;
+     input = document.getElementById("mySearch");
+     filter = input.value.toUpperCase();
+     ul = document.getElementById("myMenu");
+     li = ul.getElementsByTagName("li");
+     for (i = 0; i < li.length; i++) {
+       a = li[i].getElementsByTagName("a")[0];
+       if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+         li[i].style.display = "";
+       } else {
+         li[i].style.display = "none";
+       }
+     }
+   }
+</script> 
+
+
+
+<script>
+   function data(val){
+     document.getElementById("demo").value = val;
+      }
+</script>
+<!-- End search menu -->
+{% endblock community_content %}

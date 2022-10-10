@@ -1,0 +1,147 @@
+.answer-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 145%;
+    color: var(--color-2);
+
+}
+
+.users-questions-answer .answer-share
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 145%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.users-questions-answer .users-profile-img
+{
+    font-size: 40px;
+}
+
+.users-questions-answer .user-name-and-question
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 145%;
+    color: var(--color-2);
+}
+
+.users-questions-answer .user-content
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 145%;
+    color: rgba(255, 255, 255, 0.8);
+} 
+
+.users-questions-answer .user-name
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+}
+
+.users-questions-answer .no-of-days
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 145%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.users-questions-answer .answer
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 145%;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.users-questions-answer .no-of-comments
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-12);
+}
+
+.users-questions-answer .comment-input-box .form-group .form-control
+{
+    background-color: #fff0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-2);
+
+}
+
+.users-questions-answer .all-comments
+{
+    background-color: var(--color-12);
+}
+
+.users-questions-answer .all-comments .comment-bottom-border
+{
+    border-bottom: 1px solid rgba(22, 24, 24, 0.2);
+}
+
+.users-questions-answer .all-comments .comments-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 145%;
+    color: var(--color-13);    
+}
+
+.users-questions-answer .all-comments .user-name
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;   
+    color: var(--color-13);
+}
+
+.users-questions-answer .all-comments .no-of-days
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 145%;
+    color: rgba(22, 24, 24, 0.8);
+}
+
+.users-questions-answer .all-comments .comment
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 145%;
+    color: var(--color-13);
+}

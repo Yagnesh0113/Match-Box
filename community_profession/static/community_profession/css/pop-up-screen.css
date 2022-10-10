@@ -1,0 +1,38 @@
+.profession-profile-modal .modal-dialog .modal-content
+{
+    background-color: var(--color-12);
+}
+
+.profession-profile-modal .modal-header {
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-13);
+}
+
+.profession-profile-modal .modal-content .modal-body .modal-sub-heading{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    color: var(--color-13);
+}
+
+.profession-profile-modal .modal-content .modal-footer .btn-cancel {
+    border: 0.063rem solid var(--color-3);
+}
+
+
+
+.profession-profile-modal .modal-content .modal-body .form-group .form-control {
+    width: 100%;
+}
+
+.profession-profile-modal .modal-content .modal-body .form-control {
+    width: auto;
+    background-color: #fff0;
+    border: 0.125rem solid var(--color-5);
+}

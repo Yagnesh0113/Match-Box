@@ -1,0 +1,167 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Users Profile Screen</title>
+{% endblock title %}
+
+{% block own_css %}
+<!--   own css   -->
+<!-- Use same css files -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profile-screen-for-profession.css' %}">
+{% endblock own_css %}
+
+
+{% block content %}
+<!-- Start Profession Profiles screen -->
+<div class="row">
+<div class="col-md-12 profession-profile-screen pl-5">
+
+    <!-- Start Profile Heading and options -->
+    <div class="row">
+        <div class="col-md-6 profile-heading pt-4">
+            Profile
+        </div>
+        <div class="col-md-6 text-right profile-options pt-4">
+            <div class="dropdown dropleft float-right">
+                <button type="button" class="btn text-light" data-toggle="dropdown">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-ban"></i> Block Users
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-bell"></i> My Notifications
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-clock"></i> History
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-user"></i> Sign up for Profession
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-right-from-bracket"></i> Sign out
+                    </a>
+
+                    <a class="dropdown-item" href="#">
+                        <i class="fa-solid fa-clock"></i> Last Active : 1h ago
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Profile Heading and options -->
+
+    <!-- Start Profile image -->
+    <div class="row justify-content-center">
+        <div class="col-4 col-md-1">
+            <img src="{% static 'community_profession/img/profile-img.png' %}" class="img-fluid rounded-circle" alt="Responsive image">
+        </div>
+    </div>
+    <!-- End Profile image -->
+
+    <!-- Start Personal information -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Start name heading -->
+            <div class="row lighter-heading">
+                <div class="col-md-12">
+                    <i class="fa-solid fa-user"></i> Name
+                </div>
+            </div>
+            <!-- End name heading -->
+
+            <!-- Start user name -->
+            <div class="row bolder-heading pt-3">
+                <div class="col-md-12">
+                    Rakesh Pimpalkar
+                </div>
+            </div>
+            <!-- End user name -->
+
+            <!-- Start conetnt -->
+            <div class="row pt-3 pb-3">
+                <div class="col-md-12 lighter-heading">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea eius perferendis illo, sint possimus illum amet nemo animi. Officiis accusamus, tempore vero laboriosam error distinctio reprehenderit laudantium unde quisquam nisi.
+                </div>
+            </div>
+            <!-- End conetnt -->
+
+            <!-- Start About us -->
+            <div class="row border-bottom border-top pt-3 pb-3">
+                <div class="col-md-12">
+
+                    <!-- Start about heading -->
+                    <div class="row lighter-heading">
+                        <div class="col-md-12">
+                            <i class="fa-solid fa-file-pen"></i> About
+                        </div>
+                    </div>
+                    <!-- End about heading -->
+
+                    <!-- Start about heading -->
+                    <div class="row bolder-heading pt-3">
+                        <div class="col-md-12">
+                            Don't Disturb
+                        </div>
+                    </div>
+                    <!-- End about heading -->
+
+                </div>
+            </div>
+            <!-- End About us -->
+
+            <!-- Start Email -->
+            <div class="row border-bottom pt-3 pb-3">
+                <div class="col-md-12">
+
+                    <!-- Start Email heading -->
+                    <div class="row lighter-heading">
+                        <div class="col-md-12">
+                            <i class="fa-solid fa-envelope"></i> Email
+                        </div>
+                    </div>
+                    <!-- End Email heading -->
+
+                    <!-- Start email -->
+                    <div class="row bolder-heading pt-3">
+                        <div class="col-md-12">
+                            abcdefgh.xyz@gmail.com
+                        </div>
+                    </div>
+                    <!-- End email -->
+
+                </div>
+            </div>
+            <!-- End Email -->
+
+            <!-- Start edit details -->
+            <div class="row lighter-heading pt-5 pb-5">
+                <div class="col-md-12">
+                    <i class="fa-solid fa-pencil"></i> Edit Details
+                </div>
+            </div>
+            <!-- End edit details -->
+
+            <!-- Start edit details -->
+            <div class="row lighter-heading">
+                <div class="col-md-12">
+                    <i class="fa-solid fa-users"></i> Invite a Friends
+                </div>
+            </div>
+            <!-- End edit details -->
+
+        </div>
+    </div>
+    <!-- End Personal information -->
+
+</div>
+</div>
+<!-- End Profession Profiles screen -->
+{% endblock content %}
+

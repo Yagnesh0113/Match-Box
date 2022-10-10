@@ -1,0 +1,151 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Community Create Post</title>
+{% endblock title %}
+{% block own_css %}
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- own css Community create post page css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-create-post-page.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!-- Rich text script -->
+<script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+{% endblock own_css %}
+
+{% block community_content %}
+<!-- Start Create a Post heading -->
+<div class="row">
+    <div class="col-md-12">
+        <span class="create-post-heading">Create a Post</span>
+    </div>
+</div>
+<!-- End Create a Post heading -->
+
+<!-- Start Similar community -->
+<!-- <div class="row">
+    <div class="col-md-3 pt-3 similar-community">
+        <select class="custom-select custom-select-sm">
+            <option selected>M/Makeup Artist</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+        </select>
+    </div>
+    <div class="col-md-9"></div>
+</div> -->
+<!-- End Similar community -->
+
+<!-- Start post edit box -->
+<div class="row mt-3 p-3">
+  <div class="col-md-12 post-ediot-box rounded">
+     <!-- Start post-ckeditor text box -->
+      <form action="{% url 'community-create-post-page' i.id %}" method="POST" enctype="multipart/form-data">
+         {% csrf_token%}
+         <div class="row">
+            <div class="col-md-12 pt-3 create-post-form">
+               <div class="form-group">
+                  <!-- <textarea class="form-control rounded" rows="5" id="comment" name="editor1"></textarea> -->
+                  <!-- Start drop down - username, everyone -->
+                  <!-- <div class="row">
+                     <div class="col-md-12">
+                        <div class="dropdown">
+                           <button type="button" class="btn btn-sm btn-normal-b dropdown-toggle" data-toggle="dropdown">
+                           <i class="fa-solid fa-globe"></i> Everyone
+                           </button>
+                           <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#"><i class="fa-solid fa-magnifying-glass"></i> Search user name</a>
+                              <a class="dropdown-item" href="#">Hide any one to search user name</a>
+                              <a class="dropdown-item" href="#"><i class="fa-solid fa-globe"></i> Everyone</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div> -->
+                  <!-- End drop down - username, everyone -->
+                  <!-- Start say - something heading -->
+                  <!-- <div class="row pt-2 pb-2">
+                     <div class="col-md-12 say-something-heading">
+                        Say Something...
+                     </div>
+                  </div> -->
+                  <!-- End say - something heading -->
+                  <!-- Start crete post text box -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <input class="form-control" id="file_id" name="images" type="file" required>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="form-group">
+                           <textarea class="form-control" name="description" rows="5" id="comment" required></textarea>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- End  post-ckeditor text box -->
+
+         <!-- Start Save draft and post btn -->
+         <div class="row pb-2">
+            <div class="col-md-12 text-right">
+               <!--<span class="save-draft-btn pr-2">
+                  <button type="button" class="btn pl-5 pr-5 btn-sm">Save Draft</button>
+               </span>-->
+
+               <span class="post-btn pl-2">
+                  <button disabled id="file-submit" type="submit" class="btn btn-sm pl-5 pr-5">Post</button>
+               </span>
+            </div>
+         </div>
+         <!-- End Save draft and post btn -->
+
+         <!-- Start send-reply-notification -->
+         <div class="row send-reply-notification">
+            <div class="col-md-12 border-top pt-3">
+               <div class="form-group form-check">
+                  <label class="form-check-label">
+                     <input class="form-check-input" type="checkbox" required> Send me post reply notifications
+                  </label>
+                  <br>
+                  <label class="form-check-label">
+                     Connect accounts to share your post <i class="fa-solid fa-circle-notch"></i>
+                     </label>
+               </div>
+            </div>
+         </div>
+         <!-- End send-reply-notification -->
+      </form>
+  </div>
+</div>
+<!-- End post edit box -->
+
+<script>
+   let fileInput = document.getElementById("file_id");
+   let fileSubmit = document.getElementById("file-submit");
+
+   fileInput.addEventListener("change", function(){
+      if (fileInput.files.length > 0){
+         const fileSize=fileInput.files.item(0).size;
+         const fileMb=fileSize/1024**2;
+         if (fileMb >= 2){
+            alert("Please select a file less than 2MB.")
+            fileInput.value=""
+            fileSubmit.disabled = true;
+         } else {
+            fileSubmit.disabled = false;
+         }
+
+      }
+   });
+</script>
+
+<!-- Start ckeditor text for post -->
+      <!-- <script>
+         CKEDITOR.replace('editor1');
+      </script> -->
+      <!-- End ckeditor text for post -->
+{% endblock community_content %}

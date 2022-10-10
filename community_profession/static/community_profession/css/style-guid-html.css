@@ -1,0 +1,103 @@
+.background-color-dark
+{
+    background-color: var(--color-9);
+}
+
+.style-guid-heading
+{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 33px; 
+    padding-top: 24px;      
+}
+
+.colors-heading
+{
+    padding-top: 6.6px;
+    padding-bottom: 53px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;    
+}
+
+.base-color-heading
+{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+}
+
+.color-1
+{
+    background-color: var(--color-1);
+}
+
+.color-2
+{
+    background-color: var(--color-2);
+}
+
+.color-3
+{
+    background-color: var(--color-3);
+}
+
+.color-4
+{
+    background-color: var(--color-4);
+}
+
+.color-5
+{
+    background-color: var(--color-5);
+}
+
+.color-6
+{
+    background-color: var(--color-6);
+}
+
+.color-7
+{
+    background-color: var(--color-7);
+}
+
+.color-8
+{
+    background-color: var(--color-8);
+}
+
+.btn-normal
+{
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+.btn-normal:hover
+{
+    background-color: var(--color-10);
+    color: var(--color-2);   
+}
+
+.btn-hover
+{
+    background-color: var(--color-10);
+    color: var(--color-2);   
+}
+
+.btn-disabled
+{
+    background-color: var(--color-11);
+    color: var(--color-2);   
+}
+
+.btn-disabled:hover
+{
+    color: var(--color-2);
+}

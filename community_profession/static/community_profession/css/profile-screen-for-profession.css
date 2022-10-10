@@ -1,0 +1,275 @@
+.profession-profile-screen .profile-heading {
+	font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 145%;
+    color: var(--color-2);
+}
+
+.profession-profile-screen .profile-options .dropdown-menu {
+	background-color: var(--color-11);
+}
+
+.edit-profile-btn .btn
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 145%;
+    color: var(--color-3);
+    padding-left:0rem;
+}
+
+.profession-profile-screen .profile-options .dropdown-menu .dropdown-item {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	padding: 0.8rem 0.9rem;
+}
+
+.profession-profile-screen .bolder-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.25rem;
+	line-height: 1.438rem;
+}
+
+.profession-profile-screen .lighter-heading {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 145%;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.profession-profile-screen .normal-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 145%;
+}
+
+.my-dashboard .card .card-img-top {
+	height: 15.625rem;
+}
+
+.profession-detail .personal-detail-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 145%;
+    color: var(--color-2);
+}
+
+.profession-detail .personal-detail-sub-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 180%;
+    color: var(--color-2);
+}
+
+.profession-detail .personal-detail-content
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 180%;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.profession-cart .card
+{
+    background-color:var(--color-15);
+    min-width: 100%;
+}
+
+.profession-cart .profession-img .img-fluid
+{
+    height:9.375rem;
+}
+
+.profession-cart .border-1
+{
+    border:0.063rem solid var(--color-3);
+}
+
+.profession-cart .heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 145%;
+    color: var(--color-2);
+    padding-top:0.438rem;
+    padding-bottom:0.313rem;
+}
+
+.profession-cart .sub-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 180%;
+    color: var(--color-2);
+}
+
+.profession-cart .content
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 180%;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px)
+{
+
+}
+
+
+@media all and (max-width: 576px)
+{
+    .profession-profile-screen .profile-heading
+    {
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.125rem;
+        line-height: 1.180rem;
+        color: var(--color-2);
+    }
+
+    .profession-detail .personal-detail-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 145%;
+        color: var(--color-2);
+    }
+
+    .profession-detail .personal-detail-sub-heading
+    {
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 180%;
+        color: var(--color-2);
+    }
+
+    .profession-detail .personal-detail-content
+    {
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 180%;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .edit-profile-btn .btn
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.63rem;
+        line-height: 145%;
+        color: var(--color-3);
+        padding-left: 0rem;
+    }
+
+    .profession-cart .heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 145%;
+        color: var(--color-2);
+        padding-top: 0.438rem;
+        padding-bottom: 0.313rem;
+    }
+
+    .profession-cart .sub-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 180%;
+        color: var(--color-2);
+    }
+
+    .profession-cart .content
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 180%;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+}
+
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+}
+/* End Mobile Views */

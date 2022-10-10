@@ -1,0 +1,240 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Comment Reply Screen</title>
+{% endblock title %}
+{% block own_css %}
+<!-- own css Community comment reply screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/comment-reply-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+{% endblock own_css %}
+{% block community_content %}
+<div class="row pt-2">
+   <div class="col-md-12 pb-3 border-bottom all-comments community-body">
+      <!-- Start user-profile, user-community-name, time -->
+      <div class="row">
+         <!-- Start user-profile -->
+         <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
+            <img class="img-fluid rounded-circle" src="{{Post_obj.User_Profile.profile_image.url}}" alt="Chania">
+         </div>
+         <!-- End user-profile -->
+         <!-- Start user-community-name, time -->
+          <div class="col-5 col-sm-4 col-md-4 pl-0">
+              <!-- Start community name -->
+              <div class="row">
+                 <div class="col-md-12 community-name pl-0">
+                  <a href="{% url 'profession-profile-screen' Post_obj.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{Post_obj.User_Profile.usertype.user_id.first_name}} {{Post_obj.User_Profile.usertype.user_id.last_name}}</a>
+                 </div>
+              </div>
+              <!-- End community name -->
+              <!-- Start community time -->
+              <div class="row">
+                 <div class="col-md-12 community-time pl-0">
+                    {{Post_obj.Comment_Date}} / {{Post_obj.Commenet_Time}}
+                    <!-- Ago -->
+                 </div>
+              </div>
+              <!-- End community time -->
+          </div>
+         <!-- End user-community-name, time -->
+      </div>
+      <!-- End user-profile, user-community-name, time -->
+
+      <!-- Start comment -->
+      <div class="row pt-2 pl-4">
+         <div class="col-12 col-sm-12 col-md-12 comment text-justify">
+            {{Post_obj.Comment}}
+         </div>
+      </div>
+      <!-- End comment -->
+
+      <!-- Start like-reply-share -->
+      <div class="row pt-3 pl-4">
+         <div class="col-md-12 like-reply-share">
+            <span class="d-inline-block">
+               <form action="{% url 'like_post_comment' %}" method="POST" class="like-form" id="{{Post_obj.id}}">
+                  {% csrf_token %}
+                  <input type="hidden" name="post_id" value="{{Post_obj.id}}">
+                     <button type="submit" class="btn community-like-dislike-btn like-btn{{Post_obj.id}}">
+                        {% if userprofile not in Post_obj.Comment_like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                        {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                        {% endif %} 
+                     </button>
+                  <span class="btn community-like-dislike-btn like-count{{Post_obj.id}}">{{ Post_obj.Comment_like.all.count }}</span>
+               </form>
+            </span>
+            <span class=" community-like-dislike-btn">
+                &nbsp;
+                <i class="fa-solid fa-message"></i>
+                &nbsp;
+                {% if Post_obj.Post_comment_reply is None %}
+                0
+                {% else %}
+                {{Post_obj.Post_comment_reply}}
+                {% endif %}
+            </span>
+<!--            <span class="pl-5">-->
+<!--            <i class="fa-solid fa-share-nodes"></i>-->
+<!--            </span>-->
+         </div>
+      </div>
+      <!-- Start like-reply-share -->
+
+   </div>
+</div>
+
+<!-- Start Login Profile info -->
+<div class="row pt-3">
+    <div class="col-md-12 pb-3 all-comments community-body">
+        <div class="row">
+             <!-- Start user-profile -->
+             <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
+                <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
+             </div>
+             <!-- End user-profile -->
+             <!-- Start user-community-name, time -->
+              <div class="col-5 col-sm-4 col-md-4 pl-0 pt-2">
+                  <!-- Start community name -->
+                  <div class="row font-weight-bolder">
+                     <div class="col-md-12 community-name  pl-0">
+                        {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+                     </div>
+                  </div>
+                  <!-- End community name -->
+              </div>
+             <!-- End user-community-name, time -->
+        </div>
+    </div>
+</div>
+<!-- End Login Profile info -->
+
+
+<!-- Start Reply form -->
+<form action="{% url 'Post_comment_reply' Post_obj.id %}" method="POST">
+   {% csrf_token %}
+    <div class="row pl-3">
+        <div class="col-md-12 border-bottom">
+            <div class="row reply-form ">
+              <!-- Start reply-input-box -->
+              <div class="col-9 col-sm-10 col-md-10 pt-3">
+                 <div class="form-group">
+                    <input type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply">
+                 </div>
+              </div>
+              <!-- End reply-input-box -->
+              <!-- Start post btn -->
+              <div class="col-3 col-sm-2 col-md-2 pt-3">
+                 <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
+              </div>
+              <!-- End post btn -->
+            </div>
+        </div>
+    </div>
+</form>
+<!-- Start Reply form -->
+
+
+<!-- Start Comment -->
+{% for i in Reply %}
+<div class="row pt-4 pl-3">
+   <div class="col-md-12 comment border-bottom pb-3">
+      <!-- Start user profile-img & user name  -->
+
+       <div class="row community-body">
+           <!-- Start Profile picture -->
+           <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
+              <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
+           </div>
+           <!-- End Profile picture -->
+
+           <!-- Start Community name and time -->
+           <div class="col-5 col-sm-4 col-md-4 pl-0">
+              <!-- Start community name -->
+              <div class="row">
+                 <div class="col-md-12 community-name pl-0">
+                  <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
+                 </div>
+              </div>
+              <!-- End community name -->
+              <!-- Start community time -->
+              <div class="row">
+                 <div class="col-md-12 community-time pl-0">
+                    {{i.Reply_Date}} / {{i.Reply_Time}}
+                    <!-- Ago -->
+                 </div>
+              </div>
+              <!-- End community time -->
+           </div>
+           <!-- End Community name and time -->
+            <!-- Start Community name and time -->
+            <div class="col-5 col-sm-7 col-md-7  text-right">
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time pl-0">
+                     <div class="col-md-12 like-reply-share ">
+                        <span>
+                           {% if userprofile.id is i.User_Profile.id %}
+                              <a href="#" class="btn community-like-dislike-btn" data-target="#editreply" data-toggle="modal" onclick="data('{{i.id}}','{{i.Reply}}')" >
+                                 <i class="fa-solid fa-pencil"></i> &nbsp; 
+                              </a>
+                              <a href="{% url 'reply_delete' i.id %}" class="btn community-like-dislike-btn">
+                                 <i class="fa-solid fa-trash"></i> &nbsp;
+                              </a>
+                           {% endif %}
+                        </span>
+                     </div>
+                  </div>
+               </div>
+               <!-- End community time -->
+            </div>
+            <!-- End Community name and time -->
+       </div>
+      <!-- End user profile-img & user name  -->
+      <!-- Start comment-conetnt -->
+
+       <div class="row pt-3">
+           <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+              {{i.Reply}}
+           </div>
+       </div>
+      <!-- End comment-conetnt -->
+   </div>
+</div>
+{% endfor %}
+<!-- End Comment -->
+
+<!-- start reply edit modal -->
+<div class="modal create-community-modeal" id="editreply">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Reply</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="EditReply" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review</label>
+                  <input type="text" class="form-control" name="reply" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Reply</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- end reply edit modal -->
+
+
+<script src="{% static 'community_profession/js/comment-reply-edit.js' %}"></script>
+{% endblock community_content %}

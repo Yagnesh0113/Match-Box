@@ -1,0 +1,202 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>News</title>
+{% endblock title %}
+{% block own_css %}
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-news.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+{% endblock own_css %}
+{% block community_content %}
+<!-- Start news -->
+{% for i in News %}
+<div class="row border-bottom pt-3 pb-3">
+   <div class="col-12 col-sm-12 col-md-12 news">
+      <!-- Start news posted by heading -->
+      <div class="row">
+         <div class="col-11 col-sm-11 col-md-11 posted-by-heading">
+            Posted by/ We Creators
+         </div>
+         <div class="col-1 col-sm-1 col-md-1 text-right">
+            <div class="row community-body">
+               <div class="col-md-12 community-options">
+                  <div class="dropdown">
+                     <button type="button" class="btn text-light" data-toggle="dropdown">
+                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                     </button>
+                     <div class="dropdown-menu">
+                        <!-- <a class="dropdown-item" href="#">Copy Link</a> -->
+                        <a class="dropdown-item" href="#"data-target="#report-news" data-toggle="modal" onclick="Reportnews('{{i.id}}')">Report</a>
+                        <!-- <a class="dropdown-item" href="#">Delete question</a> -->
+                        <!-- <a class="dropdown-item" href="#">Edit question</a> -->
+
+
+                        <!-- Start News Book mark -->
+                        {% if i.News_bookmark is False %}
+                        <a class="dropdown-item" href="{% url 'bookmark_News' i.id %}">Bookmark</a>
+                        {% else %}
+                        <a class="dropdown-item" href="{% url 'remove_news_bookmark' i.id %}"> Remove Bookmark</a>
+                        {% endif %}
+                        <!-- End News Book mark -->
+
+                        <!-- <a class="dropdown-item" href="#">Save</a> -->
+                        <!-- <a class="dropdown-item" href="#">Share</a> -->
+                     </div>
+                  </div>
+               </div>
+               <!-- End drop down options -->
+            </div>
+         </div>
+      </div>
+      <!-- End news posted by heading -->
+      <!-- Start no of days -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 no-of-days">
+            {{i.Date}} / {{i.Time}} Ago
+         </div>
+      </div>
+      <!-- End no of days -->
+      <!-- Start news content -->
+      <div class="row community-body">
+         <div class="col-12 col-sm-12 col-md-12 community-description text-justify">
+            {{i.Description}}
+         </div>
+      </div>
+      <!-- End news content -->
+      <!-- Start news img-video -->
+      <a href="{% url 'news_comment' i.id %}">
+         <div class="row community-body pl-2">
+            <div class="col-12 col-sm-12 col-md-12 community-post-image">
+               <div class="row community-post-image-background">
+                  <div class="col-0 col-sm-3 col-md-3"></div>
+                  <div class="col-12 col-sm-6 col-md-6 ">
+                     {% if i.Video %}
+                     <video width="100%" class="img-fluid-video" controls controlslist="nodownload" oncontextmenu="return false">
+                        <source src="{{i.Video.url}}" type="video/mp4">
+                     </video>
+                     {% elif i.Image %}
+                     <img class="img-fluid" src="{{i.Image.url}}" alt="Chania" width="100%">
+                     {% else %}
+                     <div></div>
+                     {% endif %}
+                  </div>
+                  <div class="col-0 col-sm-3 col-md-3"></div>
+               </div>
+            </div>
+         </div>
+      </a>
+      <!-- End news img-video -->
+      
+      <!-- Start like, comment, add-comment, share -->
+      <div class="row like-comment-share">
+         <!-- Start like -->
+         <div class="col-5 col-sm-3 col-md-2 text-center p-0">
+            <span class="d-inline-block">
+               <form action="{% url 'like_news' %}" method="POST" class="like-form" id="{{i.id}}">
+                  {% csrf_token %}
+                  <input type="hidden" name="post_id" value="{{i.id}}">
+                     <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
+                        {% if userprofile not in i.News_like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                        {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                        {% endif %} 
+                     </button>
+                  <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.News_like.all.count }}</span>
+               </form>
+            </span>
+            <a href="{% url 'news_comment' i.id %}">
+            <span class="community-like-dislike-btn">
+            &nbsp; <i class="fa-solid fa-message"></i>
+            </span>
+            <span class="community-like-dislike-btn">
+            &nbsp;
+            {% if i.comment is None %}
+            0
+            {% else %}
+            {{i.comment}}
+            {% endif %}
+            </span>
+            </a>
+         </div>
+         <!-- End like -->
+         <!-- Start add-comment btn -->
+         <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
+            <a href="{% url 'news_comment' i.id %}">
+            <button type="submit" class="btn btn-block btn-sm add-comment-btn">Add Comments</button>
+            </a>
+         </div>
+         <!-- End add-comment btn -->
+         <!-- Start Share -->
+         <!--         <div class="col-2 col-sm-2 col-md-2 share">-->
+         <!--            <i class="fa-solid fa-share-nodes"></i>-->
+         <!--         </div>-->
+         <!-- End Share -->
+      </div>
+      <!-- End like, comment, add-comment, share -->
+   </div>
+</div>
+{% endfor %}
+<!-- End news -->
+<!-- Start Create Report-question -->
+<div class="modal create-community-modeal" id="report-news">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="report-news">Create Report</h5>
+            <a href="" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="{% url 'report_news' %}" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <input type="number" id="demo1" name="news_id" hidden >
+               </div>
+               <div class="row modal-sub-heading pt-3 pb-3">
+                  <div class="col-md-12">Description</div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12 question-text-box">
+                     <div class="form-group">
+                        <textarea name="report_descrition" maxlength="300" class="form-control" rows="4" id="comment" placeholder="Write some thing..." required></textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Adult Content </span>
+                     <div class="form-check form-control rounded mt-3 pt-2 pb-2 pl-4">
+                        <label class="form-check-label">
+                        <input type="checkbox" name="adult" class="form-check-input" value="">
+                        <span class="modal-sub-heading">18+ content</span>
+                        </label>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <span class="modal-sub-heading">Abusing Content </span>
+                     <div class="form-check form-control rounded mt-3 pt-2 pb-2 pl-4">
+                        <label class="form-check-label">
+                        <input type="checkbox" name="adult" class="form-check-input" value="">
+                        <span class="modal-sub-heading">Abusing Content</span>
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Report</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<!-- End Create Report-question -->
+
+<script src="{% static 'community_profession/js/news.js' %}"></script>
+
+
+{% endblock community_content %}

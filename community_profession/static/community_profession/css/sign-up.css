@@ -1,0 +1,391 @@
+/* 
+Note: this css file is use for all following pages: sign-up, sign-up-for-professional, forgot-password, otp-screen.
+*/
+
+.sign-up-bg
+{
+    background-color: var(--color-12);
+    margin: 8.75rem 0rem;
+    border-radius: 1.625rem;
+    padding-top: 5rem;
+    padding-bottom: 11.188rem;
+}
+
+.sign-up-btn-heading
+{
+    padding-top: 2.063rem;
+}
+
+.sign-in-btn .btn-normal
+{
+    color: var(--color-9);
+}
+
+.sign-up-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.signup-form-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    color: var(--color-13);
+    padding-bottom: 0.813rem;
+}
+
+.sign-up-form .form-control
+{
+    background-color:var(--color-12);
+    border: 0.125rem solid var(--color-5);
+}
+
+.sign-up-form .form-control option
+{
+    background-color:var(--color-11);
+}
+
+.sign-up-form .input-group-text
+{
+    background-color:var(--color-12);
+    border: 0.125rem solid var(--color-5);
+}
+
+.sign-up-form .btn-check {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
+
+
+.btn-normal,
+.btn-normal-outlined
+{
+    margin-top: 1.5rem;
+    color: var(--color-9);
+}
+
+.btn-normal:hover,
+.btn-normal-outlined:hover
+{
+    color: var(--color-9);
+}
+
+.add-your-profile
+{
+    margin-top: 1.5rem;
+}
+
+.add-your-profile .input-group-text
+{
+    background-color: var(--color-11);
+}
+
+.show-password {
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+    color: var(--color-13);
+}
+
+/* Start Forgot password css */
+
+.sign-up-bg .forgot-password-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 2.875rem;
+    color: var(--color-13);
+    padding-top: 11.625rem;
+}
+
+.sign-up-bg .forgot-password-sub-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 2.625rem;
+    color: var(--color-13);
+    padding-top:1.563rem;
+    padding-bottom:3.75rem;
+}
+
+.sign-up-bg .email-phone-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    color: var(--color-13);
+    padding-bottom: 0.813rem;
+}
+
+.sign-up-bg .reset-passsword-btn
+{
+    padding-bottom: 6.938rem;;
+}
+
+
+/* End Forgot password css */
+
+
+/* Start OTP Screen CSS */
+.sign-up-bg .otp-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 2.875rem;
+    color: var(--color-13);
+    padding: 0rem 19.75rem;
+}
+
+.sign-up-bg .otp-sub-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    text-align: center;
+    color: var(--color-13);
+    padding-top: 2.813rem;
+}
+
+.sign-up-bg .otp-input-box
+{
+    padding: 0rem 36.25rem;
+    padding-top: 1.875rem;;
+}
+
+.sign-up-bg .otp-verify-btn
+{
+    padding: 0rem 42.813rem;
+}
+
+.sign-up-bg .resened-otp
+{
+    font-family: var( --font-2);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.125rem;
+    color: var(--color-13);
+    padding-top: 1.375rem;
+}
+
+/* End OTP Screen CSS */
+
+.sign-up-form .password-border-remove
+{
+    background-color: var(--color-15);
+    border: 0.125rem solid var(--color-5);
+    border-top-right-radius: 0.313rem 0.313rem;
+    border-bottom-right-radius: 0.313rem 0.313rem;
+    padding: 0.313rem 0.375rem 0rem 0rem;
+}
+
+.signup-form-check-btn .btn-check
+{
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
+.signup-form-check-btn .btn
+{
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 0.125rem solid var(--color-5);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.signup-form-check-btn .btn-primary
+{
+    color: var(--color-13);
+    background-color: var(--color-15);
+    border-color: var(--color-14);
+}
+
+.signup-form-check-btn .btn-primary:hover
+{
+    color: var(--color-2);
+    background-color: var(--color-14);
+    border-color: var(--color-14);
+}
+
+.signup-form-check-btn .btn-check:active+.btn-primary, .btn-check:checked+.btn-primary, .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle
+{
+    color: var(--color-2);
+    background-color:var(--color-3);
+    border:1px;
+    border-color: var(--color-3);
+}
+
+
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px)
+{
+    .mobile-icon
+    {
+        display:none;
+    }
+}
+
+
+@media all and (max-width: 576px)
+{
+    .desktop-icon
+    {
+        display: none;
+    }
+    .sign-up-bg
+    {
+        background-color: var(--color-15);
+        margin: 0.813rem 0rem;
+        border-radius: 0rem;
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+    }
+
+    .sign-up-heading
+    {
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1.375rem;
+        line-height: 1.563rem;
+        padding-top: 0.856rem;
+        padding-bottom: 1rem;
+        color: var(--color-2);
+    }
+
+    .signup-form-heading
+    {
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.125rem;
+        color: var(--color-2);
+        padding-bottom: 0.813rem;
+    }
+
+    .sign-up-form .form-control
+    {
+        color:var(--color-2);
+        background-color: var(--color-15);
+        border: 0.125rem solid var(--color-5);
+    }
+
+    .sign-up-form .input-group-text
+    {
+        background-color: var(--color-15);
+        border: 0.125rem solid var(--color-5);
+    }
+
+    .terms-condition-text
+    {
+        color:var(--color-2);
+    }
+
+    .add-your-profile .input-group-text
+    {
+        background-color: #C4C4C4;
+    }
+
+    .add-your-profile-text
+    {
+        color:var(--color-2);
+    }
+
+    .btn-normal, .btn-normal-outlined
+    {
+        margin-top: 1.5rem;
+        color: var(--color-2);
+    }
+
+    .already-have-an-account-text
+    {
+        color:var(--color-2);
+    }
+
+    .show-password
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        color: var(--color-2);
+    }
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+}
+
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+}
+/* End Mobile Views */

@@ -1,0 +1,82 @@
+.community-profession .navbar ul .community-default a {
+	border-bottom: 1px solid var(--color-12);
+}
+
+.community-nav .nav-pills .nav-link {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: var(--color-2);
+}
+
+.community-nav .nav-pills .dropdown-menu {
+	background-color: var(--color-11);
+	padding: 0rem 0rem;
+}
+
+.community-nav .nav-pills .dropdown-menu .dropdown-item {
+	border-bottom: 0.5px solid rgba(22, 24, 24, 0.2);
+	padding: 0.25rem 2.5rem;
+}
+
+.community-nav .nav-pills .nav-link.active,
+.community-nav .nav-pills .show>.nav-link {
+	color: var(--color-13);
+	background-color: var(--color-12);
+}
+
+.community-body .community-name {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.community-body .community-time {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+	color: rgb(255, 255, 255);
+}
+
+.community-body .community-posted-by-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 24px;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.community-body .community-options .dropdown-menu {
+	background-color: var(--color-11);
+	padding: 0rem 0rem;
+
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.community-body .community-options .dropdown-menu .dropdown-item {
+	border-bottom: 0.5px solid rgba(22, 24, 24, 0.2);
+}
+
+.community-body .community-description {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.community-body .community-post {
+	background-color: #597C7C;
+	padding: 200px;
+}

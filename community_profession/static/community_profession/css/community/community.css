@@ -1,0 +1,740 @@
+.community-profession .navbar ul .community-default a {
+	border-bottom: 0.063rem solid var(--color-12);
+}
+
+.community-nav .nav-pills .nav-link {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-2);
+}
+
+.community-nav .nav-pills .dropdown-menu {
+	background-color: var(--color-11);
+	padding: 0rem 0rem;
+}
+
+.community-nav .nav-pills .dropdown-menu .dropdown-item {
+	border-bottom: 0.031rem solid rgba(22, 24, 24, 0.2);
+	padding: 0.25rem 2.5rem;
+}
+
+.community-nav .nav-pills .nav-link.active,
+.community-nav .nav-pills .show>.nav-link {
+	color: var(--color-13);
+	background-color: var(--color-12);
+}
+
+.community-body .community-name {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+}
+
+.community-body .community-time {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.75rem;
+	line-height: 1.125rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.community-body .community-posted-by-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.community-body .community-options .dropdown-menu {
+	background-color: var(--color-11);
+	padding: 0rem 0rem;
+
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.75rem;
+	line-height: 1.125rem;
+}
+
+.community-body .community-options .dropdown-menu .dropdown-item {
+	border-bottom: 0.031rem solid rgba(22, 24, 24, 0.2);
+}
+
+.community-body .community-description {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.875rem;
+}
+
+.community-body .community-post {
+	background-color: #597C7C;
+	padding: 12.5rem;
+}
+
+.community-body .community-post-image {
+	padding-left: 0.625rem;
+}
+
+.community-body .community-post-image .community-post-image-background {
+	background-color: var(--color-12);
+	border-radius: 0.313rem;
+}
+
+
+.community-body .btn-comment-answer .btn {
+	background-color: #606363;
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-2);
+}
+
+/* Start community modeal */
+
+.community-modeal .modal-content {
+	background-color: var(--color-12);
+}
+
+.community-modeal .modal-header {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-13);
+}
+
+.modal-header {
+	/*border-bottom: 1px solid #dee2e6;*/
+	border-bottom: 0.063rem solid rgba(0, 0, 0, 0.12);
+}
+
+.modal-footer {
+	/*border-top: 1px solid #dee2e6;*/
+	border-top: 0.063rem solid rgba(0, 0, 0, 0.12);
+}
+
+.community-modeal .community-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5px;
+	color: var(--color-13);
+}
+
+.community-modeal .community-sub-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.25rem;
+	color: rgba(22, 24, 24, 0.8);
+	padding-top: 1rem;
+}
+
+
+.created-community .img-fluid {
+	height: 2.813rem;
+	width: 2.813rem;
+}
+
+.community-modeal .community-modeal-no-members {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.75rem;
+	line-height: 1.125rem;
+	color: rgba(22, 24, 24, 0.8);
+}
+
+.community-modeal .modal-body .btn {
+	border: 0.063rem solid var(--color-2);
+	color: var(--color-2);
+	background-color:
+}
+
+.community-modeal .modal-body .btn:hover {
+	background-color: var(--color-12);
+	color: var(--color-13);
+	border: 0rem;
+}
+
+/* End community modeal */
+
+/* Start Create community modeal css */
+.create-community-modeal .modal-content {
+	background-color: var(--color-12);
+}
+
+.create-community-modeal .modal-content .modal-header {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.25rem;
+	line-height: 1.438rem;
+	color: var(--color-13);
+}
+
+.create-community-modeal .modal-content .modal-header,
+.create-community-modeal .modal-content .modal-footer {
+	border: 0.063rem solid rgba(0, 0, 0, 0.12);
+}
+
+.create-community-modeal .modal-content .modal-body .modal-sub-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.125rem;
+	color: var(--color-13);
+}
+
+.create-community-modeal .modal-content .modal-body .form-group .form-control {
+	width: 100%;
+}
+
+
+.create-community-modeal .modal-content .modal-body .modal-message {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.625rem;
+	line-height: 0.938rem;
+	color: var(--color-13);
+}
+
+.create-community-modeal .modal-content .modal-body .form-control {
+	width: auto;
+	background-color: #fff0;
+	border: 0.125rem solid var(--color-5);
+
+}
+
+.create-community-modeal .modal-content .modal-body .community-type-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: var(--color-13);
+}
+
+.create-community-modeal .modal-content .modal-body .community-type-sub-heading {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 0.875rem;
+	line-height: 1.313rem;
+	color: rgba(22, 24, 24, 0.6);
+}
+
+.create-community-modeal .modal-content .modal-footer .btn-cancel {
+	border: 0.063rem solid var(--color-3);
+
+}
+
+/* End Create community modeal css */
+
+
+/* Start Ask-Post modal CSS */
+.ask-post .modal-content {
+	background-color: var(--color-12);
+}
+
+.ask-post .modal-content .modal-header {
+	padding: 0rem;
+
+}
+
+.ask-post .modal-content .modal-header .w3-bar .w3-bar-item {
+	width: 50%;
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.5rem;
+	line-height: 1.75rem;
+	text-align: center;
+	color: var(--color-13);
+}
+
+.ask-post .modal-content .modal-body .add-question-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.25rem;
+	line-height: 145%;
+	color: var(--color-13);
+
+}
+
+.ask-post .modal-content .modal-body .add-question-sup-points {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 145%;
+	color: rgba(22, 24, 24, 0.8);
+}
+
+.ask-post .modal-content .modal-body .public-limited .form-control {
+	background-color: var(--color-3);
+}
+
+.ask-post .modal-content .modal-body .start-your-q-notes {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 145%;
+	color: var(--color-13);
+
+}
+
+.ask-post .modal-content .modal-body .question-text-box .form-control {
+	background-color: var(--color-15);
+	border: 0.125rem solid var(--color-5);
+}
+
+.ask-post .modal-content .modal-body .say-something-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 145%;
+	color: var(--color-13);
+}
+
+.ask-post .modal-content .modal-body .file-field .form-group .form-control {
+	background-color: var(--color-15);
+	border: 0rem;
+}
+
+.ask-post .modal-content .modal-body .text-area-data .form-group .form-control {
+	background-color: var(--color-15);
+	border: 0.125rem solid var(--color-5);
+}
+
+/* End Ask-Post modal CSS */
+
+
+/* Start your added questions modal - css */
+.your-added-questions .modal-content {
+	background-color: var(--color-12);
+}
+
+.your-added-questions .modal-content .modal-header .your-added-questions-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.5rem;
+	line-height: 145%;
+	color: var(--color-13);
+}
+
+.your-added-questions .modal-content .modal-body .question-heading {
+	font-family: var(--font-2);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1.25rem;
+	line-height: 145%;
+	color: var(--color-13);
+}
+
+.your-added-questions .modal-content .modal-body .question-sub-content {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 145%;
+	color: rgba(22, 24, 24, 0.8);
+}
+
+.your-added-questions .modal-content .modal-body .answer-share-delete {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 500;
+	font-size: 1rem;
+	line-height: 145%;
+	color: rgba(22, 24, 24, 0.8);
+	border-bottom: 0.063rem solid rgba(70, 195, 242, 0.4);
+}
+
+/* End your added questions modal - css */
+
+.community-post-profile-picture .img-fluid {
+	height: 2.5rem;
+	width: 2.5rem;
+}
+
+.community-like-dislike-btn {
+	color: var(--color-12);
+}
+
+
+/* Start Mobile view */
+@media all and (min-width: 577px) {}
+
+
+@media all and (max-width: 576px) {
+	.community-nav .nav-pills .nav-link {
+		font-family: var(--font-1);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 0.625rem;
+		line-height: 0.938rem;
+		color: var(--color-2);
+
+	}
+
+	.community-mobile-nav .community-nav .nav .nav-item .nav-link {
+		padding-left: 0.313rem;
+		padding-right: 0.313rem;
+
+	}
+
+
+	/* Start my community modal pop up */
+	.community-body .community-post-image .community-post-image-background {
+		background-color: var(--color-15);
+		border-radius: 0.313rem;
+	}
+
+	/*.community-modeal .modal-content
+    {
+        background-color: var(--color-13);
+    }*/
+
+	/*.community-modeal .modal-header
+    {
+        color: var(--color-2);
+    }*/
+
+	/*.community-modeal .community-heading
+    {
+        color: var(--color-2);
+    }*/
+
+	/*.community-modeal .community-sub-heading
+    {
+        color: rgba(255, 255, 255, 0.8);
+    }*/
+	/* End my community modal pop up */
+
+	/* Start asl-post modal pop up*/
+	.ask-post .modal-content .modal-header .w3-bar .w3-bar-item {
+		width: 50%;
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.125rem;
+		text-align: center;
+		color: var(--color-13);
+	}
+
+	.ask-post .modal-content .modal-body .add-question-heading {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 145%;
+		color: var(--color-13);
+	}
+
+	.ask-post .modal-content .modal-body .add-question-sup-points {
+		font-family: var(--font-1);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 0.75rem;
+		line-height: 145%;
+		color: rgba(22, 24, 24, 0.8);
+	}
+
+	.ask-post .modal-content .modal-body .start-your-q-notes {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 0.875rem;
+		line-height: 145%;
+		color: var(--color-13);
+	}
+
+	.ask-post .modal-content .modal-body .say-something-heading {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 0.875rem;
+		line-height: 145%;
+		color: var(--color-13);
+	}
+
+	/* End ask-post modal pop up */
+
+	/* Start create community modal pop up */
+	.create-community-modeal .modal-content .modal-header {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.125rem;
+		color: var(--color-13);
+	}
+
+	/* End create community modal pop up */
+
+	/* Start your added questions modal */
+	.your-added-questions .modal-content .modal-header .your-added-questions-heading {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 145%;
+		color: var(--color-13);
+	}
+
+	.your-added-questions .modal-content .modal-body .question-heading {
+		font-family: var(--font-2);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 145%;
+		color: var(--color-13);
+	}
+
+	.your-added-questions .modal-content .modal-body .question-sub-content {
+		font-family: var(--font-1);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 0.875rem;
+		line-height: 145%;
+		color: rgba(22, 24, 24, 0.8);
+	}
+
+	.your-added-questions .modal-content .modal-body .answer-share-delete {
+		font-family: var(--font-1);
+		font-style: normal;
+		font-weight: 500;
+		font-size: 1rem;
+		line-height: 145%;
+		color: rgba(22, 24, 24, 0.8);
+		border-bottom: 0.063rem solid rgba(70, 195, 242, 0.4);
+		font-size: 12px;
+	}
+
+	/* End your added questions modal */
+
+	.community-desktop-nav {
+		display: none;
+	}
+
+	.community-mobile-nav {
+		background: rgba(206, 211, 211, 0.4);
+	}
+
+	.community-body .community-post-image .community-post-image-background .img-fluid {
+		max-width: 100%;
+		height: 18.75rem;
+		/* border:2px solid var(--color-12);*/
+		border-radius: 6px;
+	}
+
+	.community-body .community-post-image .community-post-image-background .img-fluid-video {
+		max-width: 100%;
+		height: 22.125rem;
+	}
+
+	.community-post-profile-picture .img-fluid
+	{
+        height: 2rem;
+        width: 2rem;
+    }
+
+	.float-child {
+		width: 10%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.float-child-1 {
+		width: 90%;
+		float: left;
+		padding-left: 8px;
+		/*border: 2px solid red;*/
+	}
+
+}
+
+@media (min-width: 577px) {
+	html {
+		font-size: 40%;
+	}
+
+	.community-nav .nav-pills .nav-link {
+		font-family: var(--font-1);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1.375rem;
+		line-height: 1.25rem;
+		color: var(--color-2);
+	}
+
+	.community-mobile-nav {
+		display: none;
+	}
+
+	.float-child {
+		width: 8%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.float-child-1 {
+		width: 92%;
+		float: left;
+		padding-left: 0px;
+		/*border: 2px solid red;*/
+	}
+}
+
+@media (min-width: 768px) {
+	html {
+		font-size: 45%;
+	}
+
+	.community-nav .nav-pills .nav-link {
+		font-family: var(--font-1);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1.563rem;
+		line-height: 1.75rem;
+		color: var(--color-2);
+	}
+
+	.community-body .community-post-image .community-post-image-background .img-fluid {
+		max-width: 100%;
+		height: 28.125rem;
+	}
+
+	.community-body .community-post-image .community-post-image-background .img-fluid-video {
+		max-width: 100%;
+		height: 22.125rem;
+	}
+
+	.float-child {
+		width: 8%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.float-child-1 {
+		width: 92%;
+		float: left;
+		padding-left: 0px;
+		/*border: 2px solid red;*/
+	}
+
+}
+
+@media (min-width: 992px) {
+	html {
+		font-size: 60%;
+	}
+
+	.community-nav .nav-pills .nav-link {
+		font-family: var(--font-1);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1.25rem;
+		line-height: 1.5rem;
+		color: var(--color-2);
+	}
+
+	.community-body .community-post-image .community-post-image-background .img-fluid {
+		max-width: 100%;
+		height: 28.125rem;
+	}
+
+	.community-body .community-post-image .community-post-image-background .img-fluid-video {
+		max-width: 100%;
+		height: 22.125rem;
+	}
+
+	.float-child {
+		width: 8%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.float-child-1 {
+		width: 92%;
+		float: left;
+		padding-left: 0px;
+		/*border: 2px solid red;*/
+	}
+}
+
+
+@media (min-width: 1200px) {
+	html {
+		font-size: 80%;
+	}
+
+	.community-nav .nav-pills .nav-link {
+		font-family: var(--font-1);
+		font-style: normal;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.5rem;
+		color: var(--color-2);
+	}
+
+	.community-body .community-post-image .community-post-image-background .img-fluid {
+		max-width: 100%;
+		height: 28.125rem;
+	}
+
+	.community-body .community-post-image .community-post-image-background .img-fluid-video {
+		max-width: 100%;
+		height: 22.125rem;
+	}
+
+	.float-child {
+		width: 8%;
+		float: left;
+		padding: 0px;
+		/*border: 2px solid red;*/
+	}
+
+	.float-child-1 {
+		width: 92%;
+		float: left;
+		padding-left: 0px;
+		/*border: 2px solid red;*/
+	}
+}
+
+@media (min-width: 1920px) {
+	html {
+		font-size: 100%;
+	}
+
+}
+
+/* End Mobile Views */

@@ -1,0 +1,600 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% load social_share %}
+{% block title %}
+<title>Profession Personal Details</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- Start our Star rating - css & js -->
+<script src="{% static 'community_profession/js/jquery.min.js' %}" type="text/javascript"></script>
+<link href="{% static 'community_profession/css/rating.css' %}" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="{% static 'community_profession/js/profession-personal-details.js' %}"></script>
+<!-- End our Star rating - css & js -->
+{% endblock own_css %}
+{% block content %}
+<!-- Start girls parlor heading -->
+<div class="row">
+   <div class="col-md-11 girls-parlor-heading">
+      {{Profession_obj.profession.Profession_Name}}
+   </div>
+   <div class="col-md-1 girls-parlor-heading">
+      <span>
+         <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+            <i class="fa-solid fa-share-nodes"></i>
+         </button>
+      </span>
+   </div>
+</div>
+<!-- End girls parlor heading -->
+<!-- Start profile-img and info -->
+<div class="row pb-3">
+   <!-- Start profile-img -->
+   <div class="col-2 col-sm-3 col-md-2">
+      <img src="{{Profession_obj.profession_image.url}}" class="img-fluid rounded" alt="Responsive image">
+   </div>
+   <!-- Start profile-img -->
+   <!-- Start info -->
+   <div class="col-10 col-sm-9 col-md-10 personal-info">
+      <!-- Start name info -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+            Name
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : &nbsp; &nbsp; {{Profession_obj.shop_name}}
+         </div>
+      </div>
+      <!-- End name info -->
+      <!-- Start profession -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+            Profession
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : &nbsp; &nbsp; {{Profession_obj.profession.Profession_Name}}
+         </div>
+      </div>
+      <!-- End profession -->
+      <!-- Start Address -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+            Address
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : &nbsp; &nbsp; {{Profession_obj.shop_address}} {{Profession_obj.shop_city}}, {{Profession_obj.shop_state}}
+         </div>
+      </div>
+      <!-- End Address -->
+      <!-- Start Experience -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+            Experience
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : &nbsp; &nbsp; {{Profession_obj.year_of_experience}} Year
+         </div>
+      </div>
+      <!-- End Experience -->
+      <!-- Start Rating -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+            Rating
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : &nbsp; &nbsp;
+            <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+            <!-- <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+               <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+               <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
+               <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania"> -->
+            &nbsp;
+            {{Profession_obj.Profession_Rating}}
+         </div>
+      </div>
+      <!-- End Rating -->
+   </div>
+   <!-- Start info -->
+</div>
+<!-- End profile-img and info -->
+<!-- Start time & open status, our services, add new service btn -->
+<div class="row pt-3 pb-3 border-top border-bottom">
+   <!-- Start time and open status -->
+   <div class="col-12 col-sm-3 col-md-4 border-right  time-open-status">
+      <!-- Start time & open status heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 heading">
+            Times & Open Status
+         </div>
+      </div>
+      <!-- End time & open status heading -->
+      <!-- Start time heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 time-heading">
+            Time : {{Profession_obj.shop_start_time}} to {{Profession_obj.shop_close_time}}
+         </div>
+      </div>
+      <!-- End time heading -->
+      <!-- Start open status Sunday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_sunday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content"> : Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content"> : Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Sunday -->
+      <!-- Start open status Monday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_monday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Monday -->
+      <!-- Start open status Tuesday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_Tuesday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Tuesday -->
+      <!-- Start open status Wednesday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_Wednesday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Wednesday -->
+      <!-- Start open status Thursday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_Thrusday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Thursday -->
+      <!-- Start open status Friday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_Friday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Friday -->
+      <!-- Start open status Saturday -->
+      <div class="row">
+         {% if Profession_obj.shop_status_saturday%}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <!-- End open status content -->
+         {% else %}
+         <!-- Start open status heading -->
+         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <!-- End open status heading -->
+         <!-- Start open status content -->
+         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <!-- End open status content -->
+         {% endif %}
+      </div>
+      <!-- End open status Saturday -->
+   </div>
+   <!-- End time and open status -->
+   <!-- Start our services -->
+   <div class="col-12 col-sm-9 col-md-8 our-services">
+      <!-- Start our services heading -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 our-services-heading">
+            Our Services
+         </div>
+      </div>
+      <!-- End our services heading -->
+      <!-- Start Services -->
+      <div class="row" id="myDIV">
+         <div class="col-12 col-sm-12 col-md-12 ex1">
+            {% for s in Profession_service_obj%}
+            <div class="row mt-2 pt-2 rounded services">
+               <!-- Start Service heading -->
+               <div class="col-7 col-sm-9 col-md-9">{{s.service_name}}</div>
+               <!-- End Service heading -->
+               <!-- Start price, edit, delete -->
+               <div class="col-5 col-sm-3 col-md-3 text-center">
+                  <span>Rs : {{s.service_price}}</span>
+               </div>
+               <!-- End price, edit, delete -->
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+      <!-- End Services -->
+   </div>
+   <!-- End our services -->
+</div>
+<!-- End time & open status, our services, add new service bt -->
+<!-- Start Photos & videos heading, See All links headings -->
+<div class="row photos-videos-see-all">
+   <!-- Start Photos and Videos Heading -->
+   <div class="col-6 col-md-6">
+      <div class="row">
+         <div class="col-md-12 photos-videos-heading">
+            Photos & Videos
+         </div>
+      </div>
+   </div>
+   <!-- End Photos and Videos Heading -->
+   <!-- Start see all links -->
+   <div class="col-6 col-md-6 text-right">
+      <div class="row">
+         <div class="col-md-12 text-right ">
+            <a href="{% url 'see-all-photos-videos' Profession_obj.id %}" class="see-all">
+            See All
+            </a>
+         </div>
+      </div>
+   </div>
+   <!-- Start see all links -->
+</div>
+<!-- End Photos & videos heading, See All links headings -->
+<!-- Start Photos & videos -->
+<div class="row">
+   <div class="col-12 col-sm-12 col-md-12 p-4">
+      <div class="row profession-details">
+         {% for j in Profession_Image_obj %}
+         <div class="col-12 col-sm-2 col-md-2 pt-3">
+            <div class="row">
+               <div class="col-md-12">
+                  <a href="{% url 'photo-screen' j.id %}" class="text-light">
+                  <img src="{{j.image.url}}" class="img-fluid " width="100%" height="30%">
+                  </a>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+         {% for i in Profession_Video_obj %}
+         <div class="col-12 col-sm-3 col-md-3 pt-3">
+            <div class="row">
+               <div class="col-md-12 profession-video rounded">
+                  <a href="{% url 'video-screen' i.id %}" class="text-light text-decoration-none">
+                     <video src="{{i.video.url}}" class="video-fluid " width="100%" controls></video>
+                  </a>
+               </div>
+            </div>
+         </div>
+         {% endfor %}
+         <!-- <div class="col-md-3 pl-4 pr-4 mt-2">
+            <div class="row">
+               <div class="col-md-12 p-5 bg-info rounded"></div>
+            </div>
+            </div> -->
+         <!-- <div class="col-md-3 pl-4 pr-4 mt-2">
+            <div class="row">
+               <div class="col-md-12 p-5 bg-info rounded"></div>
+            </div>
+            </div> -->
+         <!-- <div class="col-md-3 pl-4 pr-4 mt-2">
+            <div class="row">
+               <div class="col-md-12 p-5 bg-info rounded"></div>
+            </div>
+            </div> -->
+      </div>
+   </div>
+</div>
+<!-- End Photos & videos -->
+<!-- Satrt Comment input, Chat button -->
+<form action="{% url 'profession-personal-details' Profession_obj.id %}" method="POST" >
+   {% csrf_token %}
+   <div class="row">
+      <div class="col-7 col-sm-8 col-md-8">
+         <div class="form-group comment-input" >
+            <textarea maxlength="300" class="form-control" type="text" placeholder="Write a Comment" name="Comment" required></textarea>
+            <div class="row">
+               <div class="col-md-12 pt-3">
+                  <div id="container"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-3 col-sm-2 col-md-2 ">
+         <button type="submit" class="btn btn-block btn-normal-b">Send</button>
+      </div>
+      <div class="col-1 col-sm-2 col-md-2 pt-2">
+         <a href="https://api.whatsapp.com/send/?phone={{Profession_obj.UserProfile.country_code}}{{Profession_obj.UserProfile.whatsapp_number}}&text&type=phone_number" class="text-light" target="_blank">
+         <i class="fa-brands fa-whatsapp fa-brands-1 fa-whatsapp-1"></i>
+         </a>
+      </div>
+   </div>
+</form>
+<!-- End Comment input, Chat button -->
+<!-- Start Review -->
+<div class="row">
+   <div class="col-md-12 reviews">
+      <!-- Start Reviews Heading -->
+      <div class="row">
+         <div class="col-md-12 reviews-heading">
+            {{ProfessionReview_obj_count}} Reviews
+         </div>
+      </div>
+      <!-- End Reviews Heading -->
+      {% for k in ProfessionReview_obj %}
+      <!-- Start user profile and user information -->
+      <div class="row mt-5 community-body">
+         <!-- Start Profile picture -->
+         <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container">
+            <!-- Start Profile Picture -->
+            <div class="float-child">
+               <div class="row">
+                  <div class="col-md-12">
+                     <img class="img-fluid rounded-circle" src="{{k.user_profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
+                  </div>
+               </div>
+            </div>
+            <!-- End Profile Picture -->
+            <div class="float-child-1">
+               <!-- Start community name -->
+               <div class="row">
+                  <div class="col-md-12 community-name">
+                     {{k.user_profile.usertype.user_id.first_name}} {{k.user_profile.usertype.user_id.last_name}}
+                  </div>
+               </div>
+               <!-- End community name -->
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time">
+                     {{k.Review_Date}} / {{k.Review_Time}}
+                  </div>
+               </div>
+               <!-- End community time -->
+            </div>
+         </div>
+         <!-- End Community name and time -->
+         <!-- Start join buttons, options -->
+         <!--<div class="col-2 col-sm-6 col-md-6 text-right">
+            <div class="row">
+               <div class="col-md-12 community-options">
+                  <div class="dropdown">
+                     <button type="button" class="btn text-light" data-toggle="dropdown">
+                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                     </button>
+                     <div class="dropdown-menu">
+                        &lt;!&ndash; <a class="dropdown-item" href="#"><div class="copy-this">
+                           <button data-copy-btn="buttonCopy" data-copy-url="http://127.0.0.1:8000/community-screen" class=" btn btn-normal-b border-0 rounded-0 pb-2" type="button">Copy</button>
+                           </div>
+                           Copy Link</a> &ndash;&gt;
+                        <a class="dropdown-item" href="#" data-target="#report-post" data-toggle="modal" onclick="Reportpost('55')">Report</a>
+                        &lt;!&ndash; Start Edit and Delete login User &ndash;&gt;
+                        &lt;!&ndash; End Edit and Delete login User &ndash;&gt;
+                        &lt;!&ndash; Start Post Book Mark &ndash;&gt;
+                        <a class="dropdown-item" href="/bookmark_post/55">Bookmark</a>
+                        &lt;!&ndash; End Post Book Mark &ndash;&gt;
+                        &lt;!&ndash; <a class="dropdown-item" href="#">Save</a>
+                           <a class="dropdown-item" href="#">Share</a> &ndash;&gt;
+                     </div>
+                  </div>
+               </div>
+               &lt;!&ndash; End drop down options &ndash;&gt;
+            </div>
+         </div>-->
+         <!-- Start join buttons, options -->
+      </div>
+      <!-- End user profile and user information -->
+      <!-- Start comment -->
+      <div class="row mt-2 mb-1">
+         <div class="col-md-12 review-comment">
+            {{k.Review}}
+         </div>
+      </div>
+      <!-- End comment -->
+      <!-- Start rating, like and comment -->
+      <div class="row">
+         <div class="col-md-12">
+            <span class="likes-heading">
+               <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image">
+               &nbsp;
+               {{k.Rate}}
+            </span>
+            <span class="d-inline-block">
+               <form action="{% url 'like_Review' %}" method="POST" class="like-form" id="{{k.id}}">
+                  {% csrf_token %}
+                     <input type="hidden" name="post_id" value="{{k.id}}">
+                     <button type="submit" class="btn community-like-dislike-btn like-btn{{k.id}}">
+                        {% if userprofile not in k.like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                        {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                        {% endif %}
+                     </button>
+                     <span class="community-like-dislike-btn like-count{{k.id}}">
+                        {{ k.like.all.count }}
+                     </span>
+               </form>
+            </span>
+            <span>
+            <a href="{% url 'review_Reply' k.id %}" class="text-decoration-none likes-heading">
+               <i class="fa-solid fa-reply pl-3"></i>
+               &nbsp;
+               {% if k.Reply is None %}
+                  0
+               {% else %}
+                  {{k.Reply}}
+               {% endif %}
+            </a>
+            </span>
+            {% if userprofile.id is k.user_profile.id %}
+            <span>
+               <a href="#" class="text-decoration-none likes-heading" data-target="#modal3" data-toggle="modal" onclick="data('{{k.id}}','{{k.Review}}')" >
+                  <i class="fa-solid fa-pencil pl-3"></i>
+               </a>
+            </span>
+            <span >
+               <a href="{% url 'Review_Delete' k.id %}" class="text-decoration-none likes-heading">
+                  <i class="fa-solid fa-trash pl-3"></i> &nbsp;
+               </a>
+            </span>
+            {% endif %}
+         </div>
+      </div>
+      <!-- End rating, like and comment -->
+      {% endfor %}
+   </div>
+</div>
+<!-- End Review -->
+<div class="modal create-community-modeal" id="modal3">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Review</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="EditReview" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review</label>
+                  <input type="text" class="form-control" name="Review" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Review</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+   <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <div class="row your-added-questions-heading">
+               <div class="col-md-12">Share</div>
+            </div>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <div class="modal-body">
+            <!-- Start Share Icon -->
+            <div class="row">
+               <div class="col-md-12 text-center">
+                  <span>{% post_to_facebook object_or_url %}</span>
+                  <span>{% post_to_whatsapp object_or_url %}</span>
+                  <span>{% post_to_reddit object_or_url %}</span>
+               </div>
+            </div>
+            <!-- End Share Icon -->
+            <!-- Start copy link text box -->
+            <div class="row d-flex justify-content-center pt-3">
+               <div class="col-md-8">
+                  <form>
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" value="{{ copy_url }}" placeholder="CopyURL">
+                        <div class="input-group-append">
+                           <!-- <span class="input-group-text">COPY</span> -->
+                           <span>{% copy_to_clipboard object_or_url%}</span>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <!-- End copy link text box -->
+         </div>
+         <div class="modal-footer">
+            <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- End Share Modal -->
+
+{% add_copy_script %}
+
+<script>
+   function data(id,val1){
+      document.getElementById('EditReview').action ='/edit_review/'+id;
+      document.getElementById("demo1").value = val1;
+   }
+</script>
+
+<!-- Start Star rating JS -->
+<script src="{% static 'community_profession/js/jquery.rating.js' %}" type="text/javascript" language="javascript"></script>
+<!-- End Star rating JS -->
+<!-- Start Like-dislike js -->
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
+<!-- End Like-dislike js -->
+{% endblock content %}
