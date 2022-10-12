@@ -341,8 +341,8 @@
 	font-family: var(--font-1);
 	font-style: normal;
 	font-weight: 400;
-	font-size: 1rem;
-	line-height: 1.5rem;
+	font-size: 1.125rem;
+	line-height: 1.625rem;
 	color: var(--color-2);
 }
 
@@ -350,8 +350,8 @@
 	font-family: var(--font-1);
 	font-style: normal;
 	font-weight: 400;
-	font-size: 0.75rem;
-	line-height: 1.125rem;
+	font-size: 0.875rem;
+	line-height: 1.25rem;
 	color: rgba(255, 255, 255, 0.8);
 }
 
