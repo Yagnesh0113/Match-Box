@@ -163,6 +163,7 @@ STATIC_ROOT = "/static/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
 
