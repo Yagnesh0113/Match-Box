@@ -414,7 +414,11 @@ def Community_video(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
-    User_post_obj_video=UserPost.objects.filter(post_type1=True).exclude(User_Profile=userprofile)[::-1]
+
+    User_post_video=UserPost.objects.filter(post_type1=True).exclude(User_Profile=userprofile)
+    for i in User_post_video:
+        User_post_obj_video = Community_Post.objects.filter(user_post=i.id)[::-1]
+
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
     Our_News_count=News.objects.filter(Date=Date).count()
@@ -427,13 +431,19 @@ def Community_video(request):
         context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_post_obj_video":User_post_obj_video,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
     return render(request, 'community_profession/community.html',context)
 
+# remaining
 @login_required(login_url='/')
 def Community_My_Video(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
     
-    User_post_obj=UserPost.objects.filter(User_Profile=userprofile,post_type1=True)[::-1]
+    User_post_obj_id=UserPost.objects.filter(User_Profile=userprofile,post_type1=True)
+    print(User_post_obj_id)
+    for i in User_post_obj_id:
+        User_post_obj = Community_Post.objects.filter(user_post=i.id)[::-1]
+
+
     # User_POST_Question_obj=POST_and_Question.objects.all()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
@@ -471,7 +481,11 @@ def Community_My_Image(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
-    User_post_obj=UserPost.objects.filter(User_Profile=userprofile, post_type1=False)[::-1]
+
+    User_post_obj_id=UserPost.objects.filter(User_Profile=userprofile, post_type1=False)
+    for i in User_post_obj_id:
+        User_post_obj = Community_Post.objects.filter(user_post=i.id)[::-1]
+
     # User_POST_Question_obj=POST_and_Question.objects.all()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()

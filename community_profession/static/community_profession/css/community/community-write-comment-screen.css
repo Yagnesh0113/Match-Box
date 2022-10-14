@@ -194,6 +194,21 @@
         background-color: var(--color-15);
     }
 
+     .comment-float-child
+    {
+        width: 20%;
+        float: left;
+        padding-top: 20px;
+        /* border: 2px solid red; */
+    }
+    .comment-float-child-1
+    {
+        width: 80%;
+        float: left;
+        padding-top: 20px;
+        /* border: 2px solid red; */
+    }
+
 }
 
 @media (min-width: 577px)
@@ -201,6 +216,15 @@
     html{
         font-size: 40%;
     }
+     .comment-float-child
+    {
+        width: 5.3%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
+
+
 }
 
 @media (min-width: 768px)
@@ -208,12 +232,28 @@
     html{
         font-size: 45%;
     }
+
+    .comment-float-child
+    {
+        width: 5.3%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
 }
 
 @media (min-width: 992px)
 {
     html{
         font-size: 60%;
+    }
+
+    .comment-float-child
+    {
+        width: 5.3%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
     }
 }
 
@@ -223,12 +263,44 @@
     html{
         font-size: 80%;
     }
+
+    .comment-float-child
+    {
+        width: 6.5%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
+
+    .comment-float-child-1
+    {
+        width: 92%;
+        float: left;
+        padding-left: 0px;
+        /* border: 2px solid red; */
+    }
 }
 
 @media (min-width: 1920px)
 {
     html{
         font-size: 100%;
+    }
+
+    .comment-float-child
+    {
+        width: 6%;
+        float: left;
+        padding: 0px;
+        /* border: 2px solid red; */
+    }
+
+    .comment-float-child-1
+    {
+        width: 92%;
+        float: left;
+        padding-left: 0px;
+        /* border: 2px solid red; */
     }
 }
 /* End Mobile Views */

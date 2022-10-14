@@ -72,7 +72,7 @@
                   <div class="col-0 col-sm-3 col-md-3"></div>
                   <div class="col-12 col-sm-6 col-md-6 ">
                      {% if i.Video %}
-                     <video width="100%" class="img-fluid" controls controlslist="nodownload" oncontextmenu="return false">
+                     <video width="100%" class="img-fluid-video" controls controlslist="nodownload" oncontextmenu="return false">
                         <source src="{{i.Video.url}}" type="video/mp4">
                      </video>
                      {% elif i.Image %}
@@ -166,19 +166,19 @@
                <div class="row">
                   <div class="col-md-6">
                      <span class="modal-sub-heading">Adult Content </span>
-                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                     <div class="form-check form-control rounded mt-3 pt-2 pb-2 pl-4">
                         <label class="form-check-label">
                         <input type="checkbox" name="adult" class="form-check-input" value="">
-                        18+ content
+                        <span class="modal-sub-heading">18+ content</span>
                         </label>
                      </div>
                   </div>
                   <div class="col-md-6">
                      <span class="modal-sub-heading">Abusing Content </span>
-                     <div class="form-check border rounded mt-3 pt-2 pb-2">
+                     <div class="form-check form-control rounded mt-3 pt-2 pb-2 pl-4">
                         <label class="form-check-label">
                         <input type="checkbox" name="adult" class="form-check-input" value="">
-                        Abusing Content
+                        <span class="modal-sub-heading">Abusing Content</span>
                         </label>
                      </div>
                   </div>
@@ -195,61 +195,8 @@
    </div>
 </div>
 <!-- End Create Report-question -->
-<!-- Start the report-question script -->
-<script>
-   function Reportnews(id){
-      document.getElementById('report-news').action ='';
-      document.getElementById("demo1").value = id;
-   }
-</script>
-<!-- End the report-question script -->
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-   $('.like-form').submit(function(e){
-      e.preventDefault()
-      //console.log('works')
-      const post_id = $(this).attr('id')
-      //console.log(post_id)
-      const liketext = $(`.like-btn${post_id}`).html()
-      //console.log(liketext)
-      const trim = $.trim(liketext)
-      //console.log(trim)
-      const url = $(this).attr('action')
-      //console.log(url)
-      let res;
-      const likes = $(`.like-count${post_id}`).text()
-      //console.log(likes + 1)
-      const trimCount = parseInt(likes)
-      //console.log(trimCount + 1)
+<script src="{% static 'community_profession/js/news.js' %}"></script>
 
-      $.ajax(
-         {
-         type : "POST",
-         url : url,
-         data : {
-            'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
-            'post_id':post_id,
-         },
-         success: function(response){
-            //console.log('success', response)
-            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
-               res = trimCount - 1
-            } else {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
-               res = trimCount + 1
-            }
-
-           $(`.like-count${post_id}`).text(res)
-         },
-         error: function(response) {
-            console.log('error', response)
-        }
-      }
-      )
-
-   })
-</script>
 
 {% endblock community_content %}
