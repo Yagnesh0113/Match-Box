@@ -25,11 +25,11 @@ $('.like-form').submit(function(e){
          },
          success: function(response){
             //console.log('success', response)
-            if(trim === '<i class="fa-solid fa-thumbs-down"></i>') {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
+            if(trim === '<i class="fa-solid fa-thumbs-up"></i>') {
+               $(`.like-btn${post_id}`).html('<i class="fa-regular fa-thumbs-up"></i>')
                res = trimCount - 1
             } else {
-               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-down"></i>')
+               $(`.like-btn${post_id}`).html('<i class="fa-solid fa-thumbs-up"></i>')
                res = trimCount + 1
             }
 

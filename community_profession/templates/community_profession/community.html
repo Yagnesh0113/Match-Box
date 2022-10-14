@@ -73,8 +73,9 @@
          <!-- Start ask -->
          <li class="nav-item border-bottom">
             <a class="nav-link" href="#" data-target="#ask-post" data-toggle="modal">
-            <i class="fa-solid fa-person-circle-question"></i>
-            Ask
+            <!--<i class="fa-solid fa-person-circle-question"></i>-->
+            <i class="fa-solid fa-pen-to-square"></i>
+               Ask / Post
             </a>
          </li>
          <!-- End ask -->
@@ -88,11 +89,11 @@
          </li>
          <!-- End answer -->
          <!-- Start post -->
-         <li class="nav-item border-bottom">
+         <!--<li class="nav-item border-bottom">
             <a class="nav-link" href="#" data-target="#ask-post" data-toggle="modal">
             <i class="fa-solid fa-pen-to-square"></i> Post
             </a>
-         </li>
+         </li>-->
          <!-- End post -->
          <!-- End ask, answer, post -->
          <!-- Start create-community btn -->
@@ -355,9 +356,9 @@
                         <input type="hidden" name="post_id" value="{{i.Post.user_post.id}}">
                         <button type="submit" class="btn community-like-dislike-btn like-btn{{i.Post.user_post.id}}">
                         {% if userprofile not in i.Post.user_post.Like.all %}
-                        <i class="fa-solid fa-thumbs-up"></i>
+                        <i class="fa-regular fa-thumbs-up"></i>
                         {% else %}
-                        <i class="fa-solid fa-thumbs-down"></i>
+                        <i class="fa-solid fa-thumbs-up"></i>
                         {% endif %}
                         </button>
                         <span class="btn community-like-dislike-btn like-count{{i.Post.user_post.id}}">{{ i.Post.user_post.Like.all.count }}</span>
