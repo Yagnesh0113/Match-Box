@@ -393,15 +393,15 @@
 		font-family: var(--font-1);
 		font-style: normal;
 		font-weight: 400;
-		font-size: 0.625rem;
+		font-size: 0.688rem;
 		line-height: 0.938rem;
 		color: var(--color-2);
 
 	}
 
 	.community-mobile-nav .community-nav .nav .nav-item .nav-link {
-		padding-left: 0.313rem;
-		padding-right: 0.313rem;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
 
 	}
 
@@ -541,7 +541,7 @@
 	}
 
 	.community-mobile-nav {
-		background: rgba(206, 211, 211, 0.4);
+		background: rgba(204, 173, 224, 0.6);
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid {
@@ -587,8 +587,8 @@
 		font-family: var(--font-1);
 		font-style: normal;
 		font-weight: 400;
-		font-size: 1.375rem;
-		line-height: 1.25rem;
+		font-size: 1.563rem;
+		line-height: 1.75rem;
 		color: var(--color-2);
 	}
 
@@ -609,6 +609,7 @@
 		padding-left: 0px;
 		/*border: 2px solid red;*/
 	}
+
 }
 
 @media (min-width: 768px) {
@@ -648,6 +649,8 @@
 		padding-left: 0px;
 		/*border: 2px solid red;*/
 	}
+
+
 
 }
 

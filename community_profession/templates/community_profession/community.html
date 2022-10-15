@@ -33,12 +33,12 @@
 {% block content %}
 {% block community_nav %}
 <!-- Start community navigation Desktop View -->
-<div class="row community-desktop-nav">
+<div class="row community-desktop-nav pt-3">
    <div class="col-sm-12 col-md-12 community-nav">
       <ul class="nav nav-pills ">
          <!-- Start Post new drop down -->
          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Post</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                <li><a class="dropdown-item" href="{% url 'Community_image' %}">Image</a></li>
                <li><a class="dropdown-item" href="{% url 'Community_video' %}">Video</a></li>
@@ -73,8 +73,8 @@
          <!-- Start ask -->
          <li class="nav-item border-bottom">
             <a class="nav-link" href="#" data-target="#ask-post" data-toggle="modal">
-            <!--<i class="fa-solid fa-person-circle-question"></i>-->
-            <i class="fa-solid fa-pen-to-square"></i>
+               <!--<i class="fa-solid fa-person-circle-question"></i>-->
+               <i class="fa-solid fa-pen-to-square"></i>
                Ask / Post
             </a>
          </li>
@@ -93,7 +93,7 @@
             <a class="nav-link" href="#" data-target="#ask-post" data-toggle="modal">
             <i class="fa-solid fa-pen-to-square"></i> Post
             </a>
-         </li>-->
+            </li>-->
          <!-- End post -->
          <!-- End ask, answer, post -->
          <!-- Start create-community btn -->
@@ -103,19 +103,19 @@
          <!-- End create-community btn -->
          <!-- Start my-communities -->
          <li class="nav-item">
-            <a class="nav-link notification" href="#" data-target="#your-added-questions" data-toggle="modal">
-            <i class="fa-solid fa-pen-to-square"></i>
-            &nbsp;
-            Your question
-            <span class="badge">{{Answer_count}}</span>
-            </a>
-         </li>
-         <li class="nav-item">
             <a class="nav-link notification" href="{% url 'news' %}">
             <i class="fa-solid fa-newspaper"></i>
             <span class="badge">{{Our_News_count}}</span>
             &nbsp;
             News
+            </a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link notification" href="#" data-target="#your-added-questions" data-toggle="modal">
+            <i class="fa-solid fa-pen-to-square"></i>
+            &nbsp;
+            Answer Later
+            <span class="badge">{{Answer_count}}</span>
             </a>
          </li>
       </ul>
@@ -128,7 +128,7 @@
       <ul class="nav nav-pills ">
          <!-- Start Post new drop down -->
          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Post</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                <li><a class="dropdown-item" href="{% url 'Community_image' %}">Image</a></li>
                <li><a class="dropdown-item" href="{% url 'Community_video' %}">Video</a></li>
@@ -179,7 +179,7 @@
             <a class="nav-link" href="#" data-target="#ask-post" data-toggle="modal">
             Post
             </a>
-         </li>-->
+            </li>-->
          <!-- End post -->
          <!-- End ask, answer, post -->
          <!-- Start create-community btn -->
@@ -189,15 +189,15 @@
          <!-- End create-community btn -->
          <!-- Start my-communities -->
          <li class="nav-item">
-            <a class="nav-link notification" href="#" data-target="#your-added-questions" data-toggle="modal">
-            Your question
-            <span class="badge">{{Answer_count}}</span>
-            </a>
-         </li>
-         <li class="nav-item">
             <a class="nav-link notification" href="{% url 'news' %}">
             <span class="badge">{{Our_News_count}}</span>
             News
+            </a>
+         </li>
+         <li class="nav-item">
+            <a class="nav-link notification" href="#" data-target="#your-added-questions" data-toggle="modal">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span class="badge">{{Answer_count}}</span>
             </a>
          </li>
       </ul>
@@ -376,9 +376,9 @@
                   </a>
                </div>
                <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
-                  <a href="{% url 'community-write-comment-screen' i.Post.id %}">
+                 <!-- <a href="{% url 'community-write-comment-screen' i.Post.id %}">
                   <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
-                  </a>
+                  </a>-->
                </div>
                <!-- End like, comment, share -->
             </div>
@@ -482,9 +482,9 @@
             </div>
             <!-- End community description -->
             <!-- Start like, comment, share -->
-            <div class="row pt-2 pd-2">
+            <div class="row pt-2">
                <!-- Start like button -->
-               <div class="col-6 col-sm-4 col-md-2 text-center pr-0">
+               <div class="col-6 col-sm-4 col-md-2 pr-0">
                   <span class="d-inline-block">
                      <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.Question.id}}">
                         {% csrf_token %}
@@ -515,8 +515,8 @@
                <!-- End like button -->
                <!-- Start Add comment button -->
                <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-1">
-                  <a href="{% url 'Add_Answer' i.Question.id %}">
-                  <button type="submit" class="btn btn-sm btn-block ">Add Answer</button>
+                  <a href="{% url 'Add_Answer' i.Question.id %}" class="text-decoration-none">
+                     <i class="fa-solid fa-pen-to-square text-primary"></i> Add Answer
                   </a>
                </div>
                <!-- End Add comment button -->
@@ -704,9 +704,9 @@
                   </a>
                </div>
                <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
-                  <a href="{% url 'community-write-comment-screen' i.id %}">
+                 <!-- <a href="{% url 'community-write-comment-screen' i.id %}">
                   <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
-                  </a>
+                  </a>-->
                </div>
                <!-- End like, comment, share -->
             </div>
@@ -883,9 +883,9 @@
                   </a>
                </div>
                <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
-                  <a href="{% url 'community-write-comment-screen' i.id %}">
+                  <!--<a href="{% url 'community-write-comment-screen' i.id %}">
                   <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
-                  </a>
+                  </a>-->
                </div>
                <!-- End like, comment, share -->
             </div>
@@ -1208,9 +1208,9 @@
                   </a>
                </div>
                <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
-                  <a href="{% url 'community-write-comment-screen' i.id %}">
+                  <!--<a href="{% url 'community-write-comment-screen' i.id %}">
                   <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
-                  </a>
+                  </a>-->
                </div>
                <!-- End like, comment, share -->
             </div>
@@ -1387,9 +1387,9 @@
                   </a>
                </div>
                <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
-                  <a href="{% url 'community-write-comment-screen' i.id %}">
+                  <!--<a href="{% url 'community-write-comment-screen' i.id %}">
                   <button type="submit" class="btn btn-sm btn-block ">Add Comment</button>
-                  </a>
+                  </a>-->
                </div>
                <!-- End like, comment, share -->
             </div>
