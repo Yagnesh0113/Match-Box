@@ -204,7 +204,9 @@ body,
 }
 
 /* End Splash screen */
-
+.form-control:focus {
+  box-shadow: none;
+}
 
 /* Start Mobile view */
 
@@ -272,7 +274,13 @@ body,
 	.sign-in-main-body .sign-in-right-body-form .sign-in-form .input-group-text {
 		color: var(--color-2);
 		background-color: var(--color-15);
-		border: 0.125rem solid var(--color-5);
+		border: 0.1px solid rgba(196,196,196,0.8);
+		border-left:0px;
+		border-right:0px;
+		border-top:0px;
+		border-bottom-right-radius:0;
+		border-bottom-left-radius:0;
+		padding-bottom:0rem;
 	}
 
 	.text-color-white-m-view {

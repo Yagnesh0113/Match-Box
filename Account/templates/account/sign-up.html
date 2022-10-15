@@ -28,6 +28,7 @@
                <div class="row">
                   <div class="col-sm-1 col-md-2"></div>
                   <div class="col-sm-10` col-md-8">
+
                      <!-- Start icon -->
                      <div class="row desktop-icon">
                         <div class="col-md-12">
@@ -40,6 +41,7 @@
                         </div>
                      </div>
                      <!-- End icon -->
+
                      <!-- Start Sign Up heading -->
                      <div class="row">
                         <div class="col-md-12 sign-up-heading">
@@ -47,6 +49,7 @@
                         </div>
                      </div>
                      <!-- Start Sign Up heading -->
+
                      <!-- Start Contact Form -->
                      <form action="{% url 'sign-up' %}"  data-city-url="{% url 'load_city' %}" id="indexForm" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
@@ -186,7 +189,7 @@
                            </div>
                            <!-- End password -->
                            <!-- Start add your profile -->
-                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 pt-3 sign-up-form add-your-profile">
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 sign-up-form add-your-profile">
                               <div class="input-group mb-3">
                                  <div class="input-group-prepend">
                                     <span class="input-group-text rounded-circle border-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user"></i></span>
@@ -239,7 +242,7 @@
                                           <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
                                        </div>
                                        <select name="city" class="form-control border-left-0" id="city">
-                                          <option value="">-- Select state --</option>
+                                          <option value="">-- Select City --</option>
                                        </select>
                                     </div>
                                  </div>

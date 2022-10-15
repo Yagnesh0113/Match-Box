@@ -458,8 +458,22 @@ body {
   outline: none;
   box-shadow: none;
 }
-/* Start Mobile view */
 
+.form-control:focus {
+  box-shadow: none;
+}
+
+.profession-label
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    padding-top: 0.625rem;
+}
+
+/* Start Mobile view */
 @media all and (min-width: 577px) {}
 
 

@@ -1508,13 +1508,13 @@
                   </span>
                   <span class="community-like-dislike-btn">
                   <a href="{% url 'Add_Answer' i.id %}" class="text-decoration-none">
-                  <i class="fa-solid fa-message"></i>
+                     <i class="fa-solid fa-message"></i>
                   &nbsp;
-                  {% if i.answer is None %}
-                  0
-                  {% else %}
-                  {{i.answer}}
-                  {% endif %}
+                        {% if i.answer is None %}
+                        0
+                        {% else %}
+                        {{i.answer}}
+                        {% endif %}
                   </a>
                   </span>
                </div>
@@ -1526,8 +1526,8 @@
                <!-- End comment -->
                <!-- Start Add comment button -->
                <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
-                  <a href="{% url 'Add_Answer' i.id %}">
-                  <button type="submit" class="btn btn-sm btn-block ">Add Answer</button>
+                  <a href="{% url 'Add_Answer' i.id %}" class="text-decoration-none">
+                     <i class="fa-solid fa-pen-to-square text-primary"></i> Add Answer
                   </a>
                </div>
                <!-- End Add comment button -->
@@ -2084,7 +2084,7 @@
                   <div class="row ">
                      <div class="col-md-9"></div>
                      <div class="col-md-3">
-                        <button disabled id="file-submit" type="submit" class="btn btn-sm btn-block btn-normal-b">post</button>
+                        <button type="submit" class="btn btn-sm btn-block btn-normal-b">post</button>
                      </div>
                   </div>
                   <!-- End post btn -->

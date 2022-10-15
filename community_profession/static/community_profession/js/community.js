@@ -1,6 +1,5 @@
 /* Start  Community - Post Image and video Restriction */
 let fileInput = document.getElementById("file_id");
-   let fileSubmit = document.getElementById("file-submit");
 
    fileInput.addEventListener("change", function(){
       if (fileInput.files.length > 0){
@@ -9,9 +8,7 @@ let fileInput = document.getElementById("file_id");
          if (fileMb >= 2){
             alert("Please select a file less than 2MB.")
             fileInput.value="";
-            fileSubmit.disabled = true;
          } else {
-            fileSubmit.disabled = false;
          }
 
       }
