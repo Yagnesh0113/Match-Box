@@ -6,6 +6,9 @@ from Account.validator import *
 from datetime import date,datetime
 # Create your models here.
 
+from PIL import Image
+
+
 class UserPost(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE, related_name='User_Profile')
     # Image=models.FileField(upload_to="Post", validators=[file_size], null=True,blank=True)
@@ -26,6 +29,15 @@ class UserPost(models.Model):
     def num_likes(self):
         return self.Like.all().count()
 
+    def save(self, *args, **kwargs):
+        super().save()  # saving image first
+
+        img = Image.open(self.Image.path) # Open image using self
+
+        if img.height > 900 or img.width > 600:
+            new_img = (900,600)
+            img.thumbnail(new_img)
+            img.save(self.Image.path)  # saving image at the same path
 
 LIKE_CHOISE = (
     ('Like', 'Like'),

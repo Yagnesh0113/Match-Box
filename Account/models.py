@@ -43,6 +43,10 @@ class UserProfile(models.Model):
     def __str__(self):
       return self.usertype.user_id.username
 
+    def delete(self, *args, **kwargs):
+        self.profile_image.delete()
+        super().delete(*args, **kwargs)
+
 class Profession(models.Model):
     UserProfile=models.ForeignKey(to=UserProfile,on_delete=models.CASCADE)
     profession = models.ForeignKey(to=Admin_Profession, on_delete=models.CASCADE)
@@ -72,6 +76,10 @@ class Profession(models.Model):
 
     def __str__(self):
         return self.UserProfile.usertype.user_id.first_name
+    
+    def delete(self, *args, **kwargs):
+        self.profession_image.delete()
+        super().delete(*args, **kwargs)
 
 class ProfessionServices(models.Model):
     Profession= models.ForeignKey(to=Profession,on_delete=models.CASCADE)
@@ -83,13 +91,19 @@ class Professionimage(models.Model):
     # image=models.ImageField(upload_to='Profession')
     image=models.FileField(upload_to='Profession',validators=[Image_file_size]) #imagefield to transfer in filefiled
 
+    def delete(self, *args, **kwargs):
+        self.image.delete()
+        super().delete(*args, **kwargs)
+
 
 class Professionvideo(models.Model):
     profession= models.ForeignKey(to=Profession,on_delete=models.CASCADE)
     # video=models.FileField(upload_to='Video/%y',validators=[file_size])
     video=models.FileField(upload_to='Video/%y',validators=[video_file_size])
 
-
+    def delete(self, *args, **kwargs):
+        self.video.delete()
+        super().delete(*args, **kwargs)
 
 class Recent_serach(models.Model):
     Profession_obj=models.ForeignKey(to=Profession, on_delete=models.CASCADE)
