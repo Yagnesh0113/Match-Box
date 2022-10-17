@@ -35,7 +35,7 @@ class UserPost(models.Model):
         img = Image.open(self.Image.path) # Open image using self
 
         if img.height > 900 or img.width > 600:
-            new_img = (900,600)
+            new_img = (600,900)
             img.thumbnail(new_img)
             img.save(self.Image.path)  # saving image at the same path
 

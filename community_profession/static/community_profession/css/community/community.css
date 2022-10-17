@@ -545,10 +545,10 @@
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid {
-		max-width: 100%;
-		height: 18.75rem;
+		/*max-width: 100%;
+		height: 18.75rem;*/
 		/* border:2px solid var(--color-12);*/
-		border-radius: 6px;
+		/*border-radius: 6px;*/
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid-video {
@@ -627,8 +627,8 @@
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid {
-		max-width: 100%;
-		height: 28.125rem;
+		/*max-width: 100%;
+		height: 28.125rem;*/
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid-video {
@@ -669,8 +669,8 @@
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid {
-		max-width: 100%;
-		height: 28.125rem;
+		/*max-width: 100%;
+		height: 28.125rem;*/
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid-video {
@@ -709,8 +709,8 @@
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid {
-		max-width: 100%;
-		height: 28.125rem;
+		/*max-width: 100%;
+		height: 28.125rem;*/
 	}
 
 	.community-body .community-post-image .community-post-image-background .img-fluid-video {
