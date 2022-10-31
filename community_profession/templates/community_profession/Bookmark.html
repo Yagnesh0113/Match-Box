@@ -141,11 +141,11 @@
                                {% csrf_token %}
                                <input type="hidden" name="post_id" value="{{i.post.user_post.id}}">
                                   <button type="submit" class="btn community-like-dislike-btn like-btn{{i.post.user_post.id}}">
-                                     {% if userprofile not in i.post.user_post.Like.all %}
-                                        <i class="fa-solid fa-thumbs-up"></i>
-                                     {% else %}
-                                        <i class="fa-solid fa-thumbs-down"></i>
-                                     {% endif %} 
+                                    {% if userprofile not in i.post.user_post.Like.all %}
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                    {% else %}
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    {% endif %}
                                   </button>
                                <span class="btn community-like-dislike-btn like-count{{i.post.user_post.id}}">{{ i.post.user_post.Like.all.count }}</span>
                             </form>
@@ -265,11 +265,11 @@
                                {% csrf_token %}
                                <input type="hidden" name="post_id" value="{{i.question.id}}">
                                   <button type="submit" class="btn community-like-dislike-btn like-btn{{i.question.id}}">
-                                     {% if userprofile not in i.question.Question_Like.all %}
-                                        <i class="fa-solid fa-thumbs-up"></i>
-                                     {% else %}
-                                        <i class="fa-solid fa-thumbs-down"></i>
-                                     {% endif %} 
+                                    {% if userprofile not in i.question.Question_Like.all %}
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                    {% else %}
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    {% endif %} 
                                   </button>
                                <span class="btn community-like-dislike-btn like-count{{i.question.id}}">{{ i.question.Question_Like.all.count }}</span>
                             </form>
@@ -391,11 +391,11 @@
                                {% csrf_token %}
                                <input type="hidden" name="post_id" value="{{i.news.id}}">
                                   <button type="submit" class="btn community-like-dislike-btn like-btn{{i.news.id}}">
-                                     {% if userprofile not in i.news.News_like.all %}
-                                        <i class="fa-solid fa-thumbs-up"></i>
-                                     {% else %}
-                                        <i class="fa-solid fa-thumbs-down"></i>
-                                     {% endif %} 
+                                    {% if userprofile not in i.news.News_like.all %}
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                    {% else %}
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    {% endif %} 
                                   </button>
                                <span class="btn community-like-dislike-btn like-count{{i.news.id}}">{{ i.news.News_like.all.count }}</span>
                             </form>

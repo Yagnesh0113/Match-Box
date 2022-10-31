@@ -2,6 +2,7 @@ from datetime import date, datetime
 from django.db import models
 from django.contrib.auth.models import User
 from .validator import *
+from PIL import Image
 from django.core.validators import MaxLengthValidator, MinLengthValidator
 
 class State(models.Model):
@@ -40,12 +41,20 @@ class UserProfile(models.Model):
     country_code = models.CharField(max_length=2, null=True, blank=True,)
     whatsapp_number = models.CharField(max_length=10, null=True, blank=True)
 
-    def __str__(self):
-      return self.usertype.user_id.username
-
     def delete(self, *args, **kwargs):
         self.profile_image.delete()
         super().delete(*args, **kwargs)
+
+    def __str__(self):
+      return self.usertype.user_id.username
+
+    def save(self, *args, **kwargs):
+        super().save()  # saving image first
+        img = Image.open(self.profile_image.path) # Open image using self
+        if img.height > 200 or img.width > 200:
+            new_img = (200,200)
+            img.thumbnail(new_img)
+            img.save(self.profile_image.path)  # saving image at the same path
 
 class Profession(models.Model):
     UserProfile=models.ForeignKey(to=UserProfile,on_delete=models.CASCADE)
@@ -74,12 +83,20 @@ class Profession(models.Model):
     profession_latitude=models.FloatField(null=True, blank=True)
 
 
-    def __str__(self):
-        return self.UserProfile.usertype.user_id.first_name
-    
     def delete(self, *args, **kwargs):
         self.profession_image.delete()
         super().delete(*args, **kwargs)
+
+    def __str__(self):
+        return self.UserProfile.usertype.user_id.first_name
+    
+    def save(self, *args, **kwargs):
+        super().save()  # saving image first
+        img = Image.open(self.profession_image.path) # Open image using self
+        if img.height > 200 or img.width > 200:
+            new_img = (200,200)
+            img.thumbnail(new_img)
+            img.save(self.profession_image.path)  # saving image at the same path
 
 class ProfessionServices(models.Model):
     Profession= models.ForeignKey(to=Profession,on_delete=models.CASCADE)
@@ -94,6 +111,14 @@ class Professionimage(models.Model):
     def delete(self, *args, **kwargs):
         self.image.delete()
         super().delete(*args, **kwargs)
+
+    def save(self, *args, **kwargs):
+        super().save()  # saving image first
+        img = Image.open(self.image.path) # Open image using self
+        if img.height > 350 or img.width > 500:
+            new_img = (350,500)
+            img.thumbnail(new_img)
+            img.save(self.image.path)  # saving image at the same path
 
 
 class Professionvideo(models.Model):

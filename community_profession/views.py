@@ -15,25 +15,29 @@ from haversine import Unit
  
 def userprofileobj(request):
     user=request.user
-    try:
+    if request.user.is_authenticated:
+        try:
+            Usertype=UserType.objects.get(user_id=user)
+        except:
+            usertypeobj=UserType.objects.create(user_id=user)
+            UserProfile.objects.create(usertype=usertypeobj)
         Usertype=UserType.objects.get(user_id=user)
-    except:
-        usertypeobj=UserType.objects.create(user_id=user)
-        UserProfile.objects.create(usertype=usertypeobj)
-    Usertype=UserType.objects.get(user_id=user)
-    Userprofile=UserProfile.objects.get(usertype=Usertype)
-    joincommunityobj=Join_Community.objects.filter(User_profile=Userprofile)
-    My_Community=Community.objects.all()
-    obj = My_Community
-    if len(joincommunityobj) > 0:
-        for i in joincommunityobj:
-            # print(i)
-            obj = obj.exclude(id=i.Commnunity_id.id)
+        Userprofile=UserProfile.objects.get(usertype=Usertype)
+        joincommunityobj=Join_Community.objects.filter(User_profile=Userprofile)
+        My_Community=Community.objects.all()
+        obj = My_Community
+        if len(joincommunityobj) > 0:
+            for i in joincommunityobj:
+                # print(i)
+                obj = obj.exclude(id=i.Commnunity_id.id)
+        else:
+            obj = None
+        return Userprofile,joincommunityobj,obj,My_Community
     else:
-        obj = None
-    return Userprofile,joincommunityobj,obj,My_Community
+        My_Community=Community.objects.all()
+        return None,None,None,My_Community
 
-@login_required(login_url='/')
+
 def loadHomeScreenPage(request):
     # print(request.user)
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
@@ -50,7 +54,7 @@ def loadHomeScreenPage(request):
     return render(request, 'community_profession/home-screen.html',context)
 
 # --- load -- profession see all screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadProfessionSeeAllScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Admin_Profession.objects.all()
@@ -61,7 +65,7 @@ def loadProfessionSeeAllScreen(request):
     return render(request, 'community_profession/profession-see-all.html',context)
 
 # --- load -- search nearest professions list ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadSearchNearestProfessions(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Admin_Profession.objects.get(id=id)
@@ -73,7 +77,7 @@ def loadSearchNearestProfessions(request,id):
     return render(request, 'community_profession/search-nearest-professions.html',context)
 
 # --- load -- nearest profession list ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadNearestProfessionsList(request,id=None):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -123,7 +127,7 @@ def loadNearestProfessionsList(request,id=None):
 from django.db.models import Avg
 import json
 # --- load -- profession personal details page ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadProfessionPersonalDetails(request, id):
     userprofile, joincommunityobj, obj, My_Community = userprofileobj(request)
     Profession_obj = Profession.objects.get(id=id)
@@ -194,7 +198,7 @@ def loadProfessionPersonalDetails(request, id):
                            "ProfessionReview_obj_count": ProfessionReview_obj_count}
             return render(request, 'community_profession/profession-personal-details.html', context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def review_Reply(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Profession_review=ProfessionReview.objects.get(id=id)
@@ -216,7 +220,7 @@ def review_Reply(request,id):
             context={'My_community':My_Community,'userprofile':userprofile,"Profession_review":Profession_review,"Review_obj":Review_obj}
         return render(request, 'community_profession/review-reply.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def like_post_comment(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -227,48 +231,31 @@ def like_post_comment(request):
             post.Comment_like.remove(userprofile)
         else:
             post.Comment_like.add(userprofile)
-        like, created=Post_Comment_Like.objects.get_or_create(user_profile=userprofile,Post_comment=post)
-        if not created:
-            if like.value=="Like":
-                like.value="Unlike"
-            else:
-                like.value="Like"
-        like.save()
-
         data={
-            'value':like.value,
             'post': post.Comment_like.all().count()
         }
         return JsonResponse(data, safe=False)
     return redirect(f"/add_comment/{post.User_Post.id}")
 
-@login_required(login_url='/')
+
+@login_required(login_url='/sign-in')
 def like_post(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
         post_obj=request.POST.get("post_id")
         post=UserPost.objects.get(id=post_obj)
-        print("yes")
+        # print("yes")
         if userprofile in post.Like.all():
             post.Like.remove(userprofile)
         else:
             post.Like.add(userprofile)
-        like, created=Like.objects.get_or_create(user_profile=userprofile,Post=post)
-        if not created:
-            if like.value=="Like":
-                like.value="Unlike"
-            else:
-                like.value="Like"
-        like.save()
-
         data={
-            'value':like.value,
             'post':post.Like.all().count()
         }
         return JsonResponse(data, safe=False)
     return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def like_Question(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -280,21 +267,13 @@ def like_Question(request):
             Question.Question_Like.remove(userprofile)
         else:
             Question.Question_Like.add(userprofile)
-        like, created=Question_Like.objects.get_or_create(user_profile=userprofile,Question=Question)
-        if not created:
-            if like.value=="Like":
-                like.value="Unlike"
-            else:
-                like.value="Like"
-        like.save()
         data={
-            'value':like.value,
             'post':Question.Question_Like.all().count()
         }
         return JsonResponse(data, safe=False)
     return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def like_Answer(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -304,22 +283,14 @@ def like_Answer(request):
             Answer.Answer_Like.remove(userprofile)
         else:
             Answer.Answer_Like.add(userprofile)
-        like, created=Answer_Like.objects.get_or_create(user_profile=userprofile,Answer=Answer)
-        if not created:
-            if like.value=="Like":
-                like.value="Unlike"
-            else:
-                like.value="Like"
-        like.save()
         data={
-            'value':like.value,
             'post':Answer.Answer_Like.all().count()
         }
         return JsonResponse(data, safe=False)
     return redirect(f"/Add_Answer/{Answer.Question.id}")
 
 # --- load -- see all photos and videos of professions ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadSeeAllPhotosAndVideos(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Profession_Image_obj=Professionimage.objects.filter(profession=id)
@@ -331,7 +302,7 @@ def loadSeeAllPhotosAndVideos(request,id):
     return render(request, 'community_profession/see-all-photos-and-videos.html',context)
 
 # --- load -- photo screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadPhotoScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Profession_Image_obj=Professionimage.objects.get(id=id)
@@ -342,7 +313,7 @@ def loadPhotoScreen(request,id):
     return render(request, 'community_profession/photo-screen.html',context)
 
 # --- load -- video screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadVideoScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Profession_video_obj=Professionvideo.objects.get(id=id)
@@ -353,7 +324,7 @@ def loadVideoScreen(request,id):
     return render(request, 'community_profession/video-screen.html',context)
 
 # --- load -- user - profile screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadUserProfileScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if obj is not None:
@@ -365,27 +336,53 @@ def loadUserProfileScreen(request):
 # --- load -- profession - profile screen ---
 
 # --- load -- community - screen ---
-@login_required(login_url='/')
 def loadCommunityScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Community_obj=POST_and_Question.objects.all()[::-1]
-    User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
-    User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
-    # User_POST_Question=POST_and_Question.objects.all()[::-1]
-    # User_POST_Question_obj=POST_and_Question.objects.all()
-    User_id=UserProfile.objects.all().exclude(id=userprofile.id)
-    Date=date.today()
-    Our_News_count=News.objects.filter(Date=Date).count()
-    Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)[::-1]
-    Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
-    # # print(User_POST_Question_obj.Question)
-    if obj is not None:
-        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":Community_obj,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
+    if userprofile != None:
+        User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
+        User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
+        # User_POST_Question=POST_and_Question.objects.all()[::-1]
+        # User_POST_Question_obj=POST_and_Question.objects.all()
+        User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+        Date=date.today()
+        Our_News_count=News.objects.filter(Date=Date).count()
+        Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)[::-1]
+        Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+        # # print(User_POST_Question_obj.Question)
+        if obj is not None:
+            context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":Community_obj,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
+        else:
+            context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":Community_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"Question":User_Question_obj}
+        return render(request, 'community_profession/community.html',context)
     else:
-        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":Community_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"Question":User_Question_obj}
-    return render(request, 'community_profession/community.html',context)
+        Date=date.today()
+        Our_News_count=News.objects.filter(Date=Date).count()
+        Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)[::-1]
+        Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+        context={
+            "User_POST":Community_obj,'My_community':My_Community,"Our_News_count":Our_News_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count
+        }
+        return render(request, 'community_profession/community.html',context)
 
-@login_required(login_url='/')
+
+# def loadCommunityScreen(request):
+#     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+#     Community_obj=POST_and_Question.objects.all()[::-1]
+#     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
+#     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
+#     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+#     Date=date.today()
+#     Our_News_count=News.objects.filter(Date=Date).count()
+#     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)[::-1]
+#     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+#     if obj is not None:
+#         context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":Community_obj,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
+#     else:
+#         context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":Community_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"Question":User_Question_obj}
+#     return render(request, 'community_profession/community.html',context)
+
+@login_required(login_url='/sign-in')
 def Community_image(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
@@ -409,7 +406,7 @@ def Community_image(request):
         context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_post_obj_image":User_post_obj_image,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
     return render(request, 'community_profession/community.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_video(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
@@ -432,7 +429,7 @@ def Community_video(request):
     return render(request, 'community_profession/community.html',context)
 
 # remaining
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_My_Video(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
@@ -457,7 +454,7 @@ def Community_My_Video(request):
         context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST_my_video":User_post_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
     return render(request, 'community_profession/community.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_Question(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
@@ -476,7 +473,7 @@ def Community_Question(request):
         context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_question":User_question,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
     return render(request, 'community_profession/community.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_My_Image(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
@@ -500,7 +497,7 @@ def Community_My_Image(request):
         context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST_my_image":User_post_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
     return render(request, 'community_profession/community.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_My_Question(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
@@ -517,7 +514,7 @@ def Community_My_Question(request):
         context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST_my_question":User_question,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
     return render(request, 'community_profession/community.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def User_Post(request):
     if request.method=="POST":
         user=request.user
@@ -553,7 +550,7 @@ def User_Post(request):
     else:
         return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def add_comment(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Post_obj=UserPost.objects.get(id=id)
@@ -593,7 +590,7 @@ def add_comment(request,id):
         #   context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'User_Post_obj':User_Post_obj,"All_Comment":All_Comment,'Comment_Count':Comment_Count,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/add-comment.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Post_comment_reply(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Post_obj=Post_Commment.objects.get(id=id)
@@ -625,7 +622,7 @@ def Post_comment_reply(request, id):
         # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"Post_obj":Post_obj,'Reply':Reply,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/comment-reply.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def edit_reply(request,id):
     obj=Comment_reply.objects.get(id=id)
     if request.method=="POST":
@@ -637,7 +634,7 @@ def edit_reply(request,id):
     else:
         return redirect(f"/Post_comment_reply/{obj.Comment.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def reply_delete(request, id):
     obj=Comment_reply.objects.get(id=id)
     obj1=obj.Comment.Post_comment_reply
@@ -647,7 +644,7 @@ def reply_delete(request, id):
     obj.delete()
     return redirect(f"/Post_comment_reply/{obj.Comment.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Create_Community(request):
     if request.method=="POST":
         user=request.user
@@ -698,7 +695,7 @@ def Create_Community(request):
     else:
         return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Edit_Community(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     edit_coummunity=Community.objects.get(id=id)
@@ -728,14 +725,14 @@ def Edit_Community(request,id):
             context={"Question":User_Question_obj,"Question_count":User_Question_count,'My_community':My_Community,'userprofile':userprofile,"edit_coummunity":edit_coummunity,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/edit-community.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Delete_Community(request,id):
     # # print(id)
     delete_obj=Community.objects.get(id=id)
     delete_obj.delete()
     return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Add_question(request):
     if request.method=="POST":
         user=request.user
@@ -762,7 +759,7 @@ def Add_question(request):
     else:
         return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Add_Answer(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Question=User_Question.objects.get(id=id)
@@ -793,7 +790,7 @@ def Add_Answer(request,id):
             # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"i":Question,"user":userprofile,'Answer_id':Answer_id,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request,'community_profession/add-answer.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Add_Answer_Reply(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Answer=User_Answer.objects.get(id=id)
@@ -823,7 +820,7 @@ def Add_Answer_Reply(request,id):
             context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"Answer_obj":Answer,'Reply':Answer_obj,}
         return render(request, 'community_profession/answer-reply.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Join_Coummunity(request,id):
     user=request.user
     User_type=UserType.objects.get(user_id=user)
@@ -840,7 +837,7 @@ def Join_Coummunity(request,id):
     return redirect(f"/community-profile-screen/{id}")
 
 # --- load -- community-answer - screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadCommunityAnswerScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]   #Show in Pop up
@@ -861,7 +858,7 @@ def loadCommunityAnswerScreen(request):
     return render(request, 'community_profession/community-answer.html',context)
 
 # --- load --  users questions answer - screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadCommunityUsersQuestionsAnswerScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
@@ -878,7 +875,7 @@ def loadCommunityUsersQuestionsAnswerScreen(request):
     return render(request, 'community_profession/users-questions-answer.html',context)
 
 # --- load -- normal user community screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadNormalUserCommunityScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
@@ -895,7 +892,7 @@ def loadNormalUserCommunityScreen(request):
     return render(request, 'community_profession/normal-user-community-screen.html',context)
 
 # --- load -- community profile screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadCommunityProfileScreen(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
@@ -921,7 +918,7 @@ def loadCommunityProfileScreen(request, id):
     return render(request, 'community_profession/community-profile-screen.html',context)
 
 # --- load -- community create post page ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadCommunityCreatePostPage(request, id=None):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if id==None:
@@ -986,7 +983,7 @@ def loadCommunityCreatePostPage(request, id=None):
             return render(request, 'community_profession/community-create-post-page.html',context)
 
 # --- load -- write-comment-screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadCommunityWriteCommentScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
 
@@ -1027,7 +1024,7 @@ def loadCommunityWriteCommentScreen(request,id):
             context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
         return render(request, 'community_profession/write-comment-screen.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def edit_comment(request,id):
     obj=Community_Post_Comment.objects.get(id=id)
     if request.method=="POST":
@@ -1038,7 +1035,7 @@ def edit_comment(request,id):
     else:
         return redirect(f"/community-write-comment-screen/{obj.Community_Post_obj.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def comment_delete(request, id):
     obj=Community_Post_Comment.objects.get(id=id)
     print(obj)
@@ -1051,7 +1048,7 @@ def comment_delete(request, id):
     return redirect(f"/community-write-comment-screen/{obj.Community_Post_obj.id}")
 
 # --- load -- comment reply screen ---
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadCommunityCommentReplyScreen(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Community_Post_Comment_obj=Community_Post_Comment.objects.get(id=id)
@@ -1078,7 +1075,7 @@ def loadCommunityCommentReplyScreen(request, id):
         # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"Comment":Community_Post_Comment_obj,"Community":Community_our,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/comment-reply-screen.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def news(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Our_News=News.objects.all()[::-1]
@@ -1095,7 +1092,7 @@ def news(request):
         context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"News":Our_News}
     return render(request, 'community_profession/news.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def like_news(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1105,21 +1102,13 @@ def like_news(request):
             our_news.News_like.remove(userprofile)
         else:
             our_news.News_like.add(userprofile)
-        like, created=News_Main_Like.objects.get_or_create(user_profile=userprofile,news=our_news)
-        if not created:
-            if like.value=="Like":
-                like.value="Unlike"
-            else:
-                like.value="Like"
-        like.save()
         data={
-            'value':like.value,
             'post':our_news.News_like.all().count()
         }
         return JsonResponse(data, safe=False)
     return redirect("news")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def news_comment(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Our_News=News.objects.get(id=id)
@@ -1153,7 +1142,7 @@ def news_comment(request,id):
         # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,"News":Our_News,"User":User_Profile_obj,"All_Comment":Comment_obj,"Comment_Count":Comment_Count}
         return render(request,'community_profession/news-comment.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def like_Comment_news(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1163,21 +1152,13 @@ def like_Comment_news(request):
             our_comment_news.News_comment_like.remove(userprofile)
         else:
             our_comment_news.News_comment_like.add(userprofile)
-        like, created=News_Comment_Like.objects.get_or_create(user_profile=userprofile,news_comment=our_comment_news)
-        if not created:
-            if like.value=="Like":
-                like.value="Unlike"
-            else:
-                like.value="Like"
-        like.save()
         data={
-            'value':like.value,
             'post':our_comment_news.News_comment_like.all().count()
         }
         return JsonResponse(data, safe=False)
     return redirect("news")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def edit_news_comment(request, id):
     obj=News_Comment.objects.get(id=id)
     if request.method=="POST":
@@ -1188,7 +1169,7 @@ def edit_news_comment(request, id):
     else:
         return redirect(f"/news_comment/{obj.News_id.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def delete_news_commenrt(request, id):
     news_comment_obj=News_Comment.objects.get(id=id)
     obj=news_comment_obj.News_id.comment
@@ -1198,7 +1179,7 @@ def delete_news_commenrt(request, id):
     news_comment_obj.delete()
     return redirect(f"/news_comment/{news_comment_obj.News_id.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def news_comment_reply(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Post_obj=News_Comment.objects.get(id=id)
@@ -1230,7 +1211,7 @@ def news_comment_reply(request, id):
         # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"Post_obj":Post_obj,'Reply':Reply,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request, 'community_profession/news-comment-reply.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def edit_news_reply(request, id):
     obj=News_Comment_reply.objects.get(id=id)
     if request.method=="POST":
@@ -1241,7 +1222,7 @@ def edit_news_reply(request, id):
     else:
         return redirect(f"/news_comment_reply/{obj.Comment.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def delete_news_reply(request, id):
     obj=News_Comment_reply.objects.get(id=id)
     # print(obj)
@@ -1253,7 +1234,7 @@ def delete_news_reply(request, id):
     obj.delete()
     return redirect(f"/news_comment_reply/{obj.Comment.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def ans_later(request,id):
     # # print(id)
     Question=User_Question.objects.get(id=id)
@@ -1273,7 +1254,7 @@ def ans_later(request,id):
         Question.save()
         return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def delete_ans_later(request,id):
     Answer=Answer_later.objects.get(id=id)
     Question=User_Question.objects.get(id=Answer.Question.id)
@@ -1282,7 +1263,7 @@ def delete_ans_later(request,id):
     Answer.delete()
     return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Unjoin(request,id):
     # print(id)
     unjoin=Join_Community.objects.get(id=id)
@@ -1295,7 +1276,7 @@ def Unjoin(request,id):
     comunity_obj.save()
     return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def serach_profession(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1310,7 +1291,7 @@ def serach_profession(request):
     else:
         return render(request,'community_profession/home-screen.html')
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def serach_Community(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1327,7 +1308,7 @@ def serach_Community(request):
 
 # drop down
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_Edit_My_Image(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_post_obj=UserPost.objects.get(id=id)
@@ -1349,13 +1330,13 @@ def Community_Edit_My_Image(request,id):
             context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_post_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
         return render(request, 'community_profession/community-edit-my-image.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_Delete_My_Image(request, id):
     User_post_obj=UserPost.objects.get(id=id)
     User_post_obj.delete()
     return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_Edit_My_Question(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_question=User_Question.objects.get(id=id)
@@ -1378,13 +1359,13 @@ def Community_Edit_My_Question(request, id):
             context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_question,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
         return render(request, 'community_profession/community-edit-my-question.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_Delete_My_Question(request, id):
     User_question=User_Question.objects.get(id=id)
     User_question.delete()
     return redirect("Community_My_Question")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_Edit_My_Video(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_post_obj=UserPost.objects.get(id=id)
@@ -1406,19 +1387,19 @@ def Community_Edit_My_Video(request,id):
             context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_POST":User_post_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
         return render(request, 'community_profession/community-edit-my-video.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Community_Delete_My_Video(request, id):
     User_post_obj=UserPost.objects.get(id=id)
     User_post_obj.delete()
     return redirect("Community_My_Video")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def Review_Delete(request,id):
     obj=ProfessionReview.objects.get(id=id)
     obj.delete()
     return redirect(f"/profession-personal-details/{obj.Profession.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def edit_review(request,id):
     obj=ProfessionReview.objects.get(id=id)
     if request.method=="POST":
@@ -1430,7 +1411,7 @@ def edit_review(request,id):
     else:
         return redirect(f"/profession-personal-details/{obj.Profession.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def review_reply_delete(request, id):
     obj=ProfessionReview_Reply.objects.get(id=id)
     obj1=obj.Review.Reply
@@ -1440,7 +1421,7 @@ def review_reply_delete(request, id):
     obj.delete()
     return redirect(f"/review_Reply/{obj.Review.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def edit_review_reply(request,id):
     obj=ProfessionReview_Reply.objects.get(id=id)
     if request.method=="POST":
@@ -1467,7 +1448,7 @@ def load_more(request):
     # print(data)
     return JsonResponse(data=data)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def bookmark_post(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     post = Community_Post.objects.get(id=id)
@@ -1476,7 +1457,7 @@ def bookmark_post(request, id):
     post.user_post.save()
     return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def bookmark_question(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     question = User_Question.objects.get(id=id)
@@ -1486,7 +1467,7 @@ def bookmark_question(request, id):
     question.save()
     return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def bookmark_News(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     News_obj = News.objects.get(id=id)
@@ -1496,7 +1477,7 @@ def bookmark_News(request, id):
     News_obj.save()
     return redirect("news")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def bookmark_page(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     bookmark=Bookmark.objects.filter(user_profile=userprofile)[::-1]
@@ -1520,7 +1501,7 @@ def bookmark_page(request):
         "userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"bookmark":bookmark}
     return render(request, 'community_profession/Bookmark.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def remove_post_bookmark(request, id):
     post=UserPost.objects.get(id=id)
     bookmark=Bookmark.objects.get(post=post.id)
@@ -1529,7 +1510,7 @@ def remove_post_bookmark(request, id):
     bookmark.delete()
     return redirect("bookmark_page")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def remove_question_bookmark(request, id):
     question=User_Question.objects.get(id=id)
     bookmark=Bookmark.objects.get(question=question.id)
@@ -1538,7 +1519,7 @@ def remove_question_bookmark(request, id):
     bookmark.delete()
     return redirect("bookmark_page")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def remove_news_bookmark(request, id):
     news_obj=News.objects.get(id=id)
     bookmark=Bookmark.objects.get(news=news_obj.id)
@@ -1547,7 +1528,7 @@ def remove_news_bookmark(request, id):
     bookmark.delete()
     return redirect("bookmark_page")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def report_post(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1578,7 +1559,7 @@ def report_post(request):
     else:
         return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def report_question(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1608,7 +1589,7 @@ def report_question(request):
     else:
         return redirect("community-screen")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def report_news(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1638,7 +1619,7 @@ def report_news(request):
     else:
         return redirect("news")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def report_profile(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1667,7 +1648,7 @@ def report_profile(request):
     else:
         return redirect(f"/profession-profile-screen/{profile}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def report_community(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
@@ -1697,7 +1678,7 @@ def report_community(request):
     else:
         return redirect(f"/community-profile-screen/{Community_id.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def delete_Answer(request, id):
     Answer_obj=User_Answer.objects.get(id=id)
     print(Answer_obj)
@@ -1709,7 +1690,7 @@ def delete_Answer(request, id):
     Answer_obj.delete()
     return redirect(f"/Add_Answer/{Answer_obj.Question.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def edit_answer(request,id):
     obj=User_Answer.objects.get(id=id)
     if request.method=="POST":
@@ -1720,7 +1701,7 @@ def edit_answer(request,id):
     else:
         return redirect(f"/Add_Answer/{obj.Question.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def delete_answer_reply(request, id):
     reply_obj=Answer_Reply.objects.get(id=id)
     print(reply_obj)
@@ -1732,7 +1713,7 @@ def delete_answer_reply(request, id):
     reply_obj.delete()
     return redirect(f"/Add_Answer_Reply/{reply_obj.Answer.id}")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def edit_answer_reply(request,id):
     obj=Answer_Reply.objects.get(id=id)
     if request.method=="POST":

@@ -39,7 +39,7 @@ def is_user_is_professional_user(request):
     else:
         return False
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def loadProfessionProfileScreen(request,id=None):
     # try:
         userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
@@ -66,7 +66,7 @@ def loadProfessionProfileScreen(request,id=None):
     # except:
     #     return HttpResponse("<h1>404 Data Not Found<h1>")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def update_details(request):
     # try:
         userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
@@ -94,7 +94,7 @@ def update_details(request):
     # except:
     #     return HttpResponse("<h1>404 Data Not Found<h1>")
 
-@login_required(login_url='/')
+@login_required(login_url='/sign-in')
 def update_profile_image(request):
     # try:
         userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
@@ -403,19 +403,35 @@ def like_Review(request):
             Profession_Review.like.remove(userprofile)
         else:
             Profession_Review.like.add(userprofile)
-        like, created=Review_Like.objects.get_or_create(user_profile=userprofile,Profession_Review=Profession_Review)
-        if not created:
-            if like.value=="Like":
-                like.value="Unlike"
-            else:
-                like.value="Like"
-        like.save()
         data={
-            'value':like.value,
             'post': Profession_Review.like.all().count()
         }
         return JsonResponse(data, safe=False)
     return redirect(f"/profession-personal-details/{Profession_Review.Profession.id}")
+
+# def like_Review(request):
+#     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+#     if request.method=="POST":
+#         profession_id=request.POST.get("post_id")
+#         print(profession_id)
+#         Profession_Review=ProfessionReview.objects.get(id=profession_id)
+#         if userprofile in Profession_Review.like.all():
+#             Profession_Review.like.remove(userprofile)
+#         else:
+#             Profession_Review.like.add(userprofile)
+#         like, created=Review_Like.objects.get_or_create(user_profile=userprofile,Profession_Review=Profession_Review)
+#         if not created:
+#             if like.value=="Like":
+#                 like.value="Unlike"
+#             else:
+#                 like.value="Like"
+#         like.save()
+#         data={
+#             'value':like.value,
+#             'post': Profession_Review.like.all().count()
+#         }
+#         return JsonResponse(data, safe=False)
+#     return redirect(f"/profession-personal-details/{Profession_Review.Profession.id}")
 
 def edit_service(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
