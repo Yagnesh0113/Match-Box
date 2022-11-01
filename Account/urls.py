@@ -10,8 +10,4 @@ urlpatterns = [
     path('professional_or_community', views.professional_or_community, name='professional_or_community'), # load logout function.
     path('new_community_user', views.new_community_user, name='new_community_user'), # load logout function.
     path('new_professonal_user', views.new_professonal_user, name='new_professonal_user'), # load logout function.
-
-
-
-
 ]
