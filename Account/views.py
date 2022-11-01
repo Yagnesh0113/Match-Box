@@ -45,9 +45,9 @@ def loadSignUpPage(request):
                         user_obj=authenticate(username=email,password=password)
                         if user_obj is not None:
                             login(request, user_obj)
-                            return redirect('/home-screen')
-                        else:
                             return redirect('/')
+                        else:
+                            return redirect('/sign-in')
                     else:
                         messages.error(request, f"Password length must be more than 8 character long and must contatin atleat one number,one uppercare,one lowercase and one special symbol ")
                         return redirect('/sign-up')
@@ -153,7 +153,7 @@ def loadSignUpForProfession(request):
                                             shop_description=about,
                                             )
 
-                return redirect('/')
+                return redirect('/sign-in')
             else:
                 print("Please Select terms and condition")
                 return redirect('/sign-up-community')
@@ -184,10 +184,10 @@ def loadSignInPage(request):
             if user is not None:
                 login(request, user)
                 print('Login Successfully')
-                return redirect('/home-screen')
+                return redirect('/')
             else:
                 messages.error(request, f"Wrong Credetials")
-                return redirect('/')
+                return redirect('/sign-in')
         elif UserProfile.objects.filter(phone_number=username):
             user=UserProfile.objects.get(phone_number=username)
             user=authenticate(username=user.usertype.user_id.username,password=password)
@@ -195,13 +195,13 @@ def loadSignInPage(request):
             if user is not None:
                 login(request, user)
                 print('Login Successfully')
-                return redirect('/home-screen')
+                return redirect('/')
             else:
                 messages.error(request, f"Wrong Credetials")
-                return redirect('/')
+                return redirect('/sign-in')
         else:
             messages.error(request, f"Wrong Credetials")
-            return redirect('/')
+            return redirect('/sign-in')
 
     else:
         return render(request, 'account/sign-in.html')
@@ -213,7 +213,7 @@ def loadForgotPasswordPage(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('/')
+    return redirect('/sign-in')
 
 
 def professional_or_community(request):

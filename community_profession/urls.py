@@ -2,7 +2,7 @@ from django.urls import path
 from .import views
 urlpatterns = [
     # --- Load Professions Pages ---
-    path('home-screen', views.loadHomeScreenPage, name='home-screen'), # load - home screen.
+    path('', views.loadHomeScreenPage, name='home-screen'), # load - home screen.
     path('profession-see-all', views.loadProfessionSeeAllScreen, name='profession-see-all'), # profession-see all screen
     path('search-nearest-professions/<int:id>', views.loadSearchNearestProfessions, name='search-nearest-professions'), # search nearest professions
     path('nearest-professions-list/<int:id>', views.loadNearestProfessionsList, name='nearest-professions-list'), # nearest professions list

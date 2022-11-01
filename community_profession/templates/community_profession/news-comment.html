@@ -81,11 +81,11 @@
                {% csrf_token %}
                <input type="hidden" name="post_id" value="{{News.id}}">
                <button type="submit" class="btn community-like-dislike-btn like-btn{{News.id}}">
-               {% if userprofile not in News.News_like.all %}
-               <i class="fa-solid fa-thumbs-up"></i>
-               {% else %}
-               <i class="fa-solid fa-thumbs-down"></i>
-               {% endif %}
+                  {% if userprofile not in News.News_like.all %}
+                  <i class="fa-regular fa-thumbs-up"></i>
+                  {% else %}
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  {% endif %}
                </button>
                <span class="btn community-like-dislike-btn like-count{{News.id}}">{{ News.News_like.all.count }}</span>
             </form>
@@ -243,11 +243,11 @@
                   {% csrf_token %}
                   <input type="hidden" name="post_id" value="{{i.id}}">
                   <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
-                  {% if userprofile not in i.News_comment_like.all %}
-                  <i class="fa-solid fa-thumbs-up"></i>
-                  {% else %}
-                  <i class="fa-solid fa-thumbs-down"></i>
-                  {% endif %}
+                     {% if userprofile not in i.News_comment_like.all %}
+                     <i class="fa-regular fa-thumbs-up"></i>
+                     {% else %}
+                     <i class="fa-solid fa-thumbs-up"></i>
+                     {% endif %}
                   </button>
                   <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.News_comment_like.all.count }}</span>
                </form>

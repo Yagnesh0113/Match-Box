@@ -62,9 +62,9 @@
                   <input type="hidden" name="post_id" value="{{Answer_obj.id}}">
                      <button type="submit" class="btn community-like-dislike-btn like-btn{{Answer_obj.id}}">
                         {% if userprofile not in Answer_obj.Answer_Like.all %}
-                           <i class="fa-solid fa-thumbs-up"></i>
+                        <i class="fa-regular fa-thumbs-up"></i>
                         {% else %}
-                           <i class="fa-solid fa-thumbs-down"></i>
+                        <i class="fa-solid fa-thumbs-up"></i>
                         {% endif %} 
                      </button>
                   <span class="btn community-like-dislike-btn like-count{{Answer_obj.id}}">{{ Answer_obj.Answer_Like.all.count }}</span>

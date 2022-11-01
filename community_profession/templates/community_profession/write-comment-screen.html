@@ -104,11 +104,11 @@
                {% csrf_token %}
                <input type="hidden" name="post_id" value="{{i.user_post.id}}">
                <button type="submit" class="btn community-like-dislike-btn like-btn{{i.user_post.id}} p-0">
-                  {% if userprofile not in i.user_post.Like.all %}
-                     <i class="fa-solid fa-thumbs-up"></i>
-                  {% else %}
-                     <i class="fa-solid fa-thumbs-down"></i>
-                  {% endif %}
+                {% if userprofile not in i.user_post.Like.all %}
+                <i class="fa-regular fa-thumbs-up"></i>
+                {% else %}
+                <i class="fa-solid fa-thumbs-up"></i>
+                {% endif %}
                </button>
                <span class="btn community-like-dislike-btn like-count{{i.user_post.id}}">{{ i.user_post.Like.all.count }}</span>
             </form>
@@ -252,11 +252,11 @@
                   <input type="hidden" name="post_id" value="{{All_comment.Community_Comment.id}}">
                   <button type="submit"
                           class="btn community-like-dislike-btn like-btn{{All_comment.Community_Comment.id}} pr-0">
-                  {% if userprofile not in All_comment.Community_Comment.Comment_like.all %}
-                  <i class="fa-solid fa-thumbs-up"></i>
-                  {% else %}
-                  <i class="fa-solid fa-thumbs-down"></i>
-                  {% endif %}
+                          {% if userprofile not in All_comment.Community_Comment.Comment_like.all %}
+                          <i class="fa-regular fa-thumbs-up"></i>
+                          {% else %}
+                          <i class="fa-solid fa-thumbs-up"></i>
+                          {% endif %}
                   </button>
                   <span class="p-1 community-like-dislike-btn like-count{{All_comment.Community_Comment.id}}">
                      {{ All_comment.Community_Comment.Comment_like.all.count }}

@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'Account',
     'professional',
 
-
     # socail share
     'django_social_share',
 
@@ -167,9 +166,9 @@ MEDIA_URL = '/media/'
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
 
-LOGIN_REDIRECT_URL='home-screen'
-LOGOUT_REDIRECT_URL='/'
-LOGIN_URL='/'
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL='sign-in'
+LOGIN_URL='sign-in'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -192,3 +191,22 @@ ACCOUNT_EMAIL_REQUIRED = True
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
+
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.hostinger.com'
+# EMAIL_PORT = 465
+# EMAIL_HOST_USER = 'forgot@wecreaters.com'
+# EMAIL_HOST_PASSWORD = 'Wecre@2022'
+# EMAIL_USE_TLS = True
+# from django.core.mail.backends.filebased import EmailBackend
+
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'yagnesh.snable@gmail.com'
+EMAIL_HOST_PASSWORD = 'sfjngnimjqcgypzi'
+EMAIL_USE_TLS = True

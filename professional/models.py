@@ -16,23 +16,6 @@ class ProfessionReview(models.Model):
     def __str__(self):
       return self.Review
 
-    @property
-    def num_likes(self):
-        return self.like.all().count()
-
-LIKE_CHOISE = (
-    ('Like', 'Like'),
-    ('Unlike', 'Unlike'),
-)
-
-class Review_Like(models.Model):
-    user_profile = models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
-    Profession_Review = models.ForeignKey(to=ProfessionReview, on_delete=models.CASCADE)
-    value = models.CharField(choices=LIKE_CHOISE, default='Like', max_length=10)
-
-    def __str__(self):
-        return str(self.profession)
-
 class ProfessionReview_Reply(models.Model):
     Review= models.ForeignKey(to=ProfessionReview,on_delete=models.CASCADE)
     User_Profile=models.ForeignKey(to=UserProfile,on_delete=models.CASCADE)
