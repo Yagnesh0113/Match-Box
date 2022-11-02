@@ -69,7 +69,7 @@ def loadProfessionSeeAllScreen(request):
 def loadSearchNearestProfessions(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Admin_Profession.objects.get(id=id)
-    state=State.objects.all()
+    state=State.objects.all().order_by('name')
     if obj is not None:
         context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession,'state':state}
     else:
@@ -929,6 +929,7 @@ def loadCommunityCreatePostPage(request, id=None):
                 Post_Image=request.FILES["File"]
             except:
                 Post_Image=None
+            print("PostImage", Post_Image)
             Describe=request.POST.get("description")
             Post_Date=date.today()
             now = datetime.now()
@@ -936,6 +937,15 @@ def loadCommunityCreatePostPage(request, id=None):
 
             if Post_Image is not None and ('.mp4' in str(Post_Image) or '.mov' in str(Post_Image)):
                 obj1=UserPost.objects.create(User_Profile=userprofile,Image=Post_Image,Description=Describe,Post_Date=Post_Date,Post_Time=Post_Time,post_type1=True)
+            elif Post_Image is None:
+                obj1=UserPost.objects.create(
+                    User_Profile=userprofile,
+                    Image=Post_Image,
+                    Description=Describe,
+                    Post_Date=Post_Date,
+                    Post_Time=Post_Time,
+                    post_type1=False
+                )
             else:
                 obj1=UserPost.objects.create(User_Profile=userprofile,Image=Post_Image,Description=Describe,Post_Date=Post_Date,Post_Time=Post_Time,post_type1=False)
 

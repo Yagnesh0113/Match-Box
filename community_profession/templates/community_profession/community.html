@@ -1987,9 +1987,12 @@
                            <select name="UserId" id="" class="form-control">
                               <option value="Public" selected>--- For All ---</option>
                               {% for userid in userid %}
-                              <optgroup label="Email Id :=> {{userid.usertype.user_id.email}}">
+                              <!-- <optgroup label="Email Id :=> {{userid.usertype.user_id.email}}"> -->
+                                 {% if userid.usertype.user_id.username == "admin" %}
+                                 {% else %}
                                  <option value="{{userid.id}}"><strong>{{userid.usertype.user_id.first_name}} {{userid.usertype.user_id.last_name}}</strong></option>
-                              </optgroup>
+                                 {% endif %}
+                                 <!-- </optgroup> -->
                               {% endfor %}
                            </select>
                         </div>

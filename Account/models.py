@@ -50,11 +50,14 @@ class UserProfile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save()  # saving image first
-        img = Image.open(self.profile_image.path) # Open image using self
-        if img.height > 200 or img.width > 200:
-            new_img = (200,200)
-            img.thumbnail(new_img)
-            img.save(self.profile_image.path)  # saving image at the same path
+        try:
+            img = Image.open(self.profile_image.path) # Open image using self
+            if img.height > 200 or img.width > 200:
+                new_img = (200,200)
+                img.thumbnail(new_img)
+                img.save(self.profile_image.path)  # saving image at the same path
+        except:
+            pass
 
 class Profession(models.Model):
     UserProfile=models.ForeignKey(to=UserProfile,on_delete=models.CASCADE)
@@ -92,11 +95,14 @@ class Profession(models.Model):
     
     def save(self, *args, **kwargs):
         super().save()  # saving image first
-        img = Image.open(self.profession_image.path) # Open image using self
-        if img.height > 200 or img.width > 200:
-            new_img = (200,200)
-            img.thumbnail(new_img)
-            img.save(self.profession_image.path)  # saving image at the same path
+        try:
+            img = Image.open(self.profession_image.path) # Open image using self
+            if img.height > 200 or img.width > 200:
+                new_img = (200,200)
+                img.thumbnail(new_img)
+                img.save(self.profession_image.path)  # saving image at the same path
+        except:
+            pass
 
 class ProfessionServices(models.Model):
     Profession= models.ForeignKey(to=Profession,on_delete=models.CASCADE)
@@ -114,11 +120,14 @@ class Professionimage(models.Model):
 
     def save(self, *args, **kwargs):
         super().save()  # saving image first
-        img = Image.open(self.image.path) # Open image using self
-        if img.height > 350 or img.width > 500:
-            new_img = (350,500)
-            img.thumbnail(new_img)
-            img.save(self.image.path)  # saving image at the same path
+        try:
+            img = Image.open(self.image.path) # Open image using self
+            if img.height > 350 or img.width > 500:
+                new_img = (350,500)
+                img.thumbnail(new_img)
+                img.save(self.image.path)  # saving image at the same path
+        except:
+            pass
 
 
 class Professionvideo(models.Model):
