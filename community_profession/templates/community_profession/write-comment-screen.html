@@ -135,61 +135,8 @@
     </div>
 </div>
 <!-- End no-of-like, no-of-comments, share -->
-<!-- Start User Profile icon and name -->
-<div class="row community-body pt-3 pl-4">
-    <div class="comment-float-child">
-        <div class="row">
-            <!-- Start Profile picture -->
-            <div class="col-12 col-sm-12 col-md-12   community-post-profile-picture">
-                <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania" height="100%"
-                     width="100%">
-            </div>
-            <!-- End Profile picture -->
-        </div>
-    </div>
-    <div class="comment-float-child-1">
-        <div class="row">
-            <!-- Start Community name -->
-            <div class="col-12 col-sm-12 col-md-12 pl-1">
-                <!-- Start community name -->
-                <div class="row">
-                    <div class="col-md-12 community-name pl-0 pt-1">
-                        {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
-                    </div>
-                </div>
-                <!-- End community name -->
-            </div>
-            <!-- End Community name -->
-        </div>
-    </div>
-</div>
-<!-- End User Profile icon and name -->
-<!-- Start Post form -->
-<form action="{% url 'community-write-comment-screen' i.id %}" method="POST">
-    {% csrf_token %}
-    <!-- Start comment-text-box -->
-    <div class="row pl-3">
-        <div class="col-md-12 pt-3 comment-text-box">
-            <div class="form-group">
-                <textarea name="Comment" class="form-control" rows="5" id="comment" placeholder="What do you think?"
-                          required></textarea>
-            </div>
-        </div>
-    </div>
-    <!-- End comment-text-box -->
-    <!-- Start cancel-post-btn -->
-    <div class="row pl-3 pt-3  cancel-post-btn">
-        <div class="col-md-12 pb-3 text-right border-bottom">
-            <!-- Start post-btn -->
-            <span class="post-btn">
-         <button type="submit" class="btn pl-5 pr-5">Post</button>
-         </span>
-            <!-- End post-btn -->
-        </div>
-    </div>
-    <!-- End cancel-post-btn -->
-</form>
-<!-- End Post form -->
+
+
 {% for All_comment in All_comment %}
 <!-- Start Comments -->
 <div class="row pl-4">
@@ -294,6 +241,63 @@
 </div>
 <!-- End Comments -->
 {% endfor %}
+
+
+<!-- Start User Profile icon and name -->
+<div class="row community-body pt-3 pl-4">
+    <div class="comment-float-child">
+        <div class="row">
+            <!-- Start Profile picture -->
+            <div class="col-12 col-sm-12 col-md-12   community-post-profile-picture">
+                <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania" height="100%"
+                     width="100%">
+            </div>
+            <!-- End Profile picture -->
+        </div>
+    </div>
+    <div class="comment-float-child-1">
+        <div class="row">
+            <!-- Start Community name -->
+            <div class="col-12 col-sm-12 col-md-12 pl-1">
+                <!-- Start community name -->
+                <div class="row">
+                    <div class="col-md-12 community-name pl-0 pt-1">
+                        {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+                    </div>
+                </div>
+                <!-- End community name -->
+            </div>
+            <!-- End Community name -->
+        </div>
+    </div>
+</div>
+<!-- End User Profile icon and name -->
+<!-- Start Post form -->
+<form action="{% url 'community-write-comment-screen' i.id %}" method="POST">
+    {% csrf_token %}
+    <!-- Start comment-text-box -->
+    <div class="row pl-3">
+        <div class="col-md-12 pt-3 comment-text-box">
+            <div class="form-group">
+                <textarea name="Comment" class="form-control" id="comment" placeholder="What do you think?"
+                          required></textarea>
+            </div>
+        </div>
+    </div>
+    <!-- End comment-text-box -->
+    <!-- Start cancel-post-btn -->
+    <div class="row pl-3 pt-3  cancel-post-btn">
+        <div class="col-md-12 pb-3 text-right border-bottom">
+            <!-- Start post-btn -->
+            <span class="post-btn">
+         <button type="submit" class="btn pl-5 pr-5">Post</button>
+         </span>
+            <!-- End post-btn -->
+        </div>
+    </div>
+    <!-- End cancel-post-btn -->
+</form>
+<!-- End Post form -->
 <!-- start comment edit modal -->
 <div class="modal create-community-modeal" id="edit">
     <div class="modal-dialog modal-lg">

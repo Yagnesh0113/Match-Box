@@ -87,57 +87,6 @@
    </div>
 </div>
 
-<!-- Start Login Profile info -->
-<div class="row pt-3">
-    <div class="col-md-12 pb-3 all-comments community-body">
-        <div class="row">
-             <!-- Start user-profile -->
-             <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
-                <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
-             </div>
-             <!-- End user-profile -->
-             <!-- Start user-community-name, time -->
-              <div class="col-5 col-sm-4 col-md-4 pl-0 pt-2">
-                  <!-- Start community name -->
-                  <div class="row font-weight-bolder">
-                     <div class="col-md-12 community-name  pl-0">
-                        {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
-                     </div>
-                  </div>
-                  <!-- End community name -->
-              </div>
-             <!-- End user-community-name, time -->
-        </div>
-    </div>
-</div>
-<!-- End Login Profile info -->
-
-
-<!-- Start Reply form -->
-<form action="{% url 'Post_comment_reply' Post_obj.id %}" method="POST">
-   {% csrf_token %}
-    <div class="row pl-3">
-        <div class="col-md-12 border-bottom">
-            <div class="row reply-form ">
-              <!-- Start reply-input-box -->
-              <div class="col-9 col-sm-10 col-md-10 pt-3">
-                 <div class="form-group">
-                    <input type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply">
-                 </div>
-              </div>
-              <!-- End reply-input-box -->
-              <!-- Start post btn -->
-              <div class="col-3 col-sm-2 col-md-2 pt-3">
-                 <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
-              </div>
-              <!-- End post btn -->
-            </div>
-        </div>
-    </div>
-</form>
-<!-- Start Reply form -->
-
-
 <!-- Start Comment -->
 {% for i in Reply %}
 <div class="row pt-4 pl-3">
@@ -206,6 +155,57 @@
 </div>
 {% endfor %}
 <!-- End Comment -->
+
+<!-- Start Login Profile info -->
+<div class="row pt-3">
+   <div class="col-md-12 pb-3 all-comments community-body">
+       <div class="row">
+            <!-- Start user-profile -->
+            <div class="col-2 col-sm-1 col-md-1 community-post-profile-picture text-center">
+               <img class="img-fluid rounded-circle" src="{{userprofile.profile_image.url}}" alt="Chania">
+            </div>
+            <!-- End user-profile -->
+            <!-- Start user-community-name, time -->
+             <div class="col-5 col-sm-4 col-md-4 pl-0 pt-2">
+                 <!-- Start community name -->
+                 <div class="row font-weight-bolder">
+                    <div class="col-md-12 community-name  pl-0">
+                       {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+                    </div>
+                 </div>
+                 <!-- End community name -->
+             </div>
+            <!-- End user-community-name, time -->
+       </div>
+   </div>
+</div>
+<!-- End Login Profile info -->
+
+
+<!-- Start Reply form -->
+<form action="{% url 'Post_comment_reply' Post_obj.id %}" method="POST">
+  {% csrf_token %}
+   <div class="row pl-3">
+       <div class="col-md-12 border-bottom">
+           <div class="row reply-form ">
+             <!-- Start reply-input-box -->
+             <div class="col-9 col-sm-10 col-md-10 pt-3">
+                <div class="form-group">
+                   <input type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply">
+                </div>
+             </div>
+             <!-- End reply-input-box -->
+             <!-- Start post btn -->
+             <div class="col-3 col-sm-2 col-md-2 pt-3">
+                <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
+             </div>
+             <!-- End post btn -->
+           </div>
+       </div>
+   </div>
+</form>
+<!-- Start Reply form -->
+
 
 <!-- start reply edit modal -->
 <div class="modal create-community-modeal" id="editreply">

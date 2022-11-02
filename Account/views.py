@@ -59,7 +59,7 @@ def loadSignUpPage(request):
                 return redirect('/sign-up')
             
     else:
-        state=State.objects.all()
+        state=State.objects.all().order_by('name')
         context={'state':state}
         return render(request, 'account/sign-up.html', context)
 
@@ -158,7 +158,7 @@ def loadSignUpForProfession(request):
                 print("Please Select terms and condition")
                 return redirect('/sign-up-community')
     else:
-        state=State.objects.all()
+        state=State.objects.all().order_by('name')
         context={'state':state}
         return render(request, 'account/sign-up-for-profession.html',context)
 

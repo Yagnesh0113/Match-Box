@@ -192,7 +192,7 @@ def add_profession(request):
     else:
         Profession_obj=Admin_Profession.objects.all()
         # My_Community=Community.objects.all()
-        state=State.objects.all()
+        state=State.objects.all().order_by('name')
         if obj is not None:
             context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':Profession_obj,'state':state}
         else:

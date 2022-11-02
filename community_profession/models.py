@@ -31,13 +31,15 @@ class UserPost(models.Model):
 
     def save(self, *args, **kwargs):
         super().save()  # saving image first
+        try:
+            img = Image.open(self.Image.path) # Open image using self
 
-        img = Image.open(self.Image.path) # Open image using self
-
-        if img.height > 600 or img.width > 700:
-            new_img = (600,700)
-            img.thumbnail(new_img)
-            img.save(self.Image.path)  # saving image at the same path
+            if img.height > 600 or img.width > 700:
+                new_img = (600,700)
+                img.thumbnail(new_img)
+                img.save(self.Image.path)  # saving image at the same path
+        except:
+            pass
 
 class Post_Commment(models.Model):
     User_Post=models.ForeignKey(to=UserPost, on_delete=models.CASCADE)
@@ -110,17 +112,23 @@ class Community(models.Model):
     
     def save(self, *args, **kwargs):
         super().save()  # saving image first
-        img = Image.open(self.Community_Cover_Image.path) # Open image using self
-        if img.height > 400 or img.width > 1519:
-            new_img = (400,1519)
-            img.thumbnail(new_img)
-            img.save(self.Community_Cover_Image.path)  # saving image at the same path
+        try:
+            img = Image.open(self.Community_Cover_Image.path) # Open image using self
+            if img.height > 400 or img.width > 1519:
+                new_img = (400,1519)
+                img.thumbnail(new_img)
+                img.save(self.Community_Cover_Image.path)  # saving image at the same path
+        except:
+            pass
         
-        img1 = Image.open(self.Community_Profile_Image.path) # Open image using self
-        if img1.height > 40 or img1.width > 40:
-            new_img = (40,40)
-            img1.thumbnail(new_img)
-            img1.save(self.Community_Profile_Image.path)  # saving image at the same path
+        try:
+            img1 = Image.open(self.Community_Profile_Image.path) # Open image using self
+            if img1.height > 40 or img1.width > 40:
+                new_img = (40,40)
+                img1.thumbnail(new_img)
+                img1.save(self.Community_Profile_Image.path)  # saving image at the same path
+        except:
+            pass
 
 class Community_Post(models.Model):
     Community_obj=models.ForeignKey(to=Community, on_delete=models.CASCADE)
@@ -165,11 +173,15 @@ class News(models.Model):
     
     def save(self, *args, **kwargs):
         super().save()  # saving image first
-        img = Image.open(self.Image.path) # Open image using self
-        if img.height > 600 or img.width > 700:
-            new_img = (600,700)
-            img.thumbnail(new_img)
-            img.save(self.Image.path)  # saving image at the same path
+        try:
+            img = Image.open(self.Image.path) # Open image using self
+            if img.height > 600 or img.width > 700:
+                new_img = (600,700)
+                img.thumbnail(new_img)
+                img.save(self.Image.path)  # saving image at the same path
+        except:
+            pass
+        
 
 class News_Comment(models.Model):
     User_Profile=models.ForeignKey(to=UserProfile, on_delete=models.CASCADE)
