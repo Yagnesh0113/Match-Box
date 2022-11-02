@@ -247,7 +247,7 @@
 }
 
 .recent-searches-window .search-icon {
-	font-size: 7.5rem;
+	font-size: 3.5rem;
 }
 
 .recent-searches-window .search-heading {
@@ -557,6 +557,17 @@ body {
 	    padding-right:35px;
 	}
 
+	.recent-searches-window .search-heading
+	{
+        font-size: 1.25rem;
+        line-height: 1.438rem;
+    }
+
+    .recent-searches-window .search-sub-heading
+    {
+        font-size: 0.875rem;
+        line-height: 145%;
+    }
 }
 
 @media (min-width: 577px) {
