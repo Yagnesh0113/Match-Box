@@ -253,7 +253,8 @@
       </div>
       {% else %}
       <!-- fcgvhbkjnlm,.;/ fcghvkjnlm, -->
-      <div class="row pt-3 create-your-profession">
+      <a href="{% url 'add_profession' %}" class="text-decoration-none text-light">
+         <div class="row pt-3 create-your-profession">
          <div class="col-md-12 text-center recent-searches-window">
             <div class="row">
                <div class="col-md-12 search-icon">
@@ -272,6 +273,7 @@
             </div>
          </div>
       </div>
+      </a>
       {% endif %}
       <!-- End my Profession card -->
       <!-- Start update profile image modal -->

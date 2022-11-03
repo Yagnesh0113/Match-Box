@@ -10,6 +10,73 @@
 <script src="{% static 'community_profession/js/font-awsome-kit.js' %}"></script>
 <!-- Start profession-home-screen.css  -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-home-screen.css' %}">
+
+<style>
+    .cover {
+      padding: 0px 30px;
+      position: relative;
+      margin-top: 5px;
+    }
+
+    .left {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .right {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .scroll-images {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .child img {
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .scroll-images::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+      background-color: #aaa;
+    }
+
+    .scroll-images::-webkit-scrollbar-thumb {
+      background-color: black;
+    }
+
+    .child {
+      min-width: 120px;
+      height: 60px;
+      margin: 1px 10px;
+      overflow: hidden;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .scroll-images::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+  </style>
 {% endblock own_css %}
 {% block content %}
 <!-- Start our Professions heading  -->
@@ -25,7 +92,7 @@
 </div>
 <!-- End our Professions heading  -->
 <!-- Start our Professions -->
-<div class="page-content page-container" id="page-content">
+<div class="page-content page-container profession-desktop-view" id="page-content">
     <div class="padding">
         <div class="row ">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -57,6 +124,51 @@
     </div>
 </div>
 <!-- End our Professions -->
+
+<!-- Start our profession for mobile views -->
+<section>
+    <div class="row category-mobile-view profession-mobile-view">
+        <div class="col-12 pl-0 pr-0">
+            <div class="cover">
+                <!-- <button class="left" onclick="leftScroll()">
+                   <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                   </button> -->
+                <div class="row ">
+                    <div class="col-12 pr-0">
+                        <div class="scroll-images ">
+                            {% for profession in profession %}
+                            <div class="row pr-3">
+                                <div class="col-12 text-center">
+                                    <a href="{% url 'search-nearest-professions' profession.id %}" class="text-decoration-none">
+                                        <div class="row ">
+                                            <div class="col-md-12 child ">
+                                                <img class="child-img" src="{{profession.Profession_Outside_Image.url}}" alt="image"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 men">
+                                                {{profession.Profession_Name}}
+                                            </div>
+                                        </div>
+                                        <!-- <span class="men">Men</span> -->
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!-- <button class="right" onclick="rightScroll()">
+                   <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                   </button> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Start our profession for mobile views -->
+
+
 <!-- Start your recent searches heading  -->
 <div class="row your-recent-search">
     <div class="col-md-10 recent-searches-heading">
@@ -71,7 +183,8 @@
 <!-- End your recent searches heading  -->
 <!-- Start recent search window -->
 {% if Recent %}
-<div class="page-content page-container" id="page-content1">
+<!-- Start our recent search for desktop views -->
+<div class="page-content page-container profession-desktop-view" id="page-content1">
     <div class="padding">
         <div class="row ">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -99,6 +212,50 @@
         </div>
     </div>
 </div>
+<!-- End our recent search for desktop views -->
+
+<!-- Start our recent search for mobile views -->
+<section>
+    <div class="row category-mobile-view profession-mobile-view">
+        <div class="col-12 pl-0 pr-0">
+            <div class="cover">
+                <!-- <button class="left" onclick="leftScroll()">
+                   <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                   </button> -->
+                <div class="row ">
+                    <div class="col-12 pr-0">
+                        <div class="scroll-images ">
+                            {% for recent in Recent %}
+                            <div class="row pr-3">
+                                <div class="col-12 text-center">
+                                    <a href="{% url 'profession-personal-details' recent.Profession_obj.id %}" class="text-decoration-none">
+                                        <div class="row ">
+                                            <div class="col-md-12 child ">
+                                                <img class="child-img" src="{{recent.Profession_obj.profession_image.url}}" alt="image"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 men">
+                                                {{recent.Profession_obj.shop_name}}
+                                            </div>
+                                        </div>
+                                        <!-- <span class="men">Men</span> -->
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!-- <button class="right" onclick="rightScroll()">
+                   <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                   </button> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Start our recent search for mobile views -->
 {% else %}
 <div class="row">
    <div class="col-12 recent-search-padding">
@@ -159,8 +316,9 @@
 </div>
 <!-- End your recent searches heading  -->
 <!-- Start Communit - Profession Carosuel -->
+
 <!-- Use same css for popular services -->
-<div class="page-content page-container" id="page-content">
+<div class="page-content page-container profession-desktop-view" id="page-content">
     <div class="padding">
         <div class="row ">
             <div class="col-lg-12 grid-margin stretch-card">
@@ -193,6 +351,50 @@
     </div>
 </div>
 <!-- End Community - Profession Carosuel -->
+
+<!-- Start popular services for mobile views -->
+<section>
+    <div class="row category-mobile-view profession-mobile-view">
+        <div class="col-12 pl-0 pr-0">
+            <div class="cover">
+                <!-- <button class="left" onclick="leftScroll()">
+                   <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                   </button> -->
+                <div class="row ">
+                    <div class="col-12 pr-0">
+                        <div class="scroll-images ">
+                            {% for Popular_obj in Popular_profession %}
+                            <div class="row pr-3">
+                                <div class="col-12 text-center">
+                                    <a href="{% url 'profession-personal-details' Popular_obj.id %}" class="text-decoration-none">
+                                        <div class="row ">
+                                            <div class="col-md-12 child ">
+                                                <img class="child-img" src="{{Popular_obj.profession_image.url}}" alt="image"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12 men">
+                                                {{Popular_obj.shop_name}}
+                                            </div>
+                                        </div>
+                                        <!-- <span class="men">Men</span> -->
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!-- <button class="right" onclick="rightScroll()">
+                   <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                   </button> -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End popular services for mobile views -->
+
 <!-- Start oweal carosuel - style and script -->
 <script src="{% static 'community_profession/js/profession-home-screen.js' %}"></script>
 <!-- End oweal carosuel - style and script -->
@@ -200,4 +402,15 @@
 <!-- Start oweal carosuel JS - 2  -->
 <script src="{% static 'community_profession/js/owl.carousel.js' %}"></script>
 <!-- End oweal carosuel JS - 2  -->
+
+<script>
+    function leftScroll() {
+      const left = document.querySelector(".scroll-images");
+      left.scrollBy(200, 0);
+    }
+    function rightScroll() {
+      const right = document.querySelector(".scroll-images");
+      right.scrollBy(-200, 0);
+    }
+  </script>
 {% endblock content %}
