@@ -10,6 +10,73 @@
 <script src="{% static 'community_profession/js/font-awsome-kit.js' %}"></script>
 <!-- Start profession-home-screen.css  -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-home-screen.css' %}">
+
+<style>
+    .cover {
+      padding: 0px 30px;
+      position: relative;
+      margin-top: 100px;
+    }
+
+    .left {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .right {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .scroll-images {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .child img {
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .scroll-images::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+      background-color: #aaa;
+    }
+
+    .scroll-images::-webkit-scrollbar-thumb {
+      background-color: black;
+    }
+
+    .child {
+      min-width: 120px;
+      height: 60px;
+      margin: 1px 10px;
+      overflow: hidden;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .scroll-images::-webkit-scrollbar {
+      -webkit-appearance: none;
+    }
+  </style>
 {% endblock own_css %}
 {% block content %}
 <!-- Start our Professions heading  -->
@@ -24,6 +91,7 @@
     </div>-->
 </div>
 <!-- End our Professions heading  -->
+
 <!-- Start our Professions -->
 <div class="page-content page-container" id="page-content">
     <div class="padding">
@@ -57,6 +125,49 @@
     </div>
 </div>
 <!-- End our Professions -->
+
+<!-- start category for mobile  -->
+<section>
+      <div class="row category-mobile-view">
+         <div class="col-12 ps-0 pe-0">
+            <div class="cover">
+               <!-- <button class="left" onclick="leftScroll()">
+                  <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                  </button> -->
+               <div class="row">
+                  <div class="col-12 pe-0">
+                     <div class="scroll-images">
+                        {% for profession in profession %}
+                        <div class="row pe-3">
+                           <div class="col-12 text-center">
+                              <a href="{% url 'search-nearest-professions' profession.id %}" class="text-decoration-none">
+                                 <div class="row">
+                                    <div class="col-md-12 child">
+                                       <img class="child-img" src="{{profession.Profession_Outside_Image.url}}" alt="image"/>
+                                    </div>
+                                 </div>
+                           <div class="row">
+                        <div class="col-12 men">
+                        {{profession.Profession_Name}}
+                     </div>
+                  </div>
+                     <!-- <span class="men">Men</span> -->
+                              </a>
+               </div>
+            </div>
+      {% endfor %}
+      </div>
+      </div>
+      </div>
+      <!-- <button class="right" onclick="rightScroll()">
+         <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+         </button> -->
+      </div>
+      </div>
+      </div>
+      </section>
+<!-- end category for mobile -->
+
 <!-- Start your recent searches heading  -->
 <div class="row your-recent-search">
     <div class="col-md-10 recent-searches-heading">
@@ -200,4 +311,15 @@
 <!-- Start oweal carosuel JS - 2  -->
 <script src="{% static 'community_profession/js/owl.carousel.js' %}"></script>
 <!-- End oweal carosuel JS - 2  -->
+
+<script>
+    function leftScroll() {
+      const left = document.querySelector(".scroll-images");
+      left.scrollBy(200, 0);
+    }
+    function rightScroll() {
+      const right = document.querySelector(".scroll-images");
+      right.scrollBy(-200, 0);
+    }
+  </script>
 {% endblock content %}
