@@ -101,6 +101,7 @@
       </style>
    </head>
    <body class="bg-dark" style="overflow-x: hidden;">
+
       <!-- Start Navigation -->
       <div class="row pl-4 pt-2 pr-2">
          <div class="col-12 col-md-12 custom-nav">
@@ -230,6 +231,7 @@
          </div>
       </div>
       <!-- End Navigation -->
+
       <!-- Start Mainn body content -->
       <div class="row bg-dark" id="scrollable-container">
          <!-- Start Main Content -->
@@ -522,59 +524,135 @@
          <!-- End Community window -->
       </div>
       <!-- End Mainn body content -->
-      <!-- Start Footer - mobile -->
-      <div class="row bg-dark text-light border-top pt-3 footer-mobile">
-         <div class="col-md-2">
+
+      <!-- Start Footer - desktop - views -->
+      <div class="row bg-dark border-top pt-3 pb-3 footer footer-desktop pl-3">
+
+         <!-- Start About us, faq, privacy policy, terms and condition -->
+         <div class="col-sm-2">
+            <!-- Start about-us -->
             <div class="row">
-               <!-- <a class="nav-link active" href="{% url 'community-screen' %}"> -->
-               <div class="col-md-12">Community</div>
-               <!-- </a> -->
-            </div>
-            <div class="row">
-               <!-- <a class="nav-link active" href="{% url 'home-screen' %}"> -->
-               <div class="col-md-12">Profession</div>
-               <!-- </a> -->
-            </div>
-            <div class="row">
-               <div class="col-md-12">Ask</div>
-            </div>
-            <div class="row">
-               <div class="col-md-12">Answer</div>
-            </div>
-         </div>
-         <div class="col-md-2">
-            <div class="row">
-               <!-- <a class="nav-link" href="#" data-target="#modal10" data-toggle="modal"> -->
-               <div class="col-md-12">My Community</div>
-               <!-- </a> -->
-            </div>
-            <div class="row">
-               <div class="col-md-12">Popular services</div>
-            </div>
-            <div class="row">
-               <div class="col-md-12">Community post</div>
-            </div>
-         </div>
-         <div class="col-md-6">
-            <div class="row">
-               <div class="col-md-12">
-                  <a href="{% url 'terms-condition' %}" target="_blank" class="text-decoration-none">
-                  Terms & Condition
+               <div class="col-sm-12 footer-content">
+                  <a href="{% url 'home-screen' %}" class="text-decoration-none">
+                     About Us
                   </a>
                </div>
             </div>
+            <!-- End about-us -->
+            <!-- Start FAQ -->
             <div class="row">
-               <div class="col-md-12">
+               <div class="col-sm-12 footer-content">
+                   <a href="{% url 'home-screen' %}" class="text-decoration-none">
+                     FAQ
+                   </a>
+               </div>
+            </div>
+            <!-- End FAQ -->
+            <!-- Start privacy-policy -->
+            <div class="row">
+               <div class="col-sm-12 footer-content">
                   <a href="{% url 'privacy-policy' %}" target="_blank" class="text-decoration-none">
-                  Privacy & Policy
+                     Privacy & Policy
                   </a>
                </div>
             </div>
+            <!-- End privacy-policy -->
+            <!-- Start terms & conditions -->
+            <div class="row">
+               <div class="col-sm-12 footer-content">
+                  <a href="{% url 'terms-condition' %}" target="_blank" class="text-decoration-none">
+                     Terms & Condition
+                  </a>
+               </div>
+            </div>
+            <!-- End terms & conditions -->
          </div>
-         <div class="col-md-2 text-center">
+         <!-- End About us, faq, privacy policy, terms and condition -->
+
+         <!--<div class="col-sm-1"></div>-->
+
+         <!-- Start community, profession, ask, answer -->
+         <div class="col-sm-1">
+            <!-- Start Community -->
+            <div class="row">
+               <div class="col-sm-12 footer-content">
+                  <a href="{% url 'community-screen' %}" class="text-decoration-none">
+                     Community
+                  </a>
+               </div>
+            </div>
+            <!-- End Community -->
+
+            <!-- Start Profession -->
+            <div class="row">
+               <div class="col-sm-12 footer-content">
+                  <a href="{% url 'home-screen' %}" class="text-decoration-none">
+                     Profession
+                  </a>
+               </div>
+            </div>
+            <!-- End Profession -->
+
+            <!-- Start Ask -->
+            <div class="row">
+               <div class="col-sm-12 footer-content">
+                  Ask /  Post
+               </div>
+            </div>
+            <!-- End Ask -->
+
+            <!-- Start Answer -->
+            <div class="row">
+               <div class="col-sm-12 footer-content">Answer</div>
+            </div>
+            <!-- End Answer -->
+         </div>
+         <!-- End community, profession, ask, answer -->
+
+         <div class="col-sm-1"></div>
+
+         <!-- Start my community, popular, services, community, post -->
+         <div class="col-sm-2">
+            <div class="row">
+               <div class="col-sm-12 footer-content">My Community</div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12 footer-content">Popular services</div>
+            </div>
+            <div class="row">
+               <div class="col-sm-12 footer-content">Community post</div>
+            </div>
+         </div>
+         <!-- End my community, popular, services, community, post -->
+
+         <!--<div class="col-sm-1"></div>-->
+
+         <!-- Start registered office address -->
+         <div class="col-sm-3">
+            <!-- Start address heading-->
+            <div class="row">
+               <div class="col-sm-12 office-address-heading">
+                  Registered Office Address
+               </div>
+            </div>
+            <!-- End address heading-->
+
+            <!-- Start office address -->
+            <div class="row">
+               <div class="col-sm-12 office-address pt-3">
+                  Snable pvt. ltd. Anand Apartment 2nd Floor, Kotwal Nagar Ring Rd, Khamla, Nagpur-440022
+               </div>
+            </div>
+            <!-- End office address -->
+         </div>
+         <!-- End registered office address -->
+
+         <div class="col-sm-1"></div>
+         <!-- Start follow icon and company logo -->
+         <div class="col-sm-2 text-center">
             <!-- Start Follow icons -->
             <div class="row">
-               <div class="col-md-12">
+               <div class="col-sm-12">
                   <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
                   <i class="fa-brands fa-facebook-f"></i>
                   </a>
@@ -589,16 +667,162 @@
             <!-- End Follow icons -->
             <!-- Start Comapny logo -->
             <div class="row">
-               <div class="col-md-12 pt-3">
-                  <img src="{% static 'community_profession/img/footer-company-logo.png' %}" class="img-fluid"
-                     alt="Responsive image">
+               <div class="col-sm-12 pt-3">
+                  <a href="{% url 'home-screen' %}">
+                     <img src="{% static 'community_profession/img/footer-company-logo.png' %}" class="img-fluid" alt="Responsive image">
+                  </a>
                </div>
             </div>
             <!-- End Comapny logo -->
          </div>
+         <!-- End follow icon and company logo -->
       </div>
-      <!-- End Footer - mobile --
-         <!-- Start Create Community Modeal pop up -->
+      <!-- End Footer - desktop - views -->
+
+      <!-- Start Footer - mobile - views -->
+      <div class="row bg-dark border-top pt-3 pb-3 footer footer-mobile pl-3">
+         <div class="col-sm-12">
+            <!-- Start footer content -->
+            <div class="row">
+               <!-- Start About us, faq, privacy policy, terms and condition -->
+               <div class="col-4">
+                  <!-- Start about-us -->
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">
+                        About Us
+                     </div>
+                  </div>
+                  <!-- End about-us -->
+                  <!-- Start FAQ -->
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">
+                        FAQ
+                     </div>
+                  </div>
+                  <!-- End FAQ -->
+                  <!-- Start privacy-policy -->
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">
+                        <a href="{% url 'privacy-policy' %}" target="_blank" class="text-decoration-none">
+                           Privacy & Policy
+                        </a>
+                     </div>
+                  </div>
+                  <!-- End privacy-policy -->
+                  <!-- Start terms & conditions -->
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">
+                        <a href="{% url 'terms-condition' %}" target="_blank" class="text-decoration-none">
+                           Terms & Condition
+                        </a>
+                     </div>
+                  </div>
+                  <!-- End terms & conditions -->
+               </div>
+               <!-- End About us, faq, privacy policy, terms and condition -->
+               <!-- Start community, profession, ask, answer -->
+               <div class="col-4">
+                  <!-- Start Community -->
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">Community</div>
+                  </div>
+                  <!-- End Community -->
+
+                  <!-- Start Profession -->
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">Profession</div>
+                  </div>
+                  <!-- End Profession -->
+
+                  <!-- Start Ask -->
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">Ask / Post</div>
+                  </div>
+                  <!-- End Ask -->
+
+                  <!-- Start Answer -->
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">Answer</div>
+                  </div>
+                  <!-- End Answer -->
+               </div>
+               <!-- End community, profession, ask, answer -->
+               <!-- Start my community, popular, services, community, post -->
+               <div class="col-4">
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">My Community</div>
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">Popular services</div>
+                  </div>
+                  <div class="row">
+                     <div class="col-sm-12 footer-content">Community post</div>
+                  </div>
+               </div>
+               <!-- End my community, popular, services, community, post -->
+            </div>
+            <!-- End footer content -->
+
+            <!-- Start registered office address -->
+            <div class="row">
+               <div class="col-12 pt-4">
+                  <!-- Start address heading-->
+                  <div class="row">
+                     <div class="col-sm-12 office-address-heading">
+                        Registered Office Address
+                     </div>
+                  </div>
+                  <!-- End address heading-->
+
+                  <!-- Start office address -->
+                  <div class="row">
+                     <div class="col-sm-12 office-address pt-1">
+                        Snable pvt. ltd. Anand Apartment 2nd Floor, Kotwal Nagar Ring Rd, Khamla, Nagpur-440022
+                     </div>
+                  </div>
+                  <!-- End office address -->
+               </div>
+            </div>
+            <!-- End registered office address -->
+
+            <!-- Start follow icon and company logo -->
+            <div class="row pt-3">
+               <!-- Start Follow icons -->
+               <div class="col-6">
+                  <div class="row">
+                     <div class="col-12 pt-4">
+                        <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
+                        <i class="fa-brands fa-instagram-square"></i>
+                        </a>
+                        <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Follow icons -->
+               <!-- Start Comapny logo -->
+               <div class="col-6 text-right pr-5">
+                  <div class="row">
+                     <div class="col-sm-12 ">
+                        <a href="{% url 'home-screen' %}">
+                           <img src="{% static 'community_profession/img/footer-company-logo.png' %}" class="img-fluid"
+                           alt="Responsive image">
+                        </a>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Comapny logo -->
+            </div>
+            <!-- End follow icon and company logo -->
+         </div>`
+      </div>
+      <!-- End Footer - mobile - views -->
+
+      <!-- Start Create Community Modeal pop up -->
       <div class="modal create-community-modeal" id="modal3">
          <div class="modal-dialog modal-lg">
             <div class="modal-content">

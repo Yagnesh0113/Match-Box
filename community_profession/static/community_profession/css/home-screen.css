@@ -186,6 +186,8 @@
 	border-bottom: 0.063rem solid var(--color-12);
 }
 
+
+
 /* End home page body */
 
 /* Start Community - Profession Carosuel */
@@ -582,6 +584,42 @@ body {
         padding-top: 1.688rem;
         padding-bottom: 0.938rem;
     }
+
+    .footer .footer-content
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.625rem;
+        line-height: 240%;
+        color: var(--color-2);
+    }
+
+
+    .footer .office-address-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        color: var(--color-2);
+    }
+
+    .footer .office-address
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.625rem;
+        line-height: 145%;
+        color: var(--color-2);
+    }
+
+    .footer-desktop
+    {
+        display:none;
+    }
 }
 
 @media (min-width: 577px) {
@@ -620,6 +658,42 @@ body {
 	{
 	    display:none;
 	}
+
+	.footer .footer-content
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 240%;
+        color: var(--color-2);
+    }
+
+
+    .footer .office-address-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1.125rem;
+        line-height: 1.688rem;
+        color: var(--color-2);
+    }
+
+    .footer .office-address
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 145%;
+        color: var(--color-2);
+    }
+
+    .footer-mobile
+    {
+        display:none;
+    }
 }
 
 @media (min-width: 768px) {
