@@ -383,6 +383,10 @@
 	color: var(--color-12);
 }
 
+.community-like-dislike-btn:hover {
+	color: var(--color-3);
+}
+
 
 /* Start Mobile view */
 @media all and (min-width: 577px) {}
