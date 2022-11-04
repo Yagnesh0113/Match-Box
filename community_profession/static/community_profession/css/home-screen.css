@@ -112,11 +112,15 @@
 }
 
 /* Start home page body */
+
+
 .search-bar .form-control {
 	background-color: var(--color-11);
 	border: 0.063rem solid var(--color-11);
 	color: var(--color-13);
 }
+
+
 
 .community-profession .navbar ul li a {
 	font-family: var(--font-2);
@@ -128,6 +132,7 @@
 	color: var(--color-2);
 	border-bottom: 0.063rem solid rgba(181, 223, 223, 0.2);
 	padding-bottom: 1.125rem;
+	padding-left:0px;
 }
 
 .community-profession .navbar ul li a:hover {
@@ -583,6 +588,7 @@ body {
         color: var(--color-2);
         padding-top: 1.688rem;
         padding-bottom: 0.938rem;
+        padding-left:0rem;
     }
 
     .footer .footer-content
