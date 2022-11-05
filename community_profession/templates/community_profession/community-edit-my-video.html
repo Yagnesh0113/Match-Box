@@ -4,10 +4,10 @@
 <title>Community Screen</title>
 {% endblock title %}
 {% block own_css %}
-<!--   own css   -->
-<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- Ask Post CSS-->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 {% endblock own_css %}
 {% block community_profession_nav %}
 <!-- Start Community - Profession Navigation -->
@@ -200,11 +200,11 @@
                   <form action="{% url 'Community_Edit_My_Video' User_POST.id %}" method="POST">
                      {% csrf_token %}
                      <div class="row">
-                        <div class="col-10 col-sm-10 col-md-10 community-description">
+                        <div class="col-9 col-sm-10 col-md-10 community-description edit-form">
                            <textarea type="text" class="form-control" name="Description">{{User_POST.Description}}</textarea>
                         </div>
-                        <div class="col-2 col-sm-2 col-md-2 community-description">
-                           <button type="submit" class="btn btn-normal-b">Edit</button>
+                        <div class="col-3 col-sm-2 col-md-2 community-description">
+                           <button type="submit" class="btn btn-normal-b btn-block">Edit</button>
                         </div>
                      </div>
                   </form>

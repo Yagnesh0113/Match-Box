@@ -102,7 +102,7 @@
    </head>
    <body class="bg-dark" style="overflow-x: hidden;">
       <!-- Start Navigation -->
-      <div class="row pt-2">
+      <div class="row pt-2 pl-3 pr-3">
          <div class="col-12 col-md-12 custom-nav">
             <nav class="navbar navbar-light  justify-content-between">
                <!-- Start animated-nav and company logo -->
@@ -234,26 +234,27 @@
       <!-- Start Mainn body content -->
       <div class="row bg-dark" id="scrollable-container">
          <!-- Start Main Content -->
-         <div class="col-12 col-sm-12 col-md-9 text-light pb-5 pr-4 border-right" id="scrollable-content">
+         <div class="col-12  col-sm-12  col-md-9  text-light pb-5 border-right c-p-main-body" id="scrollable-content">
             <!-- Start Community - Profession Navigation -->
             {% block community_profession_nav %}
             <div class="row">
                <div class="col-md-12 community-profession">
-                  <nav class="navbar justify-content-between">
+                  <nav class="navbar justify-content-between pr-1 ">
                      <!-- Start Community and Profession -->
                      <ul class="nav justify-content-end">
                         <li class="nav-item">
-                           <a class="nav-link active" href="{% url 'community-screen' %}">Community</a>
+                           <a class="nav-link active " href="{% url 'community-screen' %}">Community </a>
                         </li>
+
                         <li class="nav-item profession-default">
-                           <a class="nav-link active" href="{% url 'home-screen' %}">Profession</a>
+                           <a class="nav-link active " href="{% url 'home-screen' %}">Profession</a>
                         </li>
                      </ul>
                      <!-- End Community and Profession -->
                      <!-- Start right side see all nav -->
                      <ul class="nav justify-content-end see-all">
                         <li class="nav-item">
-                           <a class="nav-link active" href="{% url 'profession-see-all' %}">
+                           <a class="nav-link active pr-0" href="{% url 'profession-see-all' %}">
                            See All
                            </a>
                         </li>
@@ -318,7 +319,7 @@
             {% endblock community_profession_nav %}
             <!-- End Community - Profession Navigation -->
             <div class="row">
-               <div class="col-md-12   main-body-container">
+               <div class="col-12 col-sm-12 col-md-12   main-body-container " style="overflow-x: hidden;">
                   {% block content %}
                   {% endblock content %}
                </div>
@@ -328,13 +329,13 @@
          <!-- Start Community window -->
          <div class="col-12 col-sm-12 col-md-3 pb-3 text-light community-window" id="scrollable-sidebar">
             <!-- Start Commnity Heading -->
-            <div class="row pl-2 pr-2">
+            <div class="row ">
                <div class="col-md-12 heading pt-3 pb-3 border-bottom">
                   Community
                </div>
             </div>
             <!-- End Commnity Heading -->
-            <div class="row pl-3 pt-2 pb-3">
+            <div class="row pl-2 pt-2 pb-3">
                <!-- Start Search bar -->
                <div class="col-12 col-sm-11">
                   <div class="row">
