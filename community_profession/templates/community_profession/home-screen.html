@@ -54,7 +54,7 @@
    .child {
    min-width: 120px;
    height: 60px;
-   margin: 1px 10px;
+   margin: 2px 3px 0px 0px;
    overflow: hidden;
    }
    button {
@@ -127,7 +127,7 @@
                   <div class="scroll-images ">
                      {% for profession in profession %}
                      <div class="row pr-3">
-                        <div class="col-12 text-center">
+                        <div class="col-12 ">
                            <a href="{% url 'search-nearest-professions' profession.id %}" class="text-decoration-none">
                               <div class="row ">
                                  <div class="col-md-12 child ">
@@ -212,7 +212,7 @@
                   <div class="scroll-images ">
                      {% for recent in Recent %}
                      <div class="row pr-3">
-                        <div class="col-12 text-center">
+                        <div class="col-12">
                            <a href="{% url 'profession-personal-details' recent.Profession_obj.id %}" class="text-decoration-none">
                               <div class="row ">
                                  <div class="col-md-12 child ">
@@ -347,7 +347,7 @@
                   <div class="scroll-images ">
                      {% for Popular_obj in Popular_profession %}
                      <div class="row pr-3">
-                        <div class="col-12 text-center">
+                        <div class="col-12 ">
                            <a href="{% url 'profession-personal-details' Popular_obj.id %}" class="text-decoration-none">
                               <div class="row ">
                                  <div class="col-md-12 child ">
