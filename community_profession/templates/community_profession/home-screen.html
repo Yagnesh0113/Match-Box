@@ -54,7 +54,7 @@
    .child {
    min-width: 120px;
    height: 60px;
-   margin: 2px 3px 0px 0px;
+   margin: 2px -8px 3px 0px;
    overflow: hidden;
    }
    button {
@@ -66,6 +66,9 @@
    .scroll-images::-webkit-scrollbar {
    -webkit-appearance: none;
    }
+
+
+
 </style>
 {% endblock own_css %}
 {% block content %}
@@ -135,7 +138,7 @@
                                  </div>
                               </div>
                               <div class="row">
-                                 <div class="col-12 men">
+                                 <div class="col-12 sub-heading-p-m-view">
                                     {{profession.Profession_Name}}
                                  </div>
                               </div>
@@ -220,7 +223,7 @@
                                  </div>
                               </div>
                               <div class="row">
-                                 <div class="col-12 men">
+                                 <div class="col-12 sub-heading-p-m-view">
                                     {{recent.Profession_obj.shop_name}}
                                  </div>
                               </div>
@@ -355,7 +358,7 @@
                                  </div>
                               </div>
                               <div class="row">
-                                 <div class="col-12 men">
+                                 <div class="col-12 sub-heading-p-m-view">
                                     {{Popular_obj.shop_name}}
                                  </div>
                               </div>
