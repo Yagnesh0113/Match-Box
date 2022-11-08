@@ -102,7 +102,7 @@
    </head>
    <body class="bg-dark" style="overflow-x: hidden;">
       <!-- Start Navigation -->
-      <div class="row pt-2 pl-3 pr-3">
+      <div class="row pt-2 main-nav-pl-pr">
          <div class="col-12 col-md-12 custom-nav">
             <nav class="navbar navbar-light  justify-content-between">
                <!-- Start animated-nav and company logo -->
@@ -234,7 +234,7 @@
       <!-- Start Mainn body content -->
       <div class="row bg-dark" id="scrollable-container">
          <!-- Start Main Content -->
-         <div class="col-12  col-sm-12  col-md-9  text-light pb-5 border-right c-p-main-body" id="scrollable-content">
+         <div class="col-12  col-sm-12  col-md-9  text-light border-right c-p-main-body" id="scrollable-content">
             <!-- Start Community - Profession Navigation -->
             {% block community_profession_nav %}
             <div class="row">
@@ -264,9 +264,9 @@
                   <!-- Start Search bar and invite button -->
                   <form action="{% url 'serach_profession' %}" method="POST">
                      {% csrf_token %}
-                     <div class="row pl-3 pt-2 pb-3">
+                     <div class="row pl-3 pt-2 pb-3 ">
                         <!-- Start Search bar -->
-                        <div class="col-8 col-sm-10">
+                        <div class="col-8 col-sm-10 pr-1">
                            <div class="row">
                               <div class="col-md-12 pt-2 search-bar">
                                  <div class="table-cell fill-width">
@@ -279,7 +279,7 @@
                         </div>
                         <!-- End Search bar  -->
                         <!-- Start invite button -->
-                        <div class="col-4 col-sm-2">
+                        <div class="col-4 col-sm-2 pl-1">
                            <div class="row">
                               <div class="col-md-12 pt-2">
                                  <button type="submit" class="btn btn-normal-b btn-block">Search</button>
@@ -335,14 +335,12 @@
                </div>
             </div>
             <!-- End Commnity Heading -->
-            <div class="row pl-2 pt-2 pb-3">
-               <!-- Start Search bar -->
-               <div class="col-12 col-sm-11">
-                  <div class="row">
-                     <div class="col-md-12 pt-2 search-bar">
+            <!-- Start community -->
+            <div class="row">
+                     <div class="col-md-12 pt-2 search-bar r-community-p">
                         <div class="table-cell fill-width">
                            <div class="row">
-                              <div class="col-md-12 pr-4">
+                              <div class="col-md-12">
                                  <input onkeyup="communitySearch()" id="community-serach" class="form-control"
                                     name="search_community" placeholder="Search...." type="text">
                               </div>
@@ -380,7 +378,7 @@
                                     </div>
                                     {% if userprofile.id is i.Commnunity_id.User_Profile.id %}
                                     {% else %}
-                                    <div class="col-2 col-sm-2">
+                                    <div class="col-3 col-sm-3 text-right">
                                        <a href="{% url 'Unjoin' i.id %}" class="text-decoration-none">
                                        <button type="submit" class="btn btn-sm  btn-normal-b">Joined</button>
                                        </a>
@@ -419,7 +417,7 @@
                                     </div>
                                     {% if i.User_Profile %}
                                     {% else %}
-                                    <div class="col-2 col-sm-2">
+                                    <div class="col-3 col-sm-3 text-right">
                                        <a href="{% url 'Unjoin' i.id %}">
                                        <button type="submit" class="btn btn-sm  btn-normal-b">
                                        Joined
@@ -465,7 +463,7 @@
                                     <!-- <p>{{userprofile.id}},{{i.User_Profile.id}}</p> -->
                                     {% if userprofile.id is i.User_Profile.id %}
                                     {% else %}
-                                    <div class="col-2 col-sm-2">
+                                    <div class="col-3 col-sm-3 text-right">
                                        <a href="{% url 'Join_Coummunity' i.id %}" class="text-decoration-none">
                                        <button type="submit" class="btn btn-sm  btn-normal-b">Join</button>
                                        </a>
@@ -502,7 +500,7 @@
                                        </div>
                                        <!-- End modeal community members  -->
                                     </div>
-                                    <div class="col-3 col-sm-3">
+                                    <div class="col-3 col-sm-3 text-right">
                                        <a href="{% url 'Join_Coummunity' i.id %}" class="text-decoration-none">
                                        <button type="submit" class="btn btn-sm  btn-normal-b">Join</button>
                                        </a>
@@ -517,16 +515,14 @@
                         </div>
                      </div>
                   </div>
-               </div>
-               <!-- End Search bar  -->
-            </div>
+            <!-- End community -->
          </div>
          <!-- End Community window -->
       </div>
       <!-- End Mainn body content -->
 
       <!-- Start Footer - desktop - views -->
-      <div class="row bg-dark border-top pt-3 pb-3 footer footer-desktop pl-3">
+      <div class="row bg-dark border-top pt-3 pb-3 footer footer-desktop">
 
          <!-- Start About us, faq, privacy policy, terms and condition -->
          <div class="col-sm-2">
@@ -632,7 +628,7 @@
             <!-- Start address heading-->
             <div class="row">
                <div class="col-sm-12 office-address-heading">
-                  Registered Office Address
+                  Office Address
                </div>
             </div>
             <!-- End address heading-->
@@ -640,7 +636,7 @@
             <!-- Start office address -->
             <div class="row">
                <div class="col-sm-12 office-address pt-3">
-                  Snable pvt. ltd. Anand Apartment 2nd Floor, Kotwal Nagar Ring Rd, Khamla, Nagpur-440022
+                  Anand Apartment 2nd Floor, Kotwal Nagar Ring Rd, Khamla, Nagpur-440022
                </div>
             </div>
             <!-- End office address -->
@@ -649,18 +645,20 @@
 
          <div class="col-sm-1"></div>
          <!-- Start follow icon and company logo -->
-         <div class="col-sm-2 text-center">
+         <div class="col-sm-2 text-right">
             <!-- Start Follow icons -->
             <div class="row">
                <div class="col-sm-12">
                   <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
-                  <i class="fa-brands fa-facebook-f"></i>
+                     <i class="fa-brands fa-facebook-f"></i>
                   </a>
+
                   <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
-                  <i class="fa-brands fa-instagram-square"></i>
+                     <i class="fa-brands fa-instagram-square"></i>
                   </a>
+
                   <a href="" class="text-light border ml-2 pr-1 pl-1 text-decoration-none">
-                  <i class="fa-brands fa-linkedin-in"></i>
+                     <i class="fa-brands fa-linkedin-in"></i>
                   </a>
                </div>
             </div>
@@ -769,7 +767,7 @@
                   <!-- Start address heading-->
                   <div class="row">
                      <div class="col-sm-12 office-address-heading">
-                        Registered Office Address
+                        Office Address
                      </div>
                   </div>
                   <!-- End address heading-->
@@ -777,7 +775,7 @@
                   <!-- Start office address -->
                   <div class="row">
                      <div class="col-sm-12 office-address pt-1">
-                        Snable pvt. ltd. Anand Apartment 2nd Floor, Kotwal Nagar Ring Rd, Khamla, Nagpur-440022
+                        Anand Apartment 2nd Floor, Kotwal Nagar Ring Rd, Khamla, Nagpur-440022
                      </div>
                   </div>
                   <!-- End office address -->
@@ -821,6 +819,14 @@
          </div>`
       </div>
       <!-- End Footer - mobile - views -->
+
+      <!-- Start copy rights -->
+      <div class="row">
+         <div class="col-md-12 text-light text-center pt-3 pb-3 border-top ">
+               © 2022 Wecreaters
+         </div>
+      </div>
+      <!-- End copy rights -->
 
       <!-- Start Create Community Modeal pop up -->
       <div class="modal create-community-modeal" id="modal3">

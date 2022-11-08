@@ -367,7 +367,7 @@
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 {% endif %}
                             </button>
-                            <span class="btn community-like-dislike-btn like-count{{i.Post.user_post.id}}">
+                            <span class="btn pl-0 community-like-dislike-btn like-count{{i.Post.user_post.id}}">
                                 {{ i.Post.user_post.Like.all.count }}
                             </span>
                      </form>
@@ -380,7 +380,7 @@
                             <button type="submit" class="btn p-0 community-like-dislike-btn">
                                 <i class="fa-solid fa-message"></i>
                             </button>
-                            <span class="btn community-like-dislike-btn like-count">
+                            <span class="btn pl-0 community-like-dislike-btn like-count">
                                 {% if i.Post.user_post.Post_comment is None %}
                               0
                               {% else %}
@@ -393,6 +393,7 @@
                </div>
                <!-- End like, comment, share -->
             </div>
+            <!-- End like, comment, share -->
          </div>
       </div>
       <!--  End Post Image & Videos    -->
@@ -518,7 +519,7 @@
                                 <i class="fa-solid fa-thumbs-up"></i>
                             {% endif %}
                         </button>
-                        <span class="btn community-like-dislike-btn like-count{{i.Question.id}}">
+                        <span class="btn pl-0 community-like-dislike-btn like-count{{i.Question.id}}">
                             {{ i.Question.Question_Like.all.count }}
                         </span>
                   </form>
@@ -531,7 +532,7 @@
                         <button type="submit" class="btn p-0 community-like-dislike-btn">
                             <i class="fa-solid fa-message"></i>
                         </button>
-                        <span class="btn community-like-dislike-btn like-count">
+                        <span class="btn pl-0 community-like-dislike-btn like-count">
                           {% if i.Question.answer is None %}
                         0
                         {% else %}
@@ -718,7 +719,7 @@
                                    <i class="fa-solid fa-thumbs-up"></i>
                                {% endif %}
                            </button>
-                           <span class="btn community-like-dislike-btn like-count{{i.user_post.id}}">
+                           <span class="btn pl-0 community-like-dislike-btn like-count{{i.user_post.id}}">
                                {{ i.user_post.Like.all.count }}
                            </span>
                     </form>
@@ -731,7 +732,7 @@
                            <button type="submit" class="btn p-0 community-like-dislike-btn">
                                <i class="fa-solid fa-message"></i>
                            </button>
-                           <span class="btn community-like-dislike-btn like-count">
+                           <span class="btn pl-0 community-like-dislike-btn like-count">
                                {% if i.user_post.Post_comment is None %}
                               0
                               {% else %}
@@ -904,7 +905,7 @@
                                    <i class="fa-solid fa-thumbs-up"></i>
                                {% endif %}
                            </button>
-                           <span class="btn community-like-dislike-btn like-count{{i.user_post.id}}">
+                           <span class="btn pl-0 community-like-dislike-btn like-count{{i.user_post.id}}">
                                {{ i.user_post.Like.all.count }}
                            </span>
                     </form>
@@ -917,7 +918,7 @@
                            <button type="submit" class="btn p-0 community-like-dislike-btn">
                                <i class="fa-solid fa-message"></i>
                            </button>
-                           <span class="btn community-like-dislike-btn like-count">
+                           <span class="btn pl-0 community-like-dislike-btn like-count">
                               {% if i.user_post.Post_comment is None %}
                               0
                               {% else %}
@@ -1109,7 +1110,7 @@
                                <i class="fa-solid fa-thumbs-up"></i>
                            {% endif %}
                        </button>
-                       <span class="btn community-like-dislike-btn like-count{{i.id}}">
+                       <span class="btn pl-0 community-like-dislike-btn like-count{{i.id}}">
                           {{ i.Question_Like.all.count }}
                        </span>
                  </form>
@@ -1122,7 +1123,7 @@
                        <button type="submit" class="btn p-0 community-like-dislike-btn">
                            <i class="fa-solid fa-message"></i>
                        </button>
-                       <span class="btn community-like-dislike-btn like-count">
+                       <span class="btn pl-0 community-like-dislike-btn like-count">
                          {% if i.answer is None %}
                         0
                         {% else %}
@@ -1305,7 +1306,7 @@
                                    <i class="fa-solid fa-thumbs-up"></i>
                                {% endif %}
                            </button>
-                           <span class="btn community-like-dislike-btn like-count{{i.user_post.id}}">
+                           <span class="btn pl-0 community-like-dislike-btn like-count{{i.user_post.id}}">
                                {{ i.user_post.Like.all.count }}
                            </span>
                     </form>
@@ -1318,7 +1319,7 @@
                            <button type="submit" class="btn p-0 community-like-dislike-btn">
                                <i class="fa-solid fa-message"></i>
                            </button>
-                           <span class="btn community-like-dislike-btn like-count">
+                           <span class="btn pl-0 community-like-dislike-btn like-count">
                                {% if i.user_post.Post_comment is None %}
                               0
                               {% else %}
@@ -1490,7 +1491,7 @@
                                          <i class="fa-solid fa-thumbs-up"></i>
                                      {% endif %}
                                  </button>
-                                 <span class="btn community-like-dislike-btn like-count{{i.user_post.id}}">
+                                 <span class="btn pl-0 community-like-dislike-btn like-count{{i.user_post.id}}">
                                      {{ i.user_post.Like.all.count }}
                                  </span>
                           </form>
@@ -1503,7 +1504,7 @@
                                  <button type="submit" class="btn p-0 community-like-dislike-btn">
                                      <i class="fa-solid fa-message"></i>
                                  </button>
-                                 <span class="btn community-like-dislike-btn like-count">
+                                 <span class="btn pl-0 community-like-dislike-btn like-count">
                                      {% if i.user_post.Post_comment is None %}
                                        0
                                        {% else %}
@@ -1646,7 +1647,7 @@
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 {% endif %}
                             </button>
-                            <span class="btn community-like-dislike-btn like-count{{i.id}}">
+                            <span class="btn pl-0 community-like-dislike-btn like-count{{i.id}}">
                                 {{ i.Question_Like.all.count }}
                             </span>
                       </form>
@@ -1659,7 +1660,7 @@
                             <button type="submit" class="btn p-0 community-like-dislike-btn">
                                 <i class="fa-solid fa-message"></i>
                             </button>
-                            <span class="btn community-like-dislike-btn like-count">
+                            <span class="btn pl-0 community-like-dislike-btn like-count">
                               {% if i.answer is None %}
                             0
                             {% else %}

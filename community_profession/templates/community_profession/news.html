@@ -12,13 +12,27 @@
 <!-- Start news -->
 {% for i in News %}
 <div class="row border-bottom pt-3 pb-3">
-   <div class="col-12 col-sm-12 col-md-12 news">
+   <div class="col-12 col-sm-12 col-md-12 community-body news">
+
       <!-- Start news posted by heading -->
       <div class="row">
-         <div class="col-11 col-sm-11 col-md-11 posted-by-heading">
-            Posted by/ We Creators
+         <div class="col-10 col-sm-11 col-md-11">
+            <div class="row">
+               <div class="col-md-12 posted-by-heading news-profile-heading-lp">
+                   Posted by/ We Creators
+               </div>
+            </div>
+
+            <!-- Start no of days -->
+            <div class="row">
+               <div class="col-12 col-sm-12 col-md-12 no-of-days news-profile-heading-lp">
+                  {{i.Date}} / {{i.Time}} Ago
+               </div>
+            </div>
+            <!-- End no of days -->
+
          </div>
-         <div class="col-1 col-sm-1 col-md-1 text-right">
+         <div class="col-2 col-sm-1 col-md-1 text-right">
             <div class="row community-body">
                <div class="col-md-12 community-options">
                   <div class="dropdown">
@@ -50,90 +64,82 @@
          </div>
       </div>
       <!-- End news posted by heading -->
-      <!-- Start no of days -->
-      <div class="row">
-         <div class="col-12 col-sm-12 col-md-12 no-of-days">
-            {{i.Date}} / {{i.Time}} Ago
-         </div>
-      </div>
-      <!-- End no of days -->
+
       <!-- Start news content -->
       <div class="row community-body">
-         <div class="col-12 col-sm-12 col-md-12 community-description text-justify">
+         <div class="col-12 col-sm-12 col-md-12 community-description text-justify pt-3 pb-3">
             {{i.Description}}
          </div>
       </div>
       <!-- End news content -->
+
       <!-- Start news img-video -->
       <a href="{% url 'news_comment' i.id %}">
-         <div class="row community-body pl-2">
-            <div class="col-12 col-sm-12 col-md-12 community-post-image">
-               <div class="row community-post-image-background">
-                  <div class="col-0 col-sm-3 col-md-3"></div>
-                  <div class="col-12 col-sm-6 col-md-6 ">
-                     {% if i.Video %}
-                     <video width="100%" class="img-fluid-video" controls controlslist="nodownload" oncontextmenu="return false">
-                        <source src="{{i.Video.url}}" type="video/mp4">
-                     </video>
-                     {% elif i.Image %}
-                     <img class="img-fluid" src="{{i.Image.url}}" alt="Chania" width="100%">
-                     {% else %}
-                     <div></div>
-                     {% endif %}
-                  </div>
-                  <div class="col-0 col-sm-3 col-md-3"></div>
-               </div>
-            </div>
-         </div>
-      </a>
+              <div class="row community-post-image ">
+                 <div class="col-md-12 community-post-image-background p-0">
+                    <div class="row ">
+                       <div class="col-0 col-sm-3 col-md-3"></div>
+                       {% if i.Video %}
+                       <div class="col-12 col-sm-6 col-md-6 p-0">
+                          <video class="img-fluid-video" width="100%" controls>
+                             <source src="{{i.Video.url}}" type="video/mp4">
+                          </video>
+                       </div>
+                       {% elif i.Image %}
+                       <div class="col-12 col-sm-6 col-md-6 text-center p-0">
+                          <img src="{{i.Image.url}}" alt="img-fluid" class="img-fluid">
+                       </div>
+                       {% else %}
+                        <div></div>
+                       {% endif %}
+                       <div class="col-0 col-sm-3 col-md-3"></div>
+                    </div>
+                 </div>
+              </div>
+           </a>
       <!-- End news img-video -->
-      
+
       <!-- Start like, comment, add-comment, share -->
-      <div class="row like-comment-share">
-         <!-- Start like -->
-         <div class="col-5 col-sm-3 col-md-2 text-center p-0">
-            <span class="d-inline-block">
-               <form action="{% url 'like_news' %}" method="POST" class="like-form" id="{{i.id}}">
-                  {% csrf_token %}
-                  <input type="hidden" name="post_id" value="{{i.id}}">
-                     <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
-                        {% if userprofile not in i.News_like.all %}
-                        <i class="fa-regular fa-thumbs-up"></i>
-                        {% else %}
-                        <i class="fa-solid fa-thumbs-up"></i>
-                        {% endif %} 
-                     </button>
-                  <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.News_like.all.count }}</span>
-               </form>
-            </span>
-            <a href="{% url 'news_comment' i.id %}">
-            <span class="community-like-dislike-btn">
-            &nbsp; <i class="fa-solid fa-message"></i>
-            </span>
-            <span class="community-like-dislike-btn">
-            &nbsp;
-            {% if i.comment is None %}
-            0
-            {% else %}
-            {{i.comment}}
-            {% endif %}
-            </span>
-            </a>
-         </div>
-         <!-- End like -->
-         <!-- Start add-comment btn -->
-         <div class="col-6 col-sm-4 col-md-3 btn-comment-answer pl-0">
-            <a href="{% url 'news_comment' i.id %}">
-            <button type="submit" class="btn btn-block btn-sm add-comment-btn">Add Comments</button>
-            </a>
-         </div>
-         <!-- End add-comment btn -->
-         <!-- Start Share -->
-         <!--         <div class="col-2 col-sm-2 col-md-2 share">-->
-         <!--            <i class="fa-solid fa-share-nodes"></i>-->
-         <!--         </div>-->
-         <!-- End Share -->
-      </div>
+      <div class="row pt-2 pd-2">
+           <div class="col-12 col-sm-12 col-md-12">
+              <!-- Start like button -->
+              <span class="d-inline-block">
+                 <form action="{% url 'like_news' %}" method="POST" class="like-form" id="{{i.id}}">
+                    {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{i.id}}">
+                        <button type="submit" class="btn p-0 community-like-dislike-btn like-btn{{i.id}}">
+                            {% if userprofile not in i.News_like.all %}
+                                <i class="fa-regular fa-thumbs-up"></i>
+                            {% else %}
+                                <i class="fa-solid fa-thumbs-up"></i>
+                            {% endif %}
+                        </button>
+                        <span class="btn pl-0 community-like-dislike-btn like-count{{i.id}}">
+                            {{ i.News_like.all.count }}
+                        </span>
+                 </form>
+              </span>
+              <!-- End like button -->
+
+              <!-- Start comment button -->
+              <span class="d-inline-block">
+                   <a href="{% url 'news_comment' i.id %}" class="text-decoration-none community-like-dislike-btn">
+                        <button type="submit" class="btn p-0 community-like-dislike-btn">
+                            <i class="fa-solid fa-message"></i>
+                        </button>
+                        <span class="btn pl-0 community-like-dislike-btn like-count">
+                           {% if i.comment is None %}
+                           0
+                           {% else %}
+                           {{i.comment}}
+                           {% endif %}
+                        </span>
+                   </a>
+              </span>
+              <!-- End comment button -->
+           </div>
+           <!-- End like, comment, share -->
+        </div>
       <!-- End like, comment, add-comment, share -->
    </div>
 </div>
