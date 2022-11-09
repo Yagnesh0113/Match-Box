@@ -229,11 +229,11 @@
       </div>
       <!-- End comment -->
       <!-- Start like-reply-share -->
-      <div class="row pt-3">
+      <!--<div class="row pt-3">
          <div class="col-md-12 like-reply-share">
-            <!-- <span class="">
+            &lt;!&ndash; <span class="">
                <i class="fa-solid fa-thumbs-up"></i> 1.2K
-               </span> -->
+               </span> &ndash;&gt;
             <span class="d-inline-block">
                <form action="{% url 'like_Comment_news' %}" method="POST" class="like-form" id="{{i.id}}">
                   {% csrf_token %}
@@ -271,49 +271,71 @@
             </span>
             {% endif %}
          </div>
-      </div>
+      </div>-->
 
       <div class="row pt-2 pd-2">
-               <div class="col-12 col-sm-12 col-md-12">
-                  <!-- Start like button -->
-                  <span class="d-inline-block">
-                     <form action="{% url 'like_Comment_news' %}" method="POST" class="like-form" id="{{i.id}}">
-                        {% csrf_token %}
-                            <input type="hidden" name="post_id" value="{{i.id}}">
-                            <button type="submit" class="btn p-0 community-like-dislike-btn like-btn{{i.Post.user_post.id}}">
-                                {% if userprofile not in i.Post.user_post.Like.all %}
-                                    <i class="fa-regular fa-thumbs-up"></i>
-                                {% else %}
-                                    <i class="fa-solid fa-thumbs-up"></i>
-                                {% endif %}
-                            </button>
-                            <span class="btn pl-0 community-like-dislike-btn like-count{{i.Post.user_post.id}}">
-                                {{ i.Post.user_post.Like.all.count }}
-                            </span>
-                     </form>
-                  </span>
-                  <!-- End like button -->
+         <div class="col-12 col-sm-12 col-md-12">
+            <!-- Start like button -->
+            <span class="d-inline-block">
+               <form action="{% url 'like_Comment_news' %}" method="POST" class="like-form" id="{{i.id}}">
+                  {% csrf_token %}
+                      <input type="hidden" name="post_id" value="{{i.id}}">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn like-btn{{i.id}}">
+                          {% if userprofile not in i.News_comment_like.all %}
+                              <i class="fa-regular fa-thumbs-up"></i>
+                          {% else %}
+                              <i class="fa-solid fa-thumbs-up"></i>
+                          {% endif %}
+                      </button>
+                      <span class="btn pl-0 community-like-dislike-btn like-count{{i.id}}">
+                          {{ i.News_comment_like.all.count }}
+                      </span>
+               </form>
+            </span>
+            <!-- End like button -->
 
-                  <!-- Start comment button -->
-                  <span class="d-inline-block">
-                       <a href="{% url 'community-write-comment-screen' i.id %}" class="text-decoration-none community-like-dislike-btn">
-                            <button type="submit" class="btn p-0 community-like-dislike-btn">
-                                <i class="fa-solid fa-message"></i>
-                            </button>
-                            <span class="btn pl-0 community-like-dislike-btn like-count">
-                                {% if i.Post.user_post.Post_comment is None %}
-                              0
-                              {% else %}
-                              {{i.Post.user_post.Post_comment}}
-                              {% endif %}
-                            </span>
-                       </a>
-                  </span>
-                  <!-- End comment button -->
-               </div>
-               <!-- End like, comment, share -->
-            </div>
-      <!-- Start like-reply-share -->
+            <!-- Start comment button -->
+            <span class="d-inline-block">
+                 <a href="{% url 'news_comment_reply' i.id %}" class="text-decoration-none community-like-dislike-btn">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn">
+                          <i class="fa-solid fa-message"></i>
+                      </button>
+                      <span class="btn pl-0 community-like-dislike-btn like-count">
+                       {% if i.reply is None %}
+                      0
+                      {% else %}
+                      {{i.reply}}
+                      {% endif %}
+                      </span>
+                 </a>
+            </span>
+            <!-- End comment button -->
+
+            {% if userprofile.id is i.User_Profile.id %}
+            <!-- Start Edit button -->
+            <span class="d-inline-block">
+                 <a href="#" class="text-decoration-none community-like-dislike-btn" data-target="#edit_comment" data-toggle="modal" onclick="data('{{i.id}}','{{i.Comment}}')">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn">
+                          <i class="fa-solid fa-pencil"></i>
+                      </button>
+                 </a>
+            </span>
+            <!-- End Edit button -->
+
+            <!-- Start Delete button -->
+            <span class="d-inline-block">
+                 <a href="{% url 'delete_news_commenrt' i.id %}" class="text-decoration-none community-like-dislike-btn">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn">
+                          <i class="fa-solid fa-trash pl-2"></i>
+                      </button>
+                 </a>
+            </span>
+            <!-- End Delete button -->
+             {% endif %}
+
+         </div>
+      </div>
+      <!-- End like-reply-share -->
    </div>
 </div>
 {% endfor %}
