@@ -1,0 +1,161 @@
+.saloon-window-pl-pr
+{
+    padding: 0rem 3rem;
+}
+
+.saloon-window
+{
+    background-color: var(--color-12);
+}
+
+.saloon-window .saloon-window-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 2.875rem;
+    color: var(--color-13);
+    padding: 1.875rem 2.188rem;
+
+}
+
+.image-and-form
+{
+    padding-left:3rem ;
+    padding-bottom:1.5rem;
+}
+
+.left-side-img img
+{
+    border-radius:0.313rem;
+}
+.saloon-window .card
+{
+    background-color: #fff0;
+    border: 0rem solid rgba(0,0,0,.125);
+}
+
+.saloon-window .form-control
+{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 0.125rem);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-13);
+    background-color: #fff0;
+    background-clip: padding-box;
+    border: 0.063rem solid rgba(22, 24, 24, 0.2);
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px)
+{
+
+}
+
+
+@media all and (max-width: 576px)
+{
+
+    .saloon-window-pl-pr
+    {
+        padding: 0rem 0rem;
+    }
+
+    .saloon-window
+    {
+        background-color: var(--color-15);
+    }
+
+    .saloon-window .saloon-window-heading
+    {
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.25rem;
+        line-height: 1.438rem;
+        color: var(--color-13);
+        padding: 1.875rem 2.188rem;
+        background-color: var(--color-12);
+
+    }
+
+    .image-and-form
+    {
+        padding-left:0rem ;
+        padding-bottom:0rem;
+    }
+
+    .image-and-form .col-12
+    {
+        padding-right:0.313rem;
+    }
+
+    .left-side-img img
+    {
+        border-radius:0rem;
+    }
+
+    .saloon-window .form-control
+    {
+        display: block;
+        width: 100%;
+        height: calc(1.5em + 0.75rem + 0.125rem);
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.313rem;
+        color: var(--color-13);
+        font-family: var(--font-1);
+        font-style: normal;
+        background-color: var(--color-1);
+        background-clip: padding-box;
+        border: 0.063rem solid var(--color-5);
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+}
+
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+}
+/* End Mobile Views */

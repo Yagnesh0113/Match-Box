@@ -1,0 +1,86 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% load social_share %}
+{% block title %}
+<title>Index page</title>
+{% endblock title %}
+
+{% block own_css %}
+<!--   own css   -->
+<!-- video-screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/video-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<style>
+    .video-screen
+    {
+        background-color:var(--color-12);
+    }
+</style>
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+{% endblock own_css %}
+
+
+{% block content %}
+<!-- Start video screen -->
+<div class="row video-screen">
+    <div class="col-md-2"></div>
+        <div class="col-md-8 relative">
+            <a href="" data-target="#share-modal" data-toggle="modal">
+                <video width="100%" controls >
+                    <source src="{{Profession_video_obj.video.url}}" type="video/mp4" >
+                </video>
+            </a>
+            <div class="absolute">
+               <!-- <h1>{{Profession_video_obj.profession.profession.Profession_Name}}</h1>-->
+                <!-- <p>Uploaded on 25th march 4 pm</p> -->
+            </div>
+        </div>
+    <div class="col-md-2"></div>
+</div>
+<!-- End video screen -->
+<!-- Start Share Modal -->
+<div class="modal create-community-modeal" id="share-modal">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+       <div class="modal-content">
+          <div class="modal-header">
+             <div class="row your-added-questions-heading">
+                <div class="col-md-12">Share</div>
+             </div>
+             <a href="#" data-dismiss="modal" class="close">&times;</a>
+          </div>
+          <div class="modal-body">
+             <!-- Start Share Icon -->
+             <div class="row">
+                <div class="col-md-12 text-center">
+                   <span>{% post_to_facebook object_or_url %}</span>
+                   <span>{% post_to_whatsapp object_or_url %}</span>
+                   <span>{% post_to_reddit object_or_url %}</span>
+                </div>
+             </div>
+             <!-- End Share Icon -->
+             <!-- Start copy link text box -->
+             <div class="row d-flex justify-content-center pt-3">
+                <div class="col-md-8">
+                   <form>
+                      <div class="input-group mb-3">
+                         <input type="text" class="form-control" value="{{ copy_url }}" placeholder="CopyURL">
+                         <div class="input-group-append">
+                            <!-- <span class="input-group-text">COPY</span> -->
+                            <span>{% copy_to_clipboard object_or_url%}</span>
+                         </div>
+                      </div>
+                   </form>
+                </div>
+             </div>
+             <!-- End copy link text box -->
+          </div>
+          <div class="modal-footer">
+             <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+          </div>
+       </div>
+    </div>
+ </div>
+ <!-- End Share Modal -->
+{% add_copy_script %}
+{% endblock content %}
+

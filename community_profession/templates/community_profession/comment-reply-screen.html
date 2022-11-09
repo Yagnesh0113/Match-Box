@@ -1,0 +1,95 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Comment Reply Screen</title>
+{% endblock title %}
+{% block own_css %}
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- own css Community comment reply screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/comment-reply-screen.css' %}">
+{% endblock own_css %}
+
+{% block community_content %}
+Comment : {{Comment.Community_Comment.Comment}}
+ <!-- Start Reply text-box, post-btn, options -->
+ <form action="{% url 'community-comment-reply-screen' Comment.id  %}" method="POST">
+   {% csrf_token %}
+   <div class="row pl-3 reply-form">
+      <!-- Start reply-input-box -->
+      <div class="col-md-8 pt-3">
+         <div class="form-group">
+            <input name="reply" type="text" class="form-control form-control-sm" id="usr" placeholder="Your Reply">
+         </div>
+      </div>
+      <!-- End reply-input-box -->
+      <!-- Start post btn -->
+      <div class="col-md-3 pt-3">
+         <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
+      </div>
+         
+      <!-- End post btn -->
+      <!-- Start options -->
+      <div class="col-md-1 pt-3 options">
+         <div class="dropdown dropleft float-right">
+               <button type="button" class="btn btn-sm btn-block text-light" data-toggle="dropdown">
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
+               </button>
+               <div class="dropdown-menu">
+               <a class="dropdown-item" href="#">Block Account</a>
+               <a class="dropdown-item" href="#">Delete</a>
+               <a class="dropdown-item" href="#">Hide Reply</a>
+               </div>
+         </div>
+      </div>
+      <!-- End options -->
+   </div>
+</form>
+<!-- End Reply text-box, post-btn, options -->
+
+{% for i in Community %}
+<!-- Start Comment -->
+<div class="row pt-4">
+  <div class="col-md-12 comment">
+     <!-- Start user profile-img & user name  -->
+     <div class="row">
+        <!-- Start user profile-img  -->
+        <div class="col-md-1">
+           <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania">
+        </div>
+        <!-- End user profile-img  -->
+        <!-- Start user name -->
+        <div class="col-md-11">
+           <!-- Start User name heading -->
+           <div class="row">
+              <div class="col-md-12 user-name-heading">
+                 User Name : {{i.User_Profile.usertype.user_id.first_name}}  {{i.User_Profile.usertype.user_id.last_name}}
+              </div>
+           </div>
+           <!-- End User name heading -->
+
+           <!-- Start username-sub-heading -->
+           <div class="row">
+              <div class="col-md-12 username-sub-heading">
+                 {{i.Reply_Date}}  {{i.Reply_Time}}
+              </div>
+           </div>
+           <!-- End username-sub-heading -->
+        </div>
+        <!-- End user name -->
+     </div>
+     <!-- End user profile-img & user name  -->
+
+     <!-- Start comment-conetnt -->
+     <div class="row pt-1">
+        <div class="col-md-12 comment-conetnt">
+           {{i.Reply}}
+        </div>
+     </div>
+     <!-- End comment-conetnt -->
+  </div>
+</div><br><hr color="ffffff"><br>
+<!-- End Comment -->
+{% endfor %}
+
+{% endblock community_content %}

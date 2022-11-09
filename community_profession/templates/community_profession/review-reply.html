@@ -1,0 +1,286 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Index page</title>
+{% endblock title %}
+
+{% block own_css %}
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<!-- video-screen css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/video-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/comment-reply-screen.css' %}">
+{% endblock own_css %}
+
+
+{% block content %}
+<!--    -->
+<div class="row pl-3">
+   <div class="col-md-12 all-comments">
+      <!-- Start user-profile, user-community-name, time -->
+      <div class="row reviews">
+          <div class="col-md-12 float-container">
+              <div class="profession-float-child">
+                   <!-- Start user profile -->
+                   <div class="row">
+                      <div class="col-md-12 review-profile">
+                         <img src="{{Profession_review.user_profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+                      </div>
+                   </div>
+                   <!-- End user profile -->
+              </div>
+              <div class="profession-float-child-1">
+                   <!-- Start User information -->
+                   <div class="row">
+                      <div class="col-md-12">
+                          <!-- Start User Name -->
+                          <div class="row">
+                             <div class="col-md-12 user-name-heading">
+                                <a href="{% url 'profession-profile-screen' Profession_review.user_profile.usertype.user_id.id  %}" class="text-decoration-none">{{Profession_review.user_profile.usertype.user_id.first_name}} {{Profession_review.user_profile.usertype.user_id.last_name}}</a>
+                             </div>
+                          </div>
+                          <!-- End User Name -->
+                          <!-- Start date -->
+                          <div class="row">
+                             <div class="col-md-12 reviews-date">
+                                {{Profession_review.Review_Date}} / {{Profession_review.Review_Time}}
+                                <!-- ago. -->
+                             </div>
+                          </div>
+                          <!-- End date -->
+                      </div>
+                   </div>
+                   <!-- End User information -->
+              </div>
+          </div>
+      </div>
+      <!-- End user-profile, user-community-name, time -->
+
+      <!-- Start comment -->
+      <div class="row pt-2">
+         <div class="col-12 col-sm-12 col-md-12 comment">
+            {{Profession_review.Review}}
+         </div>
+      </div>
+      <!-- End comment -->
+
+      <!-- Start like-reply-share -->
+      <div class="row border-bottom pb-3">
+         <div class="col-md-12">
+            <span class="community-like-dislike-btn">
+                <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image"> &nbsp; {{Profession_review.Rate}}
+            </span>
+            <span class="d-inline-block">
+               <form action="{% url 'like_Review' %}" method="POST" class="like-form" id="{{Profession_review.id}}">
+                  {% csrf_token %}
+                  <input type="hidden" name="post_id" value="{{Profession_review.id}}">
+                     <button type="submit" class="btn community-like-dislike-btn like-btn{{Profession_review.id}}">
+                        {% if userprofile not in Profession_review.like.all %}
+                           <i class="fa-solid fa-thumbs-up"></i>
+                        {% else %}
+                           <i class="fa-solid fa-thumbs-down"></i>
+                        {% endif %} 
+                     </button>
+                  <span class="community-like-dislike-btn like-count{{Profession_review.id}}">{{ Profession_review.like.all.count }}</span>
+               </form>
+            </span>
+            <span class="community-like-dislike-btn">
+               &nbsp;
+               <i class="fa-solid fa-reply"></i> &nbsp;
+                  {% if Profession_review.Reply is None %}
+                  0
+                  {% else %}
+                  {{Profession_review.Reply}}
+                  {% endif %}
+            </span>
+         </div>
+      </div>
+      <!-- Start like-reply-share -->
+   </div>
+</div>
+
+
+
+<!-- Start Login Profile info -->
+<div class="row pl-1 pt-3">
+   <div class="col-md-12 pb-3 all-comments community-body">
+       <!-- Start user-profile, user-community-name, time -->
+       <div class="row reviews">
+          <div class="col-md-12 float-container">
+              <div class="profession-float-child">
+                   <!-- Start user profile -->
+                   <div class="row">
+                      <div class="col-md-12 review-profile">
+                         <img src="{{userprofile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+                      </div>
+                   </div>
+                   <!-- End user profile -->
+              </div>
+              <div class="profession-float-child-1">
+                   <!-- Start User information -->
+                   <div class="row">
+                      <div class="col-md-12 pt-1">
+                          <!-- Start User Name -->
+                          <div class="row">
+                             <div class="col-md-12 user-name-heading">
+                                 {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+                             </div>
+                          </div>
+                          <!-- End User Name -->
+                      </div>
+                   </div>
+                   <!-- End User information -->
+              </div>
+          </div>
+      </div>
+       <!-- End user-profile, user-community-name, time -->
+   </div>
+</div>
+<!-- End Login Profile info -->
+
+<!-- Start Reply text-box, post-btn, options -->
+<form action="{% url 'review_Reply' Profession_review.id %}" method="POST">
+   {% csrf_token %}
+    <div class="row pl-3">
+        <div class="col-md-12 border-bottom">
+            <div class="row reply-form">
+              <!-- Start reply-input-box -->
+              <div class="col-9 col-sm-10 col-md-10 pt-3 pl-0">
+                 <div class="form-group">
+                    <input type="text" name="reply" class="form-control form-control-sm text-light" id="usr" placeholder="Your Reply">
+                 </div>
+              </div>
+              <!-- End reply-input-box -->
+              <!-- Start post btn -->
+              <div class="col-3 col-sm-2 col-md-2 pt-3 pl-0">
+                 <button type="submit" class="btn btn-block btn-sm btn-normal-b">Post</button>
+              </div>
+              <!-- End post btn -->
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- End Reply text-box, post-btn, options -->
+
+{% for i in Review_obj %}
+<!-- Start Comment -->
+<div class="row pt-4 pl-3">
+   <div class="col-md-12 comment border-bottom pb-3">
+      <!-- Start user profile-img & user name  -->
+
+       <div class="row community-body">
+           <div class="col-8 col-md-9 pl-1 pr-0">
+              <!-- Start user-profile, user-community-name, time -->
+              <div class="row reviews">
+                  <div class="col-md-12 float-container">
+                      <div class="profession-float-child">
+                           <!-- Start user profile -->
+                           <div class="row">
+                              <div class="col-md-12 review-profile">
+                                 <img src="{{i.User_Profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
+                              </div>
+                           </div>
+                           <!-- End user profile -->
+                      </div>
+                      <div class="profession-float-child-1">
+                           <!-- Start User information -->
+                           <div class="row">
+                              <div class="col-md-12">
+                                  <!-- Start User Name -->
+                                  <div class="row">
+                                     <div class="col-md-12 user-name-heading">
+                                        <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">
+                                          {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+                                        </a>
+                                     </div>
+                                  </div>
+                                  <!-- End User Name -->
+                                  <!-- Start date -->
+                                  <div class="row">
+                                     <div class="col-md-12 reviews-date">
+                                        {{i.Review_Reply_Date}} {{i.Review_Reply_Time}}
+                                        <!-- ago. -->
+                                     </div>
+                                  </div>
+                                  <!-- End date -->
+                              </div>
+                           </div>
+                           <!-- End User information -->
+                      </div>
+                  </div>
+              </div>
+              <!-- End user-profile, user-community-name, time -->
+           </div>
+            <!-- Start Community name and time -->
+            <div class="col-4 col-md-3 pl-6 text-right">
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time like-reply-share pl-0">
+                    <span>
+                           {% if userprofile.id is i.User_Profile.id %}
+                              <a href="#" class="btn community-like-dislike-btn" data-target="#modal3" data-toggle="modal" onclick="data('{{i.id}}','{{i.Review_Reply}}')" >
+                                 <i class="fa-solid fa-pencil"></i> &nbsp; 
+                              </a>
+                              <a href="{% url 'review_reply_delete' i.id %}" class="btn community-like-dislike-btn">
+                                 <i class="fa-solid fa-trash"></i> &nbsp;
+                              </a>
+                           {% endif %}
+                        </span>
+                  </div>
+               </div>
+               <!-- End community time -->
+            </div>
+            <!-- End Community name and time -->
+       </div>
+      <!-- End user profile-img & user name  -->
+      <!-- Start comment-conetnt -->
+
+       <div class="row pt-3">
+           <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+            {{i.Review_Reply}}
+           </div>
+       </div>
+      <!-- End comment-conetnt -->
+   </div>
+</div>
+<!-- End Comment -->
+{% endfor %}
+
+<div class="modal create-community-modeal" id="modal3">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title">Edit Review Reply</h5>
+            <a href="#" data-dismiss="modal" class="close">&times;</a>
+         </div>
+         <form action="" id="EditReviewReply" method="POST">
+            {% csrf_token %}
+            <div class="modal-body">
+               <div class="form-group">
+                  <label for="" class="modal-sub-heading">Review Reply</label>
+                  <input type="text" class="form-control" name="Review_reply" id="demo1" required="true">
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-cancel" data-dismiss="modal">Cancel</button>
+               <a href="#">
+               <button type="submit" class="btn btn-normal-b">Update Review Reply</button>
+               </a>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+
+
+
+<script src="{% static 'community_profession/js/review-reply.js' %}"></script>
+<script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
+
+<script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
+
+{% endblock content %}
+

@@ -1,0 +1,62 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Home Screen</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<!-- Profession see all screen -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-see-all-screen.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<style>
+     .profession-list .img-fluid
+     {
+         height:250px;
+         width:100%;
+     }
+</style>
+{% endblock own_css %}
+{% block content %}
+<!-- Start your profession  heading  -->
+<!-- Use same css for popular services -->
+<div class="row">
+   <div class="col-md-12 recent-searches-heading">
+      Profession
+   </div>
+</div>
+<!-- End your profession heading  -->
+<!-- Start Profession list -->
+<div class="row">
+   {% for i in profession %}
+   <div class="col-3 pt-4">
+      <a href="{% url 'profession-personal-details' i.id %}" class="">
+         <!-- Start image -->
+         <div class="row">
+            <div class="col-md-12 profession-list">
+               <img src="{{i.profession_image.url}}" class="img-fluid rounded" alt="Responsive image" >
+            </div>
+         </div>
+         <!-- End image -->
+         <!-- Start heading -->
+         <div class="row pt-3">
+            <div class="col-md-12 profession-heading">
+               Shop Name :- {{i.shop_name}}
+            </div>
+         </div>
+         <div class="row pt-3">
+            <div class="col-md-12 profession-heading">
+               Profession :- {{i.profession.Profession_Name}}
+            </div>
+         </div>
+         <div class="row pt-3">
+            <div class="col-md-12 profession-heading">
+               Address :- {{i.shop_address}}, {{i.shop_city}}, {{i.shop_state}}
+            </div>
+         </div>
+         <!-- End heading -->
+      </a>
+   </div>
+   {% endfor %}
+</div>
+<!-- End hair cut, amkeup artist, photography -->
+{% endblock content %}

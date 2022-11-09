@@ -1,0 +1,83 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Normal User Community Screen</title>
+{% endblock title %}
+{% block own_css %}
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- own css normal-user-community-screen -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/normal-user-community-screen.css' %}">
+{% endblock own_css %}
+
+{% block community_content %}
+<!-- Start community-profile-img, community-name, members & time to make your post pop up -->
+<div class="row pl-3">
+    <div class="col-md-12 ">
+        <!-- Start community-profile-img, community-name, members -->
+        <div class="row">
+            <!-- Start community profile img -->
+            <div class="col-md-1">
+                <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania">
+            </div>
+            <!-- End community profile img -->
+
+            <!-- Start community-name-heading and sub heading -->
+            <div class="col-md-11">
+                <!-- Start community-name-heading -->
+                <div class="row">
+                    <div class="col-md-12 community-name-heading">
+                        U/ community name
+                    </div>
+                </div>
+                <!-- End community-name-heading -->
+
+                 <!-- Start community-name-sub-heading -->
+                 <div class="row">
+                    <div class="col-md-12 community-name-sub-heading">
+                        Members : 0 / Online : 0
+                    </div>
+                </div>
+                <!-- End community-name-sub-heading -->
+            </div>
+            <!-- End community-name-heading and sub heading -->
+        </div>
+        <!-- End community-profile-img, community-name, members -->
+
+        <!-- Start time-to-make-your-post-pop-up -->
+        <div class="row">
+            <div class="col-md-12 time-to-make-post pt-4 text-center">
+                <div class="alert alert-success alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+                    <!-- Start time-to-take-your-post heading -->
+                    <div class="row pt-3">
+                        <div class="col-md-12 heading">
+                            Time To Make Your Post
+                        </div>
+                    </div>
+                    <!-- End time-to-take-your-post heading -->
+
+                    <!-- Start time-to-take-your-post content -->
+                    <div class="row pt-3">
+                        <div class="col-md-12 content">
+                            Now that you’ve created your community, Start things off right bymaking your first post
+                        </div>
+                    </div>
+                    <!-- End time-to-take-your-post content -->
+
+                    <!-- Start make-your-post-btn -->
+                    <div class="row pt-5 pb-3 d-flex justify-content-center">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-normal-b btn-block" data-target="#ask-post" data-toggle="modal">Make Your First Post</button>
+                        </div>
+                    </div>
+                    <!-- End make-your-post-btn -->
+                </div>
+            </div>
+        </div>
+        <!-- End time-to-make-your-post-pop-up -->
+    </div>
+</div>
+<!-- End community-profile-img, community-name, members & time to make your post pop up -->
+{% endblock community_content %}

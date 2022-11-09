@@ -1,0 +1,607 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Community Questions Answer Screen</title>
+{% endblock title %}
+{% block own_css %}
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+<!-- own css community-answer -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/users-questions-answer.css   ' %}">
+{% endblock own_css %}
+
+{% block community_content %}
+<!-- Start answer heading -->
+<div class="row pl-3 pt-3">
+  <div class="col-md-12 answer-heading">
+     How was vijay Thalapathi's new movie RAW (beast)?
+  </div>
+</div>
+<!-- End answer heading -->
+
+<!-- Start users question answer content -->
+<div class="row">
+  <div class="col-md-12 users-questions-answer">
+     <!-- Start answer and share btn -->
+     <div class="row pl-3 pt-2">
+        <div class="col-md-12 answer-share">
+           <span>
+           <i class="fa-solid fa-pen"></i>
+           </span>
+           <span>
+           Answer
+           </span>
+           <span class="pl-3">
+           <i class="fa-solid fa-share-nodes"></i>
+           </span>
+        </div>
+     </div>
+     <!-- End answer and share btn -->
+
+     <!-- Start user profile, user name, answer button -->
+     <div class="row pl-3">
+        <div class="col-md-12 text-center border-bottom pb-4">
+           <!-- Start user profile -->
+           <div class="row">
+              <div class="col-md-12 users-profile-img">
+                 <i class="fa-solid fa-circle-user"></i>
+              </div>
+           </div>
+           <!-- End user profile -->
+           <!-- Start user-name-and-question -->
+           <div class="row">
+              <div class="col-md-12 user-name-and-question">
+                 User name, can you answer this question?
+              </div>
+           </div>
+           <!-- End user-name-and-questions -->
+           <!-- Start user-content -->
+           <div class="row pt-2">
+              <div class="col-md-12 user-content">
+                 People are searching for a better answer to this question.
+              </div>
+           </div>
+           <!-- End user-content -->
+           <!-- Start Answer Button -->
+           <div class="row">
+              <div class="col-md-12 pt-2">
+                 <button class="btn btn-normal-b pl-4 pr-4">
+                 <span class="text-light pr-2"><i class="fa-solid fa-pen-to-square"></i></span> Answer
+                 </button>
+              </div>
+           </div>
+           <!-- End Answer Button -->
+        </div>
+     </div>
+     <!-- End user profile, user name, answer button -->
+
+     <!-- Start Answer -->
+     <div class="row">
+        <div class="col-md-12">
+
+           <!-- Start user name and share btn -->
+           <div class="row pt-3">
+
+              <!-- Start User Profile img -->
+              <div class="col-2 col-md-1 pl-4 pr-4">
+                 <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania" width="100%">
+              </div>
+              <!-- End User Profile img -->
+
+              <!-- Start User name And  no. of days -->
+              <div class="col-5 col-md-5">
+                 <!-- Start User name -->
+                 <div class="row">
+                    <div class="col-md-12 user-name">
+                       User name
+                    </div>
+                 </div>
+                 <!-- End User name -->
+                 <!-- Start no of days -->
+                 <div class="row">
+                    <div class="col-md-12 no-of-days">
+                       1 day ago
+                    </div>
+                 </div>
+                 <!-- End no of days -->
+              </div>
+              <!-- End User name And  no. of days -->
+
+              <!-- Start Share option -->
+              <div class="col-5 col-md-6 text-right">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                 </div>
+              </div>
+              <!-- End Share option -->
+
+           </div>
+           <!-- End user name and share btn -->
+
+           <!-- Start answer -->
+           <div class="row">
+              <div class="col-md-12 answer pt-2">
+                 Answer: the movie was average.
+              </div>
+           </div>
+           <!-- End Answer -->
+
+           <!-- Start no-of-comment, comment-input box, send btn -->
+           <div class="row pt-2">
+
+              <!-- Start no-of-comments -->
+              <div class="col-md-2  text-center">
+                 <a href="" data-toggle="collapse" data-target="#demo" class="no-of-comments">24 Comments</a>
+              </div>
+              <!-- End no-of-comments -->
+
+              <!-- Start commnets - input box -->
+              <div class="col-md-8 comment-input-box">
+                 <div class="form-group">
+                    <textarea class="form-control" rows="2" id="comment" placeholder="Add comment here..."></textarea>
+                 </div>
+              </div>
+              <!-- Start commnets - input box -->
+
+              <!-- Start Send btn -->
+              <div class="col-md-2">
+                 <button type="button" class="btn btn-normal-b btn-sm btn-block">Send</button>
+              </div>
+              <!-- End Send btn -->
+
+           </div>
+           <!-- End no-of-comment, comment-input box, send btn -->
+
+           <!-- Start All comments -->
+           <div class="row pl-3">
+              <div class="col-md-12 collapse text-dark rounded all-comments  " id="demo">
+
+                 <!-- Start comments heading -->
+                 <div class="row p-3">
+                    <div class="col-md-12 comments-heading comment-bottom-border pb-3">
+                       Comments
+                    </div>
+                 </div>
+                 <!-- End comments heading -->
+
+                 <!-- Start user-profile-img, user-name, delete-edit btn -->
+                 <div class="row p-3">
+                    <div class="col-md-12 comment-bottom-border">
+                       <div class="row">
+                          <!-- Start user profile -->
+                          <div class="col-md-1 pt-2 pb-3">
+                             <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania">
+                          </div>
+                          <!-- End user profile -->
+
+                          <!-- Start User name -->
+                          <div class="col-md-10 pt-2 pb-3">
+                             <!-- Start user name -->
+                             <div class="row">
+                                <div class="col-md-12 user-name">
+                                   Users name
+                                </div>
+                             </div>
+                             <!-- End user name -->
+
+                             <!-- Start no-of-days -->
+                             <div class="row">
+                                <div class="col-md-12 no-of-days">
+                                   1 day ago
+                                </div>
+                             </div>
+                             <!-- End no-of-days -->
+
+                             <!-- start Comments -->
+                             <div class="row">
+                                <div class="col-md-12 comment pt-2">
+                                   No it's a good movie.
+                                </div>
+                             </div>
+                             <!-- End Comments -->
+                          </div>
+                          <!-- End User name  -->
+
+                          <!-- Start delete/edit btn -->
+                          <div class="col-md-1 pt-2 pb-3">
+                             <div class="row">
+                                <!-- Start Delete btn -->
+                                <div class="col-md-6">
+                                   <i class="fa-solid fa-trash"></i>
+                                </div>
+                                <!-- End Delete btn -->
+
+                                <!-- Start Edit btn -->
+                                <div class="col-md-6">
+                                   <i class="fa-solid fa-pen"></i>
+                                </div>
+                                <!-- End Edit btn -->
+                             </div>
+                          </div>
+                          <!-- End delete/edit btn -->
+                       </div>
+                    </div>
+                 </div>
+                 <!-- End user-profile-img, user-name, delete-edit btn -->
+
+                 <!-- Start user-profile-img, user-name, delete-edit btn -->
+                 <div class="row p-3">
+                    <div class="col-md-12 comment-bottom-border">
+                       <div class="row">
+                          <!-- Start user profile -->
+                          <div class="col-md-1 pt-2 pb-3">
+                             <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania">
+                          </div>
+                          <!-- End user profile -->
+
+                          <!-- Start User name -->
+                          <div class="col-md-10 pt-2 pb-3">
+                             <!-- Start user name -->
+                             <div class="row">
+                                <div class="col-md-12 user-name">
+                                   Users name
+                                </div>
+                             </div>
+                             <!-- End user name -->
+
+                             <!-- Start no-of-days -->
+                             <div class="row">
+                                <div class="col-md-12 no-of-days">
+                                   1 day ago
+                                </div>
+                             </div>
+                             <!-- End no-of-days -->
+
+                             <!-- start Comments -->
+                             <div class="row">
+                                <div class="col-md-12 comment pt-2">
+                                   No it's a good movie.
+                                </div>
+                             </div>
+                             <!-- End Comments -->
+                          </div>
+                          <!-- End User name  -->
+
+                          <!-- Start delete/edit btn -->
+                          <div class="col-md-1 pt-2 pb-3">
+                             <div class="row">
+                                <!-- Start Delete btn -->
+                                <div class="col-md-6">
+                                   <i class="fa-solid fa-trash"></i>
+                                </div>
+                                <!-- End Delete btn -->
+
+                                <!-- Start Edit btn -->
+                                <div class="col-md-6">
+                                   <i class="fa-solid fa-pen"></i>
+                                </div>
+                                <!-- End Edit btn -->
+                             </div>
+                          </div>
+                          <!-- End delete/edit btn -->
+                       </div>
+                    </div>
+                 </div>
+                 <!-- End user-profile-img, user-name, delete-edit btn -->
+
+              </div>
+           </div>
+           <!-- Start All comments -->
+        </div>
+     </div>
+     <!-- End Answer -->
+
+     <!-- Start Answer1 -->
+     <div class="row">
+        <div class="col-md-12">
+
+           <!-- Start user name and share btn -->
+           <div class="row pt-3">
+
+              <!-- Start User Profile img -->
+              <div class="col-2 col-md-1 pl-4 pr-4">
+                 <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania" width="100%">
+              </div>
+              <!-- End User Profile img -->
+
+              <!-- Start User name And  no. of days -->
+              <div class="col-5 col-md-5">
+                 <!-- Start User name -->
+                 <div class="row">
+                    <div class="col-md-12 user-name">
+                       User name
+                    </div>
+                 </div>
+                 <!-- End User name -->
+                 <!-- Start no of days -->
+                 <div class="row">
+                    <div class="col-md-12 no-of-days">
+                       1 day ago
+                    </div>
+                 </div>
+                 <!-- End no of days -->
+              </div>
+              <!-- End User name And  no. of days -->
+
+              <!-- Start Share option -->
+              <div class="col-5 col-md-6 text-right">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                 </div>
+              </div>
+              <!-- End Share option -->
+
+           </div>
+           <!-- End user name and share btn -->
+
+           <!-- Start answer -->
+           <div class="row">
+              <div class="col-md-12 answer pt-2">
+                 Answer: the movie was average.
+              </div>
+           </div>
+           <!-- End Answer -->
+
+           <!-- Start no-of-comment, comment-input box, send btn -->
+           <div class="row pt-2">
+
+              <!-- Start no-of-comments -->
+              <div class="col-md-2  text-center">
+                 <a href="" data-toggle="collapse" data-target="#demo1" class="no-of-comments">24 Comments</a>
+              </div>
+              <!-- End no-of-comments -->
+
+              <!-- Start commnets - input box -->
+              <div class="col-md-8 comment-input-box">
+                 <div class="form-group">
+                    <textarea class="form-control" rows="2" id="comment" placeholder="Add comment here..."></textarea>
+                 </div>
+              </div>
+              <!-- Start commnets - input box -->
+
+              <!-- Start Send btn -->
+              <div class="col-md-2">
+                 <button type="button" class="btn btn-normal-b btn-sm btn-block">Send</button>
+              </div>
+              <!-- End Send btn -->
+
+           </div>
+           <!-- End no-of-comment, comment-input box, send btn -->
+
+           <!-- Start All comments -->
+           <div class="row pl-3">
+              <div class="col-md-12 collapse text-dark rounded all-comments  " id="demo1">
+
+                 <!-- Start comments heading -->
+                 <div class="row p-3">
+                    <div class="col-md-12 comments-heading comment-bottom-border pb-3">
+                       Comments
+                    </div>
+                 </div>
+                 <!-- End comments heading -->
+
+                 <!-- Start user-profile-img, user-name, delete-edit btn -->
+                 <div class="row p-3">
+                    <div class="col-md-12 comment-bottom-border">
+                       <div class="row">
+                          <!-- Start user profile -->
+                          <div class="col-md-1 pt-2 pb-3">
+                             <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania">
+                          </div>
+                          <!-- End user profile -->
+
+                          <!-- Start User name -->
+                          <div class="col-md-10 pt-2 pb-3">
+                             <!-- Start user name -->
+                             <div class="row">
+                                <div class="col-md-12 user-name">
+                                   Users name
+                                </div>
+                             </div>
+                             <!-- End user name -->
+
+                             <!-- Start no-of-days -->
+                             <div class="row">
+                                <div class="col-md-12 no-of-days">
+                                   1 day ago
+                                </div>
+                             </div>
+                             <!-- End no-of-days -->
+
+                             <!-- start Comments -->
+                             <div class="row">
+                                <div class="col-md-12 comment pt-2">
+                                   No it's a good movie.
+                                </div>
+                             </div>
+                             <!-- End Comments -->
+                          </div>
+                          <!-- End User name  -->
+
+                          <!-- Start delete/edit btn -->
+                          <div class="col-md-1 pt-2 pb-3">
+                             <div class="row">
+                                <!-- Start Delete btn -->
+                                <div class="col-md-6">
+                                   <i class="fa-solid fa-trash"></i>
+                                </div>
+                                <!-- End Delete btn -->
+
+                                <!-- Start Edit btn -->
+                                <div class="col-md-6">
+                                   <i class="fa-solid fa-pen"></i>
+                                </div>
+                                <!-- End Edit btn -->
+                             </div>
+                          </div>
+                          <!-- End delete/edit btn -->
+                       </div>
+                    </div>
+                 </div>
+                 <!-- End user-profile-img, user-name, delete-edit btn -->
+
+                 <!-- Start user-profile-img, user-name, delete-edit btn -->
+                 <div class="row p-3">
+                    <div class="col-md-12 comment-bottom-border">
+                       <div class="row">
+                          <!-- Start user profile -->
+                          <div class="col-md-1 pt-2 pb-3">
+                             <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania">
+                          </div>
+                          <!-- End user profile -->
+
+                          <!-- Start User name -->
+                          <div class="col-md-10 pt-2 pb-3">
+                             <!-- Start user name -->
+                             <div class="row">
+                                <div class="col-md-12 user-name">
+                                   Users name
+                                </div>
+                             </div>
+                             <!-- End user name -->
+
+                             <!-- Start no-of-days -->
+                             <div class="row">
+                                <div class="col-md-12 no-of-days">
+                                   1 day ago
+                                </div>
+                             </div>
+                             <!-- End no-of-days -->
+
+                             <!-- start Comments -->
+                             <div class="row">
+                                <div class="col-md-12 comment pt-2">
+                                   No it's a good movie.
+                                </div>
+                             </div>
+                             <!-- End Comments -->
+                          </div>
+                          <!-- End User name  -->
+
+                          <!-- Start delete/edit btn -->
+                          <div class="col-md-1 pt-2 pb-3">
+                             <div class="row">
+                                <!-- Start Delete btn -->
+                                <div class="col-md-6">
+                                   <i class="fa-solid fa-trash"></i>
+                                </div>
+                                <!-- End Delete btn -->
+
+                                <!-- Start Edit btn -->
+                                <div class="col-md-6">
+                                   <i class="fa-solid fa-pen"></i>
+                                </div>
+                                <!-- End Edit btn -->
+                             </div>
+                          </div>
+                          <!-- End delete/edit btn -->
+                       </div>
+                    </div>
+                 </div>
+                 <!-- End user-profile-img, user-name, delete-edit btn -->
+
+              </div>
+           </div>
+           <!-- Start All comments -->
+        </div>
+     </div>
+     <!-- End Answer1 -->
+
+     <!-- Start Answer2 -->
+     <div class="row">
+        <div class="col-md-12">
+
+           <!-- Start user name and share btn -->
+           <div class="row pt-3">
+
+              <!-- Start User Profile img -->
+              <div class="col-2 col-md-1 pl-4 pr-4">
+                 <img class="img-fluid rounded-circle" src="{% static 'community_profession/img/profile-img.png' %}" alt="Chania" width="100%">
+              </div>
+              <!-- End User Profile img -->
+
+              <!-- Start User name And  no. of days -->
+              <div class="col-5 col-md-5">
+                 <!-- Start User name -->
+                 <div class="row">
+                    <div class="col-md-12 user-name">
+                       User name
+                    </div>
+                 </div>
+                 <!-- End User name -->
+                 <!-- Start no of days -->
+                 <div class="row">
+                    <div class="col-md-12 no-of-days">
+                       1 day ago
+                    </div>
+                 </div>
+                 <!-- End no of days -->
+              </div>
+              <!-- End User name And  no. of days -->
+
+              <!-- Start Share option -->
+              <div class="col-5 col-md-6 text-right">
+                 <div class="row">
+                    <div class="col-md-12">
+                       <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                 </div>
+              </div>
+              <!-- End Share option -->
+
+           </div>
+           <!-- End user name and share btn -->
+
+           <!-- Start answer -->
+           <div class="row">
+              <div class="col-md-12 answer pt-2">
+                 Answer: the movie was average.
+              </div>
+           </div>
+           <!-- End Answer -->
+
+           <!-- Start Answer - img -->
+           <div class="row">
+              <div class="col-md-12 pt-3 pb-3">
+                 <img class="img-fluid" src="{% static 'community_profession/img/answer-img.png' %}" alt="Chania">
+              </div>
+           </div>
+           <!-- End Answer - img -->
+
+           <!-- Start no-of-comment, comment-input box, send btn -->
+           <div class="row pt-2">
+
+              <!-- Start no-of-comments -->
+              <div class="col-md-2 no-of-comments text-center">
+                 24 Comments
+              </div>
+              <!-- End no-of-comments -->
+
+              <!-- Start commnets - input box -->
+              <div class="col-md-8 comment-input-box">
+                 <div class="form-group">
+                    <textarea class="form-control" rows="2" id="comment" placeholder="Add comment here..."></textarea>
+                 </div>
+              </div>
+              <!-- Start commnets - input box -->
+
+              <!-- Start Send btn -->
+              <div class="col-md-2">
+                 <button type="button" class="btn btn-normal-b btn-sm btn-block">Send</button>
+              </div>
+              <!-- End Send btn -->
+
+           </div>
+           <!-- End no-of-comment, comment-input box, send btn -->
+        </div>
+     </div>
+     <!-- End Answer2 -->
+
+  </div>
+</div>
+<!-- End users question answer content -->
+{% endblock community_content %}

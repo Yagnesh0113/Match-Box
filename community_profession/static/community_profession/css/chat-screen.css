@@ -1,0 +1,80 @@
+.chat-screen .user-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;    
+}
+
+.chat-screen .last-seen
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 145%;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chat-screen .chat-menu .dropdown-menu
+{
+    background-color: var(--color-11);
+    padding: 0rem 0rem;  
+
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 145%;
+}
+
+.chat-screen .chat-menu .dropdown-menu .dropdown-item
+{
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    padding: 0.625rem 0.313rem;
+}
+
+.chat-screen .chat-screen-date
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 145%;
+}
+
+.chat-screen .chat-screen-message
+{
+    background-color: var(--color-12);
+    border-radius: 18px 0px 18px 0px;
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 145%;
+    color: var(--color-13);
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.chat-screen .chat-screen-message-reply
+{
+    background-color: var(--color-14);
+    border-radius: 18px 0px 18px 0px;
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 145%;
+    color: var(--color-13);
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.chat-screen .chat-screen-form-input .form-group .form-control
+{
+    background-color: var(--color-3);
+    border: 0px;
+}
+

@@ -1,0 +1,51 @@
+{% extends 'community_profession/community.html' %}
+{% load static %}
+{% block title %}
+<title>Community Edit Screen</title>
+{% endblock title %}
+{% block own_css %}
+
+<!--   use Community css as a base css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community-edit-community.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+{% endblock own_css %}
+
+{% block community_content %}
+<div class="row">
+    <div class="col-md-12 pl-5 pt-4">
+        <div class="row pt-4 edit-community rounded">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <form action="{% url 'Edit_Community' edit_coummunity.id %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Community Name</label>
+                        <input type="text" class="form-control" value="{{edit_coummunity.Community_Name}}"  name="Communiy_Name" id="text">
+                    </div>
+                    <div class="form-group">
+                        <a href="{{edit_coummunity.Community_Cover_Image.url}}" target="_self"><label>Community Cover Image</label></a>
+                        <input type="file" class="form-control border-0" value="{{edit_coummunity.Community_Cover_Image}}" name="Communiy_Image" id="text">
+                    </div>
+                    <div class="form-group">
+                        <a href="{{edit_coummunity.Community_Profile_Image.url}}" target="_self"><label>Community Profile Image</label></a>
+                        <input type="file" class="form-control border-0" value="{{edit_coummunity.Community_Profile_Image}}" name="Communiy_Profile" id="text">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" maxlength="300" class="form-control" rows="4" id="comment">{{edit_coummunity.community_Description}}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-normal-b">Edit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock community_content %}
+

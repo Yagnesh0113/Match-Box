@@ -1,0 +1,51 @@
+{% extends 'community_profession/index.html' %}
+{% load static %}
+{% block title %}
+<title>Profession Personal Details</title>
+{% endblock title %}
+{% block own_css %}
+<!--   own css   -->
+<link rel="stylesheet" href="{% static 'community_profession/css/profession-personal-details.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<!-- Start Services CSS -->
+<style>
+   body {
+   background-color:#E7E9EB;
+   }
+   #myDIV {
+      height:300px;
+      background-color:#FFFFFF;
+   }
+   .ex1 {
+          background-color: lightblue;
+   width: 150px;
+   height: 250px;
+   overflow:auto;
+   }
+</style>
+<!-- End Services CSS -->
+{% endblock own_css %}
+{% block content %}
+<div class="row pt-4 edit-community">
+    <div class="col-md-12">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" value="{{Service.Profession.id}}"  name="Profesion_id" hidden>
+            </div>
+            <div class="form-group">
+                <label>Service Name</label>
+                <input type="text" class="form-control" value="{{Service.service_name}}"  name="Service_name">
+            </div>
+            <div class="form-group">
+                <label>Service Price</label>
+                <input type="number" class="form-control" value="{{Service.service_price}}" name="Service_price">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-normal-b">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

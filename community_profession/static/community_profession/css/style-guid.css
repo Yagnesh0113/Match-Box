@@ -1,0 +1,97 @@
+:root
+{
+    /* All Colors */
+    --color-1:#C4E1E1;
+    --color-2:#FFFFFF;
+    --color-3:#CCADE0;
+    --color-4:#75CECE;
+    --color-5:#C4C4C4;
+    --color-6:#46C3F2;
+    --color-7:#DA1515;
+    --color-8:#108D34;
+    --color-9:#000000;    
+    --color-10:#A680BF; /* button hover color */  
+    --color-11:#CCADE0;  /* disabled button color */
+    --color-12:#B5DFDF; /* back geround color for forms */    
+    --color-13:#161818;  
+    --color-14:#CED3D3;
+    --color-15:#b5dfdf00; /* for BACKGROUND COLOR none */
+    
+    /* All Fonts */
+    --font-1:'Poppins';
+    --font-2:'Helvetica';
+}
+
+.btn-normal
+{
+    background-color: var(--color-3);
+    color: var(--color-2);
+}
+
+.btn-normal:hover
+{
+    background-color: var(--color-10);
+    color: var(--color-2);   
+}
+
+.btn-normal-b
+{
+    background-color: var(--color-3);
+    color: var(--color-13);
+}
+
+.btn-normal-b:hover
+{
+    background-color: var(--color-10);
+    color: var(--color-2);   
+}
+
+.btn-disabled
+{
+    background-color: var(--color-11);
+    color: var(--color-2);   
+}
+
+.btn-disabled:hover
+{
+    color: var(--color-2);
+}
+
+
+.btn-normal-outlined
+{
+    color: var(--color-2);
+    border-color: var(--color-6);
+}
+
+.btn-normal-outlined:hover
+{
+    border-color: var(--color-6);
+    color: var(--color-2);
+}
+
+.btn-disabled
+{
+    border-color: var(--color-6);
+    color: var(--color-2);   
+}
+
+
+/* Start border */
+.border-right 
+{
+    border-right: 0.063rem solid rgba(181, 223, 223, 0.2)!important;
+}
+
+.border-top 
+{
+    border-top: 0.063rem solid rgba(181, 223, 223, 0.2)!important;
+}
+
+.border-bottom
+{
+    border-bottom: 0.063rem solid rgba(181, 223, 223, 0.2)!important;
+}
+/* End border */
+
+

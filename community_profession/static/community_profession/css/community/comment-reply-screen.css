@@ -1,0 +1,120 @@
+.answer-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.15rem;
+    line-height: 1.50rem;
+    color: var(--color-2);
+}
+.reply-form .form-group .form-control
+{
+    background-color: rgba(255, 0, 0, 0);
+    border: 0.063rem solid var(--color-6);
+}
+
+.reply-form .options .dropdown .dropdown-menu
+{
+    background-color: var(--color-11);
+}
+
+.comment .img-fluid
+{
+    height:2.5rem;
+    width:2.5rem;
+}
+
+
+.comment .user-name-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var( --color-2);
+}
+
+.comment .username-sub-heading
+{
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.comment .comment-conetnt
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+    color: var(--color-2);
+}
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px)
+{
+
+}
+
+
+@media all and (max-width: 576px)
+{
+    .comment .comment-conetnt
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.125rem;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .comment .user-name-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.313rem;
+        color: var(--color-2);
+    }
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+}
+
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+}
+/* End Mobile Views */

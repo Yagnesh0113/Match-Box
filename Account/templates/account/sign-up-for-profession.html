@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Sign Up - Profession</title>
+      <link rel="stylesheet" href="{% static 'community_profession/css/bootstrap.min.css' %}">
+      <script src="{% static 'community_profession/js/jquery.slim.min.js' %}"></script>
+      <script src="{% static 'community_profession/js/popper.min.js' %}"></script>
+      <script src="{% static 'community_profession/js/bootstrap.bundle.min.js' %}"></script>
+      <!-- Common style guid css -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/style-guid.css' %}">
+      <!-- Sign Up css -->
+      <link rel="stylesheet" href="{% static 'community_profession/css/sign-up.css' %}">
+      <!-- Font awsome kit -->
+      <script src="https://kit.fontawesome.com/8ba851d087.js" crossorigin="anonymous"></script>
+   </head>
+   <body>
+      <div class="container-fluid bg-dark">
+         <!-- Start Sign up slide -->
+         <div class="row">
+            <div class="col-sm-1 col-md-1"></div>
+            <!-- Start Sign up main -->
+            <div class="col-sm-10 col-md-10 sign-up-bg">
+               <!-- Start Sign Up form body -->
+               <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                     <!-- Start icon -->
+                     <div class="row desktop-icon">
+                        <div class="col-md-12">
+                           <img src="{% static 'community_profession/img/sign-up-logo.png' %}" alt="match-box">
+                        </div>
+                     </div>
+                     <div class="row mobile-icon">
+                        <div class="col-md-12">
+                           <img src="{% static 'community_profession/img/sign-up-logo-mobile-view.png' %}" alt="match-box">
+                        </div>
+                     </div>
+                     <!-- Start icon -->
+                     <!-- Start Sign Up heading -->
+                     <div class="row">
+                        <div class="col-md-12 sign-up-heading">
+                           Sign Up for Profession
+                        </div>
+                     </div>
+                     <!-- Start Sign Up heading -->
+                     <!-- Start Contact Form -->
+                     <form data-city-url="{% url 'load_city' %}" id="indexForm" action="{% url 'sign-up-profession'%}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                         <!-- Start first name and last name -->
+                        <div class="row">
+                           <!-- Start first name -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start first name heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter your first name
+                                 </div>
+                              </div>
+                              <!-- End first name heading -->
+                              <!-- Start first name input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user"></i></span>
+                                       </div>
+                                       <input name="first_name" type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your first name">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End first name input box -->
+                           </div>
+                           <!-- End first name -->
+                           <!-- Start last name -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Enter last name heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter your last name
+                                 </div>
+                              </div>
+                              <!-- Start Enter last name heading -->
+                              <!-- Start last name input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user"></i></span>
+                                       </div>
+                                       <input name="last_name" type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your last name">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End last name input box -->
+                           </div>
+                           <!-- End last name -->
+                        </div>
+                        <!-- End first name and last name -->
+
+                        <!-- Start full name and email / phone number -->
+                        <div class="row">
+                           <!-- Start email -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Enter your email heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter your email
+                                 </div>
+                              </div>
+                              <!-- Start Enter your email heading -->
+                              <!-- Start email input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-envelope"></i></span>
+                                       </div>
+                                       <input name="email" type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your email">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End email input box -->
+                           </div>
+                           <!-- End email -->
+                           <!-- Start phone number -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Enter phone number heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter your phone number
+                                 </div>
+                              </div>
+                              <!-- End Enter your phone number heading -->
+                              <!-- Start phone number input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-mobile-retro"></i></span>
+                                       </div>
+                                       <input name="phone_number" type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your phone number">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End phone number input box -->
+                           </div>
+                           <!-- End phone number -->
+                        </div>
+                        <!-- End full name and email / phone number -->
+
+                        <!-- Start Exprience & Profession -->
+                        <div class="row">
+                           <!-- Start Exprience -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Exprience heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter your Exprience
+                                 </div>
+                              </div>
+                              <!-- Start Exprience heading -->
+                              <!-- Start Exprience input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-id-badge"></i></span>
+                                       </div>
+                                       <input name="experience" type="number" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your exprience">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End Exprience input box -->
+                           </div>
+                           <!-- End Exprience -->
+                           <!-- Start profession -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start profession heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Select your profession
+                                 </div>
+                              </div>
+                              <!-- End profession heading -->
+                              <!-- Start profession input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
+                                       </div>
+                                       <select name="profession" class="form-control border-left-0" id="exampleFormControlSelect1">
+                                          <option class="">-- Select your Profession -- </option>
+                                          <option value="Hair artist & Saloon" class="border">Hair artist & Saloon</option>
+                                          <option value="Makeup Artist">Makeup Artist</option>
+                                          <option value="Photography & Cinematography">Photography & Cinematography</option>
+                                          <option value="Video Editors">Video Editors</option>
+                                          <option value="Interior Designer">Interior Designer</option>
+                                          <option value="Fashion Designer">Fashion Designer</option>
+                                          <option value="Musician & Instrumentalist">Musician & Instrumentalist</option>
+                                          <option value="Choreography & Dancers">Choreography & Dancers</option>
+                                          <option value="Sculpture artist & Scrap artist">Sculpture artist & Scrap artist</option>
+                                          <option value="Mehandi Artist">Mehandi Artist</option>
+                                          <option value="Tatoo Artist">Tatoo Artist</option>
+                                          <option value="Painters">Painters</option>
+                                          <option value="Light & shadow artist">Light & shadow artist</option>
+                                          <option value="Food artist">Food artist</option>
+                                          <option value="Handicraft">Handicraft</option>
+                                          <option value="Sand artist">Sand artist</option>
+                                          <option value="Perfumers">Perfumers</option>
+                                          <option value="Decorator & flower artist">Decorator & flower artist</option>
+                                          <option value="Actor & theater artist">Actor & theater artist</option>
+                                          <option value="Filmmaker">Filmmaker</option>
+                                          <option value="Models">Models</option>
+                                          <option value="Graphic designer">Graphic designer</option>
+                                          <option value="UI/UX Designer">UI/UX Designer</option>
+                                          <option value="Animation">Animation</option>
+                                          <option value="Cartoonist">Cartoonist</option>
+                                          <option value="Anchor & journalist">Anchor & journalist</option>
+                                          <option value="Astrological & vastu art">Astrological & vastu art</option>
+                                          <option value="Rangoli">Rangoli</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End profession input box -->
+                           </div>
+                           <!-- End profession -->
+                        </div>
+                        <!-- End Exprience & Profession -->
+
+                        <!-- Start password & shop or office name -->
+                        <div class="row">
+                           <!-- Start password -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Password heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter your password
+                                 </div>
+                              </div>
+                              <!-- Start Password heading -->
+                              <!-- Start password input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-lock"></i></span>
+                                       </div>
+                                       <input name="password" type="password" class="form-control border-left-0 border-right-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your password">
+                                       <div class="input-group-prepend">
+                                          <span class="border-left-0 password-border-remove" id="inputGroup-sizing-default"><i class="fa-solid fa-eye-slash"></i></span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End password input box -->
+                           </div>
+                           <!-- End password -->
+                           <!-- Start shop or office name -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Enter your Full name heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter shop or office name
+                                 </div>
+                              </div>
+                              <!-- Start Enter your Full name heading -->
+                              <!-- Start full name input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-shop"></i></span>
+                                       </div>
+                                       <input name="shop_name" type="text" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter shop or office name">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End full name input box -->
+                           </div>
+                           <!-- End shop or office name -->
+                        </div>
+                        <!-- End password & shop or office name -->
+
+                        <!-- Start shop - time & days -->
+                        <div class="row">
+                           <!-- Start shop - start time -->
+                           <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                              <!-- Start Enter your shop time heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Shop or office Start time
+                                 </div>
+                              </div>
+                              <!-- Start Enter your shop time heading -->
+                              <!-- Start city input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-clock"></i></span>
+                                       </div>
+                                       <input type="time" name="start_time" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter shop start time">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End city input box -->
+                           </div>
+                           <!-- End shop - start time -->
+                           <!-- Start shop - end time -->
+                           <div class="col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                              <!-- Start Enter your shop time heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Shop or office End time
+                                 </div>
+                              </div>
+                              <!-- Start Enter your shop time heading -->
+                              <!-- Start city input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-clock"></i></span>
+                                       </div>
+                                       <input type="time" name='end_time'class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter shop stop time">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End city input box -->
+                           </div>
+                           <!-- End shop - end time -->
+                           <!-- Start shop - days  -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Enter state heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter Days
+                                 </div>
+                              </div>
+                              <!-- Start Enter state heading -->
+                              <!-- Start state input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                   
+                                       <input name="sunday" type="checkbox" class="btn-check" id="btn-check7" autocomplete="off" />
+                                       <label class="btn btn-danger" for="btn-check7">S</label>
+
+                                       <input name="monday" type="checkbox" class="btn-check" id="btn-check" autocomplete="off" />
+                                       <label class="btn btn-primary" for="btn-check">M</label>
+
+                                       <input name='tuesday' type="checkbox" class="btn-check" id="btn-check2" checked autocomplete="off" />
+                                       <label class="btn btn-primary" for="btn-check2">T</label>
+
+                                       <input name="wednesday" type="checkbox" class="btn-check" id="btn-check3" autocomplete="off" />
+                                       <label class="btn btn-primary" for="btn-check3">W</label>
+
+                                       <input name="thrusday" type="checkbox" class="btn-check" id="btn-check4" autocomplete="off" />
+                                       <label class="btn btn-primary" for="btn-check4">T</label>
+
+                                       <input name="friday" type="checkbox" class="btn-check" id="btn-check5" autocomplete="off" />
+                                       <label class="btn btn-primary" for="btn-check5">F</label>
+
+                                       <input name="saturday" type="checkbox" class="btn-check" id="btn-check6" autocomplete="off" />
+                                       <label class="btn btn-primary" for="btn-check6">S</label>
+                                    
+                                 </div>
+                              </div>
+                              <!-- End state input box -->
+                           </div>
+                           <!-- End shop - days  -->
+                        </div>
+                        <!-- End shop - time & days -->
+
+                        <!-- Start address and city -->
+                        <div class="row">
+                           <!-- Start Address -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Enter your Address heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter your Address
+                                 </div>
+                              </div>
+                              <!-- Start Enter your Address heading -->
+                              <!-- Start Address input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-location-dot"></i></span>
+                                       </div>
+                                       <input type="text" name="address" class="form-control border-left-0" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Enter your Address">
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End Address input box -->
+                           </div>
+                           <!-- End Address -->
+                           
+                           <!-- Start state -->
+                           
+                              <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                 <div class="row signup-form-heading">
+                                    <div class="col-md-12">
+                                       Enter your State
+                                    </div>
+                                 </div>
+                                 <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                       <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
+                                    </div>
+                                    <select name="state" id="state"  class="form-control border-left-0" id="exampleFormControlSelect1">
+                                       <option class="">-- Select State -- </option>
+                                       {% for i in state %}
+                                          <option value="{{i.id}}" class="border">{{i.name}}</option>
+                                       {% endfor %}
+                                    </select>
+                                 </div>
+                              </div>
+                           <!-- End city -->
+                        </div>
+                        <!-- End address and city -->
+                        
+                        <!-- Start state and add your profile -->
+                        <div class="row">
+                           <!-- Start state  -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start Enter state heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    Enter your City
+                                 </div>
+                              </div>
+                              <!-- Start Enter state heading -->
+                              <!-- Start state input box -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="input-group mb-3">
+                                       <div class="input-group-prepend">
+                                          <span class="input-group-text border-right-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user-tie"></i></span>
+                                       </div>
+                                       <select name="city" class="form-control border-left-0" id="city">
+                                          
+                                       </select>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- End state input box -->
+                           </div>
+                           <!-- End state  -->
+                           <!-- Start add your profile -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 sign-up-form add-your-profile ">
+                              <div class="input-group mb-3">
+                                 <div class="input-group-prepend">
+                                    <span class="input-group-text rounded-circle border-0" id="inputGroup-sizing-default"><i class="fa-solid fa-user"></i></span>
+                                 </div>
+                                 <div class="input-group-prepend pt-2">
+                                    &nbsp; <span class="add-your-profile-text"> Add your profile </span>
+                                 </div>
+                                 <input type="file" name="profile_image" class="form-control border-0 " aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Add Your Profile">
+                              </div>
+                           </div>
+                           <!-- End add your profile -->
+                        </div>
+                        <!-- End state and add your profile -->
+                        <!-- Start About Yourself -->
+                        <div class="row">
+                           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                              <div class="form-group">
+                                 <textarea name="about" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="About Yourself"></textarea>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- End About Yourself -->
+                        <!-- Start terms-and-condition & continue button -->
+                        <div class="row ">
+                           <!-- Start terms and condition -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <!-- Start terms and condition heading -->
+                              <div class="row signup-form-heading">
+                                 <div class="col-md-12">
+                                    &nbsp
+                                 </div>
+                              </div>
+                              <!-- End terms and condition heading -->
+                              <div class="row">
+                                 <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 sign-up-form">
+                                    <div class="form-group form-check">
+                                       <label class="form-check-label">
+                                       <input class="form-check-input" name="term" type="checkbox"> <span class="terms-condition-text"> I have read and agree to </span> <a href="">terms and conditions</a>
+                                       </label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- End terms and condition -->
+                           <!-- Start sign up button -->
+                           <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                              <button class="btn btn-block btn-normal" type="submit">Continue</button>
+                           </div>
+                           <!-- End sign up button -->
+                        </div>
+                        <!-- End terms-and-condition & continue button -->
+                     </form>
+                     <!-- End Contact  Form  -->
+                     <!-- Start sign in button -->
+                     <div class="row">
+                        <div class="col-8 col-sm-6 text-right sign-up-btn-heading">
+                           <span class="already-have-an-account-text">Already have an account?</span>
+                        </div>
+                        <div class="col-4 col-sm-2 sign-in-btn">
+                           <a href="{% url 'sign-in' %}" class="text-decoration-none">
+                           <button class="btn btn-block btn-normal">Sign In</button>
+                           </a>
+                        </div>
+                     </div>
+                     <!-- End sign in button -->
+                  </div>
+                  <div class="col-md-2"></div>
+               </div>
+               <!-- End Sign Up form body -->
+            </div>
+            <!-- End Sign up main -->
+            <div class="col-sm-1 col-md-1"></div>
+         </div>
+         <!-- End Sign up slide -->
+      </div>
+   
+   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script>
+    $("#state").change(function () {
+      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view
+      var stateId = $(this).val();  // get the selected programming ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load-courses/)
+        data: {
+          'state': stateId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_courses` view function
+          $("#city").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+   </script>
+
+   </body>
+</html>
