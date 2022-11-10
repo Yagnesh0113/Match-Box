@@ -794,6 +794,7 @@ def Add_Answer(request,id):
 def Add_Answer_Reply(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Answer=User_Answer.objects.get(id=id)
+    print('comment',Answer.Answer)
     if request.method=="POST":
         Reply_obj=request.POST.get("reply")
         reply_Date=date.today()
