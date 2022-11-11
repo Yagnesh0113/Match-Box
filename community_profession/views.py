@@ -80,6 +80,7 @@ def loadSearchNearestProfessions(request,id):
 @login_required(login_url='/sign-in')
 def loadNearestProfessionsList(request,id=None):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+
     if request.method=="POST":
         State_obj=State.objects.get(id=request.POST.get("state"))
         City_obj=request.POST.get("city")
@@ -88,9 +89,9 @@ def loadNearestProfessionsList(request,id=None):
         else:
             Profession_obj=Profession.objects.filter(profession=id)
         if obj is not None:
-            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_obj":Profession_obj}
+            context={'id':id,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_obj":Profession_obj}
         else:
-            context={'My_community':My_Community,'userprofile':userprofile,"Profession_obj":Profession_obj}
+            context={'id':id,'My_community':My_Community,'userprofile':userprofile,"Profession_obj":Profession_obj}
         return render(request, 'community_profession/nearest-professions-list.html',context)
     else:
         
@@ -118,9 +119,9 @@ def loadNearestProfessionsList(request,id=None):
  
         
         if obj is not None:
-            context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
+            context={'id':pro_id,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
         else:
-            context={'joincommunityobj':joincommunityobj,"My_community":My_Community,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
+            context={'id':pro_id,'joincommunityobj':joincommunityobj,"My_community":My_Community,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
 
         return render(request, 'community_profession/nearest-professions-list.html',context)
 

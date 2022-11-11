@@ -25,9 +25,6 @@ class UserPost(models.Model):
     def __str__(self):
         return self.Description
 
-    def delete(self, *args, **kwargs):
-        self.Image.delete()
-        super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         super().save()  # saving image first
@@ -105,10 +102,7 @@ class Community(models.Model):
     def __str__(self):
         return self.Community_Name
     
-    def delete(self, *args, **kwargs):
-        self.Community_Cover_Image.delete()
-        self.Community_Profile_Image.delete()
-        super().delete(*args, **kwargs)
+
     
     def save(self, *args, **kwargs):
         super().save()  # saving image first
@@ -166,10 +160,7 @@ class News(models.Model):
     def __str__(self):
         return self.Description
     
-    def delete(self, *args, **kwargs):
-        self.Image.delete()
-        self.Video.delete()
-        super().delete(*args, **kwargs)
+
     
     def save(self, *args, **kwargs):
         super().save()  # saving image first
