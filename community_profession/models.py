@@ -14,7 +14,7 @@ class UserPost(models.Model):
     # Image=models.FileField(upload_to="Post", validators=[file_size], null=True,blank=True)
     Image=models.FileField(upload_to="Post", validators=[Image_file_size], null=True,blank=True)
     Description=models.TextField(null=True, blank=True)
-    Like=models.ManyToManyField(to=UserProfile,null=True, blank=True, related_name='liked')
+    Like=models.ManyToManyField(to=UserProfile, null=True, blank=True, related_name='liked')
     Post_Date=models.DateField(null=True, blank=True)
     Post_Time=models.TimeField(null=True, blank=True)
     is_active=models.BooleanField(default=True)
@@ -25,9 +25,6 @@ class UserPost(models.Model):
     def __str__(self):
         return self.Description
 
-    def delete(self, *args, **kwargs):
-        self.Image.delete()
-        super().delete(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         super().save()  # saving image first
@@ -104,11 +101,7 @@ class Community(models.Model):
     
     def __str__(self):
         return self.Community_Name
-    
-    def delete(self, *args, **kwargs):
-        self.Community_Cover_Image.delete()
-        self.Community_Profile_Image.delete()
-        super().delete(*args, **kwargs)
+
     
     def save(self, *args, **kwargs):
         super().save()  # saving image first
@@ -166,10 +159,7 @@ class News(models.Model):
     def __str__(self):
         return self.Description
     
-    def delete(self, *args, **kwargs):
-        self.Image.delete()
-        self.Video.delete()
-        super().delete(*args, **kwargs)
+
     
     def save(self, *args, **kwargs):
         super().save()  # saving image first

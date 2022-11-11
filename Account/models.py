@@ -41,10 +41,6 @@ class UserProfile(models.Model):
     country_code = models.CharField(max_length=2, null=True, blank=True,)
     whatsapp_number = models.CharField(max_length=10, null=True, blank=True)
 
-    def delete(self, *args, **kwargs):
-        self.profile_image.delete()
-        super().delete(*args, **kwargs)
-
     def __str__(self):
       return self.usertype.user_id.username
 
@@ -86,10 +82,6 @@ class Profession(models.Model):
     profession_latitude=models.FloatField(null=True, blank=True)
 
 
-    def delete(self, *args, **kwargs):
-        self.profession_image.delete()
-        super().delete(*args, **kwargs)
-
     def __str__(self):
         return self.UserProfile.usertype.user_id.first_name
     
@@ -114,10 +106,6 @@ class Professionimage(models.Model):
     # image=models.ImageField(upload_to='Profession')
     image=models.FileField(upload_to='Profession',validators=[Image_file_size]) #imagefield to transfer in filefiled
 
-    def delete(self, *args, **kwargs):
-        self.image.delete()
-        super().delete(*args, **kwargs)
-
     def save(self, *args, **kwargs):
         super().save()  # saving image first
         try:
@@ -135,9 +123,6 @@ class Professionvideo(models.Model):
     # video=models.FileField(upload_to='Video/%y',validators=[file_size])
     video=models.FileField(upload_to='Video/%y',validators=[video_file_size])
 
-    def delete(self, *args, **kwargs):
-        self.video.delete()
-        super().delete(*args, **kwargs)
 
 class Recent_serach(models.Model):
     Profession_obj=models.ForeignKey(to=Profession, on_delete=models.CASCADE)
