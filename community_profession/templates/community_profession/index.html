@@ -9,6 +9,7 @@
       <title>Index page</title>
       {% endblock title %}
       <!-- Start CSS -->
+      <link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
       <link rel="stylesheet" href="{% static 'community_profession/css/bootstrap.min.css' %}">
       <!-- Common style guid css -->
       <link rel="stylesheet" href="{% static 'community_profession/css/style-guid.css' %}">
@@ -264,8 +265,31 @@
                   <!-- Start Search bar and invite button -->
                   <form action="{% url 'serach_profession' %}" method="POST">
                      {% csrf_token %}
-                     <div class="row pl-3 pt-2 pb-3 ">
+                     
+                     <div class="row pl-3 pt-2 pb-3">
                         <!-- Start Search bar -->
+                        <div class="col-8 col-sm-10">
+                           <div id="autocomplete" class="autocomplete search-bar">
+                              <input name="profesion_search" class="autocomplete-input form-control" />
+                              <ul class="autocomplete-result-list"></ul>
+                           </div>
+                        </div>
+                        <!-- End Search bar -->
+                        <!-- Start Search button -->
+                        <div class="col-4 col-sm-2">
+                           <div class="row">
+                              <div class="col-md-12 ">
+                                 <button type="submit" class="btn btn-normal-b btn-block">Search</button>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- End Search button -->
+                     </div>
+                  </form>
+                  <!-- <form action="{% url 'serach_profession' %}" method="POST">
+                     {% csrf_token %}
+                     <div class="row pl-3 pt-2 pb-3 ">
+                        Start Search bar
                         <div class="col-8 col-sm-10 pr-1">
                            <div class="row">
                               <div class="col-md-12 pt-2 search-bar">
@@ -277,8 +301,8 @@
                               </div>
                            </div>
                         </div>
-                        <!-- End Search bar  -->
-                        <!-- Start invite button -->
+                        End Search bar 
+                        Start invite button
                         <div class="col-4 col-sm-2 pl-1">
                            <div class="row">
                               <div class="col-md-12 pt-2">
@@ -286,8 +310,8 @@
                               </div>
                            </div>
                         </div>
-                        <!-- End invite button -->
-                     </div>
+                        End invite button
+                     </div> -->
                      <!--<div class="row pl-3 pt-2 pb-3">
                         &lt;!&ndash; Start Search bar &ndash;&gt;
                         <div class="col-8 col-sm-10">
@@ -1162,6 +1186,25 @@
          /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
          autocomplete(document.getElementById("myInput"), countries);
       </script>
+
+      <!-- start autocomplete profession serach -->
+      <script>
+         new Autocomplete('#autocomplete', {
+            search : input =>{
+               console.log(input)
+               const url = `/serach_profession/?profesion_search=${input}`
+               return new Promise(resolve =>{
+                  fetch(url)
+                  .then(response => response.json())
+                  
+                  .then(data => {
+                     resolve(data.data)
+                  })
+               })
+            }
+         })
+      </script>
+      <!-- end autocomplete profession serach -->
    </body>
 </html>
 
