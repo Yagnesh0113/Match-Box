@@ -179,6 +179,7 @@
       {% if profession %}
       <div class="row pl-2">
          {% for i in profession %}
+         {% if i.profession_image %}
          <div class="col-12 col-sm-6 col-md-4 d-flex mt-4 profession-cart">
             <div class="card border-1">
                <div class="card-header">
@@ -249,6 +250,7 @@
                </div>
             </div>
          </div>
+         {% endif %}
          {% endfor %}
       </div>
       {% else %}

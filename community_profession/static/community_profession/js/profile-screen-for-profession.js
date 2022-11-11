@@ -1,3 +1,6 @@
+/* Start profile photo Restriction */
+/* End profile photo Restriction */
+
 /* Start django ajax for state and city */
 $("#state").change(function () {
      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_courses` view

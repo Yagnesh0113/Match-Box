@@ -13,94 +13,102 @@
 {% endblock own_css %}
 {% block community_content %}
 <!-- Start community-profile-img, heading, post -->
-<div class="row community-body pt-3 pl-3">
-   <div class="col-md-12">
-      <div class="comment-float-child">
-         <div class="row">
-            <!-- Start community-profile-img -->
-            <div class="col-12 col-sm-12 col-md-12   community-post-profile-picture">
-               <img class="img-fluid rounded-circle" src="{{i.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
-            </div>
-            <!-- End community-profile-img -->
-         </div>
-      </div>
-      <div class="comment-float-child-1">
-         <div class="row">
-            <!-- Start Community name and time -->
-            <div class="col-12 col-sm-12 col-md-12 pl-0">
-               <!-- Start community name -->
-               <div class="row">
-                  <div class="col-md-12 community-name pl-0">
-                     <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}</a>
-                  </div>
-               </div>
-               <!-- End community name -->
-               <!-- Start community time -->
-               <div class="row">
-                  <div class="col-md-12 community-time pl-0">
-                     {{i.Date}} / {{i.Time}}
-                     <!-- Ago -->
-                  </div>
-               </div>
-               <!-- End community time -->
-            </div>
-            <!-- End Community name and time -->
-         </div>
-      </div>
-   </div>
+<span class="community-body">
+<div class="row pt-3">
+ <!-- Start Profile picture -->
+ <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container post-community-profile">
+    <!-- Start Profile Picture -->
+    <div class="float-child">
+       <div class="row">
+          <div class="col-md-12">
+             <img class="img-fluid rounded-circle"
+                src="{{i.User_Profile.profile_image.url}}" alt="Chania"
+                height="100%" width="100%">
+          </div>
+       </div>
+    </div>
+    <!-- End Profile Picture -->
+    <div class="float-child-1">
+       <!-- Start community name -->
+       <div class="row">
+          <div class="col-md-12 community-name">
+             <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">
+                {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+             </a>
+          </div>
+       </div>
+       <!-- End community name -->
+       <!-- Start community time -->
+       <div class="row">
+          <div class="col-md-12 community-time">
+             {{i.Date}} / {{i.Time}}
+          </div>
+       </div>
+       <!-- End community time -->
+    </div>
+ </div>
+ <!-- End Community name and time -->
 </div>
+</span>
 <!-- End community-profile-img, heading, post -->
 
-<!-- Start Community sub heading -->
-<div class="row pl-3 pt-3">
-   <!-- Start community-sub-heading -->
-   <div class="col-sm-12 col-md-12 community-sub-heading pt-2">
-   <!-- <div class="col-12 col-sm-12 col-md-12 community-sub-heading pt-2"> -->
-      {{i.Question}}
-   </div>
-   <!-- End community-sub-heading -->
+<!-- Start Questions -->
+<div class="row pt-3">
+ <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+    {{i.Question}}?
+ </div>
 </div>
-<!-- End Community sub heading -->
+<!-- End Questions -->
 
 <!-- Start no-of-like, no-of-comments, share -->
-<div class="row ">
-   <div class="col-md-12 pl-5">
-      <div class="row  pt-3 pb-3 like-comment-share border-bottom">
-         <!-- Start no-of-like -->
-         <span class="d-inline-block">
-            <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.id}}">
-               {% csrf_token %}
+<div class="row pt-2 pd-2">
+  <div class="col-12 col-sm-12 col-md-12">
+     <!-- Start like button -->
+     <span class="d-inline-block">
+        <form action="{% url 'like_Question' %}" method="POST" class="like-form" id="{{i.id}}">
+           {% csrf_token %}
                <input type="hidden" name="post_id" value="{{i.id}}">
-                  <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
-                     {% if userprofile not in i.Question_Like.all %}
-                     <i class="fa-regular fa-thumbs-up"></i>
-                     {% else %}
-                     <i class="fa-solid fa-thumbs-up"></i>
-                     {% endif %} 
-                  </button>
-               <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.Question_Like.all.count }}</span>
-            </form>
-         </span>
-         <!-- End no-of-like -->
-         <!-- Start  no-of-comments -->
-         <span class=" community-like-dislike-btn pt-2">
-         &nbsp; &nbsp; <i class="fa-solid fa-message"></i>  &nbsp; 
-         {% if i.answer is None %}
-            0
-         {% else %}
-            {{i.answer}}
-         {% endif %}
-         </span>
-         <!-- End  no-of-comments -->
-         <!-- Start share -->
-         <span>
-         <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
-         <i class="fa-solid fa-share-nodes"></i>
-         </button>
-         </span>
-         <!-- End share -->
-      </div>
-   </div>
+               <button type="submit" class="btn p-0 community-like-dislike-btn like-btn{{i.id}}">
+                   {% if userprofile not in i.Question_Like.all %}
+                       <i class="fa-regular fa-thumbs-up"></i>
+                   {% else %}
+                       <i class="fa-solid fa-thumbs-up"></i>
+                   {% endif %}
+               </button>
+               <span class="btn pl-0 community-like-dislike-btn like-count{{i.id}}">
+                   {{ i.Question_Like.all.count }}
+               </span>
+        </form>
+     </span>
+     <!-- End like button -->
+
+     <!-- Start comment button -->
+     <span class="d-inline-block">
+          <a href="#" class="text-decoration-none community-like-dislike-btn">
+               <button type="submit" class="btn p-0 community-like-dislike-btn">
+                   <i class="fa-solid fa-message"></i>
+               </button>
+               <span class="btn pl-0 community-like-dislike-btn like-count">
+                  {% if i.answer is None %}
+                    0
+                 {% else %}
+                    {{i.answer}}
+                 {% endif %}
+               </span>
+          </a>
+     </span>
+     <!-- End comment button -->
+
+     <!-- Start share button -->
+     <span class="d-inline-block">
+          <a href="#" class="text-decoration-none community-like-dislike-btn">
+               <button type="submit" class="btn p-0 community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+                   <i class="fa-solid fa-share-nodes"></i>
+               </button>
+          </a>
+     </span>
+     <!-- End share button -->
+  </div>
 </div>
 <!-- End no-of-like, no-of-comments, share -->
 
@@ -117,36 +125,48 @@
 <!-- End community-user-name -->
 
 <!-- Start User Profile icon and name -->
-<div class="row community-body pt-3 pl-3">
-
+<div class="row pt-4">
    <!-- Start Profile picture -->
-   <div class="col-2 col-sm-1 col-md-1   community-post-profile-picture">
-      <img class="img-fluid rounded-circle" src="{{user.profile_image.url}}" alt="Chania" height="100%" width="100%">
-   </div>
-   <!-- End Profile picture -->
-
-   <!-- Start Community name and time -->
-   <div class="col-5 col-sm-4 col-md-4 pl-0">
-      <!-- Start community name -->
-      <div class="row">
-         <div class="col-md-12 community-name pl-0 pt-2">
-            {{user.usertype.user_id.first_name}} {{user.usertype.user_id.last_name}}
+   <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container post-community-profile">
+      <!-- Start Profile Picture -->
+      <div class="float-child">
+         <div class="row">
+            <div class="col-md-12">
+               <img class="img-fluid rounded-circle"
+                  src="{{user.profile_image.url}}" alt="Chania"
+                  height="100%" width="100%">
+            </div>
          </div>
       </div>
-      <!-- End community name -->
+      <!-- End Profile Picture -->
+      <div class="float-child-1">
+         <!-- Start community name -->
+         <div class="row community-body">
+            <div class="col-md-12 community-name">
+              {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+            </div>
+         </div>
+         <!-- End community name -->
+         <!-- Start community time -->
+         <!--<div class="row">
+            <div class="col-md-12 community-time">
+               {{i.Post.user_post.Post_Date}} / {{i.Post.user_post.Post_Time}}
+            </div>
+         </div>-->
+         <!-- End community time -->
+      </div>
    </div>
    <!-- End Community name and time -->
-
 </div>
 <!-- End User Profile icon and name -->
 
 <!-- Start comment-text-box -->
-<form action="{% url 'Add_Answer' i.id %}" method="POST">
+<form action="{% url 'Add_Answer' i.id  %}" method="POST">
    {% csrf_token %}
-   <div class="row pl-3">
+   <div class="row">
       <div class="col-md-12 pt-3 comment-text-box">
          <div class="form-group">
-            <textarea maxlength="300" class="form-control" name="answer" rows="4" id="comment" placeholder="What do you think?" required></textarea>
+            <textarea class="form-control" name="answer" rows="5" id="comment" placeholder="What do you think?"></textarea>
          </div>
       </div>
    </div>
@@ -154,8 +174,9 @@
    <!-- Start cancel-post-btn -->
    <div class="row pl-3 pt-3  cancel-post-btn">
       <div class="col-md-12 pb-3 text-right border-bottom">
+         <!-- Start post-btn -->
          <span class="post-btn">
-         <button type="submit" class="btn pl-5 pr-5">Post</button>
+         <button type="submit" class="btn btn-sm pl-5 pr-5">Post</button>
          </span>
          <!-- End post-btn -->
       </div>
@@ -165,57 +186,59 @@
 
 <!-- Start Comments -->
 {% for Answer in Answer_id %}
-<div class="row pl-4">
+<!--<div class="row pl-4">
    <div class="col-md-12 all-comments">
-      <!-- Start user-profile, user-community-name, time -->
+      &lt;!&ndash; Start user-profile, user-community-name, time &ndash;&gt;
       <div class="row community-body pt-3">
          <div class="comment-float-child">
             <div class="row">
-               <!-- Start Profile picture -->
+               &lt;!&ndash; Start Profile picture &ndash;&gt;
                <div class="col-12 col-sm-12 col-md-12   community-post-profile-picture">
                   <img class="img-fluid rounded-circle" src="{{Answer.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
                </div>
-               <!-- End Profile picture -->
+               &lt;!&ndash; End Profile picture &ndash;&gt;
             </div>
          </div>
          <div class="comment-float-child-1">
             <div class="row">
-               <!-- Start Community name and time -->
+               &lt;!&ndash; Start Community name and time &ndash;&gt;
                <div class="col-12 col-sm-12 col-md-12 pl-0">
-                  <!-- Start community name -->
+                  &lt;!&ndash; Start community name &ndash;&gt;
                   <div class="row">
                      <div class="col-md-12 community-name pl-0">
-                        <a href="{% url 'profession-profile-screen' Answer.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">{{Answer.User_Profile.usertype.user_id.first_name}} {{Answer.User_Profile.usertype.user_id.last_name}}</a>
+                        <a href="{% url 'profession-profile-screen' Answer.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">
+                           {{Answer.User_Profile.usertype.user_id.first_name}} {{Answer.User_Profile.usertype.user_id.last_name}}
+                        </a>
                      </div>
                   </div>
-                  <!-- End community name -->
-                  <!-- Start community time -->
+                  &lt;!&ndash; End community name &ndash;&gt;
+                  &lt;!&ndash; Start community time &ndash;&gt;
                   <div class="row">
                      <div class="col-md-12 community-time pl-0">
                         {{Answer.Date}} / {{Answer.Time}}
-                        <!-- Ago -->
+                        &lt;!&ndash; Ago &ndash;&gt;
                      </div>
                   </div>
-                  <!-- End community time -->
+                  &lt;!&ndash; End community time &ndash;&gt;
                </div>
-               <!-- End Community name and time -->
+               &lt;!&ndash; End Community name and time &ndash;&gt;
             </div>
          </div>
       </div>
-      <!-- End user-profile, user-community-name, time -->
-      <!-- Start comment -->
+      &lt;!&ndash; End user-profile, user-community-name, time &ndash;&gt;
+      &lt;!&ndash; Start comment &ndash;&gt;
       <div class="row pt-2">
          <div class="col-12 col-sm-12 col-md-12 comment">
             {{Answer.Answer}}
          </div>
       </div>
-      <!-- End comment -->
-      <!-- Start like-reply-share -->
+      &lt;!&ndash; End comment &ndash;&gt;
+      &lt;!&ndash; Start like-reply-share &ndash;&gt;
       <div class="row pt-3">
          <div class="col-md-12 like-reply-share">
-            <!-- <span class="">
+            &lt;!&ndash; <span class="">
                <i class="fa-solid fa-thumbs-up"></i> 1.2K
-               </span> -->
+               </span> &ndash;&gt;
 
                <span class="d-inline-block">
                   <form action="{% url 'like_Answer' %}" method="POST" class="like-form" id="{{Answer.id}}">
@@ -228,7 +251,9 @@
                               <i class="fa-solid fa-thumbs-down"></i>
                            {% endif %} 
                         </button>
-                     <span class="btn community-like-dislike-btn like-count{{Answer.id}}">{{ Answer.Answer_Like.all.count }}</span>
+                     <span class="btn community-like-dislike-btn like-count{{Answer.id}}">
+                        {{ Answer.Answer_Like.all.count }}
+                     </span>
                   </form>
                </span>
             
@@ -257,7 +282,120 @@
             {% endif %}
          </div>
       </div>
+      &lt;!&ndash; Start like-reply-share &ndash;&gt;
+   </div>
+</div>-->
+
+<div class="row">
+   <div class="col-md-12 all-comments community-body pt-3">
+      <!-- Start user-profile, user-community-name, time -->
+      <div class="row pt-3">
+         <!-- Start Profile picture -->
+         <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container post-community-profile">
+            <!-- Start Profile Picture -->
+            <div class="float-child">
+               <div class="row">
+                  <div class="col-md-12">
+                     <img class="img-fluid rounded-circle"
+                        src="{{Answer.User_Profile.profile_image.url}}" alt="Chania"
+                        height="100%" width="100%">
+                  </div>
+               </div>
+            </div>
+            <!-- End Profile Picture -->
+            <div class="float-child-1">
+               <!-- Start community name -->
+               <div class="row">
+                  <div class="col-md-12 community-name">
+                     <a href="{% url 'profession-profile-screen' Answer.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">
+                           {{Answer.User_Profile.usertype.user_id.first_name}} {{Answer.User_Profile.usertype.user_id.last_name}}
+                     </a>
+                  </div>
+               </div>
+               <!-- End community name -->
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time">
+                     {{Answer.Date}} / {{Answer.Time}}
+                  </div>
+               </div>
+               <!-- End community time -->
+            </div>
+         </div>
+         <!-- End Community name and time -->
+      </div>
+      <!-- End user-profile, user-community-name, time -->
+      <!-- Start comment -->
+      <div class="row pt-3">
+         <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+            {{Answer.Answer}}
+         </div>
+      </div>
+      <!-- End comment -->
       <!-- Start like-reply-share -->
+      <div class="row pt-2 pd-2">
+         <div class="col-12 col-sm-12 col-md-12">
+            <!-- Start like button -->
+            <span class="d-inline-block">
+               <form action="{% url 'like_Answer' %}" method="POST" class="like-form" id="{{Answer.id}}">
+                  {% csrf_token %}
+                      <input type="hidden" name="post_id" value="{{Answer.id}}">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn like-btn{{Answer.id}}">
+                          {% if userprofile not in Answer.Answer_Like.all %}
+                              <i class="fa-regular fa-thumbs-up"></i>
+                          {% else %}
+                              <i class="fa-solid fa-thumbs-up"></i>
+                          {% endif %}
+                      </button>
+                      <span class="btn pl-0 community-like-dislike-btn like-count{{Answer.id}}">
+                          {{ Answer.Answer_Like.all.count }}
+                      </span>
+               </form>
+            </span>
+            <!-- End like button -->
+
+            <!-- Start comment button -->
+            <span class="d-inline-block">
+                 <a href="{% url 'Add_Answer_Reply' Answer.id %}" class="text-decoration-none community-like-dislike-btn">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn">
+                          <i class="fa-solid fa-message"></i>
+                      </button>
+                      <span class="btn pl-0 community-like-dislike-btn like-count">
+                       {% if Answer.reply is None %}
+                           0
+                        {% else %}
+                           {{Answer.reply}}
+                        {% endif %}
+                      </span>
+                 </a>
+            </span>
+            <!-- End comment button -->
+
+            {% if userprofile.id is Answer.User_Profile.id %}
+            <!-- Start Edit button -->
+            <span class="d-inline-block">
+                 <a href="#" class="text-decoration-none community-like-dislike-btn" data-target="#answer" data-toggle="modal" onclick="Answer_obj('{{Answer.id}}','{{Answer.Answer}}')">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn">
+                          <i class="fa-solid fa-pencil"></i>
+                      </button>
+                 </a>
+            </span>
+            <!-- End Edit button -->
+
+            <!-- Start Delete button -->
+            <span class="d-inline-block">
+                 <a href="{% url 'delete_Answer' Answer.id %}" class="text-decoration-none community-like-dislike-btn">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn">
+                          <i class="fa-solid fa-trash pl-2"></i>
+                      </button>
+                 </a>
+            </span>
+            <!-- End Delete button -->
+             {% endif %}
+
+         </div>
+      </div>
+      <!-- End like-reply-share -->
    </div>
 </div>
 {% endfor %}

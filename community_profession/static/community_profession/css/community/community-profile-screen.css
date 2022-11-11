@@ -1,6 +1,21 @@
-.community-profile-screen .img-fluid
+/*.community-profile-screen .img-fluid
 {
     height:18.75rem;
+}*/
+
+.community-profile-screen
+{
+    min-width: 120px;
+    height: 18.75rem;
+    /*margin: 2px -8px 3px 0px;*/
+    overflow: hidden;
+}
+
+.community-profile-screen .img-fluid
+{
+   width: 100%;
+   object-fit: cover;
+   object-position: center;
 }
 
 .interior-designer-heading
@@ -106,13 +121,29 @@
 
 @media all and (max-width: 576px)
 {
-
+    .community-profile-screen
+    {
+        min-width: 120px;
+        height: 85px;
+        overflow: hidden;
+        padding-left:0px;
+        padding-right:0px;
+    }
 }
 
 @media (min-width: 577px)
 {
     html{
         font-size: 40%;
+    }
+
+    .community-profile-screen
+    {
+        min-width: 120px;
+        height: 150px;
+        overflow: hidden;
+        padding-left:7px;
+        padding-right:19px;
     }
 }
 
@@ -121,12 +152,30 @@
     html{
         font-size: 45%;
     }
+
+    .community-profile-screen
+    {
+        min-width: 120px;
+        height: 150px;
+        overflow: hidden;
+        padding-left:7px;
+        padding-right:19px;
+    }
 }
 
 @media (min-width: 992px)
 {
     html{
         font-size: 60%;
+    }
+
+    .community-profile-screen
+    {
+        min-width: 120px;
+        height: 195px;
+        overflow: hidden;
+        padding-left:8px;
+        padding-right:19px;
     }
 }
 
@@ -136,12 +185,30 @@
     html{
         font-size: 80%;
     }
+
+    .community-profile-screen
+    {
+        min-width: 120px;
+        height: 232px;
+        overflow: hidden;
+        padding-left:14px;
+        padding-right:15px;
+    }
 }
 
 @media (min-width: 1920px)
 {
     html{
         font-size: 100%;
+    }
+
+    .community-profile-screen
+    {
+        min-width: 120px;
+        height: 375px;
+        overflow: hidden;
+        padding-left:19px;
+        padding-right:19px;
     }
 }
 /* End Mobile Views */

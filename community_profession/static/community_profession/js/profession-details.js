@@ -1,3 +1,5 @@
+/* Start profession profile Restriction */
+/* End profession Video Add Restriction */
 
 /* Start edit service */
 function data(id,val1,val2){

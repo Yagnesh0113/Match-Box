@@ -6,5 +6,75 @@
 </head>
 <body>
 
+<span class="community-body">
+    <div class="row pt-3 pl-3">
+       <!-- Start Profile picture -->
+       <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container post-community-profile">
+          <!-- Start Profile Picture -->
+          <div class="float-child">
+             <div class="row">
+                <div class="col-md-12">
+                   <img class="img-fluid rounded-circle"
+                      src="{{i.User_Profile.profile_image.url}}" alt="Chania"
+                      height="100%" width="100%">
+                </div>
+             </div>
+          </div>
+          <!-- End Profile Picture -->
+          <div class="float-child-1">
+             <!-- Start community name -->
+             <div class="row">
+                <div class="col-md-12 community-name">
+                   <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}" class="text-decoration-none">
+                      {{i.User_Profile.usertype.user_id.first_name}} {{i.User_Profile.usertype.user_id.last_name}}
+                  </a>
+                </div>
+             </div>
+             <!-- End community name -->
+             <!-- Start community time -->
+             <div class="row">
+                <div class="col-md-12 community-time">
+                   {{i.Reply_date}} / {{i.Reply_Time}}
+                </div>
+             </div>
+             <!-- End community time -->
+          </div>
+       </div>
+       <!-- End Community name and time -->
+
+        <div class="col-2 col-sm-6 col-md-6 text-right news-comment-reply-e-d">
+            {% if userprofile.id is i.User_Profile.id %}
+            <!-- Start Edit button -->
+            <span class="d-inline-block">
+                 <a href="#" class="text-decoration-none community-like-dislike-btn" data-target="#answer" data-toggle="modal" onclick="Answer_obj('{{i.id}}','{{i.Reply}}')">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn">
+                          <i class="fa-solid fa-pencil"></i>
+                      </button>
+                 </a>
+            </span>
+            <!-- End Edit button -->
+
+            <!-- Start Delete button -->
+            <span class="d-inline-block">
+                 <a href="{% url 'delete_answer_reply' i.id %}" class="text-decoration-none community-like-dislike-btn">
+                      <button type="submit" class="btn p-0 community-like-dislike-btn">
+                          <i class="fa-solid fa-trash pl-2"></i>
+                      </button>
+                 </a>
+            </span>
+            <!-- End Delete button -->
+             {% endif %}
+        </div>
+    </div>
+
+    <!-- Start comment-conetnt -->
+    <div class="row pt-3 pl-3">
+        <div class="col-12 col-sm-12 col-md-12 community-description  text-justify">
+            {{i.Reply}}
+        </div>
+    </div>
+   <!-- End comment-conetnt -->
+</span>
+
 </body>
 </html>

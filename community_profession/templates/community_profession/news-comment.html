@@ -13,7 +13,7 @@
 {% endblock own_css %}
 {% block community_content %}
 <!-- Start community-profile-img, heading, post -->
-<div class="row community-body pt-3 ">
+<div class="row community-body pt-3">
    <!-- Start Community name and time -->
    <div class="col-12 col-sm-12 col-md-12">
       <!-- Start community name -->
@@ -36,7 +36,7 @@
 </div>
 <!-- End community-profile-img, heading, post -->
 
-<!-- Start Community sub heading -->
+<!-- Start description -->
 <div class="row">
    <!-- Start community-sub-heading -->
    <div class=" col-sm-12 col-md-12 community-sub-heading pt-3 pb-3 text-justify">
@@ -44,7 +44,7 @@
    </div>
    <!-- End community-sub-heading -->
 </div>
-<!-- End Community sub heading -->
+<!-- End description -->
 
 <!-- Start post-img-video -->
 <span class="community-body">
@@ -159,6 +159,7 @@
    <!-- End Community name and time -->
 </div>
 <!-- End community-user-name -->
+
 <!-- Start comment-text-box -->
 <form action="{% url 'news_comment' News.id  %}" method="POST">
    {% csrf_token %}
@@ -229,50 +230,6 @@
       </div>
       <!-- End comment -->
       <!-- Start like-reply-share -->
-      <!--<div class="row pt-3">
-         <div class="col-md-12 like-reply-share">
-            &lt;!&ndash; <span class="">
-               <i class="fa-solid fa-thumbs-up"></i> 1.2K
-               </span> &ndash;&gt;
-            <span class="d-inline-block">
-               <form action="{% url 'like_Comment_news' %}" method="POST" class="like-form" id="{{i.id}}">
-                  {% csrf_token %}
-                  <input type="hidden" name="post_id" value="{{i.id}}">
-                  <button type="submit" class="btn community-like-dislike-btn like-btn{{i.id}}">
-                     {% if userprofile not in i.News_comment_like.all %}
-                     <i class="fa-regular fa-thumbs-up"></i>
-                     {% else %}
-                     <i class="fa-solid fa-thumbs-up"></i>
-                     {% endif %}
-                  </button>
-                  <span class="btn community-like-dislike-btn like-count{{i.id}}">{{ i.News_comment_like.all.count }}</span>
-               </form>
-            </span>
-            <span class="pl-2 community-like-dislike-btn">
-            <a href="{% url 'news_comment_reply' i.id %}" class="text-decoration-none">
-            <i class="fa-solid fa-message"></i> &nbsp;
-            {% if i.reply is None %}
-            0
-            {% else %}
-            {{i.reply}}
-            {% endif %}
-            </a>
-            </span>
-            {% if userprofile.id is i.User_Profile.id %}
-            <span >
-            <a href="#" class="text-decoration-none btn community-like-dislike-btn" data-target="#edit_comment" data-toggle="modal" onclick="data('{{i.id}}','{{i.Comment}}')" >
-            <i class="fa-solid fa-pencil pl-3"></i> &nbsp;
-            </a>
-            </span>
-            <span >
-            <a href="{% url 'delete_news_commenrt' i.id %}" class="text-decoration-none btn community-like-dislike-btn">
-            <i class="fa-solid fa-trash"></i> &nbsp;
-            </a>
-            </span>
-            {% endif %}
-         </div>
-      </div>-->
-
       <div class="row pt-2 pd-2">
          <div class="col-12 col-sm-12 col-md-12">
             <!-- Start like button -->

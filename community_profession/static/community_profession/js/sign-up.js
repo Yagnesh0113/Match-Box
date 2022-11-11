@@ -1,3 +1,6 @@
+/* -- Start profession profile Restriction -- */
+
+/* -- End profession profile Restriction -- */
 
 /* -- Start State - city ajax code -- */
 $("#state").change(function () {
