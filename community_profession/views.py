@@ -1293,15 +1293,28 @@ def serach_profession(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     if request.method=="POST":
         profession_obj=request.POST.get("profesion_search")
-        Profession_obj=Profession.objects.filter(shop_name__icontains=profession_obj)
-        # print(Profession_obj)
+        # print('profession_obj',profession_obj)
+        if profession_obj:
+            profesion_id=Admin_Profession.objects.get(Profession_Name=profession_obj)
+            Profession_obj=Profession.objects.filter(profession=profesion_id)
+        # Profession_obj=Profession.objects.filter(shop_name__icontains=profession_obj)
         if obj is not None:
             context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':Profession_obj}
         else:
             context={'My_community':My_Community,'userprofile':userprofile,'profession':Profession_obj}
         return render(request,'community_profession/profession-search.html',context)
     else:
-        return render(request,'community_profession/home-screen.html')
+        Profession_id=[]
+        profession_obj = request.GET.get('profesion_search')
+        # # print('profession_obj',profession_obj)
+        if profession_obj:
+            Profession_obj=Admin_Profession.objects.filter(Profession_Name__icontains=profession_obj)
+            # # print('Profession_obj',Profession_obj)
+            for Profession_obj in Profession_obj:
+                # # print('Profession_obj',Profession_obj)
+                Profession_id.append(Profession_obj.Profession_Name)
+        # # print(Profession_id)
+        return JsonResponse({'status':200, 'data':Profession_id})
 
 @login_required(login_url='/sign-in')
 def serach_Community(request):
