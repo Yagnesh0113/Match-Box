@@ -524,6 +524,24 @@ def Community_My_Question(request):
     return render(request, 'community_profession/community.html',context)
 
 @login_required(login_url='/sign-in')
+def Community_My_Answer(request):
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]#"Question":User_Question_obj
+    User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
+    User_Answer_obj=User_Answer.objects.filter(User_Profile=userprofile)
+    print('User_Answer_obj',User_Answer_obj)
+    User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+    Date=date.today()
+    Our_News_count=News.objects.filter(Date=Date).count()
+    Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
+    Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+    if obj is not None:
+        context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_Answer_obj":User_Answer_obj,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,}
+    else:
+        context={"Question_count":User_Question_count,"Question":User_Question_obj,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"User_Answer_obj":User_Answer_obj,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile}
+    return render(request, 'community_profession/community.html',context)
+
+@login_required(login_url='/sign-in')
 def User_Post(request):
     if request.method=="POST":
         user=request.user
@@ -771,6 +789,8 @@ def Add_question(request):
 @login_required(login_url='/sign-in')
 def Add_Answer(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    current_site = request.build_absolute_uri()
+    print('current_site',current_site)
     Question=User_Question.objects.get(id=id)
     if request.method=="POST":
         Answer_obj=request.POST.get("answer")
@@ -793,9 +813,9 @@ def Add_Answer(request,id):
         User_id=UserProfile.objects.all().exclude(id=userprofile.id)
         Our_News_count=News.objects.filter(Date=Date).count()
         if obj is not None:
-            context={"Question":User_Question_obj,"Question_count":User_Question_count,"count":Answer_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Question,"user":userprofile,'Answer_id':Answer_id}
+            context={'current_site':current_site,"Question":User_Question_obj,"Question_count":User_Question_count,"count":Answer_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Question,"user":userprofile,'Answer_id':Answer_id}
         else:
-            context={"Question":User_Question_obj,"Question_count":User_Question_count,"count":Answer_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"i":Question,"user":userprofile,'Answer_id':Answer_id}
+            context={'current_site':current_site,"Question":User_Question_obj,"Question_count":User_Question_count,"count":Answer_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"i":Question,"user":userprofile,'Answer_id':Answer_id}
             # context={"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,"i":Question,"user":userprofile,'Answer_id':Answer_id,'My_community':My_Community,"Our_News_count":Our_News_count}
         return render(request,'community_profession/add-answer.html',context)
 
