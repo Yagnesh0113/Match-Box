@@ -1,13 +1,14 @@
 {% extends 'community_profession/index.html' %}
 {% load static %}
 {% block title %}
-<title>Home Screen</title>
+<title>Profession</title>
 {% endblock title %}
 {% block own_css %}
 <!--   own css   -->
 <!-- Profession see all screen -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-see-all-screen.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="/static/community_profession/css/community/community.css">
 <style>
      .profession-list .img-fluid
      {
@@ -26,31 +27,22 @@
 </div>
 <!-- End your profession heading  -->
 <!-- Start Profession list -->
+{% if profession %}
 <div class="row">
    {% for i in profession %}
-   <div class="col-3 pt-4">
-      <a href="{% url 'profession-personal-details' i.id %}" class="">
+   <div class="col-4 pt-4">
+      <a href="{% url 'profession-personal-details' i.id %}" class="text-decoration-none">
          <!-- Start image -->
          <div class="row">
-            <div class="col-md-12 profession-list">
-               <img src="{{i.profession_image.url}}" class="img-fluid rounded" alt="Responsive image" >
+            <div class="col-md-12">
+               <img src="{{i.profession_image.url}}" class="img-fluid" alt="Responsive image">
             </div>
          </div>
          <!-- End image -->
          <!-- Start heading -->
          <div class="row pt-3">
             <div class="col-md-12 profession-heading">
-               Shop Name :- {{i.shop_name}}
-            </div>
-         </div>
-         <div class="row pt-3">
-            <div class="col-md-12 profession-heading">
-               Profession :- {{i.profession.Profession_Name}}
-            </div>
-         </div>
-         <div class="row pt-3">
-            <div class="col-md-12 profession-heading">
-               Address :- {{i.shop_address}}, {{i.shop_city}}, {{i.shop_state}}
+               {{i.shop_name}}
             </div>
          </div>
          <!-- End heading -->
@@ -58,5 +50,28 @@
    </div>
    {% endfor %}
 </div>
+{% else %}
+<div class="row pl-4 pr-4">
+   <div class="col-md-12 text-center recent-searches-window">
+      <div class="row">
+         <div class="col-md-12 search-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12 search-heading">
+            No Profession List's
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-12 search-sub-heading">
+            <a href="{% url 'home-screen' %}" class="text-decoration-none">
+                 <i class="fa-solid fa-arrow-left" style="font-size:3.25rem"></i>
+             </a>
+         </div>
+      </div>
+   </div>
+</div>
+{% endif %}
 <!-- End hair cut, amkeup artist, photography -->
 {% endblock content %}

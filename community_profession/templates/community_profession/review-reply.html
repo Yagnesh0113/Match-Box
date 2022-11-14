@@ -78,10 +78,10 @@
                   <input type="hidden" name="post_id" value="{{Profession_review.id}}">
                      <button type="submit" class="btn community-like-dislike-btn like-btn{{Profession_review.id}}">
                         {% if userprofile not in Profession_review.like.all %}
-                           <i class="fa-solid fa-thumbs-up"></i>
+                        <i class="fa-regular fa-thumbs-up"></i>
                         {% else %}
-                           <i class="fa-solid fa-thumbs-down"></i>
-                        {% endif %} 
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        {% endif %}
                      </button>
                   <span class="community-like-dislike-btn like-count{{Profession_review.id}}">{{ Profession_review.like.all.count }}</span>
                </form>

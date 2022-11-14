@@ -134,8 +134,10 @@ def loadProfessionPersonalDetails(request, id):
     Profession_obj = Profession.objects.get(id=id)
     # print(Profession_obj.id)
     Profession_service_obj = ProfessionServices.objects.filter(Profession=Profession_obj)
-    Profession_Image_obj = Professionimage.objects.filter(profession=Profession_obj)[:3]
-    Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)[:2]
+    Profession_Image_obj = Professionimage.objects.filter(profession=Profession_obj)[:5]
+    Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)[:1]
+    current_site = request.build_absolute_uri()
+    print('current_site',current_site)
     if Recent_serach.objects.filter(Profession_obj=Profession_obj, User_obj=userprofile):
         # print("The data is already exits")
         if request.method == "POST":
@@ -155,13 +157,13 @@ def loadProfessionPersonalDetails(request, id):
             ProfessionReview_obj_count = ProfessionReview.objects.filter(Profession=Profession_obj).count()
 
             if obj is not None:
-                context = {'joincommunityobj': joincommunityobj, "My_community": obj, 'userprofile': userprofile,
+                context = {'current_site':current_site,'joincommunityobj': joincommunityobj, "My_community": obj, 'userprofile': userprofile,
                            "Profession_obj": Profession_obj, "Profession_service_obj": Profession_service_obj,
                            "Profession_Image_obj": Profession_Image_obj, "ProfessionReview_obj": ProfessionReview_obj,
                            "Profession_Video_obj": Profession_Video_obj,
                            "ProfessionReview_obj_count": ProfessionReview_obj_count}
             else:
-                context = {'My_community': My_Community, 'userprofile': userprofile, "Profession_obj": Profession_obj,
+                context = {'current_site':current_site,'My_community': My_Community, 'userprofile': userprofile, "Profession_obj": Profession_obj,
                            "Profession_service_obj": Profession_service_obj,
                            "Profession_Image_obj": Profession_Image_obj, "ProfessionReview_obj": ProfessionReview_obj,
                            "Profession_Video_obj": Profession_Video_obj,
@@ -186,13 +188,13 @@ def loadProfessionPersonalDetails(request, id):
             ProfessionReview_obj_count = ProfessionReview.objects.filter(Profession=Profession_obj).count()
 
             if obj is not None:
-                context = {'joincommunityobj': joincommunityobj, "My_community": obj, 'userprofile': userprofile,
+                context = {'current_site':current_site,'joincommunityobj': joincommunityobj, "My_community": obj, 'userprofile': userprofile,
                            "Profession_obj": Profession_obj, "Profession_service_obj": Profession_service_obj,
                            "Profession_Image_obj": Profession_Image_obj, "ProfessionReview_obj": ProfessionReview_obj,
                            "Profession_Video_obj": Profession_Video_obj,
                            "ProfessionReview_obj_count": ProfessionReview_obj_count}
             else:
-                context = {'My_community': My_Community, 'userprofile': userprofile, "Profession_obj": Profession_obj,
+                context = {'current_site':current_site,'My_community': My_Community, 'userprofile': userprofile, "Profession_obj": Profession_obj,
                            "Profession_service_obj": Profession_service_obj,
                            "Profession_Image_obj": Profession_Image_obj, "ProfessionReview_obj": ProfessionReview_obj,
                            "Profession_Video_obj": Profession_Video_obj,
@@ -295,11 +297,13 @@ def like_Answer(request):
 def loadSeeAllPhotosAndVideos(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Profession_Image_obj=Professionimage.objects.filter(profession=id)
-    Profession_video_obj=Professionvideo.objects.filter(profession=id)
+    current_site = request.build_absolute_uri()
+    print('current_site',current_site)
+    # Profession_video_obj=Professionvideo.objects.filter(profession=id)
     if obj is not None:
-        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_Image_obj":Profession_Image_obj,"Profession_video_obj":Profession_video_obj}
+        context={'current_site':current_site,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_Image_obj":Profession_Image_obj}
     else:
-        context={'My_community':My_Community,'userprofile':userprofile,"Profession_Image_obj":Profession_Image_obj,"Profession_video_obj":Profession_video_obj}
+        context={'current_site':current_site,'My_community':My_Community,'userprofile':userprofile,"Profession_Image_obj":Profession_Image_obj}
     return render(request, 'community_profession/see-all-photos-and-videos.html',context)
 
 # --- load -- photo screen ---
@@ -307,10 +311,12 @@ def loadSeeAllPhotosAndVideos(request,id):
 def loadPhotoScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Profession_Image_obj=Professionimage.objects.get(id=id)
+    current_site = request.build_absolute_uri()
+    print('current_site',current_site)
     if obj is not None:
-        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_Image_obj":Profession_Image_obj}
+        context={'current_site':current_site,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_Image_obj":Profession_Image_obj}
     else:
-        context={'My_community':My_Community,'userprofile':userprofile,"Profession_Image_obj":Profession_Image_obj}
+        context={'current_site':current_site,'My_community':My_Community,'userprofile':userprofile,"Profession_Image_obj":Profession_Image_obj}
     return render(request, 'community_profession/photo-screen.html',context)
 
 # --- load -- video screen ---
@@ -318,10 +324,12 @@ def loadPhotoScreen(request,id):
 def loadVideoScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     Profession_video_obj=Professionvideo.objects.get(id=id)
+    current_site = request.build_absolute_uri()
+    print('current_site',current_site)
     if obj is not None:
-        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_video_obj":Profession_video_obj}
+        context={'current_site':current_site,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_video_obj":Profession_video_obj}
     else:
-        context={'My_community':My_Community,'userprofile':userprofile,"Profession_video_obj":Profession_video_obj}
+        context={'current_site':current_site,'My_community':My_Community,'userprofile':userprofile,"Profession_video_obj":Profession_video_obj}
     return render(request, 'community_profession/video-screen.html',context)
 
 # --- load -- user - profile screen ---

@@ -204,8 +204,8 @@ def profession_details(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Profession.objects.get(id=id)
     services=ProfessionServices.objects.filter(Profession=profession)
-    profession_image=Professionimage.objects.filter(profession=profession)[:4]
-    profession_video=Professionvideo.objects.filter(profession=profession)[:2]
+    profession_image=Professionimage.objects.filter(profession=profession)[:5]
+    profession_video=Professionvideo.objects.filter(profession=profession)[:1]
     profession_review=ProfessionReview.objects.filter(Profession=profession)
     profession_review_count=ProfessionReview.objects.filter(Profession=profession).count()
 
@@ -341,7 +341,12 @@ def add_profesion_video(request):
         video= request.FILES['video']
         profession_id=request.POST['profession_id']
         profession_obj=Profession.objects.get(id=profession_id)
-        Professionvideo.objects.create(video=video,profession=profession_obj)
+        if Professionvideo.objects.filter(profession=profession_obj):
+            video_obj=Professionvideo.objects.get(profession=profession_obj)
+            video_obj.video=video
+            video_obj.save()
+        else:
+            Professionvideo.objects.create(video=video,profession=profession_obj)
         return redirect(f'/profession_details/{profession_id}')
     else:
         return redirect('/profession-profile-screen')
@@ -350,13 +355,13 @@ def loadSeeAllPhotosAndVideos(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Profession.objects.get(id=id)
     profession_image=Professionimage.objects.filter(profession=profession)
-    profession_video=Professionvideo.objects.filter(profession=profession)
+    # profession_video=Professionvideo.objects.filter(profession=profession)
     # print(profession_image)
     # My_Community=Community.objects.all()
     if obj is not None:
-        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession,'profession_image':profession_image,"profession_video":profession_video}
+        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession,'profession_image':profession_image}
     else:
-        context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,'profession_image':profession_image,"profession_video":profession_video}
+        context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,'profession_image':profession_image}
     # context={'profession' : profession,'profession_image':profession_image,"My_community":My_Community,}
     return render(request, 'professional/see-all-photos-and-videos.html',context)
 

@@ -44,7 +44,7 @@
          </div>
          {% endfor %}
       </div>
-      <div class="row">
+      <!-- <div class="row">
          <div class="col-md-11">
             <h4>Video</h4>
          </div>
@@ -66,13 +66,12 @@
                         <source src="{{j.video.url}}" type="video/mp4">
                      </video>
 
-                     <!--<video src="{{j.video.url}}"  width="100%" class="rounded" controls></video>-->
                   </a>
                </div>
             </div>
          </div>
          {% endfor %}
-      </div>
+      </div> -->
    </div>
 </div>
 <!-- End all photos and videos -->
@@ -102,7 +101,7 @@
                <div class="col-md-8">
                   <form>
                      <div class="input-group mb-3">
-                        <input type="text" class="form-control" value="{{ copy_url }}" placeholder="CopyURL">
+                        <input type="text" class="form-control" value="{{ current_site }}" placeholder="CopyURL">
                         <div class="input-group-append">
                            <!-- <span class="input-group-text">COPY</span> -->
                            <span>{% copy_to_clipboard object_or_url%}</span>
