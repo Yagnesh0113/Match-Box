@@ -173,10 +173,10 @@
                   <!-- End animated side navigation -->
                   <!-- Start Navigation icon -->
                   <span class="nav-icon">
-                  <a href="{% url 'home-screen' %}">
-                  <img src="{% static 'community_profession/img/home-screen-nav-icon-desktop-view.png' %}"
-                     class="img-fluid home-screen-nav-icon-desktop-view" alt="Responsive image">
-                  </a>
+                     <a href="{% url 'home-screen' %}">
+                        <img src="{% static 'community_profession/img/home-screen-nav-icon-desktop-view.png' %}"
+                           class="img-fluid home-screen-nav-icon-desktop-view" alt="Responsive image">
+                     </a>
                   </span>
                   <!-- End Navigation icon -->
                </span>
@@ -184,11 +184,11 @@
                <ul class="nav justify-content-center">
                   <li class="nav-item ">
                      <a href="{% url 'home-screen' %}" class="text-decoration-none">
-                     <span class="home-screen-nav-icon-mobile-view">
-                     <img src="{% static 'community_profession/img/home-screen-nav-icon-mobile-view.png' %}"
-                        class="img-fluid" alt="Responsive image">
-                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                     </span>
+                        <span class="home-screen-nav-icon-mobile-view">
+                           <img src="{% static 'community_profession/img/home-screen-nav-icon-mobile-view.png' %}"
+                              class="img-fluid" alt="Responsive image">
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
                      </a>
                   </li>
                </ul>
@@ -226,32 +226,32 @@
                   <li class="nav-item dropdown no-arrow">
                      <a class="nav-link dropdown-toggle" href="{% url 'profession-profile-screen' %}" id="userDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                     {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
-                     </span>
-                     {% if userprofile.profile_image%}
-                     <img src="{{userprofile.profile_image.url}}" class="rounded-circle" alt="Cinque Terre"
-                        width="30" height="30">
-                     {% else %}
-                     <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-                        class="rounded-circle" alt="Cinque Terre" width="30" height="30">
-                     {% endif %}
+                           <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                              {{userprofile.usertype.user_id.first_name}} {{userprofile.usertype.user_id.last_name}}
+                           </span>
+                           {% if userprofile.profile_image%}
+                              <img src="{{userprofile.profile_image.url}}" class="rounded-circle" alt="Cinque Terre"
+                                 width="30" height="30">
+                           {% else %}
+                              <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                                 class="rounded-circle" alt="Cinque Terre" width="30" height="30">
+                           {% endif %}
                      </a>
                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in main-nav-drop-down rounded">
                         <a class="dropdown-item" href="{% url 'profession-profile-screen' %}">
-                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Profile
+                           <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Profile
                         </a>
                         <div class="dropdown-divider"></div>
                         {% if user.is_authenticated %}
                         <a class="dropdown-item" href="{% url 'user_logout' %}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Sign out
+                           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Sign out
                         </a>
                         {% else %}
                         <a class="dropdown-item" href="{% url 'sign-in' %}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Sign in
+                           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Sign in
                         </a>
                         {% endif %}
                      </div>
