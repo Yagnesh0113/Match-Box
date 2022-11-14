@@ -112,5 +112,7 @@ urlpatterns = [
     path('privacy-policy', views.loadPrivacyPolicy, name='privacy-policy'),
     # -- terms and condition --
     path('terms-condition', views.loadTermsAndCondition, name='terms-condition'),
+    path('Community_My_Answer', views.Community_My_Answer, name='Community_My_Answer'),
+
 
 ]
