@@ -100,6 +100,37 @@
          color: #ffffff;
          }
       </style>
+
+
+      <!-- Start new search bar css -->
+      <style>
+         .autocomplete-result-list {
+          margin: 0;
+          border: 1px solid rgba(0,0,0,.12);
+          padding: 0;
+          box-sizing: border-box;
+          max-height: 296px;
+          overflow-y: auto;
+          background: var(--color-11);
+          color:var(--color-13);
+          list-style: none;
+          box-shadow: 0 2px 2px rgb(0 0 0 / 16%);
+      }
+
+      [data-position=below] .autocomplete-result-list
+      {
+       margin-top: -1px;
+       border-top-color: transparent;
+       border-radius: 0 0 8px 8px;
+       padding-bottom: 0px;
+      }
+
+      .autocomplete .form-control-sm
+      {
+         padding: 0.25rem 3rem;
+      }
+      </style>
+      <!-- End new search bar css -->
    </head>
    <body class="bg-dark" style="overflow-x: hidden;">
       <!-- Start Navigation -->
@@ -270,16 +301,16 @@
                         <!-- Start Search bar -->
                         <div class="col-8 col-sm-10">
                            <div id="autocomplete" class="autocomplete search-bar">
-                              <input name="profesion_search" class="autocomplete-input form-control" />
+                              <input name="profesion_search" class="autocomplete-input form-control form-control-sm" />
                               <ul class="autocomplete-result-list"></ul>
                            </div>
                         </div>
                         <!-- End Search bar -->
                         <!-- Start Search button -->
-                        <div class="col-4 col-sm-2">
+                        <div class="col-4 col-sm-2 pl-0">
                            <div class="row">
                               <div class="col-md-12 ">
-                                 <button type="submit" class="btn btn-normal-b btn-block">Search</button>
+                                 <button type="submit" class="btn btn-normal-b btn-block btn-sm">Search</button>
                               </div>
                            </div>
                         </div>
