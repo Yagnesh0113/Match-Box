@@ -1,11 +1,12 @@
 .profession-profile-screen .profile-heading {
-	font-family: var(--font-1);
+	font-family: var(--font-2);
     font-style: normal;
     font-weight: 400;
     font-size: 1.5rem;
-    line-height: 145%;
+    line-height: 1.75rem;
     color: var(--color-2);
 }
+
 
 .profession-profile-screen .profile-options .dropdown-menu {
 	background-color: var(--color-11);
@@ -156,10 +157,11 @@
         font-family: var(--font-2);
         font-style: normal;
         font-weight: 400;
-        font-size: 1.125rem;
-        line-height: 1.180rem;
+        font-size: 1.375rem;
+        line-height: 1.5625rem;
         color: var(--color-2);
     }
+ 
 
     .profession-detail .personal-detail-heading
     {
@@ -239,6 +241,14 @@
         padding-left:15px;
         padding-right:6px;
     }
+    .add-profesion-mble-paddng
+    {
+        padding: 0rem;
+    }
+    .btn-primary {
+        color: var(--color-13);
+        background-color: var(--color-15);
+        border-color: var(--color-14);
 }
 
 @media (min-width: 577px)
@@ -252,6 +262,11 @@
         padding-left:19px;
         padding-right:27px;
     }
+    .add-profession-block-padding
+    {
+        padding-right: 12px;
+    }
+   
 }
 
 @media (min-width: 768px)
@@ -265,6 +280,11 @@
         padding-left:15px;
         padding-right:10px;
     }
+    .add-profession-block-padding
+    {
+        padding-right: 12px;
+    }
+   
 }
 
 @media (min-width: 992px)
@@ -278,6 +298,11 @@
         padding-left:15px;
         padding-right:2px;
     }
+    .add-profession-block-padding
+    {
+        padding-right: 12px;
+    }
+   
 }
 
 
@@ -292,6 +317,12 @@
         padding-left:0.688rem;
         padding-right:0px;
     }
+    .add-profession-block-padding
+    {
+        padding-right: 0.0625rem;
+    }
+    
+ 
 }
 
 @media (min-width: 1920px)
@@ -305,5 +336,7 @@
         padding-left:1.375rem;
         padding-right:0px;
     }
+    
+   
 }
 /* End Mobile Views */
