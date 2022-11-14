@@ -230,19 +230,19 @@ Note: this css file is use for all following pages: sign-up, sign-up-for-profess
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-.signup-form-check-btn .btn-primary
+/* .signup-form-check-btn .btn-primary
 {
     color: var(--color-13);
     background-color: var(--color-15);
     border-color: var(--color-14);
-}
+} */
 
-.signup-form-check-btn .btn-primary:hover
+/* .signup-form-check-btn .btn-primary:hover
 {
     color: var(--color-2);
     background-color: var(--color-14);
     border-color: var(--color-14);
-}
+} */
 
 .signup-form-check-btn .btn-check:active+.btn-primary, .btn-check:checked+.btn-primary, .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle
 {
@@ -269,6 +269,26 @@ Note: this css file is use for all following pages: sign-up, sign-up-for-profess
 
 @media all and (max-width: 576px)
 {
+    .signup-form-check-btn .btn
+{
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: white;
+    /* text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color:none;
+    border: 0.125rem solid var(--color-5);
+    /* padding: 0.375rem 0.75rem; */
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .1s ease-in-out,border-color .1s ease-in-out,box-shadow .1s ease-in-out; */
+}
     .desktop-icon
     {
         display: none;
