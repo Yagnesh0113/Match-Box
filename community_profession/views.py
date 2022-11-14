@@ -907,6 +907,8 @@ def loadCommunityProfileScreen(request, id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
+    current_site = request.build_absolute_uri()
+    print('current_site',current_site)
     # print(userprofile.id)
     Date=date.today()
     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)
@@ -922,9 +924,9 @@ def loadCommunityProfileScreen(request, id):
     # print(z)
     Community_Post_obj=Community_Post.objects.filter(Community_obj=community_obj.id)[::-1]
     if obj is not None:
-        context={'z':z,"Question":User_Question_obj,"Question_count":User_Question_count,         "Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":community_obj,"Community_Post_obj":Community_Post_obj,}
+        context={'current_site':current_site,'z':z,"Question":User_Question_obj,"Question_count":User_Question_count,         "Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":community_obj,"Community_Post_obj":Community_Post_obj,}
     else:
-        context={'z':z,"Question":User_Question_obj,"Question_count":User_Question_count,    "Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"i":community_obj,"Community_Post_obj":Community_Post_obj,}
+        context={'current_site':current_site,'z':z,"Question":User_Question_obj,"Question_count":User_Question_count,    "Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"i":community_obj,"Community_Post_obj":Community_Post_obj,}
     return render(request, 'community_profession/community-profile-screen.html',context)
 
 # --- load -- community create post page ---
