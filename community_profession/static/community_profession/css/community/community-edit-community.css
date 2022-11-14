@@ -21,3 +21,100 @@ form .form-group .form-control
     background-color: #fff0;
     border:0.125rem solid var(--color-5);
 }
+.edit-commnty-block-padding
+{
+    padding-top: 30px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+
+@media all and (max-width: 576px)
+{
+    .edit-commnty-block-padding
+    {
+        padding-top: 30px;
+        padding-left: 15px;
+        padding-right: 13px;
+    }
+
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+    .edit-commnty-block-padding
+    {
+        padding-top: 30px;
+        padding-left: 25px;
+        padding-right: 38px;
+    }
+    .edit-commnty-chose-file-pddng
+    {
+        padding-bottom: 2.5rem;
+    }
+
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+    .edit-commnty-block-padding
+    {
+        padding-top: 30px;
+        padding-left: 28px;
+        padding-right: 38px;
+    }
+    .edit-commnty-chose-file-pddng
+    {
+        padding-bottom: 2.3rem;
+    }
+    
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+    .edit-commnty-block-padding
+    {
+        padding-top: 30px;
+        padding-left: 28px;
+        padding-right: 38px;
+    }
+    
+    
+}
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+    .edit-commnty-block-padding
+    {
+        padding-top: 30px;
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+   
+}  
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+    .edit-commnty-block-padding
+{
+    padding-top: 30px;
+    padding-left: 35px;
+    padding-right: 32px;
+}
+
+}   
