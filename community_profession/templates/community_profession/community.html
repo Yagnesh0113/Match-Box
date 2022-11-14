@@ -42,7 +42,7 @@
                aria-haspopup="true" aria-expanded="false">Filters</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                <li><a class="dropdown-item" href="{% url 'Community_image' %}">Image</a></li>
-               <li><a class="dropdown-item" href="{% url 'Community_video' %}">Video</a></li>
+               <!-- <li><a class="dropdown-item" href="{% url 'Community_video' %}">Video</a></li> -->
                <li><a class="dropdown-item" href="{% url 'Community_Question' %}">Questions</a></li>
                <li><a class="dropdown-item" href="{% url 'community-screen' %}">All Post</a></li>
                <li class="dropdown dropright">
@@ -50,7 +50,7 @@
                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">My Post</a>
                   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                      <li><a class="dropdown-item" href="{% url 'Community_My_Image' %}">My Images</a></li>
-                     <li><a class="dropdown-item" href="{% url 'Community_My_Video' %}">My Video</a></li>
+                     <!-- <li><a class="dropdown-item" href="{% url 'Community_My_Video' %}">My Video</a></li> -->
                      <li><a class="dropdown-item" href="{% url 'Community_My_Question' %}">My Questions</a></li>
                      <li><a class="dropdown-item" href="#">My Answer</a></li>
                      <!--                  <li class="dropdown">-->
@@ -2239,7 +2239,7 @@
                      <div class="col-md-12 file-field">
                         <div class="form-group">
                            <input onchange="upload_check()" class="form-control" id="file_id" name="File"
-                              type="file" accept="image/*,video/*">
+                              type="file" accept="image/*">
                         </div>
                      </div>
                   </div>
