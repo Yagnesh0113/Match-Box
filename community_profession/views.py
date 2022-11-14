@@ -1279,6 +1279,7 @@ def ans_later(request,id):
 @login_required(login_url='/sign-in')
 def delete_ans_later(request,id):
     Answer=Answer_later.objects.get(id=id)
+    # print(Answer)
     Question=User_Question.objects.get(id=Answer.Question.id)
     Question.Answer_later=False
     Question.save()
