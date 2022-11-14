@@ -11,31 +11,53 @@
 {% endblock own_css %}
 
 
-
-
 {% block community_content %}
-<!-- Start Community -->
 <div class="row">
-   <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-5 community-body">
+   <div class="col-12 col-sm-12 col-md-12 border-bottom pb-2 pt-4 community-body">
+
+
+
+      <!-- start community profile picture, name, and join button  -->
       <div class="row">
-         <div class="col-2 col-sm-1 col-md-1">
-            <img class="img-fluid rounded-circle" src="{{User_POST.User_Profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
-         </div>
-         <div class="col-5 col-sm-4 col-md-4">
-            <div class="row">
-               <div class="col-md-12 community-name">
-                  {{User_POST.User_Profile.usertype.user_id.first_name}} {{User_POST.User_Profile.usertype.user_id.last_name}}
+         <!-- Start Profile picture -->
+         <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container post-community-profile">
+            <!-- Start Profile Picture -->
+            <div class="float-child">
+               <div class="row">
+                  <div class="col-md-12">
+                     <img class="img-fluid rounded-circle"
+                        src="{{User_POST.User_Profile.profile_image.url}}" alt="Chania"
+                        height="100%" width="100%">
+                  </div>
                </div>
             </div>
-            <div class="row">
-               <div class="col-md-12 community-time">
-                  {{User_POST.Post_Date}} / {{User_POST.Post_Time}} 
-                  <!-- Ago -->
+            <!-- End Profile Picture -->
+            <div class="float-child-1">
+               <!-- Start community name -->
+               <div class="row">
+                  <div class="col-md-12 community-name">
+                     {{User_POST.User_Profile.usertype.user_id.first_name}} {{User_POST.User_Profile.usertype.user_id.last_name}}
+                  </div>
                </div>
+               <!-- End community name -->
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time">
+                     {{User_POST.Post_Date}} / {{User_POST.Post_Time}}
+                  </div>
+               </div>
+               <!-- End community time -->
             </div>
          </div>
+         <!-- End Community name and time -->
+         <!-- Start join buttons, options -->
+         <div class="col-2 col-sm-6 col-md-6 text-right ">
+         </div>
+         <!-- Start join buttons, options -->
       </div>
-      <div class="row pt-3">
+      <!-- End community profile picture, name, and join button  -->
+
+      <div class="row pt-4">
          <div class="col-12 col-sm-12 col-md-12 community-description">
             <div class="form-group">
                <form action="{% url 'Community_Edit_My_Image' User_POST.id %}" method="POST">
@@ -44,7 +66,7 @@
                      <div class="col-9 col-sm-10 col-md-10 community-description edit-form">
                         <textarea type="text" class="form-control" name="Description">{{User_POST.Description}}</textarea>
                      </div>
-                     <div class="col-3 col-sm-2 col-md-2 community-description">
+                     <div class="col-3 col-sm-2 col-md-2 pl-0 community-description">
                         <button type="submit" class="btn btn-normal-b btn-block">Edit</button>
                      </div>
                   </div>
@@ -52,18 +74,19 @@
            </div>
          </div>
       </div>
+
       {% if User_POST.Image %}
-      <div class="row community-post-image">
-         <div class="col-md-12">
-            <div class="row community-post-image-background">
-               <div class="col-md-3"></div>
-               <div class="col-md-6">
-                  <img src="{{User_POST.Image.url}}" alt="" class="img-fluid" width="100%">
-               </div>
-               <div class="col-md-3"></div>
-            </div>
+      <div class="row community-post-image ">
+   <div class="col-md-12 community-post-image-background p-0">
+      <div class="row ">
+         <div class="col-0 col-sm-3 col-md-3"></div>
+         <div class="col-12 col-sm-6 col-md-6 text-center p-0">
+            <img src="{{User_POST.Image.url}}" alt="img-fluid" class="img-fluid">
          </div>
+         <div class="col-0 col-sm-3 col-md-3"></div>
       </div>
+   </div>
+</div>
       {% else %}
       <div></div>
       {% endif %}
