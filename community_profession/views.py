@@ -403,9 +403,10 @@ def Community_image(request):
     
     User_post_obj=UserPost.objects.filter(post_type1=False).exclude(User_Profile=userprofile)
     print(User_post_obj)
+    User_post_obj_image=[]
     for i in User_post_obj:
-        User_post_obj_image=Community_Post.objects.filter(user_post=i.id)[::-1]
-
+        User_post_obj_image.append(Community_Post.objects.get(user_post=i.id))
+    User_post_obj_image.reverse()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
     # Our_News_count=News.objects.filter(Date=Date).count()
@@ -426,9 +427,10 @@ def Community_video(request):
     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
 
     User_post_video=UserPost.objects.filter(post_type1=True).exclude(User_Profile=userprofile)
+    User_post_obj_video=[]
     for i in User_post_video:
-        User_post_obj_video = Community_Post.objects.filter(user_post=i.id)[::-1]
-
+        User_post_obj_video.append(Community_Post.objects.get(user_post=i.id))
+    User_post_obj_video.reverse()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
     # Our_News_count=News.objects.filter(Date=Date).count()
@@ -451,10 +453,10 @@ def Community_My_Video(request):
     
     User_post_obj_id=UserPost.objects.filter(User_Profile=userprofile,post_type1=True)
     print(User_post_obj_id)
+    User_post_obj=[]
     for i in User_post_obj_id:
-        User_post_obj = Community_Post.objects.filter(user_post=i.id)[::-1]
-
-
+        User_post_obj.append(Community_Post.objects.get(user_post=i.id))
+    User_post_obj.reverse()
     # User_POST_Question_obj=POST_and_Question.objects.all()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
@@ -496,9 +498,11 @@ def Community_My_Image(request):
     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
 
     User_post_obj_id=UserPost.objects.filter(User_Profile=userprofile, post_type1=False)
+    print('User_post_obj_id',User_post_obj_id)
+    User_post_obj=[]
     for i in User_post_obj_id:
-        User_post_obj = Community_Post.objects.filter(user_post=i.id)[::-1]
-
+        User_post_obj.append(Community_Post.objects.get(user_post=i.id))
+    User_post_obj.reverse()
     # User_POST_Question_obj=POST_and_Question.objects.all()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
@@ -1048,7 +1052,8 @@ def loadCommunityCreatePostPage(request, id=None):
 @login_required(login_url='/sign-in')
 def loadCommunityWriteCommentScreen(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-
+    current_site = request.build_absolute_uri()
+    print('current_site',current_site)
     Community_obj=Community_Post.objects.get(id=id)
     if request.method=="POST":
         Post_Comment_obj=request.POST.get("Comment")
@@ -1082,9 +1087,9 @@ def loadCommunityWriteCommentScreen(request,id):
         All_comment_count=Community_Post_Comment.objects.filter(Community_Post_obj=Community_obj).count()
         # print("All_comment_count : ",All_comment_count)
         if obj is not None:
-            context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
+            context={'current_site':current_site,"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
         else:
-            context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
+            context={'current_site':current_site,"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"user":userprofile,"i":Community_obj,"All_comment":All_comment,"count":All_comment_count}
         return render(request, 'community_profession/write-comment-screen.html',context)
 
 @login_required(login_url='/sign-in')
@@ -1388,7 +1393,6 @@ def serach_Community(request):
         return render(request,'community_profession/home-screen.html')
 
 # drop down
-
 @login_required(login_url='/sign-in')
 def Community_Edit_My_Image(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
@@ -1808,7 +1812,6 @@ def edit_answer_reply(request,id):
         return redirect(f"/Add_Answer_Reply/{obj.Answer.id}")
     else:
         return redirect(f"/Add_Answer/{obj.Answer.id}")
-
 
 # -- load privacy policy page --
 def loadPrivacyPolicy(request):
