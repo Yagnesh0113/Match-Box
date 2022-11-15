@@ -8,9 +8,10 @@
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- Font awsome kit -->
 <script src="{% static 'community_profession/js/font-awsome-kit.js' %}"></script>
+<!-- Start owl-carousel.css -->
+<link rel="stylesheet" href="{% static 'community_profession/css/owl-carousel.css' %}">
 <!-- Start profession-home-screen.css  -->
 <link rel="stylesheet" href="{% static 'community_profession/css/profession-home-screen.css' %}">
-
 <style>
    .cover {
    padding: 0px 0px;
@@ -200,8 +201,6 @@
       <div class="row ">
          <div class="col-lg-12 grid-margin stretch-card">
             <div class="owl-carousel">
-
-
                {% for recent in Recent %}
                {% if recent.Profession_obj.profession_image %}
                <a href="{% url 'profession-personal-details' recent.Profession_obj.id %}"
@@ -210,15 +209,28 @@
                      <div class="card border-1">
                         <div class="card-header">
                            <div class="row profession-img">
-                              <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
-
-                                 <img class="img-fluid rounded" src="{{recent.Profession_obj.profession_image.url}}" alt="Chania">
+                              <div class="col-12 col-sm-12 col-md-12 pt-3">
+                                 <center>
+                                    <img class="img-fluid rounded" src="{{recent.Profession_obj.profession_image.url}}" alt="Chania">
+                                 </center>
                               </div>
                            </div>
                         </div>
 
-                        <div class="card-footer profession-label text-center">
-                           {{recent.Profession_obj.shop_name}}
+                        <div class="card-footer profession-label ">
+                           <div class="row text-center">
+                              <div class="col-md-12">{{recent.Profession_obj.shop_name}}</div>
+                           </div>
+
+                           <div class="row">
+                              <div class="col-sm-6 col-md-6 pr-0">
+                                 <img class="img-fluid float-right" src="/static/community_profession/img/flag.png" alt="Chania">
+                              </div>
+                              <div class="col-sm-6 col-md-6 pl-1">
+                                 {{recent.Profession_obj.Profession_Rating}}
+                              </div>
+                           </div>
+
                         </div>
                      </div>
                   </span>
@@ -371,15 +383,30 @@
                            <div class="card border-1">
                               <div class="card-header">
                                  <div class="row profession-img">
-                                    <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
+                                    <div class="col-12 col-sm-12 col-md-12 pt-3">
+                                       <center>
                                        <img class="img-fluid rounded" src="{{Popular_obj.profession_image.url}}" alt="Chania">
+                                          </center>
                                     </div>
                                  </div>
                               </div>
 
-                              <div class="card-footer profession-label text-center">
-                                 {{Popular_obj.shop_name}}
+                               <div class="card-footer profession-label ">
+                                 <div class="row text-center">
+                                    <div class="col-md-12">{{Popular_obj.shop_name}}</div>
+                                 </div>
+
+                                 <div class="row">
+                                    <div class="col-sm-6 col-md-6 pr-0">
+                                       <img class="img-fluid float-right" src="/static/community_profession/img/flag.png" alt="Chania">
+                                    </div>
+                                    <div class="col-sm-6 col-md-6 pl-1">
+                                       {{Popular_obj.Profession_Rating}}
+                                    </div>
+                                 </div>
                               </div>
+
+
                            </div>
                         </span>
                      </a>
