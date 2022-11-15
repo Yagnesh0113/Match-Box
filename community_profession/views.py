@@ -1822,5 +1822,17 @@ def loadTermsAndCondition(request):
     return render(request, 'community_profession/terms-condition.html')
 
 # -- load notification --
+@login_required(login_url='/sign-in')
 def loadNotification(request):
-    return render(request, 'community_profession/notification.html')
+    userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    User_Question_obj=User_Question.objects.filter(User_id=userprofile.id)[::-1][:3]
+    User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
+    User_id=UserProfile.objects.all().exclude(id=userprofile.id)
+    Our_News_count=News.objects.all().count()
+    Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)[::-1]
+    Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+    if obj is not None:
+        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
+    else:
+        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"Question":User_Question_obj}
+    return render(request, 'community_profession/notification.html', context)
