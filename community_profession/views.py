@@ -1820,3 +1820,7 @@ def loadPrivacyPolicy(request):
 # -- load Terms & Condition page --
 def loadTermsAndCondition(request):
     return render(request, 'community_profession/terms-condition.html')
+
+# -- load notification --
+def loadNotification(request):
+    return render(request, 'community_profession/notification.html')

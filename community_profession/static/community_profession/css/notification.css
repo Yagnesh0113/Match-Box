@@ -1,0 +1,139 @@
+.notification-heading
+{
+    font-family: var(--font-2);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.3125rem;
+    color: var(--color-2);
+    padding-top:1.5625rem;
+    padding-bottom:1.25rem;
+}
+
+.notification-alert .alert-success
+{
+    background-color:var(--color-12);
+}
+
+.notification-alert .heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 145%;
+    color: #3F515C;
+}
+
+.notification-alert .content
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 145%;
+    color: #3F515C;
+}
+
+.notification-alert .date
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 145%;
+    color: #3F515C;
+    padding-top:1rem;
+}
+
+/* Start Mobile view */
+
+@media all and (min-width: 577px)
+{
+
+}
+
+
+@media all and (max-width: 576px)
+{
+    .notification-heading
+    {
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 700;
+        font-size: 1.25rem;
+        line-height: 1.4375rem;
+        color: var(--color-2);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .notification-alert .heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 145%;
+        color: #3F515C;
+    }
+
+    .notification-alert .content
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 145%;
+        color: #3F515C;
+    }
+
+    .notification-alert .date
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.625rem;
+        line-height: 145%;
+        color: #3F515C;
+        padding-top: 1rem;
+    }
+}
+
+@media (min-width: 577px)
+{
+    html{
+        font-size: 40%;
+    }
+}
+
+@media (min-width: 768px)
+{
+    html{
+        font-size: 45%;
+    }
+}
+
+@media (min-width: 992px)
+{
+    html{
+        font-size: 60%;
+    }
+}
+
+
+@media (min-width: 1200px)
+{
+    html{
+        font-size: 80%;
+    }
+}
+
+@media (min-width: 1920px)
+{
+    html{
+        font-size: 100%;
+    }
+}
+
+/* End Mobile Views */
