@@ -114,5 +114,8 @@ urlpatterns = [
     path('terms-condition', views.loadTermsAndCondition, name='terms-condition'),
     path('Community_My_Answer', views.Community_My_Answer, name='Community_My_Answer'),
 
+    # -- notification --
+    path('notification', views.loadNotification, name='notification'),
+
 
 ]
