@@ -122,7 +122,7 @@
 {
     background-color:var(--color-15);
     min-width: 100%;
-    height:240px;
+    /*height:240px;*/
 }
 
 .profession-cart .card .card-header
@@ -130,15 +130,13 @@
     padding:0rem 0.313rem;
 }
 
-.profession-cart .profession-img .img-fluid
-{
-    height:9.375rem;
-}
+
 
 .profession-cart .border-1
 {
     /*border:0.063rem solid var(--color-3);*/
-    border: 1px solid rgba(204, 173, 224, 0.2);
+    /*border: 1px solid rgba(204, 173, 224, 0.2);*/
+    background-color:var(--color-12);
 }
 
 .profession-cart .heading
@@ -174,6 +172,25 @@
     text-align:center;
 }
 
+.card-footer {
+    padding: 0rem 0rem;
+    background-color: rgba(0, 0, 0, .03);
+    border-top: 0px solid rgba(0, 0, 0, .125);
+
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: var(--color-13);
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 0px solid rgba(0, 0, 0, .125);
+}
 
 /* Start Mobile view */
 
@@ -196,7 +213,12 @@
 
     .profession-cart .card
     {
-        height:95px;
+        /*height:95px;*/
+    }
+
+    .profession-cart .profession-img .img-fluid
+    {
+        height:35px;
     }
 
 }
@@ -209,7 +231,12 @@
 
     .profession-cart .card
     {
-        height:95px;
+        /*height:95px;*/
+    }
+
+    .profession-cart .profession-img .img-fluid
+    {
+        height:45px;
     }
 }
 
@@ -220,7 +247,12 @@
     }
     .profession-cart .card
     {
-        height:138px;
+        /*height:138px;*/
+    }
+
+    .profession-cart .profession-img .img-fluid
+    {
+        height:60px;
     }
 }
 
@@ -233,7 +265,12 @@
 
     .profession-cart .card
     {
-        height:192px;
+        /*height:192px;*/
+    }
+
+    .profession-cart .profession-img .img-fluid
+    {
+        height:80px;
     }
 }
 
@@ -245,7 +282,12 @@
 
     .profession-cart .card
     {
-        height:244px;
+        /*height:244px;*/
+    }
+
+    .profession-cart .profession-img .img-fluid
+    {
+        height:135px;
     }
 }
 
