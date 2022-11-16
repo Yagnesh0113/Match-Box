@@ -234,3 +234,16 @@ class Report(models.Model):
     adult_content=models.BooleanField(default=False)
     abusing_content=models.BooleanField(default=False)
     report_description=models.TextField()
+
+class Notifiaction(models.Model):
+    # 1 = Like, 2 = Comment, 3 = Follow
+	notification_type = models.IntegerField()
+	to_user = models.ForeignKey(UserProfile, related_name='notification_to', on_delete=models.CASCADE, null=True)
+	from_user = models.ForeignKey(UserProfile, related_name='notification_from', on_delete=models.CASCADE, null=True)
+	post = models.ForeignKey('UserPost', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+	comment = models.ForeignKey('Post_Commment', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+	question = models.ForeignKey('User_Question', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+	answer = models.ForeignKey('User_Answer', on_delete=models.CASCADE, related_name='+', blank=True, null=True)
+	date = models.DateField(null=True, blank=True)
+	time = models.TimeField(null=True, blank=True)
+	user_has_seen = models.BooleanField(default=False)
