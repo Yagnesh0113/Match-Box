@@ -46,7 +46,7 @@ Note: this css file is use for all following pages: sign-up, sign-up-for-profess
 .sign-up-form .form-control
 {
     background-color:var(--color-12);
-    border: 0.125rem solid var(--color-5);
+    border: 0.125rem solid rgba(22, 24, 24, 0.2);
 }
 
 .sign-up-form .form-control option
@@ -57,7 +57,7 @@ Note: this css file is use for all following pages: sign-up, sign-up-for-profess
 .sign-up-form .input-group-text
 {
     background-color:var(--color-12);
-    border: 0.125rem solid var(--color-5);
+    border: 0.125rem solid rgba(22, 24, 24, 0.2);
 }
 
 .sign-up-form .btn-check {
@@ -230,19 +230,19 @@ Note: this css file is use for all following pages: sign-up, sign-up-for-profess
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
-/* .signup-form-check-btn .btn-primary
+.signup-form-check-btn .btn-primary
 {
     color: var(--color-13);
     background-color: var(--color-15);
     border-color: var(--color-14);
-} */
+}
 
-/* .signup-form-check-btn .btn-primary:hover
+.signup-form-check-btn .btn-primary:hover
 {
     color: var(--color-2);
     background-color: var(--color-14);
     border-color: var(--color-14);
-} */
+}
 
 .signup-form-check-btn .btn-check:active+.btn-primary, .btn-check:checked+.btn-primary, .btn-primary.active, .btn-primary:active, .show>.btn-primary.dropdown-toggle
 {
