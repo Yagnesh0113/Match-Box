@@ -102,14 +102,16 @@
     font-family: var(--font-1);
     font-style: normal;
     font-weight: 400;
-    font-size: 0.75rem;
+    font-size: 1rem;
     line-height: 1.125rem;
+	min-width: 15rem;
 }
 
 .main-nav-drop-down .dropdown-divider
 {
     border-color:rgba(22, 24, 24, 0.2);
 }
+
 
 /* Start home page body */
 
