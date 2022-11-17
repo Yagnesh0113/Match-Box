@@ -13,6 +13,7 @@
 	color: white;
 }
 
+
 .notifictn-dropdon 
 {
 	max-height:500px;
@@ -22,6 +23,7 @@
 	padding-left: 1.875rem;
 	background: #B5DFDF;
     border-radius: 4px;
+	
   }
   .notifntn-headng
   {
@@ -32,6 +34,7 @@
 	line-height: 37px;
 	color: #161818;
 	padding-bottom: 28px;
+	
   }
   .imgcheck
   {
@@ -71,6 +74,17 @@
 	color: #3F515C;
 	padding-right: 42px;
 	padding-top: 12px;
+}
+
+.notifctn-seeall
+{
+	font-family: 'Helvetica';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 16px;
+	color: #161818;
+
 }
 .custom-nav .navbar {
 	padding: 0rem 0rem;
@@ -778,52 +792,52 @@ body {
 
     .main-nav-pl-pr
     {
-        padding-left: 16px;
-        padding-right: 20px;
+        padding-left: 1rem;
+        padding-right: 1.25rem;
     }
 
     .community-profession
     {
-        padding-left:8px;
-        padding-right:23px;
+        padding-left:0.5rem;
+        padding-right:1.4375rem;
     }
 	.notifictn-dropdon 
 	{
-		max-height:500px;
+		max-height:31.25rem;
 		overflow-y: scroll;
 		min-width: 20rem;
-		right:0rem;
+		right:-5rem;
 		padding-left: 1rem;
 		background: #B5DFDF;
-		border-radius: 4px;
+		border-radius: 0.25rem;
 	  }
 	  .notifntn-img
 	{
-	  height: 53px;
-	  width: 53px;
+	  height: 3.3125rem;
+	  width: 3.3125rem;
 	}
 	.top-right {
 		position: absolute;
-		top: 0px;
-		left: 58px;
-		font-size: 16px;
+		top: 0rem;
+		left: 3.625rem;
+		font-size: 1rem;
 	  }
 	  .notifatn-text-hedng
 	  {
 		font-family: var(--font-1);
 		font-style: normal;
 		font-weight: 500;
-		font-size: 14px;
+		font-size: 0.875rem;
 		line-height: 145%;
 		color: #161818;
-		padding-left: 48px;
+		padding-left: 3rem;
 	  }
 	  .notifn-date
 	  {
 		font-family: var(--font-1);
 		font-style: normal;
 		font-weight: 400;
-		font-size: 12px;
+		font-size: 0.75rem;
 		line-height: 145%;
 		color: #3F515C;
 	   padding-left: 1.4375rem;
@@ -833,10 +847,10 @@ body {
 		font-family: 'Helvetica';
 		font-style: normal;
 		font-weight: 700;
-		font-size: 22px;
-		line-height: 25px;
+		font-size: 1.375rem;
+		line-height: 1.5625rem;
 		color: #161818;
-		padding-bottom: 20px;
+		padding-bottom: 1.25rem;
 
 	  }
 
@@ -1079,25 +1093,25 @@ body {
     }
 	.notifntn-img
 	{
-	  height: 55px;
-	  width: 55px;
+	  height: 3.4375rem;
+	  width: 3.4375rem;
 	}
 	.top-right {
 		position: absolute;
-		top: 0px;
-		left: 60px;
-		font-size: 16px;
+		top: 0rem;
+		left: 3.75rem;
+		font-size: 1rem;
 	  }
 	.notifn-date
       {
 	font-family: var(--font-1);
 	font-style: normal;
 	font-weight: 400;
-	font-size: 12px;
+	font-size: 0.75rem;
 	line-height: 145%;
 	color: #3F515C;
-    padding-right: 32px;
-	padding-top: 12px;
+    padding-right: 2rem;
+	padding-top: 0.75rem;
 }
 
 }
@@ -1170,36 +1184,36 @@ body {
 
 	.recent-search-padding
     {
-	    padding-left:32px;
-	    padding-right:28px;
+	    padding-left:2rem;
+	    padding-right:1.75rem;
 	}
 
 	.main-nav-pl-pr
     {
-        padding-left: 14px;
-        padding-right: 11px;
+        padding-left: 0.875rem;
+        padding-right: 0.6875rem;
     }
 	.notifntn-img
 	{
-	  height: 84px;
-	  width: 84px;
+	  height: 5.25rem;
+	  width: 5.25rem;
 	}
 	.top-right {
 		position: absolute;
-		top: 0px;
-		left: 80px;
-		font-size: 22px;
+		top: 0rem;
+		left: 5rem;
+		font-size: 1.375rem;
 	  }
 	  .notifn-date
 	  {
 		  font-family: var(--font-1);
 		  font-style: normal;
 		  font-weight: 400;
-		  font-size: 16px;
+		  font-size: 1rem;
 		  line-height: 145%;
 		  color: #3F515C;
-		  padding-right: 42px;
-		  padding-top: 12px;
+		  padding-right: 2.625rem;
+		  padding-top: 0.75rem;
 	  }
 }
 
