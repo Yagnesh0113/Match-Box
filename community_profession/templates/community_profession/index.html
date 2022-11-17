@@ -235,7 +235,8 @@
                   {% if user.is_authenticated %}
                   <li>
                      <div class="dropdown ">
-                        <button class="btn navnotificatn" type="button" data-toggle="dropdown"><i class="fa fa-bell-o" aria-hidden="true"></i>
+                        <button class="btn navnotificatn" type="button" data-toggle="dropdown"><i class="fa fa-bell-o" aria-hidden="true"></i><span class="badge">{{notifications.count}}</span>
+                           &nbsp;
                         <span class="caret"></span></button>
                         <ul class="dropdown-menu notifictn-dropdon">
                            <div class="row blacktext">
