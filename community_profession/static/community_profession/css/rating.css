@@ -11,10 +11,10 @@ div.star-rating {
 	overflow: hidden
 }
 
-div.rating-cancel,
+/*div.rating-cancel,
 div.rating-cancel a {
-	/*background: url(delete.gif) no-repeat 0 -16px;*/
-}
+	background: url(delete.gif) no-repeat 0 -16px;
+}*/
 
 div.star-rating,
 div.star-rating a {
