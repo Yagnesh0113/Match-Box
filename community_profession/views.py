@@ -226,6 +226,9 @@ def review_Reply(request,id):
 @login_required(login_url='/sign-in')
 def like_post_comment(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    Date=date.today()
+    now = datetime.now()
+    Time = now.strftime("%H:%M:%S")
     if request.method=="POST":
         post_obj=request.POST.get("post_id")
         print(post_obj)
@@ -234,6 +237,7 @@ def like_post_comment(request):
             post.Comment_like.remove(userprofile)
         else:
             post.Comment_like.add(userprofile)
+            notification = Notifiaction.objects.create(notification_type=1, from_user=userprofile, to_user=post.User_Profile, comment=post, date=Date, time=Time)
         data={
             'post': post.Comment_like.all().count()
         }
@@ -244,6 +248,9 @@ def like_post_comment(request):
 @login_required(login_url='/sign-in')
 def like_post(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    Date=date.today()
+    now = datetime.now()
+    Time = now.strftime("%H:%M:%S")
     if request.method=="POST":
         post_obj=request.POST.get("post_id")
         post=UserPost.objects.get(id=post_obj)
@@ -252,6 +259,7 @@ def like_post(request):
             post.Like.remove(userprofile)
         else:
             post.Like.add(userprofile)
+            notification = Notifiaction.objects.create(notification_type=1, from_user=userprofile, to_user=post.User_Profile, post=post, date=Date, time=Time)
         data={
             'post':post.Like.all().count()
         }
@@ -261,6 +269,9 @@ def like_post(request):
 @login_required(login_url='/sign-in')
 def like_Question(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    Date=date.today()
+    now = datetime.now()
+    Time = now.strftime("%H:%M:%S")
     if request.method=="POST":
         question_obj=request.POST.get("post_id")
         print(question_obj)
@@ -270,6 +281,7 @@ def like_Question(request):
             Question.Question_Like.remove(userprofile)
         else:
             Question.Question_Like.add(userprofile)
+            notification = Notifiaction.objects.create(notification_type=1, from_user=userprofile, to_user=question_obj.User_Profile, question=question_obj, date=Date, time=Time)
         data={
             'post':Question.Question_Like.all().count()
         }
@@ -643,6 +655,7 @@ def Post_comment_reply(request, id):
         now = datetime.now()
         Post_Reply_Time = now.strftime("%H:%M:%S")
         Comment_reply.objects.create(Comment=Post_obj,User_Profile=userprofile,Reply=Post_Reply,Reply_Date=Post_Reply_Date,Reply_Time=Post_Reply_Time)
+        notification = Notifiaction.objects.create(notification_type=2, from_user=userprofile, to_user=Post_obj.User_Profile, comment=Post_obj, date=Post_Reply_Date, time=Post_Reply_Time)
         obj=Comment_reply.objects.filter(Comment=Post_obj)
         Post_obj.Post_comment_reply=len(obj)
         Post_obj.save()
@@ -815,6 +828,7 @@ def Add_Answer(request,id):
         now = datetime.now()
         Answer_Time = now.strftime("%H:%M:%S")
         User_Answer.objects.create(Question=Question,User_Profile=userprofile,Answer=Answer_obj,Date=Answer_Date,Time=Answer_Time)
+        notification = Notifiaction.objects.create(notification_type=2, from_user=userprofile, to_user=Question.User_Profile, question=Question, date=Answer_Date, time=Answer_Time)
         obj=User_Answer.objects.filter(Question=Question)
         Question.answer=len(obj)
         Question.save()
@@ -849,6 +863,7 @@ def Add_Answer_Reply(request,id):
         reply_Time = now.strftime("%H:%M:%S")
 
         Answer_Reply.objects.create(Answer=Answer,User_Profile=userprofile,Reply=Reply_obj,Reply_date=reply_Date,Reply_Time=reply_Time)
+        notification = Notifiaction.objects.create(notification_type=2, from_user=userprofile, to_user=Answer.User_Profile, answer=Answer, date=reply_Date, time=reply_Time)
         obj=Answer_Reply.objects.filter(Answer=Answer)
         Answer.reply=len(obj)
         Answer.save()
@@ -1065,7 +1080,7 @@ def loadCommunityWriteCommentScreen(request,id):
         obj=Post_Commment.objects.filter(User_Post=Community_obj.user_post)
         Community_obj.user_post.Post_comment=len(obj)
         Community_obj.user_post.save()
-        
+        notification = Notifiaction.objects.create(notification_type=2, from_user=userprofile, to_user=Community_obj.user_post.User_Profile, post=Community_obj.user_post)
         Community_Post_Comment.objects.create(Community_Post_obj=Community_obj,Community_Comment=Post_obj)
         return redirect(f"/community-write-comment-screen/{id}")
     else:
@@ -1831,8 +1846,9 @@ def loadNotification(request):
     Our_News_count=News.objects.all().count()
     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)[::-1]
     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
+    notifications = Notifiaction.objects.filter(to_user=userprofile.id).exclude(user_has_seen=True).order_by('-time')
     if obj is not None:
-        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
+        context={'notifications':notifications,"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':obj,"Our_News_count":Our_News_count,'userprofile':userprofile,'joincommunityobj':joincommunityobj,"Question":User_Question_obj}
     else:
-        context={"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"Question":User_Question_obj}
+        context={'notifications':notifications,"Question":User_Question_obj,"Question_count":User_Question_count,"Answer":Answer_later_obj,"Answer_count":Answer_later_count,"userid":User_id,'My_community':My_Community,"Our_News_count":Our_News_count,'userprofile':userprofile,"Question":User_Question_obj}
     return render(request, 'community_profession/notification.html', context)
