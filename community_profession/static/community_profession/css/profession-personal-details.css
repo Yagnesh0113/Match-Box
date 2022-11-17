@@ -85,9 +85,7 @@
 	color: var(--color-2);
 }
 
-.photos-videos-see-all {
-	padding-top: 3.75rem;
-}
+
 
 .photos-videos-see-all .photos-videos-heading {
 	font-family: var(--font-2);
@@ -215,6 +213,7 @@
 .our-services
 {
     padding-left:25px;
+    padding-right:25px;
 }
 
 .our-services .our-services-heading {
@@ -306,16 +305,10 @@
 body {
 	background-color: #E7E9EB;
 }
-
 #myDIV {
-	height: 15.625rem;
+	height: auto;
 }
 
-.ex1 {
-	width: 9.375rem;
-	height: 17.25rem;
-	overflow: auto;
-}
 /* End Services CSS */
 
 /* Start whatsapp - go to chat */
@@ -569,6 +562,18 @@ body {
     {
         border-right: 0rem solid rgba(181, 223, 223, 0.2);
     }
+
+    .ex1
+    {
+        width: 9.375rem;
+        height: auto;
+        overflow: auto;
+    }
+
+    .photos-videos-see-all
+    {
+	    padding-top: 1.563rem;
+    }
 }
 
 @media (min-width: 577px) {
@@ -602,6 +607,17 @@ body {
 		/*border: 2px solid red;*/
 		padding-top:5px;
 	}
+
+	.ex1 {
+            width: 9.375rem;
+            height: 99px;
+            overflow: auto;
+        }
+
+        .photos-videos-see-all
+    {
+	    padding-top: 3.75rem;
+    }
 }
 
 @media (min-width: 768px) {
@@ -629,6 +645,12 @@ body {
 		padding-top:0.688rem;
 		/*border: 2px solid red;*/
 	}
+
+	.ex1 {
+            width: 9.375rem;
+            height: 111px;
+            overflow: auto;
+        }
 }
 
 @media (min-width: 992px) {
@@ -650,6 +672,12 @@ body {
 		padding-top:0.563rem;
 		/*border: 2px solid red;*/
 	}
+
+	.ex1 {
+            width: 9.375rem;
+            height:150px;
+            overflow: auto;
+        }
 }
 
 
@@ -672,6 +700,12 @@ body {
 		/*border: 2px solid red;*/
 		padding-top:0rem
 	}
+
+	.ex1 {
+            width: 9.375rem;
+            height: 200px;
+            overflow: auto;
+        }
 }
 
 @media (min-width: 1920px) {
