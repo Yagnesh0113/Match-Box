@@ -115,8 +115,9 @@
     font-size: 1rem;
     line-height: 145%;
     color: var(--color-2);
-    padding-top:0.438rem;
-    padding-bottom:0.313rem;
+    padding-top:0rem;
+    padding-bottom:1.313rem;
+
 }
 
 .profession-cart .sub-heading
@@ -127,6 +128,7 @@
     font-size: 1rem;
     line-height: 180%;
     color: var(--color-2);
+    padding-right: 1px;
 }
 
 .profession-cart .content
@@ -218,7 +220,7 @@
         line-height: 145%;
         color: var(--color-2);
         padding-top: 0.438rem;
-        padding-bottom: 0.313rem;
+        padding-bottom: 1.313rem;
     }
 
     .profession-cart .sub-heading
