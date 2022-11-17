@@ -156,12 +156,10 @@
 	color: #B4F1F1;
 }
 
-/* Start manage images */
-.profession-details .img-fluid {
-	height: 8.125rem;
-}
 
-/* End manage images */
+
+
+
 
 .profile-img-edit-btn .edit-btn .btn {
 	font-family: 'Poppins';
@@ -574,6 +572,10 @@ body {
     {
 	    padding-top: 1.563rem;
     }
+
+     .profession-details .img-fluid {
+	height: 5.938rem;
+}
 }
 
 @media (min-width: 577px) {
@@ -618,6 +620,10 @@ body {
     {
 	    padding-top: 3.75rem;
     }
+
+    .profession-details .img-fluid {
+	height: 12.5rem;
+}
 }
 
 @media (min-width: 768px) {

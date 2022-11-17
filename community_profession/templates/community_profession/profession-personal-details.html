@@ -314,8 +314,8 @@
       <center>
       <div class="row profession-details">
          {% for i in Profession_Video_obj %}
-         <div class="col-6 col-sm-4 col-md-2 pl-4 pr-4">
-            <div class="row">
+         <div class="col-6 col-sm-4 col-md-2">
+            <div class="row pl-2 pr-2 pt-3">
                <div class="col-md-12 profession-video rounded border border-dark pt-2 pb-2">
                   <a href="{% url 'video-screen' i.id %}" class="text-light text-decoration-none">
                      <video src="{{i.video.url}}" class="img-fluid"  controls></video>
@@ -325,8 +325,8 @@
          </div>
          {% endfor %}
          {% for j in Profession_Image_obj %}
-         <div class="col-6 col-sm-4 col-md-2 pl-4 pr-4 ">
-            <div class="row">
+         <div class="col-6 col-sm-4 col-md-2">
+            <div class="row pl-2 pr-2 pt-3">
                <div class="col-md-12 rounded  border border-dark pt-2 pb-2">
                   <a href="{% url 'photo-screen' j.id %}" class="text-light text-decoration-none">
                      <img src="{{j.image.url}}" class="img-fluid">
@@ -344,7 +344,7 @@
 <form action="{% url 'profession-personal-details' Profession_obj.id %}" method="POST" >
    {% csrf_token %}
    <div class="row">
-      <div class="col-7 col-sm-8 col-md-8">
+      <div class="col-12 col-sm-8 col-md-9">
          <div class="form-group comment-input" >
             <textarea maxlength="300" class="form-control" type="text" placeholder="Write a Comment" name="Comment" required></textarea>
             <div class="row">
@@ -354,10 +354,10 @@
             </div>
          </div>
       </div>
-      <div class="col-3 col-sm-2 col-md-2 ">
-         <button type="submit" class="btn btn-block btn-normal-b">Send</button>
+      <div class="col-5 col-sm-2 col-md-2 pr-0">
+         <button type="submit" class="btn btn-block btn-normal-b btn-sm">Send</button>
       </div>
-      <div class="col-1 col-sm-2 col-md-2 pt-2">
+      <div class="col-2 col-sm-2 col-md-1 text-center">
          <a href="https://api.whatsapp.com/send/?phone={{Profession_obj.UserProfile.country_code}}{{Profession_obj.UserProfile.whatsapp_number}}&text&type=phone_number" class="text-light" target="_blank">
          <i class="fa-brands fa-whatsapp fa-brands-1 fa-whatsapp-1"></i>
          </a>
