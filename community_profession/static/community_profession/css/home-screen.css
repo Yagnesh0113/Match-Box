@@ -2,7 +2,70 @@
 .custom-nav {
         /*background-color: var(--color-12);*/
 }
+.navnotificatn
+{
+	color: white;
+	padding-top: 7px;
+	font-size: 20px;
+}
+.navnotificatn:hover
+{
+	color: white;
+}
 
+.notifictn-dropdon 
+{
+	max-height:500px;
+	overflow-y: scroll;
+	min-width: 40rem;
+	right: 0.9375rem;
+	padding-left: 1.875rem;
+	background: #B5DFDF;
+    border-radius: 4px;
+  }
+  .notifntn-headng
+  {
+	font-family: 'Helvetica';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 37px;
+	color: #161818;
+	padding-bottom: 105px;
+  }
+  .imgcheck
+  {
+	position: relative;
+	text-align: center;
+  }
+  .top-right {
+	position: absolute;
+	top: 0px;
+	left: 80px;
+	font-size: 22px;
+  }
+  .notifatn-text-hedng
+  {
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 500;
+	font-size: 1.25rem;
+	line-height: 145%;
+	color: #161818;
+	text-align: left;
+	padding-left: 30px;
+  }
+.notifn-date
+{
+	font-family: var(--font-1);
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 145%;
+	color: #3F515C;
+	padding-right: 42px;
+
+}
 .custom-nav .navbar {
 	padding: 0rem 0rem;
 }
@@ -52,7 +115,7 @@
 }
 
 .sidenav a:hover {
-	color: #f1f1f1;
+	/* color: #f1f1f1; */
 }
 
 .sidenav .closebtn {
@@ -507,6 +570,9 @@ body {
 
 
 @media all and (max-width: 576px) {
+	.custom-nav .nav-icon {
+		padding-left: 0rem;
+	}
 	.community-profession-carousel .carousel-element .profession-tex {
 		font-family: 'Poppins';
 		font-style: normal;

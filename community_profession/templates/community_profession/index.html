@@ -147,15 +147,15 @@
                         <a class="nav-link" href="#" data-target="#modal10" data-toggle="modal">My Communities</a>
                         <!-- <a href="#"><i class="fa-solid fa-share-nodes"></i> Share</a> -->
                         <a class="dropdown-item" href="{% url 'Community_Question' %}"><i
-                           class="fa-solid fa-arrow-up-right-from-square"></i>Question</a>
+                           class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;Question</a>
                         <a class="dropdown-item" href="{% url 'community-screen' %}"><i
-                           class="fa-solid fa-arrow-up-right-from-square"></i>Post</a>
+                           class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;Post</a>
                         <a class="dropdown-item" href="{% url 'news' %}"><i
-                           class="fa-solid fa-arrow-up-right-from-square"></i>News</a>
-                        <a href="{% url 'notification' %}"><i class="fa-solid fa-bell"></i> Notifications</a>
+                           class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;News</a>
+                        <a href="{% url 'notification' %}"><i class="fa-solid fa-bell"></i>&nbsp;Notifications</a>
                         <!-- <a href="#"><i class="fa-solid fa-ban"></i> Block Account</a>
                            <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
-                        <a href="{% url 'bookmark_page' %}"><i class="fa-solid fa-bookmark"></i> Bookmark </a>
+                        <a href="{% url 'bookmark_page' %}"><i class="fa-solid fa-bookmark"></i> &nbsp;Bookmark </a>
                         {% if user.is_authenticated %}
                         <a class="sidenav-last-a" href="{% url 'user_logout' %}">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -185,7 +185,7 @@
                   <li class="nav-item ">
                      <a href="{% url 'home-screen' %}" class="text-decoration-none">
                         <span class="home-screen-nav-icon-mobile-view">
-                           <img src="{% static 'community_profession/img/home-screen-nav-icon-mobile-view.png' %}"
+                           <img src="{% static 'community_profession/img/home-screen-nav-icon-mobile-view1.png' %}"
                               class="img-fluid" alt="Responsive image">
                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </span>
@@ -223,6 +223,37 @@
                <!-- End right side navigation -->
                <!-- Start right side navigation -->
                <ul class="nav justify-content-end">
+                  <li>
+                     <div class="dropdown">
+                        <button class="btn navnotificatn" type="button" data-toggle="dropdown"><i class="fa fa-bell-o" aria-hidden="true"></i>
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu notifictn-dropdon">
+                          <h1 class="notifntn-headng">Notification</h1>
+                          <div class="container imgcheck">
+                              <li>
+                                 <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="{% static 'community_profession/img/profession-see-all-models.png' %}" class="rounded-circle" alt="Cinque Terre"
+                                        width="80" height="80">
+                                        <div class="top-right"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+                                    </div>    
+                                    <div class="col-md-9 notifatn-text-hedng">
+                                       <strong>India’s biggest fashion dhamaka</strong> <br>
+                                       <span class="">Big fashion festival start to 23rd sep to 30 sep Add to cart your Item now</span>
+                                    </div>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-4 notifn-date">
+                                       Wed 20 Sep 2022
+                                    </div>
+                                 </div>
+                              </li> 
+                           </div>
+                        </ul>
+                      </div>
+                  </li>
+
                   <li class="nav-item dropdown no-arrow">
                      <a class="nav-link dropdown-toggle" href="{% url 'profession-profile-screen' %}" id="userDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -235,7 +266,7 @@
                            {% else %}
                               <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
                                  class="rounded-circle" alt="Cinque Terre" width="30" height="30">
-                           {% endif %}
+                           {% endif %} 
                      </a>
                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in main-nav-drop-down rounded ">
                         <a class="dropdown-item" href="{% url 'profession-profile-screen' %}">
