@@ -46,11 +46,11 @@ def loadHomeScreenPage(request):
     print("Popular_profession: ",Popular_profession)
     Recent_Serch_obj=Recent_serach.objects.filter(User_obj=userprofile)[::-1]
     print("Recent_Serch_obj:",Recent_Serch_obj)
-    # notifications = Notifiaction.objects.filter(to_user=userprofile.id).order_by('-time')
+    notifications = Notifiaction.objects.filter(to_user=userprofile).order_by('-time')
     if obj is not None:
-        context={'Popular_profession':Popular_profession, 'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
+        context={'notifications':notifications,'Popular_profession':Popular_profession, 'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
     else:
-        context={'Popular_profession':Popular_profession,  'My_community':My_Community,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
+        context={'notifications':notifications,'Popular_profession':Popular_profession,  'My_community':My_Community,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
     return render(request, 'community_profession/home-screen.html',context)
 
 # --- load -- profession see all screen ---
@@ -58,10 +58,11 @@ def loadHomeScreenPage(request):
 def loadProfessionSeeAllScreen(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Admin_Profession.objects.all()
+    notifications = Notifiaction.objects.filter(to_user=userprofile).order_by('-time')
     if obj is not None:
-        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession}
+        context={'notifications':notifications,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession}
     else:
-        context={'My_community':My_Community,'userprofile':userprofile,"profession":profession}
+        context={'notifications':notifications,'My_community':My_Community,'userprofile':userprofile,"profession":profession}
     return render(request, 'community_profession/profession-see-all.html',context)
 
 # --- load -- search nearest professions list ---
@@ -70,17 +71,18 @@ def loadSearchNearestProfessions(request,id):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
     profession=Admin_Profession.objects.get(id=id)
     state=State.objects.all().order_by('name')
+    notifications = Notifiaction.objects.filter(to_user=userprofile).order_by('-time')
     if obj is not None:
-        context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession,'state':state}
+        context={'notifications':notifications,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession,'state':state}
     else:
-        context={'My_community':My_Community,'userprofile':userprofile,"profession":profession,'state':state}
+        context={'notifications':notifications,'My_community':My_Community,'userprofile':userprofile,"profession":profession,'state':state}
     return render(request, 'community_profession/search-nearest-professions.html',context)
 
 # --- load -- nearest profession list ---
 @login_required(login_url='/sign-in')
 def loadNearestProfessionsList(request,id=None):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-
+    notifications = Notifiaction.objects.filter(to_user=userprofile).order_by('-time')
     if request.method=="POST":
         State_obj=State.objects.get(id=request.POST.get("state"))
         City_obj=request.POST.get("city")
@@ -89,9 +91,9 @@ def loadNearestProfessionsList(request,id=None):
         else:
             Profession_obj=Profession.objects.filter(profession=id)
         if obj is not None:
-            context={'id':id,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_obj":Profession_obj}
+            context={'notifications':notifications,'id':id,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"Profession_obj":Profession_obj}
         else:
-            context={'id':id,'My_community':My_Community,'userprofile':userprofile,"Profession_obj":Profession_obj}
+            context={'notifications':notifications,'id':id,'My_community':My_Community,'userprofile':userprofile,"Profession_obj":Profession_obj}
         return render(request, 'community_profession/nearest-professions-list.html',context)
     else:
         
@@ -119,9 +121,9 @@ def loadNearestProfessionsList(request,id=None):
  
         
         if obj is not None:
-            context={'id':pro_id,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
+            context={'notifications':notifications,'id':pro_id,'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
         else:
-            context={'id':pro_id,'joincommunityobj':joincommunityobj,"My_community":My_Community,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
+            context={'notifications':notifications,'id':pro_id,'joincommunityobj':joincommunityobj,"My_community":My_Community,'userprofile':userprofile, "Profession_obj":Profession_obj, 'distance':distance}
 
         return render(request, 'community_profession/nearest-professions-list.html',context)
 
@@ -132,7 +134,7 @@ import json
 def loadProfessionPersonalDetails(request, id):
     userprofile, joincommunityobj, obj, My_Community = userprofileobj(request)
     Profession_obj = Profession.objects.get(id=id)
-    # print(Profession_obj.id)
+    notifications = Notifiaction.objects.filter(to_user=userprofile).order_by('-time')
     Profession_service_obj = ProfessionServices.objects.filter(Profession=Profession_obj)
     Profession_Image_obj = Professionimage.objects.filter(profession=Profession_obj)[:5]
     Profession_Video_obj = Professionvideo.objects.filter(profession=Profession_obj)[:1]
@@ -157,13 +159,13 @@ def loadProfessionPersonalDetails(request, id):
             ProfessionReview_obj_count = ProfessionReview.objects.filter(Profession=Profession_obj).count()
 
             if obj is not None:
-                context = {'current_site':current_site,'joincommunityobj': joincommunityobj, "My_community": obj, 'userprofile': userprofile,
+                context = {'notifications':notifications,'current_site':current_site,'joincommunityobj': joincommunityobj, "My_community": obj, 'userprofile': userprofile,
                            "Profession_obj": Profession_obj, "Profession_service_obj": Profession_service_obj,
                            "Profession_Image_obj": Profession_Image_obj, "ProfessionReview_obj": ProfessionReview_obj,
                            "Profession_Video_obj": Profession_Video_obj,
                            "ProfessionReview_obj_count": ProfessionReview_obj_count}
             else:
-                context = {'current_site':current_site,'My_community': My_Community, 'userprofile': userprofile, "Profession_obj": Profession_obj,
+                context = {'notifications':notifications,'current_site':current_site,'My_community': My_Community, 'userprofile': userprofile, "Profession_obj": Profession_obj,
                            "Profession_service_obj": Profession_service_obj,
                            "Profession_Image_obj": Profession_Image_obj, "ProfessionReview_obj": ProfessionReview_obj,
                            "Profession_Video_obj": Profession_Video_obj,
@@ -188,13 +190,13 @@ def loadProfessionPersonalDetails(request, id):
             ProfessionReview_obj_count = ProfessionReview.objects.filter(Profession=Profession_obj).count()
 
             if obj is not None:
-                context = {'current_site':current_site,'joincommunityobj': joincommunityobj, "My_community": obj, 'userprofile': userprofile,
+                context = {'notifications':notifications,'current_site':current_site,'joincommunityobj': joincommunityobj, "My_community": obj, 'userprofile': userprofile,
                            "Profession_obj": Profession_obj, "Profession_service_obj": Profession_service_obj,
                            "Profession_Image_obj": Profession_Image_obj, "ProfessionReview_obj": ProfessionReview_obj,
                            "Profession_Video_obj": Profession_Video_obj,
                            "ProfessionReview_obj_count": ProfessionReview_obj_count}
             else:
-                context = {'current_site':current_site,'My_community': My_Community, 'userprofile': userprofile, "Profession_obj": Profession_obj,
+                context = {'notifications':notifications,'current_site':current_site,'My_community': My_Community, 'userprofile': userprofile, "Profession_obj": Profession_obj,
                            "Profession_service_obj": Profession_service_obj,
                            "Profession_Image_obj": Profession_Image_obj, "ProfessionReview_obj": ProfessionReview_obj,
                            "Profession_Video_obj": Profession_Video_obj,
