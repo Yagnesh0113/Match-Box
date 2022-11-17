@@ -280,7 +280,9 @@ def like_Question(request):
             Question.Question_Like.remove(userprofile)
         else:
             Question.Question_Like.add(userprofile)
-            notification = Notifiaction.objects.create(notification_type=1, from_user=userprofile, to_user=question_obj.User_Profile, question=question_obj, date=Date, time=Time)
+            
+            notification = Notifiaction.objects.create(notification_type=1, from_user=userprofile, to_user=Question.User_Profile, question=Question, date=Date, time=Time)
+            print(notification)
         data={
             'post':Question.Question_Like.all().count()
         }
