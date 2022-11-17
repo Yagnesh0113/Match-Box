@@ -232,6 +232,7 @@
                <!-- End right side navigation -->
                <!-- Start right side navigation -->
                <ul class="nav justify-content-end">
+                  {% if user.is_authenticated %}
                   <li>
                      <div class="dropdown ">
                         <button class="btn navnotificatn" type="button" data-toggle="dropdown"><i class="fa fa-bell-o" aria-hidden="true"></i>
@@ -242,36 +243,46 @@
                                  Notification
                                </div>
                                <div class="col-3 col-sm-2 col-md-2 notifctn-seeall">
-                                  <a href="{% url 'notification' %}"> 
-                                    see all
+                                  <a href="{% url 'notification' %}" class="text-decoration-none text-dark"> 
+                                    See all
                                   </a> 
                                </div>
                            </div>
                           <div class="container imgcheck p-0 pt-4">
+                              {% for i in notifications %}
+                              {% if i.post %}
                               <li>
-                                 <div class="row">
-                                    <div class="col-1 col-sm-2 col-md-2">
-                                        <img src="{% static 'community_profession/img/profession-see-all-models.png' %}" class="rounded-circle notifntn-img" alt="Cinque Terre">
-                                       
-                                        <div class="top-right"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
-                                    </div>    
-                                    <div class="col-10 col-sm-9 col-md-9 notifatn-text-hedng">
-                                       <strong>India’s biggest fashion dhamaka</strong> <br>
-                                       <span class="">Big fashion festival start to 23rd sep to 30 sep Add to cart your Item now</span>
+                                 {% if i.notification_type == 1 %}
+                                    <div class="row">
+                                       <a href="{% url 'profession-profile-screen' i.from_user.usertype.user_id.id %}">
+                                          <div class="col-1 col-sm-2 col-md-2">
+                                             <img src="{{i.from_user.profile_image.url}}" class="rounded-circle notifntn-img" alt="Cinque Terre">
+                                          {% if i.user_has_seen == True %}
+                                             <div class="top-right"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+                                          {% endif %}
+                                          </div>
+                                       </a>
+                                       <div class="col-10 col-sm-9 col-md-9 notifatn-text-hedng">
+                                          <strong>@{{i.from_user.usertype.user_id.first_name}} {{i.from_user.usertype.user_id.last_name}}</strong> <br>
+                                          <span class="">Big fashion festival start to 23rd sep to 30 sep Add to cart your Item now</span>
+                                          <!-- <span class=""> liked your post</span> -->
+                                       </div>
                                     </div>
-                                 </div>
-                                 <div class="row">
-                                    <div class="col-2 col-sm-1 col-md-1"></div>
-                                    <div class="col-6 col-sm-8 col-md-6 notifn-date">
-                                       Wed 20 Sep 2022
+                                    <div class="row">
+                                       <div class="col-2 col-sm-1 col-md-1"></div>
+                                       <div class="col-6 col-sm-8 col-md-6 notifn-date">
+                                          Wed 20 Sep 2022
+                                       </div>
                                     </div>
-                                 </div>
-                              </li> 
+                                 {% endif %}
+                              </li>
+                              {% endif %}
+                              {% endfor %}
                            </div>
                         </ul>
                       </div>
                   </li>
-
+                  {% endif %}
                   <li class="nav-item dropdown no-arrow">
                      <a class="nav-link dropdown-toggle" href="{% url 'profession-profile-screen' %}" id="userDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -769,7 +780,7 @@
             <div class="row">
                <div class="col-sm-12 pt-3">
                   <a href="{% url 'home-screen' %}">
-                     <img src="{% static 'community_profession/img/footer-company-logo.png' %}" class="img-fluid" alt="Responsive image">
+                     <img src="{% static 'community_profession/img/footer-company-logo.svg' %}" class="img-fluid" alt="Responsive image">
                   </a>
                </div>
             </div>
@@ -909,7 +920,7 @@
                   <div class="row">
                      <div class="col-sm-12 ">
                         <a href="{% url 'home-screen' %}">
-                           <img src="{% static 'community_profession/img/footer-company-logo.png' %}" class="img-fluid"
+                           <img src="{% static 'community_profession/img/footer-company-logo.svg' %}" class="img-fluid"
                            alt="Responsive image">
                         </a>
                      </div>

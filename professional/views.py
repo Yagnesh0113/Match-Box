@@ -43,7 +43,17 @@ def is_user_is_professional_user(request):
 def loadProfessionProfileScreen(request,id=None):
     # try:
         userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+        print(userprofile.id)
         if id==None:
+            profession=Profession.objects.filter(UserProfile=userprofile)
+            state=State.objects.all()
+            print(profession)
+            if obj is not None:
+                context={'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,'profession':profession,"state":state,'loginuser':userprofile}
+            else:
+                context={'My_community':My_Community,'userprofile':userprofile,'profession':profession,"state":state,'loginuser':userprofile}
+            return render(request, 'professional/profile-screen-for-profession.html',context)
+        elif id==userprofile.id:
             profession=Profession.objects.filter(UserProfile=userprofile)
             state=State.objects.all()
             print(profession)
