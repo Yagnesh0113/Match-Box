@@ -17,13 +17,13 @@
 {% endblock own_css %}
 {% block content %}
 <!-- Start girls parlor heading -->
-<div class="row">
-   <div class="col-md-11 girls-parlor-heading">
+<div class="row profession-personal-head-pt">
+   <div class="col-10 col-sm-11 col-md-11 girls-parlor-heading">
       {{Profession_obj.profession.Profession_Name}}
    </div>
-   <div class="col-md-1 girls-parlor-heading">
+   <div class="col-2 col-sm-1 col-md-1 girls-parlor-heading text-right">
       <span>
-         <button type="button" class="btn community-like-dislike-btn" data-target="#share-modal" data-toggle="modal">
+         <button type="button" class="btn community-like-dislike-btn p-0" data-target="#share-modal" data-toggle="modal">
             <i class="fa-solid fa-share-nodes"></i>
          </button>
       </span>
@@ -33,15 +33,15 @@
 <!-- Start profile-img and info -->
 <div class="row pb-3">
    <!-- Start profile-img -->
-   <div class="col-2 col-sm-3 col-md-2">
+   <div class="col-3 col-sm-3 col-md-2">
       <img src="{{Profession_obj.profession_image.url}}" class="img-fluid rounded" alt="Responsive image">
    </div>
    <!-- Start profile-img -->
    <!-- Start info -->
-   <div class="col-10 col-sm-9 col-md-10 personal-info">
+   <div class="col-9 col-sm-9 col-md-10 personal-info">
       <!-- Start name info -->
       <div class="row">
-         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
             Name
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
@@ -51,7 +51,7 @@
       <!-- End name info -->
       <!-- Start profession -->
       <div class="row">
-         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
             Profession
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
@@ -61,7 +61,7 @@
       <!-- End profession -->
       <!-- Start Address -->
       <div class="row">
-         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
             Address
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
@@ -71,7 +71,7 @@
       <!-- End Address -->
       <!-- Start Experience -->
       <div class="row">
-         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
             Experience
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
@@ -81,7 +81,7 @@
       <!-- End Experience -->
       <!-- Start Rating -->
       <div class="row">
-         <div class="col-3  col-sm-1  col-md-1 sub-heading">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
             Rating
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
@@ -103,7 +103,7 @@
 <!-- Start time & open status, our services, add new service btn -->
 <div class="row pt-3 pb-3 border-top border-bottom">
    <!-- Start time and open status -->
-   <div class="col-12 col-sm-3 col-md-4 border-right  time-open-status">
+   <div class="col-12 col-sm-3 col-md-3 border-right-custom  time-open-status">
       <!-- Start time & open status heading -->
       <div class="row">
          <div class="col-12 col-sm-12 col-md-12 heading">
@@ -122,131 +122,131 @@
       <div class="row">
          {% if Profession_obj.shop_status_sunday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Sunday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content"> : Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content"> : Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Sunday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content"> : Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content"> : Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
+
       <!-- End open status Sunday -->
       <!-- Start open status Monday -->
-      <div class="row">
+
          {% if Profession_obj.shop_status_monday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Monday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Monday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
+
       <!-- End open status Monday -->
       <!-- Start open status Tuesday -->
-      <div class="row">
+
          {% if Profession_obj.shop_status_Tuesday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
+
       <!-- End open status Tuesday -->
       <!-- Start open status Wednesday -->
-      <div class="row">
+
          {% if Profession_obj.shop_status_Wednesday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
+
       <!-- End open status Wednesday -->
       <!-- Start open status Thursday -->
-      <div class="row">
+
          {% if Profession_obj.shop_status_Thrusday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Thursday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Thursday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
+
       <!-- End open status Thursday -->
       <!-- Start open status Friday -->
-      <div class="row">
+
          {% if Profession_obj.shop_status_Friday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Friday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Friday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
+
       <!-- End open status Friday -->
       <!-- Start open status Saturday -->
-      <div class="row">
+
          {% if Profession_obj.shop_status_saturday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Saturday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Saturday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
       </div>
@@ -254,10 +254,10 @@
    </div>
    <!-- End time and open status -->
    <!-- Start our services -->
-   <div class="col-12 col-sm-9 col-md-8 our-services">
+   <div class="col-12 col-sm-9 col-md-9 our-services">
       <!-- Start our services heading -->
       <div class="row">
-         <div class="col-12 col-sm-12 col-md-12 our-services-heading">
+         <div class="col-12 col-sm-12 col-md-12 pl-0 our-services-heading">
             Our Services
          </div>
       </div>
