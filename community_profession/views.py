@@ -415,10 +415,12 @@ def Community_image(request):
     
     User_post_obj=UserPost.objects.filter(post_type1=False).exclude(User_Profile=userprofile)
     print(User_post_obj)
-    User_post_obj_image=[]
+    # User_post_obj_image=[]
+    # for i in User_post_obj:
+    # User_post_obj_image.append(Community_Post.objects.get(user_post=i))
     for i in User_post_obj:
-        User_post_obj_image.append(Community_Post.objects.get(user_post=i.id))
-    User_post_obj_image.reverse()
+        User_post_obj_image=Community_Post.objects.filter(user_post=i.id)[::-1]
+    # User_post_obj_image.reverse()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
     # Our_News_count=News.objects.filter(Date=Date).count()
@@ -511,10 +513,8 @@ def Community_My_Image(request):
 
     User_post_obj_id=UserPost.objects.filter(User_Profile=userprofile, post_type1=False)
     print('User_post_obj_id',User_post_obj_id)
-    User_post_obj=[]
     for i in User_post_obj_id:
-        User_post_obj.append(Community_Post.objects.get(user_post=i.id))
-    User_post_obj.reverse()
+        User_post_obj = Community_Post.objects.filter(user_post=i.id)[::-1]
     # User_POST_Question_obj=POST_and_Question.objects.all()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
