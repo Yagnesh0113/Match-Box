@@ -252,7 +252,7 @@
                           <div class="container imgcheck p-0 pt-4">
                               {% for i in notifications %}
                               {% if i.post %}
-                              <li>
+                              <li class="pt-4">
                                  {% if i.notification_type == 1 %}
                                     <div class="row">
                                        <a href="{% url 'profession-profile-screen' i.from_user.usertype.user_id.id %}">
@@ -270,9 +270,9 @@
                                        </div>
                                     </div>
                                     <div class="row">
-                                       <div class="col-2 col-sm-1 col-md-1"></div>
+                                       <!-- <div class="col-2 col-sm-1 col-md-1"></div> -->
                                        <div class="col-6 col-sm-8 col-md-6 notifn-date">
-                                          Wed 20 Sep 2022
+                                          {{i.date}}
                                        </div>
                                     </div>
                                  {% endif %}
