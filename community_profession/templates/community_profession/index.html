@@ -143,28 +143,37 @@
                   <span>
                      <div id="mySidenav" class="sidenav">
                         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                        <a class="nav-link active text-dark" href="#" data-target="#modal3" data-toggle="modal">Create Community</a>
-                        <a class="nav-link" href="#" data-target="#modal10" data-toggle="modal">My Communities</a>
+                        <a class="nav-link text-dark dropdown-item" href="#" data-target="#modal3" data-toggle="modal">
+                           Create Community
+                        </a>
+                        <a class="nav-link dropdown-item" href="#" data-target="#modal10" data-toggle="modal">
+                           My Communities
+                        </a>
                         <!-- <a href="#"><i class="fa-solid fa-share-nodes"></i> Share</a> -->
                         <a class="dropdown-item" href="{% url 'Community_Question' %}"><i
                            class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;Question</a>
                         <a class="dropdown-item" href="{% url 'community-screen' %}"><i
                            class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;Post</a>
-                        <a class="dropdown-item" href="{% url 'news' %}"><i
-                           class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;News</a>
-                        <a href="{% url 'notification' %}"><i class="fa-solid fa-bell"></i>&nbsp;Notifications</a>
+                        <a class="dropdown-item" href="{% url 'news' %}">
+                           <i class="fa-solid fa-arrow-up-right-from-square"></i>&nbsp;News
+                        </a>
+                        <a class="dropdown-item" href="{% url 'notification' %}">
+                           <i class="fa-solid fa-bell"></i>&nbsp;Notifications
+                        </a>
                         <!-- <a href="#"><i class="fa-solid fa-ban"></i> Block Account</a>
                            <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> History</a> -->
-                        <a href="{% url 'bookmark_page' %}"><i class="fa-solid fa-bookmark"></i> &nbsp;Bookmark </a>
+                        <a class="dropdown-item" href="{% url 'bookmark_page' %}">
+                           <i class="fa-solid fa-bookmark"></i> &nbsp;Bookmark
+                        </a>
                         {% if user.is_authenticated %}
-                        <a class="sidenav-last-a" href="{% url 'user_logout' %}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Sign out
+                        <a class="sidenav-last-a dropdown-item" href="{% url 'user_logout' %}">
+                           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Sign out
                         </a>
                         {% else %}
-                        <a class="sidenav-last-a" href="{% url 'sign-in' %}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Sign in
+                        <a class="sidenav-last-a dropdown-item" href="{% url 'sign-in' %}">
+                           <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                           Sign in
                         </a>
                         {% endif %}
                      </div>
