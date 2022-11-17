@@ -292,6 +292,9 @@ def like_Question(request):
 @login_required(login_url='/sign-in')
 def like_Answer(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
+    Date=date.today()
+    now = datetime.now()
+    Time = now.strftime("%H:%M:%S")
     if request.method=="POST":
         answer_obj=request.POST.get("post_id")
         Answer=User_Answer.objects.get(id=answer_obj)
@@ -299,6 +302,7 @@ def like_Answer(request):
             Answer.Answer_Like.remove(userprofile)
         else:
             Answer.Answer_Like.add(userprofile)
+            notification = Notifiaction.objects.create(notification_type=1, from_user=userprofile, to_user=Answer.User_Profile, answer=Answer, date=Date, time=Time)
         data={
             'post':Answer.Answer_Like.all().count()
         }
