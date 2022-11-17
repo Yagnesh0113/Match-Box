@@ -565,6 +565,30 @@ body {
         padding-right:15px;
     }
 
+.autocomplete .form-control-sm {
+    padding: 0px 11px;
+}
+
+.autocomplete-input {
+    border: 1px solid #eee;
+    border-radius: 2px;
+    width: 100%;
+    /*padding: 12px 12px 12px 48px;*/
+    box-sizing: border-box;
+    position: relative;
+    font-size: 16px;
+    line-height: 1.5;
+    flex: 1;
+    background-color: #eee;
+/*
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjY2IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PGNpcmNsZSBjeD0iMTEiIGN5PSIxMSIgcj0iOCIvPjxwYXRoIGQ9Ik0yMSAyMWwtNC00Ii8+PC9zdmc+);
+*/
+    background-image: None;
+    background-repeat: no-repeat;
+    background-position: 7px;
+}
+
+
 /* Start Mobile view */
 @media all and (min-width: 577px) {}
 
