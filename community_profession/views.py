@@ -37,7 +37,6 @@ def userprofileobj(request):
         My_Community=Community.objects.all()
         return None,None,None,My_Community
 
-
 def loadHomeScreenPage(request):
     # print(request.user)
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
@@ -245,7 +244,6 @@ def like_post_comment(request):
         return JsonResponse(data, safe=False)
     return redirect(f"/add_comment/{post.User_Post.id}")
 
-
 @login_required(login_url='/sign-in')
 def like_post(request):
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
@@ -389,7 +387,6 @@ def loadCommunityScreen(request):
         }
         return render(request, 'community_profession/community.html',context)
 
-
 # def loadCommunityScreen(request):
 #     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
 #     Community_obj=POST_and_Question.objects.all()[::-1]
@@ -397,8 +394,8 @@ def loadCommunityScreen(request):
 #     User_Question_count=User_Question.objects.filter(User_id=userprofile.id).count()
 #     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
 #     Date=date.today()
-#     # Our_News_count=News.objects.filter(Date=Date).count()
-    # Our_News_count=News.objects.all().count()
+#     Our_News_count=News.objects.filter(Date=Date).count()
+#     Our_News_count=News.objects.all().count()
 #     Answer_later_obj=Answer_later.objects.filter(User_Profile=userprofile)[::-1]
 #     Answer_later_count=Answer_later.objects.filter(User_Profile=userprofile).count()
 #     if obj is not None:
@@ -416,12 +413,10 @@ def Community_image(request):
     
     User_post_obj=UserPost.objects.filter(post_type1=False).exclude(User_Profile=userprofile)
     print(User_post_obj)
-    # User_post_obj_image=[]
-    # for i in User_post_obj:
-    # User_post_obj_image.append(Community_Post.objects.get(user_post=i))
+    User_post_obj_image=[]
     for i in User_post_obj:
-        User_post_obj_image=Community_Post.objects.filter(user_post=i.id)[::-1]
-    # User_post_obj_image.reverse()
+        User_post_obj_image.append(Community_Post.objects.get(user_post=i))
+    User_post_obj_image.reverse()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
     # Our_News_count=News.objects.filter(Date=Date).count()
@@ -514,8 +509,10 @@ def Community_My_Image(request):
 
     User_post_obj_id=UserPost.objects.filter(User_Profile=userprofile, post_type1=False)
     print('User_post_obj_id',User_post_obj_id)
+    User_post_obj=[]
     for i in User_post_obj_id:
-        User_post_obj = Community_Post.objects.filter(user_post=i.id)[::-1]
+        User_post_obj.append(Community_Post.objects.get(user_post=i))
+    User_post_obj.reverse()
     # User_POST_Question_obj=POST_and_Question.objects.all()
     User_id=UserProfile.objects.all().exclude(id=userprofile.id)
     Date=date.today()
