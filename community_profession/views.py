@@ -47,11 +47,11 @@ def loadHomeScreenPage(request):
     print("Popular_profession: ",Popular_profession)
     Recent_Serch_obj=Recent_serach.objects.filter(User_obj=userprofile)[::-1]
     print("Recent_Serch_obj:",Recent_Serch_obj)
-    notifications = Notifiaction.objects.filter(to_user=userprofile.id).order_by('-time')
+    # notifications = Notifiaction.objects.filter(to_user=userprofile.id).order_by('-time')
     if obj is not None:
-        context={'notifications':notifications,'Popular_profession':Popular_profession, 'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
+        context={'Popular_profession':Popular_profession, 'joincommunityobj':joincommunityobj,"My_community":obj,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
     else:
-        context={'notifications':notifications,'Popular_profession':Popular_profession,  'My_community':My_Community,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
+        context={'Popular_profession':Popular_profession,  'My_community':My_Community,'userprofile':userprofile,"profession":profession,"Recent":Recent_Serch_obj}
     return render(request, 'community_profession/home-screen.html',context)
 
 # --- load -- profession see all screen ---
