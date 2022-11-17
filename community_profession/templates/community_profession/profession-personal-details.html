@@ -314,18 +314,18 @@
       <center>
       <div class="row profession-details">
          {% for i in Profession_Video_obj %}
-         <div class="col-6 col-sm-4 col-md-2 pl-4 pr-4 d-flex">
+         <div class="col-6 col-sm-4 col-md-2 pl-4 pr-4">
             <div class="row">
                <div class="col-md-12 profession-video rounded border border-dark pt-2 pb-2">
                   <a href="{% url 'video-screen' i.id %}" class="text-light text-decoration-none">
-                     <video src="{{i.video.url}}" class="video-fluid img-fluid" width="100%" controls></video>
+                     <video src="{{i.video.url}}" class="img-fluid"  controls></video>
                   </a>
                </div>
             </div>
          </div>
          {% endfor %}
          {% for j in Profession_Image_obj %}
-         <div class="col-6 col-sm-4 col-md-2 pl-4 pr-4 d-flex">
+         <div class="col-6 col-sm-4 col-md-2 pl-4 pr-4 ">
             <div class="row">
                <div class="col-md-12 rounded  border border-dark pt-2 pb-2">
                   <a href="{% url 'photo-screen' j.id %}" class="text-light text-decoration-none">
