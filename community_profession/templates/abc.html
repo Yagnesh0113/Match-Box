@@ -9,18 +9,34 @@
 </head>
 <body>
 
+<div class="row pt-2 pd-2">
+   <div class="col-12 col-sm-12 col-md-12">
 
-<div class="row community-post-image ">
-   <div class="col-md-12 community-post-image-background p-0">
-      <div class="row ">
-         <div class="col-0 col-sm-3 col-md-3"></div>
-         <div class="col-12 col-sm-6 col-md-6 text-center p-0">
-            <img src="{{User_POST.Image.url}}" alt="img-fluid" class="img-fluid">
-         </div>
-         <div class="col-0 col-sm-3 col-md-3"></div>
-      </div>
+      <!-- Start like button -->
+      <span class="d-inline-block">
+         <form action="{% url 'like_Review' %}" method="POST" class="like-form" id="{{k.id}}">
+            {% csrf_token %}
+                <input type="hidden" name="post_id" value="{{k.id}}">
+                <button type="submit" class="btn p-0 community-like-dislike-btn like-btn{{k.id}}">
+                    {% if userprofile not in k.like.all %}
+                        <i class="fa-regular fa-thumbs-up"></i>
+                    {% else %}
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    {% endif %}
+                </button>
+                <span class="btn pl-0 community-like-dislike-btn like-count{{k.id}}">
+                    {{ k.like.all.count }}
+                </span>
+         </form>
+      </span>
+      <!-- End like button -->
+
+      <!-- Start comment button -->
+
+      <!-- End comment button -->
    </div>
 </div>
+
 
 
 </body>

@@ -17,130 +17,128 @@
 {% endblock own_css %}
 {% block content %}
 <!-- Start girls parlor heading -->
-<div class="row">
+<div class="row profession-personal-head-pt">
    <div class="col-12 col-sm-12 col-md-12 girls-parlor-heading">
       {{profession.profession}}
    </div>
 </div>
 <!-- End girls parlor heading -->
+
 <!-- Start profile-img and info -->
 <div class="row">
-   <div class="col-12 col-sm-12 col-md-12 pl-4 pr-4">
-      <div class="row ">
-         <!-- Start profile-img -->
-         <div class="col-2 col-sm-3 col-md-2 profile-img-edit-btn">
-            <!-- Start Profile img -->
-            <div class="row">
-               <div class="col-12 col-sm-12 col-md-12">
-                  <img src="{{profession.profession_image.url}}"  class="img-fluid rounded" alt="Responsive image" width="100%">
-               </div>
+      <!-- Start profile-img -->
+      <div class="col-3 col-sm-2 col-md-2 profile-img-edit-btn">
+         <!-- Start Profile img -->
+         <div class="row">
+            <div class="col-12 col-sm-12 col-md-12">
+               <img src="{{profession.profession_image.url}}"  class="img-fluid rounded" alt="Responsive image" width="100%">
             </div>
-            <!-- End Profile img -->
-            <!-- Start Edit btn -->
-            <div class="row">
-               <div class="col-12 col-sm-12 col-md-12 text-center pt-3 edit-btn">
-                  <button  type="button" class="btn" data-toggle="modal" data-target="#editimage">
+         </div>
+         <!-- End Profile img -->
+         <!-- Start Edit btn -->
+         <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 text-center pt-3 edit-btn">
+               <button  type="button" class="btn" data-toggle="modal" data-target="#editimage">
                   <i class="fa-solid fa-pen-to-square"></i> Edit Profile
-                  </button>
-               </div>
+               </button>
             </div>
-            <!-- End Edit btn -->
          </div>
-         <!-- Start profile-img -->
-         <!-- Start info -->
-         <div class="col-10 col-sm-9 col-md-10 personal-info">
-            <!-- Start name info -->
-            <div class="row">
-               <div class="col-3  col-sm-2  col-md-2 sub-heading">
-                  Name
-               </div>
-               <div class="col-9 col-sm-10 col-md-10 content">
-                  : {{profession.shop_name}}
-               </div>
-            </div>
-            <!-- End name info -->
-
-            <!-- Start profession -->
-            <div class="row">
-               <div class="col-3  col-sm-2  col-md-2 sub-heading">
-                  Profession
-               </div>
-               <div class="col-9 col-sm-10 col-md-10 content">
-                  : {{profession.profession}}
-               </div>
-            </div>
-            <!-- End profession -->
-
-            <!-- Start Address -->
-            <div class="row">
-               <div class="col-3  col-sm-2  col-md-2 sub-heading">
-                  Address
-               </div>
-               <div class="col-9 col-sm-10 col-md-10 content">
-                  : {{profession.shop_address}}, {{profession.shop_city}}, {{profession.shop_state}}
-               </div>
-            </div>
-            <!-- End Address -->
-
-            <!-- Start Experience -->
-            <div class="row"  >
-               <div class="col-3  col-sm-2  col-md-2 sub-heading">
-                  Experience
-               </div>
-               <div class="col-9 col-sm-10 col-md-10 content">
-                  : {{profession.year_of_experience}} Year
-               </div>
-            </div>
-            <!-- End Experience -->
-
-            <!-- Start Rating -->
-            <div class="row">
-               <div class="col-3  col-sm-2  col-md-2 sub-heading">
-                  Rating
-               </div>
-               <div class="col-9 col-sm-10 col-md-10 content">
-                  :
-                  <img class="img-fluid" src="{% static 'community_profession/img/flag.png' %}" alt="Chania">
-                  {{profession.Profession_Rating}}
-               </div>
-            </div>
-            <!-- End Rating -->
-
-            <!-- Start About users heading -->
-            <div class="row">
-               <div class="col-md-12 about-user-heading">
-                  About Users
-               </div>
-            </div>
-            <!-- End About users heading -->
-
-            <!-- Start about users content -->
-            <div class="row">
-               <div class="col-md-12 about-user-content text-justify">
-                  {{profession.shop_description}}
-               </div>
-            </div>
-            <!-- End about users content -->
-
-            <!-- Start Edit btn -->
-            <div class="row edit-btn">
-               <div class="col-md-12 pt-2">
-                  <button  type="button" class="btn" data-toggle="modal" data-target="#editDetailModal">
-                  <i class="fa-solid fa-pen-to-square"></i> Edit Details
-                  </button>
-               </div>
-            </div>
-            <!-- End Edit btn -->
-         </div>
-         <!-- End info -->
+         <!-- End Edit btn -->
       </div>
-   </div>
+      <!-- Start profile-img -->
+      <!-- Start info -->
+      <div class="col-9 col-sm-10 col-md-10 personal-info">
+         <!-- Start name info -->
+         <div class="row">
+            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+               Name
+            </div>
+            <div class="col-9 col-sm-11 col-md-11 content">
+               : {{profession.shop_name}}
+            </div>
+         </div>
+         <!-- End name info -->
+
+         <!-- Start profession -->
+         <div class="row">
+            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+               Profession
+            </div>
+            <div class="col-9 col-sm-11 col-md-11 content">
+               : {{profession.profession}}
+            </div>
+         </div>
+         <!-- End profession -->
+
+         <!-- Start Address -->
+         <div class="row">
+            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+               Address
+            </div>
+            <div class="col-9 col-sm-11 col-md-11 content">
+               : {{profession.shop_address}}, {{profession.shop_city}}, {{profession.shop_state}}
+            </div>
+         </div>
+         <!-- End Address -->
+
+         <!-- Start Experience -->
+         <div class="row"  >
+            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+               Experience
+            </div>
+            <div class="col-9 col-sm-11 col-md-11 content">
+               : {{profession.year_of_experience}} Year
+            </div>
+         </div>
+         <!-- End Experience -->
+
+         <!-- Start Rating -->
+         <div class="row">
+            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+               Rating
+            </div>
+            <div class="col-9 col-sm-11 col-md-11 content flag-svg">
+               :
+               <img class="img-fluid" src="{% static 'community_profession/img/flag.svg' %}" alt="Chania">
+               {{profession.Profession_Rating}}
+            </div>
+         </div>
+         <!-- End Rating -->
+
+         <!-- Start About users heading -->
+         <div class="row">
+            <div class="col-md-12 pl-0 about-user-heading">
+               About Users
+            </div>
+         </div>
+         <!-- End About users heading -->
+
+         <!-- Start about users content -->
+         <div class="row">
+            <div class="col-md-12 pl-0 about-user-content text-justify">
+               {{profession.shop_description}}
+            </div>
+         </div>
+         <!-- End about users content -->
+
+         <!-- Start Edit btn -->
+         <div class="row edit-btn">
+            <div class="col-md-12 pt-2 pl-0">
+               <button  type="button" class="btn" data-toggle="modal" data-target="#editDetailModal">
+               <i class="fa-solid fa-pen-to-square"></i> Edit Details
+               </button>
+            </div>
+         </div>
+         <!-- End Edit btn -->
+      </div>
+      <!-- End info -->
 </div>
 <!-- End profile-img and info -->
+
 <!-- Start time & open status, our services, add new service btn -->
 <div class="row pt-3 pb-3 pl-1 border-top border-bottom">
    <!-- Start time and open status -->
-   <div class="col-12 col-sm-3 col-md-3 border-right  time-open-status">
+   <div class="col-12 col-sm-3 col-md-3 border-right-custom time-open-status">
       <!-- Start time & open status heading -->
       <div class="row">
          <div class="col-10 col-sm-10 col-md-10 heading">
@@ -164,131 +162,113 @@
       <div class="row">
          {% if profession.shop_status_sunday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Sunday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content"> : Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content"> : Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Sunday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Sunday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content"> : Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content"> : Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
-      <!-- End open status Sunday -->
-      <!-- Start open status Monday -->
-      <div class="row">
+
          {% if profession.shop_status_monday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Monday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Monday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Monday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
-      <!-- End open status Monday -->
-      <!-- Start open status Tuesday -->
-      <div class="row">
+
          {% if profession.shop_status_Tuesday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
-      <!-- End open status Tuesday -->
-      <!-- Start open status Wednesday -->
-      <div class="row">
+
          {% if profession.shop_status_Wednesday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
-      <!-- End open status Wednesday -->
-      <!-- Start open status Thursday -->
-      <div class="row">
+
          {% if profession.shop_status_Thrusday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Thursday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Thursday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Thursday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
-      <!-- End open status Thursday -->
-      <!-- Start open status Friday -->
-      <div class="row">
+
          {% if profession.shop_status_Friday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Friday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Friday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Friday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-      </div>
-      <!-- End open status Friday -->
-      <!-- Start open status Saturday -->
-      <div class="row">
+
          {% if profession.shop_status_saturday%}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Saturday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Open</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Open</div>
          <!-- End open status content -->
          {% else %}
          <!-- Start open status heading -->
-         <div class="col-6 col-sm-6 col-md-6 open-status-heading">Saturday</div>
+         <div class="col-3 col-sm-6 col-md-6 open-status-heading">Saturday</div>
          <!-- End open status heading -->
          <!-- Start open status content -->
-         <div class="col-6 col-sm-6 col-md-6 status-content">: Close</div>
+         <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
       </div>
@@ -303,8 +283,8 @@
             Our Services
          </div>
          <div class="col-7 col-sm-3 col-md-3 text-right pr-0">
-            <button type="button" class="btn btn-normal" data-toggle="modal" data-target="#newServideModal">
-            Add New Service
+            <button type="button" class="btn btn-normal-b " data-toggle="modal" data-target="#newServideModal">
+               Add Services
             </button>
          </div>
       </div>
@@ -313,30 +293,28 @@
       <div class="row" id="myDIV">
          <div class="col-12 col-sm-12 col-md-12 ex1">
             {% for s in services%}
-            <div class="row mt-2 pt-2 rounded services">
+            <div class="row mt-2 pt-1 pb-1 rounded services">
                <!-- Start Service heading -->
                <div class="col-5 col-sm-8 col-md-8">{{s.service_name}}</div>
                <!-- End Service heading -->
                <!-- Start price, edit, delete -->
-               <div class="col-3 col-sm-2 col-md-2 text-center">
+               <div class="col-3 col-sm-2 col-md-2">
                   <span>Rs : {{s.service_price}}</span>
                </div>
                <div class="col-2 col-sm-1 col-md-1 text-center">
                   <span>
-                     <!-- <form action="" method="POST">
-                        {% csrf_token %} -->
                      <a data-toggle="modal" data-target="#editservise">
-                     <button type="submit" onclick="data('{{s.id}}','{{s.service_name}}','{{s.service_price}}')" name="profession_id" class="btn">
-                     <i class="fa-solid fa-pen-to-square"></i>
-                     </button>
+                        <button type="submit" onclick="data('{{s.id}}','{{s.service_name}}','{{s.service_price}}')" name="profession_id" class="btn p-0">
+                           <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
                      </a>
-                     <!-- </form> -->
+
                   </span>
                </div>
                <div class="col-2  col-sm-1 col-md-1 text-center">
                   <span>
                      <form action="{% url 'delete_service' s.id %}">
-                        <button type="submit" value="{{profession.id}}" name="profession_id" class="btn">
+                        <button type="submit" value="{{profession.id}}" name="profession_id" class="btn p-0">
                         <i class="fa-solid fa-trash-can"></i>
                         </button>
                      </form>

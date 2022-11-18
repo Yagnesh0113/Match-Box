@@ -613,6 +613,8 @@ body {
 }
 
 
+
+
 /* Start Mobile view */
 @media all and (min-width: 577px) {}
 
@@ -858,6 +860,11 @@ body {
 
 	  }
 
+	.recent-searches-window .search-icon
+	{
+        font-size: 1.5rem;
+    }
+
 }
 
 @media (min-width: 577px) {
@@ -982,6 +989,11 @@ body {
 		min-width: 52rem;
 	  }
 
+	  .flag-svg .img-fluid
+        {
+            height:10px;
+        }
+
 }
 
 @media (min-width: 768px) {
@@ -1044,20 +1056,20 @@ body {
 		font-size: 16px;
 	  }
 	  .notifn-date
-{
-	font-family: var(--font-1);
-	font-style: normal;
-	font-weight: 400;
-	font-size: 12px;
-	line-height: 145%;
-	color: #3F515C;
-    padding-right: 0px;
-	padding-top: 0px;
-}
-.notifictn-dropdo
-{
-	min-width: 55rem;
-}
+        {
+            font-family: var(--font-1);
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 145%;
+            color: #3F515C;
+            padding-right: 0px;
+            padding-top: 0px;
+        }
+        .notifictn-dropdo
+        {
+            min-width: 55rem;
+        }
 
 }
 
@@ -1116,7 +1128,12 @@ body {
 	color: #3F515C;
     padding-right: 2rem;
 	padding-top: 0.75rem;
-}
+    }
+
+    .flag-svg .img-fluid
+        {
+            height:14px;
+        }
 
 }
 
@@ -1174,6 +1191,11 @@ body {
 	  {
 		padding-right: 69px;
 	  }
+
+	  .flag-svg .img-fluid
+        {
+            height:20px;
+        }
 }
 
 @media (min-width: 1920px) {
@@ -1219,6 +1241,11 @@ body {
 		  padding-right: 2.625rem;
 		  padding-top: 0.75rem;
 	  }
+
+	  .flag-svg .img-fluid
+        {
+            height:25px;
+        }
 }
 
 /* End Mobile Views */
