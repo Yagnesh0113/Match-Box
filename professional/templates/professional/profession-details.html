@@ -23,118 +23,109 @@
    </div>
 </div>
 <!-- End girls parlor heading -->
-
 <!-- Start profile-img and info -->
 <div class="row">
-      <!-- Start profile-img -->
-      <div class="col-3 col-sm-2 col-md-2 profile-img-edit-btn">
-         <!-- Start Profile img -->
-         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12">
-               <img src="{{profession.profession_image.url}}"  class="img-fluid rounded" alt="Responsive image" width="100%">
-            </div>
+   <!-- Start profile-img -->
+   <div class="col-3 col-sm-2 col-md-2 profile-img-edit-btn">
+      <!-- Start Profile img -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12">
+            <img src="{{profession.profession_image.url}}"  class="img-fluid rounded" alt="Responsive image" width="100%">
          </div>
-         <!-- End Profile img -->
-         <!-- Start Edit btn -->
-         <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 text-center pt-3 edit-btn">
-               <button  type="button" class="btn" data-toggle="modal" data-target="#editimage">
-                  <i class="fa-solid fa-pen-to-square"></i> Edit Profile
-               </button>
-            </div>
-         </div>
-         <!-- End Edit btn -->
       </div>
-      <!-- Start profile-img -->
-      <!-- Start info -->
-      <div class="col-9 col-sm-10 col-md-10 personal-info">
-         <!-- Start name info -->
-         <div class="row">
-            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
-               Name
-            </div>
-            <div class="col-9 col-sm-11 col-md-11 content">
-               : {{profession.shop_name}}
-            </div>
+      <!-- End Profile img -->
+      <!-- Start Edit btn -->
+      <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 text-center pt-3 edit-btn">
+            <button  type="button" class="btn" data-toggle="modal" data-target="#editimage">
+            <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+            </button>
          </div>
-         <!-- End name info -->
-
-         <!-- Start profession -->
-         <div class="row">
-            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
-               Profession
-            </div>
-            <div class="col-9 col-sm-11 col-md-11 content">
-               : {{profession.profession}}
-            </div>
-         </div>
-         <!-- End profession -->
-
-         <!-- Start Address -->
-         <div class="row">
-            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
-               Address
-            </div>
-            <div class="col-9 col-sm-11 col-md-11 content">
-               : {{profession.shop_address}}, {{profession.shop_city}}, {{profession.shop_state}}
-            </div>
-         </div>
-         <!-- End Address -->
-
-         <!-- Start Experience -->
-         <div class="row"  >
-            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
-               Experience
-            </div>
-            <div class="col-9 col-sm-11 col-md-11 content">
-               : {{profession.year_of_experience}} Year
-            </div>
-         </div>
-         <!-- End Experience -->
-
-         <!-- Start Rating -->
-         <div class="row">
-            <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
-               Rating
-            </div>
-            <div class="col-9 col-sm-11 col-md-11 content flag-svg">
-               :
-               <img class="img-fluid" src="{% static 'community_profession/img/flag.svg' %}" alt="Chania">
-               {{profession.Profession_Rating}}
-            </div>
-         </div>
-         <!-- End Rating -->
-
-         <!-- Start About users heading -->
-         <div class="row">
-            <div class="col-md-12 pl-0 about-user-heading">
-               About Users
-            </div>
-         </div>
-         <!-- End About users heading -->
-
-         <!-- Start about users content -->
-         <div class="row">
-            <div class="col-md-12 pl-0 about-user-content text-justify">
-               {{profession.shop_description}}
-            </div>
-         </div>
-         <!-- End about users content -->
-
-         <!-- Start Edit btn -->
-         <div class="row edit-btn">
-            <div class="col-md-12 pt-2 pl-0">
-               <button  type="button" class="btn" data-toggle="modal" data-target="#editDetailModal">
-               <i class="fa-solid fa-pen-to-square"></i> Edit Details
-               </button>
-            </div>
-         </div>
-         <!-- End Edit btn -->
       </div>
-      <!-- End info -->
+      <!-- End Edit btn -->
+   </div>
+   <!-- Start profile-img -->
+   <!-- Start info -->
+   <div class="col-9 col-sm-10 col-md-10 personal-info">
+      <!-- Start name info -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+            Name
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : {{profession.shop_name}}
+         </div>
+      </div>
+      <!-- End name info -->
+      <!-- Start profession -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+            Profession
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : {{profession.profession}}
+         </div>
+      </div>
+      <!-- End profession -->
+      <!-- Start Address -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+            Address
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : {{profession.shop_address}}, {{profession.shop_city}}, {{profession.shop_state}}
+         </div>
+      </div>
+      <!-- End Address -->
+      <!-- Start Experience -->
+      <div class="row"  >
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+            Experience
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content">
+            : {{profession.year_of_experience}} Year
+         </div>
+      </div>
+      <!-- End Experience -->
+      <!-- Start Rating -->
+      <div class="row">
+         <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
+            Rating
+         </div>
+         <div class="col-9 col-sm-11 col-md-11 content flag-svg">
+            :
+            <img class="img-fluid" src="{% static 'community_profession/img/flag.svg' %}" alt="Chania">
+            {{profession.Profession_Rating}}
+         </div>
+      </div>
+      <!-- End Rating -->
+      <!-- Start About users heading -->
+      <div class="row">
+         <div class="col-md-12 pl-0 about-user-heading">
+            About Users
+         </div>
+      </div>
+      <!-- End About users heading -->
+      <!-- Start about users content -->
+      <div class="row">
+         <div class="col-md-12 pl-0 about-user-content text-justify">
+            {{profession.shop_description}}
+         </div>
+      </div>
+      <!-- End about users content -->
+      <!-- Start Edit btn -->
+      <div class="row edit-btn">
+         <div class="col-md-12 pt-2 pl-0">
+            <button  type="button" class="btn" data-toggle="modal" data-target="#editDetailModal">
+            <i class="fa-solid fa-pen-to-square"></i> Edit Details
+            </button>
+         </div>
+      </div>
+      <!-- End Edit btn -->
+   </div>
+   <!-- End info -->
 </div>
 <!-- End profile-img and info -->
-
 <!-- Start time & open status, our services, add new service btn -->
 <div class="row pt-3 pb-3 pl-1 border-top border-bottom">
    <!-- Start time and open status -->
@@ -146,7 +137,7 @@
          </div>
          <div class="col-2 pt-1 text-right">
             <a href="" data-toggle="modal" data-target="#editdatetime">
-               <i class="fa-solid fa-pen-to-square"></i>
+            <i class="fa-solid fa-pen-to-square"></i>
             </a>
          </div>
       </div>
@@ -175,7 +166,6 @@
          <div class="col-3 col-sm-6 col-md-6 status-content"> : Close</div>
          <!-- End open status content -->
          {% endif %}
-
          {% if profession.shop_status_monday%}
          <!-- Start open status heading -->
          <div class="col-3 col-sm-6 col-md-6 open-status-heading">Monday</div>
@@ -191,7 +181,6 @@
          <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-
          {% if profession.shop_status_Tuesday%}
          <!-- Start open status heading -->
          <div class="col-3 col-sm-6 col-md-6 open-status-heading">Tuesday</div>
@@ -207,7 +196,6 @@
          <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-
          {% if profession.shop_status_Wednesday%}
          <!-- Start open status heading -->
          <div class="col-3 col-sm-6 col-md-6 open-status-heading">Wednesday</div>
@@ -223,7 +211,6 @@
          <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-
          {% if profession.shop_status_Thrusday%}
          <!-- Start open status heading -->
          <div class="col-3 col-sm-6 col-md-6 open-status-heading">Thursday</div>
@@ -239,7 +226,6 @@
          <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-
          {% if profession.shop_status_Friday%}
          <!-- Start open status heading -->
          <div class="col-3 col-sm-6 col-md-6 open-status-heading">Friday</div>
@@ -255,7 +241,6 @@
          <div class="col-3 col-sm-6 col-md-6 status-content">: Close</div>
          <!-- End open status content -->
          {% endif %}
-
          {% if profession.shop_status_saturday%}
          <!-- Start open status heading -->
          <div class="col-3 col-sm-6 col-md-6 open-status-heading">Saturday</div>
@@ -284,7 +269,7 @@
          </div>
          <div class="col-7 col-sm-3 col-md-3 text-right pr-0">
             <button type="button" class="btn btn-normal-b " data-toggle="modal" data-target="#newServideModal">
-               Add Services
+            Add Services
             </button>
          </div>
       </div>
@@ -303,12 +288,11 @@
                </div>
                <div class="col-2 col-sm-1 col-md-1 text-center">
                   <span>
-                     <a data-toggle="modal" data-target="#editservise">
-                        <button type="submit" onclick="data('{{s.id}}','{{s.service_name}}','{{s.service_price}}')" name="profession_id" class="btn p-0">
-                           <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                     </a>
-
+                  <a data-toggle="modal" data-target="#editservise">
+                  <button type="submit" onclick="data('{{s.id}}','{{s.service_name}}','{{s.service_price}}')" name="profession_id" class="btn p-0">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  </a>
                   </span>
                </div>
                <div class="col-2  col-sm-1 col-md-1 text-center">
@@ -343,25 +327,23 @@
    <!-- End Photos and Videos Heading -->
    <!-- Start see all links -->
    <div class="col-6  col-sm-6 col-md-6 pl-2 pr-2 text-right">
-      <a class="btn btn-normal add-photos-videos-desktop-view" data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
-      <a class="btn btn-normal add-photos-videos-desktop-view" data-toggle="modal" data-target="#addimages">Add Photos</a>
+      <a class="btn btn-normal-b add-photos-videos-desktop-view" data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
+      <a class="btn btn-normal-b add-photos-videos-desktop-view" data-toggle="modal" data-target="#addimages">Add Photos</a>
       <a href="{% url 'See-all-photos-videos' profession.id %}" class="see-all">See All</a>
    </div>
    <!-- Start see all links -->
 </div>
 <!-- End Photos & videos heading, See All links headings -->
-
 <!-- Start add photos - videos btn -- mobile view -->
 <div class="row pt-2 add-photos-videos-mobile-view">
    <div class="col-6 col-md-6 pr-1">
-      <a class="btn btn-normal btn-block btn-sm" data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
+      <a class="btn btn-normal-b btn-block btn-sm" data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
    </div>
    <div class="col-6 col-md-6 pl-1 pr-1">
-      <a class="btn btn-normal btn-block btn-sm" data-toggle="modal" data-target="#addimages">Add Photos</a>
+      <a class="btn btn-normal-b btn-block btn-sm" data-toggle="modal" data-target="#addimages">Add Photos</a>
    </div>
 </div>
 <!-- End add photos - videos btn -- mobile view -->
-
 <!-- Start Photos & videos -->
 <div class="row border-bottom pl-2">
    <div class="col-md-12">
@@ -373,16 +355,16 @@
                   <div class="row p-1">
                      <div class="col-md-12 border border-dark rounded pt-2">
                         <div class="row">
-                           <div class="col-md-12 rounded">
+                           <div class="col-md-12 rounded text-center">
                               <!-- <a href="" class="text-light"> -->
-                              <img src="{{i.image.url}}" class="img-fluid rounded" width="100%">
+                              <img src="{{i.image.url}}" class="img-fluid rounded">
                               <!-- </a> -->
                            </div>
                         </div>
                         <div class="row">
-                           <div class="col-12 col-sm-12 col-md-12">
+                           <div class="col-12 col-sm-12 col-md-12 text-center">
                               <a href="{% url 'photo-screen' i.id %}" class="btn btn-sm m-1 d-inline-block" style="color:#B5DFDF;">
-                              <i class="fa-solid fa-eye"></i> Views
+                              <i class="fa-solid fa-eye"></i>
                               </a>
                               <form action="{% url 'delete_Image' i.id %}" class="d-inline-block">
                                  <button type="submit" value="{{i.profession.id}}" name="profession" class="btn btn-sm m-1 " style="color:#B5DFDF;">
@@ -400,7 +382,7 @@
                   <div class="row p-1">
                      <div class="col-md-12 border border-dark rounded pt-1 ">
                         <div class="row">
-                           <div class="col-md-12 border-1 rounded">
+                           <div class="col-md-12 border-1 rounded text-center">
                               <!-- <a href="" class="text-light"> -->
                               <video width="100%" class="img-fluid rounded" controls="">
                                  <source src="{{j.video.url}}" type="video/mp4">
@@ -410,9 +392,9 @@
                            </div>
                         </div>
                         <div class="row">
-                           <div class="col-12 col-sm-12 col-md-12">
+                           <div class="col-12 col-sm-12 col-md-12 text-center">
                               <a href="{% url 'video-screen' j.id %}" class="btn btn-sm m-1 d-inline-block" style="color:#B5DFDF;">
-                              <i class="fa-solid fa-eye"></i> Views
+                              <i class="fa-solid fa-eye"></i>
                               </a>
                               <form action="{% url 'delete_Video' j.id %}" class="d-inline-block">
                                  <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-sm m-1" style="color:#B5DFDF;">
@@ -429,16 +411,8 @@
          </div>
       </div>
    </div>
-
-   <!-- <div class="col-4 col-sm-4 col-md-4 p-4">
-      <div class="row profession-details">
-
-      </div>
-      </div> -->
 </div>
 <!-- End Photos & videos -->
-
-
 <!-- Start Review -->
 <div class="row pt-3">
    <div class="col-12 col-sm-12 col-md-12 reviews">
@@ -451,88 +425,95 @@
       <!-- End Reviews Heading -->
       {% for k in profession_review %}
       <!-- Start user profile and user information -->
-      <div class="row mt-5">
-         <div class="col-md-12 float-container">
-            <div class="profession-float-child">
-               <!-- Start user profile -->
-               <div class="row">
-                  <div class="col-md-12 review-profile">
-                     <img src="{{k.user_profile.profile_image.url}}" class="img-fluid rounded-circle" alt="Responsive image" height="50" width="50">
-                  </div>
-               </div>
-               <!-- End user profile -->
-            </div>
-            <div class="profession-float-child-1">
-               <!-- Start User information -->
+      <div class="row mt-4 community-body">
+         <!-- Start Profile picture -->
+         <div class="col-10 col-sm-6 col-md-6 community-post-profile-picture float-container">
+            <!-- Start Profile Picture -->
+            <div class="float-child">
                <div class="row">
                   <div class="col-md-12">
-                  <!-- Start User Name -->
-                  <div class="row">
-                     <div class="col-md-12 user-name-heading">
-                        {{k.user_profile.usertype.user_id.first_name}} {{k.user_profile.usertype.user_id.last_name}}
-                     </div>
+                     <img class="img-fluid rounded-circle" src="{{k.user_profile.profile_image.url}}" alt="Chania" height="100%" width="100%">
                   </div>
-                  <!-- End User Name -->
-                  <!-- Start date -->
-                  <div class="row">
-                     <div class="col-md-12 reviews-date">
-                        {{k.Review_Date}} {{k.Review_Time}}
-                        <!-- ago. -->
-                     </div>
+               </div>
+            </div>
+            <!-- End Profile Picture -->
+            <div class="float-child-1">
+               <!-- Start community name -->
+               <div class="row">
+                  <div class="col-md-12 community-name">
+                     {{k.user_profile.usertype.user_id.first_name}} {{k.user_profile.usertype.user_id.last_name}}
                   </div>
-                  <!-- End date -->
                </div>
+               <!-- End community name -->
+               <!-- Start community time -->
+               <div class="row">
+                  <div class="col-md-12 community-time">
+                     {{k.Review_Date}} / {{k.Review_Time}}
+                  </div>
                </div>
-               <!-- End User information -->
+               <!-- End community time -->
             </div>
          </div>
-
+         <!-- End Community name and time -->
       </div>
       <!-- End user profile and user information -->
       <!-- Start comment -->
-      <div class="row mt-1">
-         <div class="col-12 col-sm-12 col-md-12 review-comment">
+      <div class="row mt-2 mb-1">
+         <div class="col-md-12 review-comment">
             {{k.Review}}
          </div>
       </div>
       <!-- End comment -->
-      <!-- End User information -->
-      <!-- End user profile and user information -->
       <!-- Start like and replay -->
       <div class="row">
-         <div class="col-md-12">
-            <span class="community-like-dislike-btn">
-               <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid" alt="Responsive image">
-               &nbsp;
-               {{k.Rate}}
+         <div class="col-12 col-sm-12 col-md-12">
+            <span class="d-inline-block">
+            <a href="#" class="text-decoration-none community-like-dislike-btn">
+            <button type="submit" class="btn p-0 community-like-dislike-btn">
+            <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image">
+            </button>
+            <span class="btn pl-0 community-like-dislike-btn like-count">
+            {{k.Rate}}
             </span>
+            </a>
+            </span>
+            <!-- Start like button -->
             <span class="d-inline-block">
                <form action="{% url 'like_Review' %}" method="POST" class="like-form" id="{{k.id}}">
                   {% csrf_token %}
                   <input type="hidden" name="post_id" value="{{k.id}}">
-                  <button type="submit" class="btn community-like-dislike-btn like-btn{{k.id}}">
-                     {% if userprofile not in k.like.all %}
-                     <i class="fa-regular fa-thumbs-up"></i>
-                     {% else %}
-                     <i class="fa-solid fa-thumbs-up"></i>
-                     {% endif %}
+                  <button type="submit" class="btn p-0 community-like-dislike-btn like-btn{{k.id}}">
+                  {% if userprofile not in k.like.all %}
+                  <i class="fa-regular fa-thumbs-up"></i>
+                  {% else %}
+                  <i class="fa-solid fa-thumbs-up"></i>
+                  {% endif %}
                   </button>
-                  <span class=" community-like-dislike-btn like-count{{k.id}}">{{ k.like.all.count }}</span>
+                  <span class="btn pl-0 community-like-dislike-btn like-count{{k.id}}">
+                  {{ k.like.all.count }}
+                  </span>
                </form>
             </span>
-            <span>
-               <a href="{% url 'review_Reply' k.id %}" class="text-decoration-none community-like-dislike-btn">
-                  <i class="fa-solid fa-message pl-3"></i>
-                  &nbsp;
-                  {% if k.Reply is None %}
-                  0
-                  {% else %}
-                  {{k.Reply}}
-                  {% endif %}
-               </a>
+            <!-- End like button -->
+            <!-- Start comment button -->
+            <span class="d-inline-block">
+            <a href="{% url 'review_Reply' k.id %}" class="text-decoration-none community-like-dislike-btn">
+            <button type="submit" class="btn p-0 community-like-dislike-btn">
+            <i class="fa-solid fa-message pl-3"></i>
+            </button>
+            <span class="btn pl-0 community-like-dislike-btn like-count">
+            {% if k.Reply is None %}
+            0
+            {% else %}
+            {{k.Reply}}
+            {% endif %}
             </span>
+            </a>
+            </span>
+            <!-- End comment button -->
          </div>
       </div>
+      <!-- End like and replay -->
       {% endfor %}
    </div>
 </div>
@@ -556,9 +537,9 @@
                      <div class="col-4">
                         <img src="{{profession.profession_image.url}}" class="img-fluid" alt="Responsive image">
                      </div>
-                     <div class="col-8 modal-sub-heading">
+                     <div class="col-8 modal-sub-heading form-group">
                         <label for="profile_image">Select Image</label>
-                        <input type="file" name="profession_image" accept=".jpg,.png" required>
+                        <input type="file" class="form-control border-0" name="profession_image" accept=".jpg,.png" required>
                      </div>
                   </div>
                </div>
@@ -772,7 +753,7 @@
                   <div class="">
                      <div class="form-group modal-sub-heading">
                         <label for="Photo">Photo</label>
-                        <input required type="file" class="" name="image" id="Photo" accept=".jpg,.png">
+                        <input required type="file" class="form-control border-0" name="image" id="Photo" accept=".jpg,.png">
                      </div>
                   </div>
                </div>
@@ -804,7 +785,7 @@
                   <div class="modal-sub-heading">
                      <div class="form-group">
                         <label for="f">Video</label>
-                        <input required type="file" name="video" accept=".mp4">
+                        <input required type="file" name="video" class="form-control border-0" accept=".mp4">
                      </div>
                   </div>
                </div>
@@ -818,7 +799,6 @@
    </div>
 </div>
 <!-- End Add Videos pop up -->
-
 <!-- Start Professions details -->
 <script src="{% static 'community_profession/js/profession-details.js' %}"></script>
 <!--<script>
@@ -836,7 +816,7 @@
            return isOk;
        });
    });
-</script>-->
+   </script>-->
 <script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
 {% endblock content %}
