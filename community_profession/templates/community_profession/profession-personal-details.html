@@ -14,6 +14,22 @@
 <link href="{% static 'community_profession/css/rating.css' %}" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" src="{% static 'community_profession/js/profession-personal-details.js' %}"></script>
 <!-- End our Star rating - css & js -->
+
+<!-- Start show more - show less css -->
+<style>
+     .morecontent span {
+       display: none;
+     }
+
+     .morelink {
+       display: block;
+     }
+
+     .show-read-more .more-text{
+     display: none;
+      }
+</style>
+<!-- End show more - show less css -->
 {% endblock own_css %}
 {% block content %}
 <!-- Start girls parlor heading -->
@@ -68,8 +84,8 @@
          <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
             Address
          </div>
-         <div class="col-9 col-sm-11 col-md-11 content">
-            : &nbsp; &nbsp; {{Profession_obj.shop_address}} {{Profession_obj.shop_city}}, {{Profession_obj.shop_state}}
+         <div class="col-9 col-sm-11 col-md-11 content ">
+            : &nbsp; &nbsp; <span class="show-read-more">{{Profession_obj.shop_address}} {{Profession_obj.shop_city}}, {{Profession_obj.shop_state}}</span>
          </div>
       </div>
       <!-- End Address -->
@@ -644,4 +660,28 @@
 <script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
 <!-- End Like-dislike js -->
+
+<!-- Start show more - show less -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+       $(document).ready(function(){
+    var maxLength = 10;
+    $(".show-read-more").each(function(){
+        var myStr = $(this).text();
+        if($.trim(myStr).length > maxLength){
+            var newStr = myStr.substring(0, maxLength);
+            var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+            $(this).empty().html(newStr);
+            $(this).append(' <a href="javascript:void(0);" class="read-more">...</a>');
+            $(this).append('<span class="more-text">' + removedStr + '</span>');
+        }
+    });
+    $(".read-more").click(function(){
+        $(this).siblings(".more-text").contents().unwrap();
+        $(this).remove();
+    });
+});
+      </script>
+<!-- End show more - show less -->
 {% endblock content %}

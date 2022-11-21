@@ -132,10 +132,10 @@
    <div class="col-12 col-sm-3 col-md-3 border-right-custom time-open-status">
       <!-- Start time & open status heading -->
       <div class="row">
-         <div class="col-10 col-sm-10 col-md-10 heading">
+         <div class="col-10 col-sm-9 col-md-9 heading">
             Times & Open Status
          </div>
-         <div class="col-2 pt-1 text-right">
+         <div class="col-2 col-sm-3 col-md-3 pt-1 text-right">
             <a href="" data-toggle="modal" data-target="#editdatetime">
             <i class="fa-solid fa-pen-to-square"></i>
             </a>
@@ -261,7 +261,7 @@
    </div>
    <!-- End time and open status -->
    <!-- Start our services -->
-   <div class="col-12 col-sm-9 col-md-9 pl-4 our-services">
+   <div class="col-12 col-sm-9 col-md-9 our-services">
       <!-- Start our services heading -->
       <div class="row pl-1 pr-1">
          <div class="col-5 col-sm-9 col-md-9 our-services-heading pl-0">
@@ -280,26 +280,26 @@
             {% for s in services%}
             <div class="row mt-2 pt-1 pb-1 rounded services">
                <!-- Start Service heading -->
-               <div class="col-5 col-sm-8 col-md-8">{{s.service_name}}</div>
+               <div class="col-6 col-sm-8 col-md-8 pr-0">{{s.service_name}}</div>
                <!-- End Service heading -->
                <!-- Start price, edit, delete -->
-               <div class="col-3 col-sm-2 col-md-2">
+               <div class="col-4 col-sm-2 col-md-2 pl-0 pr-0">
                   <span>Rs : {{s.service_price}}</span>
                </div>
-               <div class="col-2 col-sm-1 col-md-1 text-center">
+               <div class="col-1 col-sm-1 col-md-1 pl-0 pr-0 text-center">
                   <span>
                   <a data-toggle="modal" data-target="#editservise">
-                  <button type="submit" onclick="data('{{s.id}}','{{s.service_name}}','{{s.service_price}}')" name="profession_id" class="btn p-0">
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  </button>
+                     <button type="submit" onclick="data('{{s.id}}','{{s.service_name}}','{{s.service_price}}')" name="profession_id" class="btn p-0 services">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                     </button>
                   </a>
                   </span>
                </div>
-               <div class="col-2  col-sm-1 col-md-1 text-center">
+               <div class="col-1  col-sm-1 col-md-1 pl-0 pr-0 text-center">
                   <span>
                      <form action="{% url 'delete_service' s.id %}">
-                        <button type="submit" value="{{profession.id}}" name="profession_id" class="btn p-0">
-                        <i class="fa-solid fa-trash-can"></i>
+                        <button type="submit" value="{{profession.id}}" name="profession_id" class="btn p-0 services">
+                           <i class="fa-solid fa-trash-can"></i>
                         </button>
                      </form>
                   </span>
@@ -326,7 +326,7 @@
    </div>
    <!-- End Photos and Videos Heading -->
    <!-- Start see all links -->
-   <div class="col-6  col-sm-6 col-md-6 pl-2 pr-2 text-right">
+   <div class="col-6  col-sm-6 col-md-6  text-right">
       <a class="btn btn-normal-b add-photos-videos-desktop-view" data-toggle="modal" data-target="#addvideo" id="f" data-max-size="32154">Add Video</a>
       <a class="btn btn-normal-b add-photos-videos-desktop-view" data-toggle="modal" data-target="#addimages">Add Photos</a>
       <a href="{% url 'See-all-photos-videos' profession.id %}" class="see-all">See All</a>
@@ -351,7 +351,7 @@
          <div class="col-12 col-sm-12 col-md-12 pl-4 pr-4 pb-4">
             <div class="row profession-details">
                {% for i in profession_image  %}
-               <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
+               <div class="col-6 col-sm-4 col-md-2 pt-3 profession-cart">
                   <div class="row p-1">
                      <div class="col-md-12 border border-dark rounded pt-2">
                         <div class="row">
@@ -378,7 +378,7 @@
                </div>
                {% endfor %}
                {% for j in profession_video  %}
-               <div class="col-6 col-sm-2 col-md-2 pt-3 profession-cart">
+               <div class="col-6 col-sm-4 col-md-2 pt-3 profession-cart">
                   <div class="row p-1">
                      <div class="col-md-12 border border-dark rounded pt-1 ">
                         <div class="row">

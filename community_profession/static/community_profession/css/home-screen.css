@@ -577,11 +577,7 @@ body {
     padding-top: 0.625rem;
 }
 
-.main-body-container
-    {
-        padding-left:30px;
-        padding-right:9px;
-    }
+
 
 .main-nav-pl-pr
     {
@@ -882,11 +878,11 @@ body {
         display:none;
     }
 
-    /*.main-body-container
+    .main-body-container
 	{
-	    padding-left:2.5rem;
-	    padding-right:1.563rem;
-	}*/
+	    padding-left: 30px;
+        padding-right: 9px;
+	}
 
 	.recent-search-padding
     {

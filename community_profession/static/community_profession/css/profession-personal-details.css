@@ -209,11 +209,7 @@
 	color: rgba(255, 255, 255, 0.6);
 }
 
-.our-services
-{
-    padding-left:25px;
-    padding-right:25px;
-}
+
 
 .our-services .our-services-heading {
 	font-family: var(--font-1);
@@ -448,6 +444,12 @@ body {
 		color: rgba(255, 255, 255, 0.6);
 	}
 
+	.our-services
+    {
+        padding-left:18px;
+        padding-right:18px;
+    }
+
 	.our-services .our-services-heading {
 		font-family: var(--font-1);
 		font-style: normal;
@@ -625,7 +627,13 @@ body {
 
     .profession-details .img-fluid {
 	height: 12.5rem;
-}
+    }
+
+    .our-services
+    {
+        padding-left:22px;
+        padding-right:36px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -656,9 +664,15 @@ body {
 
 	.ex1 {
             width: 9.375rem;
-            height: 111px;
+            height: 123px;
             overflow: auto;
         }
+
+    .our-services
+    {
+        padding-left:22px;
+        padding-right:32px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -683,9 +697,15 @@ body {
 
 	.ex1 {
             width: 9.375rem;
-            height:150px;
+            height:161px;
             overflow: auto;
         }
+
+     .our-services
+    {
+        padding-left:26px;
+        padding-right:36px;
+    }
 }
 
 
@@ -711,15 +731,33 @@ body {
 
 	.ex1 {
             width: 9.375rem;
-            height: 200px;
+            height: 218px;
             overflow: auto;
         }
+
+        .our-services
+    {
+        padding-left:26px;
+        padding-right:25px;
+    }
 }
 
 @media (min-width: 1920px) {
 	html {
 		font-size: 100%;
 	}
+
+	.ex1 {
+            width: 9.375rem;
+            height: 275px;
+            overflow: auto;
+        }
+
+        .our-services
+    {
+        padding-left:35px;
+        padding-right:35px;
+    }
 }
 
 /* End Mobile Views */
