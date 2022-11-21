@@ -14,6 +14,19 @@
 <!-- Start Services CSS -->
 <link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
 <!-- End Services CSS -->
+<style>
+        .morecontent span {
+          display: none;
+        }
+
+        .morelink {
+          display: block;
+        }
+
+        .show-read-more .more-text{
+        display: none;
+}
+      </style>
 {% endblock own_css %}
 {% block content %}
 <!-- Start girls parlor heading -->
@@ -53,7 +66,7 @@
             Name
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
-            : {{profession.shop_name}}
+            : &nbsp; &nbsp; {{profession.shop_name}}
          </div>
       </div>
       <!-- End name info -->
@@ -63,7 +76,7 @@
             Profession
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
-            : {{profession.profession}}
+            : &nbsp; &nbsp; {{profession.profession}}
          </div>
       </div>
       <!-- End profession -->
@@ -73,7 +86,7 @@
             Address
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
-            : {{profession.shop_address}}, {{profession.shop_city}}, {{profession.shop_state}}
+            : &nbsp; &nbsp; <span class="show-read-more"> {{profession.shop_address}}, {{profession.shop_city}}, {{profession.shop_state}} </span>
          </div>
       </div>
       <!-- End Address -->
@@ -83,7 +96,7 @@
             Experience
          </div>
          <div class="col-9 col-sm-11 col-md-11 content">
-            : {{profession.year_of_experience}} Year
+            : &nbsp; &nbsp; {{profession.year_of_experience}} Year
          </div>
       </div>
       <!-- End Experience -->
@@ -93,7 +106,7 @@
             Rating
          </div>
          <div class="col-9 col-sm-11 col-md-11 content flag-svg">
-            :
+            : &nbsp; &nbsp;
             <img class="img-fluid" src="{% static 'community_profession/img/flag.svg' %}" alt="Chania">
             {{profession.Profession_Rating}}
          </div>
@@ -277,36 +290,64 @@
       <!-- Start Services -->
       <div class="row" id="myDIV">
          <div class="col-12 col-sm-12 col-md-12 ex1">
-            {% for s in services%}
-            <div class="row mt-2 pt-1 pb-1 rounded services">
-               <!-- Start Service heading -->
-               <div class="col-6 col-sm-8 col-md-8 pr-0">{{s.service_name}}</div>
-               <!-- End Service heading -->
-               <!-- Start price, edit, delete -->
-               <div class="col-4 col-sm-2 col-md-2 pl-0 pr-0">
-                  <span>Rs : {{s.service_price}}</span>
-               </div>
-               <div class="col-1 col-sm-1 col-md-1 pl-0 pr-0 text-center">
-                  <span>
-                  <a data-toggle="modal" data-target="#editservise">
-                     <button type="submit" onclick="data('{{s.id}}','{{s.service_name}}','{{s.service_price}}')" name="profession_id" class="btn p-0 services">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                     </button>
-                  </a>
-                  </span>
-               </div>
-               <div class="col-1  col-sm-1 col-md-1 pl-0 pr-0 text-center">
-                  <span>
-                     <form action="{% url 'delete_service' s.id %}">
-                        <button type="submit" value="{{profession.id}}" name="profession_id" class="btn p-0 services">
-                           <i class="fa-solid fa-trash-can"></i>
+            {% if services %}
+               {% for s in services%}
+               <div class="row mt-2 pt-1 pb-1 rounded services">
+                  <!-- Start Service heading -->
+                  <div class="col-6 col-sm-8 col-md-8 pr-0">{{s.service_name}}</div>
+                  <!-- End Service heading -->
+                  <!-- Start price, edit, delete -->
+                  <div class="col-4 col-sm-2 col-md-2 pl-0 pr-0">
+                     <span>Rs : {{s.service_price}}</span>
+                  </div>
+                  <div class="col-1 col-sm-1 col-md-1 pl-0 pr-0 text-center">
+                     <span>
+                     <a data-toggle="modal" data-target="#editservise">
+                        <button type="submit" onclick="data('{{s.id}}','{{s.service_name}}','{{s.service_price}}')" name="profession_id" class="btn p-0 services">
+                           <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                     </form>
-                  </span>
+                     </a>
+                     </span>
+                  </div>
+                  <div class="col-1  col-sm-1 col-md-1 pl-0 pr-0 text-center">
+                     <span>
+                        <form action="{% url 'delete_service' s.id %}">
+                           <button type="submit" value="{{profession.id}}" name="profession_id" class="btn p-0 services">
+                              <i class="fa-solid fa-trash-can"></i>
+                           </button>
+                        </form>
+                     </span>
+                  </div>
+                  <!-- End price, edit, delete -->
                </div>
-               <!-- End price, edit, delete -->
+               {% endfor %}
+            {% else %}
+               <div class="h-100  justify-content-center" style="display:flex;flex-direction: column;">
+               <div class="row">
+               <div class="col-12 recent-search-padding">
+                  <div class="row">
+                     <div class="col-md-12 text-center recent-searches-window">
+                        <div class="row">
+                           <div class="col-md-12 search-icon">
+                              <i class="fa-solid fa-handshake"></i>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12 search-heading">
+                              No services yet
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12 search-sub-heading">
+                              Add your services
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            {% endfor %}
+            </div>
+            {% endif %}
          </div>
       </div>
       <!-- End Services -->
@@ -819,4 +860,27 @@
    </script>-->
 <script src="{% static 'community_profession/js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
+<!-- Start show more - show less -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+       $(document).ready(function(){
+    var maxLength = 16;
+    $(".show-read-more").each(function(){
+        var myStr = $(this).text();
+        if($.trim(myStr).length > maxLength){
+            var newStr = myStr.substring(0, maxLength);
+            var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+            $(this).empty().html(newStr);
+            $(this).append(' <a href="javascript:void(0);" class="read-more">...</a>');
+            $(this).append('<span class="more-text">' + removedStr + '</span>');
+        }
+    });
+    $(".read-more").click(function(){
+        $(this).siblings(".more-text").contents().unwrap();
+        $(this).remove();
+    });
+});
+      </script>
+<!-- End show more - show less -->
 {% endblock content %}
