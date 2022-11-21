@@ -277,11 +277,11 @@
 	border-color: var(--color-14);
 }
 
-.signup-form-check-btn .btn-primary:hover {
+/*.signup-form-check-btn .btn-primary:hover {
 	color: var(--color-2);
 	background-color: var(--color-14);
 	border-color: var(--color-14);
-}
+}*/
 
 .signup-form-check-btn .btn-check:active+.btn-primary,
 .btn-check:checked+.btn-primary,
