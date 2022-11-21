@@ -84,7 +84,7 @@
          <div class="col-3  col-sm-1  col-md-1 pl-0 sub-heading">
             Address
          </div>
-         <div class="col-9 col-sm-11 col-md-11 content ">
+         <div class="col-9 col-sm-11 col-md-11 content">
             : &nbsp; &nbsp; <span class="show-read-more">{{Profession_obj.shop_address}} {{Profession_obj.shop_city}}, {{Profession_obj.shop_state}}</span>
          </div>
       </div>
@@ -666,7 +666,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
        $(document).ready(function(){
-    var maxLength = 10;
+    var maxLength = 16;
     $(".show-read-more").each(function(){
         var myStr = $(this).text();
         if($.trim(myStr).length > maxLength){
