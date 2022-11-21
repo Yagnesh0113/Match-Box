@@ -23,6 +23,7 @@
 .image-and-form
 {
     padding-left:3rem ;
+    padding-right:0px;
     padding-bottom:1.5rem;
 }
 
@@ -81,15 +82,16 @@
         font-weight: 400;
         font-size: 1.25rem;
         line-height: 1.438rem;
-        color: var(--color-13);
-        padding: 1.875rem 2.188rem;
-        background-color: var(--color-12);
+        color: var(--color-2);
+        padding: 11px 18px;
+        /*background-color: var(--color-12);*/
 
     }
 
     .image-and-form
     {
         padding-left:0rem ;
+        padding-right:8px;
         padding-bottom:0rem;
     }
 

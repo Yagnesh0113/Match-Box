@@ -40,7 +40,7 @@ def userprofileobj(request):
 def loadHomeScreenPage(request):
     # print(request.user)
     userprofile,joincommunityobj,obj,My_Community=userprofileobj(request)
-    profession=Admin_Profession.objects.all()[:14]
+    profession=Admin_Profession.objects.all()
     print("profession: ",profession)
     Popular_profession=Profession.objects.order_by("Profession_Rating")[:5][::-1]
     print("Popular_profession: ",Popular_profession)

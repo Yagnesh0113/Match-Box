@@ -32,7 +32,7 @@
                <!-- End left side image -->
                <div class="col-sm-1"></div>
                <!-- Start Form -->
-               <div class="col-12 pl-5 pr-5 col-sm-4 pl-sm-0 pr-sm-0 pt-3 ">
+               <div class="col-12 col-sm-4 pl-sm-0 pr-sm-0 pt-3 ">
                   <div class="card h-100  justify-content-center">
                      <form data-city-url="{% url 'load_city' %}" id="indexForm" method="POST" action="{% url 'nearest-professions-list' profession.id  %}">
                         {% csrf_token %}
