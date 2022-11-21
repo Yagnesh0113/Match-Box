@@ -17,13 +17,15 @@
 
 
 @media all and (max-width: 576px)
-{
-    font-family: var(--font-1);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 0.625rem;
-    line-height: 0.938rem;
-    color: var(--color-2);
+{   .profession-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 0.875rem;
+        color: var(--color-2);
+    }
 }
 
 @media (min-width: 577px)
