@@ -121,8 +121,8 @@
       <!-- End About users heading -->
       <!-- Start about users content -->
       <div class="row">
-         <div class="col-md-12 pl-0 about-user-content text-justify">
-            {{profession.shop_description}}
+         <div class="col-md-12 pl-0 about-user-content text-justify ">
+            <span class="show-read-more">{{profession.shop_description}}</span>
          </div>
       </div>
       <!-- End about users content -->
@@ -865,7 +865,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
        $(document).ready(function(){
-    var maxLength = 16;
+    var maxLength = 20;
     $(".show-read-more").each(function(){
         var myStr = $(this).text();
         if($.trim(myStr).length > maxLength){

@@ -119,6 +119,22 @@
       </div>
       <!-- End Rating -->
 
+      <!-- Start About users heading -->
+      <div class="row">
+         <div class="col-md-12 pl-0 about-user-heading">
+            About Users
+         </div>
+      </div>
+      <!-- End About users heading -->
+
+      <!-- Start about users content -->
+      <div class="row">
+         <div class="col-md-12 pl-0 about-user-content text-justify ">
+            <span class="show-read-more">{{Profession_obj.shop_description}}</span>
+         </div>
+      </div>
+      <!-- End about users content -->
+
    </div>
    <!-- Start info -->
 </div>
@@ -661,27 +677,27 @@
 <script src="{% static 'community_profession/js/like-dislike.js' %}"></script>
 <!-- End Like-dislike js -->
 
-   <!-- Start show more - show less -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script>
-          $(document).ready(function(){
-       var maxLength = 16;
-       $(".show-read-more").each(function(){
-           var myStr = $(this).text();
-           if($.trim(myStr).length > maxLength){
-               var newStr = myStr.substring(0, maxLength);
-               var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
-               $(this).empty().html(newStr);
-               $(this).append(' <a href="javascript:void(0);" class="read-more">...</a>');
-               $(this).append('<span class="more-text">' + removedStr + '</span>');
-           }
-       });
-       $(".read-more").click(function(){
-           $(this).siblings(".more-text").contents().unwrap();
-           $(this).remove();
-       });
-   });
-         </script>
+<!-- Start show more - show less -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+ var maxLength = 16;
+ $(".show-read-more").each(function(){
+     var myStr = $(this).text();
+     if($.trim(myStr).length > maxLength){
+         var newStr = myStr.substring(0, maxLength);
+         var removedStr = myStr.substring(maxLength, $.trim(myStr).length);
+         $(this).empty().html(newStr);
+         $(this).append(' <a href="javascript:void(0);" class="read-more">...</a>');
+         $(this).append('<span class="more-text">' + removedStr + '</span>');
+     }
+ });
+ $(".read-more").click(function(){
+     $(this).siblings(".more-text").contents().unwrap();
+     $(this).remove();
+ });
+});
+   </script>
    <!-- End show more - show less -->
 {% endblock content %}
