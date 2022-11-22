@@ -22,21 +22,23 @@
 
 {% block content %}
 <!-- Start video screen -->
-<div class="row video-screen">
-    <div class="col-md-2"></div>
-        <div class="col-md-8 relative">
-            <a href="" data-target="#share-modal" data-toggle="modal">
-                <video width="100%" controls >
-                    <source src="{{Profession_video_obj.video.url}}" type="video/mp4" >
-                </video>
-            </a>
-            <div class="absolute">
-               <!-- <h1>{{Profession_video_obj.profession.profession.Profession_Name}}</h1>-->
-                <!-- <p>Uploaded on 25th march 4 pm</p> -->
+<span class="community-body">
+    <div class="row community-post-image ">
+         <div class="col-md-12 community-post-image-background p-0">
+            <div class="row ">
+               <div class="col-0 col-sm-3 col-md-3"></div>
+               <div class="col-12 col-sm-6 col-md-6 p-0">
+                   <a href="" data-target="#share-modal" data-toggle="modal">
+                      <video class="img-fluid-video" width="100%" controls>
+                         <source src="{{Profession_video_obj.video.url}}" type="video/mp4">
+                      </video>
+                   </a>
+               </div>
+               <div class="col-0 col-sm-3 col-md-3"></div>
             </div>
-        </div>
-    <div class="col-md-2"></div>
-</div>
+         </div>
+    </div>
+</span>
 <!-- End video screen -->
 <!-- Start Share Modal -->
 <div class="modal create-community-modeal" id="share-modal">

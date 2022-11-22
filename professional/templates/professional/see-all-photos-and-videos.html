@@ -7,23 +7,25 @@
 <!--   own css   -->
 <link rel="stylesheet" href="{% static 'community_profession/css/see-all-photos-and-videos.css' %}">
 <link rel="stylesheet" href="{% static 'community_profession/css/community/ask-post-pop-up-css.css' %}">
+<link rel="stylesheet" href="{% static 'community_profession/css/community/community.css' %}">
+
 {% endblock own_css %}
 {% block content %}
 <!-- Start all photos and videos -->
 <div class="row see-all-photos-videos">
-   <div class="col-md-12 p-4">
+   <div class="col-md-12">
       <div class="row">
          {% for i in profession_image %}
-         <div class="col-md-3">
-            <div class="row p-3">
-               <div class="col-md-12 border rounded border-info p-2">
-                  <div class="row">
-               <div class="col-md-12">
-                  <img src="{{i.image.url}}" class="img-fluid rounded" width="100%">
-               </div>
-            </div>
-                  <div class="row pt-5">
-                     <div class="col-12 col-sm-12 col-md-12">
+         <div class="col-6 col-sm-4 col-md-3 ">
+            <div class="row profession-images">
+               <div class="col-md-12 border rounded border-info">
+                  <div class="row pt-3">
+                     <div class="col-md-12 text-center">
+                        <img src="{{i.image.url}}" class="img-fluid rounded">
+                     </div>
+                  </div>
+                  <div class="row pt-3">
+                     <div class="col-12 col-sm-12 col-md-12 text-center">
                         <a href="{% url 'photo-screen' i.id %}" class="btn btn-sm d-inline-block" style="color:#B5DFDF;">
                            <i class="fa-solid fa-eye"></i> Views
                         </a>
@@ -40,36 +42,6 @@
          </div>
          {% endfor %}
       </div>
-      <!-- <div class="row pt-4">
-         {% for j in profession_video %}
-         <div class="col-md-3">
-            <div class="row p-3">
-               <div class="col-md-12 border rounded border-info p-2">
-                  <div class="row">
-               <div class="col-md-12">
-                     <video width="100%" class="img-fluid rounded" controls>
-                        <source src="{{j.video.url}}" type="video/mp4" >
-                    </video>
-               </div>
-            </div>
-                  <div class="row pt-5">
-                     <div class="col-12 col-sm-12 col-md-12">
-                        <a href="{% url 'video-screen' j.id %}" class="btn btn-sm d-inline-block" style="color:#B5DFDF;">
-                           <i class="fa-solid fa-eye"></i> View
-                        </a>
-
-                        <form action="{% url 'delete_Image' j.id %}" class="d-inline-block">
-                           <button type="submit" value="{{j.profession.id}}" name="profession" class="btn btn-sm" style="color:#B5DFDF;">
-                              <i class="fa-solid fa-trash-can"></i>
-                           </button>
-                        </form>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         {% endfor %}
-      </div> -->
    </div>
 </div>
 <!-- End all photos and videos -->
