@@ -91,9 +91,7 @@
    <div class="padding">
       <div class="row ">
          <div class="col-lg-12 grid-margin stretch-card">
-            <div class="">
-               <div class="">
-                  <div class="owl-carousel">
+               <div class="owl-carousel">
                      {% for profession in profession %}
                      <a href="{% url 'search-nearest-professions' profession.id %}" class="text-decoration-none">
                         <div class="item">
@@ -111,30 +109,7 @@
                         </div>
                      </a>
                      {% endfor %}
-
-                     <!--{% for profession in profession %}
-                     <a href="{% url 'search-nearest-professions' profession.id %}"
-                        class="text-decoration-none">
-                        <span class="d-flex profession-cart ml-1 mr-2">
-                           <div class="card border-1">
-                              <div class="card-header">
-                                 <div class="row profession-img">
-                                    <div class="col-12 col-sm-12 col-md-12 text-center pt-3">
-                                       <img class="img-fluid rounded" src="{{profession.Profession_Outside_Image.url}}" alt="Chania">
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div class="card-footer profession-label text-center">
-                                  {{profession.Profession_Name}}
-                              </div>
-                           </div>
-                        </span>
-                     </a>
-                     {% endfor %}-->
                   </div>
-               </div>
-            </div>
          </div>
       </div>
    </div>
@@ -342,7 +317,7 @@
 <!-- Start your recent searches  heading  -->
 <!-- Use same css for popular services -->
 <div class="row">
-   <div class="col-md-12 recent-searches-heading">
+   <div class="col-md-12 recent-searches-heading pt-4">
       Popular Services
    </div>
 </div>
