@@ -2,9 +2,6 @@
 	border-bottom: 0.063rem solid var(--color-12);
 }
 
-
-
-
 .community-nav .nav-pills .nav-link {
 	font-family: var(--font-1);
 	font-style: normal;
@@ -30,13 +27,7 @@
 	background-color: var(--color-12);
 }
 
-.community-body .community-name {
-	font-family: var(--font-1);
-	font-style: normal;
-	font-weight: 400;
-	font-size: 1rem;
-	line-height: 1.5rem;
-}
+
 
 .community-body .community-time {
 	font-family: var(--font-1);
@@ -613,6 +604,15 @@
 	    padding-left: 0px;
 	    padding-right:0px;
     }
+
+    .community-body .community-name
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.813rem;
+        line-height: 1.5rem;
+    }
 }
 
 @media (min-width: 577px) {
@@ -661,6 +661,15 @@
 	{
 	    padding-left: 9px;
 	    padding-right:21px;
+    }
+
+    .community-body .community-name
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
 
 }
