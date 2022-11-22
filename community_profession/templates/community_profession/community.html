@@ -247,20 +247,27 @@
                         <div class="col-md-12 community-name">
                            <a href="{% url 'profession-profile-screen' i.Post.user_post.User_Profile.usertype.user_id.id  %}"
                               class="text-decoration-none">
-                           {{i.Post.user_post.User_Profile.usertype.user_id.first_name}}
-                           {{i.Post.user_post.User_Profile.usertype.user_id.last_name}}
-                           </a>/
-                           <a href="{% url 'community-profile-screen' i.Post.Community_obj.id  %}"
-                              class="text-decoration-none">
-                           {{i.Post.Community_obj.Community_Name}}
+                              {{i.Post.user_post.User_Profile.usertype.user_id.first_name}}
+                              {{i.Post.user_post.User_Profile.usertype.user_id.last_name}}
                            </a>
+                           /
+                           <span class="">
+                              <a href="#" class="text-decoration-none follow-color"> Follow </a>
+                           </span>
+
+
                         </div>
                      </div>
                      <!-- End community name -->
                      <!-- Start community time -->
                      <div class="row">
                         <div class="col-md-12 community-time">
-                           {{i.Post.user_post.Post_Date}} / {{i.Post.user_post.Post_Time}}
+                           <a href="{% url 'community-profile-screen' i.Post.Community_obj.id  %}"
+                              class="text-decoration-none text-light">
+                           {{i.Post.Community_obj.Community_Name}}
+                           </a>/
+
+                           {{i.Post.user_post.Post_Date}} <!--/ {{i.Post.user_post.Post_Time}}-->
                         </div>
                      </div>
                      <!-- End community time -->
@@ -428,13 +435,17 @@
                            <a href="{% url 'profession-profile-screen' i.Question.User_Profile.usertype.user_id.id  %}"
                               class="text-decoration-none">{{i.Question.User_Profile.usertype.user_id.first_name}}
                            {{i.Question.User_Profile.usertype.user_id.last_name}}</a>
+                           /
+                          <span class="">
+                             <a href="#" class="text-decoration-none follow-color"> Follow </a>
+                          </span>
                         </div>
                      </div>
                      <!-- End community name -->
                      <!-- Start community time -->
                      <div class="row">
                         <div class="col-md-12 community-time">
-                           {{i.Question.Date}} / {{i.Question.Time}}
+                           {{i.Question.Date}} <!--/ {{i.Question.Time}}-->
                            <!-- Ago -->
                         </div>
                      </div>
@@ -600,18 +611,24 @@
                               class="text-decoration-none">
                            {{i.user_post.User_Profile.usertype.user_id.first_name}}
                            {{i.user_post.User_Profile.usertype.user_id.last_name}}
-                           </a>/
-                           <a href="{% url 'community-profile-screen' i.Community_obj.id  %}"
-                              class="text-decoration-none">
-                           {{i.Community_obj.Community_Name}}
                            </a>
+                           /
+                          <span class="">
+                             <a href="#" class="text-decoration-none follow-color"> Follow </a>
+                          </span>
+
                         </div>
                      </div>
                      <!-- End community name -->
                      <!-- Start community time -->
                      <div class="row">
                         <div class="col-md-12 community-time">
-                           {{i.user_post.Post_Date}} / {{i.user_post.Post_Time}}
+                           <span class="text-light">
+                              <a href="{% url 'community-profile-screen' i.Community_obj.id  %}"
+                              class="text-decoration-none">
+                                 {{i.Community_obj.Community_Name}}
+                              </a>
+                           </span>  / {{i.user_post.Post_Date}} <!--/ {{i.user_post.Post_Time}}-->
                         </div>
                      </div>
                      <!-- End community time -->
@@ -789,18 +806,26 @@
                               class="text-decoration-none">
                            {{i.user_post.User_Profile.usertype.user_id.first_name}}
                            {{i.user_post.User_Profile.usertype.user_id.last_name}}
-                           </a>/
-                           <a href="{% url 'community-profile-screen' i.Community_obj.id  %}"
-                              class="text-decoration-none">
-                           {{i.Community_obj.Community_Name}}
                            </a>
+                           /
+                          <span class="">
+                             <a href="#" class="text-decoration-none follow-color"> Follow </a>
+                          </span>
+
                         </div>
                      </div>
                      <!-- End community name -->
                      <!-- Start community time -->
                      <div class="row">
                         <div class="col-md-12 community-time">
-                           {{i.user_post.Post_Date}} / {{i.user_post.Post_Time}}
+                           <span>
+                              <a href="{% url 'community-profile-screen' i.Community_obj.id  %}"
+                              class="text-decoration-none">
+                                 {{i.Community_obj.Community_Name}}
+                              </a>
+                           </span>
+                           /
+                           {{i.user_post.Post_Date}} <!--/ {{i.user_post.Post_Time}}-->
                         </div>
                      </div>
                      <!-- End community time -->
@@ -977,13 +1002,17 @@
                                 {{i.User_Profile.usertype.user_id.first_name}}
                                  {{i.User_Profile.usertype.user_id.last_name}}
                              </a>
+                             /
+                             <span class="">
+                                <a href="#" class="text-decoration-none follow-color"> Follow </a>
+                             </span>
                           </div>
                        </div>
                        <!-- End community name -->
                        <!-- Start community time -->
                        <div class="row">
                           <div class="col-md-12 community-time">
-                             {{i.Date}} / {{i.Time}}
+                             {{i.Date}} <!--/ {{i.Time}}-->
                              <!-- Ago -->
                           </div>
                        </div>
@@ -1382,18 +1411,25 @@
                                     class="text-decoration-none">
                                  {{i.user_post.User_Profile.usertype.user_id.first_name}}
                                  {{i.user_post.User_Profile.usertype.user_id.last_name}}
-                                 </a>/
-                                 <a href="{% url 'community-profile-screen' i.Community_obj.id  %}"
-                                    class="text-decoration-none">
-                                 {{i.Community_obj.Community_Name}}
                                  </a>
+                                 /
+                                 <span class="">
+                                   <a href="#" class="text-decoration-none follow-color"> Follow </a>
+                                </span>
+
                               </div>
                            </div>
                            <!-- End community name -->
                            <!-- Start community time -->
                            <div class="row">
                               <div class="col-md-12 community-time">
-                                 {{i.user_post.Post_Date}} / {{i.user_post.Post_Time}}
+                                 <span class="text-light">
+                                    <a href="{% url 'community-profile-screen' i.Community_obj.id  %}"
+                                    class="text-decoration-none">
+                                       {{i.Community_obj.Community_Name}}
+                                    </a>
+                                 </span>
+                                 / {{i.user_post.Post_Date}} <!--/ {{i.user_post.Post_Time}}-->
                               </div>
                            </div>
                            <!-- End community time -->
@@ -1564,15 +1600,21 @@
                            <div class="row">
                               <div class="col-md-12 community-name">
                                  <a href="{% url 'profession-profile-screen' i.User_Profile.usertype.user_id.id  %}"
-                                    class="text-decoration-none">{{i.User_Profile.usertype.user_id.first_name}}
-                                 {{i.User_Profile.usertype.user_id.last_name}}</a>
+                                    class="text-decoration-none">
+                                    {{i.User_Profile.usertype.user_id.first_name}}
+                                    {{i.User_Profile.usertype.user_id.last_name}}
+                                 </a>
+                                 /
+                                 <span class="">
+                                   <a href="#" class="text-decoration-none follow-color"> Follow </a>
+                                </span>
                               </div>
                            </div>
                            <!-- End community name -->
                            <!-- Start community time -->
                            <div class="row">
                               <div class="col-md-12 community-time">
-                                 {{i.Date}} / {{i.Time}}
+                                 {{i.Date}} <!--/ {{i.Time}}-->
                                  <!-- Ago -->
                               </div>
                            </div>
@@ -1736,15 +1778,21 @@
                         <div class="row">
                            <div class="col-md-12 community-name">
                               <a href="{% url 'profession-profile-screen' i.Question.User_Profile.usertype.user_id.id  %}"
-                                 class="text-decoration-none">{{i.Question.User_Profile.usertype.user_id.first_name}}
-                              {{i.Question.User_Profile.usertype.user_id.last_name}}</a>
+                                 class="text-decoration-none">
+                                 {{i.Question.User_Profile.usertype.user_id.first_name}}
+                                 {{i.Question.User_Profile.usertype.user_id.last_name}}
+                              </a>
+                              /
+                              <span class="">
+                                <a href="#" class="text-decoration-none follow-color"> Follow </a>
+                             </span>
                            </div>
                         </div>
                         <!-- End community name -->
                         <!-- Start community time -->
                         <div class="row">
                            <div class="col-md-12 community-time">
-                              {{i.Question.Date}} / {{i.Question.Time}}
+                              {{i.Question.Date}} <!--/ {{i.Question.Time}}-->
                               <!-- Ago -->
                            </div>
                         </div>

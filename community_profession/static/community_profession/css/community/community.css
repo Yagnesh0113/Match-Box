@@ -1,3 +1,8 @@
+.follow-color
+{
+    color:#46C3F2;
+}
+
 .community-profession .navbar ul .community-default a {
 	border-bottom: 0.063rem solid var(--color-12);
 }

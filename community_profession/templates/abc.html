@@ -10,57 +10,36 @@
 <body>
 
 
-<div class="row">
-     <div class="col-12 col-sm-12 col-md-12">
-        <span class="d-inline-block">
-             <a href="#" class="text-decoration-none community-like-dislike-btn">
-                  <button type="submit" class="btn p-0 community-like-dislike-btn">
-                      <img src="{% static 'community_profession/img/indian-flag-icon.png' %}" class="img-fluid d-inline-block" alt="Responsive image">
-                  </button>
-                  <span class="btn pl-0 community-like-dislike-btn like-count">
-                      {{k.Rate}}
-                  </span>
-             </a>
-        </span>
-
-        <!-- Start like button -->
-        <span class="d-inline-block">
-           <form action="{% url 'like_Review' %}" method="POST" class="like-form" id="{{k.id}}">
-              {% csrf_token %}
-                  <input type="hidden" name="post_id" value="{{k.id}}">
-                  <button type="submit" class="btn p-0 community-like-dislike-btn like-btn{{k.id}}">
-                      {% if userprofile not in k.like.all %}
-                          <i class="fa-regular fa-thumbs-up"></i>
-                      {% else %}
-                          <i class="fa-solid fa-thumbs-up"></i>
-                      {% endif %}
-                  </button>
-                  <span class="btn pl-0 community-like-dislike-btn like-count{{k.id}}">
-                      {{ k.like.all.count }}
-                  </span>
-           </form>
-        </span>
-        <!-- End like button -->
+<div class="float-child-1">
+     <!-- Start community name -->
+     <div class="row">
+        <div class="col-md-12 community-name">
+           <a href="{% url 'profession-profile-screen' i.Post.user_post.User_Profile.usertype.user_id.id  %}"
+              class="text-decoration-none">
+              {{i.Post.user_post.User_Profile.usertype.user_id.first_name}}
+              {{i.Post.user_post.User_Profile.usertype.user_id.last_name}}
+           </a>
+           /
+           <span class="">
+              <a href="#" class="text-decoration-none follow-color"> Follow </a>
+           </span>
 
 
-        <!-- Start comment button -->
-        <span class="d-inline-block">
-             <a href="{% url 'review_Reply' k.id %}" class="text-decoration-none community-like-dislike-btn">
-                  <button type="submit" class="btn p-0 community-like-dislike-btn">
-                      <i class="fa-solid fa-message pl-3"></i>
-                  </button>
-                  <span class="btn pl-0 community-like-dislike-btn like-count">
-                      {% if k.Reply is None %}
-                        0
-                      {% else %}
-                        {{k.Reply}}
-                      {% endif %}
-                  </span>
-             </a>
-        </span>
-        <!-- End comment button -->
-
+        </div>
      </div>
+     <!-- End community name -->
+     <!-- Start community time -->
+     <div class="row">
+        <div class="col-md-12 community-time">
+           <a href="{% url 'community-profile-screen' i.Post.Community_obj.id  %}"
+              class="text-decoration-none text-light">
+           {{i.Post.Community_obj.Community_Name}}
+           </a>/
+
+           {{i.Post.user_post.Post_Date}} <!--/ {{i.Post.user_post.Post_Time}}-->
+        </div>
+     </div>
+     <!-- End community time -->
 </div>
 
 
