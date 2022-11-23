@@ -99,7 +99,7 @@
          <!-- End post -->
          <!-- End ask, answer, post -->
          <!-- Start create-community btn -->
-         <li class="nav-item pl-3 pr-2">
+         <li class="nav-item pl-4 pr-2">
             <a class="nav-link active text-dark" href="#" data-target="#modal3" data-toggle="modal">Create
             Community</a>
          </li>
@@ -109,16 +109,14 @@
             <a class="nav-link notification" href="{% url 'news' %}">
             <i class="fa-solid fa-newspaper"></i>
             <span class="badge">{{Our_News_count}}</span>
-            &nbsp;
             News
             </a>
          </li>
-         <li class="nav-item">
+         <li class="nav-item pl-2">
             <a class="nav-link notification" href="#" data-target="#your-added-questions" data-toggle="modal">
-            <i class="fa-solid fa-pen-to-square"></i>
-            &nbsp;
-            Answer Later
-            <span class="badge">{{Answer_count}}</span>
+               <i class="fa-solid fa-pen-to-square"></i>
+               Answer Later
+               <span class="badge">{{Answer_count}}</span>
             </a>
          </li>
       </ul>
