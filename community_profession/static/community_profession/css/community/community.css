@@ -142,7 +142,7 @@
 	font-size: 1rem;
 	line-height: 1.25rem;
 	color: rgba(22, 24, 24, 0.8);
-	padding-top: 1rem;
+	/*padding-top: 1rem;*/
 }
 
 
@@ -160,17 +160,7 @@
 	color: rgba(22, 24, 24, 0.8);
 }
 
-.community-modeal .modal-body .btn {
-	border: 0.063rem solid var(--color-2);
-	color: var(--color-2);
-	background-color:
-}
 
-.community-modeal .modal-body .btn:hover {
-	background-color: var(--color-12);
-	color: var(--color-13);
-	border: 0rem;
-}
 
 /* End community modeal */
 
@@ -402,6 +392,7 @@
 }
 
 
+
 /* Start Mobile view */
 @media all and (min-width: 577px) {}
 
@@ -411,7 +402,7 @@
 		font-family: var(--font-1);
 		font-style: normal;
 		font-weight: 400;
-		font-size: 0.688rem;
+		font-size: 0.75rem;
 		line-height: 0.938rem;
 		color: var(--color-2);
 
@@ -618,6 +609,39 @@
         font-size: 0.813rem;
         line-height: 1.5rem;
     }
+
+    .float-child-modal {
+        width: 16%;
+        float: left;
+        padding: 0px;
+    }
+
+    .float-child-1-modal {
+        width: 84%;
+        float: left;
+        padding-left: 8px;
+    }
+
+    .community-modeal .community-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        /* line-height: 1.5px; */
+        color: var(--color-13);
+    }
+
+    .community-modeal .community-sub-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 1.25rem;
+        color: rgba(22, 24, 24, 0.8);
+        /* padding-top: 1rem; */
+    }
 }
 
 @media (min-width: 577px) {
@@ -677,6 +701,38 @@
         line-height: 1.5rem;
     }
 
+    .float-child-modal {
+        width: 16%;
+        float: left;
+        padding: 0px;
+    }
+
+    .float-child-1-modal {
+        width: 84%;
+        float: left;
+        padding-left: 0px;
+    }
+
+    .community-modeal .community-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.125rem;
+        /* line-height: 1.5px; */
+        color: var(--color-13);
+    }
+
+    .community-modeal .community-sub-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        color: rgba(22, 24, 24, 0.8);
+        /* padding-top: 1rem; */
+    }
 }
 
 @media (min-width: 768px) {
@@ -855,6 +911,8 @@
 	html {
 		font-size: 100%;
 	}
+
+
 
 }
 
