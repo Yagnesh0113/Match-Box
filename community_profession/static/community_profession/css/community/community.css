@@ -23,7 +23,7 @@
 
 .community-nav .nav-pills .dropdown-menu .dropdown-item {
 	border-bottom: 0.031rem solid rgba(22, 24, 24, 0.2);
-	padding: 0.25rem 2.5rem;
+	/*padding: 0.25rem 2.5rem;*/
 }
 
 .community-nav .nav-pills .nav-link.active,
