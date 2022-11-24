@@ -10,34 +10,32 @@
 <body>
 
 
-<!-- Start Profile Picture -->
-<div class="float-child">
- <div class="row">
-    <div class="col-md-12">
-       <img class="img-fluid rounded-circle"
-          src="{{Question.User_Profile.profile_image.url}}" alt="Chania"
-          height="100%" width="100%">
+<div class="col-9 col-sm-9">
+    <div class="float-child-community">
+        <div class="row">
+            <div class="col-md-12 community-post-profile-picture">
+                <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
+            </div>
+        </div>
     </div>
- </div>
-</div>
-<!-- End Profile Picture -->
-<div class="float-child-1">
-     <!-- Start community name -->
-     <div class="row">
-        <div class="col-md-12 community-name">
-          {{Question.User_Profile.usertype.user_id.first_name}}
-           {{Question.User_Profile.usertype.user_id.last_name}}
-
+    <div class="float-child-1-community pl-3">
+        <!-- Start community name -->
+        <div class="row">
+           <div class="col-md-12 community-heading">
+             <a href="{% url 'community-profile-screen' i.id %}" class="text-decoration-none">
+                 W/{{i.Community_Name}}
+             </a>
+           </div>
         </div>
-     </div>
-     <!-- End community name -->
-     <!-- Start community time -->
-     <div class="row">
-        <div class="col-md-12 community-time">
-           {{Question.Date}} {{Question.Time}}
+        <!-- End community name -->
+        <!-- Start community time -->
+        <div class="row">
+           <div class="col-md-12 community-sub-heading">
+              Members : {% if i.community_member is None %}0{% else %} {{i.community_member}} {% endif %}
+           </div>
         </div>
-     </div>
-     <!-- End community time -->
+        <!-- End community time -->
+   </div>
 </div>
 
 

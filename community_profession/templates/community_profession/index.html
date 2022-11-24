@@ -100,8 +100,6 @@
          color: #ffffff;
          }
       </style>
-
-
       <!-- Start new search bar css -->
       <style>
          .autocomplete-result-list {
@@ -468,12 +466,12 @@
                               <!-- Start own created and joined -->
                               <li>
                                  <div class="row pt-3">
-                                    <div class="col-2 col-sm-2 pr-0 pt-0 pb-0 community-post-profile-picture">
+                                    <!--<div class="col-2 col-sm-2 pr-0 pt-0 pb-0 community-post-profile-picture">
                                        <img class="img-fluid rounded-circle"
                                           src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
                                     </div>
                                     <div class="col-7 col-sm-7">
-                                       <!-- Start modeal community heading  -->
+                                       &lt;!&ndash; Start modeal community heading  &ndash;&gt;
                                        <div class="row">
                                           <div class="col-md-12 community-heading">
                                              <a href="{% url 'community-profile-screen' i.Commnunity_id.id %}"
@@ -482,14 +480,42 @@
                                              </a>
                                           </div>
                                        </div>
-                                       <!-- End modeal community heading  -->
-                                       <!-- Start modeal community members  -->
+                                       &lt;!&ndash; End modeal community heading  &ndash;&gt;
+                                       &lt;!&ndash; Start modeal community members  &ndash;&gt;
                                        <div class="row">
                                           <div class="col-md-12 community-sub-heading">
                                              Members : {% if i.Commnunity_id.community_member is None %}0{% else %}{{i.Commnunity_id.community_member}}{% endif %}
                                           </div>
                                        </div>
-                                       <!-- End modeal community members  -->
+                                       &lt;!&ndash; End modeal community members  &ndash;&gt;
+                                    </div>-->
+
+                                    <div class="col-9 col-sm-9">
+                                        <div class="float-child-community">
+                                            <div class="row">
+                                                <div class="col-md-12 community-post-profile-picture">
+                                                    <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="float-child-1-community pl-3">
+                                            <!-- Start community name -->
+                                            <div class="row">
+                                               <div class="col-md-12 community-heading">
+                                                 <a href="{% url 'community-profile-screen' i.Commnunity_id.id %}" class="text-decoration-none">
+                                                     U/{{i.Commnunity_id.Community_Name}}
+                                                 </a>
+                                               </div>
+                                            </div>
+                                            <!-- End community name -->
+                                            <!-- Start community time -->
+                                            <div class="row">
+                                               <div class="col-md-12 community-sub-heading">
+                                                  Members : {% if i.Commnunity_id.community_member is None %}0{% else %}{{i.Commnunity_id.community_member}}{% endif %}
+                                               </div>
+                                            </div>
+                                            <!-- End community time -->
+                                       </div>
                                     </div>
                                     {% if userprofile.id is i.Commnunity_id.User_Profile.id %}
                                     {% else %}
@@ -506,12 +532,12 @@
                               <!-- Start Match box created community  but joined -->
                               <li>
                                  <div class="row pt-3">
-                                    <div class="col-2 col-sm-2 pr-0 pt-0 pb-0 community-post-profile-picture">
+                                    <!--<div class="col-2 col-sm-2 pr-0 pt-0 pb-0 community-post-profile-picture">
                                        <img class="img-fluid rounded-circle"
                                           src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania">
                                     </div>
                                     <div class="col-7 col-sm-7">
-                                       <!-- Start modeal community heading  -->
+                                       &lt;!&ndash; Start modeal community heading  &ndash;&gt;
                                        <div class="row">
                                           <div class="col-md-12 community-heading">
                                              <a href="{% url 'community-profile-screen' i.Commnunity_id.id %}"
@@ -520,14 +546,41 @@
                                              </a>
                                           </div>
                                        </div>
-                                       <!-- End modeal community heading  -->
-                                       <!-- Start modeal community members  -->
+                                       &lt;!&ndash; End modeal community heading  &ndash;&gt;
+                                       &lt;!&ndash; Start modeal community members  &ndash;&gt;
                                        <div class="row">
                                           <div class="col-md-12 community-sub-heading">
                                              Members : {% if i.Commnunity_id.community_member is None %}0{% else %}{{i.Commnunity_id.community_member}}{% endif %}
                                           </div>
                                        </div>
-                                       <!-- End modeal community members  -->
+                                       &lt;!&ndash; End modeal community members  &ndash;&gt;
+                                    </div>-->
+                                    <div class="col-9 col-sm-9">
+                                        <div class="float-child-community">
+                                            <div class="row">
+                                                <div class="col-md-12 community-post-profile-picture">
+                                                    <img class="img-fluid rounded-circle" src="{{i.Commnunity_id.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="float-child-1-community pl-3">
+                                            <!-- Start community name -->
+                                            <div class="row">
+                                               <div class="col-md-12 community-heading">
+                                                 <a href="{% url 'community-profile-screen' i.Commnunity_id.id %}" class="text-decoration-none">
+                                                     W/{{i.Commnunity_id.Community_Name}}
+                                                 </a>
+                                               </div>
+                                            </div>
+                                            <!-- End community name -->
+                                            <!-- Start community time -->
+                                            <div class="row">
+                                               <div class="col-md-12 community-sub-heading">
+                                                  Members : {% if i.Commnunity_id.community_member is None %}0{% else %}{{i.Commnunity_id.community_member}}{% endif %}
+                                               </div>
+                                            </div>
+                                            <!-- End community time -->
+                                       </div>
                                     </div>
                                     {% if i.User_Profile %}
                                     {% else %}
@@ -551,12 +604,12 @@
                               <!-- Start created community by other but we not joined -->
                               <li>
                                  <div class="row pt-3 created-community">
-                                    <div class="col-2 col-sm-2 pr-0 pt-0 pb-0 community-post-profile-picture">
+                                    <!--<div class="col-2 col-sm-2 pr-0 pt-0 pb-0 community-post-profile-picture">
                                        <img class="img-fluid rounded-circle"
                                           src="{{i.Community_Profile_Image.url}}" alt="Chania">
                                     </div>
                                     <div class="col-7 col-sm-7">
-                                       <!-- Start modeal community heading  -->
+                                       &lt;!&ndash; Start modeal community heading  &ndash;&gt;
                                        <div class="row">
                                           <div class="col-md-12 community-heading">
                                              <a href="{% url 'community-profile-screen' i.id %}" class="text-decoration-none">
@@ -564,17 +617,45 @@
                                              </a>
                                           </div>
                                        </div>
-                                       <!-- End modeal community heading  -->
-                                       <!-- Start modeal community members  -->
+                                       &lt;!&ndash; End modeal community heading  &ndash;&gt;
+                                       &lt;!&ndash; Start modeal community members  &ndash;&gt;
                                        <div class="row">
                                           <div class="col-md-12 community-sub-heading">
                                              Members : {% if i.community_member is None %}0{% else %}
                                              {{i.community_member}} {% endif %}
                                           </div>
                                        </div>
-                                       <!-- End modeal community members  -->
-                                    </div>
+                                       &lt;!&ndash; End modeal community members  &ndash;&gt;
+                                    </div>-->
                                     <!-- <p>{{userprofile.id}},{{i.User_Profile.id}}</p> -->
+                                    <div class="col-9 col-sm-9">
+    <div class="float-child-community">
+        <div class="row">
+            <div class="col-md-12 community-post-profile-picture">
+                <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
+            </div>
+        </div>
+    </div>
+    <div class="float-child-1-community pl-3">
+        <!-- Start community name -->
+        <div class="row">
+           <div class="col-md-12 community-heading">
+             <a href="{% url 'community-profile-screen' i.id %}" class="text-decoration-none">
+                 U/{{i.Community_Name}}
+             </a>
+           </div>
+        </div>
+        <!-- End community name -->
+        <!-- Start community time -->
+        <div class="row">
+           <div class="col-md-12 community-sub-heading">
+              Members : {% if i.community_member is None %}0{% else %}{{i.community_member}} {% endif %}
+           </div>
+        </div>
+        <!-- End community time -->
+   </div>
+</div>
+
                                     {% if userprofile.id is i.User_Profile.id %}
                                     {% else %}
                                     <div class="col-3 col-sm-3 text-right">
@@ -590,12 +671,12 @@
                               <!-- Start created community by  match box but we not joined-->
                               <li>
                                  <div class="row pt-3">
-                                    <div class="col-2 col-sm-2 pr-0 pt-0 pb-0 community-post-profile-picture">
+                                    <!--<div class="col-2 col-sm-2 pr-0 pt-0 pb-0 community-post-profile-picture">
                                        <img class="img-fluid rounded-circle"
                                           src="{{i.Community_Profile_Image.url}}" alt="Chania">
                                     </div>
                                     <div class="col-7 col-sm-7">
-                                       <!-- Start modeal community heading  -->
+                                       &lt;!&ndash; Start modeal community heading  &ndash;&gt;
                                        <div class="row">
                                           <div class="col-md-12 community-heading">
                                              <a href="{% url 'community-profile-screen' i.id %}"
@@ -604,16 +685,43 @@
                                              </a>
                                           </div>
                                        </div>
-                                       <!-- End modeal community heading  -->
-                                       <!-- Start modeal community members  -->
+                                       &lt;!&ndash; End modeal community heading  &ndash;&gt;
+                                       &lt;!&ndash; Start modeal community members  &ndash;&gt;
                                        <div class="row">
                                           <div class="col-md-12 community-sub-heading">
                                              Members : {% if i.community_member is None %}0{% else %}
                                              {{i.community_member}} {% endif %}
                                           </div>
                                        </div>
-                                       <!-- End modeal community members  -->
-                                    </div>
+                                       &lt;!&ndash; End modeal community members  &ndash;&gt;
+                                    </div>-->
+                                    <div class="col-9 col-sm-9">
+    <div class="float-child-community">
+        <div class="row">
+            <div class="col-md-12 community-post-profile-picture">
+                <img class="img-fluid rounded-circle" src="{{i.Community_Profile_Image.url}}" alt="Chania" height="100%" width="100%">
+            </div>
+        </div>
+    </div>
+    <div class="float-child-1-community pl-3">
+        <!-- Start community name -->
+        <div class="row">
+           <div class="col-md-12 community-heading">
+             <a href="{% url 'community-profile-screen' i.id %}" class="text-decoration-none">
+                 W/{{i.Community_Name}}
+             </a>
+           </div>
+        </div>
+        <!-- End community name -->
+        <!-- Start community time -->
+        <div class="row">
+           <div class="col-md-12 community-sub-heading">
+              Members : {% if i.community_member is None %}0{% else %} {{i.community_member}} {% endif %}
+           </div>
+        </div>
+        <!-- End community time -->
+   </div>
+</div>
                                     <div class="col-3 col-sm-3 text-right">
                                        <a href="{% url 'Join_Coummunity' i.id %}" class="text-decoration-none">
                                        <button type="submit" class="btn btn-sm  btn-normal-b">Join</button>

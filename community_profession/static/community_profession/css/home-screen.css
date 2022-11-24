@@ -608,8 +608,17 @@ body {
     background-position: 7px;
 }
 
+.float-child-community {
+    width: 14%;
+    float: left;
+    padding: 0px;
+}
 
-
+.float-child-1-community {
+    width: 86%;
+    float: left;
+    padding-left: 0px;
+}
 
 /* Start Mobile view */
 @media all and (min-width: 577px) {}
