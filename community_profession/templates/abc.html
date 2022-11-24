@@ -10,20 +10,23 @@
 <body>
 
 
+<!-- Start Profile Picture -->
+<div class="float-child">
+ <div class="row">
+    <div class="col-md-12">
+       <img class="img-fluid rounded-circle"
+          src="{{Question.User_Profile.profile_image.url}}" alt="Chania"
+          height="100%" width="100%">
+    </div>
+ </div>
+</div>
+<!-- End Profile Picture -->
 <div class="float-child-1">
      <!-- Start community name -->
      <div class="row">
         <div class="col-md-12 community-name">
-           <a href="{% url 'profession-profile-screen' i.Post.user_post.User_Profile.usertype.user_id.id  %}"
-              class="text-decoration-none">
-              {{i.Post.user_post.User_Profile.usertype.user_id.first_name}}
-              {{i.Post.user_post.User_Profile.usertype.user_id.last_name}}
-           </a>
-           /
-           <span class="">
-              <a href="#" class="text-decoration-none follow-color"> Follow </a>
-           </span>
-
+          {{Question.User_Profile.usertype.user_id.first_name}}
+           {{Question.User_Profile.usertype.user_id.last_name}}
 
         </div>
      </div>
@@ -31,12 +34,7 @@
      <!-- Start community time -->
      <div class="row">
         <div class="col-md-12 community-time">
-           <a href="{% url 'community-profile-screen' i.Post.Community_obj.id  %}"
-              class="text-decoration-none text-light">
-           {{i.Post.Community_obj.Community_Name}}
-           </a>/
-
-           {{i.Post.user_post.Post_Date}} <!--/ {{i.Post.user_post.Post_Time}}-->
+           {{Question.Date}} {{Question.Time}}
         </div>
      </div>
      <!-- End community time -->
