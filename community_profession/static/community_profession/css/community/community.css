@@ -59,11 +59,22 @@
 	font-family: var(--font-1);
 	font-style: normal;
 	font-weight: 400;
-	font-size: 0.75rem;
+	font-size: 1rem;
 	line-height: 1.125rem;
 }
 
+
+
 .community-body .community-options .dropdown-menu .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.438rem 1.313rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
 	border-bottom: 0.031rem solid rgba(22, 24, 24, 0.2);
 }
 

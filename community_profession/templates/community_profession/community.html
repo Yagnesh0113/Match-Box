@@ -276,41 +276,42 @@
                <!-- Start join buttons, options -->
                <div class="col-2 col-sm-6 col-md-6 text-right ">
                   <div class="row">
-                     <div class="col-md-12 community-options ">
-                        <div class="dropdown">
+                     <div class="col-md-11"></div>
+                     <div class="col-md-1 community-options ">
+                        <div class="dropdown " >
                            <button type="button" class="btn text-light" data-toggle="dropdown">
-                           <i class="fa-solid fa-ellipsis-vertical"></i>
+                              <i class="fa-solid fa-ellipsis-vertical"></i>
                            </button>
                            <div class="dropdown-menu">
                               <!-- <a class="dropdown-item" href="#">{% copy_to_clipboard object_or_url%}Copy Link</a> -->
                               {% if userprofile.id is i.Post.user_post.User_Profile.id %}
                               {% else %}
-                              <a class="dropdown-item" href="#" data-target="#report-post" data-toggle="modal"
-                                 onclick="Reportpost('{{i.Post.user_post.id}}')">Report</a>
+                                 <a class="dropdown-item" href="#" data-target="#report-post" data-toggle="modal"
+                                    onclick="Reportpost('{{i.Post.user_post.id}}')">Report</a>
                               {% endif %}
                               <!-- Start Edit and Delete login User -->
                               {% if userprofile.id is i.Post.user_post.User_Profile.id %}
-                              {% if i.Post.user_post.post_type1 %}
-                              <a class="dropdown-item"
-                                 href="{% url 'Community_Delete_My_Video' i.Post.user_post.id %}">Delete
-                              Video</a>
-                              <a class="dropdown-item"
-                                 href="{% url 'Community_Edit_My_Video' i.Post.user_post.id %}">Edit Video</a>
-                              {% else %}
-                              <a class="dropdown-item"
-                                 href="{% url 'Community_Delete_My_Image' i.Post.user_post.id %}">Delete
-                              Image</a>
-                              <a class="dropdown-item"
-                                 href="{% url 'Community_Edit_My_Image' i.Post.user_post.id %}">Edit Image</a>
-                              {% endif %}
+                                 {% if i.Post.user_post.post_type1 %}
+                                    <a class="dropdown-item"
+                                       href="{% url 'Community_Delete_My_Video' i.Post.user_post.id %}">Delete
+                                    Video</a>
+                                    <a class="dropdown-item"
+                                       href="{% url 'Community_Edit_My_Video' i.Post.user_post.id %}">Edit Video</a>
+                                 {% else %}
+                                    <a class="dropdown-item"
+                                       href="{% url 'Community_Delete_My_Image' i.Post.user_post.id %}">Delete
+                                    Image</a>
+                                    <a class="dropdown-item"
+                                       href="{% url 'Community_Edit_My_Image' i.Post.user_post.id %}">Edit Image</a>
+                                 {% endif %}
                               {% endif %}
                               <!-- End Edit and Delete login User -->
                               <!-- Start Post Book Mark -->
                               {% if i.Post.user_post.Post_bookmark is False %}
-                              <a class="dropdown-item" href="{% url 'bookmark_post' i.Post.id %}">Bookmark</a>
+                                 <a class="dropdown-item" href="{% url 'bookmark_post' i.Post.id %}">Bookmark</a>
                               {% else %}
-                              <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.Post.id %}">Remove
-                              Bookmark</a>
+                                 <a class="dropdown-item" href="{% url 'remove_post_bookmark' i.Post.id %}">Remove
+                                 Bookmark</a>
                               {% endif %}
                               <!-- End Post Book Mark -->
                               <!-- <a class="dropdown-item" href="#">Save</a>
@@ -637,7 +638,8 @@
                <!-- Start join buttons, options -->
                <div class="col-2 col-sm-6 col-md-6 text-right">
                   <div class="row">
-                     <div class="col-md-12 community-options">
+                     <div class="col-md-11"></div>
+                     <div class="col-md-1 community-options">
                         <div class="dropdown">
                            <button type="button" class="btn text-light" data-toggle="dropdown">
                            <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -834,7 +836,8 @@
                <!-- Start join buttons, options -->
                <div class="col-2 col-sm-6 col-md-6 text-right">
                   <div class="row">
-                     <div class="col-md-12 community-options">
+                     <div class="col-md-11"></div>
+                     <div class="col-md-1 community-options">
                         <div class="dropdown">
                            <button type="button" class="btn text-light" data-toggle="dropdown">
                            <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -1245,7 +1248,8 @@
                <!-- Start join buttons, options -->
                <div class="col-2 col-sm-6 col-md-6 text-right">
                   <div class="row">
-                     <div class="col-md-12 community-options">
+                     <div class="col-md-11"></div>
+                     <div class="col-md-1 community-options">
                         <div class="dropdown">
                            <button type="button" class="btn text-light" data-toggle="dropdown">
                            <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -1438,7 +1442,8 @@
                      <!-- Start join buttons, options -->
                      <div class="col-2 col-sm-6 col-md-6 text-right">
                         <div class="row">
-                           <div class="col-md-12 community-options">
+                           <div class="col-md-11"></div>
+                           <div class="col-md-1 community-options">
                               <div class="dropdown">
                                  <button type="button" class="btn text-light" data-toggle="dropdown">
                                  <i class="fa-solid fa-ellipsis-vertical"></i>
