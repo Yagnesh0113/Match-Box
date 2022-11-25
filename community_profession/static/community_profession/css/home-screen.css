@@ -884,6 +884,11 @@ body {
         color: var(--color-2);
     }
 
+    .your-recent-search .see-all
+    {
+        padding-right:0px;
+    }
+
     .your-recent-search .see-all a {
     font-family: var(--font-1);
     font-style: normal;
