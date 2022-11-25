@@ -4,10 +4,14 @@
 }
 .navnotificatn
 {
-	color: white;
-	padding-top: 7px;
-	font-size: 20px;
+	font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    color: var(--color-2);
 }
+
 .navnotificatn:hover
 {
 	color: white;
@@ -869,6 +873,17 @@ body {
 	{
         font-size: 1.5rem;
     }
+
+    .navnotificatn
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 0.938rem;
+        color: var(--color-2);
+    }
+
 
 }
 
