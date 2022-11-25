@@ -884,6 +884,15 @@ body {
         color: var(--color-2);
     }
 
+    .your-recent-search .see-all a {
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+    color: var(--color-12);
+}
+
 
 }
 
