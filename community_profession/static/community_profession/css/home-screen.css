@@ -83,7 +83,7 @@
 {
 	font-family: var(--font-2);
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 800;
 	font-size: 1rem;
 	line-height: 145%;
 	color: var(--color-13);
@@ -631,6 +631,9 @@ body {
     padding-left: 0px;
 }
 
+
+
+
 /* Start Mobile view */
 @media all and (min-width: 577px) {}
 
@@ -825,18 +828,20 @@ body {
     }
 	.notifictn-dropdon 
 	{
-		max-height:31.25rem;
-		overflow-y: scroll;
-		min-width: 16rem;
-		padding-left: 1rem;
-		background: #B5DFDF;
-		border-radius: 0.25rem;
+		max-height: 31.25rem;
+        overflow-y: scroll;
+        min-width: 344px;
+        padding-left: 1rem;
+        background: #B5DFDF;
+        border-radius: 0.25rem;
+        right: -74px;
+        top: 35px;
 	  }
 
 	  .notifctn-seeall {
         font-family: var(--font-2);
         font-style: normal;
-        font-weight: 400;
+        font-weight: 800;
         font-size: 0.875rem;
         line-height: 145%;
         color: var(--color-13);
@@ -906,7 +911,13 @@ body {
     font-size: 0.75rem;
     line-height: 1.5rem;
     color: var(--color-12);
-}
+    }
+
+    .float-child-notification .img-fluid
+    {
+        height:2.188rem;
+        width:2.188rem;
+    }
 
 
 }
@@ -1020,6 +1031,12 @@ body {
         {
             height:10px;
         }
+
+    .float-child-notification .img-fluid
+    {
+        height:3.75rem;
+        width:3.75rem;
+    }
 
 }
 
