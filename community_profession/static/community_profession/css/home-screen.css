@@ -24,20 +24,20 @@
 	overflow-y: scroll;
 	min-width: 40rem;
 	right: 0.9375rem;
-	padding-left: 1.875rem;
 	background: #B5DFDF;
     border-radius: 4px;
 	
   }
   .notifntn-headng
   {
-	font-family: 'Helvetica';
+	font-family: var(--font-2);
 	font-style: normal;
 	font-weight: 700;
-	font-size: 32px;
-	line-height: 37px;
-	color: #161818;
-	padding-bottom: 28px;
+	font-size: 2rem;
+	line-height: 2.313rem;
+	color: var(--color-13);
+	padding-bottom: 1.75rem;
+	padding-left:2.5rem;
   }
   .blacktext
   {
@@ -56,11 +56,7 @@
 	font-size: 22px;
   }
 
-  .notifntn-img
-  {
-	height: 80px;
-	width: 80px;
-  }
+
   .notifatn-text-hedng
   {
 	font-family: var(--font-1);
@@ -68,30 +64,29 @@
 	font-weight: 500;
 	font-size: 1.25rem;
 	line-height: 145%;
-	color: #161818;
+	color: var(--color-13);
 	text-align: left;
-	padding-left: 30px;
+	padding-left: 1.875rem;
   }
 .notifn-date
 {
 	font-family: var(--font-1);
 	font-style: normal;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 1rem;
 	line-height: 145%;
 	color: #3F515C;
-	padding-right: 42px;
-	padding-top: 12px;
+
 }
 
 .notifctn-seeall
 {
-	font-family: 'Helvetica';
+	font-family: var(--font-2);
 	font-style: normal;
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 1rem;
 	line-height: 145%;
-	color: #161818;
+	color: var(--color-13);
 
 }
 .custom-nav .navbar {
@@ -624,6 +619,18 @@ body {
     padding-left: 0px;
 }
 
+.float-child-notification {
+    width: 14%;
+    float: left;
+    padding: 0px;
+}
+
+.float-child-1-notification {
+    width: 86%;
+    float: left;
+    padding-left: 0px;
+}
+
 /* Start Mobile view */
 @media all and (min-width: 577px) {}
 
@@ -820,17 +827,21 @@ body {
 	{
 		max-height:31.25rem;
 		overflow-y: scroll;
-		min-width: 20rem;
-		right:-5rem;
+		min-width: 16rem;
 		padding-left: 1rem;
 		background: #B5DFDF;
 		border-radius: 0.25rem;
 	  }
-	  .notifntn-img
-	{
-	  height: 3.3125rem;
-	  width: 3.3125rem;
-	}
+
+	  .notifctn-seeall {
+        font-family: var(--font-2);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 145%;
+        color: var(--color-13);
+        }
+
 	.top-right {
 		position: absolute;
 		top: 0rem;
@@ -845,7 +856,6 @@ body {
 		font-size: 0.875rem;
 		line-height: 145%;
 		color: #161818;
-		padding-left: 3rem;
 	  }
 	  .notifn-date
 	  {
@@ -855,16 +865,16 @@ body {
 		font-size: 0.75rem;
 		line-height: 145%;
 		color: #3F515C;
-	   padding-left: 1.4375rem;
 	  }
+
 	  .notifntn-headng
 	  {
-		font-family: 'Helvetica';
+		font-family: var(--font-2);
 		font-style: normal;
 		font-weight: 700;
 		font-size: 1.375rem;
 		line-height: 1.5625rem;
-		color: #161818;
+		color: var(--color-13);
 		padding-bottom: 1.25rem;
 
 	  }
@@ -996,32 +1006,15 @@ body {
     {
         padding-left:16px;
     }
-	.notifntn-img
-	{
-	  height: 45px;
-	  width: 45px;
-	}
+
 	.top-right {
 		position: absolute;
 		top: 0px;
 		left: 50px;
 		font-size: 16px;
 	  }
-	  .notifn-date
-	  {
-		  font-family: var(--font-1);
-		  font-style: normal;
-		  font-weight: 400;
-		  font-size: 10px;
-		  line-height: 145%;
-		  color: #3F515C;
-		  padding-right: 62px;
-		  padding-top: 0px;
-	  }
-	  .notifictn-dropdon
-	  {
-		min-width: 52rem;
-	  }
+
+
 
 	  .flag-svg .img-fluid
         {
@@ -1078,28 +1071,14 @@ body {
         padding-left:11px;
         padding-right:8px;
     }
-	.notifntn-img
-	{
-	  height: 55px;
-	  width: 55px;
-	}
+
 	.top-right {
 		position: absolute;
 		top: 0px;
 		left: 60px;
 		font-size: 16px;
 	  }
-	  .notifn-date
-        {
-            font-family: var(--font-1);
-            font-style: normal;
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 145%;
-            color: #3F515C;
-            padding-right: 0px;
-            padding-top: 0px;
-        }
+
         .notifictn-dropdo
         {
             min-width: 55rem;
@@ -1141,28 +1120,14 @@ body {
         padding-left:14px;
         padding-right:7px;
     }
-	.notifntn-img
-	{
-	  height: 3.4375rem;
-	  width: 3.4375rem;
-	}
+
 	.top-right {
 		position: absolute;
 		top: 0rem;
 		left: 3.75rem;
 		font-size: 1rem;
 	  }
-	.notifn-date
-      {
-	font-family: var(--font-1);
-	font-style: normal;
-	font-weight: 400;
-	font-size: 0.75rem;
-	line-height: 145%;
-	color: #3F515C;
-    padding-right: 2rem;
-	padding-top: 0.75rem;
-    }
+
 
     .flag-svg .img-fluid
         {
@@ -1210,21 +1175,15 @@ body {
         padding-left:14px;
         padding-right:11px;
     }
-	.notifntn-img
-	{
-	  height: 70px;
-	  width: 70px;
-	}
+
 	.top-right {
 		position: absolute;
 		top: 0px;
 		left: 72px;
 		font-size: 16px;
 	  }
-	  .notifn-date
-	  {
-		padding-right: 69px;
-	  }
+
+
 
 	  .flag-svg .img-fluid
         {
@@ -1253,28 +1212,14 @@ body {
         padding-left: 0.875rem;
         padding-right: 0.6875rem;
     }
-	.notifntn-img
-	{
-	  height: 5.25rem;
-	  width: 5.25rem;
-	}
+
 	.top-right {
 		position: absolute;
 		top: 0rem;
 		left: 5rem;
 		font-size: 1.375rem;
 	  }
-	  .notifn-date
-	  {
-		  font-family: var(--font-1);
-		  font-style: normal;
-		  font-weight: 400;
-		  font-size: 1rem;
-		  line-height: 145%;
-		  color: #3F515C;
-		  padding-right: 2.625rem;
-		  padding-top: 0.75rem;
-	  }
+
 
 	  .flag-svg .img-fluid
         {
