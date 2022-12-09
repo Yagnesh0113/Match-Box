@@ -231,9 +231,9 @@
                <!-- Start right side navigation -->
                <ul class="nav justify-content-end">
                   {% if user.is_authenticated %}
-                  <li class="pt-2 pr-2">
+                  <li class="pt-2 notification-pr">
                      <div class="dropdown ">
-                        <button class="btn navnotificatn notification " type="button" data-toggle="dropdown">
+                        <button class="btn navnotificatn notification" type="button" data-toggle="dropdown">
                             <i class="fa fa-bell-o" aria-hidden="true"></i>
                             <span class="badge">{{notifications.count}}</span>
 
@@ -263,14 +263,14 @@
                                               {% endif %}
                                           </a>
                                     </div>
-                                    <div class="float-child-1-notification notifatn-text-hedng pl-3">
+                                    <div class="float-child-1-notification  pl-3">
                                         <div class="row">
-                                        <div class="col-md-12">
-                                           <strong>@{{i.from_user.usertype.user_id.first_name}} {{i.from_user.usertype.user_id.last_name}}</strong>
+                                            <div class="col-md-12 notification-text-heading">
+                                               @{{i.from_user.usertype.user_id.first_name}} {{i.from_user.usertype.user_id.last_name}}
+                                            </div>
                                         </div>
-                                        </div>
-                                        <div class="row">
-                                        <div class="col-md-12">Big fashion festival start to 23rd sep to 30 sep Add to cart your Item now</div>
+                                        <div class="row notification-text-content">
+                                            <div class="col-md-12">Big fashion festival start to 23rd sep to 30 sep Add to cart your Item now</div>
                                         </div>
                                         <div class="row">
                                         <div class="col-12 col-sm-12 col-md-12 notifn-date">

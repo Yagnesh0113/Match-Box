@@ -57,17 +57,8 @@
   }
 
 
-  .notifatn-text-hedng
-  {
-	font-family: var(--font-1);
-	font-style: normal;
-	font-weight: 500;
-	font-size: 1.25rem;
-	line-height: 145%;
-	color: var(--color-13);
-	text-align: left;
-	padding-left: 1.875rem;
-  }
+
+
 .notifn-date
 {
 	font-family: var(--font-1);
@@ -76,19 +67,20 @@
 	font-size: 1rem;
 	line-height: 145%;
 	color: #3F515C;
-
+	text-align:left;
+	padding-top:0.75rem;
 }
 
 .notifctn-seeall
 {
 	font-family: var(--font-2);
-	font-style: normal;
-	font-weight: 800;
-	font-size: 1rem;
-	line-height: 145%;
-	color: var(--color-13);
-
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.438rem;
+    color: var(--color-13);
 }
+
 .custom-nav .navbar {
 	padding: 0rem 0rem;
 }
@@ -170,14 +162,16 @@
 	border-radius: 0.125rem;
 }
 
+
+
 .notification .badge {
-	position: absolute;
-	top: 0.188rem;
-	right: -0.313rem;
-	padding: 0.125rem 0.313rem;
-	border-radius: 50%;
-	background-color: red;
-	color: white;
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    padding: 3px 6px;
+    border-radius: 50%;
+    background: red;
+    color: white;
 }
 
 /* End Nav Notification CSS */
@@ -632,7 +626,34 @@ body {
 }
 
 
+.notification-text-heading
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 145%;
+    color: var(--color-13);
+    text-align: left;
 
+}
+
+.notification-text-content
+{
+    font-family: var(--font-1);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 145%;
+    color: #3F515C;
+    text-align: left;
+
+}
+
+.notification-pr
+{
+    padding-right:1.25rem;
+}
 
 /* Start Mobile view */
 @media all and (min-width: 577px) {}
@@ -841,7 +862,7 @@ body {
 	  .notifctn-seeall {
         font-family: var(--font-2);
         font-style: normal;
-        font-weight: 800;
+        font-weight: 400;
         font-size: 0.875rem;
         line-height: 145%;
         color: var(--color-13);
@@ -853,15 +874,7 @@ body {
 		left: 3.625rem;
 		font-size: 1rem;
 	  }
-	  .notifatn-text-hedng
-	  {
-		font-family: var(--font-1);
-		font-style: normal;
-		font-weight: 500;
-		font-size: 0.875rem;
-		line-height: 145%;
-		color: #161818;
-	  }
+
 	  .notifn-date
 	  {
 		font-family: var(--font-1);
@@ -919,7 +932,32 @@ body {
         width:2.188rem;
     }
 
+    .notification-text-heading
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.875rem;
+        line-height: 145%;
+        color: var(--color-13);
+        text-align: left;
+    }
 
+    .notification-text-content
+    {
+        font-family: var(--font-1);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 145%;
+        color: #3F515C;
+        text-align: left;
+    }
+
+    .notification-pr
+    {
+        padding-right:0.75rem;
+    }
 }
 
 @media (min-width: 577px) {
